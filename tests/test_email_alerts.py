@@ -253,3 +253,30 @@ def test_html_link_text_is_still_used_as_title(source):
     out = by_id(source.fetch("*", object()))
     assert out["pararius-ab12cd34"].title == "Pararius: Laan van Meerdervoort 12"
     assert all(l.extra.get("private_text") for l in out.values())
+
+
+@pytest.mark.parametrize("url", [
+    "http://127.0.0.1:8788/x", "http://localhost/admin", "http://[::1]/x", "http://10.0.0.5/", "http://192.168.1.1/",
+    "http://169.254.169.254/latest/meta-data/", "ftp://example.com/x", "file:///etc/passwd", "http:///nohost",
+])
+def test_tracking_links_to_local_or_private_addresses_are_never_requested(url, monkeypatch):
+    def boom(*a, **kw):
+        raise AssertionError("must not be requested: %s" % (a,))
+    monkeypatch.setattr(ea.requests, "get", boom)
+    assert ea._public_http_url(url) is False
+    assert EmailAlerts()._resolve(url) is None
+
+
+def test_public_tracking_link_is_still_resolved(monkeypatch):
+    monkeypatch.setattr(ea.socket, "getaddrinfo", lambda *a, **kw: [(2, 1, 6, "", ("93.184.216.34", 443))])
+
+    class Resp:
+        headers = {"Location": "https://www.funda.nl/detail/huur/den-haag/huis-43999999-zeestraat-1/"}
+        def close(self): pass  # noqa: E704
+    calls = []
+    monkeypatch.setattr(ea.requests, "get", lambda url, **kw: calls.append((url, kw["allow_redirects"])) or Resp())
+    assert EmailAlerts()._resolve("https://click.example-mail.test/track/1") == Resp.headers["Location"]
+    assert calls == [("https://click.example-mail.test/track/1", False)]
+    # a public name that resolves to a private address is refused too
+    monkeypatch.setattr(ea.socket, "getaddrinfo", lambda *a, **kw: [(2, 1, 6, "", ("10.1.2.3", 443))])
+    assert EmailAlerts()._resolve("https://click.example-mail.test/track/2") is None and len(calls) == 1

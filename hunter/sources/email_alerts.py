@@ -16,8 +16,10 @@ from __future__ import annotations
 
 import email
 import imaplib
+import ipaddress
 import os
 import re
+import socket
 from datetime import datetime, timedelta, timezone
 from email.message import Message
 from email.utils import parseaddr, parsedate_to_datetime
@@ -98,6 +100,20 @@ def imap_credentials() -> Tuple[str, str, str]:
 def imap_date(dt: datetime) -> str:
     """IMAP wants dd-Mon-yyyy with English month names, whatever the locale."""
     return f"{dt.day:02d}-{_MONTHS[dt.month - 1]}-{dt.year}"
+
+
+def _public_http_url(url: str) -> bool:
+    """True for a plain web address on the public internet. A link in an email must never make the
+    bot call something on the machine or network it runs on (localhost, 10.x, cloud metadata, ...)."""
+    try:
+        p = urlparse(url)
+        if p.scheme not in ("http", "https") or not p.hostname:
+            return False
+        infos = socket.getaddrinfo(p.hostname, p.port or (443 if p.scheme == "https" else 80),
+                                   type=socket.SOCK_STREAM)
+        return bool(infos) and all(ipaddress.ip_address(i[4][0]).is_global for i in infos)
+    except (ValueError, OSError):
+        return False
 
 
 def _host_ok(host: str, domains: Tuple[str, ...]) -> bool:
@@ -331,6 +347,8 @@ class EmailAlerts(Source):
         host = urlparse(url).netloc
         if any(_host_ok(host, d) for d in SITE_DOMAINS.values()):
             return None  # never request the sites themselves
+        if not _public_http_url(url):
+            return None
         try:
             resp = requests.get(url, allow_redirects=False, timeout=10, stream=True,
                                 headers={"User-Agent": "Mozilla/5.0 (house-hunter email link resolver)"})
