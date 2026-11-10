@@ -5,7 +5,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -47,7 +47,7 @@
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 80,
@@ -88,7 +88,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "V.d. Helststraat",
    "area_m2": 69,
@@ -129,7 +129,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "V. Zeggelenlaan",
    "area_m2": 198,
@@ -172,7 +172,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "Volmolengracht",
    "area_m2": 100,
@@ -216,7 +216,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "Eosstraat 143",
    "area_m2": 98,
@@ -259,7 +259,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "Turfhaven 221",
    "area_m2": 63,
@@ -309,7 +309,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "Haringbuisdijk 909",
    "area_m2": 90,
@@ -350,7 +350,7 @@
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "Maanplein 94 E",
    "area_m2": 88,
@@ -393,7 +393,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "Turfhaven 449",
    "area_m2": 59,
@@ -437,7 +437,7 @@
    "max_persons:2",
    "short_term"
   ],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -482,7 +482,7 @@
    "max_persons:4",
    "short_term"
   ],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "Vlietpark 42",
    "area_m2": 60,
@@ -520,11 +520,57 @@
   ],
   "price_drop_from": null
  },
+ "kamernet:2417636": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T14:36:54Z",
+  "flags": [
+   "max_persons:2",
+   "short_term",
+   "utilities_included"
+  ],
+  "last_seen": "2026-11-10T14:36:54Z",
+  "listing": {
+   "address": "Wesselsstraat 482",
+   "area_m2": 85,
+   "available_from": "2026-11-14",
+   "available_until": "2027-02-06",
+   "bedrooms": 2,
+   "city": "den-haag",
+   "description": "Zeer mooi appartement Appartement van 2005 in een drukke wijk bij de grote markt van DenHaag. Het complex zelf, zeer rustig. Alles bij de hand Supermarkt in bereik met een paar meters lopen. Openbaar vervoer met bereik van de hele stad.",
+   "extra": {
+    "deposit": 1000,
+    "max_persons": 2,
+    "student_house": false
+   },
+   "furnished": "furnished",
+   "image_url": "https://resources.kamernet.nl/image/ed9ea9bd-e2f5-4a92-aa48-944f3ac1b6de/resize/422-225",
+   "postcode": "2572WC",
+   "posted_at": null,
+   "price_includes_utilities": true,
+   "price_total": 1500,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "kamernet",
+   "source_id": "2417636",
+   "title": "Appartement te huur: Wesselsstraat",
+   "uid": "kamernet:2417636",
+   "url": "https://kamernet.nl/huren/appartement-den-haag/wesselsstraat/appartement-2417636"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 750,
+    "search": "2 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
  "rotsvast:h1025410133": {
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "Van Diemenstraat 80",
    "area_m2": 100,
@@ -566,7 +612,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "Lorriestraat 49",
    "area_m2": 94,
@@ -608,7 +654,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -650,7 +696,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "Zeeburgerkade 1334",
    "area_m2": 74,
@@ -692,7 +738,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -728,11 +774,52 @@
   ],
   "price_drop_from": null
  },
+ "vesteda:103395": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T14:36:54Z",
+  "flags": [],
+  "last_seen": "2026-11-10T14:36:54Z",
+  "listing": {
+   "address": "Van Boecopkade 24F",
+   "area_m2": 74,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": 2,
+   "city": "den-haag",
+   "description": "Voorrang voor cruciale beroepen. Complex De Regent II",
+   "extra": {
+    "complex": "De Regent II",
+    "status": 1
+   },
+   "furnished": null,
+   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/52/52fc5e4fab84b9afa59687c211873d7f/o/van-boecopkade-20-f-09.jpg?rmode=crop&width=570&height=276&hmac=eb3adf4a48b6ec1552b3333f9b379a90bce3f150d360e1ab33e48937e6da7d2f",
+   "postcode": "2518PG",
+   "posted_at": null,
+   "price_includes_utilities": null,
+   "price_total": 1550,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "vesteda",
+   "source_id": "103395",
+   "title": "Appartement Van Boecopkade 24F, 's-gravenhage",
+   "uid": "vesteda:103395",
+   "url": "https://www.vesteda.com/nl/de-regent-ii/van-boecopkade-24f-s-gravenhage-103395"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 775,
+    "search": "2 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
  "vesteda:7562": {
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T14:17:16Z",
+  "last_seen": "2026-11-10T14:36:54Z",
   "listing": {
    "address": "Betaplein 60",
    "area_m2": 93,
