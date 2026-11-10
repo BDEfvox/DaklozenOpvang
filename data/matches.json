@@ -1,0 +1,1149 @@
+{
+ "directwonen:520581": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Bachstraat",
+   "area_m2": 68,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "leiden",
+   "description": null,
+   "extra": {
+    "age": "56 dagen geleden",
+    "smart_only": true
+   },
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/image/eca3053f-f3f2-4209-8e0c-670bc8cdc54f",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": false,
+   "price_total": 1445,
+   "property_type": "apartment",
+   "rooms": 3,
+   "source": "directwonen",
+   "source_id": "520581",
+   "title": "Appartement Bachstraat, Leiden",
+   "uid": "directwonen:520581",
+   "url": "https://directwonen.nl/huurwoningen-huren/leiden/bachstraat/appartement-520581"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 722,
+    "search": "2 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "directwonen:521518": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Rijndijkstraat",
+   "area_m2": 100,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "leiden",
+   "description": null,
+   "extra": {
+    "age": "32 dagen geleden",
+    "smart_only": false
+   },
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/image/deb035b3-a16a-4b83-8187-d3cdad8d5099",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": false,
+   "price_total": 2300,
+   "property_type": "house",
+   "rooms": 4,
+   "source": "directwonen",
+   "source_id": "521518",
+   "title": "Woning Rijndijkstraat, Leiden",
+   "uid": "directwonen:521518",
+   "url": "https://directwonen.nl/huurwoningen-huren/leiden/rijndijkstraat/woning-521518"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 767,
+    "search": "3 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "directwonen:523549": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "D. Buserf",
+   "area_m2": 80,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "den-haag",
+   "description": null,
+   "extra": {
+    "age": "6 dagen geleden",
+    "smart_only": false
+   },
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/image/3a75a11d-dc19-4b5c-bee1-775620863ba2",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": false,
+   "price_total": 1450,
+   "property_type": "apartment",
+   "rooms": 3,
+   "source": "directwonen",
+   "source_id": "523549",
+   "title": "Appartement D. Buserf, Den Haag",
+   "uid": "directwonen:523549",
+   "url": "https://directwonen.nl/huurwoningen-huren/den-haag/dirk-buserf/appartement-523549"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 725,
+    "search": "2 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "directwonen:523589": {
+  "best_tier": "great",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "C.v.d. Lijnstraat",
+   "area_m2": 104,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "den-haag",
+   "description": null,
+   "extra": {
+    "age": "6 dagen geleden",
+    "smart_only": false
+   },
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/image/c4fa7330-7748-47f6-880d-2055658d85f9",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": false,
+   "price_total": 1950,
+   "property_type": "apartment",
+   "rooms": 4,
+   "source": "directwonen",
+   "source_id": "523589",
+   "title": "Appartement C.v.d. Lijnstraat, Den Haag",
+   "uid": "directwonen:523589",
+   "url": "https://directwonen.nl/huurwoningen-huren/den-haag/cornelis-van-der-lijnstraat/appartement-523589"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 650,
+    "search": "3 people",
+    "tier": "great"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "directwonen:523604": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Prinsengracht",
+   "area_m2": 85,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "amsterdam",
+   "description": null,
+   "extra": {
+    "age": "6 dagen geleden",
+    "smart_only": false
+   },
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/image/ccb20250-068b-492f-a0a9-eab8d55d0b3b",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": false,
+   "price_total": 2200,
+   "property_type": "apartment",
+   "rooms": 4,
+   "source": "directwonen",
+   "source_id": "523604",
+   "title": "Appartement Prinsengracht, Amsterdam",
+   "uid": "directwonen:523604",
+   "url": "https://directwonen.nl/huurwoningen-huren/amsterdam/prinsengracht/appartement-523604"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 733,
+    "search": "3 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "directwonen:523633": {
+  "best_tier": "great",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "V.d. Helststraat",
+   "area_m2": 69,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "den-haag",
+   "description": null,
+   "extra": {
+    "age": "5 dagen geleden",
+    "smart_only": false
+   },
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/image/738dde52-6463-4ac1-9ba6-84844233b8c3",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": false,
+   "price_total": 1995,
+   "property_type": "apartment",
+   "rooms": 4,
+   "source": "directwonen",
+   "source_id": "523633",
+   "title": "Appartement V.d. Helststraat, Den Haag",
+   "uid": "directwonen:523633",
+   "url": "https://directwonen.nl/huurwoningen-huren/den-haag/van-der-helststraat/appartement-523633"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 665,
+    "search": "3 people",
+    "tier": "great"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "directwonen:523654": {
+  "best_tier": "great",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "V. Zeggelenlaan",
+   "area_m2": 198,
+   "available_from": "2026-11-13",
+   "available_until": null,
+   "bedrooms": null,
+   "city": "den-haag",
+   "description": null,
+   "extra": {
+    "age": "5 dagen geleden",
+    "smart_only": false
+   },
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/image/6bfb5251-06d0-4aea-90b4-1bf604f764f8",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": false,
+   "price_total": 1001,
+   "property_type": "apartment",
+   "rooms": 4,
+   "source": "directwonen",
+   "source_id": "523654",
+   "title": "Appartement V. Zeggelenlaan, Den Haag",
+   "uid": "directwonen:523654",
+   "url": "https://directwonen.nl/huurwoningen-huren/den-haag/van-zeggelenlaan/appartement-523654"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 500,
+    "search": "2 people",
+    "tier": "great"
+   },
+   {
+    "persons": 3,
+    "price_pp": 334,
+    "search": "3 people",
+    "tier": "great"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "directwonen:523879": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Volmolengracht",
+   "area_m2": 100,
+   "available_from": "2026-12-01",
+   "available_until": null,
+   "bedrooms": null,
+   "city": "leiden",
+   "description": null,
+   "extra": {
+    "age": null,
+    "smart_only": true
+   },
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/image/cfeaa1a3-4b09-4ae9-9310-df6d3af633aa",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": false,
+   "price_total": 2350,
+   "property_type": "apartment",
+   "rooms": 4,
+   "source": "directwonen",
+   "source_id": "523879",
+   "title": "Appartement Volmolengracht, Leiden",
+   "uid": "directwonen:523879",
+   "url": "https://directwonen.nl/huurwoningen-huren/leiden/volmolengracht/appartement-523879"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 783,
+    "search": "3 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "ikwilhuren:4a925ff2f24f723ee6b85c770b19d85e": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "bedrooms_unknown"
+  ],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Eosstraat 143",
+   "area_m2": 98,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "amsterdam",
+   "description": null,
+   "extra": {
+    "availability": "Direct beschikbaar"
+   },
+   "furnished": null,
+   "image_url": "https://d.static.nbo.nl/media/c6/c62446b2932f0c5d75bc563a03890070/768x510/thumb.jpg",
+   "postcode": "1076DT",
+   "posted_at": null,
+   "price_includes_utilities": null,
+   "price_total": 2380,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "ikwilhuren",
+   "source_id": "4a925ff2f24f723ee6b85c770b19d85e",
+   "title": "Appartement Eosstraat 143, Amsterdam",
+   "uid": "ikwilhuren:4a925ff2f24f723ee6b85c770b19d85e",
+   "url": "https://ikwilhuren.nu/object/amsterdam-1076dt-143-eosstraat-4a925ff2f24f723ee6b85c770b19d85e/"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 793,
+    "search": "3 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "ikwilhuren:66862d7ded0d0f8071d37b88f88d9422": {
+  "best_tier": "great",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "bedrooms_unknown"
+  ],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Turfhaven 221",
+   "area_m2": 63,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "den-haag",
+   "description": "WIJNHAVENKWARTIER | COMPLEXTEKST 132 luxe appartementen midden in de binnenstad van Den Haag, op steenworp afstand van Den Haag Centraal Heerlijk wonen op hoogte in de Haagse binnenstad Houd je van een levendige woonomgeving? Ga dan voor een van de luxe appartementen in het Wijnhavenkwartier in Den Haag. Dit chique wooncomplex staat midden in het stadscentrum, tussen het centrale treinstation en het Spui. Ook geliefde bezienswaardigheden als het Binnenhof, Paleis Noordeinde en Paleis Huis ten Bosch liggen dichtbij. Wanneer je maar wilt wandel je hier gewoon even langs, terwijl anderen vele kilometers omrijden om deze trekpleisters te bekijken. Verder woon je hier omringd door tal van winkels en gezellige horecagelegenheden. En alsof dat nog niet genoeg is, woon je te midden van de hoogste gebouwen van de stad, waardoor je hier soms wel het gevoel hebt of je in Manhattan bent. Tenslotte nog goed nieuws voor strandliefhebbers: het brede zandstrand aan de Noordzee ligt op ongeveer zes kilometer. De 132 luxe appartementen van het Wijnhavenkwartier zijn verspreid over de vijfde tot en met de twintigste verdieping van het gebouw. Qua grootte variëren de appartementen tussen de pakweg 71 en de 164 vierkante meter. Ieder appartement is met hoogwaardige materialen afgewerkt en beschikt over een ruime woonkamer met toegang tot een balkon, één tot drie slaapkamers en een moderne badkamer en keuken (met ATAG-inbouwapparatuur als een keramische kookplaat, vaatwasser, combimagnetron en koel/vriescombinatie). Daarnaast heb je beneden in het gebouw de beschikking over een eigen berging. In het wooncomplex is ook een garage aanwezig. Indien beschikbaar, kunt u via een externe partij een parkeerplek huren.",
+   "extra": {
+    "availability": "Direct beschikbaar",
+    "service_costs": 70
+   },
+   "furnished": null,
+   "image_url": "https://d.static.nbo.nl/media/da/da8a0047fde10bfd0db01d2f0918ecbb/768x510/thumb.jpg",
+   "postcode": "2511DK",
+   "posted_at": null,
+   "price_includes_utilities": null,
+   "price_total": 1426,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "ikwilhuren",
+   "source_id": "66862d7ded0d0f8071d37b88f88d9422",
+   "title": "Appartement Turfhaven 221, Den Haag",
+   "uid": "ikwilhuren:66862d7ded0d0f8071d37b88f88d9422",
+   "url": "https://ikwilhuren.nu/object/den-haag-2511dk-221-turfhaven-66862d7ded0d0f8071d37b88f88d9422/"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 713,
+    "search": "2 people",
+    "tier": "ok"
+   },
+   {
+    "persons": 3,
+    "price_pp": 475,
+    "search": "3 people",
+    "tier": "great"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "ikwilhuren:dafce730e10cd59484b49103f93c84c4": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "bedrooms_unknown"
+  ],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Haringbuisdijk 909",
+   "area_m2": 90,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "amsterdam",
+   "description": null,
+   "extra": {
+    "availability": "Direct beschikbaar"
+   },
+   "furnished": null,
+   "image_url": "https://c.static.nbo.nl/media/87/877112276f588a3a7f1d5972e08e0a61/768x510/thumb.jpg",
+   "postcode": "1086VA",
+   "posted_at": null,
+   "price_includes_utilities": null,
+   "price_total": 2200,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "ikwilhuren",
+   "source_id": "dafce730e10cd59484b49103f93c84c4",
+   "title": "Appartement Haringbuisdijk 909, Amsterdam",
+   "uid": "ikwilhuren:dafce730e10cd59484b49103f93c84c4",
+   "url": "https://ikwilhuren.nu/object/amsterdam-1086va-909-haringbuisdijk-dafce730e10cd59484b49103f93c84c4/"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 733,
+    "search": "3 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "ikwilhuren:dc17c645af146cafb0fc5f3d6f6e32aa": {
+  "best_tier": "great",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "bedrooms_unknown"
+  ],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Maanplein 94 E",
+   "area_m2": 88,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "den-haag",
+   "description": "Aan het Maanplein 94E komt per 1 maart een licht en comfortabel appartement beschikbaar van 87 m², ideaal voor wie op zoek is naar ruimte, rust en een moderne woonomgeving. De woning beschikt over twee slaapkamers, perfect voor een stel, klein gezin of iemand die graag een extra kamer gebruikt als werk- of hobbyruimte. Het betreft een appartement, gelegen op een hogere verdieping, waardoor u geniet van veel lichtinval en een prettig uitzicht. Daarnaast beschikt de woning over een balkon, waar u heerlijk kunt ontspannen in de buitenlucht. Indeling en kenmerken • Woonoppervlakte: 87 m² • Aantal slaapkamers: 2 • Type woning: Appartement • Verdieping: Hogere verdieping • Buitenruimte: Balkon • Energielabel: A Huurprijs • Kale huur: € 1.542.,00 per maand • Servicekosten: € 195,00 per maand Omgeving De woning ligt in een rustige, groene en goed bereikbare wijk. In de directe omgeving vindt u diverse voorzieningen zoals supermarkten, scholen, sportfaciliteiten en gezellige horecagelegenheden. Ook het openbaar vervoer is uitstekend geregeld, en uitvalswegen zijn snel bereikbaar. De buurt is geliefd vanwege de combinatie van rust en stedelijke voorzieningen binnen handbereik. Beschikbaar per 01-03 Interesse? Bent u enthousiast geworden over deze woning? Dan kunt u eenvoudig een bezichtigingsaanvraag indienen via de website. Graag wijzen wij u erop dat de informatie en afbeeldingen op de website ter indicatie zijn en dat hieraan geen rechten kunnen worden ontleend.",
+   "extra": {
+    "availability": "Direct beschikbaar",
+    "service_costs": 195
+   },
+   "furnished": null,
+   "image_url": "https://b.static.nbo.nl/media/3c/3cdcc3cd15fd9fd1d2385baddb391e3f/768x510/thumb.jpg",
+   "postcode": "2516CK",
+   "posted_at": null,
+   "price_includes_utilities": null,
+   "price_total": 1542,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "ikwilhuren",
+   "source_id": "dc17c645af146cafb0fc5f3d6f6e32aa",
+   "title": "Appartement Maanplein 94 E, Den Haag",
+   "uid": "ikwilhuren:dc17c645af146cafb0fc5f3d6f6e32aa",
+   "url": "https://ikwilhuren.nu/object/den-haag-2516ck-94-e-maanplein-dc17c645af146cafb0fc5f3d6f6e32aa/"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 771,
+    "search": "2 people",
+    "tier": "ok"
+   },
+   {
+    "persons": 3,
+    "price_pp": 514,
+    "search": "3 people",
+    "tier": "great"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "ikwilhuren:f03d28bb168af6fc5e730b78dee98b10": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "bedrooms_unknown"
+  ],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Turfhaven 449",
+   "area_m2": 59,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "den-haag",
+   "description": null,
+   "extra": {
+    "availability": "Direct beschikbaar"
+   },
+   "furnished": null,
+   "image_url": "https://b.static.nbo.nl/media/d3/d3ad03f4b036cd48d18ed0207f3e2aab/768x510/thumb.jpg",
+   "postcode": "2511DK",
+   "posted_at": null,
+   "price_includes_utilities": null,
+   "price_total": 1447,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "ikwilhuren",
+   "source_id": "f03d28bb168af6fc5e730b78dee98b10",
+   "title": "Appartement Turfhaven 449, Den Haag",
+   "uid": "ikwilhuren:f03d28bb168af6fc5e730b78dee98b10",
+   "url": "https://ikwilhuren.nu/object/den-haag-2511dk-449-turfhaven-f03d28bb168af6fc5e730b78dee98b10/"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 724,
+    "search": "2 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "kamernet:1959057": {
+  "best_tier": "great",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "max_persons:2",
+   "short_term"
+  ],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Loosduinseweg 1103",
+   "area_m2": 80,
+   "available_from": "2026-11-01",
+   "available_until": "2027-10-31",
+   "bedrooms": 2,
+   "city": "den-haag",
+   "description": "Appartment te huur Nette appartment op de 1e etage op een gunstige locatie aan de loosduinseweg , in Den Haag. Goede bereikbaarheid met openbaar vervoer en dichtbij winkels en andere voorzieningen. Het centrum van Den Haag ziekenhuis en Centraal station is eveneens goed bereikbaar met tram 2 Ben jij netjes, rustig en betrouwbaar en zoek je een fijne woonplek in Den Haag? Stuur gerust een bericht voor meer informatie of een bezichtiging.",
+   "extra": {
+    "deposit": 1228,
+    "max_persons": 2,
+    "student_house": false
+   },
+   "furnished": "furnished",
+   "image_url": "https://resources.kamernet.nl/image/f133c357-dd63-4e68-bf4c-2bf2bb3cf464/resize/422-225",
+   "postcode": "2571BD",
+   "posted_at": null,
+   "price_includes_utilities": false,
+   "price_total": 1228,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "kamernet",
+   "source_id": "1959057",
+   "title": "Appartement te huur: Loosduinseweg",
+   "uid": "kamernet:1959057",
+   "url": "https://kamernet.nl/huren/appartement-den-haag/loosduinseweg/appartement-1959057"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 614,
+    "search": "2 people",
+    "tier": "great"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "kamernet:2412731": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "bedrooms_unknown"
+  ],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Van Kinsbergenstraat",
+   "area_m2": 102,
+   "available_from": "2026-10-27",
+   "available_until": null,
+   "bedrooms": null,
+   "city": "den-haag",
+   "description": null,
+   "extra": {
+    "student_house": false
+   },
+   "furnished": "upholstered",
+   "image_url": "https://resources.kamernet.nl/image/92a5ef06-8d01-408d-aaf8-f09788f961a5/resize/422-225",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": false,
+   "price_total": 2195,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "kamernet",
+   "source_id": "2412731",
+   "title": "Appartement te huur: Van Kinsbergenstraat",
+   "uid": "kamernet:2412731",
+   "url": "https://kamernet.nl/huren/appartement-den-haag/van-kinsbergenstraat/appartement-2412731"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 732,
+    "search": "3 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "kamernet:2414041": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "short_term",
+   "bedrooms_unknown"
+  ],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Vlietpark",
+   "area_m2": 60,
+   "available_from": "2026-12-01",
+   "available_until": "2027-11-30",
+   "bedrooms": null,
+   "city": "leiden",
+   "description": null,
+   "extra": {
+    "student_house": false
+   },
+   "furnished": "upholstered",
+   "image_url": "https://resources.kamernet.nl/image/90e91c00-4c83-4053-9c71-723538f1ea20/resize/422-225",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": false,
+   "price_total": 2200,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "kamernet",
+   "source_id": "2414041",
+   "title": "Appartement te huur: Vlietpark",
+   "uid": "kamernet:2414041",
+   "url": "https://kamernet.nl/huren/appartement-leiden/vlietpark/appartement-2414041"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 733,
+    "search": "3 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "kamernet:2415940": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "utilities_included",
+   "bedrooms_unknown"
+  ],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Valkenboslaan",
+   "area_m2": 48,
+   "available_from": "2026-11-03",
+   "available_until": null,
+   "bedrooms": null,
+   "city": "den-haag",
+   "description": null,
+   "extra": {
+    "student_house": false
+   },
+   "furnished": "furnished",
+   "image_url": "https://resources.kamernet.nl/image/1d2e1ab7-4106-488e-a6b0-02b1435d6349/resize/422-225",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": true,
+   "price_total": 1525,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "kamernet",
+   "source_id": "2415940",
+   "title": "Appartement te huur: Valkenboslaan",
+   "uid": "kamernet:2415940",
+   "url": "https://kamernet.nl/huren/appartement-den-haag/valkenboslaan/appartement-2415940"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 762,
+    "search": "2 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "kamernet:2416380": {
+  "best_tier": "great",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "max_persons:2",
+   "short_term",
+   "utilities_included",
+   "bedrooms_unknown"
+  ],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Ringkade 77",
+   "area_m2": 50,
+   "available_from": "2027-01-10",
+   "available_until": "2027-03-10",
+   "bedrooms": null,
+   "city": "leiden",
+   "description": "Tijdelijke verhuur in Leiden Januari - maart 2027 🏡 Tijdelijke verhuur appartement in Leiden – januari tot maart 2027 🐱 Ik ga voor een paar maanden naar het buitenland, van 10 januari tot 10 maart 2027 (de exacte data moeten nog worden bevestigd). Daarom ben ik op zoek naar iemand die gedurende deze periode in mijn appartement wil verblijven. Het liefst zoek ik een persoon of stel die het appartement behandelt alsof het hun eigen huis is en, bij voorkeur, ook voor mijn kat Hennie wil zorgen terwijl ik weg ben. Ben je een echte kattenliefhebber? Dan is dat natuurlijk een grote plus! 😊 Over het appartement Het appartement is ongeveer 50 m² en bestaat uit: • 1 slaapkamer • Woonkamer met open keuken • Badkamer • Aparte was- en bergruimte Het appartement is volledig gemeubileerd. Je mag tijdens je verblijf uiteraard gebruikmaken van alles wat aanwezig is, waaronder de keukenapparatuur, meubels, wasmachine, etc. 📍 Locatie Het appartement ligt in het noorden van Leiden, in een rustige en gunstig gelegen buurt. • 🛒 Supermarkt: op ongeveer 100 meter afstand • 🚲 Centrum van Leiden: ongeveer 8 minuten fietsen • 🚲 Heb je zelf geen fiets? Dan mag je tijdens je verblijf mijn fiets gebruiken. 💰 Huurprijs De huurprijs bedraagt €1.150 per maand, inclusief: • Gas, water en elektriciteit (maximaal €150 per maand) • Internet • TV • Volledig gemeubileerd appartement De exacte huurperiode en data kunnen we in overleg bepalen. Mijn reisplannen ben ik namelijk nog aan het afronden. 🐱 En natuurlijk… Hennie! Het belangrijkste onderdeel van de deal: Hennie! 😸 Hennie is een makkelijke en gezellige kat en blijft tijdens mijn afwezigheid het liefst in zijn eigen vertrouwde omgeving. Daarom hoop ik iemand te vinden die het leuk vindt om een kat in huis te hebben en hem wat aandacht en liefde wil geven. Heb je interesse of heb je vragen? Stuur me gerust een berichtje! 😊 Ik vertel je graag meer over het appartement, Hennie en de exacte data zodra deze bekend zijn.",
+   "extra": {
+    "deposit": 1150,
+    "max_persons": 2,
+    "student_house": false
+   },
+   "furnished": "furnished",
+   "image_url": "https://resources.kamernet.nl/image/96145894-738b-4de3-8dd3-043f09672d16/resize/422-225",
+   "postcode": "2315EH",
+   "posted_at": null,
+   "price_includes_utilities": true,
+   "price_total": 1150,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "kamernet",
+   "source_id": "2416380",
+   "title": "Appartement te huur: Ringkade",
+   "uid": "kamernet:2416380",
+   "url": "https://kamernet.nl/huren/appartement-leiden/ringkade/appartement-2416380"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 575,
+    "search": "2 people",
+    "tier": "great"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "kamernet:2417188": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "bedrooms_unknown"
+  ],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Fokke Simonszstraat",
+   "area_m2": 65,
+   "available_from": "2026-11-08",
+   "available_until": null,
+   "bedrooms": null,
+   "city": "amsterdam",
+   "description": null,
+   "extra": {
+    "student_house": false
+   },
+   "furnished": "furnished",
+   "image_url": "https://resources.kamernet.nl/image/1b7e43cd-a63e-429b-a416-0545083283fc/resize/422-225",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": false,
+   "price_total": 2300,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "kamernet",
+   "source_id": "2417188",
+   "title": "Appartement te huur: Fokke Simonszstraat",
+   "uid": "kamernet:2417188",
+   "url": "https://kamernet.nl/huren/appartement-amsterdam/fokke-simonszstraat/appartement-2417188"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 767,
+    "search": "3 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "kamernet:2417421": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "short_term",
+   "utilities_included",
+   "bedrooms_unknown"
+  ],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Postjeskade",
+   "area_m2": 70,
+   "available_from": "2026-12-02",
+   "available_until": "2027-01-07",
+   "bedrooms": null,
+   "city": "amsterdam",
+   "description": null,
+   "extra": {
+    "student_house": false
+   },
+   "furnished": "furnished",
+   "image_url": "https://resources.kamernet.nl/image/75327e85-5a31-4d01-a7b5-d9f3df24fe99/resize/422-225",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": true,
+   "price_total": 2400,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "kamernet",
+   "source_id": "2417421",
+   "title": "Appartement te huur: Postjeskade",
+   "uid": "kamernet:2417421",
+   "url": "https://kamernet.nl/huren/appartement-amsterdam/postjeskade/appartement-2417421"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 800,
+    "search": "3 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "kamernet:2417483": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "bedrooms_unknown"
+  ],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Arent Janszoon Ernststraat",
+   "area_m2": 75,
+   "available_from": "2026-11-09",
+   "available_until": null,
+   "bedrooms": null,
+   "city": "amsterdam",
+   "description": null,
+   "extra": {
+    "student_house": false
+   },
+   "furnished": "unfurnished",
+   "image_url": "https://resources.kamernet.nl/image/45ef363f-782f-4e99-93b4-8a73307d2ad3/resize/422-225",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": false,
+   "price_total": 2350,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "kamernet",
+   "source_id": "2417483",
+   "title": "Appartement te huur: Arent Janszoon Ernststraat",
+   "uid": "kamernet:2417483",
+   "url": "https://kamernet.nl/huren/appartement-amsterdam/arent-janszoon-ernststraat/appartement-2417483"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 783,
+    "search": "3 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "rotsvast:h1025410133": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Van Diemenstraat 80",
+   "area_m2": 100,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": 3,
+   "city": "den-haag",
+   "description": "VAN DIEMENSTRAAT, ZEEHELDENKWARTIER, DEN HAAG. In het populaire Zeeheldenkwartier gelegen, goed onderhouden 4-kamer appartement op de 2e etage. De woning is deels gemeubileerd en heeft dubbele beglazing. Het balkon op het zuiden bevindt zich aan de achterzijde van de woning is via de slaapkamer bereikbaar De entree zit aan de straatzijde via een gesloten portiek met trap naar 2e etage. Indeling: Hal, ruime woonkamer aan voorzijde met doorgang naar eetgedeelte en uitgebreide keuken met alle apparatuur, 3 slaapkamers van 4,5 x 4, 3,5 x 2,20 en 3 x 3,5, op de gang een toilet en een badkamer met hoekbad en wastafel. Onder het gebouw is een aparte berging. Dichtbij winkels en openbaar vervoer. Bijzonderheden: Huurprijs € 2.150,00 is excl. G/W/E/TV/Internet Beschikbaar per 1 oktober 2026 Energielabel A 3 slaapkamers Borg 1 maand Geen huisdieren Niet geschikt voor studenten of om te delen!",
+   "extra": {
+    "availability": "Direct beschikbaar"
+   },
+   "furnished": "upholstered",
+   "image_url": "https://www.rotsvast.nl/app/uploads/wpararius/media/H1025410133/H1025410133-187891-bcf03d8f-768x576.jpg",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": false,
+   "price_total": 2150,
+   "property_type": "apartment",
+   "rooms": 4,
+   "source": "rotsvast",
+   "source_id": "h1025410133",
+   "title": "Van Diemenstraat 80, Den Haag",
+   "uid": "rotsvast:h1025410133",
+   "url": "https://www.rotsvast.nl/huren/van-diemenstraat-den-haag-h1025410133/"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 717,
+    "search": "3 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "vanderlinden:2180": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Lorriestraat 49",
+   "area_m2": 94,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "amsterdam",
+   "description": null,
+   "extra": {
+    "label": "direct beschikbaar"
+   },
+   "furnished": null,
+   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2170840.jpg",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": null,
+   "price_total": 2172,
+   "property_type": null,
+   "rooms": 4,
+   "source": "vanderlinden",
+   "source_id": "2180",
+   "title": "Lorriestraat 49, Amsterdam",
+   "uid": "vanderlinden:2180",
+   "url": "https://www.vanderlinden.nl/huurwoning/Lorriestraat-49-Amsterdam/2180/"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 724,
+    "search": "3 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "vanderlinden:2579": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Bert Haanstrakade 552",
+   "area_m2": 77,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "amsterdam",
+   "description": null,
+   "extra": {
+    "label": "binnenkort beschikbaar"
+   },
+   "furnished": null,
+   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2171344.jpg",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": null,
+   "price_total": 1550,
+   "property_type": null,
+   "rooms": 3,
+   "source": "vanderlinden",
+   "source_id": "2579",
+   "title": "Bert Haanstrakade 552, Amsterdam",
+   "uid": "vanderlinden:2579",
+   "url": "https://www.vanderlinden.nl/huurwoning/Bert-Haanstrakade-552-Amsterdam/2579/"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 775,
+    "search": "2 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "vanderlinden:2612": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Zeeburgerkade 1334",
+   "area_m2": 74,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "amsterdam",
+   "description": null,
+   "extra": {
+    "label": "direct beschikbaar"
+   },
+   "furnished": null,
+   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2171048.jpg",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": null,
+   "price_total": 1580,
+   "property_type": null,
+   "rooms": 3,
+   "source": "vanderlinden",
+   "source_id": "2612",
+   "title": "Zeeburgerkade 1334, Amsterdam",
+   "uid": "vanderlinden:2612",
+   "url": "https://www.vanderlinden.nl/huurwoning/Zeeburgerkade-1334-Amsterdam/2612/"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 790,
+    "search": "2 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "vanderlinden:2642": {
+  "best_tier": "great",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Bert Haanstrakade 880",
+   "area_m2": 73,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "amsterdam",
+   "description": "Beschikbaar per 1 december! Op één van de mooiste plekjes van IJburg Amsterdam, nabij alle voorzieningen, ligt het prachtige complex IJland. De appartementen verschillen in groottes van 43 tot 90 m2. Nagenoeg alle appartementen hebben een terras of balkon met uitzicht op het IJmeer of de jachthaven. Als bewoner van IJland heb je daarnaast toegang tot een van de vier op het zuiden gerichte binnentuinen. - Locatie – Het appartement ligt centraal naast de uitvalswegen A1, A9 en A10. Parkeren kan in de garage onder het appartementencomplex. Met het openbaar vervoer ben je in 15-20 minuten op Amsterdam Centraal Station. Op loopafstand vind je een supermarkt, de jachthaven, diverse restaurants en natuurlijk IJburg strand. Lees verder - Bijzonderheden Bert Haanstrakade 880 • Woonoppervlakte ca. 73m2 • Ruim 3 kamer appartement • Gelegen op de 4e etage • Luxe keuken (Bruynzeel) voorzien van inductiekookplaat, vaatwasser, combimagnetron, koelkast en afzuigkap; • Separate toilet • Bouwjaar: 2017 • Parkeren €215,00 per maand (optioneel) • Energielabel: A - Inkomensrichtlijnen - • Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3,5x keer de vermelde huurprijs van deze woning. • Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee. • Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.000,- per maand kost is dus € 4.000 (1.000 x 3,5 of x 4). • In sommige gevallen is een waarborgsom verplicht. • Ben je een zelfstandig ondernemer, gepensioneerd of meer informatie over de inkomensrichtlijnen? Ga dan voor meer informatie naar onze website: vanderlinden.nl/woning-huren/faq - Wil je in aanmerking komen voor deze woning? - Ben je enthousiast geworden over deze woning en voldoe je aan de inkomensrichtlijnen? Kijk dan op vanderlinden.nl/woning-huren om je direct digitaal in te schrijven als woningzoekende. Wij nemen dan contact met je op voor het vervolg van de procedure. Bij het selecteren van de meest geschikte kandidaat maken wij enkel gebruik van objectieve selectiecriteria zoals leeftijd, de hoogte van het inkomen in relatie tot de hoogte van de huur, gezinsomvang en soortgelijke criteria. Hierbij maken wij in geen enkele situatie positieve of negatieve uitzonderingen op basis van geslacht, huidskleur, achternaam, geaardheid, afkomst, geloof of etniciteit van de woningzoekende. Als er meerdere, vergelijkbare inschrijvingen op een woning zijn, dan zal er een willekeurig dossier gekozen worden op volgorde van binnenkomst. Je ontvangt hier dan vanzelf bericht over. Mocht je niets hebben vernomen, dan ben je helaas niet geselecteerd. Je kunt uiteraard altijd contact met ons opnemen waarom er gekozen is voor een andere kandidaat. Wanneer je zoveel mogelijk kans wilt maken op een woning, raden we je aan om meerdere voorkeuren door te geven indien je in meerdere woningen geïnteresseerd bent. - Goed om te weten - • Getoonde foto's zijn van een modelwoning en niet van de specifieke woning zelf. • De huurovereenkomst wordt aangegaan voor de duur van 12 maanden. Na deze periode is deze maandelijks opzegbaar, de opzegtermijn bedraagt één maand. Alle informatie met betrekking tot de woning is met zorg samengesteld. Deze is echter indicatief en er kunnen geen rechten aan ontleend worden. Hier ga je wonen Bert Haanstrakade 880 Amsterdam MAP Ja, ik heb interesse in deze woning Inloggen in mijn IDD account Heb je al een IDD account? Log dan nu in om je interesse in deze woning aan te geven. © 2025 Algemene voorwaarden Privacy policy Cookie policy Sitemap",
+   "extra": {
+    "label": "binnenkort beschikbaar"
+   },
+   "furnished": null,
+   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2171330.jpg",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": null,
+   "price_total": 1370,
+   "property_type": null,
+   "rooms": 3,
+   "source": "vanderlinden",
+   "source_id": "2642",
+   "title": "Bert Haanstrakade 880, Amsterdam",
+   "uid": "vanderlinden:2642",
+   "url": "https://www.vanderlinden.nl/huurwoning/Bert-Haanstrakade-880-Amsterdam/2642/"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 685,
+    "search": "2 people",
+    "tier": "great"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "vesteda:7562": {
+  "best_tier": "great",
+  "first_seen": "2026-11-10T13:14:32Z",
+  "flags": [],
+  "last_seen": "2026-11-10T13:14:32Z",
+  "listing": {
+   "address": "Betaplein 60",
+   "area_m2": 93,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": 3,
+   "city": "leiden",
+   "description": "Complex Alpha",
+   "extra": {
+    "complex": "Alpha",
+    "status": 1
+   },
+   "furnished": null,
+   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/76/76697455c1f0637d718f5d073b6b94b5/o/content.jpg?rmode=crop&width=570&height=276&hmac=2d7135c26e41d0941bf1801f1a5ce5d11b24a3ac122d8a046767600067917c40",
+   "postcode": "2321KS",
+   "posted_at": null,
+   "price_includes_utilities": null,
+   "price_total": 1800,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "vesteda",
+   "source_id": "7562",
+   "title": "Appartement Betaplein 60, Leiden",
+   "uid": "vesteda:7562",
+   "url": "https://www.vesteda.com/nl/huurwoningen-leiden/alpha/betaplein-60-leiden-7562"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 600,
+    "search": "3 people",
+    "tier": "great"
+   }
+  ],
+  "price_drop_from": null
+ }
+}
