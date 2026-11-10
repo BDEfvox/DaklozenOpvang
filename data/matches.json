@@ -2,8 +2,10 @@
  "directwonen:520581": {
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "bedrooms_unconfirmed"
+  ],
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -14,6 +16,7 @@
    "description": null,
    "extra": {
     "age": "56 dagen geleden",
+    "details_unavailable": true,
     "smart_only": true
    },
    "furnished": null,
@@ -43,8 +46,10 @@
  "directwonen:521518": {
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "bedrooms_unconfirmed"
+  ],
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Rijndijkstraat",
    "area_m2": 100,
@@ -85,15 +90,15 @@
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 80,
    "available_from": null,
    "available_until": null,
-   "bedrooms": null,
+   "bedrooms": 2,
    "city": "den-haag",
-   "description": null,
+   "description": "Per direct Appartement 3 Kamers 80 m2 Gestoffeerd Appartement te huur 3-kamerappartement met grote garage (18m2) en tuin, verduurzaamd naar een B label in de mooie wijk Houtwijk in Kijkduin! Gunstig gelegen ten aanzien van winkels aan de Hildo Kroplaan, scholen waaronder de ISH (International School the Hague), sportvelden en goede openbaar vervoersverbindin.... 3-kamerappartement met grote garage (18m2) en tuin, verduurzaamd naar een B label in de mooie wijk Houtwijk in Kijkduin! Gunstig gelegen ten aanzien van winkels aan de Hildo Kroplaan, scholen waaronder de ISH (International School the Hague), sportvelden en goede openbaar vervoersverbindingen (tramlijnen 2 en 4, buslijnen 21, 26 en 31) en diverse uitvalswegen. Het strand en de duinen van Kijkduin en recreatiegebied Madestein zijn op de fiets in 10 minuten bereikbaar. Indeling Via de gezamenlijke entree treft je de brievenbussen en privé bergingen. Gelegen op de begane grond kom je binnen via de hal welke toegang geeft tot alle ruimtes. Via de hal tref je aan de voorkant van de woning de woonkamer een ruime slaapkamer, vanuit deze kamer bereik je de badkamer. De woonkamer met open keuken en tweede slaapkamer* zijn gelegen aan de achterzijde van de woning grenzend aan een heerlijk grote tuin!",
    "extra": {
     "age": "6 dagen geleden",
     "smart_only": false
@@ -122,101 +127,19 @@
   ],
   "price_drop_from": null
  },
- "directwonen:523589": {
-  "best_tier": "great",
-  "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [],
-  "last_seen": "2026-11-10T13:14:32Z",
-  "listing": {
-   "address": "C.v.d. Lijnstraat",
-   "area_m2": 104,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "age": "6 dagen geleden",
-    "smart_only": false
-   },
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/c4fa7330-7748-47f6-880d-2055658d85f9",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 1950,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_id": "523589",
-   "title": "Appartement C.v.d. Lijnstraat, Den Haag",
-   "uid": "directwonen:523589",
-   "url": "https://directwonen.nl/huurwoningen-huren/den-haag/cornelis-van-der-lijnstraat/appartement-523589"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 650,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "directwonen:523604": {
-  "best_tier": "ok",
-  "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [],
-  "last_seen": "2026-11-10T13:14:32Z",
-  "listing": {
-   "address": "Prinsengracht",
-   "area_m2": 85,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": null,
-   "extra": {
-    "age": "6 dagen geleden",
-    "smart_only": false
-   },
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/ccb20250-068b-492f-a0a9-eab8d55d0b3b",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 2200,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_id": "523604",
-   "title": "Appartement Prinsengracht, Amsterdam",
-   "uid": "directwonen:523604",
-   "url": "https://directwonen.nl/huurwoningen-huren/amsterdam/prinsengracht/appartement-523604"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 733,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
  "directwonen:523633": {
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "V.d. Helststraat",
    "area_m2": 69,
    "available_from": null,
    "available_until": null,
-   "bedrooms": null,
+   "bedrooms": 3,
    "city": "den-haag",
-   "description": null,
+   "description": "Per direct Appartement 4 Kamers 69 m2 Gestoffeerd Appartement Leuk en licht 4-kamer appartement aan de Van der Helststraat in Den Haag! Deze verzorgde woning beschikt over 3 slaapkamers, een moderne keuken, een luxe badkamer en een fraaie laminaatvloer. Een fijne combinatie van ruimte, comfort en een praktische indeling! • Licht en verzorgd apparteme.... Leuk en licht 4-kamer appartement aan de Van der Helststraat in Den Haag! Deze verzorgde woning beschikt over 3 slaapkamers, een moderne keuken, een luxe badkamer en een fraaie laminaatvloer. Een fijne combinatie van ruimte, comfort en een praktische indeling! • Licht en verzorgd appartement met een mooie laminaatvloer en strak afgewerkte witte wanden; • Moderne witte keuken voorzien van diverse inbouwapparatuur, waaronder een kookplaat, afzuigkap en combi oven/magnetron; • Moderne badkamer met fraaie grote wandtegels, een ruime inloopdouche met regendouche, zwart wastafelmeubel en spiegel met verlichting; • 3 slaapkamers van verschillende afmetingen; • Separaat toilet; • Energielabel A! De woning is gelegen aan de Van der Helststraat in Den Haag, in een levendige woonomgeving met diverse winkels, supermarkten, horecagelegenheden en openbaar vervoer in de nabije omgeving. Ook het centrum van Den Haag is goed bereikbaar. Een ideale woning voor een gezin, stel of maximaal 2 woningdelers die op zoek zijn naar een fijne woning met voldoende ruimte!",
    "extra": {
     "age": "5 dagen geleden",
     "smart_only": false
@@ -249,15 +172,15 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "V. Zeggelenlaan",
    "area_m2": 198,
    "available_from": "2026-11-13",
    "available_until": null,
-   "bedrooms": null,
+   "bedrooms": 2,
    "city": "den-haag",
-   "description": null,
+   "description": "13-11-2026 Appartement 4 Kamers 198 m2 - Appartement te huur Ruime 4-kamer portiekwoning aan de Van Zeggelenlaan te Den Haag. Aan de Van Zeggelenlaan in Den Haag bieden wij deze ruime en prettig gelegen 4-kamer portiekwoning aan. De woning bevindt zich in een levendige woonomgeving met diverse winkels, supermarkten en andere voorzieningen op korte afstand. Vo.... Ruime 4-kamer portiekwoning aan de Van Zeggelenlaan te Den Haag. Aan de Van Zeggelenlaan in Den Haag bieden wij deze ruime en prettig gelegen 4-kamer portiekwoning aan. De woning bevindt zich in een levendige woonomgeving met diverse winkels, supermarkten en andere voorzieningen op korte afstand. Voor de dagelijkse boodschappen kunt u terecht bij de nabijgelegen winkelstraten. Daarnaast is de woning gunstig gelegen ten opzichte van het openbaar vervoer en diverse uitvalswegen. Ook het bruisende centrum van Den Haag is eenvoudig per fiets of met het openbaar vervoer te bereiken. Dankzij de centrale ligging en de vele voorzieningen in de directe omgeving biedt deze woning een fijne combinatie van comfortabel wonen en stedelijk gemak. INDELING: Entree op straatniveau met trapopgang naar de eerste verdieping. Binnenkomst in de woning via de hal, die toegang biedt tot alle vertrekken. Ruime woonkamer en separate keuken, bestaande uit twee afzonderlijke ruimtes van circa 20 m² en 17 m². Keuken voorzien van een kookplaat, afzuigkap, koelkast, vriezer en vaatwasser. Ook vanuit de keuken heeft u middels openslaande deuren toegang tot het balkon. Twee slaapkamers van circa 7 m² en 9 m². Vanuit de grootste slaapkamer heeft u eveneens middels openslaande deuren toegang tot het balkon. Badkamer voorzien van een douche en wastafel. De woning beschikt over een separaat toilet en wordt verwarmd middels centrale verwarming.",
    "extra": {
     "age": "5 dagen geleden",
     "smart_only": false
@@ -282,12 +205,6 @@
     "price_pp": 500,
     "search": "2 people",
     "tier": "great"
-   },
-   {
-    "persons": 3,
-    "price_pp": 334,
-    "search": "3 people",
-    "tier": "great"
    }
   ],
   "price_drop_from": null
@@ -295,8 +212,10 @@
  "directwonen:523879": {
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "bedrooms_unconfirmed"
+  ],
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Volmolengracht",
    "area_m2": 100,
@@ -339,7 +258,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Eosstraat 143",
    "area_m2": 98,
@@ -381,7 +300,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Turfhaven 221",
    "area_m2": 63,
@@ -428,9 +347,10 @@
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [
+   "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Haringbuisdijk 909",
    "area_m2": 90,
@@ -438,9 +358,10 @@
    "available_until": null,
    "bedrooms": null,
    "city": "amsterdam",
-   "description": null,
+   "description": "Wonen in het splinternieuwe Sluishuis betekent: wonen op een bijzondere plek. Je woont namelijk niet aan, maar in het IJ! Hier, aan de rand van de volwassen wijk IJburg, komen wonen, ontspannen en recreëren op een wel heel bijzondere manier samen. In totaal worden er 441 appartementen en studio's aangeboden in een mix van koopwoningen en huurappartementen. Natuurlijk heeft Amsterdam al veel plekken aan het water waar gewoond en ontspannen wordt, maar Sluishuis is daarin uniek. - Huurperiode - Een huurovereenkomst wordt aangegaan voor ten minste één jaar en wordt vanaf dan verlengd met onbepaalde tijd. Na de minimale termijn van 12 kalendermaanden geldt er een opzegtermijn van 1 kalendermaand. - Inkomenseis - Om een woning te huren kun je de volgende inkomenseis als richtlijn aanhouden: Het bruto jaarinkomen (verminderd met eventuele betalingsverplichtingen, zoals alimentatie, hypotheken, persoonlijke leningen e.d.) moet zo hoog zijn als: * Bij 1 inkomen: • Het bruto-jaarinkomen moet 42x de kale maandhuur zijn, bij een huurprijs die hoger ligt dan € 1.600. Omgerekend is deze berekening van toepassing wanneer jouw bruto-jaarinkomen € 72.000 of hoger is. * Bij 2 inkomens • Bij 2 inkomens worden de bruto-jaarinkomens van beide partners bij elkaar opgeteld om het gezamenlijk rekeninkomen te bepalen. Vervolgens wordt er getoetst aan de hand van de onderlinge verhouding tussen de beide partnerinkomens binnen dit gezamenlijk rekeninkomen. • Jullie mogen beide inkomens voor 100% meetellen, mits één van jullie minimaal 70% van jullie totale gezamenlijk rekeninkomen verdient. De verhouding is dan 70/30 of hoger (bijvoorbeeld 80/20). Interesse? - Heb je interesse in deze woning? Reageer dan via de interesse button in deze advertentie en vraag voor deze woning een bezichtiging aan, wij werken door middel van een loting. Wij nemen contact op met de uitgeloten kandidaat. De gepresenteerde foto's zijn van een ander appartement in dit project, maar de afwerking is vergelijkbaar. Aan deze foto's kunnen geen rechten worden ontleend.",
    "extra": {
-    "availability": "Direct beschikbaar"
+    "availability": "Direct beschikbaar",
+    "service_costs": 100
    },
    "furnished": null,
    "image_url": "https://c.static.nbo.nl/media/87/877112276f588a3a7f1d5972e08e0a61/768x510/thumb.jpg",
@@ -467,18 +388,16 @@
   "price_drop_from": null
  },
  "ikwilhuren:dc17c645af146cafb0fc5f3d6f6e32aa": {
-  "best_tier": "great",
+  "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "flags": [],
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Maanplein 94 E",
    "area_m2": 88,
    "available_from": null,
    "available_until": null,
-   "bedrooms": null,
+   "bedrooms": 2,
    "city": "den-haag",
    "description": "Aan het Maanplein 94E komt per 1 maart een licht en comfortabel appartement beschikbaar van 87 m², ideaal voor wie op zoek is naar ruimte, rust en een moderne woonomgeving. De woning beschikt over twee slaapkamers, perfect voor een stel, klein gezin of iemand die graag een extra kamer gebruikt als werk- of hobbyruimte. Het betreft een appartement, gelegen op een hogere verdieping, waardoor u geniet van veel lichtinval en een prettig uitzicht. Daarnaast beschikt de woning over een balkon, waar u heerlijk kunt ontspannen in de buitenlucht. Indeling en kenmerken • Woonoppervlakte: 87 m² • Aantal slaapkamers: 2 • Type woning: Appartement • Verdieping: Hogere verdieping • Buitenruimte: Balkon • Energielabel: A Huurprijs • Kale huur: € 1.542.,00 per maand • Servicekosten: € 195,00 per maand Omgeving De woning ligt in een rustige, groene en goed bereikbare wijk. In de directe omgeving vindt u diverse voorzieningen zoals supermarkten, scholen, sportfaciliteiten en gezellige horecagelegenheden. Ook het openbaar vervoer is uitstekend geregeld, en uitvalswegen zijn snel bereikbaar. De buurt is geliefd vanwege de combinatie van rust en stedelijke voorzieningen binnen handbereik. Beschikbaar per 01-03 Interesse? Bent u enthousiast geworden over deze woning? Dan kunt u eenvoudig een bezichtigingsaanvraag indienen via de website. Graag wijzen wij u erop dat de informatie en afbeeldingen op de website ter indicatie zijn en dat hieraan geen rechten kunnen worden ontleend.",
    "extra": {
@@ -505,12 +424,6 @@
     "price_pp": 771,
     "search": "2 people",
     "tier": "ok"
-   },
-   {
-    "persons": 3,
-    "price_pp": 514,
-    "search": "3 people",
-    "tier": "great"
    }
   ],
   "price_drop_from": null
@@ -521,7 +434,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Turfhaven 449",
    "area_m2": 59,
@@ -529,9 +442,10 @@
    "available_until": null,
    "bedrooms": null,
    "city": "den-haag",
-   "description": null,
+   "description": "Een beetje Manhattan in het centrum van Den Haag. Dat is het gevoel dat u krijgt als u straks woont in het Wijnhavenkwartier. Hier loopt u tussen de hoogste gebouwen van de stad. Dit is de plek waar een levendige buzz ontstaat, waar straks veel tegelijk gebeurt. Wijnhavenkwartier ligt precies tussen de Haagse binnenstad en Den Haag Centraal Station. Bovendien ontstaat hier een goede verbinding tussen de Turfmarkt en de Schedeldoekshaven. Het project Wijnhavenkwartier in Den Haag biedt 132 luxe appartementen met alle voorzieningen in de buurt. Het gebouw telt 11 verdiepingen met huurappartementen die gesitueerd zijn va verdieping 7 tot en met verdieping 18. De oppervlakten van de appartementen variëren tussen de 71 m² en de 142 m². Ook de type woningen variëren. Bij de vrijkomende woningen kunt u meer woning specifieke informatie vinden, zoals de indeling, het oppervlakte en een plattegrond.",
    "extra": {
-    "availability": "Direct beschikbaar"
+    "availability": "Direct beschikbaar",
+    "service_costs": 70
    },
    "furnished": null,
    "image_url": "https://b.static.nbo.nl/media/d3/d3ad03f4b036cd48d18ed0207f3e2aab/768x510/thumb.jpg",
@@ -564,7 +478,7 @@
    "max_persons:2",
    "short_term"
   ],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -602,48 +516,6 @@
   ],
   "price_drop_from": null
  },
- "kamernet:2412731": {
-  "best_tier": "ok",
-  "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-10T13:14:32Z",
-  "listing": {
-   "address": "Van Kinsbergenstraat",
-   "area_m2": 102,
-   "available_from": "2026-10-27",
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "student_house": false
-   },
-   "furnished": "upholstered",
-   "image_url": "https://resources.kamernet.nl/image/92a5ef06-8d01-408d-aaf8-f09788f961a5/resize/422-225",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 2195,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "kamernet",
-   "source_id": "2412731",
-   "title": "Appartement te huur: Van Kinsbergenstraat",
-   "uid": "kamernet:2412731",
-   "url": "https://kamernet.nl/huren/appartement-den-haag/van-kinsbergenstraat/appartement-2412731"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 732,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
  "kamernet:2414041": {
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
@@ -651,7 +523,7 @@
    "short_term",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Vlietpark",
    "area_m2": 60,
@@ -694,7 +566,7 @@
    "utilities_included",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Valkenboslaan",
    "area_m2": 48,
@@ -730,60 +602,13 @@
   ],
   "price_drop_from": null
  },
- "kamernet:2416380": {
-  "best_tier": "great",
-  "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [
-   "max_persons:2",
-   "short_term",
-   "utilities_included",
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-10T13:14:32Z",
-  "listing": {
-   "address": "Ringkade 77",
-   "area_m2": 50,
-   "available_from": "2027-01-10",
-   "available_until": "2027-03-10",
-   "bedrooms": null,
-   "city": "leiden",
-   "description": "Tijdelijke verhuur in Leiden Januari - maart 2027 🏡 Tijdelijke verhuur appartement in Leiden – januari tot maart 2027 🐱 Ik ga voor een paar maanden naar het buitenland, van 10 januari tot 10 maart 2027 (de exacte data moeten nog worden bevestigd). Daarom ben ik op zoek naar iemand die gedurende deze periode in mijn appartement wil verblijven. Het liefst zoek ik een persoon of stel die het appartement behandelt alsof het hun eigen huis is en, bij voorkeur, ook voor mijn kat Hennie wil zorgen terwijl ik weg ben. Ben je een echte kattenliefhebber? Dan is dat natuurlijk een grote plus! 😊 Over het appartement Het appartement is ongeveer 50 m² en bestaat uit: • 1 slaapkamer • Woonkamer met open keuken • Badkamer • Aparte was- en bergruimte Het appartement is volledig gemeubileerd. Je mag tijdens je verblijf uiteraard gebruikmaken van alles wat aanwezig is, waaronder de keukenapparatuur, meubels, wasmachine, etc. 📍 Locatie Het appartement ligt in het noorden van Leiden, in een rustige en gunstig gelegen buurt. • 🛒 Supermarkt: op ongeveer 100 meter afstand • 🚲 Centrum van Leiden: ongeveer 8 minuten fietsen • 🚲 Heb je zelf geen fiets? Dan mag je tijdens je verblijf mijn fiets gebruiken. 💰 Huurprijs De huurprijs bedraagt €1.150 per maand, inclusief: • Gas, water en elektriciteit (maximaal €150 per maand) • Internet • TV • Volledig gemeubileerd appartement De exacte huurperiode en data kunnen we in overleg bepalen. Mijn reisplannen ben ik namelijk nog aan het afronden. 🐱 En natuurlijk… Hennie! Het belangrijkste onderdeel van de deal: Hennie! 😸 Hennie is een makkelijke en gezellige kat en blijft tijdens mijn afwezigheid het liefst in zijn eigen vertrouwde omgeving. Daarom hoop ik iemand te vinden die het leuk vindt om een kat in huis te hebben en hem wat aandacht en liefde wil geven. Heb je interesse of heb je vragen? Stuur me gerust een berichtje! 😊 Ik vertel je graag meer over het appartement, Hennie en de exacte data zodra deze bekend zijn.",
-   "extra": {
-    "deposit": 1150,
-    "max_persons": 2,
-    "student_house": false
-   },
-   "furnished": "furnished",
-   "image_url": "https://resources.kamernet.nl/image/96145894-738b-4de3-8dd3-043f09672d16/resize/422-225",
-   "postcode": "2315EH",
-   "posted_at": null,
-   "price_includes_utilities": true,
-   "price_total": 1150,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "kamernet",
-   "source_id": "2416380",
-   "title": "Appartement te huur: Ringkade",
-   "uid": "kamernet:2416380",
-   "url": "https://kamernet.nl/huren/appartement-leiden/ringkade/appartement-2416380"
-  },
-  "matches": [
-   {
-    "persons": 2,
-    "price_pp": 575,
-    "search": "2 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
  "kamernet:2417188": {
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Fokke Simonszstraat",
    "area_m2": 65,
@@ -827,7 +652,7 @@
    "utilities_included",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Postjeskade",
    "area_m2": 70,
@@ -869,7 +694,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Arent Janszoon Ernststraat",
    "area_m2": 75,
@@ -909,7 +734,7 @@
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Van Diemenstraat 80",
    "area_m2": 100,
@@ -948,16 +773,18 @@
  "vanderlinden:2180": {
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "income_requirement"
+  ],
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Lorriestraat 49",
    "area_m2": 94,
    "available_from": null,
    "available_until": null,
-   "bedrooms": null,
+   "bedrooms": 3,
    "city": "amsterdam",
-   "description": null,
+   "description": "*** English below *** Per direct beschikbaar! - Unieke plek - Cruquius 2.3 Berkhout ligt aan het Amsterdam Rijnkanaal. Het is een unieke plek aan het water, met een geweldig uitzicht. Je geniet hier van het ontspannen leven op Cruquiuseiland, met alles in de buurt. Denk aan horeca, een supermarkt, medische zorg en een sportschool, waar je gemakkelijk naartoe loopt. Cruquius ligt in het Oostelijk Havengebied: Binnen de ring van Amsterdam, aan de stadskant van het IJ. Het is uitstekend te bereiken. Openbaar vervoer vind je om de hoek en met de auto ben je zo op de snelweg. Bovendien woon je hier vlakbij de Indische buurt met de gezellige drukte van de Javastraat en de Dappermarkt. Maar ook het groen van het Flevopark is op jog-afstand. Lees verder Met de fiets ben je zo in de natuur van Waterland of in het centrum van Amsterdam. Een ideale plek dus. - 5 gebouwen in waaiervorm - Cruquius 2.3 bestaat uit vijf gebouwen en biedt een mix van koop- en huurappartementen en commerciële ruimten. De gebouwen zijn in waaiervorm ontworpen rond een autovrij binnengebied, waardoor optimaal zicht op het water is gecreëerd. Naast mooie bestrating en stijlvolle entrees wordt het een mooie groene woonplek met een fraai binnengebied. Er is dus alle ruimte om te ontspannen en te spelen. De huurappartementen in Cruquius 2.3 zijn luxe afgewerkt, met een keuken van Bruynzeel, sanitair van Villeroy & Boch, vloerverwarming (en koeling), stompe binnendeuren en sausklare wanden. Bovendien hebben alle appartementen een uitkragend balkon. De appartementen op de begane grond in blok C hebben een privé-terras en/of balkon. - Bijzonderheden Lorriestraat 49 - • Woonoppervlakte ca. 94 m2 • 4-kamerappartement • 3 slaapkamers • Balkon op het zuiden • € 80,- servicekosten p/m • Energielabel A++ - Inkomensrichtlijnen - • Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3,5x keer de vermelde huurprijs van deze woning. • Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee. In dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen. • Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.000,- per maand kost is dus € 4.000 (1.000 x 3,5 of €1.000,- x 4 bij tweeverdieners) • In sommige gevallen is een waarborgsom verplicht. • Ben je een zelfstandig ondernemer of gepensioneerd? Ga dan voor meer informatie naar onze website: vanderlinden.nl/woning-huren/faq. Hier vind je ook meer informatie over de inkomensrichtlijnen. - Wil je in aanmerking komen voor deze woning? - Ben je enthousiast geworden over deze woning en voldoe je aan de inkomensrichtlijnen? Schrijf je dan in via vanderlinden.nl/woning-huren als woningzoekende. Bij het selecteren van de meest geschikte kandidaat maken wij enkel gebruik van objectieve selectiecriteria zoals leeftijd, de hoogte van het inkomen in relatie tot de hoogte van de huur, gezinsomvang en soortgelijke criteria. Hierbij maken wij in geen enkele situatie positieve of negatieve uitzonderingen op basis van geslacht, huidskleur, achternaam, geaardheid, afkomst, geloof of etniciteit van de woningzoekende. Als er meerdere, vergelijkbare inschrijvingen op een woning zijn, dan zal er een willekeurig dossier gekozen worden door het systeem. Je ontvangt hier dan vanzelf bericht over. Mocht je niets hebben vernomen, dan ben je helaas niet geselecteerd. Je kunt uiteraard altijd contact met ons opnemen waarom er gekozen is voor een andere kandidaat. Wanneer je zoveel mogelijk kans wilt maken op een woning, raden we je aan om meerdere voorkeuren door te geven indien je in meerdere woningen geïnteresseerd bent. - Goed om te weten - • Getoonde foto's zijn van een modelwoning en niet van de specifieke woning zelf. • De huurovereenkomst wordt aangegaan voor de duur van 12 maanden. Na deze periode is deze maandelijks opzegbaar, de opzegtermijn bedraagt",
    "extra": {
     "label": "direct beschikbaar"
    },
@@ -988,8 +815,10 @@
  "vanderlinden:2579": {
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "bedrooms_unconfirmed"
+  ],
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -1028,8 +857,10 @@
  "vanderlinden:2612": {
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "bedrooms_unconfirmed"
+  ],
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Zeeburgerkade 1334",
    "area_m2": 74,
@@ -1068,8 +899,10 @@
  "vanderlinden:2642": {
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "flags": [
+   "bedrooms_unconfirmed"
+  ],
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -1077,7 +910,7 @@
    "available_until": null,
    "bedrooms": null,
    "city": "amsterdam",
-   "description": "Beschikbaar per 1 december! Op één van de mooiste plekjes van IJburg Amsterdam, nabij alle voorzieningen, ligt het prachtige complex IJland. De appartementen verschillen in groottes van 43 tot 90 m2. Nagenoeg alle appartementen hebben een terras of balkon met uitzicht op het IJmeer of de jachthaven. Als bewoner van IJland heb je daarnaast toegang tot een van de vier op het zuiden gerichte binnentuinen. - Locatie – Het appartement ligt centraal naast de uitvalswegen A1, A9 en A10. Parkeren kan in de garage onder het appartementencomplex. Met het openbaar vervoer ben je in 15-20 minuten op Amsterdam Centraal Station. Op loopafstand vind je een supermarkt, de jachthaven, diverse restaurants en natuurlijk IJburg strand. Lees verder - Bijzonderheden Bert Haanstrakade 880 • Woonoppervlakte ca. 73m2 • Ruim 3 kamer appartement • Gelegen op de 4e etage • Luxe keuken (Bruynzeel) voorzien van inductiekookplaat, vaatwasser, combimagnetron, koelkast en afzuigkap; • Separate toilet • Bouwjaar: 2017 • Parkeren €215,00 per maand (optioneel) • Energielabel: A - Inkomensrichtlijnen - • Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3,5x keer de vermelde huurprijs van deze woning. • Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee. • Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.000,- per maand kost is dus € 4.000 (1.000 x 3,5 of x 4). • In sommige gevallen is een waarborgsom verplicht. • Ben je een zelfstandig ondernemer, gepensioneerd of meer informatie over de inkomensrichtlijnen? Ga dan voor meer informatie naar onze website: vanderlinden.nl/woning-huren/faq - Wil je in aanmerking komen voor deze woning? - Ben je enthousiast geworden over deze woning en voldoe je aan de inkomensrichtlijnen? Kijk dan op vanderlinden.nl/woning-huren om je direct digitaal in te schrijven als woningzoekende. Wij nemen dan contact met je op voor het vervolg van de procedure. Bij het selecteren van de meest geschikte kandidaat maken wij enkel gebruik van objectieve selectiecriteria zoals leeftijd, de hoogte van het inkomen in relatie tot de hoogte van de huur, gezinsomvang en soortgelijke criteria. Hierbij maken wij in geen enkele situatie positieve of negatieve uitzonderingen op basis van geslacht, huidskleur, achternaam, geaardheid, afkomst, geloof of etniciteit van de woningzoekende. Als er meerdere, vergelijkbare inschrijvingen op een woning zijn, dan zal er een willekeurig dossier gekozen worden op volgorde van binnenkomst. Je ontvangt hier dan vanzelf bericht over. Mocht je niets hebben vernomen, dan ben je helaas niet geselecteerd. Je kunt uiteraard altijd contact met ons opnemen waarom er gekozen is voor een andere kandidaat. Wanneer je zoveel mogelijk kans wilt maken op een woning, raden we je aan om meerdere voorkeuren door te geven indien je in meerdere woningen geïnteresseerd bent. - Goed om te weten - • Getoonde foto's zijn van een modelwoning en niet van de specifieke woning zelf. • De huurovereenkomst wordt aangegaan voor de duur van 12 maanden. Na deze periode is deze maandelijks opzegbaar, de opzegtermijn bedraagt één maand. Alle informatie met betrekking tot de woning is met zorg samengesteld. Deze is echter indicatief en er kunnen geen rechten aan ontleend worden. Hier ga je wonen Bert Haanstrakade 880 Amsterdam MAP Ja, ik heb interesse in deze woning Inloggen in mijn IDD account Heb je al een IDD account? Log dan nu in om je interesse in deze woning aan te geven. © 2025 Algemene voorwaarden Privacy policy Cookie policy Sitemap",
+   "description": "Beschikbaar per 1 december! Op één van de mooiste plekjes van IJburg Amsterdam, nabij alle voorzieningen, ligt het prachtige complex IJland. De appartementen verschillen in groottes van 43 tot 90 m2. Nagenoeg alle appartementen hebben een terras of balkon met uitzicht op het IJmeer of de jachthaven. Als bewoner van IJland heb je daarnaast toegang tot een van de vier op het zuiden gerichte binnentuinen. - Locatie – Het appartement ligt centraal naast de uitvalswegen A1, A9 en A10. Parkeren kan in de garage onder het appartementencomplex. Met het openbaar vervoer ben je in 15-20 minuten op Amsterdam Centraal Station. Op loopafstand vind je een supermarkt, de jachthaven, diverse restaurants en natuurlijk IJburg strand. Lees verder - Bijzonderheden Bert Haanstrakade 880 • Woonoppervlakte ca. 73m2 • Ruim 3 kamer appartement • Gelegen op de 4e etage • Luxe keuken (Bruynzeel) voorzien van inductiekookplaat, vaatwasser, combimagnetron, koelkast en afzuigkap; • Separate toilet • Bouwjaar: 2017 • Parkeren €215,00 per maand (optioneel) • Energielabel: A - Inkomensrichtlijnen - • Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3,5x keer de vermelde huurprijs van deze woning. • Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee. • Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.000,- per maand kost is dus € 4.000 (1.000 x 3,5 of x 4). • In sommige gevallen is een waarborgsom verplicht. • Ben je een zelfstandig ondernemer, gepensioneerd of meer informatie over de inkomensrichtlijnen? Ga dan voor meer informatie naar onze website: vanderlinden.nl/woning-huren/faq - Wil je in aanmerking komen voor deze woning? - Ben je enthousiast geworden over deze woning en voldoe je aan de inkomensrichtlijnen? Kijk dan op vanderlinden.nl/woning-huren om je direct digitaal in te schrijven als woningzoekende. Wij nemen dan contact met je op voor het vervolg van de procedure. Bij het selecteren van de meest geschikte kandidaat maken wij enkel gebruik van objectieve selectiecriteria zoals leeftijd, de hoogte van het inkomen in relatie tot de hoogte van de huur, gezinsomvang en soortgelijke criteria. Hierbij maken wij in geen enkele situatie positieve of negatieve uitzonderingen op basis van geslacht, huidskleur, achternaam, geaardheid, afkomst, geloof of etniciteit van de woningzoekende. Als",
    "extra": {
     "label": "binnenkort beschikbaar"
    },
@@ -1109,7 +942,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T13:14:32Z",
+  "last_seen": "2026-11-10T13:37:26Z",
   "listing": {
    "address": "Betaplein 60",
    "area_m2": 93,
