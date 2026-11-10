@@ -198,6 +198,39 @@ jobs:
             sleep "$rest"
           fi
 
+      # Optional: also start a second checker that lives in another repository of the owner (its GitHub
+      # schedule does not fire either). Does nothing unless the secrets NUDGE_REPO ("owner/name") and
+      # NUDGE_TOKEN (a token that may only start workflows in that one repository) exist. Every 30
+      # minutes by day, hourly from midnight to 06:00 Dutch winter time. Runs before any code from
+      # this repository is checked out, and only this step sees the token.
+      - name: Start the second checker
+        if: ${{ steps.setup.outputs.ready == 'true' && !inputs.dry_run && steps.next.outputs.stop != 'true' }}
+        continue-on-error: true
+        env:
+          NUDGE_REPO: ${{ secrets.NUDGE_REPO }}
+          NUDGE_TOKEN: ${{ secrets.NUDGE_TOKEN }}
+        run: |
+          if [ -z "$NUDGE_REPO" ] || [ -z "$NUDGE_TOKEN" ]; then
+            echo "Not set up."
+            exit 0
+          fi
+          slot=$(( $(date +%s) / INTERVAL_SECONDS ))
+          hour=$(date -u +%-H)
+          every=3
+          if [ "$hour" -ge 23 ] || [ "$hour" -lt 5 ]; then every=6; fi
+          if [ $(( slot % every )) -ne 0 ]; then
+            echo "Not this time (every ${every}th check)."
+            exit 0
+          fi
+          code="$(curl -s -m 30 -o /dev/null -w '%{http_code}' -X POST \
+            -H "Authorization: Bearer $NUDGE_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$NUDGE_REPO/actions/workflows/hunt.yml/dispatches" \
+            -d '{"ref":"main"}')" || code=000
+          case "$code" in
+            2*) echo "Started the second checker." ;;
+            *)  echo "::warning::Could not start the second checker (HTTP $code). If the token expired, make a new one."; exit 1 ;;
+          esac
+
       - uses: actions/checkout@v7
         id: checkout
         if: ${{ steps.setup.outputs.ready == 'true' && steps.next.outputs.stop != 'true' }}
