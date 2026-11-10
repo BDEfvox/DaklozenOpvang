@@ -201,3 +201,16 @@ def test_helpers():
     assert match_listing_url("https://www.huurwoningen.nl/huren/amsterdam/") is None
     assert match_listing_url("https://www.funda.nl/zoeken/huur?x=1") is None
     assert match_listing_url("https://www.funda.nl/huur/den-haag/appartement-1234-x/")["id"] == "1234"
+
+
+def test_pasted_app_password_loses_its_invisible_spaces(monkeypatch):
+    from hunter.sources.email_alerts import imap_credentials
+    monkeypatch.setenv("IMAP_HOST", " imap.gmail.com\n")
+    monkeypatch.setenv("IMAP_USER", "alerts@example.test\xa0")
+    monkeypatch.setenv("IMAP_PASSWORD", "abcd\xa0efgh\xa0ijkl\xa0mnop")  # how Google's page copies it
+    assert imap_credentials() == ("imap.gmail.com", "alerts@example.test", "abcdefghijklmnop")
+    monkeypatch.setenv("IMAP_PASSWORD", "abcd efgh ijkl mnop\n")
+    assert imap_credentials()[2] == "abcdefghijklmnop"
+    monkeypatch.setenv("IMAP_PASSWORD", "my own pass phrase")  # not an app password: inner spaces stay
+    assert imap_credentials()[2] == "my own pass phrase"
+    "abcdefghijklmnop".encode("ascii")  # what imaplib needs to be able to do

@@ -78,6 +78,23 @@ _BEDROOMS = re.compile(r"(\d{1,2})\s*(?:slaapkamers?|slaapk\.?|slk|bedrooms?|bed
 _AREA = re.compile(r"(\d{2,4})\s*(?:m²|m2|m\^2|vierkante meter)", re.I)
 
 
+_APP_PASSWORD = re.compile(r"[a-z]{4}(?:\s+[a-z]{4}){3}")
+
+
+def imap_credentials() -> Tuple[str, str, str]:
+    """(host, user, password) from the environment, cleaned of copy-paste damage.
+
+    Google shows an app password as four groups ("abcd efgh ijkl mnop") separated by non-breaking spaces;
+    pasted as-is, imaplib cannot even encode it. The spaces are not part of the password, so drop them.
+    """
+    host = os.environ["IMAP_HOST"].replace("\xa0", " ").strip()
+    user = os.environ["IMAP_USER"].replace("\xa0", " ").strip()
+    password = os.environ["IMAP_PASSWORD"].replace("\xa0", " ").strip()
+    if _APP_PASSWORD.fullmatch(password):
+        password = re.sub(r"\s+", "", password)
+    return host, user, password
+
+
 def imap_date(dt: datetime) -> str:
     """IMAP wants dd-Mon-yyyy with English month names, whatever the locale."""
     return f"{dt.day:02d}-{_MONTHS[dt.month - 1]}-{dt.year}"
@@ -256,11 +273,13 @@ class EmailAlerts(Source):
 
     # ---- IMAP (overridable in tests) ----------------------------------------------------------
     def _connect(self) -> Any:
-        host = os.environ["IMAP_HOST"]
+        host, user, password = imap_credentials()
         port = int(os.environ.get("IMAP_PORT", "993") or 993)
         try:
             conn = imaplib.IMAP4_SSL(host, port, timeout=30)
-            conn.login(os.environ["IMAP_USER"], os.environ["IMAP_PASSWORD"])
+            conn.login(user, password)
+        except UnicodeEncodeError:
+            raise SourceError("IMAP user or password contains characters a mail server cannot accept; set the secret again")
         except (imaplib.IMAP4.error, OSError) as exc:
             raise SourceError(f"IMAP login/connect failed for {host}: {type(exc).__name__}")
         return conn
