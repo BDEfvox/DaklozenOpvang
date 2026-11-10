@@ -103,6 +103,9 @@ MOVED=0
 for f in data/* data/.[!.]*; do
   [ -e "$f" ] || continue
   [ "$(basename "$f")" = ".gitkeep" ] && continue
+  # Files git already tracks are the live checker's memory, not local test state: moving them would
+  # reset the checker on GitHub and resend its first batch of alerts.
+  if git ls-files --error-unmatch "$f" >/dev/null 2>&1; then continue; fi
   mkdir -p data.local-backup
   mv "$f" "data.local-backup/$(basename "$f").$(date +%s)"
   MOVED=1

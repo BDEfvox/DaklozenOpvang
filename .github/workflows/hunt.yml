@@ -57,13 +57,18 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          # Other runs of this workflow that have not finished (dry runs do not count).
+          # Unfinished runs that mean the chain is alive: any waiting or running chain run, and any
+          # older run started by the schedule or by hand (dry runs do not count). Two runs started at
+          # the same moment therefore do not both step aside: the older one continues.
           others="$(timeout 60 gh api "repos/$GITHUB_REPOSITORY/actions/workflows/hunt.yml/runs?per_page=100" \
             --jq "[.workflow_runs[] | select(.status != \"completed\") | select(.id != $GITHUB_RUN_ID)
-                   | select(.display_title != \"hunt (dry run)\")] | length" 2>/dev/null || echo unknown)"
+                   | select(.display_title != \"hunt (dry run)\")
+                   | select(.id < $GITHUB_RUN_ID or .display_title == \"hunt (continues)\")] | length" 2>/dev/null)" || others=unknown
+          # On an error gh prints the error text instead of a number: treat anything else as unknown.
+          case "$others" in ''|*[!0-9]*) others=unknown ;; esac
           if [ "$others" = "0" ] || [ "$others" = "unknown" ]; then
             # "unknown" (the question failed) also continues: a stopped checker is worse than a
-            # doubled one, and a doubled chain ends by itself (see "Start the next run").
+            # doubled one, and a doubled chain ends by itself (see "Keep the rhythm").
             echo "go=true" >> "$GITHUB_OUTPUT"
           else
             echo "go=false" >> "$GITHUB_OUTPUT"
@@ -115,46 +120,48 @@ jobs:
         if: ${{ steps.setup.outputs.ready == 'true' && !inputs.dry_run }}
         run: |
           api() { timeout 60 gh api "$@" 2>/dev/null; }
-          tell() {
-            if [ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ]; then
-              curl -s -m 20 "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
-                --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" --data-urlencode "text=$1" >/dev/null 2>&1 || true
-            fi
-          }
 
-          # 1. Disabled in the Actions tab = the user wants the checker to stop.
-          state="$(api "repos/$GITHUB_REPOSITORY/actions/workflows/hunt.yml" --jq .state || echo unknown)"
-          if [ "$state" = "disabled_manually" ]; then
-            echo "::notice::The workflow is disabled: stopping without a check and without a next run."
-            echo "stop=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          # 2. If a newer chain run is already waiting, this run is a leftover of a doubled chain
-          #    (two runs started at the same moment): let the newer one carry on alone.
-          newer="$(api "repos/$GITHUB_REPOSITORY/actions/workflows/hunt.yml/runs?per_page=100" \
-            --jq "[.workflow_runs[] | select(.status != \"completed\") | select(.id > $GITHUB_RUN_ID)
-                   | select(.display_title == \"hunt (continues)\")] | length" || echo 0)"
-          if [ "$newer" != "0" ] && [ -n "$newer" ]; then
-            echo "::notice::A newer run is already waiting to continue: this one stops here."
-            echo "stop=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          # 3. Keep the rhythm: wait until one interval after the previous run's check. Normally that is
-          #    under two minutes (the environment's wait timer covers the rest); it is the whole
-          #    interval only when the timer is missing.
+          # 1. Keep the rhythm: wait until one interval after the previous run's check. Normally that is
+          #    about a minute (the environment's wait timer covers the rest); it is the whole interval
+          #    only when the timer is missing.
           case "$AFTER" in
             ''|*[!0-9]*) ;;
             *)
               wait=$(( AFTER + INTERVAL_SECONDS - $(date +%s) ))
               if [ "$wait" -gt "$INTERVAL_SECONDS" ]; then wait="$INTERVAL_SECONDS"; fi
+              if [ "$wait" -gt 180 ]; then
+                echo "::warning::Waiting $wait s on the runner: the hunt-timer environment seems to have no wait timer (repo Settings -> Environments -> hunt-timer -> wait timer 8)."
+              fi
               if [ "$wait" -gt 0 ]; then
                 echo "Waiting $wait s to keep the $INTERVAL_SECONDS s rhythm."
                 sleep "$wait"
               fi
               ;;
           esac
+
+          # 2. Disabled in the Actions tab = the user wants the checker to stop.
+          #    (On an error gh prints the error text: anything that is not a plain word counts as unknown.)
+          state="$(api "repos/$GITHUB_REPOSITORY/actions/workflows/hunt.yml" --jq .state)" || state=unknown
+          case "$state" in ''|*[!a-z_]*) state=unknown ;; esac
+          echo "state=$state" >> "$GITHUB_OUTPUT"
+          if [ "$state" = "disabled_manually" ]; then
+            echo "::notice::The workflow is disabled: stopping without a check and without a next run."
+            echo "stop=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # 3. If a newer chain run is already waiting, this run is a leftover of a doubled chain
+          #    (two runs started at the same moment): let the newer one carry on alone. Only a clear
+          #    answer counts; when the question fails, carry on (a stopped checker is the worse outcome).
+          newer="$(api "repos/$GITHUB_REPOSITORY/actions/workflows/hunt.yml/runs?per_page=100" \
+            --jq "[.workflow_runs[] | select(.status != \"completed\") | select(.id > $GITHUB_RUN_ID)
+                   | select(.display_title == \"hunt (continues)\")] | length")" || newer=0
+          case "$newer" in ''|*[!0-9]*) newer=0 ;; esac
+          if [ "$newer" != "0" ]; then
+            echo "::notice::A newer run is already waiting to continue: this one stops here."
+            echo "stop=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
 
           # 4. Start the successor. It waits in the "hunt-timer" environment before it does anything.
           now="$(date +%s)"
@@ -165,15 +172,11 @@ jobs:
             fi
             sleep $(( i * 10 ))
           done
-          echo "::error::Could not start the next run."
-          if [ "$state" = "active" ] || [ "$state" = "unknown" ]; then
-            tell "⚠️ House Hunter could not start its next run on GitHub, so it may stop checking. Open the repo's Actions tab → hunt → Run workflow."
-          else
-            tell "⚠️ House Hunter has stopped: GitHub switched the workflow off (state: $state). Open the repo's Actions tab → hunt → Enable workflow, then Run workflow."
-          fi
+          echo "::warning::Could not start the next run yet; trying again after the check."
           echo "failed=true" >> "$GITHUB_OUTPUT"
 
       - uses: actions/checkout@v7
+        id: checkout
         if: ${{ steps.setup.outputs.ready == 'true' && steps.next.outputs.stop != 'true' }}
         with:
           # the latest commit, not the one from when this run was started (it would otherwise
@@ -199,8 +202,8 @@ jobs:
           timeout 480 python -m hunter run
 
       - name: Commit state
-        # also after a failed hunt step (a crash): otherwise alerts would repeat
-        if: ${{ !cancelled() && !inputs.dry_run && steps.setup.outputs.ready == 'true' && steps.next.outputs.stop != 'true' }}
+        # also after a failed or cancelled hunt step: its alerts were sent, so they must be remembered
+        if: ${{ always() && !inputs.dry_run && steps.checkout.outcome == 'success' && steps.next.outputs.stop != 'true' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -210,25 +213,49 @@ jobs:
             echo "Nothing to commit"
             exit 0
           fi
-          git commit -q -m "data: $(date -u +'%Y-%m-%d %H:%MZ')"
+          msg="data: $(date -u +'%Y-%m-%d %H:%MZ')"
+          git commit -q -m "$msg"
           for i in 1 2 3; do
             if timeout 120 git pull -q --rebase && timeout 120 git push -q; then exit 0; fi
             git rebase --abort 2>/dev/null || true
             sleep 5
           done
-          echo "push failed after 3 tries"
-          exit 1
+          # Still not pushed: someone else changed data/ on GitHub. This run's state is the newest
+          # (it holds the alerts just sent), so put it on top of GitHub's version as it is.
+          keep="$(mktemp -d)"
+          cp -R data "$keep/data"
+          cp docs/data.json "$keep/data.json"
+          timeout 120 git fetch -q origin main
+          git reset -q --hard origin/main
+          rm -rf data
+          cp -R "$keep/data" data
+          cp "$keep/data.json" docs/data.json
+          git add -A -- data docs
+          git diff --cached --quiet || git commit -q -m "$msg"
+          timeout 120 git push -q
 
-      # If the successor could not be started at the beginning, try once more now.
+      # If the successor could not be started before the check: keep trying for about ten minutes,
+      # and only then tell the group.
       - name: Start the next run (second try)
         if: ${{ always() && steps.next.outputs.failed == 'true' }}
+        env:
+          STATE: ${{ steps.next.outputs.state }}
         run: |
-          for i in 1 2 3; do
+          for i in 1 2 3 4 5 6 7 8 9 10; do
             if timeout 60 gh workflow run hunt.yml --repo "$GITHUB_REPOSITORY" --ref main -f chain=true -f "after=$(date +%s)"; then
               echo "Started the next run."
               exit 0
             fi
-            sleep 20
+            sleep 60
           done
           echo "::error::Could not start the next run."
+          if [ "$STATE" = "active" ] || [ "$STATE" = "unknown" ] || [ -z "$STATE" ]; then
+            text="⚠️ House Hunter could not start its next run on GitHub, so it has probably stopped checking. Open the repo's Actions tab → hunt → Run workflow."
+          else
+            text="⚠️ House Hunter has stopped: GitHub switched the workflow off (state: $STATE). Open the repo's Actions tab → hunt → Enable workflow, then Run workflow."
+          fi
+          if [ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ]; then
+            curl -s -m 20 "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+              --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" --data-urlencode "text=$text" >/dev/null 2>&1 || true
+          fi
           exit 1
