@@ -189,10 +189,13 @@ def _extract_facts(text: str) -> Dict[str, Optional[int]]:
 
 
 class _Link:
-    def __init__(self, href: str, anchor_text: str, context: str) -> None:
+    def __init__(self, href: str, anchor_text: str, context: str, from_html: bool = False) -> None:
         self.href = href
         self.anchor_text = anchor_text
         self.context = context
+        # True: anchor_text is the text of the <a> itself. False (plain-text mail): it is merely a line
+        # near the URL, which can just as well be the greeting ("Beste <name>,").
+        self.from_html = from_html
 
 
 def _links_from_html(html: str) -> List[_Link]:
@@ -220,7 +223,7 @@ def _links_from_html(html: str) -> List[_Link]:
             if len(node.get_text(" ", strip=True)) > 600:
                 break
         context = node.get_text(" ", strip=True)
-        links.append(_Link(href, text, context))
+        links.append(_Link(href, text, context, from_html=True))
     return links
 
 
@@ -246,13 +249,19 @@ def _good_anchor(text: str) -> bool:
     return len(t) >= 4 and not _GENERIC_ANCHOR.match(t)
 
 
-def _title_from(info: Dict[str, str], anchor_text: str, context: str) -> str:
-    t = clean_text(anchor_text, 160) or ""
-    if not t or _GENERIC_ANCHOR.match(t) or len(t) < 4:
+def _title_from(info: Dict[str, str], link: _Link) -> str:
+    """Title for a listing found in an email. Titles are published (public repo, dashboard, Telegram),
+    so they only ever come from the link's own text or the listing URL, never from the surrounding
+    email text, which may hold the reader's name or address."""
+    t = (clean_text(link.anchor_text, 160) or "") if link.from_html else ""
+    if not t or _GENERIC_ANCHOR.match(t) or len(t) < 4 or "@" in t:
         slug_title = info["slug"].replace("-", " ").strip().title() if info["slug"] else ""
-        first = (clean_text(context, 120) or "")[:80]
-        t = slug_title or first or "Woning"
+        t = slug_title or "Woning"
     return t
+
+
+def _titled(link: _Link) -> bool:
+    return link.from_html and _good_anchor(link.anchor_text) and "@" not in link.anchor_text
 
 
 class EmailAlerts(Source):
@@ -349,7 +358,7 @@ class EmailAlerts(Source):
         for t in texts:
             links.extend(_links_from_text(t))
         found: Dict[Tuple[str, str], Listing] = {}
-        anchors: Dict[Tuple[str, str], str] = {}
+        anchors: Dict[Tuple[str, str], bool] = {}
         for link in links:
             if _SKIP_ANCHOR.search(link.anchor_text) or _SKIP_ANCHOR.search(link.href):
                 continue
@@ -369,12 +378,12 @@ class EmailAlerts(Source):
             existing = found.get(key)
             if existing is not None:
                 self._merge(existing, facts, link)
-                if _good_anchor(link.anchor_text) and not _good_anchor(anchors[key]):
-                    anchors[key] = link.anchor_text
-                    existing.title = f"{SITE_LABELS[info['site']]}: {_title_from(info, link.anchor_text, link.context)}"
+                if _titled(link) and not anchors[key]:
+                    anchors[key] = True
+                    existing.title = f"{SITE_LABELS[info['site']]}: {_title_from(info, link)}"
                 continue
-            anchors[key] = link.anchor_text
-            title = _title_from(info, link.anchor_text, link.context)
+            anchors[key] = _titled(link)
+            title = _title_from(info, link)
             site_label = SITE_LABELS[info["site"]]
             address = info["slug"].replace("-", " ").strip().title() if info["slug"] else None
             found[key] = Listing(
@@ -389,9 +398,11 @@ class EmailAlerts(Source):
                 area_m2=facts["area"],
                 property_type=kind_type,
                 address=address or None,
+                # Used in memory for the filters only. private_text tells the runner never to save it:
+                # it is text from the user's own mailbox and the state files are public.
                 description=clean_text(link.context, 600),
                 posted_at=posted,
-                extra={"site_prefiltered": True, "site": info["site"], "via": site_label},
+                extra={"site_prefiltered": True, "site": info["site"], "via": site_label, "private_text": True},
             )
         return list(found.values())
 

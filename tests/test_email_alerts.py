@@ -214,3 +214,42 @@ def test_pasted_app_password_loses_its_invisible_spaces(monkeypatch):
     monkeypatch.setenv("IMAP_PASSWORD", "my own pass phrase")  # not an app password: inner spaces stay
     assert imap_credentials()[2] == "my own pass phrase"
     "abcdefghijklmnop".encode("ascii")  # what imaplib needs to be able to do
+
+
+GREETING_TEXT = """Beste Voornaam Achternaam,
+
+https://www.pararius.nl/appartement-te-huur/den-haag/ab12cd34/laan-van-meerdervoort
+
+EUR 1.850 per maand, 75 m2, 3 kamers, 2 slaapkamers. Geen woningdelers.
+
+Deze e-mail is verzonden naar mijn.postvak@example.test
+"""
+
+GREETING_HTML = """<html><body><p>Beste Voornaam Achternaam,</p>
+<div><a href="https://www.pararius.nl/huis-te-huur/leiden/ef56ab78/rapenburg">mijn.postvak@example.test</a>
+<p>&euro; 2.300 per maand</p></div>
+<p>Verzonden naar mijn.postvak@example.test</p></body></html>"""
+
+
+def test_titles_never_come_from_the_text_around_a_link():
+    src = EmailAlerts()
+    src._resolver = lambda url: None
+    import email as _email
+    msg = _email.message_from_bytes(make_msg("Pararius <alerts@mail.pararius.nl>", "Nieuw", text=GREETING_TEXT))
+    out = src.parse_message(msg, [5])
+    assert len(out) == 1
+    l = out[0]
+    assert l.title == "Pararius: Laan Van Meerdervoort"  # from the URL, not "Beste Voornaam Achternaam,"
+    assert "Voornaam" not in l.title and "@" not in l.title and "Voornaam" not in (l.address or "")
+    # (a URL alone in its paragraph takes the paragraph before it as context: here, the greeting)
+    assert "Voornaam" in (l.description or "") and l.extra["private_text"] is True  # in memory only
+    # an HTML link whose own text is an email address is not used as a title either
+    msg = _email.message_from_bytes(make_msg("Pararius <alerts@mail.pararius.nl>", "Nieuw", html=GREETING_HTML))
+    l = src.parse_message(msg, [5])[0]
+    assert l.title == "Pararius: Rapenburg" and l.price_total == 2300
+
+
+def test_html_link_text_is_still_used_as_title(source):
+    out = by_id(source.fetch("*", object()))
+    assert out["pararius-ab12cd34"].title == "Pararius: Laan van Meerdervoort 12"
+    assert all(l.extra.get("private_text") for l in out.values())

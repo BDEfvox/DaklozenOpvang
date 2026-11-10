@@ -401,3 +401,34 @@ def test_empty_earlier_check_is_repeated_but_hidden_pages_are_left_alone(cfg, tm
         code, n, st = go(cfg, tmp_path, [src], now=T0 + timedelta(minutes=10 * k))
     assert src.detail_calls == 4  # neither is fetched again
     assert "fake:a" not in st.matches and "fake:b" in st.matches
+
+
+def test_text_from_the_mailbox_is_used_for_filtering_but_never_saved(cfg, tmp_path):
+    secret = "Beste Voornaam Achternaam, verzonden naar mijn.postvak@example.test"
+    def mail_listing(sid, text):  # noqa: E306
+        return make_listing(sid, source="mail", price_total=1500, bedrooms=3, description=secret + " " + text,
+                            extra={"site_prefiltered": True, "private_text": True})
+    src = FakeSource(name="mail", listings=[mail_listing("a", "Ruim appartement."),
+                                            mail_listing("b", "Geen woningdelers.")])
+    code, n, st = go(cfg, tmp_path, [src])
+    # the text was read: "geen woningdelers" keeps b out of the 3-person search
+    assert [m["search"] for m in st.matches["mail:a"]["matches"]] == ["2 people", "3 people"]
+    assert [m["search"] for m in st.matches["mail:b"]["matches"]] == ["2 people"]
+    assert "no_sharers" in st.matches["mail:b"]["flags"]
+    # ...but it is in none of the files that get committed or published, nor in any alert
+    src.listings = [mail_listing("a", "Ruim appartement."), mail_listing("b", "Geen woningdelers.")]
+    go(cfg, tmp_path, [src], now=T0 + timedelta(minutes=10))  # also after the later detail re-check
+    written = "".join(p.read_text() for d in ("data", "docs") for p in (tmp_path / d).glob("*.json"))
+    assert "Voornaam" not in written and "mijn.postvak" not in written
+    assert not any("Voornaam" in m or "mijn.postvak" in m for m in n.messages)
+    assert st.matches["mail:a"]["listing"]["description"] is None
+
+
+def test_redaction_covers_the_cleaned_app_password_and_the_chat_id(monkeypatch):
+    from hunter.runner import redact
+    monkeypatch.setenv("IMAP_PASSWORD", "abcd\xa0efgh\xa0ijkl\xa0mnop")
+    monkeypatch.setenv("IMAP_USER", " mijn.postvak@example.test\n")
+    monkeypatch.setenv("TELEGRAM_CHAT_ID", "-5012345678")
+    out = redact("login abcdefghijklmnop / abcd efgh ijkl mnop for mijn.postvak@example.test in chat -5012345678")
+    assert "abcdefghijklmnop" not in out and "efgh" not in out
+    assert "mijn.postvak" not in out and "5012345678" not in out

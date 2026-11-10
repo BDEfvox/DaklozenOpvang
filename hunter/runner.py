@@ -37,10 +37,12 @@ class FetchResult:
 
 def redact(text: str) -> str:
     """Remove secret values (raw and URL-encoded) from text that may be published or logged."""
-    for key in ("TELEGRAM_BOT_TOKEN", "IMAP_PASSWORD", "IMAP_USER"):
-        val = os.environ.get(key, "").strip()
-        if len(val) >= 4:
-            text = text.replace(val, "***").replace(quote(val, safe=""), "***")
+    for key in ("TELEGRAM_BOT_TOKEN", "IMAP_PASSWORD", "IMAP_USER", "TELEGRAM_CHAT_ID"):
+        raw = os.environ.get(key, "")
+        # also the cleaned-up forms the code actually uses (an app password without its spaces)
+        for val in {raw.strip(), raw.replace("\xa0", " ").strip(), re.sub(r"\s+", "", raw)}:
+            if len(val) >= 4:
+                text = text.replace(val, "***").replace(quote(val, safe=""), "***")
     return text
 
 
@@ -151,6 +153,18 @@ class Sender:
         return ok
 
 
+def _private_text(l: Listing) -> bool:
+    return bool(isinstance(l.extra, dict) and l.extra.get("private_text"))
+
+
+def _public_dict(l: Listing) -> Dict[str, Any]:
+    """The listing as it may be saved: the state files are committed to a public repository."""
+    d = l.to_dict()
+    if _private_text(l):  # text from the user's mailbox: fine for filtering, never for saving
+        d["description"] = None
+    return d
+
+
 def _card(state: State, it: Item, now_s: str) -> None:
     old = state.matches.get(it.listing.uid, {})
     flags = list(it.result.flags)
@@ -159,7 +173,7 @@ def _card(state: State, it: Item, now_s: str) -> None:
                                                   "no_registration", "income_requirement", "sharers_ok"):
             flags.append(f)
     state.matches[it.listing.uid] = {
-        "listing": it.listing.to_dict(),
+        "listing": _public_dict(it.listing),
         "first_seen": old.get("first_seen") or now_s,
         "last_seen": now_s,
         "matches": [m.to_dict() for m in it.result.matches],
@@ -176,6 +190,8 @@ _DETAIL_FIELDS = ("bedrooms", "rooms", "area_m2", "property_type", "price_total"
 def detail_snapshot(l: Listing, search_price: Optional[int]) -> Dict[str, Any]:
     """What a detail page told us, so later runs (which only see the search page) don't forget it."""
     d: Dict[str, Any] = {k: getattr(l, k) for k in _DETAIL_FIELDS if getattr(l, k) is not None}
+    if _private_text(l):
+        d.pop("description", None)
     if "description" in d:
         d["description"] = d["description"][:2500]
     if l.extra:
@@ -559,5 +575,5 @@ def run(cfg: Dict[str, Any], dry_run: bool = False, only: Optional[List[str]] = 
         return run_once(cfg, state, all_sources(), notifier, Http(), only=only, write=not dry_run,
                         docs_dir=docs_dir)
     except Exception:
-        traceback.print_exc()
+        sys.stderr.write(redact(traceback.format_exc()))  # the log of a public repo is public
         return 1
