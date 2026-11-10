@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="referrer" content="no-referrer">
+<title>House Hunter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <h1>House Hunter</h1>
+  <p id="last-check" class="muted">Loading…</p>
+  <p id="stale-warning" class="banner danger" role="alert" hidden></p>
+  <p id="sample-banner" class="banner info" role="status" hidden>Showing sample data: data.json could not be loaded.</p>
+</header>
+
+<main>
+  <section class="filters" aria-label="Filters">
+    <div class="field">
+      <span class="label" id="city-label">City</span>
+      <div id="city-chips" class="chips" role="group" aria-labelledby="city-label"></div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="group" class="label">Group size</label>
+        <select id="group">
+          <option value="any">Any</option>
+          <option value="2">2 people</option>
+          <option value="3">3 people</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="maxpp" class="label">Max per person: <output id="maxpp-out"></output></label>
+        <input id="maxpp" type="range" min="400" max="800" step="25" value="800">
+      </div>
+      <div class="field">
+        <label for="sort" class="label">Sort</label>
+        <select id="sort">
+          <option value="newest">Newest first</option>
+          <option value="cheapest">Cheapest per person</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <label class="check"><input type="checkbox" id="only-great"> Only great</label>
+      <label class="check"><input type="checkbox" id="hide-warnings"> Hide warnings</label>
+      <div class="field grow">
+        <label for="search" class="label">Search</label>
+        <input id="search" type="search" placeholder="Title or address" autocomplete="off">
+      </div>
+    </div>
+    <p id="count" class="muted" aria-live="polite"></p>
+  </section>
+
+  <section id="listings" class="grid" aria-label="Listings"></section>
+  <p id="empty" class="muted" hidden>No listings match these filters.</p>
+
+  <section aria-labelledby="sources-h">
+    <h2 id="sources-h">Sources</h2>
+    <div class="table-wrap">
+      <table id="sources">
+        <thead><tr><th>Source</th><th>Status</th><th>Last OK</th><th>Listings</th><th>Error</th><th>Note</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p><strong>Tiers:</strong> <span class="badge great">great</span> is comfortably under the budget per person; <span class="badge ok">ok</span> is within the maximum (€800 per person) but closer to the limit.</p>
+  <p>New matches are sent to the group in Telegram. This page is an overview of everything found in the last 30 days. Always check the listing itself; prices and flags come from third-party sites and can be wrong.</p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>

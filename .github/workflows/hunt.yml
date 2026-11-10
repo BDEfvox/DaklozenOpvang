@@ -1,0 +1,89 @@
+name: hunt
+
+on:
+  schedule:
+    - cron: "4,14,24,34,44,54 * * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (print messages, send nothing, commit nothing)"
+        type: boolean
+        default: false
+
+concurrency:
+  group: hunt
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  hunt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      IMAP_HOST: ${{ secrets.IMAP_HOST }}
+      IMAP_USER: ${{ secrets.IMAP_USER }}
+      IMAP_PASSWORD: ${{ secrets.IMAP_PASSWORD }}
+      IMAP_FOLDER: ${{ secrets.IMAP_FOLDER }}
+      DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # the latest commit, not the one from when this run was queued (a queued run would otherwise
+          # start from stale data/ and resend alerts the previous run already sent)
+          ref: main
+
+      # Until the Telegram secrets exist (./go-live.sh sets them), do nothing: otherwise these runs would
+      # quietly use up the first batch of alerts. Dry runs are always allowed.
+      - name: Check setup
+        id: setup
+        run: |
+          if [ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          elif [ "${{ inputs.dry_run }}" = "true" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Telegram is not set up yet (run ./go-live.sh). Skipping this run."
+          fi
+
+      - uses: actions/setup-python@v7
+        if: steps.setup.outputs.ready == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+        if: steps.setup.outputs.ready == 'true'
+
+      - name: Hunt
+        if: steps.setup.outputs.ready == 'true'
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python -m hunter run --dry-run
+          else
+            python -m hunter run
+          fi
+
+      - name: Commit state
+        # also after a failed hunt step (exit 1 = every site failed): otherwise alerts would repeat
+        if: ${{ !cancelled() && !inputs.dry_run && steps.setup.outputs.ready == 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- data docs
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+            exit 0
+          fi
+          git commit -m "data: $(date -u +'%Y-%m-%d %H:%MZ')"
+          for i in 1 2 3; do
+            git pull --rebase && git push && exit 0
+            git rebase --abort || true
+            sleep 5
+          done
+          echo "push failed after 3 tries"
+          exit 1

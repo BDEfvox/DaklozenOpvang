@@ -1,0 +1,181 @@
+{
+  "_comment": "House Hunter settings. Keys starting with _ are ignored.",
+  "cities": [
+    "den-haag",
+    "amsterdam",
+    "leiden"
+  ],
+  "searches": [
+    {
+      "name": "2 people",
+      "persons": 2,
+      "min_bedrooms": 2,
+      "max_total": 1600,
+      "great_total": 1400,
+      "min_area_if_unknown": 45
+    },
+    {
+      "name": "3 people",
+      "persons": 3,
+      "min_bedrooms": 3,
+      "max_total": 2400,
+      "great_total": 2100,
+      "min_area_if_unknown": 60
+    }
+  ],
+  "exclude_types": [
+    "room",
+    "studio",
+    "parking",
+    "other"
+  ],
+  "suspicious_total_below": 700,
+  "disabled_sources": [],
+  "telegram": {
+    "quiet_hours": [
+      23,
+      7
+    ],
+    "max_messages_per_run": 15,
+    "first_run_max": 10,
+    "digest_hour": 9,
+    "timezone": "Europe/Amsterdam"
+  },
+  "detail_fetch_max_per_run": 10,
+  "health_alert_after_failures": 6,
+  "keep_listings_days": 30,
+  "prune_seen_days": 45,
+  "heartbeat_minutes": 60,
+  "dashboard_url": "",
+  "reply_template": "Beste verhuurder,\n\nMet veel interesse zagen wij de woning \"{title}\" aan {address} in {city} ({url}). Wij zijn [namen], [werk/studie], met een gezamenlijk bruto inkomen van [bruto inkomen] per maand. Wij zoeken een rustige, langdurige huurwoning en kunnen snel reageren.\n\nZou het mogelijk zijn om de woning te komen bezichtigen? U kunt ons bereiken op [telefoon].\n\nMet vriendelijke groet,\n[namen]",
+  "flags": {
+    "no_sharers": [
+      "geen woningdelers",
+      "niet geschikt voor woningdelers",
+      "woningdelen niet toegestaan",
+      "geen delers",
+      "niet voor woningdelers",
+      "no sharers",
+      "not suitable for sharers",
+      "no house sharing",
+      "no house-sharing",
+      "uitsluitend voor een stel",
+      "uitsluitend voor een gezin"
+    ],
+    "no_students": [
+      "geen studenten",
+      "niet voor studenten",
+      "no students",
+      "not for students",
+      "not suitable for students"
+    ],
+    "sharers_ok": [
+      "woningdelers toegestaan",
+      "delen toegestaan",
+      "geschikt voor woningdelers",
+      "omzettingsvergunning aanwezig",
+      "sharing allowed",
+      "sharers welcome",
+      "students welcome",
+      "studenten welkom",
+      "ontwikkeld voor woningdelers",
+      "speciaal voor woningdelers",
+      "geschikt voor delers",
+      "suitable for sharers",
+      "suitable for house sharers"
+    ],
+    "no_registration": [
+      "inschrijving niet mogelijk",
+      "inschrijven niet mogelijk",
+      "geen inschrijving mogelijk",
+      "inschrijving is niet mogelijk",
+      "niet inschrijven",
+      "registration not possible",
+      "registration is not possible",
+      "no registration possible",
+      "not possible to register",
+      "cannot register",
+      "geen brp-inschrijving"
+    ],
+    "income_requirement": [
+      "inkomenseis",
+      "inkomensvereiste",
+      "inkomenseisen",
+      "bruto maandinkomen",
+      "bruto inkomen",
+      "x de huur",
+      "x de kale huur",
+      "keer de huur",
+      "keer de kale huur",
+      "maal de huur",
+      "times the rent",
+      "times the monthly rent",
+      "x the rent",
+      "income requirement",
+      "minimum income",
+      "minimaal inkomen",
+      "gross income"
+    ],
+    "scam_signals": [
+      "western union",
+      "moneygram",
+      "betalen voor bezichtiging",
+      "aanbetaling voor bezichtiging",
+      "pay before viewing",
+      "deposit before viewing",
+      "ik woon in het buitenland",
+      "i live abroad",
+      "currently abroad",
+      "sleutel per post",
+      "keys by post",
+      "keys by mail",
+      "airbnb",
+      "alleen via whatsapp",
+      "only via whatsapp",
+      "betaling vooraf",
+      "eerst de borg overmaken",
+      "transfer the deposit first",
+      "sleutels worden opgestuurd",
+      "keys will be sent",
+      "landlord is abroad"
+    ],
+    "rooms_only": [
+      "alleen nog losse kamers",
+      "losse kamers beschikbaar",
+      "kamers worden los verhuurd",
+      "kamers worden per stuk verhuurd",
+      "per kamer verhuurd",
+      "woningdelen met een vriend of vriendin kan op dit moment niet",
+      "rooms are rented separately",
+      "rooms are rented out separately",
+      "only individual rooms",
+      "only single rooms available"
+    ]
+  },
+  "max_persons_patterns": [
+    "max(?:imaal|\\.)?\\s?(\\d)\\s?(?:personen|persons|people)",
+    "geschikt voor (\\d) (?:personen|persoons)",
+    "max (\\d) persons",
+    "suitable for (\\d) (?:people|persons)"
+  ],
+  "couple_patterns": [
+    "alleen voor (?:een )?stel",
+    "uitsluitend voor (?:een )?stel",
+    "couple only",
+    "only for (?:a )?couple"
+  ],
+  "single_patterns": [
+    "\\bsingle\\b",
+    "alleenstaande",
+    "voor een persoon",
+    "one person only"
+  ],
+  "first_run_detail_max": 30,
+  "local_backup": {
+    "_comment": "Mac backup (./local-backup.sh on). auto = only sites GitHub can't reach + warn if GitHub stops; all = every site (only if you don't use GitHub).",
+    "mode": "auto",
+    "stale_hours": 3,
+    "data_dir": "data-local",
+    "github_repo": ""
+  }
+}

@@ -1,0 +1,578 @@
+{
+ "schema": 1,
+ "generated_at": "2026-11-09T16:08:00Z",
+ "last_run": "2026-11-09T16:08:00Z",
+ "dashboard_url": "https://example.github.io/house-hunter/",
+ "cities": {
+  "den-haag": "Den Haag",
+  "amsterdam": "Amsterdam",
+  "leiden": "Leiden"
+ },
+ "searches": [
+  {
+   "name": "2 people",
+   "persons": 2,
+   "max_total": 1600,
+   "great_total": 1400
+  },
+  {
+   "name": "3 people",
+   "persons": 3,
+   "max_total": 2400,
+   "great_total": 2100
+  }
+ ],
+ "flag_labels": {
+  "no_sharers": "No house sharers",
+  "max_persons": "Max {n} persons",
+  "no_students": "No students",
+  "sharers_ok": "Sharers welcome",
+  "no_registration": "No registration possible",
+  "income_requirement": "Income requirement",
+  "short_term": "Short-term only",
+  "utilities_included": "Utilities included",
+  "suspicious_price": "Suspiciously cheap",
+  "scam_signals": "Possible scam",
+  "bedrooms_unknown": "Bedrooms unknown"
+ },
+ "reply_template": "Beste verhuurder,\n\nWij zijn met een groepje vrienden op zoek naar een woning en zijn erg geinteresseerd in \"{title}\" ({address}, {city}). Is de woning nog beschikbaar? Wij kunnen graag een bezichtiging plannen.\n\nLink: {url}\n\nMet vriendelijke groet",
+ "sources": [
+  {
+   "name": "kamernet",
+   "label": "Kamernet",
+   "homepage": "https://example.com/kamernet",
+   "status": "ok",
+   "last_ok": "2026-11-09T16:08:00Z",
+   "last_error": null,
+   "error": null,
+   "note": "Paid account needed to reply",
+   "listings_last_run": 17
+  },
+  {
+   "name": "marktplaats",
+   "label": "Marktplaats",
+   "homepage": "https://example.com/marktplaats",
+   "status": "ok",
+   "last_ok": "2026-11-09T16:08:00Z",
+   "last_error": null,
+   "error": null,
+   "note": null,
+   "listings_last_run": 24
+  },
+  {
+   "name": "housinganywhere",
+   "label": "HousingAnywhere",
+   "homepage": "https://example.com/housinganywhere",
+   "status": "ok",
+   "last_ok": "2026-11-09T16:08:00Z",
+   "last_error": null,
+   "error": null,
+   "note": null,
+   "listings_last_run": 9
+  },
+  {
+   "name": "directwonen",
+   "label": "DirectWonen",
+   "homepage": "https://example.com/directwonen",
+   "status": "ok",
+   "last_ok": "2026-11-09T16:08:00Z",
+   "last_error": null,
+   "error": null,
+   "note": null,
+   "listings_last_run": 6
+  },
+  {
+   "name": "123wonen",
+   "label": "123Wonen",
+   "homepage": "https://example.com/123wonen",
+   "status": "partial",
+   "last_ok": "2026-11-09T16:08:00Z",
+   "last_error": "2026-11-09T16:08:00Z",
+   "error": "2 of 3 pages failed",
+   "note": null,
+   "listings_last_run": 3
+  },
+  {
+   "name": "vandenlinden",
+   "label": "Van der Linden",
+   "homepage": "https://example.com/vandenlinden",
+   "status": "ok",
+   "last_ok": "2026-11-09T16:08:00Z",
+   "last_error": null,
+   "error": null,
+   "note": null,
+   "listings_last_run": 4
+  },
+  {
+   "name": "interhouse",
+   "label": "Interhouse",
+   "homepage": "https://example.com/interhouse",
+   "status": "ok",
+   "last_ok": "2026-11-09T16:08:00Z",
+   "last_error": null,
+   "error": null,
+   "note": null,
+   "listings_last_run": 2
+  },
+  {
+   "name": "vesteda",
+   "label": "Vesteda",
+   "homepage": "https://example.com/vesteda",
+   "status": "error",
+   "last_ok": "2026-11-09T07:20:00Z",
+   "last_error": "2026-11-09T16:08:00Z",
+   "error": "Timeout after 20s",
+   "note": "Single-page app",
+   "listings_last_run": 0
+  },
+  {
+   "name": "funda",
+   "label": "Funda",
+   "homepage": "https://example.com/funda",
+   "status": "blocked",
+   "last_ok": null,
+   "last_error": "2026-11-09T16:08:00Z",
+   "error": "HTTP 403 bot check",
+   "note": "Covered via email alerts",
+   "listings_last_run": 0
+  },
+  {
+   "name": "pararius-email",
+   "label": "Pararius (email)",
+   "homepage": "https://example.com/pararius-email",
+   "status": "disabled",
+   "last_ok": null,
+   "last_error": "2026-11-09T16:08:00Z",
+   "error": "IMAP not configured",
+   "note": "Email alerts",
+   "listings_last_run": 0
+  }
+ ],
+ "listings": [
+  {
+   "uid": "kamernet:1001",
+   "source": "kamernet",
+   "source_label": "Kamernet",
+   "url": "https://example.com/kamernet/1001",
+   "title": "Ruim 3-kamer appartement bij Zuiderpark",
+   "city": "den-haag",
+   "address": "Voorbeeldstraat 12",
+   "postcode": "2500 AA",
+   "price_total": 1450,
+   "price_includes_utilities": false,
+   "bedrooms": 2,
+   "rooms": 3,
+   "area_m2": 70,
+   "property_type": "apartment",
+   "furnished": "unfurnished",
+   "available_from": "2026-12-01",
+   "available_until": null,
+   "image_url": "https://example.com/img/1.jpg",
+   "first_seen": "2026-11-09T14:50:00Z",
+   "last_seen": "2026-11-09T16:08:00Z",
+   "price_drop_from": null,
+   "best_tier": "great",
+   "matches": [
+    {
+     "search": "2 people",
+     "persons": 2,
+     "price_pp": 725,
+     "tier": "great"
+    }
+   ],
+   "flags": [
+    "max_persons:2",
+    "sharers_ok"
+   ]
+  },
+  {
+   "uid": "hw:1002",
+   "source": "huurwoningen",
+   "source_label": "Huurwoningen (sample)",
+   "url": "https://example.com/huurwoningen/1002",
+   "title": "Bovenwoning met dakterras",
+   "city": "leiden",
+   "address": "Proefgracht 7",
+   "postcode": "2311 BB",
+   "price_total": 2100,
+   "price_includes_utilities": true,
+   "bedrooms": 3,
+   "rooms": 4,
+   "area_m2": 95,
+   "property_type": "apartment",
+   "furnished": "shell",
+   "available_from": "2026-12-15",
+   "available_until": null,
+   "image_url": "https://example.com/img/2.jpg",
+   "first_seen": "2026-11-09T13:20:00Z",
+   "last_seen": "2026-11-09T16:08:00Z",
+   "price_drop_from": null,
+   "best_tier": "great",
+   "matches": [
+    {
+     "search": "3 people",
+     "persons": 3,
+     "price_pp": 700,
+     "tier": "great"
+    }
+   ],
+   "flags": [
+    "utilities_included"
+   ]
+  },
+  {
+   "uid": "ma:1003",
+   "source": "marktplaats",
+   "source_label": "Marktplaats",
+   "url": "https://example.com/marktplaats/1003",
+   "title": "Gemeubileerd appartement centrum",
+   "city": "amsterdam",
+   "address": "Testkade 3",
+   "postcode": "1011 CC",
+   "price_total": 1550,
+   "price_includes_utilities": false,
+   "bedrooms": 2,
+   "rooms": 3,
+   "area_m2": 62,
+   "property_type": "apartment",
+   "furnished": "furnished",
+   "available_from": "2026-11-20",
+   "available_until": "2027-05-20",
+   "image_url": "https://example.com/img/3.jpg",
+   "first_seen": "2026-11-09T15:44:00Z",
+   "last_seen": "2026-11-09T16:08:00Z",
+   "price_drop_from": null,
+   "best_tier": "ok",
+   "matches": [
+    {
+     "search": "2 people",
+     "persons": 2,
+     "price_pp": 775,
+     "tier": "ok"
+    }
+   ],
+   "flags": [
+    "short_term",
+    "no_students"
+   ]
+  },
+  {
+   "uid": "dw:1004",
+   "source": "directwonen",
+   "source_label": "DirectWonen",
+   "url": "https://example.com/directwonen/1004",
+   "title": "Eengezinswoning met tuin",
+   "city": "den-haag",
+   "address": "Fakelaan 45",
+   "postcode": "2565 DD",
+   "price_total": 2250,
+   "price_includes_utilities": false,
+   "bedrooms": 4,
+   "rooms": 5,
+   "area_m2": 120,
+   "property_type": "house",
+   "furnished": "unfurnished",
+   "available_from": "2027-01-01",
+   "available_until": null,
+   "image_url": "https://example.com/img/4.jpg",
+   "first_seen": "2026-11-08T20:20:00Z",
+   "last_seen": "2026-11-09T16:08:00Z",
+   "price_drop_from": 2400,
+   "best_tier": "great",
+   "matches": [
+    {
+     "search": "3 people",
+     "persons": 3,
+     "price_pp": 750,
+     "tier": "great"
+    }
+   ],
+   "flags": [
+    "sharers_ok"
+   ]
+  },
+  {
+   "uid": "vdl:1005",
+   "source": "vandenlinden",
+   "source_label": "Van der Linden",
+   "url": "https://example.com/vandenlinden/1005",
+   "title": "Modern appartement nabij station",
+   "city": "leiden",
+   "address": "Voorbeeldplein 2",
+   "postcode": "2312 EE",
+   "price_total": 1580,
+   "price_includes_utilities": true,
+   "bedrooms": 2,
+   "rooms": 3,
+   "area_m2": 66,
+   "property_type": "apartment",
+   "furnished": "unfurnished",
+   "available_from": "2026-12-01",
+   "available_until": null,
+   "image_url": null,
+   "first_seen": "2026-11-09T11:20:00Z",
+   "last_seen": "2026-11-09T16:08:00Z",
+   "price_drop_from": null,
+   "best_tier": "great",
+   "matches": [
+    {
+     "search": "2 people",
+     "persons": 2,
+     "price_pp": 790,
+     "tier": "ok"
+    }
+   ],
+   "flags": [
+    "income_requirement"
+   ]
+  },
+  {
+   "uid": "ka:1006",
+   "source": "kamernet",
+   "source_label": "Kamernet",
+   "url": "https://example.com/kamernet/1006",
+   "title": "Lichte maisonnette",
+   "city": "amsterdam",
+   "address": "Nepsteeg 9",
+   "postcode": "1051 FF",
+   "price_total": 2380,
+   "price_includes_utilities": false,
+   "bedrooms": 3,
+   "rooms": 4,
+   "area_m2": 88,
+   "property_type": "apartment",
+   "furnished": "unfurnished",
+   "available_from": "2027-01-15",
+   "available_until": null,
+   "image_url": "https://example.com/img/6.jpg",
+   "first_seen": "2026-11-08T10:20:00Z",
+   "last_seen": "2026-11-09T16:08:00Z",
+   "price_drop_from": null,
+   "best_tier": "ok",
+   "matches": [
+    {
+     "search": "3 people",
+     "persons": 3,
+     "price_pp": 793,
+     "tier": "ok"
+    }
+   ],
+   "flags": [
+    "no_sharers",
+    "bedrooms_unknown"
+   ]
+  },
+  {
+   "uid": "ha:1007",
+   "source": "housinganywhere",
+   "source_label": "HousingAnywhere",
+   "url": "https://example.com/housinganywhere/1007",
+   "title": "Spacious flat, all bills included",
+   "city": "amsterdam",
+   "address": "Dummyweg 100",
+   "postcode": "1075 GG",
+   "price_total": 1590,
+   "price_includes_utilities": true,
+   "bedrooms": 2,
+   "rooms": 3,
+   "area_m2": 58,
+   "property_type": "apartment",
+   "furnished": "furnished",
+   "available_from": "2026-12-10",
+   "available_until": "2027-06-10",
+   "image_url": "https://example.com/img/7.jpg",
+   "first_seen": "2026-11-09T16:02:00Z",
+   "last_seen": "2026-11-09T16:08:00Z",
+   "price_drop_from": null,
+   "best_tier": "ok",
+   "matches": [
+    {
+     "search": "2 people",
+     "persons": 2,
+     "price_pp": 795,
+     "tier": "ok"
+    }
+   ],
+   "flags": [
+    "short_term",
+    "no_registration"
+   ]
+  },
+  {
+   "uid": "ma:1008",
+   "source": "marktplaats",
+   "source_label": "Marktplaats",
+   "url": "https://example.com/marktplaats/1008",
+   "title": "Ruim huis, zeer lage prijs!",
+   "city": "den-haag",
+   "address": "Onbekend 1",
+   "postcode": "",
+   "price_total": 950,
+   "price_includes_utilities": false,
+   "bedrooms": 3,
+   "rooms": 4,
+   "area_m2": 110,
+   "property_type": "house",
+   "furnished": "unfurnished",
+   "available_from": null,
+   "available_until": null,
+   "image_url": "https://example.com/img/8.jpg",
+   "first_seen": "2026-11-09T08:20:00Z",
+   "last_seen": "2026-11-09T16:08:00Z",
+   "price_drop_from": null,
+   "best_tier": "great",
+   "matches": [
+    {
+     "search": "2 people",
+     "persons": 2,
+     "price_pp": 475,
+     "tier": "great"
+    }
+   ],
+   "flags": [
+    "suspicious_price",
+    "scam_signals"
+   ]
+  },
+  {
+   "uid": "dw:1009",
+   "source": "directwonen",
+   "source_label": "DirectWonen",
+   "url": "https://example.com/directwonen/1009",
+   "title": "Hoekwoning Leiden-Noord",
+   "city": "leiden",
+   "address": "Exampleweg 31",
+   "postcode": "2333 HH",
+   "price_total": 2200,
+   "price_includes_utilities": false,
+   "bedrooms": 3,
+   "rooms": 5,
+   "area_m2": 102,
+   "property_type": "house",
+   "furnished": "unfurnished",
+   "available_from": "2026-12-20",
+   "available_until": null,
+   "image_url": "https://example.com/img/9.jpg",
+   "first_seen": "2026-11-09T05:20:00Z",
+   "last_seen": "2026-11-09T16:08:00Z",
+   "price_drop_from": null,
+   "best_tier": "great",
+   "matches": [
+    {
+     "search": "3 people",
+     "persons": 3,
+     "price_pp": 733,
+     "tier": "great"
+    }
+   ],
+   "flags": []
+  },
+  {
+   "uid": "in:1010",
+   "source": "interhouse",
+   "source_label": "Interhouse",
+   "url": "https://example.com/interhouse/1010",
+   "title": "Gestoffeerd 2-slaapkamer appartement",
+   "city": "den-haag",
+   "address": "Plaatshoudersplein 8",
+   "postcode": "2511 II",
+   "price_total": 1500,
+   "price_includes_utilities": false,
+   "bedrooms": 2,
+   "rooms": 3,
+   "area_m2": 64,
+   "property_type": "apartment",
+   "furnished": "upholstered",
+   "available_from": "2026-12-01",
+   "available_until": null,
+   "image_url": "https://example.com/img/10.jpg",
+   "first_seen": "2026-11-08T14:20:00Z",
+   "last_seen": "2026-11-09T16:08:00Z",
+   "price_drop_from": null,
+   "best_tier": "great",
+   "matches": [
+    {
+     "search": "2 people",
+     "persons": 2,
+     "price_pp": 750,
+     "tier": "ok"
+    }
+   ],
+   "flags": [
+    "max_persons:2"
+   ]
+  },
+  {
+   "uid": "ve:1011",
+   "source": "vesteda",
+   "source_label": "Vesteda",
+   "url": "https://example.com/vesteda/1011",
+   "title": "Nieuwbouw appartement, 3 slaapkamers",
+   "city": "amsterdam",
+   "address": "Fictiefstraat 5",
+   "postcode": "1082 JJ",
+   "price_total": 2390,
+   "price_includes_utilities": false,
+   "bedrooms": 3,
+   "rooms": 4,
+   "area_m2": 92,
+   "property_type": "apartment",
+   "furnished": "unfurnished",
+   "available_from": "2027-02-01",
+   "available_until": null,
+   "image_url": "https://example.com/img/11.jpg",
+   "first_seen": "2026-11-07T14:20:00Z",
+   "last_seen": "2026-11-09T16:08:00Z",
+   "price_drop_from": 2500,
+   "best_tier": "ok",
+   "matches": [
+    {
+     "search": "3 people",
+     "persons": 3,
+     "price_pp": 797,
+     "tier": "ok"
+    }
+   ],
+   "flags": [
+    "income_requirement",
+    "no_students"
+   ]
+  },
+  {
+   "uid": "w123:1012",
+   "source": "123wonen",
+   "source_label": "123Wonen",
+   "url": "https://example.com/123wonen/1012",
+   "title": "Ruime woning met zolder",
+   "city": "leiden",
+   "address": "Nergenslaan 60",
+   "postcode": "2321 KK",
+   "price_total": 2150,
+   "price_includes_utilities": true,
+   "bedrooms": 3,
+   "rooms": 5,
+   "area_m2": 98,
+   "property_type": "house",
+   "furnished": "unfurnished",
+   "available_from": "2026-12-05",
+   "available_until": null,
+   "image_url": "https://example.com/img/12.jpg",
+   "first_seen": "2026-11-09T09:20:00Z",
+   "last_seen": "2026-11-09T16:08:00Z",
+   "price_drop_from": null,
+   "best_tier": "great",
+   "matches": [
+    {
+     "search": "3 people",
+     "persons": 3,
+     "price_pp": 717,
+     "tier": "great"
+    }
+   ],
+   "flags": [
+    "utilities_included",
+    "sharers_ok"
+   ]
+  }
+ ]
+}
