@@ -48,6 +48,8 @@ class Vesteda(Source):
     homepage = "https://www.vesteda.com/nl"
     cities = ("den-haag", "amsterdam", "leiden")
     note = "Free account on hurenbij.vesteda.com needed to reply"
+    # 3.5x the rent alone, 4x together; "Deze norm geldt voor iedereen" (vesteda.com, inkomens-voorwaarden)
+    income_requirement = True
 
     def fetch(self, city: str, http: Http) -> List[Listing]:
         place = _PLACES.get(city)

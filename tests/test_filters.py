@@ -115,3 +115,41 @@ def test_site_bedroom_count_wins_over_text_and_impossible_text_is_ignored(cfg):
     l = make_listing(bedrooms=None, rooms=3, description="Slaapkamers: 5")  # more bedrooms than rooms
     evaluate(l, cfg)
     assert l.bedrooms is None
+
+
+def test_income_requirement_wordings(cfg):
+    yes = [
+        # Van der Linden, the listing that was missed
+        "Inkomensrichtlijnen - Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld) "
+        "3,5x keer de vermelde huurprijs van deze woning.",
+        "Het bruto-jaarinkomen moet 42x de kale maandhuur zijn.",
+        "U dient minimaal 3 keer de maandhuur te verdienen.",
+        "Huurders moeten 3x de huur verdienen.",
+        "Wij vragen een werkgeversverklaring en recente loonstroken.",
+        "Alleen voor huurders met een vast inkomen.",
+        "Income guidelines apply to this property.",
+        "Your gross monthly salary must be at least 3.5 times the stated monthly rent.",
+        "Proof of income is required.",
+        "Tenants should earn at least 3x the rent.",
+        "Vereist: 3 keer de huur.",
+        "Requirement: 3 times the monthly rent.",
+        "Eis: 3x de maandhuur bruto.",
+    ]
+    for text in yes:
+        assert "income_requirement" in evaluate(make_listing(description=text), cfg).flags, text
+    no = [
+        "Borg 2x de huur. Huisdieren in overleg.",
+        "Waarborgsom: 2 keer de maandhuur.",
+        "Deposit: 2 times the rent. Available from January.",
+        "Ruime woonkamer van 4 x 5 meter, 2 slaapkamers.",
+        "Geen inschrijvingskosten. Dichtbij winkels en openbaar vervoer.",
+    ]
+    for text in no:
+        assert "income_requirement" not in evaluate(make_listing(description=text), cfg).flags, text
+
+
+def test_income_requirement_from_the_landlords_standing_rule(cfg):
+    r = evaluate(make_listing(description="Licht appartement.", extra={"income_requirement": True}), cfg)
+    assert r.flags.count("income_requirement") == 1 and r.matched
+    r = evaluate(make_listing(description="Inkomenseis: 3x de huur.", extra={"income_requirement": True}), cfg)
+    assert r.flags.count("income_requirement") == 1

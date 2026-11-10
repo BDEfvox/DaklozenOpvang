@@ -432,3 +432,18 @@ def test_redaction_covers_the_cleaned_app_password_and_the_chat_id(monkeypatch):
     out = redact("login abcdefghijklmnop / abcd efgh ijkl mnop for mijn.postvak@example.test in chat -5012345678")
     assert "abcdefghijklmnop" not in out and "efgh" not in out
     assert "mijn.postvak" not in out and "5012345678" not in out
+
+
+def test_landlord_with_a_standing_income_rule_flags_every_listing(cfg, tmp_path):
+    strict = FakeSource("strict", listings(2, source="strict"))
+    strict.income_requirement = True
+    plain = FakeSource("plain", [make_listing("9", source="plain", address="Elders 9", price_total=1300)])
+    _, _, state = go(cfg, tmp_path, [strict, plain])
+    assert all("income_requirement" in state.matches[u]["flags"] for u in ("strict:0", "strict:1"))
+    assert "income_requirement" not in state.matches["plain:9"]["flags"]
+
+
+def test_real_sources_that_always_apply_an_income_test():
+    from hunter.sources import all_sources
+    flagged = sorted(name for name, s in all_sources().items() if s.income_requirement)
+    assert flagged == ["heimstaden", "ikwilhuren", "rotsvast", "vanderlinden", "vesteda"]

@@ -132,6 +132,8 @@ class VanDerLinden(Source):
     cities = ("amsterdam",)
     per_city = False
     note = "Reply via the agency (free)"
+    # every listing carries the same "Inkomensrichtlijnen" block: 3.5x the rent alone, 4x together
+    income_requirement = True
 
     def fetch(self, city: str, http: Http) -> List[Listing]:
         html = http.get_text(BASE + "/woning-huren/")

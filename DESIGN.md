@@ -78,6 +78,13 @@ Flags (case-insensitive phrase lists in config.json, Dutch + English), detected 
 keys by mail, western union, airbnb payment, whatsapp-only…). Flags never hide a listing; a
 `no_sharers` or `max_persons:2` flag removes it from the 3-person search only.
 
+`income_requirement` has two more inputs besides its phrase list. (1) `income_patterns` in config.json:
+regexes for the many wordings ("inkomensrichtlijnen", "bruto maandsalaris 3,5x keer de huurprijs", "proof of
+income", payslips asked for). A multiple of the rent counts on its own only from 2.5x up, because deposits are
+worded the same way. (2) A source with `income_requirement = True` (Vesteda, MVGM, Van der Linden, Rotsvast,
+Heimstaden) applies an income test to every home under its own published conditions, so all its listings get
+the flag even when the listing text is silent.
+
 ## State (`state.py`, files in `data/`)
 - `seen.json`: `{uid: {first_seen, last_seen, last_price, matched: [search names], notified_at}}`.
   Prune entries not seen for 45 days.

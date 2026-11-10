@@ -120,6 +120,8 @@ class IkWilHuren(Source):
     cities = ("den-haag", "amsterdam", "leiden")
     per_city = False
     note = "Free account on ikwilhuren.nu needed to reply"
+    # MVGM only considers candidates who meet the home's income norm (ikwilhuren.nu/vragen and /voorwaarden)
+    income_requirement = True
 
     def fetch(self, city: str, http: Http) -> List[Listing]:
         out: List[Listing] = []

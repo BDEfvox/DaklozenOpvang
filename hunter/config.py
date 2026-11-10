@@ -25,6 +25,7 @@ DEFAULTS: Dict[str, Any] = {
     "reply_template": "",
     "flags": {},
     "max_persons_patterns": [],
+    "income_patterns": [],
     "couple_patterns": [],
     "single_patterns": [],
 }

@@ -27,6 +27,9 @@ class Source:
     # per_city=False: the runner calls fetch("*") once; the source returns listings for any city
     # (e.g. one mailbox with alerts for all cities). The runner drops cities that aren't configured.
     per_city: bool = True
+    # True: this landlord/agency applies an income test to every home it lets (stated in its own
+    # conditions or FAQ), whether or not the individual listing repeats it. Every listing gets the flag.
+    income_requirement: bool = False
 
     def unavailable_reason(self) -> Optional[str]:
         """None if the source can run; otherwise a short reason ("IMAP not configured").

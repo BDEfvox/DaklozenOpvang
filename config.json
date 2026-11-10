@@ -103,14 +103,6 @@
       "inkomenseisen",
       "bruto maandinkomen",
       "bruto inkomen",
-      "x de huur",
-      "x de kale huur",
-      "keer de huur",
-      "keer de kale huur",
-      "maal de huur",
-      "times the rent",
-      "times the monthly rent",
-      "x the rent",
       "income requirement",
       "minimum income",
       "minimaal inkomen",
@@ -152,6 +144,19 @@
       "only single rooms available"
     ]
   },
+  "_income_patterns": "Regexes on the lowercased title + description; any hit sets the income_requirement flag, next to the plain phrases in flags.income_requirement. A multiple of the rent counts on its own only from 2.5x up, or next to a word about income: a deposit is worded the same way ('borg 2x de huur') but is at most 2 months.",
+  "income_patterns": [
+    "\\binkomens-?\\s?(?:eis|vereiste|norm|richtlijn|toets|voorwaarde|criteri|grens|check|verklaring)",
+    "\\b(?:bruto|netto)[- ]?(?:maand|jaar)?[- ]?(?:inkomen|salaris|loon)",
+    "\\b(?:minimaal|minimum|minimale|vast|vaste|stabiel|voldoende|aantoonbaar|gezamenlijk)\\s+(?:bruto\\s+|netto\\s+)?(?:maand|jaar)?(?:inkomen|salaris)",
+    "\\b(?:loonstro(?:ok|ken)|salarisstro(?:ok|ken)|werkgeversverklaring|payslips?|pay slips?|salary slips?|employer'?s statement)\\b",
+    "\\bincome\\s+(?:requirement|guideline|criteri|check|verification|statement|test|norm|proof)",
+    "\\bproof of (?:sufficient |stable |steady |regular )?(?:income|earnings)\\b",
+    "\\b(?:gross|net|minimum|minimal|sufficient|stable|steady|regular|monthly|annual|yearly|combined)\\s+(?:gross\\s+|net\\s+)?(?:monthly\\s+|annual\\s+|yearly\\s+)?(?:income|salary)\\b",
+    "\\b(?:inkom|salaris|verdien|bruto|income|salary|earn|gross)\\w*\\W.{0,100}?\\d\\s*(?:x|×|keer|maal|times)\\b",
+    "\\d\\s*(?:x|×|keer|maal|times)\\s.{0,80}?\\b(?:inkom|salaris|verdien|bruto|income|salary|earn|gross)",
+    "(?<![\\d.,])(?:2[.,]5|[3-9](?:[.,]\\d)?|[1-9]\\d)\\s*(?:x|×|keer|maal|times)\\s+(?:keer\\s+)?(?:(?:de|het|the|your|je|uw|jouw)\\s+)?(?:\\w+\\s+){0,2}?(?:(?:maand)?huur|rent)"
+  ],
   "max_persons_patterns": [
     "max(?:imaal|\\.)?\\s?(\\d)\\s?(?:personen|persons|people)",
     "geschikt voor (\\d) (?:personen|persoons)",

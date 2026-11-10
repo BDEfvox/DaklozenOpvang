@@ -90,6 +90,9 @@ def fetch_source(source: Source, cfg: Dict[str, Any], http: Any, only_city: Opti
         blocked = all(isinstance(x, SourceBlocked) for _, x in errors)
         res.status = "blocked" if blocked else "error"
         res.error = _describe(errors[0][1])
+    if source.income_requirement:  # the landlord's standing rule, see Source.income_requirement
+        for l in res.listings:
+            l.extra["income_requirement"] = True
     return res
 
 

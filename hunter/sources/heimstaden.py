@@ -72,6 +72,8 @@ class Heimstaden(Source):
     cities = ("den-haag", "amsterdam", "leiden")
     per_city = False
     note = "Reply via Heimstaden (free)"
+    # gross income at least 4x the basic rent (heimstaden.com FAQ, "Welke inkomenseisen hanteren jullie?")
+    income_requirement = True
 
     def fetch(self, city: str, http: Http) -> List[Listing]:
         out = parse_page(http.get_text(URL))

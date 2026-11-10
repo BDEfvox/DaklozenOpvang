@@ -108,6 +108,8 @@ class Rotsvast(Source):
     homepage = "https://www.rotsvast.nl/huren/"
     cities = ("den-haag", "amsterdam", "leiden")
     note = "Reply via the agency (free)"
+    # candidates are screened with an income test of at least 3x the monthly rent (rotsvast.nl/faq)
+    income_requirement = True
 
     def fetch(self, city: str, http: Http) -> List[Listing]:
         term = _SEARCH.get(city)

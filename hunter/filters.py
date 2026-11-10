@@ -65,6 +65,10 @@ def detect_flags(listing: Listing, cfg: Dict[str, Any]) -> List[str]:
                 "income_requirement", "scam_signals", "rooms_only"):
         if _contains_any(text, fl.get(key, [])):
             out.append(key)
+    if "income_requirement" not in out and (
+            (isinstance(listing.extra, dict) and listing.extra.get("income_requirement") is True)  # landlord's rule
+            or any(re.search(pat, text) for pat in cfg.get("income_patterns", []))):
+        out.append("income_requirement")
     # max persons
     nums: List[int] = []
     for pat in cfg.get("max_persons_patterns", []):
