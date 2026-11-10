@@ -146,6 +146,15 @@ else
   echo "$OUT"
 fi
 
+# The checker paces itself: each run starts the next one, which GitHub holds back in the "hunt-timer"
+# environment (wait timer, no runner used) until the next check is due. See .github/workflows/hunt.yml.
+if "$GH" api -X PUT "repos/${SLUG}/environments/hunt-timer" -F wait_timer=8 >/dev/null 2>&1 \
+   && "$GH" api -X PUT "repos/${SLUG}/environments/hunt-now" >/dev/null 2>&1; then
+  echo "Timer environments ready."
+else
+  echo "Could not set up the timer environments; the checker still works, it just waits on the runner itself."
+fi
+
 # 8. First run
 echo; echo "== 8/9 First run"
 START="$(date -u +%Y-%m-%dT%H:%M:%SZ)"

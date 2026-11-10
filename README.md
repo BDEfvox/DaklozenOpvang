@@ -28,7 +28,7 @@ You need: a GitHub account, Telegram on your phone, and this folder on your Mac.
    - ask for the bot token (typing is hidden), then ask you to send `/start@yourbot` in the group so it can find the group
    - optionally set up the Pararius/Funda email inbox (see below; you can skip this and do it later)
    - create a **public** GitHub repo `house-hunter`, push the code, store the token as an encrypted GitHub secret
-   - turn on the dashboard page and the 10-minute schedule, then run the first check while you watch
+   - turn on the dashboard page, then start the checker and run the first check while you watch
 4. Within a few minutes the group gets the current best matches and a list of which sites work from GitHub's servers.
 
 The dashboard is at `https://<your-github-name>.github.io/house-hunter/`. It can take a few minutes to appear the first time.
@@ -141,15 +141,20 @@ Runs the tests.
 ## Troubleshooting
 
 - **No daily summary / dashboard says "the checker may be down":** open the repo on github.com → **Actions** → `hunt`.
-  If it says the workflow was disabled (GitHub disables schedules in public repos after 60 days without activity),
-  click **Enable workflow**. If runs are red, open the latest one to see the error. GitHub also emails you when a scheduled run fails.
+  There should always be one run "waiting": each check starts the next one, which waits until it is due.
+  If none is waiting or running, click **Run workflow**. If it says the workflow was disabled, click
+  **Enable workflow** first. If runs are red, open the latest one to see the error.
+- **Stopping the checker:** Actions → `hunt` → **⋯** → **Disable workflow** (or cancel the waiting run).
+  To start again: **Enable workflow**, then **Run workflow**.
 - **A site shows "blocked" on the dashboard:** that site refuses automated checks from GitHub's servers. The others keep
   working. Turn on the [Mac backup](#mac-backup-optional) to cover it from home, or use its email alerts if it has them.
 - **A site shows "error" / "layout changed":** the site changed its page. The others keep working; the parser for that site
   needs an update.
 - **Telegram stopped after you changed the group:** if Telegram upgrades the group to a "supergroup" (for example after
   you make someone admin), its ID changes. Run `./go-live.sh --telegram`; it finds the group again and updates the secret.
-- **Timing:** GitHub runs schedules "best effort", so checks can be 10–20 minutes apart at busy times.
+- **Timing:** checks are 10 minutes apart. GitHub's own schedule turned out to be unreliable (it did not run at
+  all in the first hours), so each check starts the next one; the schedule is only a backup that restarts the
+  checker if it ever stops.
 
 ## How it works
 

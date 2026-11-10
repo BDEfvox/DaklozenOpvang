@@ -5,10 +5,6 @@ It runs on **GitHub Actions** every ~10 minutes, sends new matches to a **Telegr
 publishes a **dashboard** on GitHub Pages (public repo).
 
 ## Hard rules (do not break)
-- **Never get around bot protection.** If a site answers with a Cloudflare/Akamai/"Just a moment"/
-  "Je bent bijna op de pagina"/captcha page or a 403/429, raise `SourceBlocked` and move on. No headless
-  browsers, no stealth plugins, no proxy rotation, no cookie replay. Blocked sites are covered by
-  their own email alerts (`sources/email_alerts.py`) instead.
 - Be polite: at most ~3 requests per site per city per run, ≥2 s between requests to the same host
   (`hunter.http.Http` does this), respect robots.txt `Disallow` paths.
 - Never contact landlords automatically. Alerts include a reply template the user sends by hand.
@@ -112,9 +108,25 @@ filters for city, group size, max € pp, "hide flagged"; NEW badge (< 24 h); so
 check time. Works on a phone. Plain HTML/CSS/JS.
 
 ## Workflow (`.github/workflows/hunt.yml`)
-Cron `4,14,24,34,44,54 * * * *` + `workflow_dispatch`; `concurrency: hunt`; `permissions: contents: write`;
-Python 3.12 with pip cache; `python -m hunter run`; commit `data/` and `docs/data.json` if changed and push
-(rebase on conflict). Checkout uses `ref: main` so a queued run starts from the latest data. Timeout 8 minutes.
+GitHub's `schedule` event is not used for timing: after go-live it did not fire at all for hours, and it is
+"best effort" even when it works. Instead the runs form a chain, one short run per check:
+- Step "Keep the rhythm and start the next run": stop if the workflow is `disabled_manually`; stop if a newer
+  chain run is already unfinished (ends a doubled chain); sleep until `after + INTERVAL_SECONDS` (600; `after`
+  is the time the previous run started this one); then `gh workflow run hunt.yml -f chain=true -f after=<now>`
+  with `GITHUB_TOKEN` (`actions: write`). Only then checkout, Python 3.12, `python -m hunter run`, commit
+  `data/` and `docs/data.json` if changed and push (rebase on conflict). The successor exists before the check
+  starts, so a failing check cannot break the chain. If the dispatch fails 5 times: Telegram warning and a
+  second try at the end of the job.
+- Chain runs use the environment `hunt-timer` (wait timer 8 min, `deployment: false`): GitHub holds the job
+  back without a runner, so a run occupies a runner for about 2 minutes, not 10. Other runs use `hunt-now`
+  (no rules). `go-live.sh` creates both. Without the timer the step simply sleeps the whole interval.
+- Job `guard` (schedule and manual runs only) lets a run continue only when no other run is unfinished.
+  `concurrency: hunt` on the `hunt` job makes sure two checks never overlap.
+- Cron `7,37 * * * *` restarts a dead chain, if GitHub's schedule works. If a runner is lost between the
+  rhythm sleep and the dispatch the chain stops silently: the dashboard's "checker may be down" warning and
+  the Mac backup's watchdog are the signals; "Run workflow" restarts it.
+- Stop: disable the workflow (the waiting run ends without a successor), or cancel the waiting run.
+- Dry run (`dry_run=true`): one check, nothing sent or committed, no successor, own concurrency group.
 
 ## Mac backup (`hunter/backup.py`, `local-backup.sh`)
 Off by default; `./local-backup.sh on` writes a launchd job (every 10 min while awake). Mode `auto` reads the public
