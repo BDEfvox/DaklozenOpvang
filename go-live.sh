@@ -122,6 +122,8 @@ if ! git remote get-url origin >/dev/null 2>&1; then
 else
   git add -A; assert_no_env_staged
   if ! git diff --cached --quiet; then git commit -q -m "House Hunter setup"; fi
+  # The live checker pushes its state every few checks, so this copy is usually behind.
+  git pull --rebase -q origin main || true
   git push -u origin HEAD
 fi
 SLUG="$("$GH" repo view --json nameWithOwner -q .nameWithOwner)"
@@ -151,11 +153,13 @@ fi
 
 # The checker paces itself: each run starts the next one, which GitHub holds back in the "hunt-timer"
 # environment (wait timer, no runner used) until the next check is due. See .github/workflows/hunt.yml.
-if "$GH" api -X PUT "repos/${SLUG}/environments/hunt-timer" -F wait_timer=8 >/dev/null 2>&1 \
-   && "$GH" api -X PUT "repos/${SLUG}/environments/hunt-now" >/dev/null 2>&1; then
+if "$GH" api -X PUT "repos/${SLUG}/environments/hunt-timer" -F wait_timer=8 >/dev/null \
+   && "$GH" api -X PUT "repos/${SLUG}/environments/hunt-now" >/dev/null; then
   echo "Timer environments ready."
 else
-  echo "Could not set up the timer environments; the checker still works, it just waits on the runner itself."
+  echo "Could not set up the timer environments (see the error above). Not starting the checker:"
+  echo "without the timer it would keep a GitHub runner busy all day. Fix the cause and run this script again."
+  exit 1
 fi
 
 # 8. First run
@@ -171,8 +175,10 @@ if [ "$STARTED" != "1" ]; then echo "Could not start the workflow. Open the repo
 RUN_ID=""
 for _ in $(seq 1 30); do
   sleep 4
+  # the run we started is titled "hunt"; the next one it starts itself is "hunt (continues)"
   RUN_ID="$("$GH" run list --workflow hunt.yml --event workflow_dispatch --limit 5 \
-            --json databaseId,createdAt -q "[.[] | select(.createdAt >= \"$START\")][0].databaseId" 2>/dev/null || true)"
+            --json databaseId,createdAt,displayTitle \
+            -q "[.[] | select(.createdAt >= \"$START\") | select(.displayTitle == \"hunt\")][0].databaseId" 2>/dev/null || true)"
   if [ -n "$RUN_ID" ] && [ "$RUN_ID" != "null" ]; then break; fi
 done
 if [ -z "$RUN_ID" ] || [ "$RUN_ID" = "null" ]; then echo "Could not find the run. Check the Actions tab."; exit 1; fi

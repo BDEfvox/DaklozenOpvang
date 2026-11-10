@@ -6,18 +6,21 @@ run-name: ${{ inputs.dry_run && 'hunt (dry run)' || (inputs.chain && 'hunt (cont
 # GitHub's own schedule cannot be relied on: after go-live it did not fire once in the first hours, and
 # even when it works it is "best effort" (late, or dropped when GitHub is busy). So each run starts the
 # next one itself:
-#   1. Just before its check, a run starts its successor (workflow_dispatch with chain=true).
-#   2. The successor waits in the environment "hunt-timer", which has a wait timer of 8 minutes. GitHub
-#      holds the job back during that time; no runner is used.
-#   3. Then it sleeps the last seconds up to INTERVAL_SECONDS after the previous check, starts ITS
-#      successor, and does one check (about a minute).
+#   1. As its very first action a run starts its successor (workflow_dispatch with chain=true).
+#   2. The successor first waits for this run to finish (concurrency group), then in the environment
+#      "hunt-timer", which has a wait timer of 8 minutes. GitHub holds the job back during that time;
+#      no runner is used.
+#   3. When it gets a runner it starts ITS successor, sleeps the last minute or so up to
+#      INTERVAL_SECONDS after the previous check, and does one check (about a minute).
 # Because the successor exists before the check begins, a check that crashes cannot break the chain.
 # The schedule below only restarts the chain if it ever stops (when GitHub's schedule works).
 #
 # To stop the checker: disable this workflow (Actions tab -> hunt -> "..." -> Disable workflow); the
 # waiting run then ends without doing anything. To start it again: enable it and click "Run workflow".
-# The environments are created by ./go-live.sh. If "hunt-timer" has no wait timer, the run simply
-# sleeps the whole interval itself, so the timing stays right.
+# The environments are created by ./go-live.sh. If "hunt-timer" loses its wait timer, the run sleeps the
+# whole interval on the runner instead (the timing stays right) and warns the Telegram group every six
+# hours, because keeping a runner busy all day is not what GitHub's runners are for: restore the timer
+# (repo Settings -> Environments -> hunt-timer -> Wait timer: 8).
 
 on:
   schedule:
@@ -68,7 +71,7 @@ jobs:
           case "$others" in ''|*[!0-9]*) others=unknown ;; esac
           if [ "$others" = "0" ] || [ "$others" = "unknown" ]; then
             # "unknown" (the question failed) also continues: a stopped checker is worse than a
-            # doubled one, and a doubled chain ends by itself (see "Keep the rhythm").
+            # doubled one, and a doubled chain ends by itself (see "Start the next run").
             echo "go=true" >> "$GITHUB_OUTPUT"
           else
             echo "go=false" >> "$GITHUB_OUTPUT"
@@ -80,7 +83,7 @@ jobs:
     # Runs unless the guard said no (the guard is skipped for chain runs and dry runs).
     if: ${{ !cancelled() && needs.guard.outputs.go != 'false' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
     environment:
       # "hunt-timer" holds the job back for 8 minutes before it gets a runner; "hunt-now" has no rules.
       name: ${{ inputs.chain && 'hunt-timer' || 'hunt-now' }}
@@ -96,7 +99,6 @@ jobs:
       IMAP_PASSWORD: ${{ secrets.IMAP_PASSWORD }}
       IMAP_FOLDER: ${{ secrets.IMAP_FOLDER }}
       DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
-      GH_TOKEN: ${{ github.token }}
       DRY_RUN: ${{ inputs.dry_run }}
       AFTER: ${{ inputs.after }}
     steps:
@@ -114,32 +116,17 @@ jobs:
             echo "::notice::Telegram is not set up yet (run ./go-live.sh). Skipping this run."
           fi
 
-      # Before the check, so that a check that goes wrong cannot break the chain.
-      - name: Keep the rhythm and start the next run
+      # First of all, so that nothing that goes wrong later (a crashed check, a lost runner) can break
+      # the chain. The successor cannot start early: it waits for this job to end, then for the timer.
+      - name: Start the next run and keep the rhythm
         id: next
         if: ${{ steps.setup.outputs.ready == 'true' && !inputs.dry_run }}
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           api() { timeout 60 gh api "$@" 2>/dev/null; }
 
-          # 1. Keep the rhythm: wait until one interval after the previous run's check. Normally that is
-          #    about a minute (the environment's wait timer covers the rest); it is the whole interval
-          #    only when the timer is missing.
-          case "$AFTER" in
-            ''|*[!0-9]*) ;;
-            *)
-              wait=$(( AFTER + INTERVAL_SECONDS - $(date +%s) ))
-              if [ "$wait" -gt "$INTERVAL_SECONDS" ]; then wait="$INTERVAL_SECONDS"; fi
-              if [ "$wait" -gt 180 ]; then
-                echo "::warning::Waiting $wait s on the runner: the hunt-timer environment seems to have no wait timer (repo Settings -> Environments -> hunt-timer -> wait timer 8)."
-              fi
-              if [ "$wait" -gt 0 ]; then
-                echo "Waiting $wait s to keep the $INTERVAL_SECONDS s rhythm."
-                sleep "$wait"
-              fi
-              ;;
-          esac
-
-          # 2. Disabled in the Actions tab = the user wants the checker to stop.
+          # 1. Disabled in the Actions tab = the user wants the checker to stop.
           #    (On an error gh prints the error text: anything that is not a plain word counts as unknown.)
           state="$(api "repos/$GITHUB_REPOSITORY/actions/workflows/hunt.yml" --jq .state)" || state=unknown
           case "$state" in ''|*[!a-z_]*) state=unknown ;; esac
@@ -150,7 +137,7 @@ jobs:
             exit 0
           fi
 
-          # 3. If a newer chain run is already waiting, this run is a leftover of a doubled chain
+          # 2. If a newer chain run is already waiting, this run is a leftover of a doubled chain
           #    (two runs started at the same moment): let the newer one carry on alone. Only a clear
           #    answer counts; when the question fails, carry on (a stopped checker is the worse outcome).
           newer="$(api "repos/$GITHUB_REPOSITORY/actions/workflows/hunt.yml/runs?per_page=100" \
@@ -163,17 +150,53 @@ jobs:
             exit 0
           fi
 
-          # 4. Start the successor. It waits in the "hunt-timer" environment before it does anything.
-          now="$(date +%s)"
+          # 3. When is this run's check due? One interval after the previous one (AFTER). Normally
+          #    that is about a minute from now, because the environment's wait timer covered the rest.
+          wait=0
+          case "$AFTER" in
+            ''|0*|*[!0-9]*) ;;
+            *)
+              wait=$(( AFTER + INTERVAL_SECONDS - $(date +%s) ))
+              if [ "$wait" -gt "$INTERVAL_SECONDS" ]; then wait="$INTERVAL_SECONDS"; fi
+              if [ "$wait" -lt 0 ]; then wait=0; fi
+              ;;
+          esac
+          due=$(( $(date +%s) + wait ))
+
+          # 4. Start the successor now, telling it when this run's check is due.
+          started=false
           for i in 1 2 3 4 5; do
-            if timeout 60 gh workflow run hunt.yml --repo "$GITHUB_REPOSITORY" --ref main -f chain=true -f "after=$now"; then
+            if timeout 60 gh workflow run hunt.yml --repo "$GITHUB_REPOSITORY" --ref main -f chain=true -f "after=$due"; then
               echo "Started the next run."
-              exit 0
+              started=true
+              break
             fi
             sleep $(( i * 10 ))
           done
-          echo "::warning::Could not start the next run yet; trying again after the check."
-          echo "failed=true" >> "$GITHUB_OUTPUT"
+          if [ "$started" != "true" ]; then
+            echo "::warning::Could not start the next run yet; trying again after the check."
+            echo "failed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+          # 5. A long wait here means the hunt-timer environment has no wait timer, so this run keeps a
+          #    runner busy for the whole interval. Keep checking, but say so (about every six hours).
+          if [ "$wait" -gt 180 ]; then
+            echo "::warning::Waiting $wait s on the runner: the hunt-timer environment has no wait timer (repo Settings -> Environments -> hunt-timer -> Wait timer: 8)."
+            if [ $(( $(date -u +%-H) % 6 )) -eq 0 ] && [ "$(date -u +%-M)" -lt 10 ] \
+               && [ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ]; then
+              curl -s -m 20 "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+                --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+                --data-urlencode "text=⚠️ House Hunter still works, but its timer on GitHub is missing, so it keeps a GitHub runner busy all day. Fix: repo Settings → Environments → hunt-timer → Wait timer: 8 minutes." \
+                >/dev/null 2>&1 || true
+            fi
+          fi
+
+          # 6. Sleep the rest, so checks stay one interval apart.
+          rest=$(( due - $(date +%s) ))
+          if [ "$rest" -gt 0 ]; then
+            echo "Waiting $rest s to keep the $INTERVAL_SECONDS s rhythm."
+            sleep "$rest"
+          fi
 
       - uses: actions/checkout@v7
         id: checkout
@@ -221,32 +244,35 @@ jobs:
             sleep 5
           done
           # Still not pushed: someone else changed data/ on GitHub. This run's state is the newest
-          # (it holds the alerts just sent), so put it on top of GitHub's version as it is.
+          # (it holds the alerts just sent), so put it on top of GitHub's version as it is. That
+          # discards the other change to data/: stop the checker before editing those files by hand.
           keep="$(mktemp -d)"
           cp -R data "$keep/data"
-          cp docs/data.json "$keep/data.json"
+          if [ -f docs/data.json ]; then cp docs/data.json "$keep/data.json"; fi
           timeout 120 git fetch -q origin main
           git reset -q --hard origin/main
           rm -rf data
           cp -R "$keep/data" data
-          cp "$keep/data.json" docs/data.json
+          if [ -f "$keep/data.json" ]; then cp "$keep/data.json" docs/data.json; fi
           git add -A -- data docs
           git diff --cached --quiet || git commit -q -m "$msg"
           timeout 120 git push -q
 
-      # If the successor could not be started before the check: keep trying for about ten minutes,
+      # If the successor could not be started at the beginning: keep trying for about fifteen minutes,
       # and only then tell the group.
       - name: Start the next run (second try)
-        if: ${{ always() && steps.next.outputs.failed == 'true' }}
+        if: ${{ !cancelled() && steps.next.outputs.failed == 'true' }}
         env:
+          GH_TOKEN: ${{ github.token }}
           STATE: ${{ steps.next.outputs.state }}
         run: |
-          for i in 1 2 3 4 5 6 7 8 9 10; do
+          end=$(( SECONDS + 900 ))
+          while [ "$SECONDS" -lt "$end" ]; do
             if timeout 60 gh workflow run hunt.yml --repo "$GITHUB_REPOSITORY" --ref main -f chain=true -f "after=$(date +%s)"; then
               echo "Started the next run."
               exit 0
             fi
-            sleep 60
+            sleep 45
           done
           echo "::error::Could not start the next run."
           if [ "$STATE" = "active" ] || [ "$STATE" = "unknown" ] || [ -z "$STATE" ]; then

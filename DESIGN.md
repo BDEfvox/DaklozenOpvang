@@ -110,23 +110,27 @@ check time. Works on a phone. Plain HTML/CSS/JS.
 ## Workflow (`.github/workflows/hunt.yml`)
 GitHub's `schedule` event is not used for timing: after go-live it did not fire at all for hours, and it is
 "best effort" even when it works. Instead the runs form a chain, one short run per check:
-- Step "Keep the rhythm and start the next run": stop if the workflow is `disabled_manually`; stop if a newer
-  chain run is already unfinished (ends a doubled chain); sleep until `after + INTERVAL_SECONDS` (600; `after`
-  is the time the previous run started this one); then `gh workflow run hunt.yml -f chain=true -f after=<now>`
-  with `GITHUB_TOKEN` (`actions: write`). Only then checkout, Python 3.12, `python -m hunter run`, commit
-  `data/` and `docs/data.json` if changed and push (rebase on conflict). The successor exists before the check
-  starts, so a failing check cannot break the chain. If the dispatch fails 5 times: Telegram warning and a
-  second try at the end of the job.
-- Chain runs use the environment `hunt-timer` (wait timer 8 min, `deployment: false`): GitHub holds the job
-  back without a runner, so a run occupies a runner for about 2 minutes, not 10. Other runs use `hunt-now`
-  (no rules). `go-live.sh` creates both. Without the timer the step simply sleeps the whole interval.
-- Job `guard` (schedule and manual runs only) lets a run continue only when no other run is unfinished.
-  `concurrency: hunt` on the `hunt` job makes sure two checks never overlap.
-- Cron `7,37 * * * *` restarts a dead chain, if GitHub's schedule works. If a runner is lost between the
-  rhythm sleep and the dispatch the chain stops silently: the dashboard's "checker may be down" warning and
+- Step "Start the next run and keep the rhythm" (first step of the job): stop if the workflow is
+  `disabled_manually`; stop if a newer chain run is already unfinished (ends a doubled chain; the newest chain
+  run never stops for this reason); work out when this run's check is due (`after + INTERVAL_SECONDS`, 600);
+  `gh workflow run hunt.yml -f chain=true -f after=<due>` with `GITHUB_TOKEN` (`actions: write`); sleep until
+  due. Then checkout, Python 3.12, `python -m hunter run`, commit `data/` and `docs/data.json` if changed and
+  push (rebase; if `data/` changed on GitHub meanwhile, this run's state wins). An error answer from GitHub's
+  API never stops the chain. If the dispatch fails: retried for 15 more minutes after the check, then a
+  Telegram warning.
+- The successor first waits for this job to end (`concurrency: hunt` on the `hunt` job, which also makes sure
+  two checks never overlap), then in the environment `hunt-timer` (wait timer 8 min, `deployment: false`),
+  where GitHub holds it back without a runner. A run therefore occupies a runner for about 2 minutes: about
+  1 minute of sleep, 1 minute of work. Other runs use `hunt-now` (no rules). `go-live.sh` creates both.
+  Without the timer the run sleeps the whole interval on the runner and warns the group every six hours.
+- Job `guard` (schedule and manual runs only): continue only when no chain run and no older starter run is
+  unfinished; when the question fails, continue.
+- Cron `7,37 * * * *` restarts a dead chain, if GitHub's schedule works. A runner lost in the first seconds
+  of a job (before the dispatch) stops the chain silently: the dashboard's "checker may be down" warning and
   the Mac backup's watchdog are the signals; "Run workflow" restarts it.
 - Stop: disable the workflow (the waiting run ends without a successor), or cancel the waiting run.
 - Dry run (`dry_run=true`): one check, nothing sent or committed, no successor, own concurrency group.
+- Only the steps that call GitHub's API get `GH_TOKEN`; the hunt step does not.
 
 ## Mac backup (`hunter/backup.py`, `local-backup.sh`)
 Off by default; `./local-backup.sh on` writes a launchd job (every 10 min while awake). Mode `auto` reads the public

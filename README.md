@@ -141,8 +141,8 @@ Runs the tests.
 ## Troubleshooting
 
 - **No daily summary / dashboard says "the checker may be down":** open the repo on github.com → **Actions** → `hunt`.
-  There should always be one run "waiting": each check starts the next one, which waits until it is due.
-  If none is waiting or running, click **Run workflow**. If it says the workflow was disabled, click
+  There should always be one run "waiting" (or "pending" while a check is running): each check starts the
+  next one, which waits until it is due. If none is waiting, pending or running, click **Run workflow**. If it says the workflow was disabled, click
   **Enable workflow** first. If runs are red, open the latest one to see the error.
 - **Stopping the checker:** Actions → `hunt` → **⋯** → **Disable workflow** (or cancel the waiting run).
   To start again: **Enable workflow**, then **Run workflow**.
