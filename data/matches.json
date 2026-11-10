@@ -5,7 +5,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-10T13:37:26Z",
+  "last_seen": "2026-11-10T13:38:55Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -43,54 +43,11 @@
   ],
   "price_drop_from": null
  },
- "directwonen:521518": {
-  "best_tier": "ok",
-  "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-10T13:37:26Z",
-  "listing": {
-   "address": "Rijndijkstraat",
-   "area_m2": 100,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "leiden",
-   "description": null,
-   "extra": {
-    "age": "32 dagen geleden",
-    "smart_only": false
-   },
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/deb035b3-a16a-4b83-8187-d3cdad8d5099",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 2300,
-   "property_type": "house",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_id": "521518",
-   "title": "Woning Rijndijkstraat, Leiden",
-   "uid": "directwonen:521518",
-   "url": "https://directwonen.nl/huurwoningen-huren/leiden/rijndijkstraat/woning-521518"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 767,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
  "directwonen:523549": {
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T13:37:26Z",
+  "last_seen": "2026-11-10T13:38:55Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 80,
@@ -131,7 +88,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T13:37:26Z",
+  "last_seen": "2026-11-10T13:38:55Z",
   "listing": {
    "address": "V.d. Helststraat",
    "area_m2": 69,
@@ -172,7 +129,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T13:37:26Z",
+  "last_seen": "2026-11-10T13:38:55Z",
   "listing": {
    "address": "V. Zeggelenlaan",
    "area_m2": 198,
@@ -215,7 +172,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-10T13:37:26Z",
+  "last_seen": "2026-11-10T13:38:55Z",
   "listing": {
    "address": "Volmolengracht",
    "area_m2": 100,
@@ -226,6 +183,7 @@
    "description": null,
    "extra": {
     "age": null,
+    "details_unavailable": true,
     "smart_only": true
    },
    "furnished": null,
@@ -478,7 +436,7 @@
    "max_persons:2",
    "short_term"
   ],
-  "last_seen": "2026-11-10T13:37:26Z",
+  "last_seen": "2026-11-10T13:38:55Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -520,24 +478,26 @@
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [
-   "short_term",
-   "bedrooms_unknown"
+   "max_persons:4",
+   "short_term"
   ],
-  "last_seen": "2026-11-10T13:37:26Z",
+  "last_seen": "2026-11-10T13:38:55Z",
   "listing": {
-   "address": "Vlietpark",
+   "address": "Vlietpark 42",
    "area_m2": 60,
    "available_from": "2026-12-01",
    "available_until": "2027-11-30",
-   "bedrooms": null,
+   "bedrooms": 3,
    "city": "leiden",
-   "description": null,
+   "description": "Moderne vrijstaande woning Moderne vrijstaande vakantiewoning te huur in Leiden. Inclusief internet Vrij uitzicht Woonkamer Badkamer met douche, bad en dubbele wastafel Apart toilet Open keuken met combi oven, vaatwasser en koelvriescombinatie 3 slaapkamers Met 3 personen te huren, huur en kosten samen delen Let op! Inschrijven bij de gemeente niet mogelijk omdat het een vakantiewoning is!",
    "extra": {
+    "deposit": 2200,
+    "max_persons": 4,
     "student_house": false
    },
    "furnished": "upholstered",
    "image_url": "https://resources.kamernet.nl/image/90e91c00-4c83-4053-9c71-723538f1ea20/resize/422-225",
-   "postcode": null,
+   "postcode": "2323LK",
    "posted_at": null,
    "price_includes_utilities": false,
    "price_total": 2200,
@@ -559,182 +519,11 @@
   ],
   "price_drop_from": null
  },
- "kamernet:2415940": {
-  "best_tier": "ok",
-  "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [
-   "utilities_included",
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-10T13:37:26Z",
-  "listing": {
-   "address": "Valkenboslaan",
-   "area_m2": 48,
-   "available_from": "2026-11-03",
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "student_house": false
-   },
-   "furnished": "furnished",
-   "image_url": "https://resources.kamernet.nl/image/1d2e1ab7-4106-488e-a6b0-02b1435d6349/resize/422-225",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": true,
-   "price_total": 1525,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "kamernet",
-   "source_id": "2415940",
-   "title": "Appartement te huur: Valkenboslaan",
-   "uid": "kamernet:2415940",
-   "url": "https://kamernet.nl/huren/appartement-den-haag/valkenboslaan/appartement-2415940"
-  },
-  "matches": [
-   {
-    "persons": 2,
-    "price_pp": 762,
-    "search": "2 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "kamernet:2417188": {
-  "best_tier": "ok",
-  "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-10T13:37:26Z",
-  "listing": {
-   "address": "Fokke Simonszstraat",
-   "area_m2": 65,
-   "available_from": "2026-11-08",
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": null,
-   "extra": {
-    "student_house": false
-   },
-   "furnished": "furnished",
-   "image_url": "https://resources.kamernet.nl/image/1b7e43cd-a63e-429b-a416-0545083283fc/resize/422-225",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 2300,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "kamernet",
-   "source_id": "2417188",
-   "title": "Appartement te huur: Fokke Simonszstraat",
-   "uid": "kamernet:2417188",
-   "url": "https://kamernet.nl/huren/appartement-amsterdam/fokke-simonszstraat/appartement-2417188"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 767,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "kamernet:2417421": {
-  "best_tier": "ok",
-  "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [
-   "short_term",
-   "utilities_included",
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-10T13:37:26Z",
-  "listing": {
-   "address": "Postjeskade",
-   "area_m2": 70,
-   "available_from": "2026-12-02",
-   "available_until": "2027-01-07",
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": null,
-   "extra": {
-    "student_house": false
-   },
-   "furnished": "furnished",
-   "image_url": "https://resources.kamernet.nl/image/75327e85-5a31-4d01-a7b5-d9f3df24fe99/resize/422-225",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": true,
-   "price_total": 2400,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "kamernet",
-   "source_id": "2417421",
-   "title": "Appartement te huur: Postjeskade",
-   "uid": "kamernet:2417421",
-   "url": "https://kamernet.nl/huren/appartement-amsterdam/postjeskade/appartement-2417421"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 800,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "kamernet:2417483": {
-  "best_tier": "ok",
-  "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-10T13:37:26Z",
-  "listing": {
-   "address": "Arent Janszoon Ernststraat",
-   "area_m2": 75,
-   "available_from": "2026-11-09",
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": null,
-   "extra": {
-    "student_house": false
-   },
-   "furnished": "unfurnished",
-   "image_url": "https://resources.kamernet.nl/image/45ef363f-782f-4e99-93b4-8a73307d2ad3/resize/422-225",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 2350,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "kamernet",
-   "source_id": "2417483",
-   "title": "Appartement te huur: Arent Janszoon Ernststraat",
-   "uid": "kamernet:2417483",
-   "url": "https://kamernet.nl/huren/appartement-amsterdam/arent-janszoon-ernststraat/appartement-2417483"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 783,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
  "rotsvast:h1025410133": {
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T13:37:26Z",
+  "last_seen": "2026-11-10T13:38:55Z",
   "listing": {
    "address": "Van Diemenstraat 80",
    "area_m2": 100,
@@ -776,7 +565,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-10T13:37:26Z",
+  "last_seen": "2026-11-10T13:38:55Z",
   "listing": {
    "address": "Lorriestraat 49",
    "area_m2": 94,
@@ -784,7 +573,7 @@
    "available_until": null,
    "bedrooms": 3,
    "city": "amsterdam",
-   "description": "*** English below *** Per direct beschikbaar! - Unieke plek - Cruquius 2.3 Berkhout ligt aan het Amsterdam Rijnkanaal. Het is een unieke plek aan het water, met een geweldig uitzicht. Je geniet hier van het ontspannen leven op Cruquiuseiland, met alles in de buurt. Denk aan horeca, een supermarkt, medische zorg en een sportschool, waar je gemakkelijk naartoe loopt. Cruquius ligt in het Oostelijk Havengebied: Binnen de ring van Amsterdam, aan de stadskant van het IJ. Het is uitstekend te bereiken. Openbaar vervoer vind je om de hoek en met de auto ben je zo op de snelweg. Bovendien woon je hier vlakbij de Indische buurt met de gezellige drukte van de Javastraat en de Dappermarkt. Maar ook het groen van het Flevopark is op jog-afstand. Lees verder Met de fiets ben je zo in de natuur van Waterland of in het centrum van Amsterdam. Een ideale plek dus. - 5 gebouwen in waaiervorm - Cruquius 2.3 bestaat uit vijf gebouwen en biedt een mix van koop- en huurappartementen en commerciële ruimten. De gebouwen zijn in waaiervorm ontworpen rond een autovrij binnengebied, waardoor optimaal zicht op het water is gecreëerd. Naast mooie bestrating en stijlvolle entrees wordt het een mooie groene woonplek met een fraai binnengebied. Er is dus alle ruimte om te ontspannen en te spelen. De huurappartementen in Cruquius 2.3 zijn luxe afgewerkt, met een keuken van Bruynzeel, sanitair van Villeroy & Boch, vloerverwarming (en koeling), stompe binnendeuren en sausklare wanden. Bovendien hebben alle appartementen een uitkragend balkon. De appartementen op de begane grond in blok C hebben een privé-terras en/of balkon. - Bijzonderheden Lorriestraat 49 - • Woonoppervlakte ca. 94 m2 • 4-kamerappartement • 3 slaapkamers • Balkon op het zuiden • € 80,- servicekosten p/m • Energielabel A++ - Inkomensrichtlijnen - • Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3,5x keer de vermelde huurprijs van deze woning. • Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee. In dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen. • Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.000,- per maand kost is dus € 4.000 (1.000 x 3,5 of €1.000,- x 4 bij tweeverdieners) • In sommige gevallen is een waarborgsom verplicht. • Ben je een zelfstandig ondernemer of gepensioneerd? Ga dan voor meer informatie naar onze website: vanderlinden.nl/woning-huren/faq. Hier vind je ook meer informatie over de inkomensrichtlijnen. - Wil je in aanmerking komen voor deze woning? - Ben je enthousiast geworden over deze woning en voldoe je aan de inkomensrichtlijnen? Schrijf je dan in via vanderlinden.nl/woning-huren als woningzoekende. Bij het selecteren van de meest geschikte kandidaat maken wij enkel gebruik van objectieve selectiecriteria zoals leeftijd, de hoogte van het inkomen in relatie tot de hoogte van de huur, gezinsomvang en soortgelijke criteria. Hierbij maken wij in geen enkele situatie positieve of negatieve uitzonderingen op basis van geslacht, huidskleur, achternaam, geaardheid, afkomst, geloof of etniciteit van de woningzoekende. Als er meerdere, vergelijkbare inschrijvingen op een woning zijn, dan zal er een willekeurig dossier gekozen worden door het systeem. Je ontvangt hier dan vanzelf bericht over. Mocht je niets hebben vernomen, dan ben je helaas niet geselecteerd. Je kunt uiteraard altijd contact met ons opnemen waarom er gekozen is voor een andere kandidaat. Wanneer je zoveel mogelijk kans wilt maken op een woning, raden we je aan om meerdere voorkeuren door te geven indien je in meerdere woningen geïnteresseerd bent. - Goed om te weten - • Getoonde foto's zijn van een modelwoning en niet van de specifieke woning zelf. • De huurovereenkomst wordt aangegaan voor de duur van 12 maanden. Na deze periode is deze maandelijks opzegbaar, de opzegtermijn bedraagt",
+   "description": "*** English below *** Per direct beschikbaar! - Unieke plek - Cruquius 2.3 Berkhout ligt aan het Amsterdam Rijnkanaal. Het is een unieke plek aan het water, met een geweldig uitzicht. Je geniet hier van het ontspannen leven op Cruquiuseiland, met alles in de buurt. Denk aan horeca, een supermarkt, medische zorg en een sportschool, waar je gemakkelijk naartoe loopt. Cruquius ligt in het Oostelijk Havengebied: Binnen de ring van Amsterdam, aan de stadskant van het IJ. Het is uitstekend te bereiken. Openbaar vervoer vind je om de hoek en met de auto ben je zo op de snelweg. Bovendien woon je hier vlakbij de Indische buurt met de gezellige drukte van de Javastraat en de Dappermarkt. Maar ook het groen van het Flevopark is op jog-afstand. Lees verder Met de fiets ben je zo in de natuur van Waterland of in het centrum van Amsterdam. Een ideale plek dus. - 5 gebouwen in waaiervorm - Cruquius 2.3 bestaat uit vijf gebouwen en biedt een mix van koop- en huurappartementen en commerciële ruimten. De gebouwen zijn in waaiervorm ontworpen rond een autovrij binnengebied, waardoor optimaal zicht op het water is gecreëerd. Naast mooie bestrating en stijlvolle entrees wordt het een mooie groene woonplek met een fraai binnengebied. Er is dus alle ruimte om te ontspannen en te spelen. De huurappartementen in Cruquius 2.3 zijn luxe afgewerkt, met een keuken van Bruynzeel, sanitair van Villeroy & Boch, vloerverwarming (en koeling), stompe binnendeuren en sausklare wanden. Bovendien hebben alle appartementen een uitkragend balkon. De appartementen op de begane grond in blok C hebben een privé-terras en/of balkon. - Bijzonderheden Lorriestraat 49 - • Woonoppervlakte ca. 94 m2 • 4-kamerappartement • 3 slaapkamers • Balkon op het zuiden • € 80,- servicekosten p/m • Energielabel A++ - Inkomensrichtlijnen - • Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3,5x keer de vermelde huurprijs van deze woning. • Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee. In dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen. • Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.000,- per maand kost is dus € 4.000 (1.000 x 3,5 of €1.000,- x 4 bij tweeverdieners) • In sommige gevallen is een waarborgsom verplicht. • Ben je een zelfstandig ondernemer of gepensioneerd? Ga dan voor mee",
    "extra": {
     "label": "direct beschikbaar"
    },
@@ -816,17 +605,17 @@
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [
-   "bedrooms_unconfirmed"
+   "income_requirement"
   ],
-  "last_seen": "2026-11-10T13:37:26Z",
+  "last_seen": "2026-11-10T13:38:55Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
    "available_from": null,
    "available_until": null,
-   "bedrooms": null,
+   "bedrooms": 2,
    "city": "amsterdam",
-   "description": null,
+   "description": "Beschikbaar per 1 november 2026! - Bijzonderheden Bert Haanstrakade 552 • Woonoppervlakte ca. 76 m2; • Ruim 3 kamer appartement op de eerste verdieping • 2 slaapkamers • Luxe keuken (Bruynzeel) voorzien van inductiekookplaat, vaatwasser, combimagnetron, koelkast en afzuigkap; • Servicekosten €65,00 per maand • Energielabel: A Op één van de mooiste plekjes van IJburg Amsterdam, nabij alle voorzieningen, ligt het prachtige complex IJland. De appartementen verschillen in groottes van 43 tot 90 m2. Nagenoeg alle appartementen hebben een terras of balkon met uitzicht op het IJmeer of de jachthaven. Als bewoner van IJland heb je daarnaast toegang tot een van de vier op het zuiden gerichte binnentuinen. Lees verder - Locatie – Het appartement ligt centraal naast de uitvalswegen A1, A9 en A10. Parkeren kan in de garage onder het appartementencomplex. Met het openbaar vervoer ben je in 15-20 minuten op Amsterdam Centraal Station. Op loopafstand vind je een supermarkt, de jachthaven, diverse restaurants en natuurlijk IJburg strand. - Inkomensrichtlijnen - • Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3,5x keer de vermelde huurprijs van deze woning. • Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee, in dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen. • Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.000,- per maand kost is dus € 4.000 (€1.000,- x 3,5 of €1.000,- x 4 bij tweeverdieners) • In sommige gevallen is een waarborgsom verplicht. • Ben je een zelfstandig ondernemer, gepensioneerd of meer informatie over de inkomensrichtlijnen? Ga dan naar onze website: vanderlinden.nl/woning-huren/faq - Wil je in aanmerking komen voor deze woning? - Ben je enthousiast geworden over deze woning en voldoe je aan de inkomensrichtlijnen? Kijk dan op vanderlinden.nl/woning-huren om je direct digitaal in te schrijven als woningzoekende. Wij nemen dan contact met je op voor het vervolg van de procedure. - Goed om te weten - • Getoonde foto's zijn van een modelwoning en niet van de specifieke woning zelf. • De huurovereenkomst wordt aangegaan voor de duur van 12 maanden. Na deze periode is deze maandelijks opzegbaar, de opzegtermijn bedraagt één maand. Alle informatie met betrekking tot de woning is met zorg samengesteld. Deze is echter indicatief en er kunnen geen rechten aan ontleend worden. Hier ga je wonen Bert Haanstrakade 552 Amsterdam MAP Ja, ik heb interesse in deze woning Inloggen in mijn IDD account Heb je al een IDD account? Log dan nu in om je interesse in deze woning aan te geven. © 2025 Algemene voorwaarden Privacy policy Cookie policy Sitemap",
    "extra": {
     "label": "binnenkort beschikbaar"
    },
@@ -858,17 +647,17 @@
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [
-   "bedrooms_unconfirmed"
+   "income_requirement"
   ],
-  "last_seen": "2026-11-10T13:37:26Z",
+  "last_seen": "2026-11-10T13:38:55Z",
   "listing": {
    "address": "Zeeburgerkade 1334",
    "area_m2": 74,
    "available_from": null,
    "available_until": null,
-   "bedrooms": null,
+   "bedrooms": 2,
    "city": "amsterdam",
-   "description": null,
+   "description": "*** English below *** Per direct beschikbaar! - Wonen aan de Zeeburgerkade in Amsterdam - Welkom aan de Zeeburgerkade in Amsterdam: een bijzondere woonlocatie waar comfortabel wonen, de dynamiek van de stad en de rust van het water samenkomen. Het complex biedt een aantrekkelijke variatie aan woningen, geschikt voor verschillende woonwensen. De woningen beschikken over een eigentijdse uitstraling en zijn ontworpen met aandacht voor comfort, functionaliteit en een prettige leefomgeving. Of je nu alleen woont, samenwoont of op zoek bent naar een fijne plek voor het hele gezin: aan de Zeeburgerkade is ruimte voor verschillende manieren van wonen. Lees verder - Een aantrekkelijke woonomgeving - De Zeeburgerkade ligt in een karakteristiek deel van Amsterdam, met het water en de stad binnen handbereik. De omgeving combineert stedelijke voorzieningen met ruimte om te ontspannen en te genieten van de buitenlucht. Cruquius in Amsterdam-Oost transformeert van een voormalige industriële zone naar een nieuw en levendig woon- een werkgebied. Gevarieerde architectuur wordt afgewisseld met gerestaureerde historische gebouwen. Er is veel aandacht voor groen, biodiversiteit en duurzaamheid. En het omringende water speelt een hoofdrol op Cruquius met zijn nieuwe boardwalk aan de Entrepothaven. Een geweldige nieuwe plek in Amsterdam. In de nabijheid vind je diverse voorzieningen, zoals winkels, horeca, sportfaciliteiten en recreatiemogelijkheden. Ook het centrum van Amsterdam en andere delen van de stad zijn goed bereikbaar met het openbaar vervoer, de fiets en de auto. - Comfortabel wonen - De woningen vormen samen met de gemeenschappelijke omgeving een eigentijds wooncomplex met een prettige uitstraling. Er is aandacht voor een goede balans tussen privacy en verbondenheid, waardoor bewoners hier op een comfortabele manier hun eigen plek kunnen creëren. De combinatie van de ligging, de uitstraling van het complex en de diversiteit aan woningen maakt de Zeeburgerkade tot een aantrekkelijke plek om te wonen in Amsterdam. Ontdek de woningen aan de Zeeburgerkade en ervaar zelf het gemak en de kwaliteit van wonen op deze bijzondere Amsterdamse locatie. - Zeeburgerkade 1334 - • Gelegen op de 1e • Woonoppervlakte ca. 74 m2 • 3-kamerappartement • 2 slaapkamers • Balkon op het zuid-westen • Energielabel A - Inkomensrichtlijnen - • Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3.5x keer de vermelde huurprijs van deze woning. • Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee, in dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen. • Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.500,- per maand kost is dus € 6.000 (€1.500,- x 3,5 of €1.500,- x 4 bij tweeverdieners) • In sommige gevallen is een waarborgsom verplicht. • Ben je een zelfstandig ondernemer, gepensioneerd of meer informatie over de inkomensrichtlijnen? Ga naar dan naar onze website: vanderlinden.nl/woning-huren/faq - Wil je in aanmerking komen voor deze woning? - Ben je enthousiast geworden over deze woning en voldoe je aan de inkomensrichtlijnen? Schrijf je dan in via vanderlinden.nl/woning-huren als woningzoekende. Als er meerdere, vergelijkbare inschrijvingen op een woning zijn, dan zal er een willekeurig dossier gekozen worden op volgorde van binnenkomst. Je ontvangt hier dan vanzelf bericht over. Mocht je niets hebben vernomen, dan ben je helaas niet geselecteerd. Je kunt uiteraard altijd contact met ons opnemen waarom er gekozen is voor een andere kandidaat. Wanneer je zoveel mogelijk kans wilt maken op een woning, raden we je aan om meerdere voorkeuren door te geven indien je in meerdere woningen geïnteresseerd bent. - Goed om te weten - • Getoonde foto's zijn van een modelwoning en niet van de specifieke woning zelf. • De huurovereenkomst wordt aangegaan voor d",
    "extra": {
     "label": "direct beschikbaar"
    },
@@ -902,7 +691,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-10T13:37:26Z",
+  "last_seen": "2026-11-10T13:38:55Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -942,7 +731,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T13:37:26Z",
+  "last_seen": "2026-11-10T13:38:55Z",
   "listing": {
    "address": "Betaplein 60",
    "area_m2": 93,
