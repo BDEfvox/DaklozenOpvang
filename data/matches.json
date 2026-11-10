@@ -5,7 +5,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -47,7 +47,7 @@
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 80,
@@ -88,7 +88,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "V.d. Helststraat",
    "area_m2": 69,
@@ -129,7 +129,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "V. Zeggelenlaan",
    "area_m2": 198,
@@ -172,7 +172,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Volmolengracht",
    "area_m2": 100,
@@ -214,9 +214,10 @@
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [
+   "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Eosstraat 143",
    "area_m2": 98,
@@ -227,6 +228,7 @@
    "description": "Ligging De woning is rustig gelegen maar alle gemakken van de stad zijn binnen handbereik. Middels de Amstelveenseweg bent u zo op de Ring A10. Er zijn verschillende eetgelegenheden in Amsterdam Zuid op loop-/fietsafstand gelegen, alsmede het Vondelpark en het Olympisch Stadion. Door de onlangs opgeleverde nieuwbouw op het Stadionplein, zijn alle dagelijkse voorzieningen, zoals de Albert Heijn dichtbij. Het appartement maakt deel uit van Het Kwartier en is gelegen in stadsdeel Zuid. Het complex is opgeleverd in 2004 en daarmee van alle comfort voorzien. Het complex is voorzien van zwembad, lounge, sauna en fitnessruimte waar u vrij gebruik van kunt maken. Het complex Het appartement maakt deel uit van Het Kwartier en is gelegen in stadsdeel Zuid. Alle bewoners van Het Kwartier mogen gebruik maken van het heerlijk verwarmde zwembad, sauna, fitnessruimte en de loungeruimte waar de mogelijkheid is om onder het genot van een kopje koffie/ thee de nieuwskrant of wat tijdschriften te lezen. Verder biedt Het Kwartier haar bewoners een Facility Point waar men maandag t/m vrijdag van 7.00 tot 19.00 terecht kan voor vragen, het huren van een vergaderruimte of een gastenverblijf, brengen van stomerijgoed enz. De getoonde foto's zijn van een vergelijkbare woning.",
    "extra": {
     "availability": "Direct beschikbaar",
+    "income_requirement": true,
     "service_costs": 115
    },
    "furnished": null,
@@ -257,9 +259,10 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [
+   "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Turfhaven 221",
    "area_m2": 63,
@@ -270,6 +273,7 @@
    "description": "WIJNHAVENKWARTIER | COMPLEXTEKST 132 luxe appartementen midden in de binnenstad van Den Haag, op steenworp afstand van Den Haag Centraal Heerlijk wonen op hoogte in de Haagse binnenstad Houd je van een levendige woonomgeving? Ga dan voor een van de luxe appartementen in het Wijnhavenkwartier in Den Haag. Dit chique wooncomplex staat midden in het stadscentrum, tussen het centrale treinstation en het Spui. Ook geliefde bezienswaardigheden als het Binnenhof, Paleis Noordeinde en Paleis Huis ten Bosch liggen dichtbij. Wanneer je maar wilt wandel je hier gewoon even langs, terwijl anderen vele kilometers omrijden om deze trekpleisters te bekijken. Verder woon je hier omringd door tal van winkels en gezellige horecagelegenheden. En alsof dat nog niet genoeg is, woon je te midden van de hoogste gebouwen van de stad, waardoor je hier soms wel het gevoel hebt of je in Manhattan bent. Tenslotte nog goed nieuws voor strandliefhebbers: het brede zandstrand aan de Noordzee ligt op ongeveer zes kilometer. De 132 luxe appartementen van het Wijnhavenkwartier zijn verspreid over de vijfde tot en met de twintigste verdieping van het gebouw. Qua grootte variëren de appartementen tussen de pakweg 71 en de 164 vierkante meter. Ieder appartement is met hoogwaardige materialen afgewerkt en beschikt over een ruime woonkamer met toegang tot een balkon, één tot drie slaapkamers en een moderne badkamer en keuken (met ATAG-inbouwapparatuur als een keramische kookplaat, vaatwasser, combimagnetron en koel/vriescombinatie). Daarnaast heb je beneden in het gebouw de beschikking over een eigen berging. In het wooncomplex is ook een garage aanwezig. Indien beschikbaar, kunt u via een externe partij een parkeerplek huren.",
    "extra": {
     "availability": "Direct beschikbaar",
+    "income_requirement": true,
     "service_costs": 70
    },
    "furnished": null,
@@ -309,7 +313,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Haringbuisdijk 909",
    "area_m2": 90,
@@ -320,6 +324,7 @@
    "description": "Wonen in het splinternieuwe Sluishuis betekent: wonen op een bijzondere plek. Je woont namelijk niet aan, maar in het IJ! Hier, aan de rand van de volwassen wijk IJburg, komen wonen, ontspannen en recreëren op een wel heel bijzondere manier samen. In totaal worden er 441 appartementen en studio's aangeboden in een mix van koopwoningen en huurappartementen. Natuurlijk heeft Amsterdam al veel plekken aan het water waar gewoond en ontspannen wordt, maar Sluishuis is daarin uniek. - Huurperiode - Een huurovereenkomst wordt aangegaan voor ten minste één jaar en wordt vanaf dan verlengd met onbepaalde tijd. Na de minimale termijn van 12 kalendermaanden geldt er een opzegtermijn van 1 kalendermaand. - Inkomenseis - Om een woning te huren kun je de volgende inkomenseis als richtlijn aanhouden: Het bruto jaarinkomen (verminderd met eventuele betalingsverplichtingen, zoals alimentatie, hypotheken, persoonlijke leningen e.d.) moet zo hoog zijn als: * Bij 1 inkomen: • Het bruto-jaarinkomen moet 42x de kale maandhuur zijn, bij een huurprijs die hoger ligt dan € 1.600. Omgerekend is deze berekening van toepassing wanneer jouw bruto-jaarinkomen € 72.000 of hoger is. * Bij 2 inkomens • Bij 2 inkomens worden de bruto-jaarinkomens van beide partners bij elkaar opgeteld om het gezamenlijk rekeninkomen te bepalen. Vervolgens wordt er getoetst aan de hand van de onderlinge verhouding tussen de beide partnerinkomens binnen dit gezamenlijk rekeninkomen. • Jullie mogen beide inkomens voor 100% meetellen, mits één van jullie minimaal 70% van jullie totale gezamenlijk rekeninkomen verdient. De verhouding is dan 70/30 of hoger (bijvoorbeeld 80/20). Interesse? - Heb je interesse in deze woning? Reageer dan via de interesse button in deze advertentie en vraag voor deze woning een bezichtiging aan, wij werken door middel van een loting. Wij nemen contact op met de uitgeloten kandidaat. De gepresenteerde foto's zijn van een ander appartement in dit project, maar de afwerking is vergelijkbaar. Aan deze foto's kunnen geen rechten worden ontleend.",
    "extra": {
     "availability": "Direct beschikbaar",
+    "income_requirement": true,
     "service_costs": 100
    },
    "furnished": null,
@@ -349,8 +354,10 @@
  "ikwilhuren:dc17c645af146cafb0fc5f3d6f6e32aa": {
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "flags": [
+   "income_requirement"
+  ],
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Maanplein 94 E",
    "area_m2": 88,
@@ -361,6 +368,7 @@
    "description": "Aan het Maanplein 94E komt per 1 maart een licht en comfortabel appartement beschikbaar van 87 m², ideaal voor wie op zoek is naar ruimte, rust en een moderne woonomgeving. De woning beschikt over twee slaapkamers, perfect voor een stel, klein gezin of iemand die graag een extra kamer gebruikt als werk- of hobbyruimte. Het betreft een appartement, gelegen op een hogere verdieping, waardoor u geniet van veel lichtinval en een prettig uitzicht. Daarnaast beschikt de woning over een balkon, waar u heerlijk kunt ontspannen in de buitenlucht. Indeling en kenmerken • Woonoppervlakte: 87 m² • Aantal slaapkamers: 2 • Type woning: Appartement • Verdieping: Hogere verdieping • Buitenruimte: Balkon • Energielabel: A Huurprijs • Kale huur: € 1.542.,00 per maand • Servicekosten: € 195,00 per maand Omgeving De woning ligt in een rustige, groene en goed bereikbare wijk. In de directe omgeving vindt u diverse voorzieningen zoals supermarkten, scholen, sportfaciliteiten en gezellige horecagelegenheden. Ook het openbaar vervoer is uitstekend geregeld, en uitvalswegen zijn snel bereikbaar. De buurt is geliefd vanwege de combinatie van rust en stedelijke voorzieningen binnen handbereik. Beschikbaar per 01-03 Interesse? Bent u enthousiast geworden over deze woning? Dan kunt u eenvoudig een bezichtigingsaanvraag indienen via de website. Graag wijzen wij u erop dat de informatie en afbeeldingen op de website ter indicatie zijn en dat hieraan geen rechten kunnen worden ontleend.",
    "extra": {
     "availability": "Direct beschikbaar",
+    "income_requirement": true,
     "service_costs": 195
    },
    "furnished": null,
@@ -391,9 +399,10 @@
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [
+   "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Turfhaven 449",
    "area_m2": 59,
@@ -404,6 +413,7 @@
    "description": "Een beetje Manhattan in het centrum van Den Haag. Dat is het gevoel dat u krijgt als u straks woont in het Wijnhavenkwartier. Hier loopt u tussen de hoogste gebouwen van de stad. Dit is de plek waar een levendige buzz ontstaat, waar straks veel tegelijk gebeurt. Wijnhavenkwartier ligt precies tussen de Haagse binnenstad en Den Haag Centraal Station. Bovendien ontstaat hier een goede verbinding tussen de Turfmarkt en de Schedeldoekshaven. Het project Wijnhavenkwartier in Den Haag biedt 132 luxe appartementen met alle voorzieningen in de buurt. Het gebouw telt 11 verdiepingen met huurappartementen die gesitueerd zijn va verdieping 7 tot en met verdieping 18. De oppervlakten van de appartementen variëren tussen de 71 m² en de 142 m². Ook de type woningen variëren. Bij de vrijkomende woningen kunt u meer woning specifieke informatie vinden, zoals de indeling, het oppervlakte en een plattegrond.",
    "extra": {
     "availability": "Direct beschikbaar",
+    "income_requirement": true,
     "service_costs": 70
    },
    "furnished": null,
@@ -437,7 +447,7 @@
    "max_persons:2",
    "short_term"
   ],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -482,7 +492,7 @@
    "max_persons:4",
    "short_term"
   ],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Vlietpark 42",
    "area_m2": 60,
@@ -528,7 +538,7 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Wesselsstraat 482",
    "area_m2": 85,
@@ -569,8 +579,10 @@
  "rotsvast:h1025410133": {
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "flags": [
+   "income_requirement"
+  ],
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Van Diemenstraat 80",
    "area_m2": 100,
@@ -580,7 +592,8 @@
    "city": "den-haag",
    "description": "VAN DIEMENSTRAAT, ZEEHELDENKWARTIER, DEN HAAG. In het populaire Zeeheldenkwartier gelegen, goed onderhouden 4-kamer appartement op de 2e etage. De woning is deels gemeubileerd en heeft dubbele beglazing. Het balkon op het zuiden bevindt zich aan de achterzijde van de woning is via de slaapkamer bereikbaar De entree zit aan de straatzijde via een gesloten portiek met trap naar 2e etage. Indeling: Hal, ruime woonkamer aan voorzijde met doorgang naar eetgedeelte en uitgebreide keuken met alle apparatuur, 3 slaapkamers van 4,5 x 4, 3,5 x 2,20 en 3 x 3,5, op de gang een toilet en een badkamer met hoekbad en wastafel. Onder het gebouw is een aparte berging. Dichtbij winkels en openbaar vervoer. Bijzonderheden: Huurprijs € 2.150,00 is excl. G/W/E/TV/Internet Beschikbaar per 1 oktober 2026 Energielabel A 3 slaapkamers Borg 1 maand Geen huisdieren Niet geschikt voor studenten of om te delen!",
    "extra": {
-    "availability": "Direct beschikbaar"
+    "availability": "Direct beschikbaar",
+    "income_requirement": true
    },
    "furnished": "upholstered",
    "image_url": "https://www.rotsvast.nl/app/uploads/wpararius/media/H1025410133/H1025410133-187891-bcf03d8f-768x576.jpg",
@@ -612,7 +625,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Lorriestraat 49",
    "area_m2": 94,
@@ -622,6 +635,7 @@
    "city": "amsterdam",
    "description": "*** English below *** Per direct beschikbaar! - Unieke plek - Cruquius 2.3 Berkhout ligt aan het Amsterdam Rijnkanaal. Het is een unieke plek aan het water, met een geweldig uitzicht. Je geniet hier van het ontspannen leven op Cruquiuseiland, met alles in de buurt. Denk aan horeca, een supermarkt, medische zorg en een sportschool, waar je gemakkelijk naartoe loopt. Cruquius ligt in het Oostelijk Havengebied: Binnen de ring van Amsterdam, aan de stadskant van het IJ. Het is uitstekend te bereiken. Openbaar vervoer vind je om de hoek en met de auto ben je zo op de snelweg. Bovendien woon je hier vlakbij de Indische buurt met de gezellige drukte van de Javastraat en de Dappermarkt. Maar ook het groen van het Flevopark is op jog-afstand. Lees verder Met de fiets ben je zo in de natuur van Waterland of in het centrum van Amsterdam. Een ideale plek dus. - 5 gebouwen in waaiervorm - Cruquius 2.3 bestaat uit vijf gebouwen en biedt een mix van koop- en huurappartementen en commerciële ruimten. De gebouwen zijn in waaiervorm ontworpen rond een autovrij binnengebied, waardoor optimaal zicht op het water is gecreëerd. Naast mooie bestrating en stijlvolle entrees wordt het een mooie groene woonplek met een fraai binnengebied. Er is dus alle ruimte om te ontspannen en te spelen. De huurappartementen in Cruquius 2.3 zijn luxe afgewerkt, met een keuken van Bruynzeel, sanitair van Villeroy & Boch, vloerverwarming (en koeling), stompe binnendeuren en sausklare wanden. Bovendien hebben alle appartementen een uitkragend balkon. De appartementen op de begane grond in blok C hebben een privé-terras en/of balkon. - Bijzonderheden Lorriestraat 49 - • Woonoppervlakte ca. 94 m2 • 4-kamerappartement • 3 slaapkamers • Balkon op het zuiden • € 80,- servicekosten p/m • Energielabel A++ - Inkomensrichtlijnen - • Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3,5x keer de vermelde huurprijs van deze woning. • Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee. In dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen. • Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.000,- per maand kost is dus € 4.000 (1.000 x 3,5 of €1.000,- x 4 bij tweeverdieners) • In sommige gevallen is een waarborgsom verplicht. • Ben je een zelfstandig ondernemer of gepensioneerd? Ga dan voor mee",
    "extra": {
+    "income_requirement": true,
     "label": "direct beschikbaar"
    },
    "furnished": null,
@@ -654,7 +668,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -664,6 +678,7 @@
    "city": "amsterdam",
    "description": "Beschikbaar per 1 november 2026! - Bijzonderheden Bert Haanstrakade 552 • Woonoppervlakte ca. 76 m2; • Ruim 3 kamer appartement op de eerste verdieping • 2 slaapkamers • Luxe keuken (Bruynzeel) voorzien van inductiekookplaat, vaatwasser, combimagnetron, koelkast en afzuigkap; • Servicekosten €65,00 per maand • Energielabel: A Op één van de mooiste plekjes van IJburg Amsterdam, nabij alle voorzieningen, ligt het prachtige complex IJland. De appartementen verschillen in groottes van 43 tot 90 m2. Nagenoeg alle appartementen hebben een terras of balkon met uitzicht op het IJmeer of de jachthaven. Als bewoner van IJland heb je daarnaast toegang tot een van de vier op het zuiden gerichte binnentuinen. Lees verder - Locatie – Het appartement ligt centraal naast de uitvalswegen A1, A9 en A10. Parkeren kan in de garage onder het appartementencomplex. Met het openbaar vervoer ben je in 15-20 minuten op Amsterdam Centraal Station. Op loopafstand vind je een supermarkt, de jachthaven, diverse restaurants en natuurlijk IJburg strand. - Inkomensrichtlijnen - • Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3,5x keer de vermelde huurprijs van deze woning. • Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee, in dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen. • Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.000,- per maand kost is dus € 4.000 (€1.000,- x 3,5 of €1.000,- x 4 bij tweeverdieners) • In sommige gevallen is een waarborgsom verplicht. • Ben je een zelfstandig ondernemer, gepensioneerd of meer informatie over de inkomensrichtlijnen? Ga dan naar onze website: vanderlinden.nl/woning-huren/faq - Wil je in aanmerking komen voor deze woning? - Ben je enthousiast geworden over deze woning en voldoe je aan de inkomensrichtlijnen? Kijk dan op vanderlinden.nl/woning-huren om je direct digitaal in te schrijven als woningzoekende. Wij nemen dan contact met je op voor het vervolg van de procedure. - Goed om te weten - • Getoonde foto's zijn van een modelwoning en niet van de specifieke woning zelf. • De huurovereenkomst wordt aangegaan voor de duur van 12 maanden. Na deze periode is deze maandelijks opzegbaar, de opzegtermijn bedraagt één maand. Alle informatie met betrekking tot de woning is met zorg samengesteld. Deze is echter indicatief en er ",
    "extra": {
+    "income_requirement": true,
     "label": "binnenkort beschikbaar"
    },
    "furnished": null,
@@ -696,7 +711,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Zeeburgerkade 1334",
    "area_m2": 74,
@@ -706,6 +721,7 @@
    "city": "amsterdam",
    "description": "*** English below *** Per direct beschikbaar! - Wonen aan de Zeeburgerkade in Amsterdam - Welkom aan de Zeeburgerkade in Amsterdam: een bijzondere woonlocatie waar comfortabel wonen, de dynamiek van de stad en de rust van het water samenkomen. Het complex biedt een aantrekkelijke variatie aan woningen, geschikt voor verschillende woonwensen. De woningen beschikken over een eigentijdse uitstraling en zijn ontworpen met aandacht voor comfort, functionaliteit en een prettige leefomgeving. Of je nu alleen woont, samenwoont of op zoek bent naar een fijne plek voor het hele gezin: aan de Zeeburgerkade is ruimte voor verschillende manieren van wonen. Lees verder - Een aantrekkelijke woonomgeving - De Zeeburgerkade ligt in een karakteristiek deel van Amsterdam, met het water en de stad binnen handbereik. De omgeving combineert stedelijke voorzieningen met ruimte om te ontspannen en te genieten van de buitenlucht. Cruquius in Amsterdam-Oost transformeert van een voormalige industriële zone naar een nieuw en levendig woon- een werkgebied. Gevarieerde architectuur wordt afgewisseld met gerestaureerde historische gebouwen. Er is veel aandacht voor groen, biodiversiteit en duurzaamheid. En het omringende water speelt een hoofdrol op Cruquius met zijn nieuwe boardwalk aan de Entrepothaven. Een geweldige nieuwe plek in Amsterdam. In de nabijheid vind je diverse voorzieningen, zoals winkels, horeca, sportfaciliteiten en recreatiemogelijkheden. Ook het centrum van Amsterdam en andere delen van de stad zijn goed bereikbaar met het openbaar vervoer, de fiets en de auto. - Comfortabel wonen - De woningen vormen samen met de gemeenschappelijke omgeving een eigentijds wooncomplex met een prettige uitstraling. Er is aandacht voor een goede balans tussen privacy en verbondenheid, waardoor bewoners hier op een comfortabele manier hun eigen plek kunnen creëren. De combinatie van de ligging, de uitstraling van het complex en de diversiteit aan woningen maakt de Zeeburgerkade tot een aantrekkelijke plek om te wonen in Amsterdam. Ontdek de woningen aan de Zeeburgerkade en ervaar zelf het gemak en de kwaliteit van wonen op deze bijzondere Amsterdamse locatie. - Zeeburgerkade 1334 - • Gelegen op de 1e • Woonoppervlakte ca. 74 m2 • 3-kamerappartement • 2 slaapkamers • Balkon op het zuid-westen • Energielabel A - Inkomensrichtlijnen - • Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maands",
    "extra": {
+    "income_requirement": true,
     "label": "direct beschikbaar"
    },
    "furnished": null,
@@ -736,9 +752,10 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [
+   "income_requirement",
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -748,6 +765,7 @@
    "city": "amsterdam",
    "description": "Beschikbaar per 1 december! Op één van de mooiste plekjes van IJburg Amsterdam, nabij alle voorzieningen, ligt het prachtige complex IJland. De appartementen verschillen in groottes van 43 tot 90 m2. Nagenoeg alle appartementen hebben een terras of balkon met uitzicht op het IJmeer of de jachthaven. Als bewoner van IJland heb je daarnaast toegang tot een van de vier op het zuiden gerichte binnentuinen. - Locatie – Het appartement ligt centraal naast de uitvalswegen A1, A9 en A10. Parkeren kan in de garage onder het appartementencomplex. Met het openbaar vervoer ben je in 15-20 minuten op Amsterdam Centraal Station. Op loopafstand vind je een supermarkt, de jachthaven, diverse restaurants en natuurlijk IJburg strand. Lees verder - Bijzonderheden Bert Haanstrakade 880 • Woonoppervlakte ca. 73m2 • Ruim 3 kamer appartement • Gelegen op de 4e etage • Luxe keuken (Bruynzeel) voorzien van inductiekookplaat, vaatwasser, combimagnetron, koelkast en afzuigkap; • Separate toilet • Bouwjaar: 2017 • Parkeren €215,00 per maand (optioneel) • Energielabel: A - Inkomensrichtlijnen - • Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3,5x keer de vermelde huurprijs van deze woning. • Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee. • Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.000,- per maand kost is dus € 4.000 (1.000 x 3,5 of x 4). • In sommige gevallen is een waarborgsom verplicht. • Ben je een zelfstandig ondernemer, gepensioneerd of meer informatie over de inkomensrichtlijnen? Ga dan voor meer informatie naar onze website: vanderlinden.nl/woning-huren/faq - Wil je in aanmerking komen voor deze woning? - Ben je enthousiast geworden over deze woning en voldoe je aan de inkomensrichtlijnen? Kijk dan op vanderlinden.nl/woning-huren om je direct digitaal in te schrijven als woningzoekende. Wij nemen dan contact met je op voor het vervolg van de procedure. Bij het selecteren van de meest geschikte kandidaat maken wij enkel gebruik van objectieve selectiecriteria zoals leeftijd, de hoogte van het inkomen in relatie tot de hoogte van de huur, gezinsomvang en soortgelijke criteria. Hierbij maken wij in geen enkele situatie positieve of negatieve uitzonderingen op basis van geslacht, huidskleur, achternaam, geaardheid, afkomst, geloof of etniciteit van de woningzoekende. Als",
    "extra": {
+    "income_requirement": true,
     "label": "binnenkort beschikbaar"
    },
    "furnished": null,
@@ -780,7 +798,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Borgloonstraat 101",
    "area_m2": 141,
@@ -790,6 +808,7 @@
    "city": "amsterdam",
    "description": "*** English below *** Per 15 november 2026 beschikbaar! - Jouw nieuwe thuis! - Ben je op zoek naar een fijne woning in Amsterdam? Ontdek de woningen aan de Borgloonstraat! Een mooie kans voor wie comfortabel wil wonen op een prettige locatie, met voorzieningen en dagelijkse gemakken binnen handbereik. De woningen bieden een fijne basis om helemaal je eigen plek te creëren. Of je nu alleen woont, samenwoont of met je gezin op zoek bent naar een nieuwe thuisbasis: aan de Bastenakenstraat kun je werken aan jouw woongeluk. - Locatie - Sloten bevindt zich aan de rand van Amsterdam en is mede daardoor heel goed te bereiken via snelwegen de A10 en A4 en A9. Lees verder Hier bevindt zich ook een metrostation (lijn 50) vlakbij het winkelcentrum die met 5 minuten te bereiken is. Lijn 50 biedt u ook de gelegenheid om makkelijk bij hetstation Amsterdam Sloterdijk te komen en met tram 2 bent u zo in hartje Amsterdam. Winkelcentrum Belgieplein is zeer divers met oa de Albert Heijn, Dirk van den Broek, Blokker, Kruidvat, bakker, slager, bloemist, restaurants, sportclub, etc. Nieuw-Sloten staat ook bekend als heel kindvriendelijk, met diverse scholen en kinderdagverblijven in de buurt. - Bijzonderheden Borgloonstraat - Het gebouw bestaat uit 8 woonlagen, op elke etage bevinden zich 2 tot 4 appartementen. Alle appartementen beschikken over een extra berging in de garage en is er de mogelijkheid om een parkeerplaats te huren in de ondergelegen parkeergarage. De appartementen zijn zowel per lift als per trap te bereiken. - Borgloonstraat 101 - • Woonoppervlakte ca. 140 m2 • Gelegen op de 7e etage • 4-kamerappartement • 3 slaapkamers • Energielabel A - Inkomensrichtlijnen - • Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3.5x keer de vermelde huurprijs van deze woning. • Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee, in dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen. • Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.500,- per maand kost is dus € 6.000 (€1.500,- x 3,5 of €1.500,- x 4 bij tweeverdieners) • In sommige gevallen is een waarborgsom verplicht. • Ben je een zelfstandig ondernemer, gepensioneerd of meer informatie over de inkomensrichtlijnen? Ga naar dan naar onze website: vanderlinden.nl/woning-huren/faq - Wil je in aanmerking komen vo",
    "extra": {
+    "income_requirement": true,
     "label": "direct beschikbaar"
    },
    "furnished": null,
@@ -819,8 +838,10 @@
  "vesteda:103395": {
   "best_tier": "ok",
   "first_seen": "2026-11-10T14:36:54Z",
-  "flags": [],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "flags": [
+   "income_requirement"
+  ],
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Van Boecopkade 24F",
    "area_m2": 74,
@@ -831,6 +852,7 @@
    "description": "Voorrang voor cruciale beroepen. Complex De Regent II",
    "extra": {
     "complex": "De Regent II",
+    "income_requirement": true,
     "status": 1
    },
    "furnished": null,
@@ -860,8 +882,10 @@
  "vesteda:7562": {
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [],
-  "last_seen": "2026-11-10T17:59:13Z",
+  "flags": [
+   "income_requirement"
+  ],
+  "last_seen": "2026-11-10T18:49:13Z",
   "listing": {
    "address": "Betaplein 60",
    "area_m2": 93,
@@ -872,6 +896,7 @@
    "description": "Complex Alpha",
    "extra": {
     "complex": "Alpha",
+    "income_requirement": true,
     "status": 1
    },
    "furnished": null,
