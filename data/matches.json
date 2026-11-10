@@ -5,7 +5,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -47,7 +47,7 @@
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 80,
@@ -88,7 +88,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "V.d. Helststraat",
    "area_m2": 69,
@@ -129,7 +129,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "V. Zeggelenlaan",
    "area_m2": 198,
@@ -172,7 +172,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "Volmolengracht",
    "area_m2": 100,
@@ -216,7 +216,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "Eosstraat 143",
    "area_m2": 98,
@@ -259,7 +259,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "Turfhaven 221",
    "area_m2": 63,
@@ -309,7 +309,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "Haringbuisdijk 909",
    "area_m2": 90,
@@ -350,7 +350,7 @@
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "Maanplein 94 E",
    "area_m2": 88,
@@ -393,7 +393,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "Turfhaven 449",
    "area_m2": 59,
@@ -437,7 +437,7 @@
    "max_persons:2",
    "short_term"
   ],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -482,7 +482,7 @@
    "max_persons:4",
    "short_term"
   ],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "Vlietpark 42",
    "area_m2": 60,
@@ -528,7 +528,7 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "Wesselsstraat 482",
    "area_m2": 85,
@@ -570,7 +570,7 @@
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "Van Diemenstraat 80",
    "area_m2": 100,
@@ -612,7 +612,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "Lorriestraat 49",
    "area_m2": 94,
@@ -654,7 +654,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -667,7 +667,7 @@
     "label": "binnenkort beschikbaar"
    },
    "furnished": null,
-   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2171344.jpg",
+   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2172902.jpg",
    "postcode": null,
    "posted_at": null,
    "price_includes_utilities": null,
@@ -696,7 +696,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "Zeeburgerkade 1334",
    "area_m2": 74,
@@ -709,7 +709,7 @@
     "label": "direct beschikbaar"
    },
    "furnished": null,
-   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2171048.jpg",
+   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2172131.jpg",
    "postcode": null,
    "posted_at": null,
    "price_includes_utilities": null,
@@ -738,7 +738,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -751,7 +751,7 @@
     "label": "binnenkort beschikbaar"
    },
    "furnished": null,
-   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2171330.jpg",
+   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2172888.jpg",
    "postcode": null,
    "posted_at": null,
    "price_includes_utilities": null,
@@ -774,11 +774,53 @@
   ],
   "price_drop_from": null
  },
+ "vanderlinden:2696": {
+  "best_tier": "great",
+  "first_seen": "2026-11-10T16:49:14Z",
+  "flags": [
+   "income_requirement"
+  ],
+  "last_seen": "2026-11-10T16:49:14Z",
+  "listing": {
+   "address": "Borgloonstraat 101",
+   "area_m2": 141,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": 3,
+   "city": "amsterdam",
+   "description": "*** English below *** Per 15 november 2026 beschikbaar! - Jouw nieuwe thuis! - Ben je op zoek naar een fijne woning in Amsterdam? Ontdek de woningen aan de Borgloonstraat! Een mooie kans voor wie comfortabel wil wonen op een prettige locatie, met voorzieningen en dagelijkse gemakken binnen handbereik. De woningen bieden een fijne basis om helemaal je eigen plek te creëren. Of je nu alleen woont, samenwoont of met je gezin op zoek bent naar een nieuwe thuisbasis: aan de Bastenakenstraat kun je werken aan jouw woongeluk. - Locatie - Sloten bevindt zich aan de rand van Amsterdam en is mede daardoor heel goed te bereiken via snelwegen de A10 en A4 en A9. Lees verder Hier bevindt zich ook een metrostation (lijn 50) vlakbij het winkelcentrum die met 5 minuten te bereiken is. Lijn 50 biedt u ook de gelegenheid om makkelijk bij hetstation Amsterdam Sloterdijk te komen en met tram 2 bent u zo in hartje Amsterdam. Winkelcentrum Belgieplein is zeer divers met oa de Albert Heijn, Dirk van den Broek, Blokker, Kruidvat, bakker, slager, bloemist, restaurants, sportclub, etc. Nieuw-Sloten staat ook bekend als heel kindvriendelijk, met diverse scholen en kinderdagverblijven in de buurt. - Bijzonderheden Borgloonstraat - Het gebouw bestaat uit 8 woonlagen, op elke etage bevinden zich 2 tot 4 appartementen. Alle appartementen beschikken over een extra berging in de garage en is er de mogelijkheid om een parkeerplaats te huren in de ondergelegen parkeergarage. De appartementen zijn zowel per lift als per trap te bereiken. - Borgloonstraat 101 - • Woonoppervlakte ca. 140 m2 • Gelegen op de 7e etage • 4-kamerappartement • 3 slaapkamers • Energielabel A - Inkomensrichtlijnen - • Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3.5x keer de vermelde huurprijs van deze woning. • Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee, in dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen. • Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.500,- per maand kost is dus € 6.000 (€1.500,- x 3,5 of €1.500,- x 4 bij tweeverdieners) • In sommige gevallen is een waarborgsom verplicht. • Ben je een zelfstandig ondernemer, gepensioneerd of meer informatie over de inkomensrichtlijnen? Ga naar dan naar onze website: vanderlinden.nl/woning-huren/faq - Wil je in aanmerking komen voor deze woning? - Ben je enthousiast geworden over deze woning en voldoe je aan de inkomensrichtlijnen? Schrijf je dan in via vanderlinden.nl/woning-huren als woningzoekende. Als er meerdere, vergelijkbare inschrijvingen op een woning zijn, dan zal er een willekeurig dossier gekozen worden op volgorde van binnenkomst. Je ontvangt hier dan vanzelf bericht over. Mocht je niets hebben vernomen, dan ben je helaas niet geselecteerd. Je kunt uiteraard altijd contact met ons opnemen waarom er gekozen is voor een andere kandidaat. Wanneer je zoveel mogelijk kans wilt maken op een woning, raden we je aan om meerdere voorkeuren door te geven indien je in meerdere woningen geïnteresseerd bent. - Goed om te weten - • Getoonde foto's zijn van een modelwoning en niet van de specifieke woning zelf. • De huurovereenkomst wordt aangegaan voor de duur van 12 maanden. Na deze periode is deze maandelijks opzegbaar, de opzegtermijn bedraagt één maand. Alle informatie met betrekking tot de woning is met zorg samengesteld. Deze is echter indicatief en er kunnen geen rechten aan ontleend worden. *** English *** Available per the 1st of November 2026! - Living on Borgloonstraat in Amsterdam– your new home! - Are you looking for a lovely home in Amsterdam? Discover the properties on Borgloonstraat! A great opportunity for anyone wanting comfortable living in a pleasant location, with amenities and daily conveniences right at your fingertips. These homes offer a wonderful foundation for creating a spac",
+   "extra": {
+    "label": "direct beschikbaar"
+   },
+   "furnished": null,
+   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2171687.jpg",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": null,
+   "price_total": 1975,
+   "property_type": null,
+   "rooms": 4,
+   "source": "vanderlinden",
+   "source_id": "2696",
+   "title": "Borgloonstraat 101, Amsterdam",
+   "uid": "vanderlinden:2696",
+   "url": "https://www.vanderlinden.nl/huurwoning/Borgloonstraat-101-Amsterdam/2696/"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 658,
+    "search": "3 people",
+    "tier": "great"
+   }
+  ],
+  "price_drop_from": null
+ },
  "vesteda:103395": {
   "best_tier": "ok",
   "first_seen": "2026-11-10T14:36:54Z",
   "flags": [],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "Van Boecopkade 24F",
    "area_m2": 74,
@@ -819,7 +861,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-10T16:19:11Z",
+  "last_seen": "2026-11-10T16:49:14Z",
   "listing": {
    "address": "Betaplein 60",
    "area_m2": 93,
