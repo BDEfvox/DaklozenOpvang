@@ -4,9 +4,10 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 from datetime import date
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 from .models import Listing
+from .utils import bedrooms_from_text
 
 
 @dataclass
@@ -94,15 +95,30 @@ def detect_flags(listing: Listing, cfg: Dict[str, Any]) -> List[str]:
     return out
 
 
-def _effective_bedrooms(listing: Listing) -> Optional[int]:
+def infer_bedrooms(listing: Listing) -> None:
+    """If the site gave no bedroom count, take the one the title or description states."""
     if listing.bedrooms is not None:
-        return listing.bedrooms
+        return
+    n = bedrooms_from_text((listing.title or "") + " \n " + (listing.description or ""))
+    if n is None:
+        return
+    if listing.rooms is not None and n > listing.rooms:
+        return  # more bedrooms than rooms: we misread the text
+    listing.bedrooms = n
+
+
+def _effective_bedrooms(listing: Listing) -> Tuple[Optional[int], bool]:
+    """(bedrooms, guessed). Guessed = only the room count is known, so we assume rooms - 1, which is
+    the most it can be: a "4 kamers" home often has 2 bedrooms plus a study or a second living room."""
+    if listing.bedrooms is not None:
+        return listing.bedrooms, False
     if listing.rooms is not None:
-        return max(listing.rooms - 1, 0)
-    return None
+        return max(listing.rooms - 1, 0), True
+    return None, False
 
 
 def evaluate(listing: Listing, cfg: Dict[str, Any]) -> MatchResult:
+    infer_bedrooms(listing)
     flags = detect_flags(listing, cfg)
     res = MatchResult(flags=flags)
     if listing.city not in cfg.get("cities", []):
@@ -126,7 +142,7 @@ def evaluate(listing: Listing, cfg: Dict[str, Any]) -> MatchResult:
         searches = [min(searches, key=lambda s: s["max_total"])]
         extra_flags.append("price_unknown")
 
-    eff_bed = _effective_bedrooms(listing)
+    eff_bed, bed_guessed = _effective_bedrooms(listing)
     susp = cfg.get("suspicious_total_below")
     if price is not None and susp and price < susp and (eff_bed is None or eff_bed >= 2):
         flags.append("suspicious_price")
@@ -138,6 +154,7 @@ def evaluate(listing: Listing, cfg: Dict[str, Any]) -> MatchResult:
     no_sharers = "no_sharers" in flags
 
     used_unknown = False
+    used_guess = False
     for s in searches:
         persons = int(s["persons"])
         if price is not None and price > s["max_total"]:
@@ -157,6 +174,7 @@ def evaluate(listing: Listing, cfg: Dict[str, Any]) -> MatchResult:
             continue
         if max_persons is not None and max_persons < persons:
             continue
+        used_guess = used_guess or (bed_guessed and eff_bed is not None)
         pp = int(round(price / persons)) if price is not None else None
         tier = "great" if (price is not None and price <= s["great_total"]) else "ok"
         res.matches.append(SearchMatch(s["name"], persons, pp, tier))
@@ -164,6 +182,8 @@ def evaluate(listing: Listing, cfg: Dict[str, Any]) -> MatchResult:
     if res.matches:
         if used_unknown:
             extra_flags.append("bedrooms_unknown")
+        if used_guess:
+            extra_flags.append("bedrooms_unconfirmed")
         for f in extra_flags:
             if f not in flags:
                 flags.append(f)

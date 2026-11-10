@@ -56,3 +56,50 @@ def test_promo_tiles_are_skipped():
     html = (FIX / "directwonen.html").read_text().replace('<div class="tiles-container tiles-container-cutome">',
                                                           '<div class="tiles-container tiles-container-cutome">' + promo)
     assert len(parse_page(html, "den-haag")) == 4
+
+
+DETAIL = """<html><body><div id="detailsHouseContainer"><div id="detailsHouse" class="details-house desc-information">
+<div class="advert-roomno">4 Kamers</div>
+<div id="advertInformation" class="information">
+  <div class="shortDescription col-md-12"><p class="DWO-advert-info"><p>Ruim appartement met 2 slaapkamers.</p></p></div>
+  <div class="contentToToggle line-break"><p>Woonkamer, werkkamer en&nbsp;2 slaapkamers aan de achterzijde.</p></div>
+</div></div></div></body></html>"""
+
+
+def test_details_give_description_with_bedrooms(cfg):
+    from hunter.filters import evaluate
+    from hunter.models import Listing
+    url = "https://directwonen.nl/huurwoningen-huren/den-haag/norenburg/appartement-523826"
+    l = Listing(source="directwonen", source_id="523826", url=url, title="Appartement Norenburg", city="den-haag",
+                price_total=2200, rooms=4, area_m2=85, property_type="apartment")
+    assert [m.search for m in evaluate(l, cfg).matches] == ["3 people"]  # on the tile: 4 rooms
+    http = FakeHttp(DETAIL)
+    l = SOURCE.fetch_details(l, http)
+    assert http.urls == [url]
+    assert "2 slaapkamers aan de achterzijde" in l.description
+    assert not evaluate(l, cfg).matched and l.bedrooms == 2
+
+
+def test_details_layout_change_raises_and_foreign_url_is_left_alone():
+    from hunter.models import Listing
+    l = Listing(source="directwonen", source_id="1", url="https://directwonen.nl/huurwoningen-huren/den-haag/x/woning-1",
+                title="t", city="den-haag")
+    with pytest.raises(SourceError):
+        SOURCE.fetch_details(l, FakeHttp("<html>x</html>"))
+    l.url = "https://example.com/elsewhere"
+    http = FakeHttp(DETAIL)
+    assert SOURCE.fetch_details(l, http) is l and http.urls == []
+
+
+def test_smart_only_adverts_are_not_fetched_and_payment_page_is_not_an_error():
+    from hunter.models import Listing
+    url = "https://directwonen.nl/huurwoningen-huren/leiden/bachstraat/appartement-520581"
+    l = Listing(source="directwonen", source_id="520581", url=url, title="t", city="leiden", rooms=3,
+                extra={"smart_only": True})
+    http = FakeHttp(DETAIL)
+    assert SOURCE.fetch_details(l, http) is l and http.urls == []
+    assert l.extra["details_unavailable"] is True and l.description is None
+    # not marked on the tile, but the listing page turns out to be the payment page
+    l = Listing(source="directwonen", source_id="523879", url=url, title="t", city="leiden", rooms=4)
+    paywall = '<html><title>Smart account betaling</title><input id="RoomAdvertPrice" value="2350"></html>'
+    assert SOURCE.fetch_details(l, FakeHttp(paywall)).extra["details_unavailable"] is True

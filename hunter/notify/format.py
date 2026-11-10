@@ -21,6 +21,7 @@ FLAG_LABELS: Dict[str, str] = {
     "suspicious_price": "Suspiciously cheap",
     "scam_signals": "Possible scam",
     "bedrooms_unknown": "Bedrooms unknown",
+    "bedrooms_unconfirmed": "Bedrooms not confirmed",
     "price_unknown": "Price unknown",
     "rooms_only": "Only single rooms",
 }

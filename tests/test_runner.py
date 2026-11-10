@@ -317,3 +317,87 @@ def test_secrets_are_redacted_from_error_text(monkeypatch):
     monkeypatch.setenv("TELEGRAM_BOT_TOKEN", "123456:ABCdef")
     msg = _describe(RuntimeError("login failed for hunter2-secret at https://x/bot123456%3AABCdef/send"))
     assert "hunter2-secret" not in msg and "ABCdef" not in msg
+
+
+def test_older_matches_get_their_detail_page_checked_on_later_runs(cfg, tmp_path):
+    # First run: 14 homes with "4 kamers" and no bedroom count; only the 10 that are sent get verified.
+    cfg["telegram"]["first_run_max"] = 10
+    src = FakeSource(listings=[make_listing(str(i), price_total=2000 + i * 10, bedrooms=None, rooms=4) for i in range(14)])
+    seen_ids = []
+
+    def details(listing, http):
+        src.detail_calls += 1
+        seen_ids.append(listing.source_id)
+        # the four most expensive ones turn out to differ: 12 has 2 bedrooms, 13 has 3
+        listing.description = {"12": "4 kamers waarvan 2 slaapkamers", "13": "drie slaapkamers"}.get(
+            listing.source_id, "Aantal slaapkamers: 3")
+        return listing
+    src.fetch_details = details
+    code, n, st = go(cfg, tmp_path, [src])
+    assert src.detail_calls == 10 and len(st.matches) == 14
+    unsure = [u for u, c in st.matches.items() if "bedrooms_unconfirmed" in c["flags"]]
+    assert sorted(unsure) == ["fake:10", "fake:11", "fake:12", "fake:13"]
+
+    src.listings = [make_listing(str(i), price_total=2000 + i * 10, bedrooms=None, rooms=4) for i in range(14)]
+    code, n2, st = go(cfg, tmp_path, [src], now=T0 + timedelta(minutes=10))
+    assert sorted(seen_ids[10:]) == ["10", "11", "12", "13"]
+    assert non_digest(n2) == []  # corrections only, no alerts
+    assert "fake:12" not in st.matches and st.seen["fake:12"]["matched"] == []
+    assert st.matches["fake:13"]["listing"]["bedrooms"] == 3
+    assert not any("bedrooms_unconfirmed" in c["flags"] for c in st.matches.values())
+    data = json.loads((tmp_path / "docs" / "data.json").read_text())
+    assert all(l["uid"] != "fake:12" for l in data["listings"])
+
+    # third run: everything is verified, nothing is fetched again, and 12 stays away
+    src.listings = [make_listing(str(i), price_total=2000 + i * 10, bedrooms=None, rooms=4) for i in range(14)]
+    code, n3, st = go(cfg, tmp_path, [src], now=T0 + timedelta(minutes=20))
+    assert src.detail_calls == 14 and non_digest(n3) == [] and "fake:12" not in st.matches
+
+
+def test_backlog_check_respects_the_budget_and_gives_up_on_broken_pages(cfg, tmp_path):
+    cfg["telegram"]["first_run_max"] = 1
+    cfg["detail_fetch_max_per_run"] = 2
+    fresh = lambda: [make_listing(str(i), price_total=2000 + i * 10, bedrooms=None, rooms=4) for i in range(5)]  # noqa: E731
+    src = FakeSource(listings=fresh())
+    go(cfg, tmp_path, [src])
+    assert src.detail_calls == 1
+
+    def broken(listing, http):
+        src.detail_calls += 1
+        raise SourceError("layout changed")
+    src.fetch_details = broken
+    for k in range(1, 11):
+        src.listings = fresh()
+        code, n, st = go(cfg, tmp_path, [src], now=T0 + timedelta(minutes=10 * k))
+        assert non_digest(n) == [] and len(st.matches) == 5  # unverified cards stay, flagged
+    # two per run; each page is tried three times (also the one whose first check learned nothing), then left alone
+    assert src.detail_calls == 1 + 5 * 3
+    assert all(st.seen["fake:%d" % i]["detail_tries"] == 3 for i in range(5))
+
+
+def test_empty_earlier_check_is_repeated_but_hidden_pages_are_left_alone(cfg, tmp_path):
+    # The first run "checked" these two but learned nothing (the source could not read detail pages yet).
+    a = lambda: make_listing("a", price_total=2200, bedrooms=None, rooms=4)  # noqa: E731
+    b = lambda: make_listing("b", price_total=2300, bedrooms=None, rooms=4)  # noqa: E731
+    src = FakeSource(listings=[a(), b()])
+    go(cfg, tmp_path, [src])
+    assert src.detail_calls == 2 and "details" in State(str(tmp_path / "data"), cfg).seen["fake:a"]
+
+    def details(listing, http):
+        src.detail_calls += 1
+        if listing.source_id == "a":
+            listing.description = "4 kamers, waarvan 2 slaapkamers"
+        else:
+            listing.extra["details_unavailable"] = True  # e.g. behind a paid account
+        return listing
+    src.fetch_details = details
+    src.listings = [a(), b()]
+    code, n, st = go(cfg, tmp_path, [src], now=T0 + timedelta(minutes=10))
+    assert src.detail_calls == 4 and non_digest(n) == []
+    assert "fake:a" not in st.matches  # two bedrooms: not for three people
+    assert "bedrooms_unconfirmed" in st.matches["fake:b"]["flags"]
+    for k in (2, 3, 4):
+        src.listings = [a(), b()]
+        code, n, st = go(cfg, tmp_path, [src], now=T0 + timedelta(minutes=10 * k))
+    assert src.detail_calls == 4  # neither is fetched again
+    assert "fake:a" not in st.matches and "fake:b" in st.matches

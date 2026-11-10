@@ -3,6 +3,7 @@
 https://directwonen.nl/huurwoningen-huren/<city>  (30 tiles per page, "Nieuwste eerst" is the default order).
 robots.txt only disallows /zoeken/, /searchrooms/ and account paths; this path is allowed.
 Replying needs a paid account, so the tile links to a payment page; we store the plain listing URL instead.
+That listing page is public and is what fetch_details reads (for the description, i.e. the bedrooms).
 """
 from __future__ import annotations
 
@@ -15,7 +16,7 @@ from bs4.element import Tag
 
 from ..http import Http
 from ..models import Listing
-from ..utils import city_slug, parse_int, parse_price
+from ..utils import city_slug, clean_text, parse_int, parse_price
 from .base import Source, SourceError
 
 BASE = "https://directwonen.nl"
@@ -106,6 +107,21 @@ def parse_page(html: str, city: str) -> List[Listing]:
     return out
 
 
+def apply_details(listing: Listing, html: str) -> Listing:
+    """The tile only gives "kamers" (rooms incl. living room). The listing page is public and its
+    description usually states the bedrooms; the filter reads the count from that text."""
+    soup = BeautifulSoup(html, "html.parser")
+    info = soup.select_one("#advertInformation")
+    if info is None:
+        if soup.select_one("#RoomAdvertPrice") is not None:
+            # "Smart only" adverts send you to the payment page. That is the site's choice: leave it.
+            listing.extra["details_unavailable"] = True
+            return listing
+        raise SourceError("layout changed: directwonen listing page has no description block")
+    listing.description = clean_text(info.get_text(" ", strip=True)) or listing.description
+    return listing
+
+
 class DirectWonen(Source):
     name = "directwonen"
     label = "DirectWonen"
@@ -118,6 +134,14 @@ class DirectWonen(Source):
         if not slug:
             return []
         return parse_page(http.get_text("%s/huurwoningen-huren/%s" % (BASE, slug)), city)
+
+    def fetch_details(self, listing: Listing, http: Http) -> Listing:
+        if not listing.url.startswith(BASE + "/huurwoningen-huren/"):
+            return listing
+        if listing.extra.get("smart_only"):  # the listing page is only shown to paying members
+            listing.extra["details_unavailable"] = True
+            return listing
+        return apply_details(listing, http.get_text(listing.url))
 
 
 SOURCE = DirectWonen()

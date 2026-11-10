@@ -197,6 +197,26 @@ def apply_detail_snapshot(l: Listing, d: Dict[str, Any]) -> None:
         l.extra.update(d["extra"])
 
 
+DETAIL_MAX_TRIES = 3
+
+
+def _bedrooms_unsure(it: Item) -> bool:
+    return any(f in ("bedrooms_unconfirmed", "bedrooms_unknown") for f in it.result.flags)
+
+
+def _needs_detail_check(prev: Dict[str, Any], it: Item) -> bool:
+    """Is this known match worth a (new) look at its detail page?"""
+    if int(prev.get("detail_tries") or 0) >= DETAIL_MAX_TRIES:
+        return False
+    d = prev.get("details")
+    if not d:
+        return True
+    # An earlier look that taught us nothing about the bedrooms and found no description
+    # (e.g. the source could not read detail pages yet): look again, unless the site hides the page.
+    return (_bedrooms_unsure(it) and not d.get("description")
+            and not (d.get("extra") or {}).get("details_unavailable"))
+
+
 def _enrich(items: List[Item], cfg: Dict[str, Any], http: Any, budget: List[int]) -> List[Item]:
     """fetch_details for the first `budget[0]` items; re-evaluate; drop those that no longer match."""
     out: List[Item] = []
@@ -269,6 +289,7 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
     baseline_sources: List[str] = []
     new_items: List[Item] = []
     drop_items: List[Tuple[Item, int]] = []
+    backlog: List[Item] = []  # matches already on the dashboard whose detail page was never read
     run_fps: Dict[str, str] = {}
     seen_uids = set()
 
@@ -319,6 +340,8 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
                         drop_items.append((it, old_price))
                     elif not was_matched and not is_baseline:
                         new_items.append(it)  # e.g. details or the budget in config.json changed
+                    elif _needs_detail_check(prev, it):
+                        backlog.append(it)
                 else:
                     state.matches.pop(l.uid, None)
                 continue
@@ -421,6 +444,22 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
             elif it.listing.uid in state.matches:
                 state.matches[it.listing.uid]["price_drop_from"] = None
         drop_items = verified_drops
+    # 6b. Older matches that were never checked against their detail page (the first run only verifies
+    # the ones it sends; busy runs can exceed the budget). Use what is left of this run's budget, starting
+    # with the ones whose bedroom count is a guess. No alerts: this only corrects or removes dashboard cards.
+    backlog = [it for it in backlog if not it.detailed and it.listing.uid in state.matches]
+    backlog.sort(key=lambda i: (0 if _bedrooms_unsure(i) else 1,) + i.sort_key)
+    todo = backlog[:max(detail_budget[0], 0)]
+    if todo:
+        kept_backlog = {id(i) for i in enrich_and_prune(todo)}
+        for it in todo:
+            entry = state.seen.get(it.listing.uid)
+            if entry is not None and (not it.detailed or not it.listing.description):
+                # the page failed to load or said nothing: try again later, but not forever
+                entry["detail_tries"] = int(entry.get("detail_tries") or 0) + 1
+            if it.detailed and id(it) in kept_backlog:
+                _card(state, it, now_s)
+
     queue: List[Tuple[Item, Optional[int]]] = [(it, old) for it, old in drop_items] + [(it, None) for it in new_items]
     sent_msgs = 0
     overflow = 0

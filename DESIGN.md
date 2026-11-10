@@ -64,10 +64,16 @@ stable across runs.
 - `3 people`: persons 3, min bedrooms 3, max total €2,400, "great" ≤ €2,100
 
 A listing matches a search when: city is one of the configured cities; property type is not
-room/studio/parking/other; price known and ≤ max; bedrooms ≥ min, where unknown bedrooms fall back to
-`rooms - 1`; if both are unknown and the area is known, area ≥ 45 m² (2p) / 60 m² (3p) counts as "bedrooms
-unknown" match (flagged); otherwise no match. Result: matched searches, € per person per search,
-tier (`great`/`ok`), flags.
+room/studio/parking/other; price known and ≤ max; bedrooms ≥ min. If the site gives no bedroom count, the
+count stated in the title/description is used (`utils.bedrooms_from_text`: "Aantal slaapkamers: 2", "drie
+ruime slaapkamers", "2-bedroom"). If only `rooms` is known, `rooms - 1` is assumed and the match is flagged
+"bedrooms not confirmed" (a 4-room home often has 2 bedrooms). If both are unknown and the area is known,
+area ≥ 45 m² (2p) / 60 m² (3p) counts as "bedrooms unknown" match (flagged); otherwise no match. Result:
+matched searches, € per person per search, tier (`great`/`ok`), flags.
+
+Every match gets its detail page read once: new matches first, then (with what is left of
+`detail_fetch_max_per_run`) older dashboard cards that were never checked, bedroom guesses first. That
+re-check sends no alerts; it only corrects or removes cards. A page that fails is tried 3 times.
 
 Flags (case-insensitive phrase lists in config.json, Dutch + English), detected in title + description:
 `no_sharers`, `max_persons:N`, `no_students`, `sharers_ok`, `no_registration`, `income_requirement`,

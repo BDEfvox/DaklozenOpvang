@@ -85,3 +85,33 @@ def test_suspicious_price(cfg):
     assert "suspicious_price" in r.flags and r.matched
     assert "short_term" not in evaluate(make_listing(available_from="2026-12-01", available_until="2027-12-01"),
                                         cfg).flags
+
+
+def test_bedrooms_read_from_description_beat_the_room_count(cfg):
+    # "4 kamers" would pass for 3 people on rooms - 1, but the text says 2 bedrooms.
+    l = make_listing(price_total=2200, bedrooms=None, rooms=4, description="4 kamers waarvan twee slaapkamers en een werkkamer")
+    r = evaluate(l, cfg)
+    assert not r.matched and l.bedrooms == 2  # too expensive for 2 people, too small for 3
+    l = make_listing(price_total=1500, bedrooms=None, rooms=4, description="Aantal slaapkamers: 2")
+    r = evaluate(l, cfg)
+    assert names(r) == ["2 people"] and "bedrooms_unconfirmed" not in r.flags
+    l = make_listing(price_total=2200, bedrooms=None, rooms=4, description="De woning beschikt over drie ruime slaapkamers")
+    r = evaluate(l, cfg)
+    assert names(r) == ["3 people"] and l.bedrooms == 3 and "bedrooms_unconfirmed" not in r.flags
+
+
+def test_room_count_alone_is_flagged_as_unconfirmed(cfg):
+    r = evaluate(make_listing(price_total=2200, bedrooms=None, rooms=4), cfg)
+    assert names(r) == ["3 people"] and "bedrooms_unconfirmed" in r.flags
+    r = evaluate(make_listing(price_total=2200, bedrooms=3, rooms=4), cfg)
+    assert names(r) == ["3 people"] and "bedrooms_unconfirmed" not in r.flags
+    assert "bedrooms_unconfirmed" not in evaluate(make_listing(price_total=2200, bedrooms=None, rooms=2), cfg).flags
+
+
+def test_site_bedroom_count_wins_over_text_and_impossible_text_is_ignored(cfg):
+    l = make_listing(bedrooms=2, rooms=3, description="3 slaapkamers")
+    evaluate(l, cfg)
+    assert l.bedrooms == 2
+    l = make_listing(bedrooms=None, rooms=3, description="Slaapkamers: 5")  # more bedrooms than rooms
+    evaluate(l, cfg)
+    assert l.bedrooms is None
