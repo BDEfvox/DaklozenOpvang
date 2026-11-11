@@ -1,4 +1,4 @@
-"""CLI: python -m hunter run | check | telegram-setup | dashboard | backup"""
+"""CLI: python -m hunter run | check | telegram-setup | dashboard | backup | email-debug"""
 from __future__ import annotations
 
 import argparse
@@ -131,6 +131,11 @@ def cmd_backup(args: argparse.Namespace) -> int:
     return run_backup(cfg, mode=mode, dry_run=args.dry_run)
 
 
+def cmd_email_debug(args: argparse.Namespace) -> int:
+    from .email_debug import run
+    return run()
+
+
 def main(argv: Optional[List[str]] = None) -> int:
     load_env()
     p = argparse.ArgumentParser(prog="hunter")
@@ -163,6 +168,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     b.add_argument("--dry-run", action="store_true", help="print messages, write nothing")
     b.add_argument("--log", help="log file to keep small (used by the launchd job)")
     b.set_defaults(fn=cmd_backup)
+
+    e = sub.add_parser("email-debug", help="summary of the alert mailbox that is safe for a public log")
+    e.set_defaults(fn=cmd_email_debug)
 
     args = p.parse_args(argv)
     return int(args.fn(args) or 0)

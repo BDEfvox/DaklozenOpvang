@@ -1,0 +1,29 @@
+name: email debug
+run-name: email debug
+
+# Started by hand only. Prints a summary of the alert mailbox that is safe for a public log (counts,
+# sender domains, link shapes; no subjects, names, addresses or link tokens). Sends and commits nothing.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      IMAP_HOST: ${{ secrets.IMAP_HOST }}
+      IMAP_USER: ${{ secrets.IMAP_USER }}
+      IMAP_PASSWORD: ${{ secrets.IMAP_PASSWORD }}
+      IMAP_FOLDER: ${{ secrets.IMAP_FOLDER }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: timeout 300 pip install -r requirements.txt
+      - run: timeout 300 python -m hunter email-debug
