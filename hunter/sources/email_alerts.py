@@ -13,7 +13,11 @@ domain or a mail-tracking subdomain of the site (url1234.pararius.nl, links.fund
 providers, see _TRACKING_LABEL). Each link is requested once: the answer is remembered in `link_cache`
 (the runner keeps it in data/meta.json, keyed by a hash of the link, so no tracking token is stored).
 The pararius / funda / huurwoningen pages themselves are never requested.
-Pararius is the exception: its tracking host (url1234.pararius.nl) answers every program with a bot check,
+A mail that also gives the listings' own links needs no tracking link at all, and then none is requested:
+Funda's mails carry tracked links in the HTML part and the clean funda.nl links in the plain-text part. The
+clean links say which homes there are; a tracked link whose text is the street of one of them ("Kikkerstraat
+5 A" for .../appartement-kikkerstraat-5-a/...) is that home, so its card supplies price, size and rooms.
+Pararius is different again: its tracking host (url1234.pararius.nl) answers every program with a bot check,
 so those links are not requested at all. Each home in a Pararius mail has a photo whose address holds the
 listing's id, and pararius.nl sends /<type>-te-huur/<city>/<id>/<anything> on to the right page, so the
 listing's own link is put together from the mail (see _pararius_cards). A tracking host that answers with
@@ -499,18 +503,35 @@ class EmailAlerts(Source):
             links.extend(_links_from_html(h))
         for t in texts:
             links.extend(_links_from_text(t))
+        links = [l for l in links if not (_SKIP_ANCHOR.search(l.anchor_text) or _SKIP_ANCHOR.search(l.href))]
+        # The listings this mail names by their own links, by street ("kikkerstraat-5-a"). If there are any,
+        # no tracking link is requested: a tracked link is matched to one of them by its text, or ignored.
+        by_street: Dict[str, Dict[str, str]] = {}
+        has_direct = False
+        for link in links:
+            direct = match_listing_url(link.href)
+            if direct is not None:
+                has_direct = True
+                if direct["slug"]:
+                    by_street.setdefault(_slug(direct["slug"]), direct)
         found: Dict[Tuple[str, str], Listing] = {}
         anchors: Dict[Tuple[str, str], bool] = {}
         for link in links:
-            if _SKIP_ANCHOR.search(link.anchor_text) or _SKIP_ANCHOR.search(link.href):
-                continue
             info = match_listing_url(link.href)
-            if info is None and (link.from_html or not htmls) and not cards:
-                # The plain-text part repeats the HTML part's links: do not request those twice.
-                # A mail whose listings were read from its cards needs no link followed at all.
+            if info is None and has_direct:
+                if link.from_html and _good_anchor(link.anchor_text):
+                    info = by_street.get(_slug(link.anchor_text))
+            elif info is None and (link.from_html or not htmls):
+                # the plain-text part repeats the HTML part's links: do not request those twice
                 info = self._try_redirect(link.href, budget)
             if info is None:
                 continue
+            if link.from_html and _good_anchor(link.anchor_text):
+                # A card's text can begin with the cards before it (homes grouped per city): the facts
+                # of this home come after its own title.
+                at = link.context.find(link.anchor_text)
+                if at > 0:
+                    link.context = link.context[at:]
             kind_type = _KIND_TYPE.get(info["kind"]) if info["kind"] and link.kind_known else None
             if kind_type in ("room", "parking"):
                 continue

@@ -430,3 +430,63 @@ def test_tracking_host_with_bot_check_is_left_alone_for_the_day(source, monkeypa
         assert [l.source_id for l in source.fetch("*", None)] == ["funda-43201234"]
     assert [u for u in asked if "pararius" in u] == ["https://url2220.pararius.nl/ls/click?upn=0"]  # once, not 15 times
     assert len([u for u in asked if "funda" in u]) == 1
+
+
+# The layout of a real Funda alert (2026-11): tracked links in the HTML part (their target is not readable),
+# the clean links in the plain-text part. Homes are grouped per city, so a card's text can hold two homes.
+def _funda_card(token, street, line):
+    return """<tr><td><table><tr>
+  <td><a href="https://links.funda.nl/s/c/IMG%s/0123456789abcdef0123456789abcdef/26"><img src="https://cloud.funda.nl/tiara-media/x/y" alt="Foto"></a></td>
+  <td><a href="https://links.funda.nl/s/c/%s/0123456789abcdef0123456789abcdef/26">%s</a><br>%s</td>
+</tr></table></td></tr>""" % (token, token, street, line)
+
+
+FUNDA_REAL_HTML = ("""<html><body><table>
+<tr><td><a href="https://links.funda.nl/s/c/HEAD/0123456789abcdef0123456789abcdef/26">funda</a> Beste Jan Jansen, nieuw voor je zoekopdracht</td></tr>
+<tr><td><table><tr><td>Den Haag + 2 plaatsen 2 nieuwe huizen</td></tr>"""
+    + _funda_card("AAA", "Kikkerstraat 5 A", "2511 AB Den Haag &euro; 1.850 /maand 75 m&sup2; &bull; 3 kamers")
+    + _funda_card("BBB", "Pippelingstraat 157", "2564 RC Den Haag &euro; 2.300 /maand 104 m&sup2; &bull; 5 kamers")
+    + """</table>
+<div><a href="https://links.funda.nl/s/c/ALL/0123456789abcdef0123456789abcdef/26">Bekijk alle 2 huizen</a></div></td></tr>
+<tr><td><a href="https://links.funda.nl/s/c/ACC/0123456789abcdef0123456789abcdef/26">Mijn huis</a>
+<a href="https://links.funda.nl/s/vb/VIEW/0123456789abcdef0123456789abcdef/26">Bekijk in je browser</a></td></tr>
+</table></body></html>""")
+
+FUNDA_REAL_TEXT = """Nieuw voor je zoekopdracht
+
+Kikkerstraat 5 A
+https://www.funda.nl/detail/huur/den-haag/appartement-kikkerstraat-5-a/43000001/
+
+Pippelingstraat 157
+https://www.funda.nl/detail/huur/den-haag/appartement-pippelingstraat-157/43000002/
+
+Bekijk alle huizen: https://www.funda.nl/zoeken/bewaarde-zoekopdracht/12345678
+Mijn huis: https://www.funda.nl/account/mijn-huis/
+"""
+
+
+def test_funda_clean_links_are_used_and_no_tracked_link_is_requested(source):
+    source.fake.messages = {b"1": make_msg("funda <noreply@service.funda.nl>", "Nieuw", html=FUNDA_REAL_HTML,
+                                           text=FUNDA_REAL_TEXT)}
+    cache: Dict[str, dict] = {}
+    source.attach_link_cache(cache, "2026-11-11")
+    out = by_id(source.fetch("*", None))
+    assert set(out) == {"funda-43000001", "funda-43000002"}
+    a, b = out["funda-43000001"], out["funda-43000002"]
+    assert a.url == "https://www.funda.nl/detail/huur/den-haag/appartement-kikkerstraat-5-a/43000001"
+    assert a.title == "Funda: Kikkerstraat 5 A" and a.price_total == 1850 and a.area_m2 == 75 and a.rooms == 3
+    # the second home of the group gets its own facts, not those of the home above it
+    assert b.title == "Funda: Pippelingstraat 157" and b.price_total == 2300 and b.area_m2 == 104 and b.rooms == 5
+    assert source.resolved == [] and cache == {}  # nothing was requested, so nothing counts as a click
+    assert "Jansen" not in repr([(l.title, l.address, l.url) for l in out.values()])
+
+
+def test_funda_mail_without_clean_links_still_follows_the_tracked_ones(source):
+    source._resolver = lambda url: (source.resolved.append(url), {
+        "https://links.funda.nl/s/c/AAA/0123456789abcdef0123456789abcdef/26":
+            "https://www.funda.nl/detail/huur/den-haag/appartement-kikkerstraat-5-a/43000001/?utm_source=x"}.get(url))[1]
+    source.fake.messages = {b"1": make_msg("funda <noreply@service.funda.nl>", "Nieuw", html=FUNDA_REAL_HTML)}
+    source.attach_link_cache({}, "2026-11-11")
+    out = by_id(source.fetch("*", None))
+    assert set(out) == {"funda-43000001"} and out["funda-43000001"].price_total == 1850
+    assert source.resolved  # the fallback: no clean links in this mail
