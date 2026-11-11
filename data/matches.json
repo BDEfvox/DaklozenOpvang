@@ -5,7 +5,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -47,7 +47,7 @@
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 80,
@@ -88,7 +88,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "V.d. Helststraat",
    "area_m2": 69,
@@ -129,7 +129,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "V. Zeggelenlaan",
    "area_m2": 198,
@@ -172,7 +172,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "Volmolengracht",
    "area_m2": 100,
@@ -217,7 +217,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "Eosstraat 143",
    "area_m2": 98,
@@ -313,7 +313,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "Haringbuisdijk 909",
    "area_m2": 90,
@@ -357,7 +357,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "Maanplein 94 E",
    "area_m2": 88,
@@ -402,7 +402,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "Turfhaven 449",
    "area_m2": 59,
@@ -447,7 +447,7 @@
    "max_persons:2",
    "short_term"
   ],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -492,7 +492,7 @@
    "max_persons:4",
    "short_term"
   ],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "Vlietpark 42",
    "area_m2": 60,
@@ -538,7 +538,7 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "Wesselsstraat 482",
    "area_m2": 85,
@@ -582,7 +582,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "Van Diemenstraat 80",
    "area_m2": 100,
@@ -625,7 +625,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "Lorriestraat 49",
    "area_m2": 94,
@@ -668,7 +668,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -711,7 +711,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "Zeeburgerkade 1334",
    "area_m2": 74,
@@ -755,7 +755,7 @@
    "income_requirement",
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -798,7 +798,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "Borgloonstraat 101",
    "area_m2": 141,
@@ -885,7 +885,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T13:59:12Z",
+  "last_seen": "2026-11-11T14:19:12Z",
   "listing": {
    "address": "Betaplein 60",
    "area_m2": 93,
