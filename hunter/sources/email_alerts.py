@@ -13,6 +13,11 @@ domain or a mail-tracking subdomain of the site (url1234.pararius.nl, links.fund
 providers, see _TRACKING_LABEL). Each link is requested once: the answer is remembered in `link_cache`
 (the runner keeps it in data/meta.json, keyed by a hash of the link, so no tracking token is stored).
 The pararius / funda / huurwoningen pages themselves are never requested.
+Pararius is the exception: its tracking host (url1234.pararius.nl) answers every program with a bot check,
+so those links are not requested at all. Each home in a Pararius mail has a photo whose address holds the
+listing's id, and pararius.nl sends /<type>-te-huur/<city>/<id>/<anything> on to the right page, so the
+listing's own link is put together from the mail (see _pararius_cards). A tracking host that answers with
+a bot check (403/429) is left alone for the rest of the day.
 The mailbox is opened read-only; nothing is flagged, moved or deleted.
 """
 from __future__ import annotations
@@ -24,6 +29,7 @@ import ipaddress
 import os
 import re
 import socket
+import unicodedata
 from datetime import datetime, timedelta, timezone
 from email.message import Message
 from email.utils import parseaddr, parsedate_to_datetime
@@ -132,6 +138,17 @@ def _public_http_url(url: str) -> bool:
 def _host_ok(host: str, domains: Tuple[str, ...]) -> bool:
     host = host.lower().split(":")[0]
     return any(host == d or host.endswith("." + d) for d in domains)
+
+
+# Photo of a home in a Pararius mail: .../listings/api/media/<listing uuid>/<photo uuid>. The first eight
+# characters of the listing uuid are the id in the listing's URL.
+_PARARIUS_PHOTO = re.compile(
+    r"https?://casco-media[^/\s\"')]*/listings/api/media/([0-9a-f]{8})-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/",
+    re.I)
+_POSTCODE_CITY = re.compile(r"\b\d{4}\s?[A-Z]{2}\s+(?P<city>[^(€\d]{2,40}?)\s*(?:\(|€|\d|$)")
+_KIND_PREFIX = re.compile(r"^(appartement|apartment|flat|huis|house|woonhuis|studio|kamer|room)\s+(?=\S)", re.I)
+_KIND_SLUG = {"appartement": "appartement", "apartment": "appartement", "flat": "appartement", "huis": "huis",
+              "house": "huis", "woonhuis": "huis", "studio": "studio", "kamer": "kamer", "room": "kamer"}
 
 
 def _site_host(host: str) -> bool:
@@ -257,26 +274,72 @@ def _links_from_html(html: str) -> List[_Link]:
     anchors = [a for a in soup.find_all("a", href=True) if a["href"].startswith("http")]
     links: List[_Link] = []
     for a in anchors:
-        href = a["href"]
-        text = a.get_text(" ", strip=True)
-        # climb while the parent still holds only anchors that point at this same href
-        node = a
-        for _ in range(8):
-            parent = node.parent
-            if parent is None or parent.name in ("body", "html", "[document]"):
-                break
-            inner = {x["href"] for x in parent.find_all("a", href=True) if x["href"].startswith("http")}
-            inner = {h for h in inner if not _SKIP_ANCHOR.search(h)}
-            if len(inner) > 1 and inner != {href}:
-                # tolerate extra links to the same listing under a different tracking URL: stop if clearly another
-                if len(inner) > 3 or parent.name in ("table", "tbody", "ul", "ol"):
-                    break
-            node = parent
-            if len(node.get_text(" ", strip=True)) > 600:
-                break
-        context = node.get_text(" ", strip=True)
-        links.append(_Link(href, text, context, from_html=True))
+        links.append(_Link(a["href"], a.get_text(" ", strip=True), _anchor_context(a), from_html=True))
     return links
+
+
+def _anchor_context(a: Any) -> str:
+    """The text of the block around an <a>: its listing card, if the mail is built from cards."""
+    href = a["href"]
+    # climb while the parent still holds only anchors that point at this same href
+    node = a
+    for _ in range(8):
+        parent = node.parent
+        if parent is None or parent.name in ("body", "html", "[document]"):
+            break
+        inner = {x["href"] for x in parent.find_all("a", href=True) if x["href"].startswith("http")}
+        inner = {h for h in inner if not _SKIP_ANCHOR.search(h)}
+        if len(inner) > 1 and inner != {href}:
+            # tolerate extra links to the same listing under a different tracking URL: stop if clearly another
+            if len(inner) > 3 or parent.name in ("table", "tbody", "ul", "ol"):
+                break
+        node = parent
+        if len(node.get_text(" ", strip=True)) > 600:
+            break
+    return node.get_text(" ", strip=True)
+
+
+def _slug(text: str) -> str:
+    t = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("ascii").lower()
+    return re.sub(r"[^a-z0-9]+", "-", t).strip("-")
+
+
+def _pararius_cards(html: str) -> List[_Link]:
+    """Listings of a Pararius mail, as links to the listings' own pages.
+
+    The links in the mail cannot be used (see the module text), so each card is read as: a photo (its
+    address gives the listing id), then the first link with a real text (the street), with the card's text
+    around it ("2511 AB Den Haag (Wijk) € 1.850 per maand 75 m² · 3 kamers"). pararius.nl forwards
+    /<type>-te-huur/<city>/<id>/<anything> to the listing, so a guessed type or street does no harm.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    for tag in soup(["script", "style", "head"]):
+        tag.decompose()
+    cards: List[_Link] = []
+    pending: Optional[str] = None
+    for tag in soup.find_all(True):
+        attrs = " ".join(str(tag.get(k, "")) for k in ("background", "src", "style", "data-src"))
+        photo = _PARARIUS_PHOTO.search(attrs) if "casco-media" in attrs else None
+        if photo:
+            pending = photo.group(1).lower()
+            continue
+        if pending is None or tag.name != "a" or not str(tag.get("href", "")).startswith("http"):
+            continue
+        text = tag.get_text(" ", strip=True)
+        if not _good_anchor(text) or "@" in text or _SKIP_ANCHOR.search(text):
+            continue
+        listing_id, pending = pending, None
+        context = _anchor_context(tag)
+        where = _POSTCODE_CITY.search(context)
+        city = city_slug(where.group("city").strip()) if where else None
+        if city is None:
+            continue  # no postcode line, or a town that is not searched
+        kind = _KIND_PREFIX.match(text)
+        kind_slug = _KIND_SLUG[kind.group(1).lower()] if kind else "appartement"
+        street = _slug(text[kind.end():] if kind else text) or "woning"
+        href = "https://www.pararius.nl/%s-te-huur/%s/%s/%s" % (kind_slug, city, listing_id, street)
+        cards.append(_Link(href, text, context, from_html=True))
+    return cards
 
 
 def _links_from_text(text: str) -> List[_Link]:
@@ -423,6 +486,11 @@ class EmailAlerts(Source):
             posted = None
         htmls, texts = message_bodies(msg)
         links: List[_Link] = []
+        cards: List[_Link] = []
+        if site_hint == "pararius":
+            for h in htmls:
+                cards.extend(_pararius_cards(h))
+            links.extend(cards)
         for h in htmls:
             links.extend(_links_from_html(h))
         for t in texts:
@@ -433,8 +501,9 @@ class EmailAlerts(Source):
             if _SKIP_ANCHOR.search(link.anchor_text) or _SKIP_ANCHOR.search(link.href):
                 continue
             info = match_listing_url(link.href)
-            if info is None and (link.from_html or not htmls):
-                # the plain-text part repeats the HTML part's links: do not request those twice
+            if info is None and (link.from_html or not htmls) and not cards:
+                # The plain-text part repeats the HTML part's links: do not request those twice.
+                # A mail whose listings were read from its cards needs no link followed at all.
                 info = self._try_redirect(link.href, budget)
             if info is None:
                 continue
@@ -496,6 +565,10 @@ class EmailAlerts(Source):
         embedded = _embedded_target(href)
         if embedded:
             return match_listing_url(embedded)
+        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        host_key = "host:" + urlparse(href).netloc.lower()
+        if (self.link_cache.get(host_key) or {}).get("at") == today:
+            return None  # this host answered with a bot check today: leave it alone until tomorrow
         key = _link_key(href)
         entry = self.link_cache.get(key)
         if entry is not None:
@@ -506,8 +579,11 @@ class EmailAlerts(Source):
         if budget[0] <= 0:
             return None
         budget[0] -= 1
-        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        self.last_status = ""
         target = self._resolve(href)
+        if not target and self.last_status in ("403", "429"):
+            self.link_cache[host_key] = {"to": "", "tries": 0, "at": today}
+            return None
         info = match_listing_url(target) if target else None
         if info is not None:
             self.link_cache[key] = {"to": info["clean"], "tries": 1, "at": today}

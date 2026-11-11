@@ -351,3 +351,81 @@ def test_link_cache_forgets_old_entries(source):
              "junk": "x"}
     source.attach_link_cache(cache, "2026-11-11")
     assert list(cache) == ["new"] and source.link_cache is cache
+
+
+# The layout of a real Pararius alert (2026-11): every link is a tracking link behind a bot check, the
+# photo is the background of a cell, the street is the first link with text after it.
+def _card(uuid, street, line, extra=""):
+    return """
+<table><tbody><tr><td>
+  <table><tbody><tr>
+    <td background="https://casco-media-prod.global.ssl.fastly.net/listings/api/media/%s/11111111-2222-3333-4444-555555555555?auto=webp&amp;width=600&amp;sig=abc"
+        style="background-image:url('https://casco-media-prod.global.ssl.fastly.net/listings/api/media/%s/11111111-2222-3333-4444-555555555555?auto=webp')">
+      <a href="https://url2220.pararius.nl/ls/click?upn=IMG-%s"></a></td>
+  </tr><tr><td>
+    <div><a href="https://url2220.pararius.nl/ls/click?upn=TITLE-%s">%s</a></div>
+    <div>%s</div>%s
+  </td></tr></tbody></table>
+</td></tr></tbody></table>""" % (uuid, uuid, uuid, uuid, street, line, extra)
+
+
+PARARIUS_REAL = ("""<html><body>
+<div><div>Dear Jan Jansen, <a href="https://url2220.pararius.nl/ls/click?upn=SEARCH">Your search Den Haag+ has new homes in your search</a></div></div>
+<table><tbody><tr><td><a href="https://url2220.pararius.nl/ls/click?upn=LOGO">Logo of Pararius+</a></td></tr></tbody></table>"""
+    + _card("2e44aefc-b779-5042-84ed-51c41037a529", "Plesmanweg",
+            "2597JG Den Haag (Duttendel) &euro;1,550 per month 71 m&sup2; &middot; 3 rooms &middot; Upholstered &middot; Construction year 2021")
+    + _card("b1328b18-d00d-5558-8505-febed115b912", "De la Reyweg",
+            "2571EE Den Haag (Transvaalkwartier-Zuid) &euro;2,300 per month 110 m&sup2; &middot; 5 rooms &middot; Furnished")
+    + _card("4dd80120-aaaa-bbbb-cccc-0123456789ab", "Studio Oude Haagweg", "2552GG Den Haag (Rosenburg) &euro;950 per month 30 m&sup2; &middot; 1 room")
+    + _card("99999999-aaaa-bbbb-cccc-0123456789ab", "Herenstraat", "2282BX Rijswijk (Oud Rijswijk) &euro;1,500 per month 80 m&sup2; &middot; 3 rooms")
+    + """<table><tbody><tr><td><a href="https://url2220.pararius.nl/ls/click?upn=ALL">View all properties</a></td></tr></tbody></table>
+<div><div><a href="https://url2220.pararius.nl/ls/click?upn=UNSUB">change your preferences</a>
+<a href="https://url2220.pararius.nl/ls/click?upn=PRIV">Unsubscribe</a></div></div>
+<img src="https://url2220.pararius.nl/wf/open?upn=PIXEL"></body></html>""")
+
+
+def test_pararius_listing_is_built_from_the_photo_id_without_any_request(source):
+    text = "Plesmanweg\nhttps://url2220.pararius.nl/ls/click?upn=TEXT\n"
+    source.fake.messages = {b"1": make_msg("Pararius <noreply@pararius.nl>", "New homes", html=PARARIUS_REAL, text=text)}
+    cache: Dict[str, dict] = {}
+    source.attach_link_cache(cache, "2026-11-11")
+    out = by_id(source.fetch("*", None))
+    assert set(out) == {"pararius-2e44aefc", "pararius-b1328b18", "pararius-4dd80120"}  # Rijswijk is not searched
+    p = out["pararius-2e44aefc"]
+    assert p.url == "https://www.pararius.nl/appartement-te-huur/den-haag/2e44aefc/plesmanweg"
+    assert p.title == "Pararius: Plesmanweg" and p.address == "Plesmanweg" and p.city == "den-haag"
+    assert p.price_total == 1550 and p.area_m2 == 71 and p.rooms == 3 and p.posted_at == "2026-11-09T09:15:00Z"
+    h = out["pararius-b1328b18"]
+    assert h.url.endswith("/den-haag/b1328b18/de-la-reyweg") and h.price_total == 2300 and h.rooms == 5
+    assert out["pararius-4dd80120"].property_type == "studio"
+    assert out["pararius-4dd80120"].url == "https://www.pararius.nl/studio-te-huur/den-haag/4dd80120/oude-haagweg"
+    assert source.resolved == [] and cache == {}  # no tracking link was requested
+    assert "Jansen" not in repr([(l.title, l.address, l.url) for l in out.values()])
+
+
+def test_pararius_card_parser_ignores_mails_without_photos():
+    assert ea._pararius_cards(PARARIUS_HTML) == [] and ea._pararius_cards(SENDGRID_HTML) == []
+    assert ea._slug("Burgemeester De Monchyplein é 12-A") == "burgemeester-de-monchyplein-e-12-a"
+
+
+def test_tracking_host_with_bot_check_is_left_alone_for_the_day(source, monkeypatch):
+    html = "".join('<div><a href="https://url2220.pararius.nl/ls/click?upn=%d">Straat %d</a></div>' % (i, i) for i in range(5))
+    html += '<div><a href="https://click.funda-mail.test/track/aaa111?u=1">Prinsengracht 100 A</a></div>'
+    source.fake.messages = {b"1": make_msg("Pararius <noreply@pararius.nl>", "Nieuw", html=html)}
+    asked: List[str] = []
+
+    def blocked(url):
+        asked.append(url)
+        if "pararius" in url:
+            source.last_status = "403"
+            return None
+        source.last_status = "302"
+        return "https://www.funda.nl/detail/huur/amsterdam/appartement-prinsengracht-100-a/43201234/"
+
+    source._resolver = blocked
+    cache: Dict[str, dict] = {}
+    source.attach_link_cache(cache, ea.datetime.now(ea.timezone.utc).strftime("%Y-%m-%d"))
+    for _ in range(3):
+        assert [l.source_id for l in source.fetch("*", None)] == ["funda-43201234"]
+    assert [u for u in asked if "pararius" in u] == ["https://url2220.pararius.nl/ls/click?upn=0"]  # once, not 15 times
+    assert len([u for u in asked if "funda" in u]) == 1
