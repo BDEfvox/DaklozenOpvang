@@ -48,6 +48,9 @@ and the tool can read those emails and forward the matches to Telegram.
    - Den Haag, Amsterdam, Leiden; huur; max €2,400 (or €1,600 if it's just two of you); 2+ slaapkamers.
 4. Run `./go-live.sh` again and say **yes** to the email question (host `imap.gmail.com`, your new Gmail address, the app password).
 
+If alert emails arrive but nothing reaches Telegram: Actions tab → **email debug** → Run workflow. Its log shows what
+the tool finds in the mailbox (counts, senders, the shape of the links; no names, addresses or mail text).
+
 ## Things to know
 
 - **Three people is harder than two.** In all three cities, a landlord usually needs a permit (omzettingsvergunning)

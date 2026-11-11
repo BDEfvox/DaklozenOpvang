@@ -265,6 +265,8 @@ class _Link:
         # True: anchor_text is the text of the <a> itself. False (plain-text mail): it is merely a line
         # near the URL, which can just as well be the greeting ("Beste <name>,").
         self.from_html = from_html
+        # False: the type in href is a guess (a Pararius card without "Appartement"/"Huis" in its title)
+        self.kind_known = True
 
 
 def _links_from_html(html: str) -> List[_Link]:
@@ -338,7 +340,9 @@ def _pararius_cards(html: str) -> List[_Link]:
         kind_slug = _KIND_SLUG[kind.group(1).lower()] if kind else "appartement"
         street = _slug(text[kind.end():] if kind else text) or "woning"
         href = "https://www.pararius.nl/%s-te-huur/%s/%s/%s" % (kind_slug, city, listing_id, street)
-        cards.append(_Link(href, text, context, from_html=True))
+        card = _Link(href, text, context, from_html=True)
+        card.kind_known = kind is not None
+        cards.append(card)
     return cards
 
 
@@ -507,7 +511,7 @@ class EmailAlerts(Source):
                 info = self._try_redirect(link.href, budget)
             if info is None:
                 continue
-            kind_type = _KIND_TYPE.get(info["kind"]) if info["kind"] else None
+            kind_type = _KIND_TYPE.get(info["kind"]) if info["kind"] and link.kind_known else None
             if kind_type in ("room", "parking"):
                 continue
             city = city_slug(info["city"]) or city_slug(info["city"].replace("-", " "))

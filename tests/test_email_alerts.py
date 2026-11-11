@@ -397,6 +397,7 @@ def test_pararius_listing_is_built_from_the_photo_id_without_any_request(source)
     assert p.price_total == 1550 and p.area_m2 == 71 and p.rooms == 3 and p.posted_at == "2026-11-09T09:15:00Z"
     h = out["pararius-b1328b18"]
     assert h.url.endswith("/den-haag/b1328b18/de-la-reyweg") and h.price_total == 2300 and h.rooms == 5
+    assert p.property_type is None  # the mail does not say; "appartement" in the link is only a guess
     assert out["pararius-4dd80120"].property_type == "studio"
     assert out["pararius-4dd80120"].url == "https://www.pararius.nl/studio-te-huur/den-haag/4dd80120/oude-haagweg"
     assert source.resolved == [] and cache == {}  # no tracking link was requested
