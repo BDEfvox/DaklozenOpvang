@@ -98,6 +98,58 @@ def _payload_hint(url: str) -> str:
     return ""
 
 
+_KEEP_WORDS = set("""per maand mnd p/m m² m2 kamers kamer slaapkamers slaapkamer appartement huis studio woning
+woningen te huur nieuw nieuwe in bekijk gemeubileerd gestoffeerd kaal excl incl vanaf beschikbaar direct den haag
+amsterdam leiden 's-gravenhage the hague room rooms bedroom bedrooms apartment house for rent month view new
+furnished upholstered oppervlakte huurprijs prijs woonoppervlakte aangeboden sinds makelaar deze alle van de het
+een op bij voor jouw je zoekopdracht resultaten meer details""".split())
+
+
+def mask_text(text: str, limit: int = 240) -> str:
+    """Layout of a text without its content: letters become a/A and digits 9, except a few fixed words
+    of the mail template (kamers, per maand, ...) and the configured city names."""
+    out = []
+    for tok in (text or "").split()[:80]:
+        bare = tok.strip(".,;:!?()[]|·•-–—\"'").lower()
+        if bare in _KEEP_WORDS:
+            out.append(tok)
+        else:
+            out.append(re.sub(r"[^\W\d_]", lambda m: "A" if m.group(0).isupper() else "a", re.sub(r"\d", "9", tok)))
+    return " ".join(out)[:limit]
+
+
+def _outline(msg: Any, limit: int = 45) -> None:
+    """The anchors of one mail, in order: where they sit, masked text, masked surrounding text, image host."""
+    from bs4 import BeautifulSoup
+    htmls, _ = ea.message_bodies(msg)
+    if not htmls:
+        print("  (no HTML part)")
+        return
+    soup = BeautifulSoup(htmls[0], "html.parser")
+    for tag in soup(["script", "style", "head"]):
+        tag.decompose()
+    links = ea._links_from_html(htmls[0])
+    anchors = [a for a in soup.find_all("a", href=True) if a["href"].startswith("http")]
+    for n, (a, link) in enumerate(zip(anchors, links)):
+        if n >= limit:
+            print("  ... %d more anchors" % (len(anchors) - limit))
+            break
+        chain = []
+        node = a.parent
+        while node is not None and node.name not in ("[document]", "html", "body") and len(chain) < 5:
+            chain.append(node.name)
+            node = node.parent
+        img = a.find("img")
+        img_part = ""
+        if img is not None:
+            img_part = " img[%s alt:%s]" % (url_shape(img.get("src", "")) if str(img.get("src", "")).startswith("http")
+                                            else "?", mask_text(img.get("alt", ""), 60) or "-")
+        skip = " (skipped: unsubscribe/privacy)" if (ea._SKIP_ANCHOR.search(link.anchor_text)
+                                                      or ea._SKIP_ANCHOR.search(link.href)) else ""
+        print("  #%02d <%s>%s%s text[%s] around[%s]" % (n, "<".join(chain), img_part, skip,
+                                                        mask_text(link.anchor_text, 80), mask_text(link.context)))
+
+
 def _count(conn: Any, *criteria: str) -> str:
     try:
         typ, data = conn.search(None, *criteria)
@@ -211,6 +263,16 @@ def run() -> int:
                 else:
                     line += "  -> HTTP %s, no redirect" % status
             shapes[line] += 1
+
+    print("\n== Layout of the newest mail per sender (content masked) ==")
+    shown = set()
+    for msg in messages:
+        dom = _sender_domain(msg)
+        if dom in shown or ea._sender_site(msg) is None:
+            continue
+        shown.add(dom)
+        print("[%s]" % dom)
+        _outline(msg)
 
     print("\n== Senders ==")
     for key, n in senders.most_common(MAX_SHAPES):
