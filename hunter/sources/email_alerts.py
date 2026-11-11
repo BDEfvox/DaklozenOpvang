@@ -7,14 +7,18 @@ Env: IMAP_HOST, IMAP_USER, IMAP_PASSWORD, optional IMAP_FOLDER (default INBOX).
 
 The parser is deliberately not tied to one email layout: it looks for links whose URL matches each site's
 listing-URL pattern, takes the anchor text as title and picks price / rooms / m2 from the text around the link.
-Tracking redirect links (not on the site's own domain) are resolved with ONE request each to the *tracking*
-host, without following the redirect (read the Location header), at most MAX_RESOLVE per run. The
-pararius / funda / huurwoningen pages themselves are never requested.
+Tracking redirect links are resolved with ONE request each to the *tracking* host, without following the
+redirect (read the Location header), at most MAX_RESOLVE per run. A tracking host is either on another
+domain or a mail-tracking subdomain of the site (url1234.pararius.nl, links.funda.nl: the sites' email
+providers, see _TRACKING_LABEL). Each link is requested once: the answer is remembered in `link_cache`
+(the runner keeps it in data/meta.json, keyed by a hash of the link, so no tracking token is stored).
+The pararius / funda / huurwoningen pages themselves are never requested.
 The mailbox is opened read-only; nothing is flagged, moved or deleted.
 """
 from __future__ import annotations
 
 import email
+import hashlib
 import imaplib
 import ipaddress
 import os
@@ -34,7 +38,9 @@ from ..utils import city_slug, clean_text, parse_price
 from .base import Source, SourceError
 
 SINCE_DAYS = 4
-MAX_RESOLVE = 30
+MAX_RESOLVE = 60
+LINK_TRIES = 3          # a tracking link that gives no redirect is tried in this many runs, then given up
+LINK_CACHE_DAYS = 10    # forget remembered links after this long (mails older than SINCE_DAYS are not read)
 MAX_MESSAGES = 60
 SENDER_KEYWORDS = ("pararius", "funda", "huurwoningen", "kamernet")
 SITE_DOMAINS = {
@@ -52,6 +58,10 @@ _PATTERNS: List[Tuple[str, "re.Pattern[str]"]] = [
     ("pararius", re.compile(
         _P + r"pararius\.(?:nl|com)/(?P<kind>appartement|huis|studio|kamer|apartment|house|room)-(?:te-huur|for-rent)"
         r"/(?P<city>[^/?#]+)/(?P<id>[A-Za-z0-9]{6,12})(?=[/?#]|$)(?:/(?P<slug>[^/?#]+))?", re.I)),
+    # since 2024: /detail/huur/<city>/<kind>-<street>-<number>/<id>/
+    ("funda", re.compile(
+        _P + r"funda\.nl/(?:en/)?detail/(?:huur|rent)/(?P<city>[^/?#]+)/"
+        r"(?P<kind>[a-z]+)-(?P<slug>[^/?#]+)/(?P<id>\d{6,})(?=[/?#]|$)", re.I)),
     ("funda", re.compile(
         _P + r"funda\.nl/(?:en/)?(?:detail/)?(?:huur|rent)/(?P<city>[^/?#]+)/"
         r"(?P<kind>appartement|huis|woonhuis|studio|kamer|apartment|house|room|parkeergelegenheid|garage)"
@@ -78,6 +88,9 @@ _PRICE = re.compile(r"(?:€|\bEUR\b)\s?(\d{1,3}(?:[.,]\d{3})+|\d{3,6})(?:[.,]\d
 _ROOMS = re.compile(r"(\d{1,2})\s*(?:kamers?|rooms?)\b", re.I)
 _BEDROOMS = re.compile(r"(\d{1,2})\s*(?:slaapkamers?|slaapk\.?|slk|bedrooms?|bed\b)", re.I)
 _AREA = re.compile(r"(\d{2,4})\s*(?:m²|m2|m\^2|vierkante meter)", re.I)
+# First label of a host that only redirects mail links (SendGrid's url1234., links., click., ...). Hosts
+# under a site's domain with any other first label (www, help, ...) are the site itself: never requested.
+_TRACKING_LABEL = re.compile(r"^(?:url\d*|links?|lnk|click|clicks|email|e?mail\d*|em\d*|track|tracking|trk|go|r|t|ct|news|nieuwsbrief)$")
 
 
 _APP_PASSWORD = re.compile(r"[a-z]{4}(?:\s+[a-z]{4}){3}")
@@ -119,6 +132,29 @@ def _public_http_url(url: str) -> bool:
 def _host_ok(host: str, domains: Tuple[str, ...]) -> bool:
     host = host.lower().split(":")[0]
     return any(host == d or host.endswith("." + d) for d in domains)
+
+
+def _site_host(host: str) -> bool:
+    return any(_host_ok(host, d) for d in SITE_DOMAINS.values())
+
+
+def _tracking_host(host: str) -> bool:
+    """True for a mail-tracking subdomain of one of the sites (url2220.pararius.nl, links.funda.nl)."""
+    host = host.lower().split(":")[0]
+    for domains in SITE_DOMAINS.values():
+        for d in domains:
+            if host.endswith("." + d):
+                return bool(_TRACKING_LABEL.match(host[:-len(d) - 1].split(".")[0]))
+    return False
+
+
+def _resolvable_host(host: str) -> bool:
+    """A link on this host may be asked where it leads: any other domain, or a site's tracking subdomain."""
+    return bool(host) and (not _site_host(host) or _tracking_host(host))
+
+
+def _link_key(url: str) -> str:
+    return hashlib.sha256(url.encode("utf-8", "replace")).hexdigest()[:20]
 
 
 def match_listing_url(url: str) -> Optional[Dict[str, str]]:
@@ -289,6 +325,21 @@ class EmailAlerts(Source):
 
     def __init__(self) -> None:
         self._resolver: Optional[Callable[[str], Optional[str]]] = None
+        # What tracking links led to, so each is requested once and not again every run:
+        # {hash of the link: {"to": listing URL or "", "tries": n, "at": "YYYY-MM-DD"}}.
+        # The runner swaps in a dict that it saves with the state (see attach_link_cache).
+        self.link_cache: Dict[str, Dict[str, Any]] = {}
+        self.last_status = ""  # HTTP status (or error name) of the latest tracking-link request, for email-debug
+
+    def attach_link_cache(self, cache: Dict[str, Dict[str, Any]], today: str) -> None:
+        """Use `cache` (kept by the runner between runs) and drop entries older than LINK_CACHE_DAYS."""
+        try:
+            cut = (datetime.strptime(today, "%Y-%m-%d") - timedelta(days=LINK_CACHE_DAYS)).strftime("%Y-%m-%d")
+        except ValueError:
+            cut = ""
+        for key in [k for k, v in cache.items() if not isinstance(v, dict) or str(v.get("at", "")) < cut]:
+            del cache[key]
+        self.link_cache = cache
 
     # ---- config -------------------------------------------------------------------------------
     def unavailable_reason(self) -> Optional[str]:
@@ -344,8 +395,7 @@ class EmailAlerts(Source):
         """One request to the tracking host; read Location; never follow it."""
         if self._resolver is not None:
             return self._resolver(url)
-        host = urlparse(url).netloc
-        if any(_host_ok(host, d) for d in SITE_DOMAINS.values()):
+        if not _resolvable_host(urlparse(url).netloc):
             return None  # never request the sites themselves
         if not _public_http_url(url):
             return None
@@ -353,8 +403,10 @@ class EmailAlerts(Source):
             resp = requests.get(url, allow_redirects=False, timeout=10, stream=True,
                                 headers={"User-Agent": "Mozilla/5.0 (house-hunter email link resolver)"})
             loc = resp.headers.get("Location")
+            self.last_status = str(getattr(resp, "status_code", ""))
             resp.close()
-        except requests.RequestException:
+        except requests.RequestException as exc:
+            self.last_status = type(exc).__name__
             return None
         if loc and loc.startswith("/"):
             return None
@@ -381,7 +433,8 @@ class EmailAlerts(Source):
             if _SKIP_ANCHOR.search(link.anchor_text) or _SKIP_ANCHOR.search(link.href):
                 continue
             info = match_listing_url(link.href)
-            if info is None:
+            if info is None and (link.from_html or not htmls):
+                # the plain-text part repeats the HTML part's links: do not request those twice
                 info = self._try_redirect(link.href, budget)
             if info is None:
                 continue
@@ -438,19 +491,32 @@ class EmailAlerts(Source):
             existing.description = clean_text(link.context, 600)
 
     def _try_redirect(self, href: str, budget: List[int]) -> Optional[Dict[str, str]]:
-        host = urlparse(href).netloc.lower()
-        if not host or any(_host_ok(host, d) for d in SITE_DOMAINS.values()):
+        if not _resolvable_host(urlparse(href).netloc.lower()):
             return None  # a site link that is not a listing link (search page, logo, ...)
         embedded = _embedded_target(href)
         if embedded:
             return match_listing_url(embedded)
+        key = _link_key(href)
+        entry = self.link_cache.get(key)
+        if entry is not None:
+            if entry.get("to"):
+                return match_listing_url(entry["to"])
+            if int(entry.get("tries", LINK_TRIES)) >= LINK_TRIES:
+                return None  # known: not a listing, or no answer in LINK_TRIES runs
         if budget[0] <= 0:
             return None
         budget[0] -= 1
+        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         target = self._resolve(href)
-        if target:
-            return match_listing_url(target)
-        return None
+        info = match_listing_url(target) if target else None
+        if info is not None:
+            self.link_cache[key] = {"to": info["clean"], "tries": 1, "at": today}
+        elif target:  # leads somewhere else (search page, app store, ...): settled
+            self.link_cache[key] = {"to": "", "tries": LINK_TRIES, "at": today}
+        else:         # no redirect this time (error, block): try again in a later run, a few times
+            tries = int(entry.get("tries", 0)) + 1 if entry else 1
+            self.link_cache[key] = {"to": "", "tries": tries, "at": today}
+        return info
 
     # ---- Source API ---------------------------------------------------------------------------
     def fetch(self, city: str, http: "Any") -> List[Listing]:

@@ -7,6 +7,8 @@ The mailbox is opened read-only, like the checker does.
 """
 from __future__ import annotations
 
+import base64
+import binascii
 import os
 import re
 from collections import Counter
@@ -15,12 +17,13 @@ from email.utils import parseaddr
 from typing import Any, List, Optional, Tuple
 from urllib.parse import parse_qsl, urlparse
 
+from .config import load_config
+from .filters import evaluate
 from .sources import email_alerts as ea
 from .sources.base import SourceError
 from .utils import city_slug
 
-MAX_SHAPES = 40      # lines per group
-MAX_RESOLVE = 12     # tracking links followed one step, one per (host, shape)
+MAX_SHAPES = 60      # lines per group
 
 _WORD = re.compile(r"[a-z]+|\d{1,4}[a-z]?")
 
@@ -60,21 +63,39 @@ def _sender_domain(msg: Any) -> str:
     return domain if any(k in domain for k in ea.SENDER_KEYWORDS) else "<other sender>"
 
 
-def _classify(href: str) -> Tuple[str, Optional[dict]]:
+def _classify(href: str) -> str:
     info = ea.match_listing_url(href)
     if info is not None:
         kind = ea._KIND_TYPE.get(info["kind"]) if info["kind"] else None
         if kind in ("room", "parking"):
-            return "LISTING, skipped: %s" % kind, info
+            return "LISTING, skipped: %s" % kind
         if city_slug(info["city"]) is None and city_slug(info["city"].replace("-", " ")) is None:
-            return "LISTING, skipped: city not in config", info
-        return "LISTING, accepted", info
+            return "LISTING, skipped: city not in config"
+        return "LISTING, accepted"
     host = urlparse(href).netloc.lower()
-    if any(ea._host_ok(host, d) for d in ea.SITE_DOMAINS.values()):
-        return "site link, not recognised as a listing", None
+    if ea._tracking_host(host):
+        return "tracking link on the site's mail subdomain"
+    if ea._site_host(host):
+        return "site link, not a listing"
     if ea._embedded_target(href):
-        return "tracking link with the listing in a parameter", None
-    return "other host (would be resolved)", None
+        return "tracking link with the listing in a parameter"
+    return "tracking link on another host"
+
+
+def _payload_hint(url: str) -> str:
+    """Does a long path segment hold the target URL in base64? Says yes/no and the target's shape."""
+    for seg in urlparse(url).path.split("/"):
+        if len(seg) < 80:
+            continue
+        try:
+            raw = base64.urlsafe_b64decode(seg + "=" * (-len(seg) % 4))
+        except (ValueError, binascii.Error):
+            return " [long segment: not base64]"
+        m = re.search(rb"https?://[\x21-\x7e]+", raw)
+        if m:
+            return " [long segment: base64 holding %s]" % url_shape(m.group(0).decode("ascii", "replace"))
+        return " [long segment: base64, no URL inside]"
+    return ""
 
 
 def _count(conn: Any, *criteria: str) -> str:
@@ -151,49 +172,66 @@ def run() -> int:
             pass
     print("messages fetched: %d (limit %d)" % (len(messages), ea.MAX_MESSAGES))
 
+    # Parse exactly like the checker does, and note where every tracking link led.
+    resolved: dict = {}
+    real_resolve = src._resolve
+
+    def recording_resolve(url: str) -> Optional[str]:
+        target = real_resolve(url)
+        resolved[url] = (target, src.last_status)
+        return target
+
+    src._resolve = recording_resolve  # type: ignore[method-assign]
+    budget = [ea.MAX_RESOLVE]
+    listings: List[Any] = []
+    for msg in messages:
+        listings.extend(src.parse_message(msg, budget))
+
     senders: Counter = Counter()
     shapes: Counter = Counter()
-    examples: dict = {}
     for msg in messages:
         dom = _sender_domain(msg)
         site = ea._sender_site(msg)
         htmls, texts = ea.message_bodies(msg)
-        links: List[Any] = []
+        links: List[Tuple[str, Any]] = []
         for h in htmls:
-            links.extend(ea._links_from_html(h))
+            links.extend(("html", l) for l in ea._links_from_html(h))
         for t in texts:
-            links.extend(ea._links_from_text(t))
+            links.extend(("text", l) for l in ea._links_from_text(t))
         senders[(dom, "sender accepted as %s" % site if site else "SENDER NOT ACCEPTED", "html parts %d" % len(htmls),
                  "text parts %d" % len(texts), "links %s" % ("0" if not links else "1+"))] += 1
-        for link in links:
+        for part, link in links:
             if ea._SKIP_ANCHOR.search(link.anchor_text) or ea._SKIP_ANCHOR.search(link.href):
                 continue
-            verdict, _ = _classify(link.href)
-            key = (dom, verdict, url_shape(link.href))
-            shapes[key] += 1
-            examples.setdefault(key, link.href)
+            line = "[%s %s] %s :: %s%s" % (dom, part, _classify(link.href), url_shape(link.href), _payload_hint(link.href))
+            if link.href in resolved:
+                target, status = resolved[link.href]
+                if target:
+                    line += "  -> HTTP %s -> %s :: %s" % (status, _classify(target), url_shape(target))
+                else:
+                    line += "  -> HTTP %s, no redirect" % status
+            shapes[line] += 1
 
     print("\n== Senders ==")
     for key, n in senders.most_common(MAX_SHAPES):
         print("%3dx  %s" % (n, " | ".join(key)))
 
     print("\n== Link shapes (unsubscribe/privacy links left out) ==")
-    resolved = 0
-    for key, n in shapes.most_common(MAX_SHAPES):
-        dom, verdict, shape = key
-        line = "%3dx  [%s] %s :: %s" % (n, dom, verdict, shape)
-        if verdict.startswith("other host") and resolved < MAX_RESOLVE:
-            resolved += 1
-            target = src._resolve(examples[key])
-            if not target:
-                line += "  -> no redirect"
-            else:
-                line += "  -> %s :: %s" % (_classify(target)[0], url_shape(target))
-        print(line)
+    for line, n in shapes.most_common(MAX_SHAPES):
+        print("%3dx  %s" % (n, line))
     if len(shapes) > MAX_SHAPES:
         print("... and %d more shapes" % (len(shapes) - MAX_SHAPES))
+    print("tracking links requested: %d (limit per run %d)" % (len(resolved), ea.MAX_RESOLVE))
 
-    budget = [ea.MAX_RESOLVE]
-    total = sum(len(src.parse_message(m, budget)) for m in messages)
-    print("\nlistings the checker gets out of these messages: %d" % total)
+    print("\n== Listings the checker gets out of these messages: %d ==" % len(listings))
+    cfg = load_config()
+    for l in listings:
+        l.description = l.description or ""
+        res = evaluate(l, cfg)
+        print("  %-12s %-9s %-9s price:%s bedrooms:%s rooms:%s m2:%s title:%s -> %s" % (
+            l.extra.get("site"), l.city, l.property_type or "?",
+            "yes" if l.price_total is not None else "no", "yes" if l.bedrooms is not None else "no",
+            "yes" if l.rooms is not None else "no", "yes" if l.area_m2 is not None else "no",
+            "from link text" if l.address and l.address not in (l.title or "") else "from URL",
+            "MATCHES your searches" if res.matched else "does not match your searches"))
     return 0

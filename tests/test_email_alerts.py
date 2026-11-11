@@ -173,7 +173,7 @@ def test_mailbox_is_read_only_and_searched_with_since(source):
 
 
 def test_resolve_budget(source):
-    html = "".join('<div><a href="https://t.test/r/%d">Straat %d</a></div>' % (i, i) for i in range(50))
+    html = "".join('<div><a href="https://t.test/r/%d">Straat %d</a></div>' % (i, i) for i in range(100))
     msg = make_msg("Funda <noreply@funda.nl>", "many", html=html)
     source.fake.messages = {b"1": msg}
     source.fetch("*", None)
@@ -280,3 +280,74 @@ def test_public_tracking_link_is_still_resolved(monkeypatch):
     # a public name that resolves to a private address is refused too
     monkeypatch.setattr(ea.socket, "getaddrinfo", lambda *a, **kw: [(2, 1, 6, "", ("10.1.2.3", 443))])
     assert EmailAlerts()._resolve("https://click.example-mail.test/track/2") is None and len(calls) == 1
+
+
+# ---- what the real mails look like (found with `python -m hunter email-debug`, 2026-11-11) -------------
+def test_funda_detail_url_with_id_after_the_street():
+    m = match_listing_url("https://www.funda.nl/detail/huur/den-haag/appartement-kikkerstraat-5-a/43123456/?utm=x")
+    assert m == {"site": "funda", "id": "43123456", "city": "den-haag", "slug": "kikkerstraat-5-a",
+                 "kind": "appartement", "clean": "https://www.funda.nl/detail/huur/den-haag/appartement-kikkerstraat-5-a/43123456"}
+    assert match_listing_url("https://www.funda.nl/detail/koop/den-haag/appartement-kikkerstraat-5-a/43123456/") is None
+    assert match_listing_url("https://www.funda.nl/zoeken/bewaarde-zoekopdracht/12345678") is None
+
+
+def test_tracking_hosts():
+    assert ea._tracking_host("url2220.pararius.nl") and ea._tracking_host("links.funda.nl")
+    for host in ("www.pararius.nl", "pararius.nl", "help.funda.nl", "www.funda.nl", "click.other.test"):
+        assert not ea._tracking_host(host)
+    assert ea._resolvable_host("url2220.pararius.nl") and ea._resolvable_host("click.other.test")
+    assert not ea._resolvable_host("www.pararius.nl") and not ea._resolvable_host("help.funda.nl")
+
+
+SENDGRID_HTML = """
+<html><body>
+<a href="https://url2220.pararius.nl/ls/click?upn=LOGO">Pararius</a>
+<table><tr><td>
+  <a href="https://url2220.pararius.nl/ls/click?upn=AAA"><img src="x.jpg"></a>
+  <a href="https://url2220.pararius.nl/ls/click?upn=AAA">Appartement Laan van Meerdervoort</a>
+  <p>2511 AB Den Haag</p><p>&euro; 1.850 per maand</p><p>75 m&sup2; &middot; 3 kamers</p>
+</td></tr></table>
+<a href="https://www.pararius.nl/mijn-account">Account</a>
+<a href="https://help.funda.nl/s/">Help</a>
+</body></html>"""
+
+
+def test_site_tracking_subdomain_is_resolved_and_remembered(source):
+    target = "https://www.pararius.nl/appartement-te-huur/den-haag/ab12cd34/laan-van-meerdervoort?utm_source=alert"
+    answers = {"https://url2220.pararius.nl/ls/click?upn=AAA": target,
+               "https://url2220.pararius.nl/ls/click?upn=LOGO": "https://www.pararius.nl/"}
+    source._resolver = lambda url: (source.resolved.append(url), answers.get(url))[1]
+    # the text part repeats the links: those must not be requested a second time
+    text = "Appartement\nhttps://url2220.pararius.nl/ls/click?upn=TEXTCOPY\n"
+    source.fake.messages = {b"1": make_msg("Pararius <noreply@pararius.nl>", "Nieuw", html=SENDGRID_HTML, text=text)}
+    cache: Dict[str, dict] = {}
+    source.attach_link_cache(cache, "2026-11-11")
+
+    out = source.fetch("*", None)
+    assert [l.source_id for l in out] == ["pararius-ab12cd34"]
+    assert out[0].price_total == 1850 and out[0].area_m2 == 75 and out[0].city == "den-haag"
+    assert out[0].url == "https://www.pararius.nl/appartement-te-huur/den-haag/ab12cd34/laan-van-meerdervoort"
+    assert sorted(source.resolved) == ["https://url2220.pararius.nl/ls/click?upn=AAA",
+                                       "https://url2220.pararius.nl/ls/click?upn=LOGO"]  # once each; never www/help
+    assert len(cache) == 2 and "upn" not in repr(cache) and "AAA" not in repr(cache)  # no token is stored
+
+    source.resolved.clear()  # next run, same mail: nothing is requested again
+    again = source.fetch("*", None)
+    assert [l.source_id for l in again] == ["pararius-ab12cd34"] and again[0].price_total == 1850
+    assert source.resolved == []
+
+
+def test_link_without_redirect_is_retried_a_few_runs_then_dropped(source):
+    html = '<div><a href="https://url2220.pararius.nl/ls/click?upn=DEAD">Straat 1</a></div>'
+    source.fake.messages = {b"1": make_msg("Pararius <noreply@pararius.nl>", "Nieuw", html=html)}
+    source.attach_link_cache({}, "2026-11-11")
+    for _ in range(ea.LINK_TRIES + 2):
+        assert source.fetch("*", None) == []
+    assert len(source.resolved) == ea.LINK_TRIES
+
+
+def test_link_cache_forgets_old_entries(source):
+    cache = {"old": {"to": "", "tries": 3, "at": "2026-10-20"}, "new": {"to": "", "tries": 3, "at": "2026-11-09"},
+             "junk": "x"}
+    source.attach_link_cache(cache, "2026-11-11")
+    assert list(cache) == ["new"] and source.link_cache is cache

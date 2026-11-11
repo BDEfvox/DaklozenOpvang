@@ -298,6 +298,11 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
     # 2. fetch
     fetched: Dict[str, FetchResult] = {}
     for name, src in active.items():
+        if hasattr(src, "attach_link_cache"):  # email alerts: remember what tracking links led to
+            cache = state.meta.get("email_links")
+            if not isinstance(cache, dict):
+                cache = state.meta["email_links"] = {}
+            src.attach_link_cache(cache, now.strftime("%Y-%m-%d"))
         try:
             fetched[name] = fetch_source(src, cfg, http)
         except Exception as exc:  # fetch_source should never raise, but be safe
