@@ -5,7 +5,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -47,7 +47,7 @@
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 80,
@@ -88,7 +88,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "V.d. Helststraat",
    "area_m2": 69,
@@ -129,7 +129,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "V. Zeggelenlaan",
    "area_m2": 198,
@@ -172,7 +172,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Volmolengracht",
    "area_m2": 100,
@@ -217,7 +217,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Eosstraat 143",
    "area_m2": 98,
@@ -313,7 +313,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Haringbuisdijk 909",
    "area_m2": 90,
@@ -357,7 +357,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Maanplein 94 E",
    "area_m2": 88,
@@ -402,7 +402,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Turfhaven 449",
    "area_m2": 59,
@@ -447,7 +447,7 @@
    "max_persons:2",
    "short_term"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -492,7 +492,7 @@
    "max_persons:4",
    "short_term"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Vlietpark 42",
    "area_m2": 60,
@@ -538,7 +538,7 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Wesselsstraat 482",
    "area_m2": 85,
@@ -582,7 +582,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Van Diemenstraat 80",
    "area_m2": 100,
@@ -625,7 +625,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Lorriestraat 49",
    "area_m2": 94,
@@ -668,7 +668,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -711,7 +711,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Zeeburgerkade 1334",
    "area_m2": 74,
@@ -755,7 +755,7 @@
    "income_requirement",
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -798,7 +798,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Borgloonstraat 101",
    "area_m2": 141,
@@ -842,7 +842,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Cruquiusweg 87-H",
    "area_m2": 91,
@@ -886,7 +886,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Cruquiusweg 85-R",
    "area_m2": 86,
@@ -930,7 +930,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Cruquiusweg 87-C",
    "area_m2": 115,
@@ -938,7 +938,7 @@
    "available_until": null,
    "bedrooms": 2,
    "city": "amsterdam",
-   "description": "* LET OP: 2PEER IS SPECIAAL ONTWIKKELD VOOR DELERS * PER DIRECT BESCHIKBAAR* Je huurt een eigen ruime slaapkamer mét luxe badkamer, de woonkamer/keuken/balkon deel je met één andere huisgenoot. Deze kamer is gemeubileerd. Dit appartement heeft drie kamers, waarvan twee slaapkamers. 2Peer (Cruquius Amsterdam) bestaat uit 23 appartementen, ontwikkeld voor woningdelers. Elke bewoner huurt een eigen zeer ruime slaapkamer mét luxe badkamer, de woonkamer/keuken/balkon deel je met één andere huisgenoot. Je kan je samen inschrijven met een toekomstig medebewoner maar wij kunnen je uiteraard ook helpen bij de zoektocht naar jouw perfecte huisgenoot. Lees verder Cruquiusweg 87C: - Royaal appartement geschikt voor 2 delers - Ieder heeft zijn eigen slaap- en badkamer - Volledig ingericht - Overdekt balkon - Energielabel: a - Bouwjaar: 2020 Het is een stoer gebouw van baksteen met houten elementen in een industriële sfeer en is gelegen op Cruquius in Amsterdam-Oost. Dit gebied transformeert van een voormalige industriële zone naar een nieuw en levendig woon- een werkgebied. Gevarieerde architectuur wordt afgewisseld met gerestaureerde historische gebouwen. Er is veel aandacht voor groen, biodiversiteit, duurzaamheid en het omliggende water speelt een hoofdrol in deze stoere woonomgeving. De huurprijs bedraagt €858,- per maand per persoon, exclusief €195,- servicekosten per maand. ¦ Royale slaapkamer én eigen luxe sanitair ¦ Servicekosten en community manager ¦ Luxe en sfeervolle meubilering en stoffering (volledige inrichting is inclusief) ¦ Kosteloos gebruik van community-ruimte op de begane grond ¦ Wasmachine ¦ Vaste lasten (water, elektra en warmte) ¦ High Speed internet en tv voorziening - Inkomensrichtlijnen - • Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3.5 keer de vermelde huurprijs van deze woning. • Voor tweeverdieners tellen wij het tweede inkomen voor 50% mee. • Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.000,- per maand kost is dus € 3.500,- (1.000 x 3.5). • In sommige gevallen is een waarborgsom verplicht. • Ben je een zelfstandig ondernemer, gepensioneerd of meer informatie over de inkomensrichtlijnen? Ga naar dan naar onze website: vanderlinden.nl/woning-huren/faq 2Peer is een unieke kans voor woningdelers in Amsterdam, en dat in een stoer en geliefd woongebied omringd door water. Wij hebben nog meerdere mogelijkheden om te huren binnen 2Peer, dus schrijf je vandaag nog in! Op de website 2peer.nl vindt je alle informatie over dit innovatieve woonconcept, de appartementen en de locatie. Schrijf je in via onze vanderlinden.nl website. De getoonde foto's zijn van een vergelijkbare 2peer-modelwoning. Alle informatie met betrekking tot de woning is met zorg samengesteld. Deze is echter indicatief en er kunnen geen rechten aan ontleend worden. *** Hier ga je wonen Cruquiusweg 87C Amsterdam MAP Plattegronden Ja, ik heb interesse in deze woning Inloggen in mijn IDD account Heb je al een IDD account? Log dan nu in om je interesse in deze woning aan te geven. © 2025 Algemene voorwaarden Privacy policy Cookie policy Sitemap",
+   "description": "* LET OP: 2PEER IS SPECIAAL ONTWIKKELD VOOR DELERS * PER DIRECT BESCHIKBAAR* Je huurt een eigen ruime slaapkamer mét luxe badkamer, de woonkamer/keuken/balkon deel je met één andere huisgenoot. Deze kamer is gemeubileerd. Dit appartement heeft drie kamers, waarvan twee slaapkamers. 2Peer (Cruquius Amsterdam) bestaat uit 23 appartementen, ontwikkeld voor woningdelers. Elke bewoner huurt een eigen zeer ruime slaapkamer mét luxe badkamer, de woonkamer/keuken/balkon deel je met één andere huisgenoot. Je kan je samen inschrijven met een toekomstig medebewoner maar wij kunnen je uiteraard ook helpen bij de zoektocht naar jouw perfecte huisgenoot. Lees verder Cruquiusweg 87C: - Royaal appartement geschikt voor 2 delers - Ieder heeft zijn eigen slaap- en badkamer - Volledig ingericht - Overdekt balkon - Energielabel: a - Bouwjaar: 2020 Het is een stoer gebouw van baksteen met houten elementen in een industriële sfeer en is gelegen op Cruquius in Amsterdam-Oost. Dit gebied transformeert van een voormalige industriële zone naar een nieuw en levendig woon- een werkgebied. Gevarieerde architectuur wordt afgewisseld met gerestaureerde historische gebouwen. Er is veel aandacht voor groen, biodiversiteit, duurzaamheid en het omliggende water speelt een hoofdrol in deze stoere woonomgeving. De huurprijs bedraagt €858,- per maand per persoon, exclusief €195,- servicekosten per maand. ¦ Royale slaapkamer én eigen luxe sanitair ¦ Servicekosten en community manager ¦ Luxe en sfeervolle meubilering en stoffering (volledige inrichting is inclusief) ¦ Kosteloos gebruik van community-ruimte op de begane grond ¦ Wasmachine ¦ Vaste lasten (water, elektra en warmte) ¦ High Speed internet en tv voorziening - Inkomensrichtlijnen - • Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3.5 keer de vermelde huurprijs van deze woning. • Voor tweeverdieners tellen wij het tweede inkomen voor 50% mee. • Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.000,- per maand kost is dus € 3.500,- (1.000 x 3.5). • In sommige gevallen is een waarborgsom verplicht. • Ben je een zelfstandig ondernemer, gepensioneerd of meer informatie over de inkomensrichtlijnen? Ga naar dan naar onze website: vanderlinden.nl/woning-huren/faq 2Peer is een unieke kans voor woningdelers in Amsterdam, en dat in een stoer en geliefd woongebie",
    "extra": {
     "income_requirement": true,
     "label": "direct beschikbaar"
@@ -974,7 +974,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Cruquiusweg 87-B",
    "area_m2": 115,
@@ -1061,7 +1061,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-11T16:49:13Z",
+  "last_seen": "2026-11-11T16:59:12Z",
   "listing": {
    "address": "Betaplein 60",
    "area_m2": 93,
