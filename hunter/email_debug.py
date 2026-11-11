@@ -312,4 +312,5 @@ def run() -> int:
             "yes" if l.rooms is not None else "no", "yes" if l.area_m2 is not None else "no",
             "from link text" if l.address and l.address not in (l.title or "") else "from URL",
             "MATCHES your searches" if res.matched else "does not match your searches"))
+        print("      card text (masked): %s" % mask_text(l.description, 200))
     return 0
