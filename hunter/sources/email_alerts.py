@@ -557,7 +557,9 @@ class EmailAlerts(Source):
             if link.from_html and _good_anchor(link.anchor_text):
                 if full_texts is None:
                     full_texts = [_html_text(h) for h in htmls]
-                    titles = sorted({l.anchor_text for l in links if l.from_html and _good_anchor(l.anchor_text)})
+                    # where a card ends: the next home's title, or a button ("Bekijk het huis", "View all ...")
+                    titles = sorted({l.anchor_text for l in links if l.from_html and (
+                        _good_anchor(l.anchor_text) or (len(l.anchor_text) >= 4 and _GENERIC_ANCHOR.match(l.anchor_text)))})
                 for full in full_texts:
                     card = _card_text(full, link.anchor_text, titles)
                     if card:

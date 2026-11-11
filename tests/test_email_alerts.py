@@ -480,6 +480,7 @@ def test_funda_clean_links_are_used_and_no_tracked_link_is_requested(source):
     assert b.title == "Funda: Pippelingstraat 157" and b.price_total == 2300 and b.area_m2 == 104 and b.rooms == 5
     assert source.resolved == [] and cache == {}  # nothing was requested, so nothing counts as a click
     assert "Jansen" not in repr([(l.title, l.address, l.url) for l in out.values()])
+    assert a.description.endswith("3 kamers") and b.description.endswith("5 kamers")  # stops at the button
 
 
 def test_funda_mail_without_clean_links_still_follows_the_tracked_ones(source):
