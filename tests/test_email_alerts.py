@@ -445,8 +445,9 @@ FUNDA_REAL_HTML = ("""<html><body><table>
 <tr><td><a href="https://links.funda.nl/s/c/HEAD/0123456789abcdef0123456789abcdef/26">funda</a> Beste Jan Jansen, nieuw voor je zoekopdracht</td></tr>
 <tr><td><table><tr><td>Den Haag + 2 plaatsen 2 nieuwe huizen</td></tr>"""
     + _funda_card("AAA", "Kikkerstraat 5 A", "2511 AB Den Haag &euro; 1.850 /maand 75 m&sup2; &bull; 3 kamers")
-    + _funda_card("BBB", "Pippelingstraat 157", "2564 RC Den Haag &euro; 2.300 /maand 104 m&sup2; &bull; 5 kamers")
+    + _funda_card("BBB", "Pippelingstraat 157", "2564 RC Den Haag &euro; 2.300 /maand")
     + """</table>
+<div>104 m&sup2; &bull; 5 kamers</div>
 <div><a href="https://links.funda.nl/s/c/ALL/0123456789abcdef0123456789abcdef/26">Bekijk alle 2 huizen</a></div></td></tr>
 <tr><td><a href="https://links.funda.nl/s/c/ACC/0123456789abcdef0123456789abcdef/26">Mijn huis</a>
 <a href="https://links.funda.nl/s/vb/VIEW/0123456789abcdef0123456789abcdef/26">Bekijk in je browser</a></td></tr>
@@ -490,3 +491,12 @@ def test_funda_mail_without_clean_links_still_follows_the_tracked_ones(source):
     out = by_id(source.fetch("*", None))
     assert set(out) == {"funda-43000001"} and out["funda-43000001"].price_total == 1850
     assert source.resolved  # the fallback: no clean links in this mail
+
+
+def test_card_text_runs_from_the_title_to_the_next_link_text():
+    full = "Den Haag 2 nieuwe huizen Astraat 1 2511 AB € 1.850 75 m² Bstraat 2 2564 RC € 2.300 104 m² • 5 kamers Bekijk alle 2 huizen"
+    titles = ["Astraat 1", "Bstraat 2", "Bekijk alle 2 huizen"]
+    assert ea._card_text(full, "Astraat 1", titles) == "Astraat 1 2511 AB € 1.850 75 m²"
+    assert ea._card_text(full, "Bstraat 2", titles) == "Bstraat 2 2564 RC € 2.300 104 m² • 5 kamers"
+    assert ea._card_text(full, "Cstraat 3", titles) is None
+    assert len(ea._card_text("Astraat 1 " + "x" * 1000, "Astraat 1", titles)) == ea.CARD_TEXT_MAX

@@ -305,6 +305,32 @@ def _anchor_context(a: Any) -> str:
     return node.get_text(" ", strip=True)
 
 
+CARD_TEXT_MAX = 400
+
+
+def _html_text(html: str) -> str:
+    soup = BeautifulSoup(html, "html.parser")
+    for tag in soup(["script", "style", "head"]):
+        tag.decompose()
+    return soup.get_text(" ", strip=True)
+
+
+def _card_text(full: str, title: str, titles: List[str]) -> Optional[str]:
+    """The mail's text from a home's title up to the next link text (the next home, a button), in reading
+    order. The block around a link (_anchor_context) is not always the home's card: where homes are grouped
+    per city it can start with the homes above it or stop before the home's last line."""
+    start = full.find(title)
+    if start < 0:
+        return None
+    end = start + CARD_TEXT_MAX
+    for other in titles:
+        if other and other != title:
+            at = full.find(other, start + len(title))
+            if 0 <= at < end:
+                end = at
+    return full[start:end].strip()
+
+
 def _slug(text: str) -> str:
     t = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("ascii").lower()
     return re.sub(r"[^a-z0-9]+", "-", t).strip("-")
@@ -516,6 +542,8 @@ class EmailAlerts(Source):
                     by_street.setdefault(_slug(direct["slug"]), direct)
         found: Dict[Tuple[str, str], Listing] = {}
         anchors: Dict[Tuple[str, str], bool] = {}
+        full_texts: Optional[List[str]] = None  # the HTML parts as text, made when first needed
+        titles: List[str] = []
         for link in links:
             info = match_listing_url(link.href)
             if info is None and has_direct:
@@ -527,11 +555,14 @@ class EmailAlerts(Source):
             if info is None:
                 continue
             if link.from_html and _good_anchor(link.anchor_text):
-                # A card's text can begin with the cards before it (homes grouped per city): the facts
-                # of this home come after its own title.
-                at = link.context.find(link.anchor_text)
-                if at > 0:
-                    link.context = link.context[at:]
+                if full_texts is None:
+                    full_texts = [_html_text(h) for h in htmls]
+                    titles = sorted({l.anchor_text for l in links if l.from_html and _good_anchor(l.anchor_text)})
+                for full in full_texts:
+                    card = _card_text(full, link.anchor_text, titles)
+                    if card:
+                        link.context = card
+                        break
             kind_type = _KIND_TYPE.get(info["kind"]) if info["kind"] and link.kind_known else None
             if kind_type in ("room", "parking"):
                 continue
