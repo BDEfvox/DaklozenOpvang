@@ -32,6 +32,8 @@ def _segment(seg: str) -> str:
     """Keep plain lowercase words (path names, city, street + house number); hide ids and tokens."""
     if not seg:
         return ""
+    if re.fullmatch(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", seg, re.I):
+        return "<uuid>"
     if len(seg) > 80:
         return "<%d chars>" % len(seg)
     out = []
@@ -148,6 +150,20 @@ def _outline(msg: Any, limit: int = 45) -> None:
                                                       or ea._SKIP_ANCHOR.search(link.href)) else ""
         print("  #%02d <%s>%s%s text[%s] around[%s]" % (n, "<".join(chain), img_part, skip,
                                                         mask_text(link.anchor_text, 80), mask_text(link.context)))
+    # every image address in the mail, in order, with the tag that holds it and how far up an <a> is
+    print("  images:")
+    for tag in soup.find_all(True):
+        urls = []
+        for attr in ("src", "background", "data-src"):
+            if str(tag.get(attr, "")).startswith("http"):
+                urls.append(tag.get(attr))
+        urls += re.findall(r"url\(['\"]?(https?://[^'\")]+)", str(tag.get("style", "")))
+        for u in urls:
+            up, node = 0, tag
+            while node is not None and node.name != "a" and up < 6:
+                node, up = node.parent, up + 1
+            inside = "inside <a> %d up" % up if node is not None and node.name == "a" else "not inside an <a>"
+            print("    <%s> %s (%s)" % (tag.name, url_shape(u), inside))
 
 
 def _count(conn: Any, *criteria: str) -> str:
