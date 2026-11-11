@@ -1,7 +1,134 @@
 {
+ "email_links": {
+  "09c8caee18f8be99cf72": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 3
+  },
+  "0c888c851120e682a2cf": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 3
+  },
+  "1c249ed4f93dd2fb5dd2": {
+   "at": "2026-11-11",
+   "to": "https://www.funda.nl/detail/huur/amsterdam/appartement-wijnsilostraat-104/44678327",
+   "tries": 1
+  },
+  "24b7c60b5f85168bb3e0": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 3
+  },
+  "385882e80b170d3e8952": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 3
+  },
+  "3b825834a8321c37381d": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 3
+  },
+  "5a2f365d75427db1228c": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 3
+  },
+  "5cb6eaca751fae8c2766": {
+   "at": "2026-11-11",
+   "to": "https://www.funda.nl/detail/huur/leiden/appartement-volmolengracht-26/80033503",
+   "tries": 1
+  },
+  "5e3ed7d82f0d07762355": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 3
+  },
+  "6c63a8846255f43334a2": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 3
+  },
+  "741fd2287d7c9cceb02c": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 3
+  },
+  "83dafeaaac0deed6ce15": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 3
+  },
+  "8b667f53b764c45540f7": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 3
+  },
+  "8f0fa3a6d204829667b5": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 3
+  },
+  "a6a2f3c2b4e592a06e2d": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 1
+  },
+  "b2bae522fa2b87f938cb": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 3
+  },
+  "bdb328605a79b717dacc": {
+   "at": "2026-11-11",
+   "to": "https://www.funda.nl/detail/huur/den-haag/appartement-pippelingstraat-157/44679954",
+   "tries": 1
+  },
+  "c24a201c96c85e5faec0": {
+   "at": "2026-11-11",
+   "to": "https://www.funda.nl/detail/huur/den-haag/appartement-kikkerstraat-5-a/80033587",
+   "tries": 1
+  },
+  "c2e25751fd2c963bc0ec": {
+   "at": "2026-11-11",
+   "to": "https://www.funda.nl/detail/huur/leiden/appartement-volmolengracht-26/80033503",
+   "tries": 1
+  },
+  "d639ee6a091529fbd444": {
+   "at": "2026-11-11",
+   "to": "https://www.funda.nl/detail/huur/den-haag/appartement-kikkerstraat-5-a/80033587",
+   "tries": 1
+  },
+  "e3dde530a9f16bb68c5a": {
+   "at": "2026-11-11",
+   "to": "https://www.funda.nl/detail/huur/amsterdam/appartement-wijnsilostraat-104/44678327",
+   "tries": 1
+  },
+  "e6573c8fbae835cd8aa1": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 3
+  },
+  "f9b74cd4941e3dc3ba0b": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 3
+  },
+  "fa89841b374d071a7ae2": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 3
+  },
+  "fc5e322572e67cfa6dea": {
+   "at": "2026-11-11",
+   "to": "",
+   "tries": 3
+  }
+ },
  "last_digest_date": "2026-11-11",
- "last_run": "2026-11-11T17:59:11Z",
- "last_write": "2026-11-11T17:59:11Z",
+ "last_run": "2026-11-11T18:09:15Z",
+ "last_write": "2026-11-11T18:09:15Z",
  "new_matches": {
   "2026-11-10": {
    "amsterdam": 1,
