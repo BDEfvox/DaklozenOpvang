@@ -1,11 +1,149 @@
 {
+ "directwonen:508260": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-12T14:19:46Z",
+  "flags": [
+   "bedrooms_unconfirmed"
+  ],
+  "last_seen": "2026-11-12T14:19:46Z",
+  "listing": {
+   "address": "Godetiaweg",
+   "area_m2": 82,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "den-haag",
+   "description": null,
+   "extra": {
+    "age": null,
+    "details_unavailable": true,
+    "smart_only": true
+   },
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/image/d50c666f-c02c-4e62-a963-4a66692ff2bd",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": false,
+   "price_total": 1595,
+   "property_type": "apartment",
+   "rooms": 3,
+   "source": "directwonen",
+   "source_id": "508260",
+   "title": "Appartement Godetiaweg, Den Haag",
+   "uid": "directwonen:508260",
+   "url": "https://directwonen.nl/huurwoningen-huren/den-haag/godetiaweg/appartement-508260"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 798,
+    "search": "2 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "directwonen:509993": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-12T14:19:46Z",
+  "flags": [
+   "bedrooms_unconfirmed"
+  ],
+  "last_seen": "2026-11-12T14:19:46Z",
+  "listing": {
+   "address": "D.S. Lohmanlaan",
+   "area_m2": 66,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "den-haag",
+   "description": null,
+   "extra": {
+    "age": null,
+    "details_unavailable": true,
+    "smart_only": true
+   },
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/image/dad24e06-d0f9-4c7c-b5b2-245321b17b25",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": false,
+   "price_total": 1495,
+   "property_type": "apartment",
+   "rooms": 3,
+   "source": "directwonen",
+   "source_id": "509993",
+   "title": "Appartement D.S. Lohmanlaan, Den Haag",
+   "uid": "directwonen:509993",
+   "url": "https://directwonen.nl/huurwoningen-huren/den-haag/de-savornin-lohmanlaan/appartement-509993"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 748,
+    "search": "2 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "directwonen:514568": {
+  "best_tier": "great",
+  "first_seen": "2026-11-12T14:19:46Z",
+  "flags": [
+   "bedrooms_unconfirmed"
+  ],
+  "last_seen": "2026-11-12T14:19:46Z",
+  "listing": {
+   "address": "Escamplaan",
+   "area_m2": 86,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "den-haag",
+   "description": null,
+   "extra": {
+    "age": null,
+    "details_unavailable": true,
+    "smart_only": true
+   },
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/image/630bbed7-d781-4e03-b76a-6408fba9c493",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": false,
+   "price_total": 1500,
+   "property_type": "apartment",
+   "rooms": 4,
+   "source": "directwonen",
+   "source_id": "514568",
+   "title": "Appartement Escamplaan, Den Haag",
+   "uid": "directwonen:514568",
+   "url": "https://directwonen.nl/huurwoningen-huren/den-haag/escamplaan/appartement-514568"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 750,
+    "search": "2 people",
+    "tier": "ok"
+   },
+   {
+    "persons": 3,
+    "price_pp": 500,
+    "search": "3 people",
+    "tier": "great"
+   }
+  ],
+  "price_drop_from": null
+ },
  "directwonen:520581": {
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -47,7 +185,7 @@
   "best_tier": "ok",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 80,
@@ -88,7 +226,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "V.d. Helststraat",
    "area_m2": 69,
@@ -129,7 +267,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "V. Zeggelenlaan",
    "area_m2": 198,
@@ -172,7 +310,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Volmolengracht",
    "area_m2": 100,
@@ -216,7 +354,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Lekstraat 13 F",
    "area_m2": null,
@@ -267,7 +405,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Pippelingstraat 157",
    "area_m2": null,
@@ -312,7 +450,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Volmolengracht 26",
    "area_m2": 98,
@@ -357,7 +495,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Waalsdorperweg",
    "area_m2": 38,
@@ -402,7 +540,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Oostzaanstraat",
    "area_m2": 93,
@@ -447,7 +585,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Watervlierstraat",
    "area_m2": 78,
@@ -492,7 +630,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "De La Reyweg",
    "area_m2": 95,
@@ -538,7 +676,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Eosstraat 143",
    "area_m2": 98,
@@ -634,7 +772,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Haringbuisdijk 909",
    "area_m2": 90,
@@ -678,7 +816,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Maanplein 94 E",
    "area_m2": 88,
@@ -723,7 +861,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Turfhaven 449",
    "area_m2": 59,
@@ -768,7 +906,7 @@
    "max_persons:2",
    "short_term"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -813,7 +951,7 @@
    "max_persons:4",
    "short_term"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Vlietpark 42",
    "area_m2": 60,
@@ -859,7 +997,7 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Wesselsstraat 482",
    "area_m2": 85,
@@ -904,7 +1042,7 @@
    "max_persons:2",
    "short_term"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Circusplein 34",
    "area_m2": 72,
@@ -991,7 +1129,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Lorriestraat 49",
    "area_m2": 94,
@@ -1034,7 +1172,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -1077,7 +1215,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Zeeburgerkade 1334",
    "area_m2": 74,
@@ -1121,7 +1259,7 @@
    "income_requirement",
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -1164,7 +1302,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Borgloonstraat 101",
    "area_m2": 141,
@@ -1208,7 +1346,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Cruquiusweg 87-H",
    "area_m2": 91,
@@ -1252,7 +1390,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Cruquiusweg 85-R",
    "area_m2": 86,
@@ -1296,7 +1434,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Cruquiusweg 87-C",
    "area_m2": 115,
@@ -1340,7 +1478,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Cruquiusweg 87-B",
    "area_m2": 115,
@@ -1471,7 +1609,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-12T14:09:49Z",
+  "last_seen": "2026-11-12T14:19:46Z",
   "listing": {
    "address": "Betaplein 60",
    "area_m2": 93,
