@@ -5,7 +5,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Godetiaweg",
    "area_m2": 82,
@@ -49,7 +49,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "D.S. Lohmanlaan",
    "area_m2": 66,
@@ -93,7 +93,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Escamplaan",
    "area_m2": 86,
@@ -143,7 +143,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -267,7 +267,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "V. Zeggelenlaan",
    "area_m2": 198,
@@ -310,7 +310,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Volmolengracht",
    "area_m2": 100,
@@ -354,7 +354,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Lekstraat 13 F",
    "area_m2": null,
@@ -405,7 +405,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Zuster Meijboomstraat 261",
    "area_m2": null,
@@ -450,7 +450,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Pippelingstraat 157",
    "area_m2": null,
@@ -495,7 +495,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Loenermark 509",
    "area_m2": null,
@@ -540,7 +540,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Volmolengracht 26",
    "area_m2": 98,
@@ -585,7 +585,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Leyweg 1424 B",
    "area_m2": 101,
@@ -636,7 +636,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Grote Marktstraat 1 A",
    "area_m2": 84,
@@ -681,7 +681,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Waalsdorperweg",
    "area_m2": 38,
@@ -726,7 +726,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Oostzaanstraat",
    "area_m2": 93,
@@ -771,7 +771,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Achillesstraat",
    "area_m2": 65,
@@ -816,7 +816,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Watervlierstraat",
    "area_m2": 78,
@@ -861,7 +861,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "De La Reyweg",
    "area_m2": 95,
@@ -907,7 +907,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Eosstraat 143",
    "area_m2": 98,
@@ -1003,7 +1003,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Haringbuisdijk 909",
    "area_m2": 90,
@@ -1047,7 +1047,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Maanplein 94 E",
    "area_m2": 88,
@@ -1092,7 +1092,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Turfhaven 449",
    "area_m2": 59,
@@ -1137,7 +1137,7 @@
    "max_persons:2",
    "short_term"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -1182,7 +1182,7 @@
    "max_persons:4",
    "short_term"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Vlietpark 42",
    "area_m2": 60,
@@ -1228,7 +1228,7 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Wesselsstraat 482",
    "area_m2": 85,
@@ -1273,7 +1273,7 @@
    "max_persons:2",
    "short_term"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Circusplein 34",
    "area_m2": 72,
@@ -1360,7 +1360,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Lorriestraat 49",
    "area_m2": 94,
@@ -1403,7 +1403,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -1490,7 +1490,7 @@
    "income_requirement",
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -1533,7 +1533,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Borgloonstraat 101",
    "area_m2": 141,
@@ -1577,7 +1577,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Cruquiusweg 87-H",
    "area_m2": 91,
@@ -1621,7 +1621,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Cruquiusweg 85-R",
    "area_m2": 86,
@@ -1665,7 +1665,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Cruquiusweg 87-C",
    "area_m2": 115,
@@ -1709,7 +1709,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Cruquiusweg 87-B",
    "area_m2": 115,
@@ -1752,7 +1752,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Jan Tooropstraat 1-G",
    "area_m2": 71,
@@ -1883,7 +1883,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Slachthuisstraat 159",
    "area_m2": 80,
@@ -1927,7 +1927,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T16:59:44Z",
+  "last_seen": "2026-11-13T17:49:45Z",
   "listing": {
    "address": "Betaplein 60",
    "area_m2": 93,
