@@ -5,7 +5,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Godetiaweg",
    "area_m2": 82,
@@ -49,7 +49,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "D.S. Lohmanlaan",
    "area_m2": 66,
@@ -93,7 +93,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Escamplaan",
    "area_m2": 86,
@@ -143,7 +143,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -226,7 +226,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "V.d. Helststraat",
    "area_m2": 69,
@@ -267,7 +267,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "V. Zeggelenlaan",
    "area_m2": 198,
@@ -310,7 +310,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Volmolengracht",
    "area_m2": 100,
@@ -354,7 +354,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Lekstraat 13 F",
    "area_m2": null,
@@ -405,7 +405,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Zuster Meijboomstraat 261",
    "area_m2": null,
@@ -450,7 +450,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Pippelingstraat 157",
    "area_m2": null,
@@ -495,7 +495,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Loenermark 509",
    "area_m2": null,
@@ -540,7 +540,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Volmolengracht 26",
    "area_m2": 98,
@@ -585,7 +585,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Leyweg 1424 B",
    "area_m2": 101,
@@ -636,7 +636,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Grote Marktstraat 1 A",
    "area_m2": 84,
@@ -681,7 +681,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Waalsdorperweg",
    "area_m2": 38,
@@ -726,7 +726,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Oostzaanstraat",
    "area_m2": 93,
@@ -771,7 +771,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Achillesstraat",
    "area_m2": 65,
@@ -816,7 +816,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Watervlierstraat",
    "area_m2": 78,
@@ -861,7 +861,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "De La Reyweg",
    "area_m2": 95,
@@ -1137,7 +1137,7 @@
    "max_persons:2",
    "short_term"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -1182,7 +1182,7 @@
    "max_persons:4",
    "short_term"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Vlietpark 42",
    "area_m2": 60,
@@ -1228,7 +1228,7 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Wesselsstraat 482",
    "area_m2": 85,
@@ -1273,7 +1273,7 @@
    "max_persons:2",
    "short_term"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Circusplein 34",
    "area_m2": 72,
@@ -1360,7 +1360,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Lorriestraat 49",
    "area_m2": 94,
@@ -1403,7 +1403,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -1446,7 +1446,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Zeeburgerkade 1334",
    "area_m2": 74,
@@ -1490,7 +1490,7 @@
    "income_requirement",
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -1533,7 +1533,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Borgloonstraat 101",
    "area_m2": 141,
@@ -1577,7 +1577,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Cruquiusweg 87-H",
    "area_m2": 91,
@@ -1621,7 +1621,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Cruquiusweg 85-R",
    "area_m2": 86,
@@ -1665,7 +1665,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Cruquiusweg 87-C",
    "area_m2": 115,
@@ -1709,7 +1709,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Cruquiusweg 87-B",
    "area_m2": 115,
@@ -1723,7 +1723,7 @@
     "label": "direct beschikbaar"
    },
    "furnished": null,
-   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2183191.jpg",
+   "image_url": "https://www.vanderlinden.nl/thumb.php?fileid=2183558&soort=huur&map=414x276&output=1",
    "postcode": null,
    "posted_at": null,
    "price_includes_utilities": null,
@@ -1741,6 +1741,49 @@
     "persons": 2,
     "price_pp": 444,
     "search": "2 people",
+    "tier": "great"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "vanderlinden:2721": {
+  "best_tier": "great",
+  "first_seen": "2026-11-13T09:59:46Z",
+  "flags": [
+   "income_requirement"
+  ],
+  "last_seen": "2026-11-13T09:59:46Z",
+  "listing": {
+   "address": "Jan Tooropstraat 1-G",
+   "area_m2": 71,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": 3,
+   "city": "amsterdam",
+   "description": "*** See English version below *** Per 15 december 2026 beschikbaar! - De nieuwe Meester - Is een prachtige nieuwbouwcomplex bestaande uit 7 woonlagen met in totaal 66 appartementen variërend van 49m2 tot 82m2. Alle appartementen zijn voorzien van een luxe Bruynzeel keuken en een hoogwaardige badkamer en toilet. Daarnaast is er een externe berging van 5 m2 in de parkeergarage. Voor de bewoners zijn in er in totaal 40 parkeerplaatsen beschikbaar in de half verdiepte parkeergarage. - Locatie - In de wijk Overtoomse Veld in het bruisende Amsterdam West waar de straten vernoemd zijn naar de kunstenaars van het verleden herrijst nu een Nieuwe Meester. Station Amsterdam Lelylaan is binnen 5 minuten te voet te bereiken. Lees verder Met de auto rijd je binnen no-time de ring A10 op en het Vondelpark ligt op 10 fietsen van je woning. - Bijzonderheden Jan Tooropstraat 1G • Woonoppervlakte ca. 78 m2; • Ruim 4-kamer appartement; • 3 slaapkamers; • Balkon op het oosten • Woonkamer met open keuken en toegang tot het balkon; • Luxe witte keuken met spoeleiland incl. zwart composiet blad en inbouwapparatuur: inductiekookplaat, afzuigkap, vaatwasser, combi oven en koel/vriescombinatie; • Badkamer met douchehoek en wastafel; • Separate toilet; • 1 berging met aansluiting voor een wasmachine en droger; • Externe berging in de kelder; • Parkeermogelijkheid in de ondergrondse parkeergarage; • Bouwjaar: 2020; • Energielabel: A - Inkomensrichtlijnen - • Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3.5x keer de vermelde huurprijs van deze woning. • Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee, in dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen. • Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.500,- per maand kost is dus € 6.000 (€1.500,- x 3,5 of €1.500,- x 4 bij tweeverdieners) • In sommige gevallen is een waarborgsom verplicht. • Ben je een zelfstandig ondernemer, gepensioneerd of meer informatie over de inkomensrichtlijnen? Ga naar dan naar onze website: vanderlinden.nl/woning-huren/faq - Wil je in aanmerking komen voor deze woning? - Ben je enthousiast geworden over deze woning en voldoe je aan de inkomensrichtlijnen? Kijk dan op vanderlinden.nl/woning-huren om je direct digitaal in te schrijven als woningzoekende. - Goed om te weten - • Getoonde foto's zijn van een modelwoning en niet van de specifieke woning zelf. • De huurovereenkomst wordt aangegaan voor de duur van 12 maanden. Na deze periode is deze maandelijks opzegbaar, de opzegtermijn bedraagt één maand. Alle informatie met betrekking tot de woning is met zorg samengesteld. Deze is echter indicatief en er kunnen geen rechten aan ontleend worden. *** English *** Available from the 15th of December 2026 - De Nieuwe Meester - This is a stunning new-build complex spanning 7 floors, comprising a total of 66 apartments that range in size from 49m² to 82m². Each apartment features a high-end Bruynzeel kitchen, as well as a premium-quality bathroom and toilet. Additionally, there is an external 5m² storage unit located in the parking garage. For residents, a total of 40 parking spaces are available within the semi-underground parking garage. - Location - In the Overtoomse Veld neighborhood—part of the vibrant Amsterdam West district, where streets are named after historic artists—rises \"De Nieuwe Meester.\" Amsterdam Lelylaan station is just a 5-minute walk away. By car, you can reach the A10 ring road in no time, and the Vondelpark is a mere 10-minute bike ride from your home. - Facts and features Jan Tooropstraat 1G • Living space approx. 78 square meter; • Spacious 4 room apartment; • 3 bedrooms; • Balcony facing south; • Living room with open kitchen and access to the balcony; • Luxurious white kitchen including a black composite countertop and built-in applia",
+   "extra": {
+    "income_requirement": true,
+    "label": "binnenkort beschikbaar"
+   },
+   "furnished": null,
+   "image_url": "https://www.vanderlinden.nl/thumb.php?fileid=2183806&soort=huur&map=414x276&output=1",
+   "postcode": null,
+   "posted_at": null,
+   "price_includes_utilities": null,
+   "price_total": 1780,
+   "property_type": null,
+   "rooms": 4,
+   "source": "vanderlinden",
+   "source_id": "2721",
+   "title": "Jan Tooropstraat 1-G, Amsterdam",
+   "uid": "vanderlinden:2721",
+   "url": "https://www.vanderlinden.nl/huurwoning/Jan-Tooropstraat-1-Amsterdam/2721/"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 593,
+    "search": "3 people",
     "tier": "great"
    }
   ],
@@ -1840,7 +1883,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Slachthuisstraat 159",
    "area_m2": 80,
@@ -1884,7 +1927,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-13T09:49:44Z",
+  "last_seen": "2026-11-13T09:59:46Z",
   "listing": {
    "address": "Betaplein 60",
    "area_m2": 93,

@@ -21,9 +21,44 @@
   "suspicious_price": "Suspiciously cheap",
   "utilities_included": "Utilities included"
  },
- "generated_at": "2026-11-13T09:49:44Z",
- "last_run": "2026-11-13T09:49:44Z",
+ "generated_at": "2026-11-13T09:59:46Z",
+ "last_run": "2026-11-13T09:59:46Z",
  "listings": [
+  {
+   "address": "Jan Tooropstraat 1-G",
+   "area_m2": 71,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": 3,
+   "best_tier": "great",
+   "city": "amsterdam",
+   "first_seen": "2026-11-13T09:59:46Z",
+   "flags": [
+    "income_requirement"
+   ],
+   "furnished": null,
+   "image_url": "https://www.vanderlinden.nl/thumb.php?fileid=2183806&soort=huur&map=414x276&output=1",
+   "last_seen": "2026-11-13T09:59:46Z",
+   "matches": [
+    {
+     "persons": 3,
+     "price_pp": 593,
+     "search": "3 people",
+     "tier": "great"
+    }
+   ],
+   "postcode": null,
+   "price_drop_from": null,
+   "price_includes_utilities": null,
+   "price_total": 1780,
+   "property_type": null,
+   "rooms": 4,
+   "source": "vanderlinden",
+   "source_label": "Van der Linden",
+   "title": "Jan Tooropstraat 1-G, Amsterdam",
+   "uid": "vanderlinden:2721",
+   "url": "https://www.vanderlinden.nl/huurwoning/Jan-Tooropstraat-1-Amsterdam/2721/"
+  },
   {
    "address": "Achillesstraat",
    "area_m2": 65,
@@ -38,7 +73,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 3,
@@ -73,7 +108,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 3,
@@ -108,7 +143,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 3,
@@ -143,7 +178,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -184,7 +219,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -219,7 +254,7 @@
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/6a/6a0287a8db753cbf5b3a1575feda3304/o/img-7133-medium-.jpg?rmode=crop&width=570&height=276&hmac=c6f692ebcca6f8ba60a65872484cdaa30a82ebf2fb19d3d4c72a5d7db3c1d5c6",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -254,7 +289,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/d50c666f-c02c-4e62-a963-4a66692ff2bd",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -289,7 +324,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/dad24e06-d0f9-4c7c-b5b2-245321b17b25",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -324,7 +359,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/630bbed7-d781-4e03-b76a-6408fba9c493",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -366,7 +401,7 @@
    ],
    "furnished": "furnished",
    "image_url": "https://resources.kamernet.nl/image/417043d2-144b-4ec1-ba4c-47f8c12bed35/resize/422-225",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -401,7 +436,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -436,7 +471,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 3,
@@ -506,7 +541,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -547,7 +582,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 3,
@@ -582,7 +617,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 3,
@@ -617,7 +652,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 3,
@@ -652,7 +687,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 3,
@@ -688,7 +723,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2183135.jpg",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -724,7 +759,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2183154.jpg",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -760,7 +795,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2183173.jpg",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -795,8 +830,8 @@
     "income_requirement"
    ],
    "furnished": null,
-   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2183191.jpg",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "image_url": "https://www.vanderlinden.nl/thumb.php?fileid=2183558&soort=huur&map=414x276&output=1",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -831,7 +866,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2181717.jpg",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 3,
@@ -868,7 +903,7 @@
    ],
    "furnished": "furnished",
    "image_url": "https://resources.kamernet.nl/image/ed9ea9bd-e2f5-4a92-aa48-944f3ac1b6de/resize/422-225",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -938,7 +973,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/eca3053f-f3f2-4209-8e0c-670bc8cdc54f",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -1004,7 +1039,7 @@
    "flags": [],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/738dde52-6463-4ac1-9ba6-84844233b8c3",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 3,
@@ -1037,7 +1072,7 @@
    "flags": [],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/6bfb5251-06d0-4aea-90b4-1bf604f764f8",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -1072,7 +1107,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/cfeaa1a3-4b09-4ae9-9310-df6d3af633aa",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 3,
@@ -1293,7 +1328,7 @@
    ],
    "furnished": "furnished",
    "image_url": "https://resources.kamernet.nl/image/f133c357-dd63-4e68-bf4c-2bf2bb3cf464/resize/422-225",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -1329,7 +1364,7 @@
    ],
    "furnished": "upholstered",
    "image_url": "https://resources.kamernet.nl/image/90e91c00-4c83-4053-9c71-723538f1ea20/resize/422-225",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 3,
@@ -1399,7 +1434,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2170840.jpg",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 3,
@@ -1434,7 +1469,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2182730.jpg",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -1469,7 +1504,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2182094.jpg",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -1505,7 +1540,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2182716.jpg",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 2,
@@ -1540,7 +1575,7 @@
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/76/76697455c1f0637d718f5d073b6b94b5/o/content.jpg?rmode=crop&width=570&height=276&hmac=2d7135c26e41d0941bf1801f1a5ce5d11b24a3ac122d8a046767600067917c40",
-   "last_seen": "2026-11-13T09:49:44Z",
+   "last_seen": "2026-11-13T09:59:46Z",
    "matches": [
     {
      "persons": 3,
@@ -1584,7 +1619,7 @@
    "homepage": "https://www.123wonen.nl",
    "label": "123Wonen",
    "last_error": null,
-   "last_ok": "2026-11-13T09:49:44Z",
+   "last_ok": "2026-11-13T09:59:46Z",
    "listings_last_run": 8,
    "name": "123wonen",
    "note": "Reply via the agency (free)",
@@ -1595,7 +1630,7 @@
    "homepage": "https://directwonen.nl",
    "label": "DirectWonen",
    "last_error": null,
-   "last_ok": "2026-11-13T09:49:44Z",
+   "last_ok": "2026-11-13T09:59:46Z",
    "listings_last_run": 84,
    "name": "directwonen",
    "note": "Paid account needed to reply",
@@ -1606,7 +1641,7 @@
    "homepage": "https://www.pararius.nl",
    "label": "Pararius/Funda email alerts",
    "last_error": "2026-11-13T09:09:46Z",
-   "last_ok": "2026-11-13T09:49:44Z",
+   "last_ok": "2026-11-13T09:59:46Z",
    "listings_last_run": 46,
    "name": "email_alerts",
    "note": "Reads the alert emails these sites send you",
@@ -1617,7 +1652,7 @@
    "homepage": "https://heimstaden.com/nl/huurwoningen/",
    "label": "Heimstaden",
    "last_error": "2026-11-11T14:39:14Z",
-   "last_ok": "2026-11-13T09:49:44Z",
+   "last_ok": "2026-11-13T09:59:46Z",
    "listings_last_run": 2,
    "name": "heimstaden",
    "note": "Reply via Heimstaden (free)",
@@ -1628,29 +1663,29 @@
    "homepage": "https://housinganywhere.com",
    "label": "HousingAnywhere",
    "last_error": null,
-   "last_ok": "2026-11-13T09:49:44Z",
+   "last_ok": "2026-11-13T09:59:46Z",
    "listings_last_run": 41,
    "name": "housinganywhere",
    "note": "Mostly furnished, mid-term; platform fee applies",
    "status": "ok"
   },
   {
-   "error": null,
+   "error": "ikwilhuren.nu answered 403 (bot check or access denied)",
    "homepage": "https://ikwilhuren.nu/aanbod/",
    "label": "MVGM (ikwilhuren.nu)",
-   "last_error": "2026-11-13T04:19:45Z",
+   "last_error": "2026-11-13T09:59:46Z",
    "last_ok": "2026-11-13T09:49:44Z",
-   "listings_last_run": 16,
+   "listings_last_run": 0,
    "name": "ikwilhuren",
    "note": "Free account on ikwilhuren.nu needed to reply",
-   "status": "ok"
+   "status": "blocked"
   },
   {
    "error": null,
    "homepage": "https://kamernet.nl",
    "label": "Kamernet",
    "last_error": "2026-11-12T15:19:44Z",
-   "last_ok": "2026-11-13T09:49:44Z",
+   "last_ok": "2026-11-13T09:59:46Z",
    "listings_last_run": 39,
    "name": "kamernet",
    "note": "Paid Kamernet account needed to reply",
@@ -1660,7 +1695,7 @@
    "error": "www.rotsvast.nl answered HTTP 503 for https://www.rotsvast.nl/huren/?search=Den+Haag",
    "homepage": "https://www.rotsvast.nl/huren/",
    "label": "Rotsvast",
-   "last_error": "2026-11-13T09:49:44Z",
+   "last_error": "2026-11-13T09:59:46Z",
    "last_ok": "2026-11-12T12:19:30Z",
    "listings_last_run": 0,
    "name": "rotsvast",
@@ -1672,8 +1707,8 @@
    "homepage": "https://www.vanderlinden.nl/woning-huren/",
    "label": "Van der Linden",
    "last_error": "2026-11-12T23:59:45Z",
-   "last_ok": "2026-11-13T09:49:44Z",
-   "listings_last_run": 61,
+   "last_ok": "2026-11-13T09:59:46Z",
+   "listings_last_run": 62,
    "name": "vanderlinden",
    "note": "Reply via the agency (free)",
    "status": "ok"
@@ -1683,7 +1718,7 @@
    "homepage": "https://www.vesteda.com/nl",
    "label": "Vesteda",
    "last_error": null,
-   "last_ok": "2026-11-13T09:49:44Z",
+   "last_ok": "2026-11-13T09:59:46Z",
    "listings_last_run": 16,
    "name": "vesteda",
    "note": "Free account on hurenbij.vesteda.com needed to reply",
