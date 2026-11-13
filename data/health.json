@@ -4,7 +4,7 @@
   "error": null,
   "homepage": "https://www.123wonen.nl",
   "label": "123Wonen",
-  "last_ok": "2026-11-13T12:09:47Z",
+  "last_ok": "2026-11-13T12:29:44Z",
   "listings_last_run": 8,
   "note": "Reply via the agency (free)",
   "status": "ok"
@@ -14,7 +14,7 @@
   "error": null,
   "homepage": "https://directwonen.nl",
   "label": "DirectWonen",
-  "last_ok": "2026-11-13T12:09:47Z",
+  "last_ok": "2026-11-13T12:29:44Z",
   "listings_last_run": 84,
   "note": "Paid account needed to reply",
   "status": "ok"
@@ -26,28 +26,28 @@
   "homepage": "https://www.pararius.nl",
   "label": "Pararius/Funda email alerts",
   "last_error": "2026-11-13T09:09:46Z",
-  "last_ok": "2026-11-13T12:09:47Z",
+  "last_ok": "2026-11-13T12:29:44Z",
   "listings_last_run": 46,
   "note": "Reads the alert emails these sites send you",
   "status": "ok"
  },
  "heimstaden": {
-  "consecutive_failures": 0,
-  "error": null,
+  "consecutive_failures": 1,
+  "error": "network error for heimstaden.com: HTTPSConnectionPool(host='heimstaden.com', port=443): Read timed out. (read timeout=20.0)",
   "homepage": "https://heimstaden.com/nl/huurwoningen/",
   "label": "Heimstaden",
-  "last_error": "2026-11-11T14:39:14Z",
+  "last_error": "2026-11-13T12:29:44Z",
   "last_ok": "2026-11-13T12:09:47Z",
-  "listings_last_run": 2,
+  "listings_last_run": 0,
   "note": "Reply via Heimstaden (free)",
-  "status": "ok"
+  "status": "error"
  },
  "housinganywhere": {
   "consecutive_failures": 0,
   "error": null,
   "homepage": "https://housinganywhere.com",
   "label": "HousingAnywhere",
-  "last_ok": "2026-11-13T12:09:47Z",
+  "last_ok": "2026-11-13T12:29:44Z",
   "listings_last_run": 41,
   "note": "Mostly furnished, mid-term; platform fee applies",
   "status": "ok"
@@ -58,21 +58,21 @@
   "homepage": "https://ikwilhuren.nu/aanbod/",
   "label": "MVGM (ikwilhuren.nu)",
   "last_error": "2026-11-13T09:59:46Z",
-  "last_ok": "2026-11-13T12:09:47Z",
+  "last_ok": "2026-11-13T12:29:44Z",
   "listings_last_run": 16,
   "note": "Free account on ikwilhuren.nu needed to reply",
   "status": "ok"
  },
  "kamernet": {
   "consecutive_failures": 0,
-  "error": null,
+  "error": "den-haag: kamernet.nl answered HTTP 500 for https://kamernet.nl/huren/appartement-den-haag?radius=1",
   "homepage": "https://kamernet.nl",
   "label": "Kamernet",
   "last_error": "2026-11-12T15:19:44Z",
-  "last_ok": "2026-11-13T12:09:47Z",
-  "listings_last_run": 39,
+  "last_ok": "2026-11-13T12:29:44Z",
+  "listings_last_run": 22,
   "note": "Paid Kamernet account needed to reply",
-  "status": "ok"
+  "status": "partial"
  },
  "rotsvast": {
   "alerted": true,
@@ -81,7 +81,7 @@
   "homepage": "https://www.rotsvast.nl/huren/",
   "label": "Rotsvast",
   "last_error": "2026-11-13T10:39:47Z",
-  "last_ok": "2026-11-13T12:09:47Z",
+  "last_ok": "2026-11-13T12:29:44Z",
   "listings_last_run": 7,
   "note": "Reply via the agency (free)",
   "status": "partial"
@@ -92,7 +92,7 @@
   "homepage": "https://www.vanderlinden.nl/woning-huren/",
   "label": "Van der Linden",
   "last_error": "2026-11-12T23:59:45Z",
-  "last_ok": "2026-11-13T12:09:47Z",
+  "last_ok": "2026-11-13T12:29:44Z",
   "listings_last_run": 61,
   "note": "Reply via the agency (free)",
   "status": "ok"
@@ -102,7 +102,7 @@
   "error": null,
   "homepage": "https://www.vesteda.com/nl",
   "label": "Vesteda",
-  "last_ok": "2026-11-13T12:09:47Z",
+  "last_ok": "2026-11-13T12:29:44Z",
   "listings_last_run": 16,
   "note": "Free account on hurenbij.vesteda.com needed to reply",
   "status": "ok"
