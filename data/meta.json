@@ -127,8 +127,8 @@
   }
  },
  "last_digest_date": "2026-11-15",
- "last_run": "2026-11-15T15:17:17Z",
- "last_write": "2026-11-15T15:17:17Z",
+ "last_run": "2026-11-15T15:27:18Z",
+ "last_write": "2026-11-15T15:27:18Z",
  "new_matches": {
   "2026-11-10": {
    "amsterdam": 1,
@@ -153,7 +153,7 @@
    "leiden": 1
   },
   "2026-11-15": {
-   "amsterdam": 1,
+   "amsterdam": 2,
    "den-haag": 1
   }
  }
