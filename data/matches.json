@@ -5,7 +5,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Godetiaweg",
    "area_m2": 82,
@@ -49,7 +49,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "D.S. Lohmanlaan",
    "area_m2": 66,
@@ -93,7 +93,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Escamplaan",
    "area_m2": 86,
@@ -143,7 +143,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -310,7 +310,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Volmolengracht",
    "area_m2": 100,
@@ -354,7 +354,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "N.W. Buitensingel",
    "area_m2": 128,
@@ -449,7 +449,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Zuster Meijboomstraat 261",
    "area_m2": null,
@@ -494,7 +494,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Zuster Meijboomstraat 175",
    "area_m2": null,
@@ -539,7 +539,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Wijnand Nuijenstraat 8",
    "area_m2": null,
@@ -584,7 +584,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Postjesweg 163 T",
    "area_m2": 56,
@@ -674,7 +674,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "David Ricardostraat 318",
    "area_m2": 120,
@@ -719,7 +719,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Heiloostraat 349",
    "area_m2": null,
@@ -770,7 +770,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Loevesteinlaan 387 A",
    "area_m2": null,
@@ -809,13 +809,103 @@
   ],
   "price_drop_from": null
  },
+ "email_alerts:funda-44686036": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-17T03:28:54Z",
+  "flags": [
+   "bedrooms_unconfirmed"
+  ],
+  "last_seen": "2026-11-17T03:28:54Z",
+  "listing": {
+   "address": "Fritz Dietrich Kahlenbergstraat 46 D",
+   "area_m2": 128,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "amsterdam",
+   "description": null,
+   "extra": {
+    "private_text": true,
+    "site": "funda",
+    "site_prefiltered": true,
+    "via": "Funda"
+   },
+   "furnished": null,
+   "image_url": null,
+   "postcode": null,
+   "posted_at": "2026-11-17T03:24:14Z",
+   "price_includes_utilities": null,
+   "price_total": 2250,
+   "property_type": "apartment",
+   "rooms": 4,
+   "source": "email_alerts",
+   "source_id": "funda-44686036",
+   "title": "Funda: Fritz Dietrich Kahlenbergstraat 46 D",
+   "uid": "email_alerts:funda-44686036",
+   "url": "https://www.funda.nl/detail/huur/amsterdam/appartement-fritz-dietrich-kahlenbergstraat-46-d/44686036"
+  },
+  "matches": [
+   {
+    "persons": 3,
+    "price_pp": 750,
+    "search": "3 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "email_alerts:funda-44686162": {
+  "best_tier": "ok",
+  "first_seen": "2026-11-17T03:28:54Z",
+  "flags": [
+   "bedrooms_unconfirmed"
+  ],
+  "last_seen": "2026-11-17T03:28:54Z",
+  "listing": {
+   "address": "Robijnhof 28",
+   "area_m2": 75,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "leiden",
+   "description": null,
+   "extra": {
+    "private_text": true,
+    "site": "funda",
+    "site_prefiltered": true,
+    "via": "Funda"
+   },
+   "furnished": null,
+   "image_url": null,
+   "postcode": null,
+   "posted_at": "2026-11-17T03:24:14Z",
+   "price_includes_utilities": null,
+   "price_total": 1494,
+   "property_type": "apartment",
+   "rooms": 3,
+   "source": "email_alerts",
+   "source_id": "funda-44686162",
+   "title": "Funda: Robijnhof 28",
+   "uid": "email_alerts:funda-44686162",
+   "url": "https://www.funda.nl/detail/huur/leiden/appartement-robijnhof-28/44686162"
+  },
+  "matches": [
+   {
+    "persons": 2,
+    "price_pp": 747,
+    "search": "2 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
  "email_alerts:funda-80030140": {
   "best_tier": "ok",
   "first_seen": "2026-11-13T04:19:45Z",
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Loenermark 509",
    "area_m2": null,
@@ -905,7 +995,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Leyweg 1424 B",
    "area_m2": 101,
@@ -956,7 +1046,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Grote Marktstraat 1 A",
    "area_m2": 84,
@@ -1001,7 +1091,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Veenendaalkade 56",
    "area_m2": 110,
@@ -1046,7 +1136,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Noord West Buitensingel 6",
    "area_m2": 76,
@@ -1091,7 +1181,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Leusdenhof 326",
    "area_m2": 88,
@@ -1187,7 +1277,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Veenendaalkade",
    "area_m2": 110,
@@ -1232,7 +1322,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Heiloostraat",
    "area_m2": 94,
@@ -1328,7 +1418,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Noord West Buitensingel",
    "area_m2": 76,
@@ -1373,7 +1463,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Kijkduinsestraat",
    "area_m2": 110,
@@ -1418,7 +1508,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Simon Carmiggelthof",
    "area_m2": 115,
@@ -1463,7 +1553,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Achillesstraat",
    "area_m2": 65,
@@ -1599,7 +1689,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Eosstraat 143",
    "area_m2": 98,
@@ -1695,7 +1785,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Sumatrakade 1153",
    "area_m2": 96,
@@ -1740,7 +1830,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Haringbuisdijk 909",
    "area_m2": 90,
@@ -1784,7 +1874,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Maanplein 94 E",
    "area_m2": 88,
@@ -1829,7 +1919,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Turfhaven 449",
    "area_m2": 59,
@@ -1874,7 +1964,7 @@
    "max_persons:2",
    "short_term"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -1919,7 +2009,7 @@
    "max_persons:4",
    "short_term"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Vlietpark 42",
    "area_m2": 60,
@@ -1965,7 +2055,7 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Wesselsstraat 482",
    "area_m2": 85,
@@ -2055,7 +2145,7 @@
    "max_persons:2",
    "short_term"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Amerbos 174",
    "area_m2": 85,
@@ -2101,7 +2191,7 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Madurastraat 79A",
    "area_m2": 59,
@@ -2147,7 +2237,7 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Maaswijkstraat 10",
    "area_m2": 85,
@@ -2234,7 +2324,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Lorriestraat 49",
    "area_m2": 94,
@@ -2277,7 +2367,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -2363,7 +2453,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Zeeburgerkade 1258",
    "area_m2": 91,
@@ -2407,7 +2497,7 @@
    "income_requirement",
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -2450,7 +2540,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Borgloonstraat 101",
    "area_m2": 141,
@@ -2494,7 +2584,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Cruquiusweg 87-H",
    "area_m2": 91,
@@ -2538,7 +2628,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Cruquiusweg 85-R",
    "area_m2": 86,
@@ -2582,7 +2672,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Cruquiusweg 87-C",
    "area_m2": 115,
@@ -2626,7 +2716,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Cruquiusweg 87-B",
    "area_m2": 115,
@@ -2844,7 +2934,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-17T02:38:44Z",
+  "last_seen": "2026-11-17T03:28:54Z",
   "listing": {
    "address": "Westerdok 248",
    "area_m2": 103,
