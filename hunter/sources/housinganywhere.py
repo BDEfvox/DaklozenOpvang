@@ -26,6 +26,8 @@ _CITY_PATHS = {
     "den-haag": "The-Hague--Netherlands",
     "amsterdam": "Amsterdam--Netherlands",
     "leiden": "Leiden--Netherlands",
+    "delft": "Delft--Netherlands",
+    "rotterdam": "Rotterdam--Netherlands",
 }
 _TYPES = {"APARTMENT": "apartment", "HOUSE": "house", "STUDIO": "studio", "ROOM": "room",
           "PRIVATE_ROOM": "room", "SHARED_ROOM": "room"}
@@ -152,6 +154,7 @@ class HousingAnywhere(Source):
     name = "housinganywhere"
     label = "HousingAnywhere"
     homepage = "https://housinganywhere.com"
+    cities = tuple(_CITY_PATHS)
     note = "Mostly furnished, mid-term; platform fee applies"
 
     def search_url(self, city: str) -> str:

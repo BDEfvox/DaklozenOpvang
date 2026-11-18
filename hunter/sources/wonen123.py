@@ -1,4 +1,4 @@
-"""123Wonen: rental agency (Den Haag, Amsterdam, Leiden branches). Server-rendered list, newest first.
+"""123Wonen: rental agency with city searches. Server-rendered list, newest first.
 
 https://www.123wonen.nl/huurwoningen/in/<city>/sort/newest  (12 listings per page, one request per city).
 Rented listings stay on the page with a "Verhuurd" label; they are skipped here.
@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 from bs4.element import Tag
 
 from ..http import Http
-from ..models import Listing
+from ..models import CITIES, Listing
 from ..utils import city_slug, clean_text, parse_int, parse_price
 from .base import Source, SourceError
 
@@ -128,7 +128,7 @@ class Wonen123(Source):
     name = "123wonen"
     label = "123Wonen"
     homepage = "https://www.123wonen.nl"
-    cities = ("den-haag", "amsterdam", "leiden")
+    cities = tuple(CITIES)
     note = "Reply via the agency (free)"
 
     def fetch(self, city: str, http: Http) -> List[Listing]:

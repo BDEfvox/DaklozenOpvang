@@ -20,6 +20,8 @@ _PLACES = {
     "den-haag": ("Den Haag, Nederland", 52.0705, 4.3007, 5),
     "amsterdam": ("Amsterdam, Nederland", 52.3676, 4.9041, 5),
     "leiden": ("Leiden, Nederland", 52.1636, 4.4802, 5),
+    "delft": ("Delft, Nederland", 52.0116, 4.3571, 5),
+    "rotterdam": ("Rotterdam, Nederland", 51.9244, 4.4777, 5),
 }
 
 # UnitStatus in the site's JS: ForRent=1, Rented=2, RentedWithReservation=3, Reserved=4, New=5
@@ -46,7 +48,7 @@ class Vesteda(Source):
     name = "vesteda"
     label = "Vesteda"
     homepage = "https://www.vesteda.com/nl"
-    cities = ("den-haag", "amsterdam", "leiden")
+    cities = tuple(_PLACES)
     note = "Free account on hurenbij.vesteda.com needed to reply"
     # 3.5x the rent alone, 4x together; "Deze norm geldt voor iedereen" (vesteda.com, inkomens-voorwaarden)
     income_requirement = True

@@ -9,6 +9,8 @@ CITIES: Dict[str, str] = {
     "den-haag": "Den Haag",
     "amsterdam": "Amsterdam",
     "leiden": "Leiden",
+    "delft": "Delft",
+    "rotterdam": "Rotterdam",
 }
 
 
@@ -18,7 +20,7 @@ class Listing:
     source_id: str                  # stable id on that site
     url: str
     title: str
-    city: str                       # city slug: den-haag | amsterdam | leiden
+    city: str                       # city slug from CITIES
     price_total: Optional[int] = None            # monthly rent in whole euros, as listed
     price_includes_utilities: Optional[bool] = None
     bedrooms: Optional[int] = None               # "slaapkamers"

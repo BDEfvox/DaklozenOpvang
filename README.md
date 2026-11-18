@@ -1,6 +1,6 @@
 # House Hunter
 
-Checks Dutch rental sites every ~10 minutes for a whole home in **Den Haag, Amsterdam or Leiden**
+Checks Dutch rental sites every ~10 minutes for a whole home in **Den Haag, Amsterdam, Leiden, Delft or Rotterdam**
 that fits **2 people (2+ bedrooms, up to €1,600/month)** or **3 people (3+ bedrooms, up to €2,400/month)**,
 so about €800 per person or less. New matches go to your **Telegram group**, and every match is on a
 **dashboard page**. It runs for free on **GitHub Actions**, so your computer can be off.
@@ -45,7 +45,7 @@ and the tool can read those emails and forward the matches to Telegram.
 1. Make a new Gmail address just for this (don't use your main inbox: the tool gets read access to it).
 2. Turn on 2-step verification for it, then create an **app password**: Google Account → Security → App passwords.
 3. On Pararius and Funda, make an account with that Gmail and save searches with email alerts (choose "direct" / instant if offered):
-   - Den Haag, Amsterdam, Leiden; huur; max €2,400 (or €1,600 if it's just two of you); 2+ slaapkamers.
+   - Den Haag, Amsterdam, Leiden, Delft, Rotterdam; huur; max €2,400 (or €1,600 if it's just two of you); 2+ slaapkamers.
 4. Run `./go-live.sh` again and say **yes** to the email question (host `imap.gmail.com`, your new Gmail address, the app password).
 
 If alert emails arrive but nothing reaches Telegram: Actions tab → **email debug** → Run workflow. Its log shows what
@@ -53,7 +53,7 @@ the tool finds in the mailbox (counts, senders, the shape of the links; no names
 
 ## Things to know
 
-- **Three people is harder than two.** In all three cities, a landlord usually needs a permit (omzettingsvergunning)
+- **Three people is harder than two.** A landlord often needs a permit (omzettingsvergunning)
   to rent a normal home to 3 or more unrelated adults. That's why many listings say "max 2 personen" or "geen woningdelers".
   The tool flags those and leaves them out of the 3-person search.
 - **Income:** landlords usually want a gross monthly income of 3 to 4 times the rent, combined. Some count a second earner
@@ -70,21 +70,20 @@ the tool finds in the mailbox (counts, senders, the shape of the links; no names
 
 ## Sites it checks
 
-Checked every run (all tested working from a home connection on 9 Nov 2026; the first GitHub run reports which
-ones also work from GitHub's servers):
+The checker tries these sources each run. The dashboard shows which sites respond from GitHub.
 
 | Site | Cities | Replying |
 |---|---|---|
-| Kamernet (apartments only) | all three | paid Kamernet account |
-| HousingAnywhere | all three | platform fee; mostly furnished, mid-term |
-| DirectWonen | all three | paid account |
-| 123Wonen | all three | free, via the agency |
-| Rotsvast | all three | free, via the agency |
-| MVGM (ikwilhuren.nu) | all three | free account |
-| Vesteda | all three | free account |
-| Heimstaden | all three | free |
-| Van der Linden | Amsterdam | free, via the agency (includes "2PEER" homes built for sharers) |
-| Pararius, Funda, Huurwoningen (via their email alerts) | all three | free; optional, see above |
+| Kamernet (apartments only) | all five | paid Kamernet account |
+| HousingAnywhere | all five | platform fee; mostly furnished, mid-term |
+| DirectWonen | all five | paid account |
+| 123Wonen | all five | free, via the agency |
+| Rotsvast | all five | free, via the agency |
+| MVGM (ikwilhuren.nu) | all five | free account |
+| Vesteda | all five | free account |
+| Heimstaden | all five | free |
+| Van der Linden | matching cities in its feed | free, via the agency (includes "2PEER" homes built for sharers) |
+| Pararius, Funda, Huurwoningen (via their email alerts) | all five | free; optional, see above |
 
 Not checked, on purpose:
 - **Pararius, Funda, Huurwoningen, Huurstunt, Holland2Stay, REBO** block automated checks. The tool doesn't get around
@@ -119,7 +118,7 @@ Your Mac can cover just those sites:
 
 Edit `config.json` and push (or edit it on github.com: open the file and click the pencil). The next run picks it up.
 - `searches`: group sizes, bedrooms, max total rent, the "great" threshold.
-- `cities`: `den-haag`, `amsterdam`, `leiden`.
+- `cities`: `den-haag`, `amsterdam`, `leiden`, `delft`, `rotterdam`.
 - `disabled_sources`: e.g. `["marktplaats"]` to stop a site.
 - `reply_template`: your reply text. Fill in the parts in [brackets].
 - `telegram.quiet_hours`: messages between 23:00 and 07:00 arrive silently.
@@ -151,6 +150,7 @@ Runs the tests.
   To start again: **Enable workflow**, then **Run workflow**.
 - **A site shows "blocked" on the dashboard:** that site refuses automated checks from GitHub's servers. The others keep
   working. Turn on the [Mac backup](#mac-backup-optional) to cover it from home, or use its email alerts if it has them.
+- **A site shows "partial":** some requests failed, but the checker still uses the listings it received.
 - **A site shows "error" / "layout changed":** the site changed its page. The others keep working; the parser for that site
   needs an update.
 - **Telegram stopped after you changed the group:** if Telegram upgrades the group to a "supergroup" (for example after

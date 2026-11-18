@@ -15,7 +15,7 @@ from .filters import MatchResult, evaluate
 from .models import Listing
 from .notify import format as fmt
 from .notify.telegram import Notifier
-from .sources.base import Source, SourceBlocked, SourceError
+from .sources.base import Source, SourceBlocked, SourceError, SourcePartial
 from .state import State, iso
 
 try:
@@ -58,31 +58,34 @@ def fetch_source(source: Source, cfg: Dict[str, Any], http: Any, only_city: Opti
     cities_cfg = list(cfg.get("cities", []))
     errors: List[Tuple[str, Exception]] = []
     ok_cities = 0
+    cities = ["*"]
     if source.per_city:
         cities = [c for c in source.cities if c in cities_cfg and (only_city is None or c == only_city)]
-        for city in cities:
-            try:
-                items = list(source.fetch(city, http) or [])
-            except Exception as exc:
-                errors.append((city, exc))
-                res.per_city[city] = (0, _describe(exc))
-                if isinstance(exc, SourceBlocked):
-                    break  # do not keep knocking on a door that is closed
-                continue
-            items = [l for l in items if l.city in cities_cfg]
-            res.listings.extend(items)
-            res.per_city[city] = (len(items), None)
-            ok_cities += 1
-    else:
+    for city in cities:
+        error = None
+        blocked = False
         try:
-            items = list(source.fetch("*", http) or [])
-            items = [l for l in items if l.city in cities_cfg and (only_city is None or l.city == only_city)]
-            res.listings.extend(items)
-            res.per_city["*"] = (len(items), None)
-            ok_cities = 1
+            items = list(source.fetch(city, http) or [])
+        except SourcePartial as exc:
+            items = exc.listings
+            error = _describe(exc)
+            errors.append((city, exc))
+            blocked = exc.blocked
         except Exception as exc:
-            errors.append(("*", exc))
-            res.per_city["*"] = (0, _describe(exc))
+            errors.append((city, exc))
+            res.per_city[city] = (0, _describe(exc))
+            if isinstance(exc, SourceBlocked):
+                break  # do not keep knocking on a door that is closed
+            continue
+
+        items = [l for l in items if l.city in cities_cfg]
+        if not source.per_city and only_city is not None:
+            items = [l for l in items if l.city == only_city]
+        res.listings.extend(items)
+        res.per_city[city] = (len(items), error)
+        ok_cities += 1
+        if blocked:
+            break
     if errors and ok_cities:
         res.status = "partial"
         res.error = "; ".join("%s: %s" % (c, _describe(x)) for c, x in errors)[:300]

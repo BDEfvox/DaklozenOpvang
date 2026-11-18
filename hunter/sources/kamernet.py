@@ -14,7 +14,7 @@ import json
 import re
 from typing import Any, Dict, List, Optional
 
-from ..models import Listing
+from ..models import CITIES, Listing
 from ..utils import city_slug, clean_text
 from .base import Source, SourceError
 
@@ -165,6 +165,7 @@ class Kamernet(Source):
     name = "kamernet"
     label = "Kamernet"
     homepage = "https://kamernet.nl"
+    cities = tuple(CITIES)
     note = "Paid Kamernet account needed to reply"
 
     def search_url(self, city: str) -> str:

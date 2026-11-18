@@ -6,10 +6,12 @@ import os
 from pathlib import Path
 from typing import Any, Dict, Optional
 
+from .models import CITIES
+
 ROOT = Path(__file__).resolve().parent.parent
 
 DEFAULTS: Dict[str, Any] = {
-    "cities": ["den-haag", "amsterdam", "leiden"],
+    "cities": list(CITIES),
     "searches": [],
     "exclude_types": ["room", "studio", "parking", "other"],
     "suspicious_total_below": 700,

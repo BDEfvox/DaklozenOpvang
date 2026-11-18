@@ -1,7 +1,7 @@
 """Makelaardij Van der Linden: large rental agency, mostly Amsterdam/Almere/Zaandam/Diemen.
 
 https://www.vanderlinden.nl/woning-huren/ is one server-rendered page with every available rental (~90).
-One request in total (per_city=False); we keep what lies in the three cities (in practice Amsterdam).
+One request in total (per_city=False); the runner filters listings to the configured cities.
 """
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 from bs4.element import Tag
 
 from ..http import Http
-from ..models import Listing
+from ..models import CITIES, Listing
 from ..utils import city_slug, clean_text, parse_int, parse_price
 from .base import Source, SourceError
 
@@ -138,7 +138,7 @@ class VanDerLinden(Source):
     def fetch(self, city: str, http: Http) -> List[Listing]:
         html = http.get_text(BASE + "/woning-huren/")
         out = parse_page(html)
-        if city in ("den-haag", "amsterdam", "leiden"):
+        if city in CITIES:
             out = [l for l in out if l.city == city]
         return out
 

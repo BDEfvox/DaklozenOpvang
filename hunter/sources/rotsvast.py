@@ -1,4 +1,4 @@
-"""Rotsvast: rental agency with branches in Den Haag, Amsterdam and Leiden. Server-rendered list.
+"""Rotsvast: rental agency with server-rendered city searches.
 
 https://www.rotsvast.nl/huren/?search=<City>   (10 per page; available listings come before the rented ones,
 so page 1 is enough unless it contains no rented card, then page 2 is read as well: max 2 requests per city).
@@ -14,12 +14,11 @@ from bs4 import BeautifulSoup
 from bs4.element import Tag
 
 from ..http import Http
-from ..models import Listing
+from ..models import CITIES, Listing
 from ..utils import city_slug, clean_text, parse_int, parse_price
-from .base import Source, SourceError
+from .base import Source, SourceBlocked, SourceError, SourcePartial
 
 BASE = "https://www.rotsvast.nl"
-_SEARCH = {"den-haag": "Den Haag", "amsterdam": "Amsterdam", "leiden": "Leiden"}
 _FURNISHED = (("gemeubileerd", "furnished"), ("gestoffeerd", "upholstered"), ("kaal", "unfurnished"))
 
 
@@ -106,19 +105,22 @@ class Rotsvast(Source):
     name = "rotsvast"
     label = "Rotsvast"
     homepage = "https://www.rotsvast.nl/huren/"
-    cities = ("den-haag", "amsterdam", "leiden")
+    cities = tuple(CITIES)
     note = "Reply via the agency (free)"
     # candidates are screened with an income test of at least 3x the monthly rent (rotsvast.nl/faq)
     income_requirement = True
 
     def fetch(self, city: str, http: Http) -> List[Listing]:
-        term = _SEARCH.get(city)
+        term = CITIES.get(city)
         if not term:
             return []
         q = quote_plus(term)
         listings, rented, has_next = parse_page(http.get_text("%s/huren/?search=%s" % (BASE, q)), city)
         if has_next and not rented:
-            more, _, _ = parse_page(http.get_text("%s/huren/page/2/?search=%s" % (BASE, q)), city)
+            try:
+                more, _, _ = parse_page(http.get_text("%s/huren/page/2/?search=%s" % (BASE, q)), city)
+            except (SourceError, SourceBlocked) as exc:
+                raise SourcePartial(listings, exc, "page 2") from exc
             listings += more
         return listings
 

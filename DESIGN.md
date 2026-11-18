@@ -1,6 +1,6 @@
 # House Hunter: design spec
 
-Personal alert tool: 2–3 friends looking for a whole rental home in **Den Haag, Amsterdam or Leiden**.
+Personal alert tool: 2–3 friends looking for a whole rental home in **Den Haag, Amsterdam, Leiden, Delft or Rotterdam**.
 It runs on **GitHub Actions** every ~10 minutes, sends new matches to a **Telegram group**, and
 publishes a **dashboard** on GitHub Pages (public repo).
 
@@ -38,7 +38,7 @@ tests/
 ```
 
 ## Listing contract (`hunter/models.py`)
-Sources return `Listing` objects. `city` is a slug: `den-haag` | `amsterdam` | `leiden`.
+Sources return `Listing` objects. `city` is a slug: `den-haag` | `amsterdam` | `leiden` | `delft` | `rotterdam`.
 `price_total` is the monthly rent in whole euros **as listed**; set `price_includes_utilities` when the
 site says so. `rooms` is the Dutch "kamers" count (includes the living room); `bedrooms` is
 "slaapkamers". Fill what the site gives; leave the rest `None`. `uid = "<source>:<source_id>"` must be
@@ -162,7 +162,7 @@ Avoid: Rentola (paywalled aggregator, many complaints).
   "generated_at": "2026-11-09T16:20:00Z",
   "last_run": "2026-11-09T16:20:00Z",
   "dashboard_url": "https://<user>.github.io/house-hunter/",
-  "cities": {"den-haag": "Den Haag", "amsterdam": "Amsterdam", "leiden": "Leiden"},
+  "cities": {"den-haag": "Den Haag", "amsterdam": "Amsterdam", "leiden": "Leiden", "delft": "Delft", "rotterdam": "Rotterdam"},
   "searches": [
     {"name": "2 people", "persons": 2, "max_total": 1600, "great_total": 1400},
     {"name": "3 people", "persons": 3, "max_total": 2400, "great_total": 2100}

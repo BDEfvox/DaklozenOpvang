@@ -49,7 +49,10 @@ def cmd_check(args: argparse.Namespace) -> int:
         matched = [(l, r) for l, r in matched if r.matched]
         print("== %s: %s, %d parsed, %d matched, %.1fs" % (name, fr.status, len(fr.listings), len(matched), dt))
         for city, (n, err) in fr.per_city.items():
-            print("   %s: %s" % (city, ("%d listings" % n) if err is None else "ERROR " + err))
+            summary = f"{n} listings"
+            if err:
+                summary += f" (error: {err})"
+            print(f"   {city}: {summary}")
         for l in fr.listings[:3]:
             print("   - EUR %s | %s bed / %s rooms | %s" % (l.price_total, l.bedrooms, l.rooms, (l.title or "")[:70]))
         table.append((name, fr.status, len(fr.listings), len(matched), dt, fr.error or ""))

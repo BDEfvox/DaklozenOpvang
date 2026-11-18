@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 from bs4.element import Tag
 
 from ..http import Http
-from ..models import Listing
+from ..models import CITIES, Listing
 from ..utils import city_slug, clean_text, parse_int, parse_price
 from .base import Source, SourceError
 
@@ -69,7 +69,7 @@ class Heimstaden(Source):
     name = "heimstaden"
     label = "Heimstaden"
     homepage = "https://heimstaden.com/nl/huurwoningen/"
-    cities = ("den-haag", "amsterdam", "leiden")
+    cities = tuple(CITIES)
     per_city = False
     note = "Reply via Heimstaden (free)"
     # gross income at least 4x the basic rent (heimstaden.com FAQ, "Welke inkomenseisen hanteren jullie?")

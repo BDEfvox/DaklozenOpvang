@@ -5,11 +5,9 @@ import re
 import unicodedata
 from typing import Optional
 
-_CITY_ALIASES = {
-    "den-haag": ("den haag", "'s-gravenhage", "s-gravenhage", "the hague", "hague", "'s gravenhage"),
-    "amsterdam": ("amsterdam",),
-    "leiden": ("leiden",),
-}
+from .models import CITIES
+
+_HAGUE_ALIASES = ("den haag", "'s-gravenhage", "s-gravenhage", "the hague", "hague", "'s gravenhage")
 
 
 def city_slug(name: Optional[str]) -> Optional[str]:
@@ -17,10 +15,9 @@ def city_slug(name: Optional[str]) -> Optional[str]:
     if not name:
         return None
     n = unicodedata.normalize("NFKC", name).strip().lower().replace("’", "'")
-    for slug, aliases in _CITY_ALIASES.items():
-        if n == slug or n in aliases:
-            return slug
-    return None
+    if n in _HAGUE_ALIASES:
+        return "den-haag"
+    return n if n in CITIES else None
 
 
 def parse_price(text: Optional[str]) -> Optional[int]:

@@ -15,12 +15,11 @@ from bs4 import BeautifulSoup
 from bs4.element import Tag
 
 from ..http import Http
-from ..models import Listing
+from ..models import CITIES, Listing
 from ..utils import city_slug, clean_text, parse_int, parse_price
 from .base import Source, SourceError
 
 BASE = "https://directwonen.nl"
-_SLUGS = {"den-haag": "den-haag", "amsterdam": "amsterdam", "leiden": "leiden"}
 _TYPES = {
     "appartement": "apartment", "woning": "house", "huis": "house", "eengezinswoning": "house",
     "studio": "studio", "kamer": "room", "parkeerplaats": "parking",
@@ -126,14 +125,13 @@ class DirectWonen(Source):
     name = "directwonen"
     label = "DirectWonen"
     homepage = "https://directwonen.nl"
-    cities = ("den-haag", "amsterdam", "leiden")
+    cities = tuple(CITIES)
     note = "Paid account needed to reply"
 
     def fetch(self, city: str, http: Http) -> List[Listing]:
-        slug = _SLUGS.get(city)
-        if not slug:
+        if city not in self.cities:
             return []
-        return parse_page(http.get_text("%s/huurwoningen-huren/%s" % (BASE, slug)), city)
+        return parse_page(http.get_text("%s/huurwoningen-huren/%s" % (BASE, city)), city)
 
     def fetch_details(self, listing: Listing, http: Http) -> Listing:
         if not listing.url.startswith(BASE + "/huurwoningen-huren/"):

@@ -3,7 +3,7 @@
 The search page can only filter per city through a CSRF-protected form plus two geocoding POSTs, which would be
 4 requests per city. Instead we read the nationwide list sorted by "newest offered":
 GET https://ikwilhuren.nu/aanbod/?sort=aanbodDESC[&page=N]  (10 per page, server-rendered), pages 1-3,
-and keep what lies in the three cities. New listings always appear on the first pages.
+and keep what lies in the configured cities. New listings always appear on the first pages.
 """
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 from bs4.element import Tag
 
 from ..http import Http
-from ..models import Listing
+from ..models import CITIES, Listing
 from ..utils import city_slug, clean_text, parse_int, parse_price
 from .base import Source, SourceError
 
@@ -117,7 +117,7 @@ class IkWilHuren(Source):
     name = "ikwilhuren"
     label = "MVGM (ikwilhuren.nu)"
     homepage = "https://ikwilhuren.nu/aanbod/"
-    cities = ("den-haag", "amsterdam", "leiden")
+    cities = tuple(CITIES)
     per_city = False
     note = "Free account on ikwilhuren.nu needed to reply"
     # MVGM only considers candidates who meet the home's income norm (ikwilhuren.nu/vragen and /voorwaarden)

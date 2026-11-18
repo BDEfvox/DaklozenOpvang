@@ -1,1 +1,1 @@
-"""House Hunter: rental listing alerts for Den Haag, Amsterdam and Leiden."""
+"""House Hunter: rental listing alerts for Dutch cities."""

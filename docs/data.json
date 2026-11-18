@@ -1,8 +1,10 @@
 {
  "cities": {
   "amsterdam": "Amsterdam",
+  "delft": "Delft",
   "den-haag": "Den Haag",
-  "leiden": "Leiden"
+  "leiden": "Leiden",
+  "rotterdam": "Rotterdam"
  },
  "dashboard_url": "https://BDEfvox.github.io/DaklozenOpvang/",
  "flag_labels": {

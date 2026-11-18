@@ -16,6 +16,15 @@ class SourceError(Exception):
     """Anything else: network error, unexpected status, or a page layout we no longer recognise."""
 
 
+class SourcePartial(SourceError):
+    """A later request failed after the source had already fetched usable results."""
+
+    def __init__(self, listings: List[Listing], error: Exception, context: str) -> None:
+        super().__init__(f"{context}: {error}")
+        self.listings = listings
+        self.blocked = isinstance(error, SourceBlocked)
+
+
 class Source:
     name: str = ""                 # slug; also the prefix of every Listing.uid from this source
     label: str = ""                # human name shown in alerts and on the dashboard
@@ -38,7 +47,7 @@ class Source:
 
     def fetch(self, city: str, http: "Http") -> List["Listing"]:
         """Return the newest listings for one city slug (or "*", see per_city).
-        Raise SourceBlocked / SourceError on failure."""
+        Raise SourceBlocked or SourceError on failure, or SourcePartial with the results already fetched."""
         raise NotImplementedError
 
     def fetch_details(self, listing: "Listing", http: "Http") -> "Listing":
