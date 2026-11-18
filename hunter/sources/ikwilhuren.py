@@ -16,7 +16,7 @@ from bs4.element import Tag
 from ..http import Http
 from ..models import CITIES, Listing
 from ..utils import city_slug, clean_text, parse_int, parse_price
-from .base import Source, SourceError
+from .base import Source, SourceError, summary_description
 
 BASE = "https://ikwilhuren.nu"
 PAGES = 3
@@ -137,11 +137,14 @@ class IkWilHuren(Source):
         return out
 
     def fetch_details(self, listing: Listing, http: Http) -> Listing:
-        soup = BeautifulSoup(http.get_text(listing.url), "html.parser")
+        html = http.get_text(listing.url)
+        soup = BeautifulSoup(html, "html.parser")
         text = soup.get_text(" ", strip=True).replace("\xa0", " ")
         m = re.search(r"Omschrijving\s+(.*?)\s+(?:Gebruik van deze site|Kenmerken)", text, re.S)
         if m:
             listing.description = clean_text(m.group(1))
+        else:
+            summary_description(listing, html, "ikwilhuren")
         sm = re.search(r"Servicekosten\s+€\s*([\d.,]+)", text)
         if sm:
             listing.extra["service_costs"] = parse_price(sm.group(1))

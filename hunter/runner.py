@@ -247,9 +247,13 @@ def _enrich(items: List[Item], cfg: Dict[str, Any], http: Any, budget: List[int]
             budget[0] -= 1
             try:
                 it.search_price = it.listing.price_total
+                it.listing.extra.pop("description_from_summary", None)  # restored from an older snapshot
                 it.listing = it.source.fetch_details(it.listing, http) or it.listing
                 it.result = evaluate(it.listing, cfg)
                 it.detailed = True
+                if it.listing.extra.get("description_from_summary"):
+                    print("[detail] %s: description block not found (layout changed?), used the page's own "
+                          "summary" % it.listing.uid, file=sys.stderr)
             except Exception as exc:
                 print("[detail] %s: %s" % (it.listing.uid, _describe(exc)), file=sys.stderr)  # redacted
         if it.result.matched:

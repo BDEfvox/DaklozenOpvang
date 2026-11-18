@@ -11,23 +11,11 @@ from urllib.parse import urlparse
 
 import requests
 
+from . import pagereader
 from .sources.base import SourceBlocked, SourceError
 
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/130.0 Safari/537.36")
-
-# Text that only appears on bot-check / challenge pages.
-_WALL_MARKERS = (
-    "just a moment...",
-    "cf-chl-",
-    "challenge-platform",
-    "je bent bijna op de pagina",
-    "attention required! | cloudflare",
-    "captcha-delivery.com",          # DataDome
-    "px-captcha",                    # PerimeterX
-    "access denied</title>",
-    "request unsuccessful. incapsula",
-)
 
 
 class Http:
@@ -70,9 +58,10 @@ class Http:
         else:
             raise SourceError(f"network error for {host}: {last_exc}")
 
-        head = resp.text[:6000].lower() if resp.content else ""
-        if resp.status_code in (401, 403, 429) or any(m in head for m in _WALL_MARKERS):
-            raise SourceBlocked(f"{host} answered {resp.status_code} (bot check or access denied)")
+        # Status codes and challenge-page text from pagereader (shared with mac-mini-hunter).
+        wall = pagereader.wall_reason(resp.status_code, resp.text[:pagereader.HEAD_CHARS] if resp.content else "")
+        if wall:
+            raise SourceBlocked(f"{host} answered {resp.status_code} ({wall})")
         if resp.status_code >= 400:
             raise SourceError(f"{host} answered HTTP {resp.status_code} for {url}")
         return resp

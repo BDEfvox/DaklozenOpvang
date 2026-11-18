@@ -16,7 +16,7 @@ from bs4.element import Tag
 from ..http import Http
 from ..models import CITIES, Listing
 from ..utils import city_slug, clean_text, parse_int, parse_price
-from .base import Source, SourceError
+from .base import Source, SourceError, summary_description
 
 URL = "https://heimstaden.com/nl/huurwoningen/"
 _TYPES = {"apartment": "apartment", "house": "house", "room": "room", "studio": "studio", "parking": "parking"}
@@ -82,10 +82,13 @@ class Heimstaden(Source):
         return out
 
     def fetch_details(self, listing: Listing, http: Http) -> Listing:
-        soup = BeautifulSoup(http.get_text(listing.url), "html.parser")
+        html = http.get_text(listing.url)
+        soup = BeautifulSoup(html, "html.parser")
         intro = soup.select_one(".project-intro")
         if intro is not None:
             listing.description = clean_text(intro.get_text(" ", strip=True))
+        else:
+            summary_description(listing, html, "heimstaden")
         for tr in soup.select(".project-facts-table tr"):
             th, td = tr.find("th"), tr.find("td")
             if th is not None and td is not None and "kamers" in _text(th).lower():

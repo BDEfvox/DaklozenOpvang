@@ -19,6 +19,9 @@ publishes a **dashboard** on GitHub Pages (public repo).
 hunter/
   models.py          Listing dataclass                      (core, done)
   http.py            polite HTTP client, block detection     (core, done)
+  pagereader.py      walls (status + challenge text) and a page's own summary (JSON-LD, meta
+                     description), ported from a browser-based page reader. Stdlib only; another
+                     project uses a byte-identical copy: change the copies together.
   utils.py           price/int parsing, city normalisation   (core, done)
   sources/base.py    Source interface + exceptions           (core, done)
   sources/__init__.py auto-discovers every module in sources/ (core, done)
@@ -53,6 +56,11 @@ stable across runs.
 - Raise `SourceBlocked` for bot walls, `SourceError` for anything else. Never return a half-parsed
   page silently: if the page structure is not recognised, raise `SourceError("layout changed: …")`.
   Returning `[]` means "the site really shows no listings".
+- A detail page without its usual description block may fall back on `base.summary_description`: the
+  page's own JSON-LD (listing types only) or meta description, used only when the page's og:url or
+  canonical URL is the listing's (a redirect to a search page describes other homes). It marks the
+  listing `description_from_summary`, which the run log reports; with no summary it raises.
+  Never parse "largest <main>/<article>" text: on listing sites that holds other listings.
 
 ## Matching (`filters.py`)
 `config.json` holds `searches`, default:

@@ -16,7 +16,7 @@ from bs4.element import Tag
 from ..http import Http
 from ..models import CITIES, Listing
 from ..utils import city_slug, clean_text, parse_int, parse_price
-from .base import Source, SourceBlocked, SourceError, SourcePartial
+from .base import Source, SourceBlocked, SourceError, SourcePartial, summary_description
 
 BASE = "https://www.rotsvast.nl"
 _FURNISHED = (("gemeubileerd", "furnished"), ("gestoffeerd", "upholstered"), ("kaal", "unfurnished"))
@@ -125,12 +125,14 @@ class Rotsvast(Source):
         return listings
 
     def fetch_details(self, listing: Listing, http: Http) -> Listing:
-        soup = BeautifulSoup(http.get_text(listing.url), "html.parser")
+        html = http.get_text(listing.url)
+        soup = BeautifulSoup(html, "html.parser")
         desc = soup.select_one(".house-description")
         if desc is None:
-            return listing
-        text = clean_text(desc.get_text(" ", strip=True).replace("Beschrijving", "", 1).replace("Lees verder Lees minder", ""))
-        listing.description = text
+            text = summary_description(listing, html, "rotsvast").description
+        else:
+            text = clean_text(desc.get_text(" ", strip=True).replace("Beschrijving", "", 1).replace("Lees verder Lees minder", ""))
+            listing.description = text
         if text:
             m = re.search(r"(\d+)[- ]kamer", text, re.I)
             if m:

@@ -3,6 +3,9 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, List, Optional, Sequence
 
+from .. import pagereader
+from ..utils import clean_text
+
 if TYPE_CHECKING:  # pragma: no cover
     from ..http import Http
     from ..models import Listing
@@ -56,3 +59,19 @@ class Source:
 
     def __repr__(self) -> str:  # pragma: no cover
         return f"<Source {self.name}>"
+
+
+def summary_description(listing: "Listing", html: str, site: str) -> "Listing":
+    """For a detail page without its usual description block: use the page's own summary (JSON-LD
+    or meta description of this very listing, see pagereader.own_description) and mark it, so the
+    run log shows that the layout changed. Raises SourceBlocked for a login or captcha page and
+    SourceError when the page gives no description at all: never a silent half-read page."""
+    page = pagereader.read_page(html)
+    text = pagereader.own_description(page, listing.url)
+    if text:
+        listing.description = clean_text(text)
+        listing.extra["description_from_summary"] = True
+        return listing
+    if page.password_field or page.captcha_frame:
+        raise SourceBlocked(f"{site} detail page shows a login or captcha instead of the listing")
+    raise SourceError(f"layout changed: {site} detail page has no description")
