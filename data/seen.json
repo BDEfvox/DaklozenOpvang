@@ -3,7 +3,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "legewerfsteeg|leiden|667",
   "last_price": 667,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "123wonen"
@@ -12,7 +12,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "schaarbeekstraat|amsterdam|2500",
   "last_price": 2500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "123wonen"
@@ -30,7 +30,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "eerstevanswindenstraat|amsterdam|2000",
   "last_price": 2000,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "123wonen"
@@ -57,7 +57,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "riouwstraat|amsterdam|2050",
   "last_price": 2050,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "123wonen"
@@ -75,7 +75,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "delairessestraat|amsterdam|2350",
   "last_price": 2350,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "123wonen"
@@ -84,7 +84,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "rokin|amsterdam|2500",
   "last_price": 2500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "123wonen"
@@ -93,7 +93,7 @@
   "first_seen": "2026-11-16T17:36:10Z",
   "fp": "brouwersgracht|amsterdam|2750",
   "last_price": 2750,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "123wonen"
@@ -102,7 +102,7 @@
   "first_seen": "2026-11-14T07:39:51Z",
   "fp": "tegelantiersdwarsstraat|amsterdam|2750",
   "last_price": 2750,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -111,7 +111,7 @@
   "first_seen": "2026-11-14T07:39:51Z",
   "fp": "reguliersdwarsstraat|amsterdam|1650",
   "last_price": 1650,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -120,7 +120,7 @@
   "first_seen": "2026-11-14T07:39:51Z",
   "fp": "nvoorburgwal|amsterdam|3300",
   "last_price": 3300,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -129,7 +129,7 @@
   "first_seen": "2026-11-14T07:39:51Z",
   "fp": "tboerhaavestraat|amsterdam|1650",
   "last_price": 1650,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -138,7 +138,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "lvmeerdervoort|den-haag|1250",
   "last_price": 1250,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -147,7 +147,7 @@
   "first_seen": "2026-11-16T15:35:29Z",
   "fp": "fburgwal|den-haag|1060",
   "last_price": 1060,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -165,7 +165,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "langebrug|leiden|836",
   "last_price": 836,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -183,7 +183,7 @@
   "first_seen": "2026-11-14T07:39:51Z",
   "fp": "mariottestraat|den-haag|2600",
   "last_price": 2600,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -210,7 +210,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "schenkkade|den-haag|950",
   "last_price": 950,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -228,7 +228,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "orijn|leiden|1400",
   "last_price": 1400,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -251,7 +251,7 @@
   "first_seen": "2026-11-12T14:19:46Z",
   "fp": "godetiaweg|den-haag|1595",
   "last_price": 1595,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people"
   ],
@@ -262,7 +262,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "noordeinde|leiden|2000",
   "last_price": 2000,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -285,7 +285,7 @@
   "first_seen": "2026-11-12T14:19:46Z",
   "fp": "dslohmanlaan|den-haag|1495",
   "last_price": 1495,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people"
   ],
@@ -305,7 +305,7 @@
   "first_seen": "2026-11-12T11:19:29Z",
   "fp": "duivendrechtsekade|amsterdam|1013",
   "last_price": 1013,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -337,7 +337,7 @@
   "first_seen": "2026-11-12T14:19:46Z",
   "fp": "escamplaan|den-haag|1500",
   "last_price": 1500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people",
    "3 people"
@@ -358,7 +358,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "vspeijkstraat|den-haag|675",
   "last_price": 675,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -367,7 +367,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "herengracht|leiden|3875",
   "last_price": 3875,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -391,7 +391,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "bachstraat|leiden|1445",
   "last_price": 1445,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people"
   ],
@@ -402,7 +402,7 @@
   "first_seen": "2026-11-16T11:06:58Z",
   "fp": "elandstraat|den-haag|2395",
   "last_price": 2395,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -429,7 +429,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "vliegerstraat|leiden|2750",
   "last_price": 2750,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -438,7 +438,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "oranjestraat|leiden|2150",
   "last_price": 2150,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -447,7 +447,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "schipholweg|leiden|630",
   "last_price": 630,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -456,7 +456,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "haarlemmerstraat|leiden|707",
   "last_price": 707,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -480,7 +480,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "rijndijkstraat|leiden|2300",
   "last_price": 2300,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -489,7 +489,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "morsweg|leiden|601",
   "last_price": 601,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -498,7 +498,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "wolmaransstraat|leiden|953",
   "last_price": 953,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -525,7 +525,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "sophiastraat|leiden|810",
   "last_price": 810,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -534,7 +534,7 @@
   "first_seen": "2026-11-16T09:37:51Z",
   "fp": "ijburglaan|amsterdam|2700",
   "last_price": 2700,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -543,7 +543,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "vestestraat|leiden|722",
   "last_price": 722,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -579,7 +579,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "nmare|leiden|1800",
   "last_price": 1800,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -649,7 +649,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "sumatrastraat|leiden|1024",
   "last_price": 1024,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -840,7 +840,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "bouwelouwensteeg|leiden|870",
   "last_price": 870,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -849,7 +849,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "kmare|leiden|710",
   "last_price": 710,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -930,7 +930,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "rapenburg|leiden|2500",
   "last_price": 2500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -939,7 +939,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "lmeitnerhof|leiden|1776",
   "last_price": 1776,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -948,7 +948,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "brouwersgracht|amsterdam|2450",
   "last_price": 2450,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -975,7 +975,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "ijdoornlaan|amsterdam|2150",
   "last_price": 2150,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1056,7 +1056,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "chassestraat|amsterdam|2750",
   "last_price": 2750,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1065,7 +1065,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "lammermarkt|leiden|1000",
   "last_price": 1000,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1092,7 +1092,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "geleenstraat|amsterdam|2750",
   "last_price": 2750,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1101,7 +1101,7 @@
   "first_seen": "2026-11-10T16:09:15Z",
   "fp": "badhuiskade|amsterdam|3500",
   "last_price": 3500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1153,7 +1153,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "volmolengracht|leiden|2350",
   "last_price": 2350,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -1164,7 +1164,7 @@
   "first_seen": "2026-11-10T16:09:15Z",
   "fp": "rijnstraat|leiden|1155",
   "last_price": 1155,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1173,7 +1173,7 @@
   "first_seen": "2026-11-10T16:19:11Z",
   "fp": "zaaiersweg|amsterdam|1650",
   "last_price": 1650,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1182,7 +1182,7 @@
   "first_seen": "2026-11-10T16:09:15Z",
   "fp": "vestestraat|leiden|781",
   "last_price": 781,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1191,7 +1191,7 @@
   "first_seen": "2026-11-10T16:09:15Z",
   "fp": "vestestraat|leiden|803",
   "last_price": 803,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1209,7 +1209,7 @@
   "first_seen": "2026-11-11T11:19:15Z",
   "fp": "vzeggelenlaan|den-haag|635",
   "last_price": 635,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1218,7 +1218,7 @@
   "first_seen": "2026-11-11T11:29:14Z",
   "fp": "rijswijkseweg|den-haag|748",
   "last_price": 748,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1227,7 +1227,7 @@
   "first_seen": "2026-11-11T13:59:12Z",
   "fp": "avdgoesstraat|den-haag|3250",
   "last_price": 3250,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1236,7 +1236,7 @@
   "first_seen": "2026-11-11T13:59:12Z",
   "fp": "kikkerstraat|den-haag|2350",
   "last_price": 2350,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1245,7 +1245,7 @@
   "first_seen": "2026-11-11T13:59:12Z",
   "fp": "mruthplaats|leiden|1995",
   "last_price": 1995,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1254,7 +1254,7 @@
   "first_seen": "2026-11-11T13:59:12Z",
   "fp": "hogewoerd|leiden|1385",
   "last_price": 1385,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1263,7 +1263,7 @@
   "first_seen": "2026-11-11T16:39:14Z",
   "fp": "fhalsstraat|amsterdam|2750",
   "last_price": 2750,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1281,7 +1281,7 @@
   "first_seen": "2026-11-12T15:39:50Z",
   "fp": "vollefenstraat|amsterdam|1800",
   "last_price": 1800,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1299,7 +1299,7 @@
   "first_seen": "2026-11-13T09:59:46Z",
   "fp": "watteaustraat|amsterdam|4500",
   "last_price": 4500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1308,7 +1308,7 @@
   "first_seen": "2026-11-12T15:59:44Z",
   "fp": "phfrankfurthersingel|amsterdam|2900",
   "last_price": 2900,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1317,7 +1317,7 @@
   "first_seen": "2026-11-12T15:59:44Z",
   "fp": "phfrankfurthersingel|amsterdam|2850",
   "last_price": 2850,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1326,7 +1326,7 @@
   "first_seen": "2026-11-12T15:39:50Z",
   "fp": "fzieglerstraat|amsterdam|2500",
   "last_price": 2500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1335,7 +1335,7 @@
   "first_seen": "2026-11-12T16:39:47Z",
   "fp": "moerweg|den-haag|635",
   "last_price": 635,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1353,7 +1353,7 @@
   "first_seen": "2026-11-12T16:49:47Z",
   "fp": "kjulianaplein|den-haag|2995",
   "last_price": 2995,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1362,7 +1362,7 @@
   "first_seen": "2026-11-13T11:00:02Z",
   "fp": "calandkade|den-haag|1795",
   "last_price": 1795,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1371,7 +1371,7 @@
   "first_seen": "2026-11-13T12:09:47Z",
   "fp": "nparklaan|den-haag|2100",
   "last_price": 2100,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1380,7 +1380,7 @@
   "first_seen": "2026-11-13T15:39:46Z",
   "fp": "waterkeringweg|amsterdam|2500",
   "last_price": 2500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1399,7 +1399,7 @@
   "first_seen": "2026-11-14T10:49:45Z",
   "fp": "veenendaalkade|den-haag|1940",
   "last_price": 1940,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -1410,7 +1410,7 @@
   "first_seen": "2026-11-14T10:49:45Z",
   "fp": "wdwithstraat|den-haag|1173",
   "last_price": 1173,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1434,7 +1434,7 @@
   "first_seen": "2026-11-14T10:49:45Z",
   "fp": "nwbuitensingel|den-haag|1780",
   "last_price": 1780,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -1445,7 +1445,7 @@
   "first_seen": "2026-11-14T13:50:26Z",
   "fp": "palaceplein|den-haag|2250",
   "last_price": 2250,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1454,7 +1454,7 @@
   "first_seen": "2026-11-16T09:07:53Z",
   "fp": "ruysdaelkade|amsterdam|3600",
   "last_price": 3600,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1463,7 +1463,7 @@
   "first_seen": "2026-11-16T09:07:53Z",
   "fp": "stadionweg|amsterdam|2550",
   "last_price": 2550,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1472,7 +1472,7 @@
   "first_seen": "2026-11-16T09:07:53Z",
   "fp": "zocherstraat|amsterdam|2600",
   "last_price": 2600,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1481,7 +1481,7 @@
   "first_seen": "2026-11-16T10:38:00Z",
   "fp": "nlaan|amsterdam|2450",
   "last_price": 2450,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1490,7 +1490,7 @@
   "first_seen": "2026-11-16T15:45:16Z",
   "fp": "borneolaan|amsterdam|2050",
   "last_price": 2050,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1499,7 +1499,7 @@
   "first_seen": "2026-11-16T15:45:16Z",
   "fp": "zwanebloemlaan|amsterdam|3250",
   "last_price": 3250,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1508,7 +1508,7 @@
   "first_seen": "2026-11-16T15:45:16Z",
   "fp": "pcalandlaan|amsterdam|2450",
   "last_price": 2450,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1517,7 +1517,7 @@
   "first_seen": "2026-11-16T15:45:16Z",
   "fp": "phfrankfurthersingel|amsterdam|2100",
   "last_price": 2100,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1526,7 +1526,7 @@
   "first_seen": "2026-11-16T17:46:11Z",
   "fp": "hoogeveenlaan|den-haag|2375",
   "last_price": 2375,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1535,7 +1535,7 @@
   "first_seen": "2026-11-17T09:38:57Z",
   "fp": "valeriusstraat|den-haag|2125",
   "last_price": 2125,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1544,7 +1544,7 @@
   "first_seen": "2026-11-17T09:48:47Z",
   "fp": "phendrikstraat|den-haag|644",
   "last_price": 644,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1568,7 +1568,7 @@
   "first_seen": "2026-11-17T15:19:11Z",
   "fp": "dlreyweg|den-haag|2295",
   "last_price": 2295,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -1579,7 +1579,7 @@
   "first_seen": "2026-11-17T15:29:03Z",
   "fp": "herensingel|leiden|1750",
   "last_price": 1750,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1588,7 +1588,7 @@
   "first_seen": "2026-11-17T19:49:09Z",
   "fp": "gibraltarstraat|amsterdam|3250",
   "last_price": 3250,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1597,7 +1597,7 @@
   "first_seen": "2026-11-17T19:49:09Z",
   "fp": "vmerlenstraat|den-haag|850",
   "last_price": 850,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "directwonen"
@@ -1621,7 +1621,7 @@
   "first_seen": "2026-11-17T19:39:08Z",
   "fp": "dbuserf|den-haag|1050",
   "last_price": 1050,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people"
   ],
@@ -1647,7 +1647,7 @@
   "first_seen": "2026-11-18T11:39:03Z",
   "fp": "tafelbergstraat|den-haag|1290",
   "last_price": 1290,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people",
    "3 people"
@@ -1745,7 +1745,7 @@
   "first_seen": "2026-11-14T04:19:45Z",
   "fp": "zustermeijboomstraat175|leiden|1875",
   "last_price": 1875,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -1777,7 +1777,7 @@
   "first_seen": "2026-11-14T04:19:45Z",
   "fp": "wijnandnuijenstraat8|amsterdam|2100",
   "last_price": 2100,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -1802,7 +1802,7 @@
   "first_seen": "2026-11-14T04:19:45Z",
   "fp": "postjesweg163t|amsterdam|1324",
   "last_price": 1324,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people"
   ],
@@ -1859,7 +1859,7 @@
   "first_seen": "2026-11-14T04:19:45Z",
   "fp": "davidricardostraat318|amsterdam|2325",
   "last_price": 2325,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -1882,7 +1882,7 @@
   "first_seen": "2026-11-14T04:19:45Z",
   "fp": "heiloostraat349|den-haag|1090",
   "last_price": 1090,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people",
    "3 people"
@@ -1906,7 +1906,7 @@
   "first_seen": "2026-11-16T03:47:25Z",
   "fp": "loevesteinlaan387a|den-haag|1895",
   "last_price": 1895,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -1931,7 +1931,7 @@
   "first_seen": "2026-11-17T03:28:54Z",
   "fp": "fritzdietrichkahlenbergstraat46d|amsterdam|2250",
   "last_price": 2250,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -1956,7 +1956,7 @@
   "first_seen": "2026-11-17T03:28:54Z",
   "fp": "robijnhof28|leiden|1494",
   "last_price": 1494,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people"
   ],
@@ -1967,7 +1967,7 @@
   "first_seen": "2026-11-17T03:28:54Z",
   "fp": "elzenhagensingel355|amsterdam|2249",
   "last_price": 2249,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -1976,7 +1976,7 @@
   "first_seen": "2026-11-17T03:28:54Z",
   "fp": "welnapad28|amsterdam|2360",
   "last_price": 2360,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -1985,7 +1985,7 @@
   "first_seen": "2026-11-18T04:19:03Z",
   "fp": "louisehenriettestraat113|den-haag|1846",
   "last_price": 1846,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -1994,7 +1994,7 @@
   "first_seen": "2026-11-18T04:19:03Z",
   "fp": "louisehenriettestraat65|den-haag|1799",
   "last_price": 1799,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2017,7 +2017,7 @@
   "first_seen": "2026-11-18T04:19:03Z",
   "fp": "loevesteinlaan483b|den-haag|1492",
   "last_price": 1492,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people"
   ],
@@ -2040,7 +2040,7 @@
   "first_seen": "2026-11-18T04:19:03Z",
   "fp": "knsmlaan534|amsterdam|2200",
   "last_price": 2200,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -2051,7 +2051,7 @@
   "first_seen": "2026-11-18T04:19:03Z",
   "fp": "bottelarijstraat331|amsterdam|1860",
   "last_price": 1860,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2072,7 +2072,7 @@
   "first_seen": "2026-11-18T04:19:03Z",
   "fp": "osdorperban21f|amsterdam|2255",
   "last_price": 2255,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -2236,7 +2236,7 @@
   "first_seen": "2026-11-17T03:28:54Z",
   "fp": "laanvanmeerdervoort207a1|den-haag|2200",
   "last_price": 2200,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2245,7 +2245,7 @@
   "first_seen": "2026-11-18T04:19:03Z",
   "fp": "mangoweg191|leiden|2250",
   "last_price": 2250,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2254,7 +2254,7 @@
   "first_seen": "2026-11-17T03:28:54Z",
   "fp": "valeriusstraat23a|den-haag|2125",
   "last_price": 2125,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2277,7 +2277,7 @@
   "first_seen": "2026-11-14T04:19:45Z",
   "fp": "veenendaalkade56|den-haag|1940",
   "last_price": 1940,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -2288,7 +2288,7 @@
   "first_seen": "2026-11-14T04:19:45Z",
   "fp": "ananasweg126|leiden|1995",
   "last_price": 1995,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2311,7 +2311,7 @@
   "first_seen": "2026-11-14T04:19:45Z",
   "fp": "noordwestbuitensingel6|den-haag|1780",
   "last_price": 1780,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -2336,7 +2336,7 @@
   "first_seen": "2026-11-16T03:47:25Z",
   "fp": "leusdenhof326|amsterdam|1095",
   "last_price": 1095,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people",
    "3 people"
@@ -2357,7 +2357,7 @@
   "first_seen": "2026-11-17T09:08:54Z",
   "fp": "marepoortkade|leiden|2495",
   "last_price": 2495,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2366,7 +2366,7 @@
   "first_seen": "2026-11-14T09:09:47Z",
   "fp": "haarlemmerweg|amsterdam|2424",
   "last_price": 2424,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2388,7 +2388,7 @@
   "first_seen": "2026-11-18T09:09:10Z",
   "fp": "desitterlaan|leiden|2345",
   "last_price": 2345,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -2399,7 +2399,7 @@
   "first_seen": "2026-11-17T09:08:54Z",
   "fp": "hoogeveenlaan|den-haag|2375",
   "last_price": 2375,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2408,7 +2408,7 @@
   "first_seen": "2026-11-14T09:09:47Z",
   "fp": "ananasweg|leiden|1995",
   "last_price": 1995,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2426,7 +2426,7 @@
   "first_seen": "2026-11-17T09:08:54Z",
   "fp": "mangoweg|leiden|2250",
   "last_price": 2250,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2490,7 +2490,7 @@
   "first_seen": "2026-11-14T09:09:47Z",
   "fp": "veenendaalkade|den-haag|1940",
   "last_price": 1940,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -2510,7 +2510,7 @@
   "first_seen": "2026-11-14T09:09:47Z",
   "fp": "burgemeesterhogguerstraat|amsterdam|2400",
   "last_price": 2400,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2546,7 +2546,7 @@
   "first_seen": "2026-11-17T09:08:54Z",
   "fp": "laanvanmeerdervoort|den-haag|2200",
   "last_price": 2200,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2555,7 +2555,7 @@
   "first_seen": "2026-11-14T09:09:47Z",
   "fp": "waterkeringweg|amsterdam|2500",
   "last_price": 2500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2582,7 +2582,7 @@
   "first_seen": "2026-11-17T09:08:54Z",
   "fp": "nidasenffstraat|amsterdam|2450",
   "last_price": 2450,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2609,7 +2609,7 @@
   "first_seen": "2026-11-17T09:08:54Z",
   "fp": "hogezand|den-haag|2430",
   "last_price": 2430,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2618,7 +2618,7 @@
   "first_seen": "2026-11-18T09:09:10Z",
   "fp": "janharingstraat|amsterdam|2300",
   "last_price": 2300,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2649,7 +2649,7 @@
   "first_seen": "2026-11-14T09:09:47Z",
   "fp": "heiloostraat|den-haag|1090",
   "last_price": 1090,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people",
    "3 people"
@@ -2661,7 +2661,7 @@
   "first_seen": "2026-11-17T09:08:54Z",
   "fp": "henkenshage|amsterdam|2500",
   "last_price": 2500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2682,7 +2682,7 @@
   "first_seen": "2026-11-18T09:09:10Z",
   "fp": "nieuwelooiersstraat|amsterdam|2250",
   "last_price": 2250,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2728,7 +2728,7 @@
   "first_seen": "2026-11-14T09:09:47Z",
   "fp": "noordwestbuitensingel|den-haag|1780",
   "last_price": 1780,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -2748,7 +2748,7 @@
   "first_seen": "2026-11-17T09:08:54Z",
   "fp": "valeriusstraat|den-haag|2125",
   "last_price": 2125,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2770,7 +2770,7 @@
   "first_seen": "2026-11-15T09:06:16Z",
   "fp": "kijkduinsestraat|den-haag|1749",
   "last_price": 1749,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -2803,7 +2803,7 @@
   "first_seen": "2026-11-17T09:08:54Z",
   "fp": "dijkstraat|amsterdam|2285",
   "last_price": 2285,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -2823,7 +2823,7 @@
   "first_seen": "2026-11-14T09:09:47Z",
   "fp": "haarlemmerweg|amsterdam|2424",
   "last_price": 2424,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2832,7 +2832,7 @@
   "first_seen": "2026-11-17T09:08:54Z",
   "fp": "pietercalandlaan|amsterdam|2450",
   "last_price": 2450,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2841,7 +2841,7 @@
   "first_seen": "2026-11-14T09:09:47Z",
   "fp": "tripstraat|den-haag|2200",
   "last_price": 2200,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2872,7 +2872,7 @@
   "first_seen": "2026-11-14T09:09:47Z",
   "fp": "simoncarmiggelthof|den-haag|2250",
   "last_price": 2250,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -2883,7 +2883,7 @@
   "first_seen": "2026-11-14T09:09:47Z",
   "fp": "lucellestraat|amsterdam|2150",
   "last_price": 2150,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -2962,7 +2962,7 @@
   "first_seen": "2026-11-18T09:09:10Z",
   "fp": "dirkbuserf|den-haag|1050",
   "last_price": 1050,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people"
   ],
@@ -2986,7 +2986,7 @@
   "first_seen": "2026-11-17T09:08:54Z",
   "fp": "geleenstraat|amsterdam|2200",
   "last_price": 2200,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -3010,7 +3010,7 @@
   "first_seen": "2026-11-18T09:09:10Z",
   "fp": "beemsterstraat|amsterdam|1400",
   "last_price": 1400,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people"
   ],
@@ -3054,7 +3054,7 @@
   "first_seen": "2026-11-18T09:09:10Z",
   "fp": "veembroederhof|amsterdam|2030",
   "last_price": 2030,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -3072,7 +3072,7 @@
   "first_seen": "2026-11-18T09:09:10Z",
   "fp": "aalsmeerweg|amsterdam|2200",
   "last_price": 2200,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "email_alerts"
@@ -3099,7 +3099,7 @@
   "first_seen": "2026-11-12T11:09:35Z",
   "fp": "beemsterstraat546f8|amsterdam|1072",
   "last_price": 1072,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "heimstaden"
@@ -3108,7 +3108,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "loosduinseweg239|den-haag|1800",
   "last_price": 1800,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "heimstaden"
@@ -3131,7 +3131,7 @@
   "first_seen": "2026-11-18T01:09:05Z",
   "fp": "beemsterstraat542e2|amsterdam|1400",
   "last_price": 1400,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people"
   ],
@@ -3142,7 +3142,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "valkenboskade|den-haag|2495",
   "last_price": 2495,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3160,7 +3160,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "laanvanmeerdervoort|den-haag|2060",
   "last_price": 2060,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3169,7 +3169,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "mariottestraat|den-haag|2495",
   "last_price": 2495,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3205,7 +3205,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "cosmariumstraat|amsterdam|2800",
   "last_price": 2800,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3214,7 +3214,7 @@
   "first_seen": "2026-11-10T14:10:10Z",
   "fp": "vandijckstraat|den-haag|3980",
   "last_price": 3980,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3223,7 +3223,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "westeinde|den-haag|2999",
   "last_price": 2999,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3232,7 +3232,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "noordeinde|den-haag|3350",
   "last_price": 3350,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3241,7 +3241,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "noordeinde|den-haag|3350",
   "last_price": 3350,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3250,7 +3250,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "noordeinde|den-haag|3499",
   "last_price": 3499,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3259,7 +3259,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "landrstraat|den-haag|2500",
   "last_price": 2500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3268,7 +3268,7 @@
   "first_seen": "2026-11-15T21:27:24Z",
   "fp": "runstraat|amsterdam|2900",
   "last_price": 2900,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3277,7 +3277,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "vonzesenstraat|amsterdam|2100",
   "last_price": 2100,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3286,7 +3286,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "valkenboslaan|den-haag|2495",
   "last_price": 2495,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3295,7 +3295,7 @@
   "first_seen": "2026-11-14T05:09:48Z",
   "fp": "halvemaansteeg|amsterdam|3700",
   "last_price": 3700,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3304,7 +3304,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "prinsengracht|amsterdam|2650",
   "last_price": 2650,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3322,7 +3322,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "janvannassaustraat|den-haag|3372",
   "last_price": 3372,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3331,7 +3331,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "janvannassaustraat|den-haag|3442",
   "last_price": 3442,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3340,7 +3340,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "janvannassaustraat|den-haag|3442",
   "last_price": 3442,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3349,7 +3349,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "janvannassaustraat|den-haag|3372",
   "last_price": 3372,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3358,7 +3358,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "janvannassaustraat|den-haag|3372",
   "last_price": 3372,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3367,7 +3367,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "janvannassaustraat|den-haag|3299",
   "last_price": 3299,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3376,7 +3376,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "janvannassaustraat|den-haag|3299",
   "last_price": 3299,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3385,7 +3385,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "jorisvanandringastraat|amsterdam|2750",
   "last_price": 2750,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3394,7 +3394,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "eisenhowerlaan|den-haag|3803",
   "last_price": 3803,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3403,7 +3403,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "eisenhowerlaan|den-haag|3742",
   "last_price": 3742,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3412,7 +3412,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "soestdijksekade|den-haag|2495",
   "last_price": 2495,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3430,7 +3430,7 @@
   "first_seen": "2026-11-10T14:10:10Z",
   "fp": "buiksloterbreek|amsterdam|3300",
   "last_price": 3300,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3457,7 +3457,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "seranggracht|amsterdam|3500",
   "last_price": 3500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3466,7 +3466,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "leeuwendalersweg|amsterdam|2300",
   "last_price": 2300,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3484,7 +3484,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "willemdezwijgerlaan|amsterdam|1650",
   "last_price": 1650,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3493,7 +3493,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "eefkamerbeekstraat|amsterdam|3900",
   "last_price": 3900,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3502,7 +3502,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "willemdezwijgerlaan|amsterdam|2500",
   "last_price": 2500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3520,7 +3520,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "msvanriemsdijkweg|amsterdam|2450",
   "last_price": 2450,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3556,7 +3556,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "gerarddoustraat|amsterdam|3000",
   "last_price": 3000,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3565,7 +3565,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "marcusstraat|amsterdam|2768",
   "last_price": 2768,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3574,7 +3574,7 @@
   "first_seen": "2026-11-11T11:29:14Z",
   "fp": "entrepotdok|amsterdam|3150",
   "last_price": 3150,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3583,7 +3583,7 @@
   "first_seen": "2026-11-11T08:59:12Z",
   "fp": "vanreigersbergenstraat|amsterdam|2000",
   "last_price": 2000,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3592,7 +3592,7 @@
   "first_seen": "2026-11-17T23:49:03Z",
   "fp": "kanaalstraat|amsterdam|3950",
   "last_price": 3950,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3601,7 +3601,7 @@
   "first_seen": "2026-11-17T08:58:43Z",
   "fp": "sintantoniesbreestraat|amsterdam|2550",
   "last_price": 2550,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3610,7 +3610,7 @@
   "first_seen": "2026-11-17T08:58:43Z",
   "fp": "maritzstraat|amsterdam|2700",
   "last_price": 2700,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3619,7 +3619,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "rijndijkstraat|leiden|2500",
   "last_price": 2500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3628,7 +3628,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "maziestraat|den-haag|2750",
   "last_price": 2750,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "housinganywhere"
@@ -3637,7 +3637,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "batteryparkstraat65|amsterdam|1985",
   "last_price": 1985,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "ikwilhuren"
@@ -3646,7 +3646,7 @@
   "first_seen": "2026-11-11T09:19:12Z",
   "fp": "randveen82|den-haag|1115",
   "last_price": 1115,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "ikwilhuren"
@@ -3655,7 +3655,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "batteryparkstraat3|amsterdam|1733",
   "last_price": 1733,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "ikwilhuren"
@@ -3677,7 +3677,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "eosstraat143|amsterdam|2380",
   "last_price": 2380,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -3713,7 +3713,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "ttvasumweg36g5|amsterdam|2385",
   "last_price": 2385,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "ikwilhuren"
@@ -3722,7 +3722,7 @@
   "first_seen": "2026-11-17T13:19:03Z",
   "fp": "ttvasumweg40e1|amsterdam|1816",
   "last_price": 1816,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "ikwilhuren"
@@ -3740,7 +3740,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "ttvasumweg32v1|amsterdam|2435",
   "last_price": 2435,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "ikwilhuren"
@@ -3749,7 +3749,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "solitudolaan274|amsterdam|1710",
   "last_price": 1710,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "ikwilhuren"
@@ -3772,7 +3772,7 @@
   "first_seen": "2026-11-15T12:36:15Z",
   "fp": "sumatrakade1153|amsterdam|2055",
   "last_price": 2055,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -3783,7 +3783,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "ttvasumweg32d7|amsterdam|2030",
   "last_price": 2030,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "ikwilhuren"
@@ -3792,7 +3792,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "ttvasumweg32v4|amsterdam|2633",
   "last_price": 2633,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "ikwilhuren"
@@ -3801,7 +3801,7 @@
   "first_seen": "2026-11-10T14:36:54Z",
   "fp": "schedeldoekshaven452|den-haag|1583",
   "last_price": 1583,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "ikwilhuren"
@@ -3823,7 +3823,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "haringbuisdijk909|amsterdam|2200",
   "last_price": 2200,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -3847,7 +3847,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "maanplein94e|den-haag|1542",
   "last_price": 1542,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people"
   ],
@@ -3889,7 +3889,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "turfhaven449|den-haag|1447",
   "last_price": 1447,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people"
   ],
@@ -3900,7 +3900,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "ttvasumweg36d6|amsterdam|2100",
   "last_price": 2100,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "ikwilhuren"
@@ -3909,7 +3909,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "schedeldoekshaven320|den-haag|1625",
   "last_price": 1625,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "ikwilhuren"
@@ -3936,7 +3936,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "loosduinseweg1103|den-haag|1228",
   "last_price": 1228,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people"
   ],
@@ -3983,7 +3983,7 @@
   "first_seen": "2026-11-17T10:28:46Z",
   "fp": "groenburgwal|amsterdam|2500",
   "last_price": 2500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -4018,7 +4018,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "vankinsbergenstraat83q|den-haag|2195",
   "last_price": 2195,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -4054,7 +4054,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "vlietpark42|leiden|2200",
   "last_price": 2200,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -4081,7 +4081,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "kranestraat43d|den-haag|2000",
   "last_price": 2000,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -4099,7 +4099,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "apeldoornselaan|den-haag|3000",
   "last_price": 3000,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -4117,7 +4117,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "stevinstraat|den-haag|2950",
   "last_price": 2950,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -4135,7 +4135,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "pieterbothstraat|den-haag|2500",
   "last_price": 2500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -4171,7 +4171,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "rijswijkseweg|den-haag|1375",
   "last_price": 1375,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -4196,7 +4196,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "valkenboslaan122|den-haag|1525",
   "last_price": 1525,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -4205,7 +4205,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "spaarnestraat|den-haag|1265",
   "last_price": 1265,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -4276,7 +4276,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "julianastraat40|leiden|900",
   "last_price": 900,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -4470,7 +4470,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "wittesingel109|leiden|950",
   "last_price": 950,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -4567,7 +4567,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "laanvanmeerdervoort|den-haag|1084",
   "last_price": 1084,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -4621,7 +4621,7 @@
   "first_seen": "2026-11-10T14:36:54Z",
   "fp": "wesselsstraat482|den-haag|1500",
   "last_price": 1500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people"
   ],
@@ -5082,7 +5082,7 @@
   "first_seen": "2026-11-14T11:19:47Z",
   "fp": "mariottestraat|den-haag|2600",
   "last_price": 2600,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -5147,7 +5147,7 @@
   "first_seen": "2026-11-16T08:07:51Z",
   "fp": "mezenstraat|amsterdam|2000",
   "last_price": 2000,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -5174,7 +5174,7 @@
   "first_seen": "2026-11-16T08:17:49Z",
   "fp": "marcantilaan297|amsterdam|2200",
   "last_price": 2200,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -5183,7 +5183,7 @@
   "first_seen": "2026-11-16T08:17:49Z",
   "fp": "wibautstraat|amsterdam|2500",
   "last_price": 2500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -5192,7 +5192,7 @@
   "first_seen": "2026-11-16T08:17:49Z",
   "fp": "decarpentierstraat|den-haag|450",
   "last_price": 450,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -5218,7 +5218,7 @@
   "first_seen": "2026-11-16T08:27:50Z",
   "fp": "langescheistraat6|leiden|1200",
   "last_price": 1200,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -5227,7 +5227,7 @@
   "first_seen": "2026-11-16T08:27:50Z",
   "fp": "naritaweg|amsterdam|2750",
   "last_price": 2750,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -5236,7 +5236,7 @@
   "first_seen": "2026-11-16T08:27:50Z",
   "fp": "utrechtsestraat|amsterdam|4000",
   "last_price": 4000,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -5254,7 +5254,7 @@
   "first_seen": "2026-11-16T13:15:07Z",
   "fp": "singel|amsterdam|2500",
   "last_price": 2500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -5281,7 +5281,7 @@
   "first_seen": "2026-11-16T14:15:20Z",
   "fp": "maaswijkstraat10|den-haag|1400",
   "last_price": 1400,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people"
   ],
@@ -5318,7 +5318,7 @@
   "first_seen": "2026-11-16T13:45:08Z",
   "fp": "tilanusstraat|amsterdam|2010",
   "last_price": 2010,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -5327,7 +5327,7 @@
   "first_seen": "2026-11-16T14:35:30Z",
   "fp": "sintnicolaasstraat|amsterdam|2350",
   "last_price": 2350,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -5363,7 +5363,7 @@
   "first_seen": "2026-11-17T08:08:45Z",
   "fp": "maritzstraat21|amsterdam|2000",
   "last_price": 2000,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -5372,7 +5372,7 @@
   "first_seen": "2026-11-17T10:38:48Z",
   "fp": "pietercalandlaan|amsterdam|2450",
   "last_price": 2450,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -5381,7 +5381,7 @@
   "first_seen": "2026-11-18T09:59:06Z",
   "fp": "marcopolostraat|amsterdam|1750",
   "last_price": 1750,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -5390,7 +5390,7 @@
   "first_seen": "2026-11-18T09:39:14Z",
   "fp": "prinsengracht|amsterdam|2799",
   "last_price": 2799,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -5399,7 +5399,7 @@
   "first_seen": "2026-11-18T09:29:02Z",
   "fp": "marcusstraat|amsterdam|2500",
   "last_price": 2500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -5425,7 +5425,59 @@
   "first_seen": "2026-11-18T11:59:04Z",
   "fp": "bilderdijkkade6|amsterdam|1250",
   "last_price": 1250,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
+  "matched": [],
+  "notified_at": null,
+  "source": "kamernet"
+ },
+ "kamernet:2419436": {
+  "details": {
+   "address": "Jekerstraat 45",
+   "area_m2": 74,
+   "available_from": "2026-12-01",
+   "bedrooms": 2,
+   "description": "ALLEEN STELLEN – Gemeubileerd 2-slpk Rivierenbuurt ALLEEN VOOR STELLEN – geen studenten, geen delers. Op zoek naar een fijne, ruime plek in een van de rustigste buurten van Amsterdam? Dit gemeubileerde appartement van ca. 74 m² ligt aan de Jekerstraat in de Rivierenbuurt en is verdeeld over twee verdiepingen met een eigen trap. De lichte woonkamer met open haard is de plek om thuis te komen. De open keuken heeft een kookeiland en luxe inbouwapparatuur. Er zijn twee slaapkamers en een aparte werkkamer, dus ook ideaal als je thuiswerkt. Verder een balkon en een badkamer met ligbad en aparte douche. Energielabel A. De buurt De Rivierenbuurt is rustig en groen, met mooie lanen en de Amstel om de hoek. Voor de dagelijkse boodschappen loop je naar het Scheldeplein en de winkels op de Rijnstraat. Het Europaplein en de RAI liggen dichtbij, en vanaf metrostation Europaplein (Noord-Zuidlijn) ben je zo op de Zuidas en in het centrum. In het kort • Ca. 74 m², verdeeld over twee verdiepingen met eigen trap • 2 slaapkamers + werkkamer • Lichte woonkamer met open haard • Open keuken met kookeiland en luxe inbouwapparatuur • Balkon • Badkamer met ligbad en aparte douche • Gemeubileerd, energielabel A • Huur: €2.250 per maand excl. g/w/l • Borg: 2 maanden huur • Huurcontract voor onbepaalde tijd (minimaal 12 maanden) • Beschikbaar per 1 december 2026 • Alleen voor stellen (geen studenten, geen delers)",
+   "extra": {
+    "deposit": 4500,
+    "max_persons": 2,
+    "student_house": false
+   },
+   "postcode": "1078LX",
+   "price_includes_utilities": false,
+   "price_total": 2250,
+   "property_type": "apartment",
+   "search_price": 2250
+  },
+  "first_seen": "2026-11-18T12:29:10Z",
+  "fp": "jekerstraat|amsterdam|2250",
+  "last_price": 2250,
+  "last_seen": "2026-11-18T12:29:10Z",
+  "matched": [],
+  "notified_at": null,
+  "source": "kamernet"
+ },
+ "kamernet:2419446": {
+  "details": {
+   "address": "Leerdamhof 254",
+   "area_m2": 85,
+   "available_from": "2026-12-15",
+   "available_until": "2027-03-06",
+   "description": "Sfeervol appartement in Amsterdam, in het park :) Wij zijn op zoek naar iemand of een stel dat ons fijne appartement in Amsterdam Zuidoost, vlak bij het Gaasperpark, wil huren van 15 december 2026 tot 6 maart 2027 (de gehele periode). Ons appartement ligt in een rustige, groene omgeving, met het Gaasperpark om de hoek. Alles wat je nodig hebt is in de buurt, zoals supermarkten, sportscholen en openbaar vervoer. Het appartement is volledig gemeubileerd en met veel liefde ingericht. Alle kosten zijn inbegrepen, met uitzondering van verwarming. Deze kosten zijn afhankelijk van je verbruik en liggen naar verwachting tussen de €100 en €300 voor de gehele periode. Het enige wat we vragen, is dat je af en toe onze plantjes water geeft :)",
+   "extra": {
+    "deposit": 2000,
+    "max_persons": 2,
+    "student_house": false
+   },
+   "postcode": "1108BX",
+   "price_includes_utilities": false,
+   "price_total": 2200,
+   "property_type": "apartment",
+   "search_price": 2200
+  },
+  "first_seen": "2026-11-18T12:29:10Z",
+  "fp": "leerdamhof|amsterdam|2200",
+  "last_price": 2200,
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "kamernet"
@@ -5467,7 +5519,7 @@
  "rotsvast:h1025411934": {
   "first_seen": "2026-11-10T13:14:32Z",
   "last_price": null,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "rotsvast"
@@ -5475,7 +5527,7 @@
  "rotsvast:h1025411935": {
   "first_seen": "2026-11-10T13:14:32Z",
   "last_price": null,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "rotsvast"
@@ -5619,7 +5671,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "kruidenhof16|leiden|1695",
   "last_price": 1695,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "rotsvast"
@@ -5628,7 +5680,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "kruidenhof27|leiden|1875",
   "last_price": 1875,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "rotsvast"
@@ -5636,7 +5688,7 @@
  "rotsvast:h103580391": {
   "first_seen": "2026-11-10T13:14:32Z",
   "last_price": null,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "rotsvast"
@@ -5645,7 +5697,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "rooseveltstraat255|leiden|2305",
   "last_price": 2305,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "rotsvast"
@@ -5654,7 +5706,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "rooseveltstraat69|leiden|2275",
   "last_price": 2275,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "rotsvast"
@@ -5663,7 +5715,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "rooseveltstraat137|leiden|2275",
   "last_price": 2275,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "rotsvast"
@@ -5672,7 +5724,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "rooseveltstraat187|leiden|2050",
   "last_price": 2050,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "rotsvast"
@@ -5681,7 +5733,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "kruidenhof26|leiden|1875",
   "last_price": 1875,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "rotsvast"
@@ -6534,7 +6586,7 @@
   "first_seen": "2026-11-17T17:29:02Z",
   "fp": "vanboecopkade18|den-haag|1600",
   "last_price": 1600,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people"
   ],
@@ -6629,7 +6681,7 @@
   "first_seen": "2026-11-17T17:59:03Z",
   "fp": "betaplein276|leiden|1795",
   "last_price": 1795,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -6666,7 +6718,7 @@
   "first_seen": "2026-11-12T08:39:31Z",
   "fp": "veemkade490|amsterdam|2285",
   "last_price": 2285,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "vesteda"
@@ -6720,7 +6772,7 @@
   "first_seen": "2026-11-11T13:59:12Z",
   "fp": "elzenhagensingel1147|amsterdam|1660",
   "last_price": 1660,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "vesteda"
@@ -6729,7 +6781,7 @@
   "first_seen": "2026-11-11T10:39:13Z",
   "fp": "saturnusstraat242102|den-haag|1360",
   "last_price": 1360,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "vesteda"
@@ -6738,7 +6790,7 @@
   "first_seen": "2026-11-13T17:59:46Z",
   "fp": "elzenhagensingel1163|amsterdam|1660",
   "last_price": 1660,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "vesteda"
@@ -6771,7 +6823,7 @@
   "first_seen": "2026-11-16T15:25:18Z",
   "fp": "westerdok248|amsterdam|2240",
   "last_price": 2240,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "3 people"
   ],
@@ -6843,7 +6895,7 @@
   "first_seen": "2026-11-10T13:14:32Z",
   "fp": "deboelelaan669|amsterdam|1925",
   "last_price": 1925,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [],
   "notified_at": null,
   "source": "vesteda"
@@ -6885,7 +6937,7 @@
   "first_seen": "2026-11-17T17:29:02Z",
   "fp": "betaplein66|leiden|1500",
   "last_price": 1500,
-  "last_seen": "2026-11-18T12:19:03Z",
+  "last_seen": "2026-11-18T12:29:10Z",
   "matched": [
    "2 people"
   ],
