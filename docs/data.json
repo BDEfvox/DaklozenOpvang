@@ -23,9 +23,81 @@
   "suspicious_price": "Suspiciously cheap",
   "utilities_included": "Utilities included"
  },
- "generated_at": "2026-11-18T12:39:04Z",
- "last_run": "2026-11-18T12:39:04Z",
+ "generated_at": "2026-11-18T12:50:24Z",
+ "last_run": "2026-11-18T12:50:24Z",
  "listings": [
+  {
+   "address": "Zuidplein",
+   "area_m2": 85,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "best_tier": "ok",
+   "city": "rotterdam",
+   "first_seen": "2026-11-18T12:50:24Z",
+   "flags": [
+    "bedrooms_unconfirmed"
+   ],
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/image/a10cfb24-aa5d-461d-acfc-0c953209e1d0",
+   "last_seen": "2026-11-18T12:50:24Z",
+   "matches": [
+    {
+     "persons": 2,
+     "price_pp": 738,
+     "search": "2 people",
+     "tier": "ok"
+    }
+   ],
+   "postcode": null,
+   "price_drop_from": null,
+   "price_includes_utilities": false,
+   "price_total": 1475,
+   "property_type": "apartment",
+   "rooms": 3,
+   "source": "directwonen",
+   "source_label": "DirectWonen",
+   "title": "Appartement Zuidplein, Rotterdam",
+   "uid": "directwonen:521556",
+   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/zuidplein/appartement-521556"
+  },
+  {
+   "address": "Sneeuwbalstraat 48",
+   "area_m2": 98,
+   "available_from": "2026-12-20",
+   "available_until": "2027-01-03",
+   "bedrooms": 2,
+   "best_tier": "ok",
+   "city": "den-haag",
+   "first_seen": "2026-11-18T12:50:24Z",
+   "flags": [
+    "max_persons:8",
+    "short_term",
+    "utilities_included"
+   ],
+   "furnished": "furnished",
+   "image_url": "https://resources.kamernet.nl/image/507eeddd-036f-4bd3-a9a8-e066534a014f/resize/422-225",
+   "last_seen": "2026-11-18T12:50:24Z",
+   "matches": [
+    {
+     "persons": 2,
+     "price_pp": 750,
+     "search": "2 people",
+     "tier": "ok"
+    }
+   ],
+   "postcode": "2565WC",
+   "price_drop_from": null,
+   "price_includes_utilities": true,
+   "price_total": 1500,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "kamernet",
+   "source_label": "Kamernet",
+   "title": "Appartement te huur: Sneeuwbalstraat",
+   "uid": "kamernet:2419433",
+   "url": "https://kamernet.nl/huren/appartement-den-haag/sneeuwbalstraat/appartement-2419433"
+  },
   {
    "address": "B. Baumannlaan",
    "area_m2": 63,
@@ -40,7 +112,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/178bec68-ba20-46ee-aa27-e32470aca162",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -62,6 +134,216 @@
    "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/burgemeester-baumannlaan/appartement-514959"
   },
   {
+   "address": "Resedastraat",
+   "area_m2": 116,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": 2,
+   "best_tier": "great",
+   "city": "rotterdam",
+   "first_seen": "2026-11-18T12:39:04Z",
+   "flags": [],
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/content/images/no_photo.png",
+   "last_seen": "2026-11-18T12:50:24Z",
+   "matches": [
+    {
+     "persons": 2,
+     "price_pp": 545,
+     "search": "2 people",
+     "tier": "great"
+    }
+   ],
+   "postcode": null,
+   "price_drop_from": null,
+   "price_includes_utilities": false,
+   "price_total": 1090,
+   "property_type": "apartment",
+   "rooms": 3,
+   "source": "directwonen",
+   "source_label": "DirectWonen",
+   "title": "Appartement Resedastraat, Rotterdam",
+   "uid": "directwonen:524009",
+   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/resedastraat/appartement-524009"
+  },
+  {
+   "address": "Middelharnisstraat",
+   "area_m2": 56,
+   "available_from": "2026-12-01",
+   "available_until": null,
+   "bedrooms": 2,
+   "best_tier": "great",
+   "city": "rotterdam",
+   "first_seen": "2026-11-18T12:39:04Z",
+   "flags": [],
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/image/95195505-99da-4033-a5e7-1230478c5af4",
+   "last_seen": "2026-11-18T12:50:24Z",
+   "matches": [
+    {
+     "persons": 2,
+     "price_pp": 532,
+     "search": "2 people",
+     "tier": "great"
+    }
+   ],
+   "postcode": null,
+   "price_drop_from": null,
+   "price_includes_utilities": false,
+   "price_total": 1065,
+   "property_type": "apartment",
+   "rooms": 3,
+   "source": "directwonen",
+   "source_label": "DirectWonen",
+   "title": "Appartement Middelharnisstraat, Rotterdam",
+   "uid": "directwonen:524064",
+   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/middelharnisstraat/appartement-524064"
+  },
+  {
+   "address": "Ramlehweg",
+   "area_m2": 122,
+   "available_from": "2026-12-01",
+   "available_until": null,
+   "bedrooms": null,
+   "best_tier": "great",
+   "city": "rotterdam",
+   "first_seen": "2026-11-18T12:39:04Z",
+   "flags": [
+    "bedrooms_unconfirmed"
+   ],
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/content/images/no_photo.png",
+   "last_seen": "2026-11-18T12:50:24Z",
+   "matches": [
+    {
+     "persons": 3,
+     "price_pp": 665,
+     "search": "3 people",
+     "tier": "great"
+    }
+   ],
+   "postcode": null,
+   "price_drop_from": null,
+   "price_includes_utilities": false,
+   "price_total": 1995,
+   "property_type": "apartment",
+   "rooms": 4,
+   "source": "directwonen",
+   "source_label": "DirectWonen",
+   "title": "Appartement Ramlehweg, Rotterdam",
+   "uid": "directwonen:524084",
+   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/ramlehweg/appartement-524084"
+  },
+  {
+   "address": "J.W. Frisostraat",
+   "area_m2": 120,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": 5,
+   "best_tier": "great",
+   "city": "rotterdam",
+   "first_seen": "2026-11-18T12:39:04Z",
+   "flags": [],
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/content/images/no_photo.png",
+   "last_seen": "2026-11-18T12:50:24Z",
+   "matches": [
+    {
+     "persons": 2,
+     "price_pp": 588,
+     "search": "2 people",
+     "tier": "great"
+    },
+    {
+     "persons": 3,
+     "price_pp": 392,
+     "search": "3 people",
+     "tier": "great"
+    }
+   ],
+   "postcode": null,
+   "price_drop_from": null,
+   "price_includes_utilities": false,
+   "price_total": 1175,
+   "property_type": "apartment",
+   "rooms": 6,
+   "source": "directwonen",
+   "source_label": "DirectWonen",
+   "title": "Appartement J.W. Frisostraat, Rotterdam",
+   "uid": "directwonen:524085",
+   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/jan-willem-frisostraat/appartement-524085"
+  },
+  {
+   "address": "'s-Gravenweg",
+   "area_m2": 65,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "best_tier": "ok",
+   "city": "rotterdam",
+   "first_seen": "2026-11-18T12:39:04Z",
+   "flags": [
+    "bedrooms_unconfirmed"
+   ],
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/image/364c7396-58c4-444b-9063-920cf3e951e3",
+   "last_seen": "2026-11-18T12:50:24Z",
+   "matches": [
+    {
+     "persons": 2,
+     "price_pp": 782,
+     "search": "2 people",
+     "tier": "ok"
+    }
+   ],
+   "postcode": null,
+   "price_drop_from": null,
+   "price_includes_utilities": false,
+   "price_total": 1565,
+   "property_type": "apartment",
+   "rooms": 3,
+   "source": "directwonen",
+   "source_label": "DirectWonen",
+   "title": "Appartement 's-Gravenweg, Rotterdam",
+   "uid": "directwonen:524093",
+   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/'s-gravenweg/appartement-524093"
+  },
+  {
+   "address": "Mariniersweg",
+   "area_m2": 120,
+   "available_from": "2026-12-01",
+   "available_until": null,
+   "bedrooms": null,
+   "best_tier": "great",
+   "city": "rotterdam",
+   "first_seen": "2026-11-18T12:39:04Z",
+   "flags": [
+    "bedrooms_unconfirmed"
+   ],
+   "furnished": null,
+   "image_url": "https://resources.directwonen.nl/image/c1848cad-1f18-4af8-81cf-87000f3d04ed",
+   "last_seen": "2026-11-18T12:50:24Z",
+   "matches": [
+    {
+     "persons": 3,
+     "price_pp": 683,
+     "search": "3 people",
+     "tier": "great"
+    }
+   ],
+   "postcode": null,
+   "price_drop_from": null,
+   "price_includes_utilities": false,
+   "price_total": 2050,
+   "property_type": "apartment",
+   "rooms": 4,
+   "source": "directwonen",
+   "source_label": "DirectWonen",
+   "title": "Appartement Mariniersweg, Rotterdam",
+   "uid": "directwonen:524166",
+   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/mariniersweg/appartement-524166"
+  },
+  {
    "address": "Tamboerstraat",
    "area_m2": 107,
    "available_from": "2026-12-01",
@@ -75,7 +357,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/b43fae7b-fe0d-4693-abe5-12373f940c9a",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -110,7 +392,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/77ccf51e-3cf9-4ebd-9728-1766ee51ee3b",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -132,216 +414,6 @@
    "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/mariniersweg/appartement-524209"
   },
   {
-   "address": "Mariniersweg",
-   "area_m2": 120,
-   "available_from": "2026-12-01",
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "rotterdam",
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/c1848cad-1f18-4af8-81cf-87000f3d04ed",
-   "last_seen": "2026-11-18T12:39:04Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 683,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 2050,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_label": "DirectWonen",
-   "title": "Appartement Mariniersweg, Rotterdam",
-   "uid": "directwonen:524166",
-   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/mariniersweg/appartement-524166"
-  },
-  {
-   "address": "'s-Gravenweg",
-   "area_m2": 65,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "rotterdam",
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/364c7396-58c4-444b-9063-920cf3e951e3",
-   "last_seen": "2026-11-18T12:39:04Z",
-   "matches": [
-    {
-     "persons": 2,
-     "price_pp": 782,
-     "search": "2 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 1565,
-   "property_type": "apartment",
-   "rooms": 3,
-   "source": "directwonen",
-   "source_label": "DirectWonen",
-   "title": "Appartement 's-Gravenweg, Rotterdam",
-   "uid": "directwonen:524093",
-   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/'s-gravenweg/appartement-524093"
-  },
-  {
-   "address": "J.W. Frisostraat",
-   "area_m2": 120,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": 5,
-   "best_tier": "great",
-   "city": "rotterdam",
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [],
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/content/images/no_photo.png",
-   "last_seen": "2026-11-18T12:39:04Z",
-   "matches": [
-    {
-     "persons": 2,
-     "price_pp": 588,
-     "search": "2 people",
-     "tier": "great"
-    },
-    {
-     "persons": 3,
-     "price_pp": 392,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 1175,
-   "property_type": "apartment",
-   "rooms": 6,
-   "source": "directwonen",
-   "source_label": "DirectWonen",
-   "title": "Appartement J.W. Frisostraat, Rotterdam",
-   "uid": "directwonen:524085",
-   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/jan-willem-frisostraat/appartement-524085"
-  },
-  {
-   "address": "Ramlehweg",
-   "area_m2": 122,
-   "available_from": "2026-12-01",
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "rotterdam",
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/content/images/no_photo.png",
-   "last_seen": "2026-11-18T12:39:04Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 665,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 1995,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_label": "DirectWonen",
-   "title": "Appartement Ramlehweg, Rotterdam",
-   "uid": "directwonen:524084",
-   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/ramlehweg/appartement-524084"
-  },
-  {
-   "address": "Middelharnisstraat",
-   "area_m2": 56,
-   "available_from": "2026-12-01",
-   "available_until": null,
-   "bedrooms": 2,
-   "best_tier": "great",
-   "city": "rotterdam",
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [],
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/95195505-99da-4033-a5e7-1230478c5af4",
-   "last_seen": "2026-11-18T12:39:04Z",
-   "matches": [
-    {
-     "persons": 2,
-     "price_pp": 532,
-     "search": "2 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 1065,
-   "property_type": "apartment",
-   "rooms": 3,
-   "source": "directwonen",
-   "source_label": "DirectWonen",
-   "title": "Appartement Middelharnisstraat, Rotterdam",
-   "uid": "directwonen:524064",
-   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/middelharnisstraat/appartement-524064"
-  },
-  {
-   "address": "Resedastraat",
-   "area_m2": 116,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": 2,
-   "best_tier": "great",
-   "city": "rotterdam",
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [],
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/content/images/no_photo.png",
-   "last_seen": "2026-11-18T12:39:04Z",
-   "matches": [
-    {
-     "persons": 2,
-     "price_pp": 545,
-     "search": "2 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 1090,
-   "property_type": "apartment",
-   "rooms": 3,
-   "source": "directwonen",
-   "source_label": "DirectWonen",
-   "title": "Appartement Resedastraat, Rotterdam",
-   "uid": "directwonen:524009",
-   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/resedastraat/appartement-524009"
-  },
-  {
    "address": "Grote Beer 127",
    "area_m2": 81,
    "available_from": null,
@@ -355,7 +427,7 @@
    ],
    "furnished": null,
    "image_url": "https://heimstaden.com/app/uploads/sites/2/heimstaden-ose/rental-object-attachments/17c246b1-4d8f-440d-96a8-7b2dd18b77b0/md/10-0-3c61e09086483422f90b71dc9dc61634.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -390,7 +462,7 @@
    ],
    "furnished": "furnished",
    "image_url": "https://housinganywhere.imgix.net/unit_type/1749760/0b395b23-f9a3-4534-bc2e-b280fdc6c985.jpg?auto=format%2Ccompress&cs=srgb&fit=clip&h=881&w=1920",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -423,7 +495,7 @@
    "flags": [],
    "furnished": null,
    "image_url": "https://housinganywhere.imgix.net/unit_type/1753301/7d39f4f8-830b-4b89-b131-e036d1eec582.jpg?auto=format%2Ccompress&cs=srgb&fit=clip&h=881&w=1920",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -445,41 +517,6 @@
    "url": "https://housinganywhere.com/room/ut1753301/nl/Rotterdam/brielselaan"
   },
   {
-   "address": "Van Oldenbarneveltplaats 14 C",
-   "area_m2": 120,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": 3,
-   "best_tier": "ok",
-   "city": "rotterdam",
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [
-    "income_requirement"
-   ],
-   "furnished": null,
-   "image_url": "https://c.static.nbo.nl/media/50/50f60004392eabfb65d61382db3fb6a2/768x510/thumb.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 717,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": "3012AH",
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2150,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "ikwilhuren",
-   "source_label": "MVGM (ikwilhuren.nu)",
-   "title": "Appartement Van Oldenbarneveltplaats 14 C, Rotterdam",
-   "uid": "ikwilhuren:70aa51a4d6bc837f556425813c248358",
-   "url": "https://ikwilhuren.nu/object/rotterdam-3012ah-14-c-van-oldenbarneveltplaats-70aa51a4d6bc837f556425813c248358/"
-  },
-  {
    "address": "Paul Desmondsingel 66",
    "area_m2": 129,
    "available_from": null,
@@ -493,7 +530,7 @@
    ],
    "furnished": null,
    "image_url": "https://c.static.nbo.nl/media/97/97a0298ca3cb9cd328c8f5e771019e2b/768x510/thumb.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -515,40 +552,39 @@
    "url": "https://ikwilhuren.nu/object/rotterdam-3069xt-66-paul-desmondsingel-6f7cf9a2745d91da5cb4d3315d95e7c8/"
   },
   {
-   "address": "Noordeinde",
-   "area_m2": 97,
-   "available_from": "2026-10-27",
+   "address": "Van Oldenbarneveltplaats 14 C",
+   "area_m2": 120,
+   "available_from": null,
    "available_until": null,
-   "bedrooms": null,
+   "bedrooms": 3,
    "best_tier": "ok",
-   "city": "delft",
+   "city": "rotterdam",
    "first_seen": "2026-11-18T12:39:04Z",
    "flags": [
-    "utilities_included",
-    "bedrooms_unknown"
+    "income_requirement"
    ],
-   "furnished": "furnished",
-   "image_url": "https://resources.kamernet.nl/image/48842633-cc96-4c41-b50f-fa2fa6157368/resize/422-225",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "furnished": null,
+   "image_url": "https://c.static.nbo.nl/media/50/50f60004392eabfb65d61382db3fb6a2/768x510/thumb.jpg",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
-     "price_pp": 783,
+     "price_pp": 717,
      "search": "3 people",
      "tier": "ok"
     }
    ],
-   "postcode": null,
+   "postcode": "3012AH",
    "price_drop_from": null,
-   "price_includes_utilities": true,
-   "price_total": 2350,
+   "price_includes_utilities": null,
+   "price_total": 2150,
    "property_type": "apartment",
    "rooms": null,
-   "source": "kamernet",
-   "source_label": "Kamernet",
-   "title": "Appartement te huur: Noordeinde",
-   "uid": "kamernet:2414489",
-   "url": "https://kamernet.nl/huren/appartement-delft/noordeinde/appartement-2414489"
+   "source": "ikwilhuren",
+   "source_label": "MVGM (ikwilhuren.nu)",
+   "title": "Appartement Van Oldenbarneveltplaats 14 C, Rotterdam",
+   "uid": "ikwilhuren:70aa51a4d6bc837f556425813c248358",
+   "url": "https://ikwilhuren.nu/object/rotterdam-3012ah-14-c-van-oldenbarneveltplaats-70aa51a4d6bc837f556425813c248358/"
   },
   {
    "address": "Noordeinde",
@@ -564,7 +600,7 @@
    ],
    "furnished": "furnished",
    "image_url": "https://resources.kamernet.nl/image/99798b68-8f4c-4871-9071-9b2e560196ec/resize/422-225",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -586,74 +622,40 @@
    "url": "https://kamernet.nl/huren/appartement-delft/noordeinde/appartement-2414487"
   },
   {
-   "address": "Crooswijksestraat",
-   "area_m2": 80,
-   "available_from": "2026-12-01",
+   "address": "Noordeinde",
+   "area_m2": 97,
+   "available_from": "2026-10-27",
    "available_until": null,
    "bedrooms": null,
-   "best_tier": "great",
-   "city": "rotterdam",
+   "best_tier": "ok",
+   "city": "delft",
    "first_seen": "2026-11-18T12:39:04Z",
    "flags": [
+    "utilities_included",
     "bedrooms_unknown"
    ],
-   "furnished": "unfurnished",
-   "image_url": "https://resources.kamernet.nl/image/4342398c-30e7-4f98-af32-091aace67eb1/resize/422-225",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "furnished": "furnished",
+   "image_url": "https://resources.kamernet.nl/image/48842633-cc96-4c41-b50f-fa2fa6157368/resize/422-225",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
-     "price_pp": 665,
+     "price_pp": 783,
      "search": "3 people",
-     "tier": "great"
+     "tier": "ok"
     }
    ],
    "postcode": null,
    "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 1995,
+   "price_includes_utilities": true,
+   "price_total": 2350,
    "property_type": "apartment",
    "rooms": null,
    "source": "kamernet",
    "source_label": "Kamernet",
-   "title": "Appartement te huur: Crooswijksestraat",
-   "uid": "kamernet:2417616",
-   "url": "https://kamernet.nl/huren/appartement-rotterdam/crooswijksestraat/appartement-2417616"
-  },
-  {
-   "address": "Luzacstraat",
-   "area_m2": 55,
-   "available_from": "2026-11-17",
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "rotterdam",
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [
-    "bedrooms_unknown"
-   ],
-   "furnished": "unfurnished",
-   "image_url": "https://resources.kamernet.nl/image/3083065e-d1ba-4ee8-b3fb-091dfb4336a6/resize/422-225",
-   "last_seen": "2026-11-18T12:39:04Z",
-   "matches": [
-    {
-     "persons": 2,
-     "price_pp": 675,
-     "search": "2 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 1350,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "kamernet",
-   "source_label": "Kamernet",
-   "title": "Appartement te huur: Luzacstraat",
-   "uid": "kamernet:2419285",
-   "url": "https://kamernet.nl/huren/appartement-rotterdam/luzacstraat/appartement-2419285"
+   "title": "Appartement te huur: Noordeinde",
+   "uid": "kamernet:2414489",
+   "url": "https://kamernet.nl/huren/appartement-delft/noordeinde/appartement-2414489"
   },
   {
    "address": "Oostzeedijk",
@@ -670,7 +672,7 @@
    ],
    "furnished": "furnished",
    "image_url": "https://resources.kamernet.nl/image/dc4b00e3-8064-4029-8d9c-e2e06f62d606/resize/422-225",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -692,76 +694,39 @@
    "url": "https://kamernet.nl/huren/appartement-rotterdam/oostzeedijk/appartement-2416410"
   },
   {
-   "address": "Nieuwe Binnenweg",
+   "address": "Crooswijksestraat",
    "area_m2": 80,
-   "available_from": "2026-11-16",
+   "available_from": "2026-12-01",
    "available_until": null,
    "bedrooms": null,
-   "best_tier": "ok",
+   "best_tier": "great",
    "city": "rotterdam",
    "first_seen": "2026-11-18T12:39:04Z",
    "flags": [
     "bedrooms_unknown"
    ],
-   "furnished": "upholstered",
-   "image_url": "https://resources.kamernet.nl/image/07b5b32a-0fff-40fe-96c2-e2c82dad0f35/resize/422-225",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "furnished": "unfurnished",
+   "image_url": "https://resources.kamernet.nl/image/4342398c-30e7-4f98-af32-091aace67eb1/resize/422-225",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
-     "price_pp": 732,
+     "price_pp": 665,
      "search": "3 people",
-     "tier": "ok"
+     "tier": "great"
     }
    ],
    "postcode": null,
    "price_drop_from": null,
    "price_includes_utilities": false,
-   "price_total": 2195,
+   "price_total": 1995,
    "property_type": "apartment",
    "rooms": null,
    "source": "kamernet",
    "source_label": "Kamernet",
-   "title": "Appartement te huur: Nieuwe Binnenweg",
-   "uid": "kamernet:2419047",
-   "url": "https://kamernet.nl/huren/appartement-rotterdam/nieuwe-binnenweg/appartement-2419047"
-  },
-  {
-   "address": "Binnenrotte",
-   "area_m2": 70,
-   "available_from": "2026-12-01",
-   "available_until": "2027-01-31",
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "rotterdam",
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [
-    "short_term",
-    "utilities_included",
-    "bedrooms_unknown"
-   ],
-   "furnished": "furnished",
-   "image_url": "https://resources.kamernet.nl/image/8099af0c-ce4e-4016-8ade-ffdf1ccca317/resize/422-225",
-   "last_seen": "2026-11-18T12:39:04Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 733,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": true,
-   "price_total": 2200,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "kamernet",
-   "source_label": "Kamernet",
-   "title": "Appartement te huur: Binnenrotte",
-   "uid": "kamernet:2418236",
-   "url": "https://kamernet.nl/huren/appartement-rotterdam/binnenrotte/appartement-2418236"
+   "title": "Appartement te huur: Crooswijksestraat",
+   "uid": "kamernet:2417616",
+   "url": "https://kamernet.nl/huren/appartement-rotterdam/crooswijksestraat/appartement-2417616"
   },
   {
    "address": "Doklaan",
@@ -777,7 +742,7 @@
    ],
    "furnished": "unfurnished",
    "image_url": "https://resources.kamernet.nl/image/798d393a-de6d-4cd1-8e1f-4458af623f91/resize/422-225",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -799,6 +764,113 @@
    "url": "https://kamernet.nl/huren/appartement-rotterdam/doklaan/appartement-2417622"
   },
   {
+   "address": "Binnenrotte",
+   "area_m2": 70,
+   "available_from": "2026-12-01",
+   "available_until": "2027-01-31",
+   "bedrooms": null,
+   "best_tier": "ok",
+   "city": "rotterdam",
+   "first_seen": "2026-11-18T12:39:04Z",
+   "flags": [
+    "short_term",
+    "utilities_included",
+    "bedrooms_unknown"
+   ],
+   "furnished": "furnished",
+   "image_url": "https://resources.kamernet.nl/image/8099af0c-ce4e-4016-8ade-ffdf1ccca317/resize/422-225",
+   "last_seen": "2026-11-18T12:50:24Z",
+   "matches": [
+    {
+     "persons": 3,
+     "price_pp": 733,
+     "search": "3 people",
+     "tier": "ok"
+    }
+   ],
+   "postcode": null,
+   "price_drop_from": null,
+   "price_includes_utilities": true,
+   "price_total": 2200,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "kamernet",
+   "source_label": "Kamernet",
+   "title": "Appartement te huur: Binnenrotte",
+   "uid": "kamernet:2418236",
+   "url": "https://kamernet.nl/huren/appartement-rotterdam/binnenrotte/appartement-2418236"
+  },
+  {
+   "address": "Nieuwe Binnenweg",
+   "area_m2": 80,
+   "available_from": "2026-11-16",
+   "available_until": null,
+   "bedrooms": null,
+   "best_tier": "ok",
+   "city": "rotterdam",
+   "first_seen": "2026-11-18T12:39:04Z",
+   "flags": [
+    "bedrooms_unknown"
+   ],
+   "furnished": "upholstered",
+   "image_url": "https://resources.kamernet.nl/image/07b5b32a-0fff-40fe-96c2-e2c82dad0f35/resize/422-225",
+   "last_seen": "2026-11-18T12:50:24Z",
+   "matches": [
+    {
+     "persons": 3,
+     "price_pp": 732,
+     "search": "3 people",
+     "tier": "ok"
+    }
+   ],
+   "postcode": null,
+   "price_drop_from": null,
+   "price_includes_utilities": false,
+   "price_total": 2195,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "kamernet",
+   "source_label": "Kamernet",
+   "title": "Appartement te huur: Nieuwe Binnenweg",
+   "uid": "kamernet:2419047",
+   "url": "https://kamernet.nl/huren/appartement-rotterdam/nieuwe-binnenweg/appartement-2419047"
+  },
+  {
+   "address": "Luzacstraat",
+   "area_m2": 55,
+   "available_from": "2026-11-17",
+   "available_until": null,
+   "bedrooms": null,
+   "best_tier": "great",
+   "city": "rotterdam",
+   "first_seen": "2026-11-18T12:39:04Z",
+   "flags": [
+    "bedrooms_unknown"
+   ],
+   "furnished": "unfurnished",
+   "image_url": "https://resources.kamernet.nl/image/3083065e-d1ba-4ee8-b3fb-091dfb4336a6/resize/422-225",
+   "last_seen": "2026-11-18T12:50:24Z",
+   "matches": [
+    {
+     "persons": 2,
+     "price_pp": 675,
+     "search": "2 people",
+     "tier": "great"
+    }
+   ],
+   "postcode": null,
+   "price_drop_from": null,
+   "price_includes_utilities": false,
+   "price_total": 1350,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "kamernet",
+   "source_label": "Kamernet",
+   "title": "Appartement te huur: Luzacstraat",
+   "uid": "kamernet:2419285",
+   "url": "https://kamernet.nl/huren/appartement-rotterdam/luzacstraat/appartement-2419285"
+  },
+  {
    "address": "Bovenstraat",
    "area_m2": 48,
    "available_from": null,
@@ -814,7 +886,7 @@
    ],
    "furnished": "unfurnished",
    "image_url": "https://www.rotsvast.nl/app/uploads/wpararius/media/H1025010362/H1025010362-19114-a7f67339.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -836,76 +908,6 @@
    "url": "https://www.rotsvast.nl/huren/bovenstraat-rotterdam-h1025010362/"
   },
   {
-   "address": "Admiraal De Ruyterweg 135",
-   "area_m2": 63,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": 2,
-   "best_tier": "great",
-   "city": "rotterdam",
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [
-    "income_requirement"
-   ],
-   "furnished": null,
-   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/90/9074749ddd1f55a3ac50721573a24f60/o/10568-linker-rottekade-rotterdam-vrije-sector-huurwoningen-ft2265.jpg?rmode=crop&width=570&height=276&hmac=fd1f38ea17718d42ca5990bf3af6267a91d3d5f7806af699f6b0f89cdbbb97d5",
-   "last_seen": "2026-11-18T12:39:04Z",
-   "matches": [
-    {
-     "persons": 2,
-     "price_pp": 576,
-     "search": "2 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": "3031AA",
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1153,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "vesteda",
-   "source_label": "Vesteda",
-   "title": "Appartement Admiraal De Ruyterweg 135, Rotterdam",
-   "uid": "vesteda:1833",
-   "url": "https://www.vesteda.com/nl/huurwoningen-rotterdam/linker-rottekade/admiraal-de-ruyterweg-135-rotterdam-1833"
-  },
-  {
-   "address": "Nieuwehaven 128",
-   "area_m2": 104,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": 3,
-   "best_tier": "great",
-   "city": "rotterdam",
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [
-    "income_requirement"
-   ],
-   "furnished": null,
-   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/04/049dc90f858023a98bffeecfca209bc4/o/10817-oude-haven-rotterdam-vrije-sector-huurwoningen-ft2204.jpg?rmode=crop&width=570&height=276&hmac=814f4159f5cb4ef9e866200f3857b953ea5c2b61c53d93ac9bb87afc891fdb0b",
-   "last_seen": "2026-11-18T12:39:04Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 617,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": "3011VT",
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1850,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "vesteda",
-   "source_label": "Vesteda",
-   "title": "Appartement Nieuwehaven 128, Rotterdam",
-   "uid": "vesteda:4146",
-   "url": "https://www.vesteda.com/nl/huurwoningen-rotterdam/oude-haven/nieuwehaven-128-rotterdam-4146"
-  },
-  {
    "address": "Van Der Hoevenplein 153",
    "area_m2": 103,
    "available_from": null,
@@ -920,7 +922,7 @@
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/5e/5e3230730d54a918d0fdc471b9f345f5/o/new-orleans-buidling.jpg?rmode=crop&width=570&height=276&hmac=8e4f242fa02deb6e693522aa7deb4b4ce1b8be13ac13b6029455af8a68add135",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -955,7 +957,7 @@
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/4a/4a602119e658b5f291151ded1d64726a/o/blok-a-1-.jpg?rmode=crop&width=570&height=276&hmac=816ba6728a499eb0985c9bfca7b9cd3c42fe07a03758b20acc0935db57171f56",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -977,41 +979,6 @@
    "url": "https://www.vesteda.com/nl/huurwoningen-rotterdam/de-kuil/albertina-sisulupad-248-rotterdam-125914"
   },
   {
-   "address": "Watertorenweg 411",
-   "area_m2": 103,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": 2,
-   "best_tier": "ok",
-   "city": "rotterdam",
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [
-    "income_requirement"
-   ],
-   "furnished": null,
-   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/ee/ee5e5c5e798459c6c564378d3e5aacfb/o/complex-foto.jpg?rmode=crop&width=570&height=276&hmac=370a662eaf7a66ed5fc8455f7cefe94fb601facf2d80da61f1891eab41f90ebe",
-   "last_seen": "2026-11-18T12:39:04Z",
-   "matches": [
-    {
-     "persons": 2,
-     "price_pp": 760,
-     "search": "2 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": "3063HD",
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1520,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "vesteda",
-   "source_label": "Vesteda",
-   "title": "Appartement Watertorenweg 411, Rotterdam",
-   "uid": "vesteda:3459",
-   "url": "https://www.vesteda.com/nl/huurwoningen-rotterdam/watertorenweg/watertorenweg-411-rotterdam-3459"
-  },
-  {
    "address": "Buitenbassinweg 320",
    "area_m2": 81,
    "available_from": null,
@@ -1025,7 +992,7 @@
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/ec/ecf3c2a4c6d19e75d9d04197c0caf83a/o/buitenbassinweg-306-19.jpg?rmode=crop&width=570&height=276&hmac=685b18a031f2b7ccc3810fdf2076adcdabb511c80a27db13215fec40284bb57e",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -1047,6 +1014,111 @@
    "url": "https://www.vesteda.com/nl/huurwoningen-rotterdam/buitenbassinweg/buitenbassinweg-320-rotterdam-17092"
   },
   {
+   "address": "Admiraal De Ruyterweg 135",
+   "area_m2": 63,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": 2,
+   "best_tier": "great",
+   "city": "rotterdam",
+   "first_seen": "2026-11-18T12:39:04Z",
+   "flags": [
+    "income_requirement"
+   ],
+   "furnished": null,
+   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/90/9074749ddd1f55a3ac50721573a24f60/o/10568-linker-rottekade-rotterdam-vrije-sector-huurwoningen-ft2265.jpg?rmode=crop&width=570&height=276&hmac=fd1f38ea17718d42ca5990bf3af6267a91d3d5f7806af699f6b0f89cdbbb97d5",
+   "last_seen": "2026-11-18T12:50:24Z",
+   "matches": [
+    {
+     "persons": 2,
+     "price_pp": 576,
+     "search": "2 people",
+     "tier": "great"
+    }
+   ],
+   "postcode": "3031AA",
+   "price_drop_from": null,
+   "price_includes_utilities": null,
+   "price_total": 1153,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "vesteda",
+   "source_label": "Vesteda",
+   "title": "Appartement Admiraal De Ruyterweg 135, Rotterdam",
+   "uid": "vesteda:1833",
+   "url": "https://www.vesteda.com/nl/huurwoningen-rotterdam/linker-rottekade/admiraal-de-ruyterweg-135-rotterdam-1833"
+  },
+  {
+   "address": "Watertorenweg 411",
+   "area_m2": 103,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": 2,
+   "best_tier": "ok",
+   "city": "rotterdam",
+   "first_seen": "2026-11-18T12:39:04Z",
+   "flags": [
+    "income_requirement"
+   ],
+   "furnished": null,
+   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/ee/ee5e5c5e798459c6c564378d3e5aacfb/o/complex-foto.jpg?rmode=crop&width=570&height=276&hmac=370a662eaf7a66ed5fc8455f7cefe94fb601facf2d80da61f1891eab41f90ebe",
+   "last_seen": "2026-11-18T12:50:24Z",
+   "matches": [
+    {
+     "persons": 2,
+     "price_pp": 760,
+     "search": "2 people",
+     "tier": "ok"
+    }
+   ],
+   "postcode": "3063HD",
+   "price_drop_from": null,
+   "price_includes_utilities": null,
+   "price_total": 1520,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "vesteda",
+   "source_label": "Vesteda",
+   "title": "Appartement Watertorenweg 411, Rotterdam",
+   "uid": "vesteda:3459",
+   "url": "https://www.vesteda.com/nl/huurwoningen-rotterdam/watertorenweg/watertorenweg-411-rotterdam-3459"
+  },
+  {
+   "address": "Nieuwehaven 128",
+   "area_m2": 104,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": 3,
+   "best_tier": "great",
+   "city": "rotterdam",
+   "first_seen": "2026-11-18T12:39:04Z",
+   "flags": [
+    "income_requirement"
+   ],
+   "furnished": null,
+   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/04/049dc90f858023a98bffeecfca209bc4/o/10817-oude-haven-rotterdam-vrije-sector-huurwoningen-ft2204.jpg?rmode=crop&width=570&height=276&hmac=814f4159f5cb4ef9e866200f3857b953ea5c2b61c53d93ac9bb87afc891fdb0b",
+   "last_seen": "2026-11-18T12:50:24Z",
+   "matches": [
+    {
+     "persons": 3,
+     "price_pp": 617,
+     "search": "3 people",
+     "tier": "great"
+    }
+   ],
+   "postcode": "3011VT",
+   "price_drop_from": null,
+   "price_includes_utilities": null,
+   "price_total": 1850,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "vesteda",
+   "source_label": "Vesteda",
+   "title": "Appartement Nieuwehaven 128, Rotterdam",
+   "uid": "vesteda:4146",
+   "url": "https://www.vesteda.com/nl/huurwoningen-rotterdam/oude-haven/nieuwehaven-128-rotterdam-4146"
+  },
+  {
    "address": "Tafelbergstraat",
    "area_m2": 204,
    "available_from": "2026-11-20",
@@ -1060,7 +1132,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/561bc73e-30e8-4be9-9472-861471714500",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -1101,7 +1173,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -1136,7 +1208,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -1171,7 +1243,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -1206,7 +1278,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -1241,7 +1313,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -1276,7 +1348,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -1312,7 +1384,7 @@
    ],
    "furnished": null,
    "image_url": "https://heimstaden.com/app/uploads/sites/2/heimstaden-ose/rental-object-attachments/edb08d5e-4fe0-43d4-9057-421ab4282756/md/10-0-54166d3a3be425dc3ff97f2c43796c5f.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -1347,7 +1419,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/60cdc373-aabc-464e-b042-eed8f96957da",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -1382,7 +1454,7 @@
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/85/857db1864604eafae20cf70355c857f0/o/content.jpg?rmode=crop&width=570&height=276&hmac=e502691b6ae60fe3c366895720f10e0944cb6dbc54228e4d2f1acfd805f0e6ad",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -1417,7 +1489,7 @@
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/aa/aaebad60ec1b1918558815092ecd81ae/o/van-boecopkade-12-14.jpg?rmode=crop&width=570&height=276&hmac=a143c63cf6a1846e47ac668672e0291c9eccf3fac8a766c5e3b3e85214b7dadc",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -1452,7 +1524,7 @@
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/80/8017084f53a41b164a2f3dd770e9015e/o/01.jpg?rmode=crop&width=570&height=276&hmac=3087b2037fb978271d89521e9a86b86279aad8876e502a92037c521318e1dd54",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -1487,7 +1559,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/6d3c8214-7f10-4457-ab2b-fd13a178937c",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -1522,7 +1594,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -1557,7 +1629,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -1592,7 +1664,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -1627,7 +1699,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -1662,7 +1734,7 @@
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/2c/2c84b4f2e6499c75c6ff1a3f6a7e09dc/o/08.jpg?rmode=crop&width=570&height=276&hmac=06dc2cee4fdd1d1da9d4896089e77e47884e4e2915b0abce6bb2c80d02e195cf",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -1699,7 +1771,7 @@
    ],
    "furnished": "upholstered",
    "image_url": "https://resources.kamernet.nl/image/82a457cc-972f-4086-8c1c-887693a51c45/resize/422-225",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -1734,7 +1806,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2201249.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -1769,7 +1841,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -1804,7 +1876,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -1883,7 +1955,7 @@
    ],
    "furnished": null,
    "image_url": "https://d.static.nbo.nl/media/bf/bf42e59fbe7680f83ab178e5ce493717/768x510/thumb.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -1918,7 +1990,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -1953,7 +2025,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/53a3016e-46e3-4539-a4f0-0809378f2529",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -2024,7 +2096,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -2059,7 +2131,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -2100,7 +2172,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -2135,7 +2207,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -2170,7 +2242,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -2205,7 +2277,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -2240,7 +2312,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -2275,7 +2347,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -2310,7 +2382,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -2351,7 +2423,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -2386,7 +2458,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -2672,7 +2744,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/d50c666f-c02c-4e62-a963-4a66692ff2bd",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -2707,7 +2779,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/dad24e06-d0f9-4c7c-b5b2-245321b17b25",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -2742,7 +2814,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/630bbed7-d781-4e03-b76a-6408fba9c493",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -3106,7 +3178,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2202687.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -3142,7 +3214,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2201435.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -3178,7 +3250,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2202706.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -3214,7 +3286,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2201522.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -3249,7 +3321,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2202293.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -3286,7 +3358,7 @@
    ],
    "furnished": "furnished",
    "image_url": "https://resources.kamernet.nl/image/ed9ea9bd-e2f5-4a92-aa48-944f3ac1b6de/resize/422-225",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -3356,7 +3428,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/eca3053f-f3f2-4209-8e0c-670bc8cdc54f",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -3490,7 +3562,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/cfeaa1a3-4b09-4ae9-9310-df6d3af633aa",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -3526,7 +3598,7 @@
    ],
    "furnished": null,
    "image_url": "https://d.static.nbo.nl/media/c6/c62446b2932f0c5d75bc563a03890070/768x510/thumb.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -3604,7 +3676,7 @@
    ],
    "furnished": null,
    "image_url": "https://c.static.nbo.nl/media/87/877112276f588a3a7f1d5972e08e0a61/768x510/thumb.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -3639,7 +3711,7 @@
    ],
    "furnished": null,
    "image_url": "https://b.static.nbo.nl/media/3c/3cdcc3cd15fd9fd1d2385baddb391e3f/768x510/thumb.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -3675,7 +3747,7 @@
    ],
    "furnished": null,
    "image_url": "https://b.static.nbo.nl/media/d3/d3ad03f4b036cd48d18ed0207f3e2aab/768x510/thumb.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -3711,7 +3783,7 @@
    ],
    "furnished": "furnished",
    "image_url": "https://resources.kamernet.nl/image/f133c357-dd63-4e68-bf4c-2bf2bb3cf464/resize/422-225",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -3747,7 +3819,7 @@
    ],
    "furnished": "upholstered",
    "image_url": "https://resources.kamernet.nl/image/90e91c00-4c83-4053-9c71-723538f1ea20/resize/422-225",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -3817,7 +3889,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2195529.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 3,
@@ -3852,7 +3924,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2203064.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -3923,7 +3995,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2203050.jpg",
-   "last_seen": "2026-11-18T12:39:04Z",
+   "last_seen": "2026-11-18T12:50:24Z",
    "matches": [
     {
      "persons": 2,
@@ -4002,7 +4074,7 @@
    "homepage": "https://www.123wonen.nl",
    "label": "123Wonen",
    "last_error": null,
-   "last_ok": "2026-11-18T12:39:04Z",
+   "last_ok": "2026-11-18T12:50:24Z",
    "listings_last_run": 7,
    "name": "123wonen",
    "note": "Reply via the agency (free)",
@@ -4013,7 +4085,7 @@
    "homepage": "https://directwonen.nl",
    "label": "DirectWonen",
    "last_error": "2026-11-15T12:56:13Z",
-   "last_ok": "2026-11-18T12:39:04Z",
+   "last_ok": "2026-11-18T12:50:24Z",
    "listings_last_run": 133,
    "name": "directwonen",
    "note": "Paid account needed to reply",
@@ -4024,7 +4096,7 @@
    "homepage": "https://www.pararius.nl",
    "label": "Pararius/Funda email alerts",
    "last_error": "2026-11-17T01:18:45Z",
-   "last_ok": "2026-11-18T12:39:04Z",
+   "last_ok": "2026-11-18T12:50:24Z",
    "listings_last_run": 53,
    "name": "email_alerts",
    "note": "Reads the alert emails these sites send you",
@@ -4035,7 +4107,7 @@
    "homepage": "https://heimstaden.com/nl/huurwoningen/",
    "label": "Heimstaden",
    "last_error": "2026-11-16T14:05:23Z",
-   "last_ok": "2026-11-18T12:39:04Z",
+   "last_ok": "2026-11-18T12:50:24Z",
    "listings_last_run": 4,
    "name": "heimstaden",
    "note": "Reply via Heimstaden (free)",
@@ -4046,7 +4118,7 @@
    "homepage": "https://housinganywhere.com",
    "label": "HousingAnywhere",
    "last_error": "2026-11-14T06:49:46Z",
-   "last_ok": "2026-11-18T12:39:04Z",
+   "last_ok": "2026-11-18T12:50:24Z",
    "listings_last_run": 66,
    "name": "housinganywhere",
    "note": "Mostly furnished, mid-term; platform fee applies",
@@ -4057,7 +4129,7 @@
    "homepage": "https://ikwilhuren.nu/aanbod/",
    "label": "MVGM (ikwilhuren.nu)",
    "last_error": "2026-11-18T10:39:05Z",
-   "last_ok": "2026-11-18T12:39:04Z",
+   "last_ok": "2026-11-18T12:50:24Z",
    "listings_last_run": 20,
    "name": "ikwilhuren",
    "note": "Free account on ikwilhuren.nu needed to reply",
@@ -4068,8 +4140,8 @@
    "homepage": "https://kamernet.nl",
    "label": "Kamernet",
    "last_error": "2026-11-12T15:19:44Z",
-   "last_ok": "2026-11-18T12:39:04Z",
-   "listings_last_run": 56,
+   "last_ok": "2026-11-18T12:50:24Z",
+   "listings_last_run": 57,
    "name": "kamernet",
    "note": "Paid Kamernet account needed to reply",
    "status": "ok"
@@ -4079,7 +4151,7 @@
    "homepage": "https://www.rotsvast.nl/huren/",
    "label": "Rotsvast",
    "last_error": "2026-11-18T11:59:04Z",
-   "last_ok": "2026-11-18T12:39:04Z",
+   "last_ok": "2026-11-18T12:50:24Z",
    "listings_last_run": 26,
    "name": "rotsvast",
    "note": "Reply via the agency (free)",
@@ -4090,7 +4162,7 @@
    "homepage": "https://www.vanderlinden.nl/woning-huren/",
    "label": "Van der Linden",
    "last_error": "2026-11-18T12:29:10Z",
-   "last_ok": "2026-11-18T12:39:04Z",
+   "last_ok": "2026-11-18T12:50:24Z",
    "listings_last_run": 59,
    "name": "vanderlinden",
    "note": "Reply via the agency (free)",
@@ -4101,7 +4173,7 @@
    "homepage": "https://www.vesteda.com/nl",
    "label": "Vesteda",
    "last_error": null,
-   "last_ok": "2026-11-18T12:39:04Z",
+   "last_ok": "2026-11-18T12:50:24Z",
    "listings_last_run": 23,
    "name": "vesteda",
    "note": "Free account on hurenbij.vesteda.com needed to reply",
