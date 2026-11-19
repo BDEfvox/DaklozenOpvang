@@ -15,18 +15,12 @@ LISTING_FIELDS = ("uid", "source", "url", "title", "city", "address", "postcode"
                   "furnished", "available_from", "available_until", "image_url")
 
 
-def _source_rows(state: State) -> List[Dict[str, Any]]:
-    labels: Dict[str, Any] = {}
-    try:
-        from .sources import all_sources
-        labels = all_sources()
-    except Exception:  # pragma: no cover
-        pass
+def _source_rows(state: State, sources: Dict[str, Any]) -> List[Dict[str, Any]]:
     names = set(state.health)
     rows = []
     for name in sorted(names):
         h = state.health.get(name, {})
-        src = labels.get(name)
+        src = sources.get(name)
         rows.append({
             "name": name,
             "label": h.get("label") or (src.label if src else None) or name,
@@ -44,7 +38,8 @@ def _source_rows(state: State) -> List[Dict[str, Any]]:
 def build_data(cfg: Dict[str, Any], state: State, now: Optional[datetime] = None) -> Dict[str, Any]:
     now = now or datetime.now(timezone.utc)
     cut = now - timedelta(days=int(cfg.get("keep_listings_days", 30)))
-    labels = {s.name: s.label for s in _safe_sources().values()}
+    sources = _safe_sources()
+    labels = {s.name: s.label for s in sources.values()}
     listings = []
     for uid, e in state.matches.items():
         last = parse_iso(e.get("last_seen"))
@@ -73,7 +68,7 @@ def build_data(cfg: Dict[str, Any], state: State, now: Optional[datetime] = None
                       "great_total": s["great_total"]} for s in cfg.get("searches", [])],
         "flag_labels": dict(FLAG_LABELS),
         "reply_template": cfg.get("reply_template", ""),
-        "sources": _source_rows(state),
+        "sources": _source_rows(state, sources),
         "listings": listings,
     }
 

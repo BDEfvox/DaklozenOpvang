@@ -33,7 +33,6 @@ class Source:
     label: str = ""                # human name shown in alerts and on the dashboard
     homepage: str = ""
     cities: Sequence[str] = ("den-haag", "amsterdam", "leiden")
-    enabled_by_default: bool = True
     note: str = ""                 # shown on the dashboard, e.g. "paid account needed to reply"
     # per_city=True: the runner calls fetch(city) once per configured city.
     # per_city=False: the runner calls fetch("*") once; the source returns listings for any city

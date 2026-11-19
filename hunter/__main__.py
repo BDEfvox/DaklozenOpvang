@@ -72,7 +72,7 @@ def cmd_dashboard(args: argparse.Namespace) -> int:
 
 
 def cmd_telegram_setup(args: argparse.Namespace) -> int:
-    from .notify.telegram import api_call
+    from .notify.telegram import api_call, sanitize
     token = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
     if not token:
         print("TELEGRAM_BOT_TOKEN is not set (environment or .env). Create a bot with @BotFather first.")
@@ -101,6 +101,12 @@ def cmd_telegram_setup(args: argparse.Namespace) -> int:
                 data = api_call(token, "getUpdates", payload, timeout=30)
             except RuntimeError as exc:
                 print(exc)
+                time.sleep(3)
+                continue
+            if data.get("ok") is False:
+                print("Telegram getUpdates failed: %s" % sanitize(data.get("description", ""), token))
+                if data.get("error_code") in (401, 409):
+                    return 1
                 time.sleep(3)
                 continue
             for upd in data.get("result", []):

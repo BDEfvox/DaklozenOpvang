@@ -28,7 +28,6 @@ class Http:
             "Accept-Language": "nl-NL,nl;q=0.9,en;q=0.8",
         })
         self._last: Dict[str, float] = {}
-        self.counts: Dict[str, int] = {}
 
     def _wait(self, host: str) -> None:
         last = self._last.get(host)
@@ -37,7 +36,6 @@ class Http:
             if gap < self.min_delay:
                 time.sleep(self.min_delay - gap)
         self._last[host] = time.monotonic()
-        self.counts[host] = self.counts.get(host, 0) + 1
 
     def request(self, method: str, url: str, *, accept: Optional[str] = None,
                 headers: Optional[Dict[str, str]] = None, **kw: Any) -> requests.Response:

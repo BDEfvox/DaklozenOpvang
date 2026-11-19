@@ -147,13 +147,12 @@ class Item:
 
 
 class Sender:
-    """Wraps the notifier: counts, stops after repeated failures."""
+    """Wraps the notifier and stops after repeated failures."""
 
     def __init__(self, notifier: Notifier, dashboard_url: Optional[str]) -> None:
         self.n = notifier
         self.dash = dashboard_url or None
         self.fail_streak = 0
-        self.sent = 0
 
     @property
     def broken(self) -> bool:
@@ -164,8 +163,6 @@ class Sender:
             return False
         ok = self.n.send(text, url=url, dashboard_url=self.dash)
         self.fail_streak = 0 if ok else self.fail_streak + 1
-        if ok:
-            self.sent += 1
         return ok
 
 

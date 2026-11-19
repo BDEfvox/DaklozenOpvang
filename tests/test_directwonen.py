@@ -25,7 +25,7 @@ def test_parse_tiles():
     http = FakeHttp(html)
     out = SOURCE.fetch("den-haag", http)
     assert http.urls == ["https://directwonen.nl/huurwoningen-huren/den-haag"]
-    assert [l.source_id for l in out] == ["523826", "523748", out[2].source_id, out[3].source_id]  # Rijswijk dropped
+    assert [l.source_id for l in out] == ["523826", "523748", "523693", "523697"]  # Rijswijk dropped
     a = out[0]
     assert a.uid == "directwonen:523826"
     assert a.url == "https://directwonen.nl/huurwoningen-huren/den-haag/norenburg/appartement-523826"  # not the payment page

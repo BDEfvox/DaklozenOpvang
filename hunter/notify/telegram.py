@@ -43,7 +43,12 @@ def api_call(token: str, method: str, payload: Optional[Dict[str, Any]] = None,
 
 
 def in_quiet_hours(now_utc: datetime, quiet: List[int], tz_name: str) -> bool:
-    if not quiet or len(quiet) != 2:
+    if not isinstance(quiet, (list, tuple)) or len(quiet) != 2:
+        return False
+    if any(type(hour) is not int or not 0 <= hour <= 23 for hour in quiet):
+        return False
+    start, end = quiet
+    if start == end:
         return False
     if ZoneInfo is not None:
         try:
@@ -52,7 +57,6 @@ def in_quiet_hours(now_utc: datetime, quiet: List[int], tz_name: str) -> bool:
             local = now_utc
     else:  # pragma: no cover
         local = now_utc
-    start, end = int(quiet[0]), int(quiet[1])
     h = local.hour
     return (start <= h < end) if start < end else (h >= start or h < end)
 
@@ -87,7 +91,6 @@ class TelegramNotifier(Notifier):
         self._clock = clock or (lambda: datetime.now().astimezone())
         self.session = session
         self._last = 0.0
-        self.sent_count = 0
 
     def _payload(self, text: str, url: Optional[str], dashboard_url: Optional[str]) -> Dict[str, Any]:
         url, dashboard_url = _web_url(url), _web_url(dashboard_url)
@@ -127,7 +130,6 @@ class TelegramNotifier(Notifier):
                 return False
             self._last = time.monotonic()
             if data.get("ok"):
-                self.sent_count += 1
                 return True
             params = data.get("parameters") or {}
             if params.get("migrate_to_chat_id") and not migrated:
