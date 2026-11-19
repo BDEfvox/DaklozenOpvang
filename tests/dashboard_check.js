@@ -139,18 +139,36 @@ function dashboard(responses, saved, storage) {
       ["any", "2", "3"].forEach(function (g) { document.getElementById("group-" + g).checked = g === value; });
       document.getElementById("group-" + value).fire("change");
     },
-    // Who is renting: tenant-students, tenant-working and tenant-any.
-    tenant: function (value) {
-      ["students", "working", "any"].forEach(function (t) { document.getElementById("tenant-" + t).checked = t === value; });
-      document.getElementById("tenant-" + value).fire("change");
-    },
-    toggle: function (id, on) {
-      var control = document.getElementById(id);
-      control.checked = on;
-      control.fire("change");
-    },
+    // A "listing says" filter: press its Only or Hide button (pressing the one that is on turns it off).
+    attr: function (key, mode) { attrButton(document.getElementById, key, mode).fire("click"); },
+    // The filters in use above the list, as text; `remove(i)` presses the i-th chip.
+    used: function () { return chips(document.getElementById).map(function (b) { return b.textContent; }); },
+    remove: function (i) { chips(document.getElementById)[i].fire("click"); },
     click: function (id) { document.getElementById(id).fire("click"); }
   };
+}
+
+function attrButton(get, key, mode) {
+  var found = descendants(get("attr-sections"), function (node) {
+    return node.attributes["data-attr"] === key && node.attributes["data-mode"] === mode;
+  });
+  assert.strictEqual(found.length, 1, "one " + mode + " button for " + key);
+  return found[0];
+}
+function pressed(view, key, mode) { return attrButton(view.get, key, mode).attributes["aria-pressed"] === "true"; }
+function chips(get) {
+  return get("applied").children.filter(function (node) { return String(node.className).indexOf("chip") >= 0; });
+}
+// The rows of "listing says" filters that are on screen: [label, count].
+function attrRowsShown(view) {
+  var out = [];
+  view.get("attr-sections").children.forEach(function (set) {
+    if (set.hidden) return;
+    set.children[1].children.forEach(function (li) {
+      if (!li.hidden) out.push([li.children[0].children[0].textContent, li.children[0].children[1].textContent]);
+    });
+  });
+  return out;
 }
 
 function descendants(node, predicate) {
@@ -353,7 +371,7 @@ var checks = [
     assert.strictEqual(view.get("clear-filters").hidden, true);
     assert.strictEqual(view.get("filter-count").hidden, true);
     view.group("2");
-    view.toggle("hide-housemates", true);
+    view.attr("housemates", "hide");
     view.change("maxpp", "500", "input");
     view.get("maxpp").fire("change");
     view.change("search", "cheap", "input");
@@ -367,8 +385,9 @@ var checks = [
     assert.strictEqual(view.get("count").textContent, "2 listings");
     assert.strictEqual(view.get("group-any").checked, true);
     assert.strictEqual(view.get("group-2").checked, false);
-    assert.strictEqual(view.get("hide-housemates").checked, false);
-    assert.strictEqual(view.get("tenant-any").checked, true);
+    assert.strictEqual(pressed(view, "housemates", "hide"), false);
+    assert.deepStrictEqual(view.used(), []);
+    assert.strictEqual(view.get("applied").hidden, true);
     assert.strictEqual(view.get("age").value, "");
     assert.strictEqual(view.get("maxpp").value, 800);
     assert.strictEqual(view.get("search").value, "");
@@ -394,12 +413,13 @@ var checks = [
     view.click("open-filters");
     assert.strictEqual(view.get("filters-sheet").attributes.open, "");
     view.group("3");
-    view.toggle("hide-warnings", true);
+    view.attr("any_warning", "hide");
+    assert.strictEqual(pressed(view, "any_warning", "hide"), true);
     assert.deepStrictEqual(titles(view), ["For three"]);
     view.click("filters-cancel");
     assert.deepStrictEqual(titles(view), ["For two"]);
     assert.strictEqual(view.get("group-2").checked, true);
-    assert.strictEqual(view.get("hide-warnings").checked, false);
+    assert.strictEqual(pressed(view, "any_warning", "hide"), false);
     assert.strictEqual(view.get("filters-sheet").attributes.open, undefined);
     view.click("open-filters");
     view.group("3");
@@ -477,7 +497,6 @@ var checks = [
     view.click("clear-filters");
     assert.strictEqual(thumb.style.transform, "translateX(200.00%)");
     assert.strictEqual(view.get("group-any").checked, true);
-    assert.strictEqual(view.get("tenant-thumb").style.transform, "translateX(200.00%)");   // "Any" is last there too
   }),
   check("a 'great prices only' choice saved by an older version no longer hides anything", async function () {
     var view = dashboard([["data.json", payload([home("Great", [match(2, 450, "great")]), home("Fine", [match(2, 700)])])]],
@@ -487,20 +506,46 @@ var checks = [
     assert.strictEqual(view.get("filter-count").hidden, true);
     assert.deepStrictEqual(byClass(view, "tier").map(function (node) { return node.textContent; }), ["Great price"]);
   }),
-  check("who is renting, age and sharing filters act only on what a listing states", async function () {
+  check("each thing a listing says is a filter of its own: Only keeps it, Hide removes it, pressing again turns it off", async function () {
     function flagged(title, flags) { var l = home(title, [match(2, 500)]); l.flags = flags; return l; }
     var view = dashboard([["data.json", payload([
       flagged("Silent", []), flagged("Students only", ["students_only"]), flagged("No students", ["no_students"]),
       flagged("Working only", ["working_only"]), flagged("From 25", ["min_age:25"]), flagged("Up to 27", ["max_age:27"]),
-      flagged("No sharers", ["no_sharers"]), flagged("Sharers welcome", ["sharers_ok"]), flagged("Housemates", ["housemates"])
+      flagged("No sharers", ["no_sharers"]), flagged("Sharers welcome", ["sharers_ok", "students_ok"]),
+      flagged("Housemates", ["housemates", "short_term"])
     ])]]);
     await settle();
     assert.strictEqual(titles(view).length, 9);
-    view.tenant("students");
-    assert.deepStrictEqual(titles(view), ["Silent", "Students only", "From 25", "Up to 27", "No sharers", "Sharers welcome", "Housemates"]);
-    view.tenant("working");
-    assert.deepStrictEqual(titles(view), ["Silent", "No students", "Working only", "From 25", "Up to 27", "No sharers", "Sharers welcome", "Housemates"]);
-    view.tenant("any");
+    view.attr("students_only", "only");
+    assert.deepStrictEqual(titles(view), ["Students only"]);
+    assert.strictEqual(pressed(view, "students_only", "only"), true);
+    view.attr("students_only", "hide");                               // straight from Only to Hide
+    assert.strictEqual(titles(view).length, 8);
+    assert.ok(titles(view).indexOf("Students only") < 0);
+    assert.strictEqual(pressed(view, "students_only", "only"), false);
+    assert.strictEqual(pressed(view, "students_only", "hide"), true);
+    view.attr("students_only", "hide");                               // pressing it again turns it off
+    assert.strictEqual(titles(view).length, 9);
+    assert.strictEqual(pressed(view, "students_only", "hide"), false);
+    // several at once: every filter in use must agree
+    view.attr("no_students", "hide");
+    view.attr("working_only", "hide");
+    view.attr("housemates", "hide");
+    assert.deepStrictEqual(titles(view), ["Silent", "Students only", "From 25", "Up to 27", "No sharers", "Sharers welcome"]);
+    view.attr("sharers_ok", "only");
+    assert.deepStrictEqual(titles(view), ["Sharers welcome"]);
+    assert.strictEqual(view.get("filter-count").textContent, "4");
+    assert.deepStrictEqual(view.used(), ["HideNo Students", "HideWorking People Only", "OnlySharers Welcome", "HideShared with Housemates"]);
+    assert.strictEqual(view.get("applied").hidden, false);
+    // a filter that is made of two flags, and one that is a group of flags
+    view.click("clear-filters");
+    view.attr("age_limit", "only");
+    assert.deepStrictEqual(titles(view), ["From 25", "Up to 27"]);
+    view.attr("age_limit", "only");
+    view.attr("any_warning", "hide");
+    assert.deepStrictEqual(titles(view), ["Silent", "Students only", "Working only", "From 25", "Up to 27", "Sharers welcome", "Housemates"]);
+    view.click("clear-filters");
+    // your own age is a number, not a yes or no
     view.change("age", "2", "input");                                // half a number is no age yet
     assert.strictEqual(titles(view).length, 9);
     view.change("age", "23", "input");
@@ -510,16 +555,92 @@ var checks = [
     view.change("age", "27x", "input");                              // only digits count; 27 is still within "up to 27"
     assert.strictEqual(view.get("age").value, "27");
     assert.strictEqual(titles(view).length, 9);
-    view.change("age", "", "input");
-    view.toggle("hide-no-sharers", true);
-    assert.ok(titles(view).indexOf("No sharers") < 0 && titles(view).length === 8, titles(view).join());
-    view.toggle("hide-no-sharers", false);
-    view.toggle("only-sharers-ok", true);
-    assert.deepStrictEqual(titles(view), ["Sharers welcome"]);
-    view.toggle("only-sharers-ok", false);
-    view.toggle("hide-housemates", true);
-    assert.ok(titles(view).indexOf("Housemates") < 0 && titles(view).length === 8, titles(view).join());
+    assert.deepStrictEqual(view.used(), ["Age 27"]);
+  }),
+  check("a filter in use can be removed on its own from above the list", async function () {
+    function flagged(title, flags, city) { var l = home(title, [match(2, 500), match(3, 600)]); l.flags = flags; l.city = city || "utrecht"; return l; }
+    var view = dashboard([["data.json", payload([
+      flagged("Plain", []), flagged("Short", ["short_term"]), flagged("Leiden students", ["students_ok"], "leiden")
+    ], null, null, { utrecht: "Utrecht", leiden: "Leiden" })]]);
+    await settle();
+    assert.strictEqual(view.get("applied").hidden, true);
+    view.group("2");
+    view.attr("short_term", "hide");
+    view.attr("students_ok", "only");
+    view.change("maxpp", "700", "input");
+    view.get("maxpp").fire("change");
+    assert.deepStrictEqual(view.used(), ["2 People", "Up to €700 per Person", "OnlyStudents Welcome", "HideShort-Term Only"]);
+    assert.deepStrictEqual(titles(view), ["Leiden students"]);
+    view.remove(2);                                                  // only "Only Students Welcome" goes
+    assert.deepStrictEqual(view.used(), ["2 People", "Up to €700 per Person", "HideShort-Term Only"]);
+    assert.strictEqual(pressed(view, "students_ok", "only"), false);
+    assert.strictEqual(pressed(view, "short_term", "hide"), true);
+    assert.deepStrictEqual(titles(view), ["Plain", "Leiden students"]);
+    view.remove(0);                                                  // the group size
+    assert.strictEqual(view.get("group-any").checked, true);
+    view.remove(0);                                                  // the budget
+    assert.strictEqual(view.get("maxpp").value, 800);
+    assert.deepStrictEqual(view.used(), ["HideShort-Term Only"]);
     assert.strictEqual(view.get("filter-count").textContent, "1");
+    view.remove(0);
+    assert.strictEqual(view.get("applied").hidden, true);
+    assert.strictEqual(titles(view).length, 3);
+    // with two or more in use there is one button that clears them all
+    view.attr("short_term", "only");
+    assert.strictEqual(view.get("applied").children.length, 1);
+    view.attr("students_ok", "hide");
+    var all = view.get("applied").children[2];
+    assert.strictEqual(all.textContent, "Clear All");
+    all.fire("click");
+    assert.deepStrictEqual(view.used(), []);
+    assert.strictEqual(JSON.parse(view.stored["househunter.filters.v1"]).attrs.short_term, undefined);
+  }),
+  check("every thing a listing can say has a row with its count, also when no listing says it today", async function () {
+    function flagged(title, flags, more) { var l = home(title, [match(2, 500)]); l.flags = flags; Object.assign(l, more || {}); return l; }
+    var first = payload([
+      flagged("A", ["students_ok", "service_costs:40"]), flagged("B", ["students_ok", "rent_for_3:2395"], { furnished: "furnished" }),
+      flagged("C", ["max_persons:2"], { price_drop_from: 1600 })
+    ], recent);
+    var second = payload([flagged("A", ["service_costs:40"]), flagged("New", ["no_sharers"])], fresh);
+    var view = dashboard([["data.json", first], ["data.json", second]]);
+    await settle();
+    var rows = attrRowsShown(view), count = {};
+    rows.forEach(function (r) { count[r[0]] = r[1]; });
+    assert.strictEqual(rows.length, 26);
+    assert.deepStrictEqual(rows.filter(function (r) { return r[1] !== "0"; }), [["Students Welcome", "2"], ["Limit on People", "1"],
+      ["Service Costs on Top", "1"], ["Rent Depends on Month or Group", "1"], ["Price Dropped", "1"], ["Furnished", "1"],
+      ["Any Warning", "1"]]);
+    assert.strictEqual(count["No House Sharers"], "0");
+    view.attr("no_sharers", "hide");                                 // set before any listing says it
+    assert.deepStrictEqual(titles(view), ["A", "B", "C"]);
+    await view.tick(refreshInterval);                                // a new listing says it: it never shows
+    assert.deepStrictEqual(titles(view), ["A"]);
+    rows = attrRowsShown(view);
+    assert.strictEqual(rows.length, 26);
+    assert.deepStrictEqual(rows.filter(function (r) { return r[1] !== "0"; }), [["No House Sharers", "1"], ["Service Costs on Top", "1"],
+      ["Any Warning", "1"]]);
+  }),
+  check("filters saved by the earlier version come back as the same choices", async function () {
+    function flagged(title, flags) { var l = home(title, [match(2, 500)]); l.flags = flags; return l; }
+    var listings = [flagged("Silent", []), flagged("Students only", ["students_only"]), flagged("No students", ["no_students"]),
+      flagged("Working only", ["working_only"]), flagged("No sharers", ["no_sharers"]), flagged("Sharers welcome", ["sharers_ok"]),
+      flagged("Housemates", ["housemates", "sharers_ok"])];
+    var view = dashboard([["data.json", payload(listings)]],
+      { cities: [], group: "any", maxpp: 800, tenant: "students", age: null, hideNoSharers: true, onlySharersOk: false,
+        hideHousemates: false, hideWarn: false, q: "", sort: "newest" });
+    await settle();
+    assert.deepStrictEqual(titles(view), ["Silent", "Students only", "Sharers welcome", "Housemates"]);
+    assert.deepStrictEqual(view.used(), ["HideNo Students", "HideWorking People Only", "HideNo House Sharers"]);
+    view = dashboard([["data.json", payload(listings)]],
+      { cities: [], group: "any", maxpp: 800, tenant: "working", onlySharersOk: true, hideHousemates: true, hideWarn: true });
+    await settle();
+    assert.deepStrictEqual(titles(view), ["Sharers welcome"]);
+    assert.deepStrictEqual(view.used(), ["HideStudents Only", "OnlySharers Welcome", "HideShared with Housemates", "HideAny Warning"]);
+    // what this version saves is read back as it is, and anything it does not know is dropped
+    view = dashboard([["data.json", payload(listings)]], { attrs: { housemates: "only", made_up: "only", no_sharers: "sometimes" } });
+    await settle();
+    assert.deepStrictEqual(titles(view), ["Housemates"]);
+    assert.deepStrictEqual(view.used(), ["OnlyShared with Housemates"]);
   }),
   check("a listing's own sentence stands once under its marks, as plain text", async function () {
     var listing = home("Quoted", [match(2, 500)]);

@@ -180,14 +180,25 @@ command, then `./telegram-relay/deploy.sh` again.
 
 - **Group size:** 2 People, 3 People or Any.
 - **Cities** and **Maximum per Person**.
-- **Who's Renting:** Students, Working or Any, and your age. This hides homes that are only for the other group
-  and homes with an age limit you don't meet.
-- **House Sharing:** hide homes that refuse sharers, show only homes that welcome sharers, hide homes where you'd
-  have housemates (people who already live there, or a shared kitchen or bathroom).
-- **Warnings:** hide every listing with a warning.
+- **Your Age:** hides homes with an age limit you don't meet.
+- **What the Listing Says:** one line for each thing the tool reads from a listing, with how many listings say
+  it and two buttons:
+  - **Only** shows the homes whose listing says it.
+  - **Hide** removes them.
+  - Tap the button again to turn it off. Use as many as you like at the same time.
+
+  The lines: Students Only, No Students, Students Welcome, Working People Only, Women Only, Men Only, Age Limit ·
+  No House Sharers, Sharers Welcome, Shared with Housemates, Limit on People · Utilities Included, Service Costs
+  on Top, Compulsory Extra Costs, Rent per Person, Rent Depends on Month or Group, Price Dropped · Furnished,
+  Short-Term Only, No Registration, Income Requirement · Any Warning, Suspiciously Cheap, Possible Scam, Bedrooms
+  Not Confirmed, Price Unknown.
+
+  Examples: as students, press Hide on "No Students" and on "Working People Only". To see only homes that say
+  sharers are welcome, press Only on "Sharers Welcome".
+- **Filters in use** stand above the list. Tap one to remove just that filter, or "Clear All".
 
 These filters only act on what a listing actually states. A home that says nothing about students, age or
-sharing always stays in the list. Under each listing you see the sentence the tool based its marks on, in the
+sharing is never removed by Hide. Under each listing you see the sentence the tool based its marks on, in the
 listing's own words. If a mark looks wrong, that sentence shows why.
 
 **Your reply text.** Tap **Reply** (next to the search field) to write the message that "Copy Reply" copies. Tap

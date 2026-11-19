@@ -279,14 +279,22 @@ Static page (no build step) reading `data.json`. Plain HTML/CSS/JS, system fonts
   per person (cheapest match for the chosen group size first), then title, total rent and facts, warnings
   (icon + text), source and age. The row opens the listing; "Copy Reply" copies the reply text. A blue dot
   marks listings found in the last 24 h.
-- **Filters:** group size (2 People, 3 People, Any), cities, max € per person, who is renting (Students,
-  Working, Any, and an age), house sharing (hide homes that refuse sharers, only homes that welcome sharers,
-  hide homes with housemates), "hide listings with warnings"; search and sort sit above the list. The
-  who-is-renting and sharing filters only hide a home that states the opposite: a home that says nothing
-  stays. There is no "great prices only" filter: the budget slider does that. On a narrow screen the filters
-  are in a sheet behind the Filters button (Done keeps the changes, Cancel puts back what was set before). On a
-  wide screen (60em and up) the same form sits in a side column; `app.js` moves it there. Filters are
-  remembered in localStorage.
+- **Filters:** group size (2 People, 3 People, Any), cities, max € per person and your age; search and sort sit
+  above the list. Then **What the Listing Says**: one row for each thing the checker reads from a listing
+  (`ATTR_GROUPS` in `app.js`: who may rent, house sharing, rent and costs, home and contract, warnings), with the
+  number of listings that say it and two buttons. **Only** keeps the listings that say it, **Hide** removes
+  them; pressing the button that is on turns the filter off. Each row is a filter of its own and any number can
+  be in use at once (they must all agree). A row is "said" by one flag, by any of several (`age_limit` =
+  `min_age` or `max_age`; `any_warning` = the warning flags), or by a fact that is no flag (`furnished`,
+  `price_drop`). Every row is always there, also at a count of 0: listings change every few minutes and a
+  filter set now holds for the ones that come later. A home that says nothing about a thing is never removed by
+  Hide. There is no "great prices only" filter: the budget slider does that.
+  The filters in use stand above the list as chips ("Hide Short-Term Only ×"); a chip removes that one filter,
+  and "Clear All" appears from two. On a narrow screen the filters are in a sheet behind the Filters button
+  (Done keeps the changes, Cancel puts back what was set before). On a wide screen (60em and up) the same form
+  sits in a side column; `app.js` moves it there. Filters are remembered in localStorage (`attrs`: key →
+  `"only"` | `"hide"`); what the earlier version saved ("Who's Renting", the sharing switches, "hide
+  warnings") is read as the same choices.
 - **Proof:** under a row's marks stands the sentence of the listing (or the site's own fields) that set them,
   as a quote (`.quote`, plain text, at most three).
 - **Reply:** the Reply button opens an editor for the text that "Copy Reply" copies. Chips insert a detail

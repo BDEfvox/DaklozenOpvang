@@ -11,9 +11,13 @@
   nothing, and two statements that contradict each other set nothing.
 - **Proof for every mark.** Each of these marks, and each warning, carries the sentence of the listing that says
   so. It is shown under the listing on the dashboard and in the Telegram alert.
-- **Dashboard filters:** Who's Renting (Students, Working, Any, and your age) and House Sharing (hide homes that
-  refuse sharers, only homes that welcome sharers, hide homes with housemates). A home that says nothing is
-  never hidden by these.
+- **Dashboard filters, one per thing a listing says.** Every mark the tool reads (26 of them: students only, no
+  students, sharers welcome, housemates, short-term, service costs, furnished, each warning, ...) has its own
+  line with two buttons: **Only** shows the homes that say it, **Hide** removes them, a second tap turns it
+  off. Any number can be used at once. The filters in use stand above the list, and each can be removed there
+  on its own. This replaces the first design of this version ("Who's Renting: Students, Working, Any" and three
+  sharing switches), where one choice hid several things at once and nothing could be filtered for. Choices
+  saved with that design are kept. A home that says nothing is never removed by Hide.
 - **Your own reply text.** The Reply button opens an editor for the text "Copy Reply" copies. Details such as
   the address and the rent are filled in for each listing.
 - **Subscribers.** Other chats can get the alerts through a secret invite link (`telegram-relay/`, optional,
@@ -164,7 +168,7 @@ is approximate when several chats subscribe within the same minute.
 ### Other changes
 - Every existing card is read once more by the new readers (about 10 per run), so the dashboard corrects itself
   over the next hours without sending alerts.
-- 443 new tests (805 in total), 30 dashboard checks and 26 relay checks. The who-may-rent rules are tested
+- 443 new tests (805 in total), 33 dashboard checks and 26 relay checks. The who-may-rent rules are tested
   against 77 real and made-up phrases.
 
 ## v1.1.0 (2026-11-19)

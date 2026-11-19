@@ -84,12 +84,15 @@
       </label>
     </div>
 
+    <!-- The filters in use, each with its own remove button. -->
+    <div id="applied" class="applied" role="group" aria-label="Filters in use" hidden></div>
+
     <ul id="listings" class="list" aria-label="Listings"></ul>
 
     <section id="empty" class="empty" hidden>
       <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-search"/></svg>
       <h2>No Matching Listings</h2>
-      <p>Try a higher budget, more cities or a different search.</p>
+      <p>Try a higher budget, more cities or fewer filters.</p>
       <button id="clear-empty" class="btn tinted" type="button">Clear Filters</button>
     </section>
 
@@ -146,51 +149,22 @@
     </fieldset>
 
     <fieldset>
-      <legend>Who’s Renting</legend>
-      <div id="tenant-control" class="segmented">
-        <span id="tenant-thumb" class="thumb" aria-hidden="true"></span>
-        <label><input type="radio" name="tenant" id="tenant-students" value="students"><span>Students</span></label>
-        <label><input type="radio" name="tenant" id="tenant-working" value="working"><span>Working</span></label>
-        <label><input type="radio" name="tenant" id="tenant-any" value="any" checked><span>Any</span></label>
-      </div>
-      <div class="list after-control">
+      <legend>Your Age</legend>
+      <div class="list">
         <label class="row">
-          <span class="label">Your Age</span>
+          <span class="label">Age</span>
           <input id="age" class="field" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" placeholder="Any" autocomplete="off">
         </label>
       </div>
-      <p class="note">Hides homes that are only for the other group, and homes with an age limit you don’t meet. A home that says nothing about this stays in the list.</p>
+      <p class="note">Hides homes with an age limit you don’t meet.</p>
     </fieldset>
 
-    <fieldset>
-      <legend>House Sharing</legend>
-      <div class="list">
-        <label class="row">
-          <span class="label">Hide Homes That Refuse Sharers</span>
-          <input id="hide-no-sharers" class="switch" type="checkbox" role="switch">
-        </label>
-        <label class="row">
-          <span class="label">Only Homes That Welcome Sharers</span>
-          <input id="only-sharers-ok" class="switch" type="checkbox" role="switch">
-        </label>
-        <label class="row">
-          <span class="label">Hide Homes with Housemates</span>
-          <input id="hide-housemates" class="switch" type="checkbox" role="switch">
-        </label>
-      </div>
-      <p class="note">Sharers (woningdelers) are friends who rent one home together. Housemates are people who already live there, or with whom you share the kitchen or bathroom.</p>
-    </fieldset>
-
-    <fieldset>
-      <legend>Warnings</legend>
-      <div class="list">
-        <label class="row">
-          <span class="label">Hide Listings with Warnings</span>
-          <input id="hide-warnings" class="switch" type="checkbox" role="switch">
-        </label>
-      </div>
-      <p class="note">Warnings are things like no house sharers, a limit on the number of people, no students, no registration or a possible scam.</p>
-    </fieldset>
+    <!-- One row for everything a listing can say about itself; app.js builds them. -->
+    <div class="says">
+      <h3 class="says-title">What the Listing Says</h3>
+      <p class="note"><strong>Only</strong> shows the homes whose listing says it. <strong>Hide</strong> removes them. Tap again to turn it off. You can use as many as you like, and a home that says nothing about it is never removed by Hide.</p>
+    </div>
+    <div id="attr-sections" class="attr-sections"></div>
 
     <button id="clear-filters" class="btn plain clear" type="button" hidden>Clear Filters</button>
   </form>

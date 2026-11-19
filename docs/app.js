@@ -9,7 +9,36 @@
   var REQ = ["students_only", "working_only", "women_only", "men_only", "min_age", "max_age", "housemates",
     "price_per_person", "mandatory_costs", "service_costs", "rent_for_2", "rent_for_3", "rent_for_4"];
   // In the order the choices stand in the control: the thumb's position is the index. "Any" comes last.
-  var GROUPS = ["2", "3", "any"], TENANTS = ["students", "working", "any"];
+  var GROUPS = ["2", "3", "any"];
+  // Everything a listing can say about itself is a filter of its own: "only" keeps the listings that say it, "hide"
+  // removes them, and any number of them can be in use at once. [key, label, what makes a listing "say it"]: the
+  // flags that mean it (default: the flag named like the key), or a function for facts that are not flags.
+  var ATTR_GROUPS = [
+    ["Who May Rent", [
+      ["students_only", "Students Only"], ["no_students", "No Students"], ["students_ok", "Students Welcome"],
+      ["working_only", "Working People Only"], ["women_only", "Women Only"], ["men_only", "Men Only"],
+      ["age_limit", "Age Limit", ["min_age", "max_age"]]]],
+    ["House Sharing", [
+      ["no_sharers", "No House Sharers"], ["sharers_ok", "Sharers Welcome"], ["housemates", "Shared with Housemates"],
+      ["max_persons", "Limit on People"]]],
+    ["Rent and Costs", [
+      ["utilities_included", "Utilities Included"], ["service_costs", "Service Costs on Top"],
+      ["mandatory_costs", "Compulsory Extra Costs"], ["price_per_person", "Rent per Person"],
+      ["price_varies", "Rent Depends on Month or Group", ["price_varies", "rent_for_2", "rent_for_3", "rent_for_4"]],
+      ["price_drop", "Price Dropped", function (l) { return typeof l.price_drop_from === "number"; }]]],
+    ["Home and Contract", [
+      ["furnished", "Furnished", function (l) { return l.furnished === "furnished"; }],
+      ["short_term", "Short-Term Only"], ["no_registration", "No Registration"],
+      ["income_requirement", "Income Requirement"]]],
+    ["Warnings", [
+      ["any_warning", "Any Warning", WARN], ["suspicious_price", "Suspiciously Cheap"], ["scam_signals", "Possible Scam"],
+      ["bedrooms_unsure", "Bedrooms Not Confirmed", ["bedrooms_unknown", "bedrooms_unconfirmed"]],
+      ["price_unknown", "Price Unknown"]]]
+  ];
+  var ATTR = {}, MODES = { only: "Only", hide: "Hide" };
+  ATTR_GROUPS.forEach(function (g) {
+    g[1].forEach(function (a) { ATTR[a[0]] = { label: a[1], says: a[2] || [a[0]] }; });
+  });
   // Details of a listing that the reply text can hold: {title}, {address}, ...
   var FIELDS = [["title", "Title"], ["address", "Address"], ["city", "City"], ["price", "Rent"], ["bedrooms", "Bedrooms"],
     ["area", "Size"], ["source", "Site"], ["url", "Link"]];
@@ -19,15 +48,16 @@
     error: ["Not working", "i-fail"], disabled: ["Off", "i-off"]
   };
   var data = null, isSample = false, refreshing = false, working = "";
-  var cityInputs = {}, cityCounts = {}, beforeSheet = null, groupControl = null, tenantControl = null;
+  var cityInputs = {}, cityCounts = {}, beforeSheet = null, groupControl = null;
+  var attrRows = {};                                           // the row of each "listing says" filter
   var shownList = [];                                          // the listings on screen now, in order
   var reply = null;                                            // the user's own reply text; null = the standard one
   // Each listing keeps its row, so a filter change moves rows instead of rebuilding them (photo and "Copied" stay).
   var rows = typeof WeakMap === "function" ? new WeakMap() : null, moving = [];
   var photos = typeof Map === "function" ? new Map() : null;   // one photo element per listing, kept when its row is rebuilt
   var leaving = null;                                          // the sheet that is animating out, if any
-  var f = { cities: [], group: "any", maxpp: 800, tenant: "any", age: null, hideNoSharers: false, onlySharersOk: false,
-    hideHousemates: false, hideWarn: false, q: "", sort: "newest" };
+  // attrs: the "listing says" filters in use, by key: "only" or "hide". A key that is not there is not in use.
+  var f = { cities: [], group: "any", maxpp: 800, age: null, attrs: {}, q: "", sort: "newest" };
   var $ = function (id) { return document.getElementById(id); };
 
   function el(tag, cls, text) {
@@ -142,7 +172,6 @@
   function euro(n) { return "€" + Math.round(n).toLocaleString("nl-NL"); }
   function plural(n, one, many) { return n + " " + (n === 1 ? one : many); }
   function flagKey(fl) { return String(fl).split(":")[0]; }
-  function hasWarn(l) { return (l.flags || []).some(function (x) { return WARN.indexOf(flagKey(x)) >= 0; }); }
   // A listing's flags by name: {no_students: "", min_age: "25"}.
   function flagsOf(l) {
     var o = {};
@@ -159,6 +188,11 @@
     return false;
   }
   function has(o, k) { return Object.prototype.hasOwnProperty.call(o, k); }
+  // Does the listing say this? `fl` is flagsOf(l).
+  function says(key, l, fl) {
+    var what = ATTR[key].says;
+    return typeof what === "function" ? !!what(l) : what.some(function (k) { return has(fl, k); });
+  }
   function minPP(l) {
     var v = matchesFor(l).map(function (m) { return m.price_pp; }).filter(function (x) { return typeof x === "number"; });
     return v.length ? Math.min.apply(null, v) : Infinity;
@@ -197,8 +231,8 @@
     if (first || previousCities.length !== nextCities.length || nextCities.some(function (k) {
       return previousCities.indexOf(k) < 0;
     })) buildCities();
-    if (first) bind();
-    countCities(); sources(); header(); update();
+    if (first) { buildAttrs(); bind(); }
+    countCities(); countAttrs(); sources(); header(); update();
     if (photos) {                                           // forget photos of listings that are gone
       var now = new Map();
       (d.listings || []).forEach(function (l) { var k = keyOf(l); if (photos.has(k)) now.set(k, photos.get(k)); });
@@ -227,10 +261,18 @@
         if (Array.isArray(s.cities)) f.cities = s.cities.filter(function (x) { return typeof x === "string"; });
         if (GROUPS.indexOf(s.group) >= 0) f.group = s.group;
         if (typeof s.maxpp === "number") f.maxpp = Math.min(800, Math.max(400, s.maxpp));
-        if (TENANTS.indexOf(s.tenant) >= 0) f.tenant = s.tenant;
         if (typeof s.age === "number" && s.age >= 16 && s.age <= 99) f.age = Math.round(s.age);
-        f.hideNoSharers = s.hideNoSharers === true; f.onlySharersOk = s.onlySharersOk === true;
-        f.hideHousemates = s.hideHousemates === true; f.hideWarn = s.hideWarn === true;
+        if (record(s.attrs)) {
+          Object.keys(s.attrs).forEach(function (k) { if (has(ATTR, k) && has(MODES, s.attrs[k])) f.attrs[k] = s.attrs[k]; });
+        } else {
+          // Saved by the version with "Who's Renting" and the sharing switches: the same choices, as filters of their own.
+          if (s.tenant === "students") { f.attrs.no_students = "hide"; f.attrs.working_only = "hide"; }
+          if (s.tenant === "working") f.attrs.students_only = "hide";
+          if (s.hideNoSharers === true) f.attrs.no_sharers = "hide";
+          if (s.onlySharersOk === true) f.attrs.sharers_ok = "only";
+          if (s.hideHousemates === true) f.attrs.housemates = "hide";
+          if (s.hideWarn === true) f.attrs.any_warning = "hide";
+        }
         if (typeof s.q === "string") f.q = s.q;
         if (s.sort === "cheapest") f.sort = "cheapest";
       }
@@ -238,26 +280,79 @@
   }
   // How many of the filters in the Filters form differ from "show everything".
   function activeFilters() {
-    return (f.cities.length ? 1 : 0) + (f.group !== "any" ? 1 : 0) + (f.maxpp < 800 ? 1 : 0) +
-      (f.tenant !== "any" ? 1 : 0) + (f.age != null ? 1 : 0) + (f.hideNoSharers ? 1 : 0) + (f.onlySharersOk ? 1 : 0) +
-      (f.hideHousemates ? 1 : 0) + (f.hideWarn ? 1 : 0);
+    return (f.cities.length ? 1 : 0) + (f.group !== "any" ? 1 : 0) + (f.maxpp < 800 ? 1 : 0) + (f.age != null ? 1 : 0) +
+      Object.keys(f.attrs).length;
   }
   function clearFilters() {
-    f.cities = []; f.group = "any"; f.maxpp = 800; f.tenant = "any"; f.age = null; f.hideNoSharers = false;
-    f.onlySharersOk = false; f.hideHousemates = false; f.hideWarn = false; f.q = "";
+    f.cities = []; f.group = "any"; f.maxpp = 800; f.age = null; f.attrs = {}; f.q = "";
     syncControls(); update();
+  }
+  // One "listing says" filter: `mode` is "only" or "hide"; choosing the mode it already has turns it off.
+  function setAttr(key, mode) {
+    if (f.attrs[key] === mode || !mode) delete f.attrs[key]; else f.attrs[key] = mode;
+    tick(); syncAttrs(); update();
   }
   // Put the filter values back into the controls (after Clear Filters or Cancel).
   function syncControls() {
     GROUPS.forEach(function (g) { $("group-" + g).checked = f.group === g; });
-    TENANTS.forEach(function (t) { $("tenant-" + t).checked = f.tenant === t; });
     Object.keys(cityInputs).forEach(function (k) { cityInputs[k].checked = f.cities.indexOf(k) >= 0; });
     $("maxpp").value = f.maxpp; $("age").value = f.age != null ? String(f.age) : "";
-    $("hide-no-sharers").checked = f.hideNoSharers; $("only-sharers-ok").checked = f.onlySharersOk;
-    $("hide-housemates").checked = f.hideHousemates; $("hide-warnings").checked = f.hideWarn;
     $("search").value = f.q; $("sort").value = f.sort;
     if (groupControl) groupControl.settle();
-    if (tenantControl) tenantControl.settle();
+    syncAttrs();
+  }
+
+  // The "listing says" rows: a name, how many listings say it, and its two buttons.
+  function buildAttrs() {
+    var box = $("attr-sections"); box.textContent = "";
+    attrRows = {};
+    ATTR_GROUPS.forEach(function (g) {
+      var set = el("fieldset"), list = el("ul", "list");
+      set.appendChild(el("legend", null, g[0]));
+      g[1].forEach(function (a) {
+        var key = a[0], li = el("li"), row = el("div", "row attr"), pair = el("div", "pair"), count = el("span", "value");
+        var btns = {};
+        pair.setAttribute("role", "group");
+        pair.setAttribute("aria-label", a[1]);
+        Object.keys(MODES).forEach(function (mode) {
+          var b = el("button", "opt " + mode, MODES[mode]);
+          b.type = "button";
+          b.setAttribute("aria-pressed", "false");
+          b.setAttribute("data-attr", key);
+          b.setAttribute("data-mode", mode);
+          b.addEventListener("click", function () { setAttr(key, mode); });
+          btns[mode] = b;
+          pair.appendChild(b);
+        });
+        row.appendChild(el("span", "label", a[1]));
+        row.appendChild(count);
+        row.appendChild(pair);
+        li.appendChild(row);
+        list.appendChild(li);
+        li.hidden = false;
+        attrRows[key] = { count: count, btns: btns };
+      });
+      set.appendChild(list);
+      set.hidden = false;
+      box.appendChild(set);
+    });
+    box.hidden = false;
+  }
+  // How many listings say each thing. A thing no listing says today keeps its row: listings change every few
+  // minutes, and a filter set now also holds for the ones that come later.
+  function countAttrs() {
+    var n = {};
+    (data && data.listings || []).forEach(function (l) {
+      var fl = flagsOf(l);
+      Object.keys(ATTR).forEach(function (k) { if (says(k, l, fl)) n[k] = (n[k] || 0) + 1; });
+    });
+    Object.keys(attrRows).forEach(function (k) { attrRows[k].count.textContent = String(n[k] || 0); });
+  }
+  function syncAttrs() {
+    Object.keys(attrRows).forEach(function (k) {
+      var r = attrRows[k], mode = f.attrs[k] || "";
+      Object.keys(r.btns).forEach(function (m) { r.btns[m].setAttribute("aria-pressed", m === mode ? "true" : "false"); });
+    });
   }
 
   function header() {
@@ -315,17 +410,16 @@
     if (!ms.some(function (m) { return m.price_pp == null || m.price_pp <= f.maxpp; })) return false;
     // Who may rent. Only what the listing states counts: a listing that says nothing stays.
     var fl = flagsOf(l);
-    if (f.tenant === "students" && (has(fl, "no_students") || has(fl, "working_only"))) return false;
-    if (f.tenant === "working" && has(fl, "students_only")) return false;
     if (f.age != null) {
       var lo = Number(fl.min_age), hi = Number(fl.max_age);
       if (has(fl, "min_age") && lo > f.age) return false;
       if (has(fl, "max_age") && hi < f.age) return false;
     }
-    if (f.hideNoSharers && has(fl, "no_sharers")) return false;
-    if (f.onlySharersOk && !has(fl, "sharers_ok")) return false;
-    if (f.hideHousemates && has(fl, "housemates")) return false;
-    if (f.hideWarn && hasWarn(l)) return false;
+    // Every "listing says" filter in use must agree: "only" needs the listing to say it, "hide" needs it not to.
+    var keys = Object.keys(f.attrs);
+    for (var i = 0; i < keys.length; i++) {
+      if (says(keys[i], l, fl) !== (f.attrs[keys[i]] === "only")) return false;
+    }
     if (f.q) {
       var h = ((l.title || "") + " " + (l.address || "")).toLowerCase();
       if (h.indexOf(f.q.toLowerCase()) < 0) return false;
@@ -574,6 +668,42 @@
     badge.hidden = n === 0;
     $("open-filters").setAttribute("aria-label", n ? "Filters, " + n + " active" : "Filters");
     $("clear-filters").hidden = n === 0;
+    applied();
+  }
+
+  // The filters in use, above the list: each is a button that removes that one filter.
+  function applied() {
+    var box = $("applied"), chips = [];
+    function chip(how, text, remove) {
+      var b = el("button", "chip used");
+      b.type = "button";
+      if (how) b.appendChild(el("span", "how", how));
+      b.appendChild(el("span", null, text));
+      b.appendChild(icon("i-x"));
+      b.setAttribute("aria-label", "Remove filter: " + (how ? how + " " : "") + text);
+      b.addEventListener("click", function () { remove(); tick(); syncControls(); update(); });
+      chips.push(b);
+    }
+    if (f.group !== "any") chip("", f.group + " People", function () { f.group = "any"; });
+    f.cities.slice().forEach(function (k) {
+      chip("", (data && data.cities && data.cities[k]) || k, function () { f.cities.splice(f.cities.indexOf(k), 1); });
+    });
+    if (f.maxpp < 800) chip("", "Up to " + euro(f.maxpp) + " per Person", function () { f.maxpp = 800; });
+    if (f.age != null) chip("", "Age " + f.age, function () { f.age = null; });
+    ATTR_GROUPS.forEach(function (g) {
+      g[1].forEach(function (a) {
+        if (f.attrs[a[0]]) chip(MODES[f.attrs[a[0]]], a[1], function () { delete f.attrs[a[0]]; });
+      });
+    });
+    box.textContent = "";
+    chips.forEach(function (b) { box.appendChild(b); });
+    if (chips.length > 1) {
+      var all = el("button", "btn plain small", "Clear All");
+      all.type = "button";
+      all.addEventListener("click", clearFilters);
+      box.appendChild(all);
+    }
+    box.hidden = chips.length === 0;
   }
 
   function sources() {
@@ -875,15 +1005,11 @@
   }
 
   function bind() {
-    var m = $("maxpp"), hw = $("hide-warnings"), q = $("search"), so = $("sort"), age = $("age");
+    var m = $("maxpp"), q = $("search"), so = $("sort"), age = $("age");
     syncControls();
     GROUPS.forEach(function (g) {
       var r = $("group-" + g);
       r.addEventListener("change", function () { if (r.checked) { f.group = g; tick(); update(); } });
-    });
-    TENANTS.forEach(function (t) {
-      var r = $("tenant-" + t);
-      r.addEventListener("change", function () { if (r.checked) { f.tenant = t; tick(); update(); } });
     });
     // Age: two digits make an age. Anything shorter means "any", so the list changes once per finished number.
     age.addEventListener("input", function () {
@@ -893,10 +1019,6 @@
       if (n !== f.age) { f.age = n; update(); }
     });
     age.addEventListener("change", function () { if (f.age == null) age.value = ""; });
-    [["hide-no-sharers", "hideNoSharers"], ["only-sharers-ok", "onlySharersOk"], ["hide-housemates", "hideHousemates"]].forEach(function (pair) {
-      var box = $(pair[0]);
-      box.addEventListener("change", function () { f[pair[1]] = box.checked; tick(); update(); });
-    });
     // The budget slider: while it moves only the numbers follow. The list animates once, when the slider pauses
     // for a moment or is let go, so a drag across many steps is one calm change instead of many.
     var rest = 0;
@@ -908,7 +1030,6 @@
       rest = setTimeout(settleList, 120);
     });
     m.addEventListener("change", settleList);
-    hw.addEventListener("change", function () { f.hideWarn = hw.checked; tick(); update(); });
     q.addEventListener("input", function () { f.q = q.value.trim(); update(true); });
     so.addEventListener("change", function () { f.sort = so.value; update(); });
     $("search-form").addEventListener("submit", function (e) { if (e) e.preventDefault(); q.blur(); });
@@ -942,7 +1063,6 @@
   // The saved filters show from the first frame, before the data arrives; each thumb starts under the saved choice.
   syncControls();
   groupControl = segmented($("group-control"), $("group-thumb"), GROUPS.map(function (g) { return $("group-" + g); }));
-  tenantControl = segmented($("tenant-control"), $("tenant-thumb"), TENANTS.map(function (t) { return $("tenant-" + t); }));
   $("retry").addEventListener("click", function () { window.location.reload(); });
   load("data.json").then(function (d) {
     render(d, false);

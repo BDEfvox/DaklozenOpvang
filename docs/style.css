@@ -236,20 +236,26 @@ legend{display:block;padding:0 4px 8px;color:var(--secondary-label);font-size:.9
 .field{flex:none;width:4.25rem;min-height:36px;padding:0 10px;border:0;border-radius:8px;outline:0;background:var(--tertiary-fill);
   text-align:end;font-variant-numeric:tabular-nums;-webkit-appearance:none;appearance:none}
 .field::placeholder{color:var(--tertiary-label);opacity:1}
-.after-control{margin-top:12px}
 .row.slider{display:grid;grid-template-columns:1fr auto;column-gap:12px;padding-bottom:2px;cursor:default}
 .row.slider output{color:var(--secondary-label);font-variant-numeric:tabular-nums}
 .row.slider input{grid-column:1/-1;width:100%;min-height:44px;margin:0;accent-color:var(--tint);cursor:pointer}
-/* Switch: the knob springs across, and stretches a little while it is held. */
-.switch{position:relative;flex:none;width:51px;height:31px;margin:0;border-radius:999px;background:var(--fill);cursor:pointer;
-  -webkit-appearance:none;appearance:none;transition:background-color .25s}
-.switch::before{content:"";position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:999px;background:#FFF;
-  box-shadow:0 2px 5px rgba(0,0,0,.22),0 0 0 .5px rgba(0,0,0,.05);
-  transition:transform var(--bouncy-time) var(--spring-bouncy),width .2s ease-out}
-.switch:checked{background:var(--green)}
-.switch:checked::before{transform:translateX(20px)}
-.switch:active::before,.row:active .switch::before{width:33px}
-.switch:checked:active::before,.row:active .switch:checked::before{transform:translateX(14px)}
+/* What the listing says: one row per thing, with two buttons. "Only" keeps the homes that say it, "Hide" removes
+   them; a pressed button is filled, and pressing it again turns the filter off. The word on the button carries
+   the meaning, the fill only shows that it is on. */
+.says{margin-bottom:-12px}
+.says-title{padding:0 4px;font-size:1.25rem;line-height:1.5625rem;font-weight:700}
+.says .note{margin-top:4px}
+.attr-sections{display:grid;gap:24px}
+.row.attr{gap:10px;padding-block:6px;cursor:default}
+.row.attr .value{min-width:1.5ch;text-align:end;font-size:.9375rem}
+.pair{flex:none;display:flex;gap:6px}
+.opt{position:relative;min-width:3.5rem;min-height:32px;padding:0 12px;border:0;border-radius:999px;background:var(--tertiary-fill);
+  font-size:.9375rem;font-weight:500;cursor:pointer;
+  transition:background-color .2s,color .2s,transform var(--bouncy-time) var(--spring-bouncy)}
+.opt::after{content:"";position:absolute;inset:-6px 0}   /* 32 px tall to look at, 44 px tall to hit */
+.opt:active{transform:scale(.94);transition-duration:.09s;transition-timing-function:ease-out}
+.opt[aria-pressed="true"]{background:var(--tint-fill);color:var(--on-tint);font-weight:600}
+.opt.hide[aria-pressed="true"]{background:var(--label);color:var(--grouped-background)}
 
 /* Group size: one thumb slides between the choices. It can be dragged, and it turns to glass while it is held. */
 .segmented{position:relative;display:flex;padding:2px;border-radius:999px;background:var(--secondary-fill);
@@ -268,6 +274,15 @@ legend{display:block;padding:0 4px 8px;color:var(--secondary-label);font-size:.9
 .segmented input:checked+span{font-weight:600}
 .segmented input:focus-visible+span{outline:3px solid var(--tint-text);outline-offset:2px}
 .clear{justify-self:start;margin-top:-8px}
+
+/* The filters in use, above the list. Each chip removes its own filter. */
+.applied{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:2px 4px 12px}
+.chip.used{display:inline-flex;align-items:center;gap:6px;max-width:100%;padding:0 8px 0 13px;background:var(--surface);
+  animation:pop var(--bouncy-time) var(--spring-bouncy)}
+.chip.used span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chip.used .how{flex:none;font-weight:700}
+.chip.used .icon{width:.875rem;height:.875rem;stroke-width:2.5;color:var(--secondary-label)}
+.applied .btn.small{min-height:34px;padding:0 8px}
 
 /* ---------- Reply editor ---------- */
 .editor{display:block;width:100%;min-height:11rem;padding:12px 16px;border:0;border-radius:12px;background:var(--surface);
@@ -363,7 +378,10 @@ dialog::backdrop{background:transparent}
   .item:has(.link:hover),label.row:hover{background:var(--tertiary-fill);transition-duration:.15s}
   .item:has(.link:active),label.row:active{background:var(--fill);transition-duration:0s}
   .status:hover #last-check,.btn.plain:hover,.name a:hover{text-decoration:underline}
-  .btn.gray:hover,.btn.tinted:hover{filter:brightness(.96)}
+  .btn.gray:hover,.btn.tinted:hover,.chip.used:hover{filter:brightness(.96)}
+  .opt:hover{background:var(--fill)}
+  .opt[aria-pressed="true"]:hover{background:var(--tint-fill);filter:brightness(1.08)}
+  .opt.hide[aria-pressed="true"]:hover{background:var(--label);filter:none;opacity:.85}
 }
 @supports not selector(:has(a)){
   .row:focus-within{outline:3px solid var(--tint-text);outline-offset:-3px;border-radius:12px}
@@ -378,23 +396,21 @@ dialog::backdrop{background:transparent}
 }
 @media (prefers-contrast:more){
   .glass{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;border:1px solid var(--separator)}
-  .list,.banner,.editor,.preview{border:1px solid var(--separator)}
+  .list,.banner,.editor,.preview,.chip.used{border:1px solid var(--separator)}
   .segmented.held .thumb{background:var(--thumb);-webkit-backdrop-filter:none;backdrop-filter:none}
 }
 /* Reduce Motion: nothing slides, scales or bounces; changes fade instead. app.js does the same for its springs. */
 @media (prefers-reduced-motion:reduce){
-  .btn,.bar-btn,.icon-btn,.chip,.switch::before,.thumb{transition:opacity .2s,background-color .2s}
-  .btn:active,.bar-btn:active,.icon-btn:active,.chip:active{transform:none}
+  .btn,.bar-btn,.icon-btn,.chip,.opt,.thumb{transition:opacity .2s,background-color .2s}
+  .btn:active,.bar-btn:active,.icon-btn:active,.chip:active,.opt:active{transform:none}
   .segmented.held .thumb{scale:none}
-  .switch:active::before,.row:active .switch::before{width:27px}
-  .switch:checked:active::before,.row:active .switch:checked::before{transform:translateX(20px)}
   .check,.pick:checked~.check{transition:opacity .2s;stroke-dashoffset:0}
-  .roll,.count,.count>span,.banner,.empty{animation:fade .2s}
+  .roll,.count,.count>span,.banner,.empty,.chip.used{animation:fade .2s}
   .copy .icon{animation:none}
 }
 @media (forced-colors:active){
-  .glass,.list,.banner,.btn,.switch,.segmented,.thumb-box,.tier,.chip,.editor,.preview,.field{border:1px solid CanvasText}
+  .glass,.list,.banner,.btn,.opt,.segmented,.thumb-box,.tier,.chip,.editor,.preview,.field{border:1px solid CanvasText}
   .thumb{outline:2px solid Highlight;outline-offset:-2px}
-  .switch:checked{background:Highlight}
+  .opt[aria-pressed="true"]{background:Highlight;color:HighlightText;forced-color-adjust:none}
   .dot,.new-dot{forced-color-adjust:none}
 }
