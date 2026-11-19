@@ -73,17 +73,21 @@ def cmd_dashboard(args: argparse.Namespace) -> int:
 
 def cmd_telegram_setup(args: argparse.Namespace) -> int:
     from .notify.telegram import api_call, sanitize
+    from .redact import add_secret, redact
     token = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
     if not token:
         print("TELEGRAM_BOT_TOKEN is not set (environment or .env). Create a bot with @BotFather first.")
         return 2
+    def safe(text: object) -> str:  # never the token or a chat id, also not on your own screen
+        return redact(sanitize(text, token))
+
     try:
         me = api_call(token, "getMe")
     except RuntimeError as exc:
-        print(exc)
+        print(safe(exc))
         return 1
     if not me.get("ok"):
-        print("Telegram rejected the token: %s" % me.get("description"))
+        print("Telegram rejected the token: %s" % safe(me.get("description")))
         return 1
     bot = me["result"]["username"]
     chat_id = args.chat_id
@@ -100,7 +104,7 @@ def cmd_telegram_setup(args: argparse.Namespace) -> int:
             try:
                 data = api_call(token, "getUpdates", payload, timeout=30)
             except RuntimeError as exc:
-                print(exc)
+                print(safe(exc))
                 time.sleep(3)
                 continue
             if data.get("ok") is False:
@@ -119,12 +123,13 @@ def cmd_telegram_setup(args: argparse.Namespace) -> int:
             print("No group message seen. Run the command again after sending /start@%s in the group." % bot)
             return 1
         chat_id = str(found["id"])
-        print("Found group: %s" % found.get("title", chat_id))
+        print("Found group: %s" % (found.get("title") or "(no title)"))
+    add_secret(chat_id)  # found or given just now, so not in the environment redact() reads
     write_env_value("TELEGRAM_CHAT_ID", str(chat_id))
     print("Saved TELEGRAM_CHAT_ID to %s" % ENV_PATH)
     r = api_call(token, "sendMessage", {"chat_id": chat_id, "text": "✅ House Hunter is connected to this group"})
     if not r.get("ok"):
-        print("Test message failed: %s" % r.get("description"))
+        print("Test message failed: %s" % safe(r.get("description")))
         return 1
     print("Test message sent.")
     return 0

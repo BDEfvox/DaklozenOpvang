@@ -403,3 +403,105 @@ def test_R2_2_5b_blocked_before_any_listing_is_blocked_not_partial(cfg):
             raise SourcePartial([make_listing("1", city=city)], SourceError("page 2"), city)
 
     assert fetch_source(P(), cfg, object()).status == "partial"
+
+
+# --------------------------------------------------------------------------- found by the second review
+class DetailFacts(FakeSource):
+    """Search page: street only and no bedroom count. Detail page: house number, bedrooms, real rent."""
+    def __init__(self, *a, **kw):
+        super().__init__(*a, **kw)
+        self.facts = {}
+
+    def fetch_details(self, listing, http):
+        listing = super().fetch_details(listing, http)
+        for k, v in self.facts.get(listing.source_id, {}).items():
+            setattr(listing, k, v)
+        return listing
+
+
+def test_street_only_listing_is_compared_with_an_earlier_one_after_its_detail_page(cfg, tmp_path):
+    a, b = two_sources(cfg, tmp_path, b_cls=DetailFacts)
+    a.listings.append(make_listing("x", source="a", address="Daltonstraat", area_m2=None))   # shown in an earlier run
+    n, _ = go(cfg, tmp_path, [a, b], now=at(10))
+    assert alerts(n) == ["https://example.com/x"]
+    # Two listings on that street on another site, search page: street only, no bedrooms, no size.
+    b.listings.append(make_listing("other", source="b", address="Daltonstraat", bedrooms=None, area_m2=None))
+    b.listings.append(make_listing("same", source="b", address="Daltonstraat", bedrooms=None, area_m2=None,
+                                   price_total=1400, title="Same home"))
+    b.facts = {"other": {"address": "Daltonstraat 99", "bedrooms": 3}, "same": {"bedrooms": 2}}
+    n, st = go(cfg, tmp_path, [a, b], now=at(20))
+    assert alerts(n) == ["https://example.com/other"]          # another home: not hidden unread
+    assert st.seen["b:same"]["dup_of"] == "a:x" and "b:same" not in st.matches
+    assert "dup_of" not in st.seen["b:other"]
+
+
+def test_house_number_on_the_search_page_still_decides_at_once_without_a_detail_read(cfg, tmp_path):
+    a, b = two_sources(cfg, tmp_path)
+    a.listings.append(make_listing("x", source="a", address="Daltonstraat 5"))
+    go(cfg, tmp_path, [a, b], now=at(10))
+    b.listings.append(make_listing("y", source="b", address="Daltonstraat 5"))
+    b.detail_calls = 0
+    n, st = go(cfg, tmp_path, [a, b], now=at(20))
+    assert alerts(n) == [] and st.seen["b:y"]["dup_of"] == "a:x" and b.detail_calls == 0
+
+
+def test_duplicate_that_stands_alone_again_is_one_new_match_also_next_to_a_third_site(cfg, tmp_path):
+    a, b = two_sources(cfg, tmp_path)
+    c = FakeSource("c", [make_listing("base", source="c")])
+    go(cfg, tmp_path, [a, b, c], now=at(1))
+    a.listings.append(make_listing("x", source="a", address="Kerkstraat 10", price_total=1450))
+    b.listings.append(make_listing("y", source="b", address="Kerkstraat 10", price_total=1450))
+    n, st = go(cfg, tmp_path, [a, b, c], now=at(10))
+    assert alerts(n) == ["https://example.com/x"] and st.seen["b:y"]["dup_of"] == "a:x"
+    # A raises its rent out of budget; B and a new listing on C both show the home, cheaper than before.
+    a.listings[-1] = make_listing("x", source="a", address="Kerkstraat 10", price_total=2600)
+    b.listings[-1] = make_listing("y", source="b", address="Kerkstraat 10", price_total=1400)
+    c.listings.append(make_listing("z", source="c", address="Kerkstraat 10", price_total=1400))
+    n, st = go(cfg, tmp_path, [a, b, c], now=at(20))
+    assert len(alerts(n)) == 1 and not [m for m in n.messages if "Price drop" in m]
+    hidden = [u for u in ("b:y", "c:z") if st.seen[u].get("dup_of")]
+    assert len(hidden) == 1 and st.seen[hidden[0]]["dup_of"] in ("b:y", "c:z")
+    n, _ = go(cfg, tmp_path, [a, b, c], now=at(30))
+    assert alerts(n) == []
+
+
+def test_duplicate_moves_to_another_listing_of_the_home_that_was_already_shown(cfg, tmp_path):
+    a, b = two_sources(cfg, tmp_path)
+    c = FakeSource("c", [make_listing("base", source="c")])
+    go(cfg, tmp_path, [a, b, c], now=at(1))
+    a.listings.append(make_listing("x", source="a", address="Kerkstraat 10"))
+    b.listings.append(make_listing("y", source="b", address="Kerkstraat 10"))
+    go(cfg, tmp_path, [a, b, c], now=at(10))
+    c.listings.append(make_listing("z", source="c", address="Kerkstraat 10"))
+    n, st = go(cfg, tmp_path, [a, b, c], now=at(20))
+    assert alerts(n) == [] and st.seen["c:z"]["dup_of"] == "a:x"
+    a.listings[-1] = make_listing("x", source="a", address="Kerkstraat 10", price_total=2600)   # A drops out
+    n, st = go(cfg, tmp_path, [a, b, c], now=at(30))
+    n2, st = go(cfg, tmp_path, [a, b, c], now=at(40))
+    assert len(alerts(n) + alerts(n2)) == 1                       # the home is shown again, once
+    shown = [u for u in ("b:y", "c:z") if u in st.matches]
+    assert len(shown) == 1
+
+
+def test_card_of_a_home_that_fits_now_without_a_real_drop_shows_the_detail_page_facts(cfg, tmp_path):
+    cfg["searches"] = [dict(s, max_total=1600) if s["persons"] == 3 else s for s in cfg["searches"]]
+    src = DetailFacts(listings=[make_listing("base"), make_listing("x", price_total=1700, bedrooms=3, rooms=4)])
+    go(cfg, tmp_path, [src])
+    src.listings = [make_listing("base"), make_listing("x", price_total=1400, bedrooms=None, rooms=4)]
+    src.facts = {"x": {"price_total": 1500, "bedrooms": 3, "area_m2": 88}}
+    n, st = go(cfg, tmp_path, [src], now=at(10))
+    assert len(alerts(n)) == 1
+    card = st.matches["fake:x"]["listing"]
+    assert (card["price_total"], card["bedrooms"], card["area_m2"]) == (1500, 3, 88)
+    assert st.matches["fake:x"]["price_drop_from"] == 1700   # 1700 -> 1500 is a real, verified drop here
+
+
+def test_card_after_a_drop_the_detail_page_does_not_confirm(cfg, tmp_path):
+    src = DetailFacts(listings=[make_listing("base"), make_listing("x", price_total=1400)])
+    go(cfg, tmp_path, [src])
+    src.listings = [make_listing("base"), make_listing("x", price_total=1200)]
+    src.facts = {"x": {"price_total": 1390, "area_m2": 91}}
+    n, st = go(cfg, tmp_path, [src], now=at(10))
+    assert alerts(n) == []
+    card = st.matches["fake:x"]
+    assert (card["listing"]["price_total"], card["listing"]["area_m2"], card["price_drop_from"]) == (1390, 91, None)

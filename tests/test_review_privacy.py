@@ -60,3 +60,21 @@ def test_redact_hides_environment_secrets_and_registered_values(monkeypatch):
     assert "4001234567" not in text and "abcdefghijklmnop" not in text and "987654321" not in text
     assert text.endswith(" abc")
     assert runner_redact is redact   # one implementation: the runner uses the same function
+
+
+def test_telegram_setup_never_prints_the_chat_id_or_token(monkeypatch, capsys, tmp_path):
+    """Second review: the setup command printed Telegram's error text as it came."""
+    import argparse
+
+    from hunter import __main__ as cli
+
+    token = "123456:ABCdefGhIJKlmNoPQRsTUVwxyZ"
+    monkeypatch.setenv("TELEGRAM_BOT_TOKEN", token)
+    monkeypatch.setattr(cli, "write_env_value", lambda *a, **kw: None)
+    answers = iter([{"ok": True, "result": {"username": "bot"}},
+                    {"ok": False, "description": "Bad Request: chat %s not found for bot%s" % (NEW_ID, token)}])
+    monkeypatch.setattr(tg, "api_call", lambda *a, **kw: next(answers))
+    code = cli.cmd_telegram_setup(argparse.Namespace(chat_id=NEW_ID, wait=1))
+    out = capsys.readouterr()
+    assert code == 1 and "Test message failed" in out.out
+    assert NEW_ID.lstrip("-") not in out.out + out.err and token not in out.out + out.err

@@ -103,11 +103,15 @@ def fingerprint(l: Listing) -> Optional[str]:
     return "%s|%s|%d" % (a, l.city, l.price_total)
 
 
+def _has_house_number(l: Listing) -> bool:
+    return bool(re.search(r"\d", l.address or ""))
+
+
 def _same_home(a: Listing, b: Dict[str, Any]) -> bool:
     """Two listings with the same fingerprint (address, city, rent): one home?
     With a house number, yes. A street name alone can be two homes on that street: then a clearly
     different size or bedroom count means two homes. Missing a home costs more than a double alert."""
-    if re.search(r"\d", a.address or ""):
+    if _has_house_number(a):
         return True
     area_a, area_b = a.area_m2, b.get("area_m2")
     if area_a and area_b and abs(area_a - area_b) > max(5, 0.1 * max(area_a, area_b)):
@@ -139,6 +143,7 @@ class Item:
     fp: Optional[str] = None            # fingerprint before any detail page was read this run
     baseline: bool = False              # found in a source's very first scan
     was_matched: bool = True            # price drops: did it already fit a search before this run?
+    dup_pending: bool = False           # street-only address: "same home?" is decided after the detail page
 
     @property
     def sort_key(self) -> Tuple[int, int]:
@@ -402,9 +407,17 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
                     prev["dup_of"] = ref
                     prev["last_seen"] = now_s
                     continue
-                # The home it duplicated is gone or no longer fits: this listing stands on its own again.
+                # The home it duplicated is gone or no longer fits. Another site may still show the home:
+                other = known_duplicate(l, fp, name, skip=(l.uid,)) if fp and res.matched else None
+                if other:
+                    prev["dup_of"] = other
+                    prev["last_seen"] = now_s
+                    continue
+                # Otherwise this listing stands on its own again: a new match (it was never shown itself,
+                # so not a price drop), and settle_twins compares it with this run's other new listings.
                 del prev["dup_of"]
                 prev["matched"] = []
+                prev["last_price"] = l.price_total
 
             if prev is not None:
                 # known listing: refresh, check price drop
@@ -436,16 +449,23 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
             if fp and res.matched:
                 first = run_fps.get(fp)
                 if first is None:
-                    dup_of = known_duplicate(l, fp, name)
                     run_fps[fp] = it
-                elif first.source.name != name and _same_home(l, first.listing.to_dict()):
+                if first is not None and first.source.name != name and _same_home(l, first.listing.to_dict()):
                     earlier = (state.seen.get(first.listing.uid) or {}).get("dup_of")
                     if earlier and (state.seen.get(earlier) or {}).get("source") != name:
                         dup_of = earlier  # both are the home an earlier run already showed
                     elif is_baseline or first.baseline:
                         dup_of = first.listing.uid
-                    # Otherwise both are new this run: settle_twins decides after the detail pages are
-                    # read, because a listing that turns out not to fit must not hide its twin.
+                    else:
+                        # Both are new this run: settle_twins decides after the detail pages are read,
+                        # because a listing that turns out not to fit must not hide its twin.
+                        it.dup_pending = True
+                elif _has_house_number(l) or is_baseline or not src.has_detail_pages:
+                    dup_of = known_duplicate(l, fp, name)
+                else:
+                    # A street name alone: the detail page may give the house number, size and bedrooms
+                    # that tell two homes on one street apart. settle_twins decides after reading it.
+                    it.dup_pending = True
             entry = {"first_seen": now_s, "last_seen": now_s, "last_price": l.price_total,
                      "matched": [m.search for m in res.matches], "notified_at": None, "source": name}
             if fp:
@@ -508,7 +528,7 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
                 if first is not None:
                     if first.source.name != it.source.name and _same_home(it.listing, first.listing.to_dict()):
                         dup = first.listing.uid
-                elif fp != it.fp:  # a fuller address: an earlier run may already have shown this home
+                elif fp != it.fp or it.dup_pending:  # an earlier run may already have shown this home
                     dup = known_duplicate(it.listing, fp, it.source.name, skip=new_uids)
             if dup:
                 entry["dup_of"] = dup
@@ -545,10 +565,6 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
     cap = int(tcfg.get("max_messages_per_run", 15))
     new_items.sort(key=lambda i: i.sort_key)
     new_items = enrich_and_prune(new_items)
-    new_items.sort(key=lambda i: i.sort_key)
-    new_items = settle_twins(new_items)
-    for it in new_items:
-        _card(state, it, now_s)
     # Re-check the detail page before announcing a price drop (the search price may be per person, etc.).
     if drop_items:
         kept_drops = {id(i) for i in enrich_and_prune([it for it, _ in drop_items])}
@@ -573,10 +589,17 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
                 state.matches[it.listing.uid]["price_drop_from"] = old
                 verified_drops.append((it, old))
             elif it.listing.uid in state.matches:
+                if id(it) in kept_drops:
+                    _card(state, it, now_s)  # with what the detail page said
                 state.matches[it.listing.uid]["price_drop_from"] = None
                 if id(it) in kept_drops and not it.was_matched:
                     new_items.append(it)  # fits now, but the rent did not really fall: a new match
         drop_items = verified_drops
+    # Only now: the drop checks above can add new matches, and those take part too.
+    new_items.sort(key=lambda i: i.sort_key)
+    new_items = settle_twins(new_items)
+    for it in new_items:
+        _card(state, it, now_s)
     # 6b. Older matches that were never checked against their detail page (the first run only verifies
     # the ones it sends; busy runs can exceed the budget). Use what is left of this run's budget, starting
     # with the ones whose bedroom count is a guess. No alerts: this only corrects or removes dashboard cards.
