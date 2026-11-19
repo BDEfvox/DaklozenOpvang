@@ -30,6 +30,7 @@ from .state import State, iso, parse_iso
 TAG = "💻 <i>Mac backup</i>"
 LOG_MAX_BYTES = 2_000_000
 LOG_KEEP_BYTES = 200_000
+OBSERVATION_FIELDS = ("last_seen", "last_price", "matched", "fp", "dup_of", "details")
 
 
 class TaggedNotifier(Notifier):
@@ -82,20 +83,54 @@ def github_stale(meta: Dict[str, Any], now: datetime, hours: float) -> bool:
     return last is None or now - last > timedelta(hours=hours)
 
 
+def _seen_timestamp(value: Any) -> Optional[datetime]:
+    return parse_iso(value) if isinstance(value, str) else None
+
+
 def seed_seen(state: State, gh_seen: Dict[str, Any], now_s: str) -> int:
-    """Copy listings the GitHub checker already knows into local memory, so they aren't alerted again."""
+    """Bring local memory up to date with what the GitHub checker knows, so nothing is alerted twice.
+
+    Unknown listings are copied. For a listing both know, the newer observation (by last_seen) wins:
+    its price, matches and details. Otherwise a price drop GitHub already announced would be announced
+    again here. first_seen is the earlier of the two, notified_at the later, and local bookkeeping
+    GitHub does not have (detail_tries) stays. Returns the number of listings added."""
     added = 0
     for uid, entry in (gh_seen or {}).items():
-        if uid in state.seen or not isinstance(entry, dict):
+        if not isinstance(entry, dict):
             continue
-        local = {k: entry[k] for k in ("first_seen", "last_seen", "last_price", "matched", "notified_at",
-                                       "source", "fp", "dup_of", "details") if k in entry}
-        local.setdefault("first_seen", now_s)
-        local.setdefault("last_seen", now_s)
-        local.setdefault("source", uid.split(":", 1)[0])
-        local["from_github"] = True
-        state.seen[uid] = local
-        added += 1
+        if uid not in state.seen:
+            fields = OBSERVATION_FIELDS + ("first_seen", "notified_at", "source")
+            local = {key: entry[key] for key in fields if key in entry}
+            local.setdefault("first_seen", now_s)
+            local.setdefault("last_seen", now_s)
+            local.setdefault("source", uid.split(":", 1)[0])
+            local["from_github"] = True
+            state.seen[uid] = local
+            added += 1
+            continue
+
+        local = state.seen[uid]
+        if not isinstance(local, dict):
+            continue
+        github_last = _seen_timestamp(entry.get("last_seen"))
+        local_last = _seen_timestamp(local.get("last_seen"))
+        if github_last is not None and (local_last is None or github_last > local_last):
+            local.update({key: entry[key] for key in OBSERVATION_FIELDS if key in entry})
+            if "dup_of" not in entry:
+                local.pop("dup_of", None)
+            local["from_github"] = True
+
+        github_first = _seen_timestamp(entry.get("first_seen"))
+        local_first = _seen_timestamp(local.get("first_seen"))
+        if github_first is not None and (local_first is None or github_first < local_first):
+            local["first_seen"] = entry["first_seen"]
+
+        github_notified = _seen_timestamp(entry.get("notified_at"))
+        local_notified = _seen_timestamp(local.get("notified_at"))
+        if entry.get("notified_at") and (
+                not local.get("notified_at")
+                or (github_notified is not None and (local_notified is None or github_notified > local_notified))):
+            local["notified_at"] = entry["notified_at"]
     return added
 
 
