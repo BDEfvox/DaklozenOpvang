@@ -57,16 +57,28 @@ def _parse_date(s: Optional[str]) -> Optional[date]:
         return None
 
 
+_COUPLE = r"(?:couples?|stel(?:len|letje)?|koppels?|tweetal|two|twee|2)"
+_OR = r"(?:or|of|and|en|und|oder|&|/)"
+# right after one-person wording: "... or a (working) couple", "... of 2 personen"
+_COUPLE_AFTER = re.compile(r"\W{0,3}" + _OR + r"\W{1,3}(?:(?:a|an|een)\W+)?(?:\w+\W+)?" + _COUPLE + r"\b")
+# right before it: "a couple or ", "stel of een "
+_COUPLE_BEFORE = re.compile(r"\b" + _COUPLE + r"\W{1,3}" + _OR + r"\W{1,3}(?:\w+\W+){0,2}$")
+
+
 def detect_flags(listing: Listing, cfg: Dict[str, Any]) -> List[str]:
     text = ((listing.title or "") + " \n " + (listing.description or "")).lower()
     fl = cfg.get("flags", {})
+    extra = listing.extra if isinstance(listing.extra, dict) else {}
     out: List[str] = []
     for key in ("no_sharers", "no_students", "sharers_ok", "no_registration",
                 "income_requirement", "scam_signals", "rooms_only"):
         if _contains_any(text, fl.get(key, [])):
             out.append(key)
+    if "no_registration" not in out and (
+            extra.get("registration_allowed") is False or extra.get("registration_possible") is False):
+        out.append("no_registration")
     if "income_requirement" not in out and (
-            (isinstance(listing.extra, dict) and listing.extra.get("income_requirement") is True)  # landlord's rule
+            extra.get("income_requirement") is True  # landlord's rule
             or any(re.search(pat, text) for pat in cfg.get("income_patterns", []))):
         out.append("income_requirement")
     # max persons
@@ -77,13 +89,19 @@ def detect_flags(listing: Listing, cfg: Dict[str, Any]) -> List[str]:
                 nums.append(int(m.group(1)))
             except (IndexError, ValueError):
                 pass
-    for pat in cfg.get("couple_patterns", []):
-        if re.search(pat, text):
-            nums.append(2)
+    couple_spans = [m.span() for pat in cfg.get("couple_patterns", []) for m in re.finditer(pat, text)]
+    if couple_spans:
+        nums.append(2)
     for pat in cfg.get("single_patterns", []):
-        if re.search(pat, text):
-            nums.append(1)
-    mp = listing.extra.get("max_persons") if isinstance(listing.extra, dict) else None
+        for m in re.finditer(pat, text):
+            # A single-person option within a couple allowance does not lower that allowance.
+            if any(start < m.end() and m.start() < end for start, end in couple_spans):
+                continue
+            # "alleenstaande of werkend stel", "a couple or a single person": one or two people may live there
+            offered_with_couple = (_COUPLE_AFTER.match(text, m.end())
+                                   or _COUPLE_BEFORE.search(text[max(0, m.start() - 40):m.start()]))
+            nums.append(2 if offered_with_couple else 1)
+    mp = extra.get("max_persons")
     if isinstance(mp, int) and mp > 0:  # structured value from the site (e.g. Kamernet "suitable for N persons")
         nums.append(mp)
     if nums:
@@ -92,7 +110,9 @@ def detect_flags(listing: Listing, cfg: Dict[str, Any]) -> List[str]:
         out.remove("sharers_ok")
     # short term
     a, b = _parse_date(listing.available_from), _parse_date(listing.available_until)
-    if a and b and (b - a).days < 365:
+    max_stay_months = extra.get("max_stay_months")
+    if ((a and b and (b - a).days < 365)
+            or (type(max_stay_months) is int and 0 < max_stay_months < 12)):
         out.append("short_term")
     if listing.price_includes_utilities:
         out.append("utilities_included")
@@ -136,7 +156,7 @@ def evaluate(listing: Listing, cfg: Dict[str, Any]) -> MatchResult:
     searches = list(cfg.get("searches", []))
     if not searches:
         return res
-    prefiltered = bool(listing.extra.get("site_prefiltered"))
+    prefiltered = isinstance(listing.extra, dict) and bool(listing.extra.get("site_prefiltered"))
     all_unknown = (listing.bedrooms is None and listing.rooms is None and listing.area_m2 is None)
 
     extra_flags: List[str] = []

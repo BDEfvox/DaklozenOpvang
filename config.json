@@ -169,13 +169,22 @@
     "alleen voor (?:een )?stel",
     "uitsluitend voor (?:een )?stel",
     "couple only",
-    "only for (?:a )?couple"
+    "only for (?:a )?couple",
+    "\\bsingle\\s+person\\s+or\\s+(?:a\\s+)?couple\\b",
+    "\\balleenstaande\\s+of\\s+(?:een\\s+)?stel\\b",
+    "\\b1\\s+of\\s+2\\s+personen\\b"
   ],
+  "_single_patterns": "One-person wording. The bare word 'single' is not enough (single bed, single-family home). When one of these is offered next to a couple ('alleenstaande of stel', 'single person or a couple') the code reads it as a two-person limit.",
   "single_patterns": [
-    "\\bsingle\\b",
-    "alleenstaande",
-    "voor een persoon",
-    "one person only"
+    "\\bsingle\\s+occupancy\\b",
+    "\\bsingle\\s+(?:person|tenant|occupant)\\s+only\\b",
+    "\\bfor\\s+(?:a|one)\\s+single\\s+person\\b",
+    "\\b(?:one|1)\\s+person\\s+only\\b",
+    "\\b(?:one|1)[- ]person\\s+household\\b",
+    "\\balleenstaanden?\\b(?!\\s+(?:woning|huis|villa|bungalow|garage))",
+    "\\beenpersoonshuishoudens?\\b",
+    "\\bvoor\\s+(?:een|\u00e9\u00e9n)\\s+persoon\\b",
+    "\\b(?:geschikt|bedoeld|alleen|uitsluitend|max(?:imaal|\\.)?)\\s+(?:voor\\s+)?1\\s+persoon\\b"
   ],
   "first_run_detail_max": 30,
   "local_backup": {
