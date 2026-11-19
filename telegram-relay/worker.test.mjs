@@ -10,7 +10,12 @@ function fakeKv(pageSize = 2) {
   const map = new Map();
   return {
     map,
-    async get(key) { return map.has(key) ? map.get(key) : null; },
+    stale: null,  // a Map here makes reads answer from it, like KV's edge cache right after a change
+    async get(key, options) {
+      if (options !== undefined) assert.ok(options.cacheTtl >= 30, "KV refuses a cacheTtl under 30 seconds");
+      const from = this.stale || map;
+      return from.has(key) ? from.get(key) : null;
+    },
     async put(key, value) { map.set(key, value); },
     async delete(key) { map.delete(key); },
     async list({ prefix = "", cursor } = {}) {
@@ -112,14 +117,34 @@ test("an unset or empty INVITE_CODE never matches", async () => {
   }
 });
 
-test("already subscribed: says so, even with a wrong code, and changes nothing", async () => {
+test("already subscribed: says so, even with a wrong code, and stays one subscriber", async () => {
   const env = makeEnv();
   await asks(env, "/start Invite_1-x");
   const before = env.map.get("chat:100");
-  assert.match((await asks(env, "/start Invite_1-x")).body.text, /already gets the rental alerts/);
   assert.match((await asks(env, "/start wrong")).body.text, /already gets the rental alerts/);
   assert.equal(env.map.get("chat:100"), before);
+  assert.match((await asks(env, "/start Invite_1-x")).body.text, /already gets the rental alerts/);
+  assert.equal(JSON.parse(env.map.get("chat:100")).type, "private");
   assert.equal(env.map.size, 1);
+});
+
+test("a read that is a minute old never leaves the list wrong", async () => {
+  // KV answers reads from an edge cache for a while after a change. Whatever the read says,
+  // /start with the right code must end with the chat on the list and /stop with the chat off it.
+  const env = makeEnv();
+  env.kv.stale = new Map();                                   // the read still says: not subscribed
+  await asks(env, "/start Invite_1-x");
+  assert.equal(env.map.size, 1);
+  assert.match((await asks(env, "/stop")).body.text, /not subscribed/);   // says the old state...
+  assert.equal(env.map.size, 0);                              // ...but the chat is really removed
+
+  env.kv.stale = new Map([["chat:100", "{}"]]);               // the read still says: subscribed
+  assert.match((await asks(env, "/start Invite_1-x")).body.text, /already gets the rental alerts/);
+  assert.equal(env.map.size, 1);                              // written again, so it is true
+  env.map.clear();
+  assert.match((await asks(env, "/start wrong")).body.text, /already/);    // no code: nothing is written
+  assert.equal(env.map.size, 0);
+  assert.match((await asks(env, "/status")).body.text, /can take a minute/);
 });
 
 test("a full list refuses new chats (default 50, or MAX_SUBSCRIBERS)", async () => {

@@ -9,6 +9,6 @@
   "observability": { "enabled": false },
   // the subscriber list, one key per chat; deploy.sh creates the namespace and fills in its id
   "kv_namespaces": [
-    { "binding": "SUBSCRIBERS", "id": "00000000000000000000000000000000" }
+    { "binding": "SUBSCRIBERS", "id": "b23407cf12264c45b30015a53aca497d" }
   ]
 }

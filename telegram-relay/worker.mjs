@@ -25,9 +25,9 @@ const REPLY = {
   already: "This chat already gets the rental alerts. Send /stop to end them.",
   inviteOnly: "This bot is invite-only. Ask the owner for an invite link.",
   full: "The list of subscribers is full, so this chat could not be added. Ask the owner.",
-  notSubscribed: "This chat is not subscribed.",
+  notSubscribed: "This chat is not subscribed. (A change can take a minute to show here.)",
   stopped: "Done. This chat will no longer get the alerts.",
-  subscribed: "This chat is subscribed.",
+  subscribed: "This chat is subscribed. (A change can take a minute to show here.)",
   unavailable: "Something went wrong on my side. Try again in a minute.",
 };
 const welcome = (dashboardUrl) =>
@@ -85,7 +85,10 @@ async function listIds(env) {
   return ids;
 }
 
-const isSubscribed = async (env, id) => (await env.SUBSCRIBERS.get(PREFIX + id)) !== null;
+// Workers KV answers a read from a cache at the edge for a while (here 30 seconds, the shortest it allows), so
+// right after a change a chat can still look subscribed or unsubscribed. That is why /start with the right code
+// always writes and /stop always deletes, whatever this read says: the stored list ends up right either way.
+const isSubscribed = async (env, id) => (await env.SUBSCRIBERS.get(PREFIX + id, { cacheTtl: 30 })) !== null;
 const addChat = (env, id, type) =>
   env.SUBSCRIBERS.put(PREFIX + id, JSON.stringify({ type, added_at: new Date().toISOString() }));
 const removeChat = (env, id) => env.SUBSCRIBERS.delete(PREFIX + id);
@@ -106,16 +109,16 @@ function maxSubscribers(env) {
 async function handleCommand(env, chat, command, code) {
   const id = String(chat.id);
   if (command === "start") {
-    if (await isSubscribed(env, id)) return reply(chat.id, REPLY.already);
-    if (!(await sameSecret(code, env.INVITE_CODE))) return reply(chat.id, REPLY.inviteOnly);
-    if ((await listIds(env)).length >= maxSubscribers(env)) return reply(chat.id, REPLY.full);
-    await addChat(env, id, chat.type);
-    return reply(chat.id, welcome(env.DASHBOARD_URL));
+    const known = await isSubscribed(env, id);
+    if (!(await sameSecret(code, env.INVITE_CODE))) return reply(chat.id, known ? REPLY.already : REPLY.inviteOnly);
+    if (!known && (await listIds(env)).length >= maxSubscribers(env)) return reply(chat.id, REPLY.full);
+    await addChat(env, id, chat.type); // also when it looks subscribed: that read may be a minute old
+    return reply(chat.id, known ? REPLY.already : welcome(env.DASHBOARD_URL));
   }
   if (command === "stop") {
-    if (!(await isSubscribed(env, id))) return reply(chat.id, REPLY.notSubscribed);
-    await removeChat(env, id);
-    return reply(chat.id, REPLY.stopped);
+    const known = await isSubscribed(env, id);
+    await removeChat(env, id); // also when it looks unsubscribed: that read may be a minute old
+    return reply(chat.id, known ? REPLY.stopped : REPLY.notSubscribed);
   }
   if (command === "status") {
     return reply(chat.id, (await isSubscribed(env, id)) ? REPLY.subscribed : REPLY.notSubscribed);
