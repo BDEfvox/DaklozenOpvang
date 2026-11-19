@@ -6,7 +6,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 80,
@@ -57,7 +57,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Godetiaweg",
    "area_m2": 82,
@@ -102,7 +102,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "D.S. Lohmanlaan",
    "area_m2": 66,
@@ -147,7 +147,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Escamplaan",
    "area_m2": 86,
@@ -198,7 +198,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "B. Baumannlaan",
    "area_m2": 63,
@@ -243,7 +243,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -418,7 +418,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Volmolengracht",
    "area_m2": 100,
@@ -469,12 +469,12 @@
    "available_until": null,
    "bedrooms": 2,
    "city": "rotterdam",
-   "description": "Per direct Appartement 3 Kamers 116 m2 Gestoffeerd Appartement te huur Ruim en licht appartement met twee ruime slaapkamers (116 m²) De woning is gelegen aan de Resedastraat in de wijk Bloemhof, onderdeel van Rotterdam-Zuid. Deze karakteristieke, vooroorlogse stadswijk kenmerkt zich door een gevarieerde woonomgeving met authentieke bebouwing, kleinschalige straten en diverse buurtvoorzieningen. Ruim en licht appartement met twee ruime slaapkamers (116 m²) De woning is gelegen aan de Resedastraat in de wijk Bloemhof, onderdeel van Rotterdam-Zuid. Deze karakteristieke, vooroorlogse stadswijk kenmerkt zich door een gevarieerde woonomgeving met authentieke bebouwing, kleinschalige straten en diverse buurtvoorzieningen.",
+   "description": "Ruim en licht appartement met twee ruime slaapkamers (116 m²) De woning is gelegen aan de Resedastraat in de wijk Bloemhof, onderdeel van Rotterdam-Zuid. Deze karakteristieke, vooroorlogse stadswijk kenmerkt zich door een gevarieerde woonomgeving met authentieke bebouwing, kleinschalige straten en diverse buurtvoorzieningen.",
    "extra": {
     "age": "5 dagen geleden",
     "smart_only": false
    },
-   "furnished": null,
+   "furnished": "upholstered",
    "image_url": "https://resources.directwonen.nl/content/images/no_photo.png",
    "postcode": null,
    "posted_at": null,
@@ -511,12 +511,12 @@
    "available_until": null,
    "bedrooms": 2,
    "city": "rotterdam",
-   "description": "01-12-2026 Appartement 3 Kamers 56 m2 Gestoffeerd Appartement te huur 3-kamer appartement te huur. Deze woning ligt aan de Middelharnisstraat in Pendrecht, een ruim opgezette wijk in Rotterdam-Zuid met groene singels. Voor je dagelijkse boodschappen kun je terecht bij de winkels rond Plein 1953. Vanaf metrostation Slinge reis je gemakkelijk naar Zuidplein en het ce.... 3-kamer appartement te huur. Deze woning ligt aan de Middelharnisstraat in Pendrecht, een ruim opgezette wijk in Rotterdam-Zuid met groene singels. Voor je dagelijkse boodschappen kun je terecht bij de winkels rond Plein 1953. Vanaf metrostation Slinge reis je gemakkelijk naar Zuidplein en het centrum van Rotterdam. Indeling: De woning bevindt zich op de derde verdieping en is bereikbaar via de trap. Woonkamer van 19,70 m². Slaapkamer 1 van 7,70 m². Slaapkamer 2 van 11,30 m². Keuken van 6,90 m². Badkamer van 1,80 m². Toiletruimte van 1,00 m². Berging van 4,20 m². Gedeelde achtertuin van 900,00 m². Balkon van 2,80 m². Diverse kenmerken: Inventaris: kaal. Voorzieningen keuken: inbouw afzuiginstallatie en éénhandsmengkraan. Voorzieningen badkamer: douche, wastafel, éénhandsmengkraan en thermostatische mengkraan. Parkeren: betaald parkeren. De foto's zijn van een vergelijkbare type woning in het complex. Voorwaarden: Kale huur: € 1.065,00 per maand. Servicekosten: € 45,00 (bovenop de kale huur).",
+   "description": "3-kamer appartement te huur. Deze woning ligt aan de Middelharnisstraat in Pendrecht, een ruim opgezette wijk in Rotterdam-Zuid met groene singels. Voor je dagelijkse boodschappen kun je terecht bij de winkels rond Plein 1953. Vanaf metrostation Slinge reis je gemakkelijk naar Zuidplein en het centrum van Rotterdam.\nIndeling: De woning bevindt zich op de derde verdieping en is bereikbaar via de trap. Woonkamer van 19,70 m². Slaapkamer 1 van 7,70 m². Slaapkamer 2 van 11,30 m². Keuken van 6,90 m². Badkamer van 1,80 m². Toiletruimte van 1,00 m². Berging van 4,20 m². Gedeelde achtertuin van 900,00 m². Balkon van 2,80 m². Diverse kenmerken: Inventaris: kaal. Voorzieningen keuken: inbouw afzuiginstallatie en éénhandsmengkraan. Voorzieningen badkamer: douche, wastafel, éénhandsmengkraan en thermostatische mengkraan. Parkeren: betaald parkeren. De foto's zijn van een vergelijkbare type woning in het complex.\nVoorwaarden: Kale huur: € 1.065,00 per maand. Servicekosten: € 45,00 (bovenop de kale huur).",
    "extra": {
     "age": "5 dagen geleden",
     "smart_only": false
    },
-   "furnished": null,
+   "furnished": "upholstered",
    "image_url": "https://resources.directwonen.nl/image/95195505-99da-4033-a5e7-1230478c5af4",
    "postcode": null,
    "posted_at": null,
@@ -561,12 +561,12 @@
    "available_until": null,
    "bedrooms": 3,
    "city": "rotterdam",
-   "description": "01-12-2026 Appartement 4 Kamers 122 m2 Gestoffeerd Appartement te huur Te huur: In de woonkamer komt nog een nieuwe vloer! Huurprijs voor 3 personen € 2395,- (er kan door de verhuurder een extra kamer gemaakt worden in de woonkamer) Huurprijs voor 2 pesonen € 1995,- Ook beschikbaar voor een woongroep/woningdelers van max 3 personen. **Van deze 3 personen mag er maar.... Te huur: In de woonkamer komt nog een nieuwe vloer! Huurprijs voor 3 personen € 2395,- (er kan door de verhuurder een extra kamer gemaakt worden in de woonkamer) Huurprijs voor 2 pesonen € 1995,- Ook beschikbaar voor een woongroep/woningdelers van max 3 personen. **Van deze 3 personen mag er maar een student zijn. Indien 2 personen de woning willen huren dan kunnen beide personen student zijn en geldt de regel hierboven niet Ik wil een Woongroep oprichten. Kan dat?** Als u met meer dan 2 personen in 1 woning wilt wonen moet u met alles bewoners samenleven als 1 gezin. Dit noemen we vaak een 'Woongroep'. Voor een woongroep bestaat geen vergunning of registratie. De gemeente bepaalt of er sprake is van een woongroep door te kijken naar de manier waarop de woning wordt gebruikt. De bewoners moeten duurzaam een gemeenschappelijke huishouding voeren. De inspecteur die de woning bezoekt, beoordeelt of dit zo is. Duurzaam betekent dat de bewoners ervoor hebben gekozen om voor langere tijd met elkaar op dit adres te gaan wonen en niet alleen voor de duur van (een onderdeel van) een studie. Dus de inspecteur moet ervan overtuigd zijn dat de bewoners niet alleen hier wonen omdat ze een kamer nodig hadden in Rotterdam. Duidelijk moet zijn dat zij hier wonen omdat zij echt voor elkaar gekozen hebben. Studenten wonen meestal alleen voor de duur van hun studie in Rotterdam. Daarom zien we een groep bewoners die voor de helft of meer uit studenten bestaat meestal niet als woongroep. Er is dan een vergunning kamerverhuur nodig. Gemeenschappelijk houdt in dat de woning door alle bewoners wordt bewoond en dat ze samen de kosten van het wonen betalen. Dit betekent in elk geval: Er zijn geen delen van de woning die maar door 1 persoon mag worden gebruikt. Dit betekent geen sloten op deuren van slaapkamers. Er is 1 keuken die duidelijk geschikt is voor gezamenlijk gebruik. Er is 1 woonkamer die duidelijk geschikt is als gezamenlijke ruimte voor alle bewoners. De kosten van het huishouden worden onderling verdeeld. 2e verdieping: Hal (4.57 m x 1.70 m) 7.77 m2 Toilet (0.90 m x 0.93 m) 0.84 m2 Woonkamer (3.65 m x ",
+   "description": "Te huur: In de woonkamer komt nog een nieuwe vloer! Huurprijs voor 3 personen € 2395,- (er kan door de verhuurder een extra kamer gemaakt worden in de woonkamer) Huurprijs voor 2 pesonen € 1995,- Ook beschikbaar voor een woongroep/woningdelers van max 3 personen. **Van deze 3 personen mag er maar een student zijn. Indien 2 personen de woning willen huren dan kunnen beide personen student zijn en geldt de regel hierboven niet Ik wil een Woongroep oprichten. Kan dat?** Als u met meer dan 2 personen in 1 woning wilt wonen moet u met alles bewoners samenleven als 1 gezin.\nDit noemen we vaak een 'Woongroep'. Voor een woongroep bestaat geen vergunning of registratie. De gemeente bepaalt of er sprake is van een woongroep door te kijken naar de manier waarop de woning wordt gebruikt. De bewoners moeten duurzaam een gemeenschappelijke huishouding voeren. De inspecteur die de woning bezoekt, beoordeelt of dit zo is. Duurzaam betekent dat de bewoners ervoor hebben gekozen om voor langere tijd met elkaar op dit adres te gaan wonen en niet alleen voor de duur van (een onderdeel van) een studie. Dus de inspecteur moet ervan overtuigd zijn dat de bewoners niet alleen hier wonen omdat ze een kamer nodig hadden in Rotterdam. Duidelijk moet zijn dat zij hier wonen omdat zij echt voor elkaar gekozen hebben. Studenten wonen meestal alleen voor de duur van hun studie in Rotterdam. Daarom zien we een groep bewoners die voor de helft of meer uit studenten bestaat meestal niet als woongroep. Er is dan een vergunning kamerverhuur nodig. Gemeenschappelijk houdt in dat de woning door alle bewoners wordt bewoond en dat ze samen de kosten van het wonen betalen. Dit betekent in elk geval: Er zijn geen delen van de woning die maar door 1 persoon mag worden gebruikt. Dit betekent geen sloten op deuren van slaapkamers. Er is 1 keuken die duidelijk geschikt is voor gezamenlijk gebruik.\nEr is 1 woonkamer die duidelijk geschikt is als gezamenlijke ruimte voor alle bewoners. De kosten van het huishouden worden onderling verdeeld. 2e verdieping: Hal (4.57 m x 1.70 m) 7.77 m2 Toilet (0.90 m x 0.93 m) 0.84 m2 Woonkamer (3.65 m x 3.73 m) 13.61 m2 Keuken (2.95 m x 1.50 m) 4.43 m2 Balkon (2.66 m x 0.93 m) 2.47 m2 Meterkast (1.34 m x 0.86 m) 1.15 m2 Berging (0.93 m x 0.86 m) 0.80 m2 3e verdieping: Overloop (4.60 m x 1.15 m) 5.29 m2 Slaapkamer 1 (6.00 m x 3.80 m) 22.80 m2 Slaapkamer 2 (3.72 m x 3.63 m) 13.50 m2 Balkon (2.66 m x 0.93 m) 2.47 m2 Slaapkamer 3 (4.47 m x 1.98 m) 8.85 m2 Badkamer (3.00 m x 1.52 m) 4.56 m2 Toilet (1.03 m x 0.95 m) 0.98 m2",
    "extra": {
     "age": "5 dagen geleden",
     "smart_only": false
    },
-   "furnished": null,
+   "furnished": "upholstered",
    "image_url": "https://resources.directwonen.nl/content/images/no_photo.png",
    "postcode": null,
    "posted_at": null,
@@ -593,8 +593,8 @@
  "directwonen:524085": {
   "best_tier": "great",
   "evidence": {
-   "max_persons": "…Maisonnette te huur Te huur: Deze woonruimte is ALLEEN beschikbaar voor MAX 2 studenten die niet staan ingeschreven in de gemeente Rotterdam Keurig en zeer…",
-   "students_only": "…Gestoffeerd Maisonnette te huur Te huur: Deze woonruimte is ALLEEN beschikbaar voor MAX 2 studenten die niet staan ingeschreven in de gemeente Rotterdam Keurig…"
+   "max_persons": "Te huur: Deze woonruimte is ALLEEN beschikbaar voor MAX 2 studenten die niet staan ingeschreven in de gemeente Rotterdam",
+   "students_only": "Te huur: Deze woonruimte is ALLEEN beschikbaar voor MAX 2 studenten die niet staan ingeschreven in de gemeente Rotterdam"
   },
   "first_seen": "2026-11-18T12:39:04Z",
   "flags": [
@@ -609,12 +609,12 @@
    "available_until": null,
    "bedrooms": 5,
    "city": "rotterdam",
-   "description": "Per direct Appartement 5+ Kamers 120 m2 Gestoffeerd Maisonnette te huur Te huur: Deze woonruimte is ALLEEN beschikbaar voor MAX 2 studenten die niet staan ingeschreven in de gemeente Rotterdam Keurig en zeer ruime 6 kamer maisonnette gelegen in het populaire Hillegersberg. De woning is gunstig gelegen vlakbij diverse winkels, openbaar vervoer en snelweg.... Te huur: Deze woonruimte is ALLEEN beschikbaar voor MAX 2 studenten die niet staan ingeschreven in de gemeente Rotterdam Keurig en zeer ruime 6 kamer maisonnette gelegen in het populaire Hillegersberg. De woning is gunstig gelegen vlakbij diverse winkels, openbaar vervoer en snelwegen. 1e verdieping: Hal (3.75 m x 0.90 m) 3.38 m2 Woonkamer (5.70 m x 4.45 m) 25.37 m2 Slaapkamer 1 (3.45 m x 3.49 m) 12.04 m2 Keuken (3.70 m x 1.65 m) 6.10 m2 Toilet (1.40 m x 0.90 m) 1.26 m2 2e verdieping: Overloop (2.97 m x 2.49 m) 7.40 m2 Slaapkamer 2 (3.45 m x 2.80 m) 9.66 m2 Slaapkamer 3 (3.25 m x 2.55 m) 8.29 m2 Slaapkamer 4 (3.55 m x 2.65 m) 9.41 m2 Slaapkamer 5 (4.35 m x 3.45 m) 15.01 m2 Badkamer (2.50 m x 2.00 m) 5.00 m2 Was/Bergruimte (1.25 m x 1.08 m) 1.35 m2",
+   "description": "Te huur: Deze woonruimte is ALLEEN beschikbaar voor MAX 2 studenten die niet staan ingeschreven in de gemeente Rotterdam\nKeurig en zeer ruime 6 kamer maisonnette gelegen in het populaire Hillegersberg.\nDe woning is gunstig gelegen vlakbij diverse winkels, openbaar vervoer en snelwegen. 1e verdieping: Hal (3.75 m x 0.90 m) 3.38 m2 Woonkamer (5.70 m x 4.45 m) 25.37 m2 Slaapkamer 1 (3.45 m x 3.49 m) 12.04 m2 Keuken (3.70 m x 1.65 m) 6.10 m2 Toilet (1.40 m x 0.90 m) 1.26 m2 2e verdieping: Overloop (2.97 m x 2.49 m) 7.40 m2 Slaapkamer 2 (3.45 m x 2.80 m) 9.66 m2 Slaapkamer 3 (3.25 m x 2.55 m) 8.29 m2 Slaapkamer 4 (3.55 m x 2.65 m) 9.41 m2 Slaapkamer 5 (4.35 m x 3.45 m) 15.01 m2 Badkamer (2.50 m x 2.00 m) 5.00 m2 Was/Bergruimte (1.25 m x 1.08 m) 1.35 m2",
    "extra": {
     "age": "4 dagen geleden",
     "smart_only": false
    },
-   "furnished": null,
+   "furnished": "upholstered",
    "image_url": "https://resources.directwonen.nl/content/images/no_photo.png",
    "postcode": null,
    "posted_at": null,
@@ -645,7 +645,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "N.W. Buitensingel",
    "area_m2": 128,
@@ -696,7 +696,7 @@
    "available_until": null,
    "bedrooms": 2,
    "city": "rotterdam",
-   "description": "Per direct Appartement 3 Kamers 65 m2 Kaal Appartement Leuk driekamerappartement in een luxe appartementencomplex! Het appartement heeft 2 slaapkamers en is gelegen op de begane grond. De keuken is uitgerust met een kookplaat met ingebouwde afzuigkap, vaatwasser, koelkast, combi oven en koelkast. De badkamer is uitgerust met een inloopdouche, wastafe.... Leuk driekamerappartement in een luxe appartementencomplex! Het appartement heeft 2 slaapkamers en is gelegen op de begane grond. De keuken is uitgerust met een kookplaat met ingebouwde afzuigkap, vaatwasser, koelkast, combi oven en koelkast. De badkamer is uitgerust met een inloopdouche, wastafel met meubel, spiegel en handdoekradiator. Tevens is er een inpandige berging waar de aansluiting wasmachine zich bevindt. Buiten bevindt zich de eigen (betaalde) parkeerplaats en gemeenschappelijke fietsenstalling. Prinsendock beschikt over een gemeenschappelijke voortuin, gemeenschappelijke lounge, work-space en een fitnessruimte (alleen toegankelijk voor bewoners). *foto's ter indicatie, hieraan kunnen geen rechten worden ontleend. De woning wordt casco opgeleverd Te huur per direct. Huurprijs; € 1.565,00 excl. elektra en water Servicekosten; € 145,00 incl. gebruik fitnessruimte en work-space Parkeerplaatskosten; € 130,00 per maand Borgsom: € 3.130,00 Minimaal 12 maanden te huur!",
+   "description": "Leuk driekamerappartement in een luxe appartementencomplex! Het appartement heeft 2 slaapkamers en is gelegen op de begane grond. De keuken is uitgerust met een kookplaat met ingebouwde afzuigkap, vaatwasser, koelkast, combi oven en koelkast. De badkamer is uitgerust met een inloopdouche, wastafel met meubel, spiegel en handdoekradiator.\nTevens is er een inpandige berging waar de aansluiting wasmachine zich bevindt. Buiten bevindt zich de eigen (betaalde) parkeerplaats en gemeenschappelijke fietsenstalling. Prinsendock beschikt over een gemeenschappelijke voortuin, gemeenschappelijke lounge, work-space en een fitnessruimte (alleen toegankelijk voor bewoners). *foto's ter indicatie, hieraan kunnen geen rechten worden ontleend. De woning wordt casco opgeleverd\nTe huur per direct. Huurprijs; € 1.565,00 excl. elektra en water Servicekosten; € 145,00 incl. gebruik fitnessruimte en work-space Parkeerplaatskosten; € 130,00 per maand Borgsom: € 3.130,00 Minimaal 12 maanden te huur!",
    "extra": {
     "age": "4 dagen geleden",
     "smart_only": false
@@ -732,7 +732,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Mariniersweg",
    "area_m2": 120,
@@ -777,7 +777,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "D.L. Reyweg",
    "area_m2": 95,
@@ -822,7 +822,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Tamboerstraat",
    "area_m2": 107,
@@ -867,7 +867,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Mariniersweg",
    "area_m2": 98,
@@ -912,7 +912,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 61,
@@ -957,7 +957,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Tafelbergstraat",
    "area_m2": 204,
@@ -1008,7 +1008,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "H. Zwaardecroonstraat",
    "area_m2": 99,
@@ -1053,7 +1053,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "J. Meewisstraat",
    "area_m2": 91,
@@ -1470,7 +1470,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Loevesteinlaan 387 A",
    "area_m2": null,
@@ -1516,7 +1516,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Fritz Dietrich Kahlenbergstraat 46 D",
    "area_m2": 128,
@@ -1562,7 +1562,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Robijnhof 28",
    "area_m2": 75,
@@ -1608,7 +1608,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Loevesteinlaan 483 B",
    "area_m2": 110,
@@ -1654,7 +1654,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Knsm Laan 534",
    "area_m2": null,
@@ -1700,7 +1700,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Van Alkemadelaan 470",
    "area_m2": null,
@@ -1746,7 +1746,7 @@
   "flags": [
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Osdorper Ban 21 F",
    "area_m2": null,
@@ -1792,7 +1792,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Laan Van Wateringse Veld 528",
    "area_m2": 108,
@@ -2114,7 +2114,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Leusdenhof 326",
    "area_m2": 88,
@@ -2166,7 +2166,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "De Sitterlaan",
    "area_m2": 110,
@@ -2257,7 +2257,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 78,
@@ -2309,7 +2309,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Obrechtstraat",
    "area_m2": 81,
@@ -2400,7 +2400,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Soembastraat",
    "area_m2": 88,
@@ -2498,7 +2498,7 @@
    "suspicious_price",
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Maria Snelplantsoen",
    "area_m2": 200,
@@ -2640,7 +2640,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Kijkduinsestraat",
    "area_m2": 110,
@@ -2686,7 +2686,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Dijkstraat",
    "area_m2": 107,
@@ -2732,7 +2732,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Hendrik Zwaardecroonstraat",
    "area_m2": 99,
@@ -2913,7 +2913,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Dirk Buserf",
    "area_m2": 61,
@@ -2959,7 +2959,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Geleenstraat",
    "area_m2": 75,
@@ -3005,7 +3005,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Beemsterstraat",
    "area_m2": 85,
@@ -3102,7 +3102,7 @@
    "students_only",
    "service_costs:65"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Grote Beer 127",
    "area_m2": 81,
@@ -3156,7 +3156,7 @@
    "service_costs:118",
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Beemsterstraat 542 E2",
    "area_m2": 85,
@@ -3208,7 +3208,7 @@
    "service_costs:63",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Sumatrakade 1213",
    "area_m2": 66,
@@ -3258,7 +3258,7 @@
    "income_requirement",
    "service_costs:85"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Randveen 808",
    "area_m2": 70,
@@ -3309,7 +3309,7 @@
    "service_costs:46",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Ceramiquelaan 61",
    "area_m2": 82,
@@ -3349,73 +3349,32 @@
   ],
   "price_drop_from": null
  },
- "ikwilhuren:4a925ff2f24f723ee6b85c770b19d85e": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [
-   "income_requirement",
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-19T16:09:31Z",
-  "listing": {
-   "address": "Eosstraat 143",
-   "area_m2": 98,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": "Ligging De woning is rustig gelegen maar alle gemakken van de stad zijn binnen handbereik. Middels de Amstelveenseweg bent u zo op de Ring A10. Er zijn verschillende eetgelegenheden in Amsterdam Zuid op loop-/fietsafstand gelegen, alsmede het Vondelpark en het Olympisch Stadion. Door de onlangs opgeleverde nieuwbouw op het Stadionplein, zijn alle dagelijkse voorzieningen, zoals de Albert Heijn dichtbij. Het appartement maakt deel uit van Het Kwartier en is gelegen in stadsdeel Zuid. Het complex is opgeleverd in 2004 en daarmee van alle comfort voorzien. Het complex is voorzien van zwembad, lounge, sauna en fitnessruimte waar u vrij gebruik van kunt maken. Het complex Het appartement maakt deel uit van Het Kwartier en is gelegen in stadsdeel Zuid. Alle bewoners van Het Kwartier mogen gebruik maken van het heerlijk verwarmde zwembad, sauna, fitnessruimte en de loungeruimte waar de mogelijkheid is om onder het genot van een kopje koffie/ thee de nieuwskrant of wat tijdschriften te lezen. Verder biedt Het Kwartier haar bewoners een Facility Point waar men maandag t/m vrijdag van 7.00 tot 19.00 terecht kan voor vragen, het huren van een vergaderruimte of een gastenverblijf, brengen van stomerijgoed enz. De getoonde foto's zijn van een vergelijkbare woning.",
-   "extra": {
-    "availability": "Direct beschikbaar",
-    "income_requirement": true,
-    "service_costs": 115
-   },
-   "furnished": null,
-   "image_url": "https://d.static.nbo.nl/media/c6/c62446b2932f0c5d75bc563a03890070/768x510/thumb.jpg",
-   "postcode": "1076DT",
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 2380,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "ikwilhuren",
-   "source_id": "4a925ff2f24f723ee6b85c770b19d85e",
-   "title": "Appartement Eosstraat 143, Amsterdam",
-   "uid": "ikwilhuren:4a925ff2f24f723ee6b85c770b19d85e",
-   "url": "https://ikwilhuren.nu/object/amsterdam-1076dt-143-eosstraat-4a925ff2f24f723ee6b85c770b19d85e/"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 793,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
  "ikwilhuren:66862d7ded0d0f8071d37b88f88d9422": {
   "best_tier": "great",
-  "evidence": {},
+  "evidence": {
+   "service_costs": "Servicekosten € € 70,- /mnd per maand (MVGM lists them next to the rent)"
+  },
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [
    "income_requirement",
+   "service_costs:70",
    "bedrooms_unknown"
   ],
   "last_seen": "2026-11-11T09:09:15Z",
   "listing": {
    "address": "Turfhaven 221",
-   "area_m2": 63,
+   "area_m2": 62,
    "available_from": null,
    "available_until": null,
    "bedrooms": null,
    "city": "den-haag",
-   "description": "WIJNHAVENKWARTIER | COMPLEXTEKST 132 luxe appartementen midden in de binnenstad van Den Haag, op steenworp afstand van Den Haag Centraal Heerlijk wonen op hoogte in de Haagse binnenstad Houd je van een levendige woonomgeving? Ga dan voor een van de luxe appartementen in het Wijnhavenkwartier in Den Haag. Dit chique wooncomplex staat midden in het stadscentrum, tussen het centrale treinstation en het Spui. Ook geliefde bezienswaardigheden als het Binnenhof, Paleis Noordeinde en Paleis Huis ten Bosch liggen dichtbij. Wanneer je maar wilt wandel je hier gewoon even langs, terwijl anderen vele kilometers omrijden om deze trekpleisters te bekijken. Verder woon je hier omringd door tal van winkels en gezellige horecagelegenheden. En alsof dat nog niet genoeg is, woon je te midden van de hoogste gebouwen van de stad, waardoor je hier soms wel het gevoel hebt of je in Manhattan bent. Tenslotte nog goed nieuws voor strandliefhebbers: het brede zandstrand aan de Noordzee ligt op ongeveer zes kilometer. De 132 luxe appartementen van het Wijnhavenkwartier zijn verspreid over de vijfde tot en met de twintigste verdieping van het gebouw. Qua grootte variëren de appartementen tussen de pakweg 71 en de 164 vierkante meter. Ieder appartement is met hoogwaardige materialen afgewerkt en beschikt over een ruime woonkamer met toegang tot een balkon, één tot drie slaapkamers en een moderne badkamer en keuken (met ATAG-inbouwapparatuur als een keramische kookplaat, vaatwasser, combimagnetron en koel/vriescombinatie). Daarnaast heb je beneden in het gebouw de beschikking over een eigen berging. In het wooncomplex is ook een garage aanwezig. Indien beschikbaar, kunt u via een externe partij een parkeerplek huren.",
+   "description": "WIJNHAVENKWARTIER | COMPLEXTEKST\n132 luxe appartementen midden in de binnenstad van Den Haag, op steenworp afstand van Den Haag Centraal\nHeerlijk wonen op hoogte in de Haagse binnenstad\nHoud je van een levendige woonomgeving? Ga dan voor een van de luxe appartementen in het Wijnhavenkwartier in Den Haag. Dit chique wooncomplex staat midden in het stadscentrum, tussen het centrale treinstation en het Spui. Ook geliefde bezienswaardigheden als het Binnenhof, Paleis Noordeinde en Paleis Huis ten Bosch liggen dichtbij. Wanneer je maar wilt wandel je hier gewoon even langs, terwijl anderen vele kilometers omrijden om deze trekpleisters te bekijken.\nVerder woon je hier omringd door tal van winkels en gezellige horecagelegenheden. En alsof dat nog niet genoeg is, woon je te midden van de hoogste gebouwen van de stad, waardoor je hier soms wel het gevoel hebt of je in Manhattan bent. Tenslotte nog goed nieuws voor strandliefhebbers: het brede zandstrand aan de Noordzee ligt op ongeveer zes kilometer.\nDe 132 luxe appartementen van het Wijnhavenkwartier zijn verspreid over de vijfde tot en met de twintigste verdieping van het gebouw. Qua grootte variëren de appartementen tussen de pakweg 71 en de 164 vierkante meter. Ieder appartement is met hoogwaardige materialen afgewerkt en beschikt over een ruime woonkamer met toegang tot een balkon, één tot drie slaapkamers en een moderne badkamer en keuken (met ATAG-inbouwapparatuur als een keramische kookplaat, vaatwasser, combimagnetron en koel/vriescombinatie). Daarnaast heb je beneden in het gebouw de beschikking over een eigen berging.\nIn het wooncomplex is ook een garage aanwezig. Indien beschikbaar, kunt u via een externe partij een parkeerplek huren.",
    "extra": {
-    "availability": "Direct beschikbaar",
+    "availability": "Per direct",
     "income_requirement": true,
-    "service_costs": 70
+    "service_costs": 70,
+    "service_costs_note": "Servicekosten € € 70,- /mnd per maand (MVGM lists them next to the rent)",
+    "service_costs_on_top": true
    },
    "furnished": null,
    "image_url": "https://d.static.nbo.nl/media/da/da8a0047fde10bfd0db01d2f0918ecbb/768x510/thumb.jpg",
@@ -3434,13 +3393,13 @@
   "matches": [
    {
     "persons": 2,
-    "price_pp": 713,
+    "price_pp": 748,
     "search": "2 people",
     "tier": "ok"
    },
    {
     "persons": 3,
-    "price_pp": 475,
+    "price_pp": 499,
     "search": "3 people",
     "tier": "great"
    }
@@ -3457,7 +3416,7 @@
    "income_requirement",
    "service_costs:100"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Baanweg 13 E",
    "area_m2": 111,
@@ -3515,16 +3474,18 @@
   "last_seen": "2026-11-19T16:09:31Z",
   "listing": {
    "address": "Paul Desmondsingel 66",
-   "area_m2": 129,
+   "area_m2": 128,
    "available_from": null,
    "available_until": null,
    "bedrooms": 3,
    "city": "rotterdam",
-   "description": "- Financieel - • Huurprijs: €1.605,00 per maand. MVGM Vastgoedmanagement biedt een zeer ruime eengezinswoning gelegen aan een rustige straat in een groene omgeving. De woning heeft 4 kamers waaronder drie riante slaapkamers en een riante tuin. Voor en nabij de woningen is voldoende gratis parkeergelegenheid. Uw auto kunt u gemakkelijk in de straat kwijt! De woning is gunstig gelegen ten opzichte van openbaar vervoer en uitvalswegen, met recreatieplas de Zevenhuizen plassen naast de deur. - Huurperiode - Een huurovereenkomst wordt aangegaan voor ten minste één jaar en wordt vanaf dan verlengd met onbepaalde tijd. Na de minimale termijn van 12 kalendermaanden geldt er een opzegtermijn van 1 kalendermaand. - Inkomenseis - Om een woning te huren kun je de volgende inkomenseis als richtlijn aanhouden: Het bruto jaarinkomen (verminderd met eventuele betalingsverplichtingen, zoals alimentatie, hypotheken, persoonlijke leningen e.d.) moet zo hoog zijn als: * Bij 1 inkomen: • Het bruto-jaarinkomen moet 42x de kale maandhuur zijn, bij een huurprijs die hoger ligt dan € 1.600. Omgerekend is deze berekening van toepassing wanneer jouw bruto-jaarinkomen € 72.000 of hoger is. * Bij 2 inkomens • Bij 2 inkomens worden de bruto-jaarinkomens van beide partners bij elkaar opgeteld om het gezamenlijk rekeninkomen te bepalen. Vervolgens wordt er getoetst aan de hand van de onderlinge verhouding tussen de beide partnerinkomens binnen dit gezamenlijk rekeninkomen. • Jullie mogen beide inkomens voor 100% meetellen, mits één van jullie minimaal 70% van jullie totale gezamenlijk rekeninkomen verdient. De verhouding is dan 70/30 of hoger (bijvoorbeeld 80/20). Interesse? - Heb je interesse in deze woning? Reageer dan via de interesse button in deze advertentie en vraag voor deze woning een bezichtiging aan, wij werken door middel van een loting. Wij nemen contact op met de uitgeloten kandidaat. De gepresenteerde foto's zijn van een ander appartement in dit project, maar de afwerking is vergelijkbaar. Aan deze foto's kunnen geen rechten worden ontleend.",
+   "description": "- Financieel -\n• Huurprijs: €1.605,00 per maand.\nMVGM Vastgoedmanagement biedt een zeer ruime eengezinswoning gelegen aan een rustige straat in een groene omgeving. De woning heeft 4 kamers waaronder drie riante slaapkamers en een riante tuin.\nVoor en nabij de woningen is voldoende gratis parkeergelegenheid. Uw auto kunt u gemakkelijk in de straat kwijt!\nDe woning is gunstig gelegen ten opzichte van openbaar vervoer en uitvalswegen, met recreatieplas de Zevenhuizen plassen naast de deur.\n- Huurperiode -\nEen huurovereenkomst wordt aangegaan voor ten minste één jaar en wordt vanaf dan verlengd met onbepaalde tijd. Na de minimale termijn van 12 kalendermaanden geldt er een opzegtermijn van 1 kalendermaand.\n- Inkomenseis -\nOm een woning te huren kun je de volgende inkomenseis als richtlijn aanhouden:\nHet bruto jaarinkomen (verminderd met eventuele betalingsverplichtingen, zoals alimentatie, hypotheken, persoonlijke leningen e.d.) moet zo hoog zijn als:\n* Bij 1 inkomen:\n• Het bruto-jaarinkomen moet 42x de kale maandhuur zijn, bij een huurprijs die hoger ligt dan € 1.600. Omgerekend is deze berekening van toepassing wanneer jouw bruto-jaarinkomen € 72.000 of hoger is.\n* Bij 2 inkomens\n• Bij 2 inkomens worden de bruto-jaarinkomens van beide partners bij elkaar opgeteld om het gezamenlijk rekeninkomen te bepalen. Vervolgens wordt er getoetst aan de hand van de onderlinge verhouding tussen de beide partnerinkomens binnen dit gezamenlijk rekeninkomen.\n• Jullie mogen beide inkomens voor 100% meetellen, mits één van jullie minimaal 70% van jullie totale gezamenlijk rekeninkomen verdient. De verhouding is dan 70/30 of hoger (bijvoorbeeld 80/20).\nInteresse? -\nHeb je interesse in deze woning?\nReageer dan via de interesse button in deze advertentie en vraag voor deze woning een bezichtiging aan, wij werken door middel van een loting. Wij nemen contact op met de uitgeloten kandidaat.\nDe gepresenteerde foto's zijn van een ander appartement in dit project, maar de afwerking is vergelijkbaar. Aan deze foto's kunnen geen rechten worden ontleend.",
    "extra": {
-    "availability": "Direct beschikbaar",
+    "availability": "Per direct",
     "income_requirement": true,
-    "service_costs": 0
+    "service_costs": 0,
+    "service_costs_note": "Servicekosten € € 0,- /mnd per maand (MVGM lists them next to the rent)",
+    "service_costs_on_top": true
    },
    "furnished": null,
    "image_url": "https://c.static.nbo.nl/media/97/97a0298ca3cb9cd328c8f5e771019e2b/768x510/thumb.jpg",
@@ -3552,10 +3513,13 @@
  },
  "ikwilhuren:70aa51a4d6bc837f556425813c248358": {
   "best_tier": "ok",
-  "evidence": {},
+  "evidence": {
+   "service_costs": "Servicekosten € € 90,- /mnd per maand (MVGM lists them next to the rent)"
+  },
   "first_seen": "2026-11-18T12:39:04Z",
   "flags": [
-   "income_requirement"
+   "income_requirement",
+   "service_costs:90"
   ],
   "last_seen": "2026-11-19T16:09:31Z",
   "listing": {
@@ -3565,11 +3529,13 @@
    "available_until": null,
    "bedrooms": 3,
    "city": "rotterdam",
-   "description": "Ruim wonen in het hart van Rotterdam Aan de Van Oldenbarneveltplaats 14C, in het markante complex Het Forum, bevindt zich dit royale 4-kamer apartement van ca. 120 m². De woning beschikt over maar liefst drie slaapkamers, een ruime woonkamer en een moderne keuken, en wordt aangeboden voor een kale huur van € 2.190 per maand. Het appartement is beschikbaar vanaf 1 juni. Het appartement Deze ruime woning is ideaal voor een gezin of voor wie graag extra kamers wil gebruiken als werk- of hobbyruimte. De woonkamer biedt veel lichtinval dankzij de grote raampartijen en voelt zeer ruimtelijk aan. De keuken is praktisch ingericht en voorzien van moderne inbouwapparatuur. Daarnaast beschikt het appartement over een nette badkamer en meerdere bergruimtes. Met zijn 120 m² woonoppervlak biedt dit appartement volop mogelijkheden voor comfortabel wonen in de binnenstad. De omgeving Het Forum is gelegen midden in het bruisende centrum van Rotterdam. Direct buiten de deur vind je een groot aanbod aan winkels, supermarkten, cafés en restaurants. Iconische plekken zoals de Koopgoot, de Lijnbaan en de Markthal liggen allemaal op loopafstand. Ook culturele voorzieningen zoals theaters en musea zijn eenvoudig bereikbaar. Voor dagelijkse ontspanning kun je terecht in de nabijgelegen Witte de Withstraat of de groene wandelroutes langs de Maas. Qua bereikbaarheid is de ligging uitstekend: Rotterdam Centraal ligt op korte afstand en is zowel lopend, met de fiets als met het OV snel te bereiken. Ook de uitvalswegen richting Den Haag en Utrecht zijn goed toegankelijk. Kortom: een zeer ruim appartement op een toplocatie in Rotterdam, waar stadse levendigheid en comfortabel wonen samenkomen. Disclaimer Deze foto’s en informatie zijn uitsluitend bedoeld ter indicatie. Er kunnen geen rechten aan worden ontleend.",
+   "description": "Ruim wonen in het hart van Rotterdam\nAan de Van Oldenbarneveltplaats 14C, in het markante complex Het Forum, bevindt zich dit royale 4-kamer apartement van ca. 120 m². De woning beschikt over maar liefst drie slaapkamers, een ruime woonkamer en een moderne keuken, en wordt aangeboden voor een kale huur van € 2.190 per maand. Het appartement is beschikbaar vanaf 1 juni.\nHet appartement\nDeze ruime woning is ideaal voor een gezin of voor wie graag extra kamers wil gebruiken als werk- of hobbyruimte. De woonkamer biedt veel lichtinval dankzij de grote raampartijen en voelt zeer ruimtelijk aan. De keuken is praktisch ingericht en voorzien van moderne inbouwapparatuur. Daarnaast beschikt het appartement over een nette badkamer en meerdere bergruimtes. Met zijn 120 m² woonoppervlak biedt dit appartement volop mogelijkheden voor comfortabel wonen in de binnenstad.\nDe omgeving\nHet Forum is gelegen midden in het bruisende centrum van Rotterdam. Direct buiten de deur vind je een groot aanbod aan winkels, supermarkten, cafés en restaurants. Iconische plekken zoals de Koopgoot, de Lijnbaan en de Markthal liggen allemaal op loopafstand. Ook culturele voorzieningen zoals theaters en musea zijn eenvoudig bereikbaar. Voor dagelijkse ontspanning kun je terecht in de nabijgelegen Witte de Withstraat of de groene wandelroutes langs de Maas.\nQua bereikbaarheid is de ligging uitstekend: Rotterdam Centraal ligt op korte afstand en is zowel lopend, met de fiets als met het OV snel te bereiken. Ook de uitvalswegen richting Den Haag en Utrecht zijn goed toegankelijk.\nKortom: een zeer ruim appartement op een toplocatie in Rotterdam, waar stadse levendigheid en comfortabel wonen samenkomen.\nDisclaimer\nDeze foto’s en informatie zijn uitsluitend bedoeld ter indicatie. Er kunnen geen rechten aan worden ontleend.",
    "extra": {
-    "availability": "Direct beschikbaar",
+    "availability": "Per direct",
     "income_requirement": true,
-    "service_costs": 90
+    "service_costs": 90,
+    "service_costs_note": "Servicekosten € € 90,- /mnd per maand (MVGM lists them next to the rent)",
+    "service_costs_on_top": true
    },
    "furnished": null,
    "image_url": "https://c.static.nbo.nl/media/50/50f60004392eabfb65d61382db3fb6a2/768x510/thumb.jpg",
@@ -3588,7 +3554,7 @@
   "matches": [
    {
     "persons": 3,
-    "price_pp": 717,
+    "price_pp": 747,
     "search": "3 people",
     "tier": "ok"
    }
@@ -3596,11 +3562,14 @@
   "price_drop_from": null
  },
  "ikwilhuren:9eaf8ef04579c79e5c37ef421633c9be": {
-  "best_tier": "great",
-  "evidence": {},
+  "best_tier": "ok",
+  "evidence": {
+   "service_costs": "Servicekosten € € 63,- /mnd per maand (MVGM lists them next to the rent)"
+  },
   "first_seen": "2026-11-15T12:36:15Z",
   "flags": [
    "income_requirement",
+   "service_costs:63",
    "bedrooms_unknown"
   ],
   "last_seen": "2026-11-19T16:09:31Z",
@@ -3611,11 +3580,13 @@
    "available_until": null,
    "bedrooms": null,
    "city": "amsterdam",
-   "description": "Vrij leven, vlakbij het centrum van Amsterdam. Deze appartementen liggen op het Java-eiland, een unieke wijk met spraakmakende architectuur. Winkels, restaurants en musea liggen op fietsafstand. Via de Piet Heintunnel is de A10 snel bereikbaar. Vrij uitzicht en zonnig balkon Aan de Sumatrakade zijn studio’s, twee-, drie- of vierkamerappartementen en seniorenwoningen te huur. Lichte woningen met een vrij uitzicht over het IJ of de groene binnentuinen. Qua grootte en indeling variëren de woningen sterk. Wel zijn alle woningen standaard voorzien van een ruime woonkamer en een open keuken. De badkamer bestaat uit een douche en wastafel. Sommige appartementen hebben een uitgebreidere badkamer met ligbad en tweede toilet. Stoere gebouwen aan de kade Deze 118 appartementen, ontworpen door de architecten Sjoerd Soeters, Rudy Uytenhaak, Cruz/Ortiz en Kees Christiaanse, liggen verspreid over vijf kadegebouwen. Markante woonblokken met een eigen centrale entree, lift en trappenhuis. Een van de gebouwen bestaat uit seniorenwoningen en bevat een gemeenschappelijke, multifunctionele ruimte en een logeerunit. Bij alle appartementen hoort een zonnig balkon op het zuiden. In een ondergrondse parkeergarage, te bereiken met de lift, kunnen bewoners een parkeerplek huren. Alles bij de hand Het Java-eiland is onderdeel van het Oostelijk Havengebied, dat verder bestaat uit Borneo, KNSM-eiland, Sporenburg en de Rietlanden. De bekende architect Sjoerd Soeters maakte het stedenbouwkundig ontwerp voor het Java-eiland. In zijn ambitie om een sfeer te creëren waar mensen zich prettig voelen is hij geslaagd. Java-eiland is uitgegroeid tot een zeer geliefde woonwijk, met een rijke mix aan bouwstijlen. De centrale ligging is ideaal. Aan de Oostelijke Handelskade, op zes minuten fietsafstand, ligt winkelcentrum Brazilië. Hier zijn supermarkten, banken, een stomerij, kapper, bakker, slager en allerlei andere winkels gevestigd. Het centrum van Amsterdam en het Centraal Station zijn met de fiets, met tram 10 of bus 48 binnen vijf minuten bereikbaar. De ringweg A10 is snel bereikbaar via de Piet Heintunnel.",
+   "description": "Vrij leven, vlakbij het centrum van Amsterdam. Deze appartementen liggen op het Java-eiland, een unieke wijk met spraakmakende architectuur. Winkels, restaurants en musea liggen op fietsafstand. Via de Piet Heintunnel is de A10 snel bereikbaar.\nVrij uitzicht en zonnig balkon\nAan de Sumatrakade zijn studio’s, twee-, drie- of vierkamerappartementen en seniorenwoningen te huur. Lichte woningen met een vrij uitzicht over het IJ of de groene binnentuinen. Qua grootte en indeling variëren de woningen sterk. Wel zijn alle woningen standaard voorzien van een ruime woonkamer en een open keuken. De badkamer bestaat uit een douche en wastafel. Sommige appartementen hebben een uitgebreidere badkamer met ligbad en tweede toilet.\nStoere gebouwen aan de kade\nDeze 118 appartementen, ontworpen door de architecten Sjoerd Soeters, Rudy Uytenhaak, Cruz/Ortiz en Kees Christiaanse, liggen verspreid over vijf kadegebouwen. Markante woonblokken met een eigen centrale entree, lift en trappenhuis. Een van de gebouwen bestaat uit seniorenwoningen en bevat een gemeenschappelijke, multifunctionele ruimte en een logeerunit. Bij alle appartementen hoort een zonnig balkon op het zuiden. In een ondergrondse parkeergarage, te bereiken met de lift, kunnen bewoners een parkeerplek huren.\nAlles bij de hand\nHet Java-eiland is onderdeel van het Oostelijk Havengebied, dat verder bestaat uit Borneo, KNSM-eiland, Sporenburg en de Rietlanden. De bekende architect Sjoerd Soeters maakte het stedenbouwkundig ontwerp voor het Java-eiland. In zijn ambitie om een sfeer te creëren waar mensen zich prettig voelen is hij geslaagd. Java-eiland is uitgegroeid tot een zeer geliefde woonwijk, met een rijke mix aan bouwstijlen. De centrale ligging is ideaal. Aan de Oostelijke Handelskade, op zes minuten fietsafstand, ligt winkelcentrum Brazilië. Hier zijn supermarkten, banken, een stomerij, kapper, bakker, slager en allerlei andere winkels gevestigd. Het centrum van Amsterdam en het Centraal Station zijn met de fiets, met tram 10 of bus 48 binnen vijf minuten bereikbaar. De ringweg A10 is snel bereikbaar via de Piet Heintunnel.",
    "extra": {
-    "availability": "Direct beschikbaar",
+    "availability": "Per direct",
     "income_requirement": true,
-    "service_costs": 63
+    "service_costs": 63,
+    "service_costs_note": "Servicekosten € € 63,- /mnd per maand (MVGM lists them next to the rent)",
+    "service_costs_on_top": true
    },
    "furnished": null,
    "image_url": "https://d.static.nbo.nl/media/bf/bf42e59fbe7680f83ab178e5ce493717/768x510/thumb.jpg",
@@ -3634,9 +3605,9 @@
   "matches": [
    {
     "persons": 3,
-    "price_pp": 685,
+    "price_pp": 706,
     "search": "3 people",
-    "tier": "great"
+    "tier": "ok"
    }
   ],
   "price_drop_from": null
@@ -3651,7 +3622,7 @@
    "income_requirement",
    "service_costs:52"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Hoge Filterweg 658",
    "area_m2": 84,
@@ -3841,7 +3812,7 @@
    "students_only",
    "max_persons:2"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -3892,7 +3863,7 @@
    "no_registration",
    "max_persons:3"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Vlietpark 42",
    "area_m2": 60,
@@ -3944,7 +3915,7 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Wesselsstraat 482",
    "area_m2": 85,
@@ -4185,7 +4156,7 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Sneeuwbalstraat 48",
    "area_m2": 98,
@@ -4236,7 +4207,7 @@
    "students_ok",
    "max_persons:3"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Sidelingeplein 124",
    "area_m2": 78,
@@ -4285,7 +4256,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Lorriestraat 49",
    "area_m2": 94,
@@ -4331,7 +4302,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -4425,7 +4396,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Zeeburgerkade 1258",
    "area_m2": 91,
@@ -4472,7 +4443,7 @@
    "income_requirement",
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -4518,7 +4489,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Borgloonstraat 101",
    "area_m2": 141,
@@ -4746,7 +4717,7 @@
    "income_requirement",
    "service_costs:92"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Albertina Sisulupad 248",
    "area_m2": 105,
@@ -4847,7 +4818,7 @@
    "income_requirement",
    "service_costs:41"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Buitenbassinweg 320",
    "area_m2": 81,
@@ -4899,7 +4870,7 @@
    "income_requirement",
    "service_costs:40"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Admiraal De Ruyterweg 135",
    "area_m2": 63,
@@ -4996,7 +4967,7 @@
    "income_requirement",
    "service_costs:45"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Watertorenweg 411",
    "area_m2": 103,
@@ -5048,7 +5019,7 @@
    "income_requirement",
    "service_costs:89"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Nieuwehaven 128",
    "area_m2": 104,
@@ -5145,7 +5116,7 @@
    "income_requirement",
    "service_costs:55"
   ],
-  "last_seen": "2026-11-19T20:50:48Z",
+  "last_seen": "2026-11-19T21:00:49Z",
   "listing": {
    "address": "Betaplein 66",
    "area_m2": 84,
