@@ -104,7 +104,8 @@ function dashboard(responses, saved) {
       });
     },
     setInterval: function (callback, delay) { intervals[delay] = callback; },
-    setTimeout: function (callback) { timeouts.push(callback); }
+    setTimeout: function (callback) { timeouts.push(callback); return timeouts.length; },
+    clearTimeout: function (id) { if (id) timeouts[id - 1] = function () {}; }
   };
   window.window = window;
   vm.runInNewContext(script, window, { filename: "docs/app.js" });
@@ -231,6 +232,10 @@ var checks = [
     ])]]);
     await settle();
     view.change("maxpp", "400", "input");
+    // While the slider moves the numbers follow it and the list waits; letting go settles the list.
+    assert.strictEqual(view.get("count").textContent, "1 of 2 listings");
+    assert.deepStrictEqual(titles(view), ["Unknown", "Over budget"]);
+    view.get("maxpp").fire("change");
     assert.deepStrictEqual(titles(view), ["Unknown"]);
   }),
   check("timer refresh updates stale header, listings, and sources with filters intact", async function () {
@@ -342,6 +347,7 @@ var checks = [
     view.group("2");
     view.toggle("only-great", true);
     view.change("maxpp", "500", "input");
+    view.get("maxpp").fire("change");
     view.change("search", "cheap", "input");
     assert.deepStrictEqual(titles(view), ["Cheap for two"]);
     assert.strictEqual(view.get("count").textContent, "1 of 2 listings");
@@ -504,6 +510,20 @@ var checks = [
     await view.tick(refreshInterval);                               // the listing got another photo
     assert.notStrictEqual(photo(), img);
     assert.strictEqual(photo().attributes.src, "https://example.com/b.jpg");
+  }),
+  check("the list also settles when the slider pauses without being let go", async function () {
+    var view = dashboard([["data.json", payload([
+      home("Cheap", [match(2, 450)]), home("Dear", [match(2, 700)])
+    ])]]);
+    await settle();
+    view.change("maxpp", "600", "input");
+    view.change("maxpp", "500", "input");
+    assert.strictEqual(view.get("maxpp-out").textContent, "€500");
+    assert.deepStrictEqual(titles(view), ["Cheap", "Dear"]);
+    view.timeouts[0]();                                             // the first pause timer was replaced: nothing happens
+    assert.deepStrictEqual(titles(view), ["Cheap", "Dear"]);
+    view.timeouts[1]();                                             // the slider has rested
+    assert.deepStrictEqual(titles(view), ["Cheap"]);
   }),
   check("no data at all shows the error state", async function () {
     var view = dashboard([["data.json", null], ["sample-data.json", null]]);

@@ -478,23 +478,26 @@
       animate(box, [{ height: before.height + "px" }, { height: after.height + "px" }], move);
   }
 
-  // `quiet` is for changes that follow the keyboard (typing a search): no animation.
+  // `quiet` is true for changes that follow the keyboard (typing a search): no animation. It is "hold" while the
+  // budget slider is moving: the amount and the count follow the slider, and the list waits until it rests.
   function update(quiet) {
     saveF();
     $("maxpp-out").textContent = euro(f.maxpp);
     var all = data.listings || [];
     var list = all.filter(visible);
     list.sort(f.sort === "cheapest" ? cheapestFirst : newestFirst);
-    var box = $("listings"), before = quiet === true ? null : snapshot(box);
-    if (!before) still();
-    box.textContent = "";
-    list.forEach(function (l) { box.appendChild(rowFor(l)); });
-    box.hidden = list.length === 0;
-    if (before) flip(box, before);
+    if (quiet !== "hold") {
+      var box = $("listings"), before = quiet === true ? null : snapshot(box);
+      if (!before) still();
+      box.textContent = "";
+      list.forEach(function (l) { box.appendChild(rowFor(l)); });
+      box.hidden = list.length === 0;
+      if (before) flip(box, before);
+      $("empty").hidden = list.length > 0;
+      $("load-error").hidden = true;
+    }
     setText($("count"), list.length === all.length ? plural(all.length, "listing", "listings")
-      : list.length + " of " + plural(all.length, "listing", "listings"), quiet === true);
-    $("empty").hidden = list.length > 0;
-    $("load-error").hidden = true;
+      : list.length + " of " + plural(all.length, "listing", "listings"), !!quiet);
     var n = activeFilters(), badge = $("filter-count");
     if (badge.textContent !== String(n)) { badge.textContent = ""; badge.appendChild(el("span", null, String(n))); }
     badge.hidden = n === 0;
@@ -767,7 +770,17 @@
       var r = $("group-" + g);
       r.addEventListener("change", function () { if (r.checked) { f.group = g; tick(); update(); } });
     });
-    m.addEventListener("input", function () { f.maxpp = Number(m.value); update(); });   // each step of the slider animates; the next step takes over mid-move
+    // The budget slider: while it moves only the numbers follow. The list animates once, when the slider pauses
+    // for a moment or is let go, so a drag across many steps is one calm change instead of many.
+    var rest = 0;
+    var settleList = function () { if (rest) { clearTimeout(rest); rest = 0; update(); } };
+    m.addEventListener("input", function () {
+      f.maxpp = Number(m.value);
+      update("hold");
+      if (rest) clearTimeout(rest);
+      rest = setTimeout(settleList, 120);
+    });
+    m.addEventListener("change", settleList);
     og.addEventListener("change", function () { f.onlyGreat = og.checked; tick(); update(); });
     hw.addEventListener("change", function () { f.hideWarn = hw.checked; tick(); update(); });
     q.addEventListener("input", function () { f.q = q.value.trim(); update(true); });

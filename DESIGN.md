@@ -146,9 +146,9 @@ Static page (no build step) reading `data.json`. Plain HTML/CSS/JS, system fonts
     scrolled to the top), resist when pulled up, and close on a long or fast pull. The dimmed background
     (`#scrim`) follows the sheet. While a sheet closes, the page behind is already usable.
   - The list: when a filter changes, rows that stay slide to their new place, new rows fade in and removed
-    rows fade out (`snapshot()` / `flip()`). Rows are reused per listing (`rowFor()`). The budget slider
-    animates at every step, and the next step takes over mid-move. Typing in search updates the list
-    without animation.
+    rows fade out (`snapshot()` / `flip()`). Rows are reused per listing (`rowFor()`). While the
+    budget slider moves, only the amount and the count follow it; the list animates once, when the slider
+    pauses (120 ms) or is let go. Typing in search updates the list without animation.
   - Small feedback: buttons shrink while pressed and spring back, rows highlight at touch-down, the city
     tick draws in, the filter count pops, "Copy Reply" rolls to "Copied".
   - With Reduce Motion nothing slides or scales: sheets and rows fade, and sheets cannot be dragged.
