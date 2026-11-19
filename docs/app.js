@@ -4,7 +4,7 @@
   var STORE = "househunter.filters.v1";
   var WARN = ["no_sharers", "max_persons", "no_students", "no_registration", "suspicious_price", "scam_signals"];
   var GOOD = ["sharers_ok"];
-  var data = null, isSample = false;
+  var data = null, isSample = false, refreshing = false;
   var f = { cities: [], group: "any", maxpp: 800, onlyGreat: false, hideWarn: false, q: "", sort: "newest" };
   var $ = function (id) { return document.getElementById(id); };
 
@@ -33,18 +33,58 @@
   function flagKey(fl) { return String(fl).split(":")[0]; }
   function hasWarn(l) { return (l.flags || []).some(function (x) { return WARN.indexOf(flagKey(x)) >= 0; }); }
   function minPP(l) {
-    var v = (l.matches || []).map(function (m) { return m.price_pp; }).filter(function (x) { return typeof x === "number"; });
+    var v = matchesFor(l).map(function (m) { return m.price_pp; }).filter(function (x) { return typeof x === "number"; });
     return v.length ? Math.min.apply(null, v) : Infinity;
   }
+  function newestFirst(a, b) { return (ts(b.first_seen) || 0) - (ts(a.first_seen) || 0); }
+  function cheapestFirst(a, b) {
+    var pa = minPP(a), pb = minPP(b);
+    return pa === pb ? newestFirst(a, b) : pa - pb;
+  }
 
-  function load() {
-    return fetch("data.json", { cache: "no-store" })
+  function record(x) { return x != null && typeof x === "object" && !Array.isArray(x); }
+  function records(xs) { return Array.isArray(xs) && xs.every(record); }
+  function load(url) {
+    return fetch(url, { cache: "no-store" })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function (d) { if (!d || !Array.isArray(d.listings)) throw new Error("bad"); return d; })
-      .catch(function () {
-        isSample = true;
-        return fetch("sample-data.json", { cache: "no-store" }).then(function (r) { return r.json(); });
+      .then(function (d) {
+        if (!record(d) || !records(d.listings) ||
+            (d.cities != null && !record(d.cities)) ||
+            (d.sources != null && !records(d.sources)) ||
+            (d.flag_labels != null && (!record(d.flag_labels) || Object.keys(d.flag_labels).some(function (k) {
+              return typeof d.flag_labels[k] !== "string";
+            }))) ||
+            d.listings.some(function (l) {
+              return (l.matches != null && !records(l.matches)) || (l.flags != null && !Array.isArray(l.flags));
+            })) throw new Error("Invalid dashboard data");
+        return d;
       });
+  }
+
+  function render(d, sample) {
+    var previousCities = Object.keys(data && data.cities || {});
+    var nextCities = Object.keys(d.cities || {});
+    var first = data == null;
+    data = d;
+    isSample = sample;
+    if (first || previousCities.length !== nextCities.length || nextCities.some(function (k) {
+      return previousCities.indexOf(k) < 0;
+    })) buildCityChips();
+    if (first) bind();
+    header(); sources(); update();
+  }
+
+  function refresh() {
+    if (refreshing) return;
+    refreshing = true;
+    load("data.json").then(function (d) {
+      if (typeof d.last_run !== "string" || ts(d.last_run) == null) throw new Error("Invalid dashboard timestamp");
+      // Nothing was saved since the data on screen: leave the cards alone (scroll position, "Copied!").
+      if (data && !isSample && d.last_run === data.last_run) { header(); return; }
+      render(d, false);
+    }).catch(function () {
+      // Keep the last successful data, including its timestamp.
+    }).then(function () { refreshing = false; });
   }
 
   function saveF() { try { localStorage.setItem(STORE, JSON.stringify(f)); } catch (e) {} }
@@ -97,7 +137,8 @@
     if (f.cities.length && f.cities.indexOf(l.city) < 0) return false;
     var ms = matchesFor(l);
     if (!ms.length) return false;
-    if (!ms.some(function (m) { return m.price_pp <= f.maxpp; })) return false;
+    // The price slider also keeps listings with unknown prices.
+    if (!ms.some(function (m) { return m.price_pp == null || m.price_pp <= f.maxpp; })) return false;
     if (f.onlyGreat && !ms.some(function (m) { return m.tier === "great"; })) return false;
     if (f.hideWarn && hasWarn(l)) return false;
     if (f.q) {
@@ -117,7 +158,7 @@
     var city = (data.cities && data.cities[l.city]) || l.city || "";
     var txt = String(data.reply_template || "")
       .replace(/\{title\}/g, function () { return l.title || ""; })
-      .replace(/\{address\}/g, function () { return l.address || ""; })
+      .replace(/\{address\}/g, function () { return l.address || l.title || ""; })
       .replace(/\{city\}/g, function () { return city; })
       .replace(/\{url\}/g, function () { return l.url || ""; });
     var done = function () { btn.textContent = "Copied!"; setTimeout(function () { btn.textContent = "Copy reply"; }, 1800); };
@@ -147,7 +188,8 @@
     var b = el("div", "body"); c.appendChild(b);
 
     var badges = el("div", "badges");
-    var tier = l.best_tier === "great" ? "great" : "ok";
+    var matches = matchesFor(l);
+    var tier = matches.some(function (m) { return m.tier === "great"; }) ? "great" : "ok";
     badges.appendChild(el("span", "badge " + tier, tier));
     var fs = ts(l.first_seen);
     if (fs != null && Date.now() - fs < 24 * 3600 * 1000) badges.appendChild(el("span", "badge new", "NEW"));
@@ -163,13 +205,14 @@
     else if (l.price_includes_utilities === false) p.appendChild(el("small", null, " excl. utilities"));
     b.appendChild(p);
 
-    matchesFor(l).forEach(function (m) {
-      b.appendChild(el("p", "pp", euro(m.price_pp) + " pp (" + m.persons + " people)"));
+    matches.forEach(function (m) {
+      var price = m.price_pp == null ? "Price per person unknown" : euro(m.price_pp) + " pp";
+      b.appendChild(el("p", "pp", price + " (" + m.persons + " people)"));
     });
 
     var facts = [];
-    if (l.bedrooms != null) facts.push(l.bedrooms + " bedrooms");
-    if (l.rooms != null) facts.push(l.rooms + " rooms");
+    if (l.bedrooms != null) facts.push(l.bedrooms + (l.bedrooms === 1 ? " bedroom" : " bedrooms"));
+    if (l.rooms != null) facts.push(l.rooms + (l.rooms === 1 ? " room" : " rooms"));
     if (l.area_m2 != null) facts.push(l.area_m2 + " m²");
     if (l.furnished) facts.push(l.furnished);
     if (l.available_from || l.available_until)
@@ -209,9 +252,7 @@
     $("maxpp-out").textContent = euro(f.maxpp);
     var all = data.listings || [];
     var list = all.filter(visible);
-    list.sort(f.sort === "cheapest"
-      ? function (a, b) { return minPP(a) - minPP(b); }
-      : function (a, b) { return (ts(b.first_seen) || 0) - (ts(a.first_seen) || 0); });
+    list.sort(f.sort === "cheapest" ? cheapestFirst : newestFirst);
     var box = $("listings"); box.textContent = "";
     list.forEach(function (l) { box.appendChild(card(l)); });
     $("count").textContent = list.length + " of " + all.length + " listings";
@@ -250,10 +291,17 @@
   }
 
   loadF();
-  load().then(function (d) {
-    data = d; header(); buildCityChips(); bind(); sources(); update();
-    setInterval(header, 60000);
+  load("data.json").then(function (d) {
+    render(d, false);
+  }, function () {
+    return load("sample-data.json").then(function (d) { render(d, true); });
   }).catch(function () {
     $("last-check").textContent = "Could not load any data.";
+  }).then(function () {
+    setInterval(function () { if (data) header(); }, 60000);
+    setInterval(refresh, 5 * 60000);
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible") refresh();
+    });
   });
 })();

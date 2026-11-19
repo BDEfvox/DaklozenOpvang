@@ -32,6 +32,8 @@ You need: a GitHub account, Telegram on your phone, and this folder on your Mac.
 4. Within a few minutes the group gets the current best matches and a list of which sites work from GitHub's servers.
 
 The dashboard is at `https://<your-github-name>.github.io/house-hunter/`. It can take a few minutes to appear the first time.
+GitHub Pages republishes it by itself after every save by the checker, usually within a minute, and an open tab
+fetches the new data every 5 minutes, so you don't need to reload it.
 
 > **Public repo:** anyone who finds it can see the code, your search settings and the listings it found (these are public
 > listings anyway). Your Telegram token and email password are stored as encrypted secrets and are never visible.
