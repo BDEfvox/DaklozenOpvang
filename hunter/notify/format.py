@@ -23,6 +23,7 @@ FLAG_LABELS: Dict[str, str] = {
     "women_only": "Women only",
     "men_only": "Men only",
     "mandatory_costs": "Compulsory extra €{n} a month",
+    "service_costs": "Plus €{n} service costs a month",
     "sharers_ok": "Sharers welcome",
     "no_registration": "No registration possible",
     "income_requirement": "Income requirement",
@@ -35,6 +36,9 @@ FLAG_LABELS: Dict[str, str] = {
     "price_unknown": "Price unknown",
     "price_per_person": "Rent is per person",
     "price_varies": "Rent depends on the month, up to €{n}",
+    "rent_for_2": "€{n} a month for 2 people",
+    "rent_for_3": "€{n} a month for 3 people",
+    "rent_for_4": "€{n} a month for 4 people",
     "rooms_only": "Only single rooms",
 }
 

@@ -38,7 +38,7 @@ def test_fetch_details():
     l = Listing(source="heimstaden", source_id="x", url="https://heimstaden.com/nl/huurwoningen/x/", title="x", city="den-haag")
     out = SOURCE.fetch_details(l, FakeHttp((FIX / "heimstaden_detail.html").read_text()))
     assert out.rooms == 3 and out.bedrooms == 2 and "3-kamer appartement" in out.description
-    assert out.extra["service_costs"] == 72
+    assert out.extra["service_costs"] == 72 and out.extra["service_costs_on_top"] is True
 
 
 @pytest.mark.parametrize("html", ["", "<html>x</html>", '<div id="hose-object-search-result-card-list-wrapper"></div>'])

@@ -177,3 +177,20 @@ def test_ordinary_home_is_not_short_stay(sentence):
             '</div></div>' % sentence)
     l = Listing(source="rotsvast", source_id="h1", url="u", title="x", city="amsterdam")
     assert "max_stay_months" not in SOURCE.fetch_details(l, FakeHttp(html)).extra
+
+
+def test_a_total_above_the_bare_rent_is_paid_on_top():
+    # h1025010362 and h1025010426 (19 Nov 2026): "Kale huur €500 / Totale huur €525", "Kale huur €845 / Totale huur €900".
+    html = (FIX / "rotsvast_detail_ariana_nozemanstraat_82.html").read_text()
+    head, tail = html.split("Totale huur", 1)
+    html = head + "Totale huur" + tail.replace("€3.450", "€3.505", 1)
+    l = Listing(source="rotsvast", source_id="h1", url="u", title="x", city="amsterdam", price_total=3450)
+    ex = SOURCE.fetch_details(l, FakeHttp(html)).extra
+    assert ex["service_costs"] == 55 and ex["service_costs_on_top"] is True
+    assert "€3.450" in ex["service_costs_note"] and "€3.505" in ex["service_costs_note"]
+    # the same total as the bare rent (every other saved page) claims nothing
+    same = _details("ariana_nozemanstraat_82", price_total=3450).extra
+    assert "service_costs" not in same and "service_costs_on_top" not in same
+    # a total that does not belong to the card's rent is not believed
+    l = Listing(source="rotsvast", source_id="h1", url="u", title="x", city="amsterdam", price_total=2000)
+    assert "service_costs_on_top" not in SOURCE.fetch_details(l, FakeHttp(html)).extra

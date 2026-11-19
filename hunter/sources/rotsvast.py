@@ -15,7 +15,7 @@ from bs4.element import Tag
 
 from ..http import Http
 from ..models import CITIES, Listing
-from ..utils import city_slug, clean_text, parse_int, parse_price
+from ..utils import block_text, city_slug, clean_text, parse_int, parse_price
 from .base import Source, SourceBlocked, SourceError, SourcePartial, summary_description
 
 BASE = "https://www.rotsvast.nl"
@@ -189,7 +189,8 @@ class Rotsvast(Source):
         if desc is None:
             text = summary_description(listing, html, "rotsvast").description
         else:
-            text = clean_text(desc.get_text(" ", strip=True).replace("Beschrijving", "", 1).replace("Lees verder Lees minder", ""))
+            text = clean_text(re.sub(r"Lees verder\s+Lees minder", "", block_text(desc).replace("Beschrijving", "", 1)),
+                              keep_lines=True)
             listing.description = text
         rows = _details_table(soup)
         # the page's own Details table is more exact than the search card and the description
@@ -213,6 +214,15 @@ class Rotsvast(Source):
         svc_row = rows.get("servicekosten")
         if svc_row and parse_price(svc_row[0]):
             listing.extra["service_costs"] = parse_price(svc_row[0])
+        # "Kale huur €500 / Totale huur €525" (h1025010362, 19 Nov 2026): the table's own total is higher than the
+        # bare rent, so the difference is paid every month on top.
+        bare = parse_price(rows["kale huur"][0]) if rows.get("kale huur") else None
+        full = parse_price(total[0]) if total else None
+        if bare and full and bare == listing.price_total and 0 < full - bare <= bare // 2:
+            listing.extra["service_costs"] = full - bare
+            listing.extra["service_costs_on_top"] = True
+            listing.extra["service_costs_note"] = "Kale huur %s, totale huur %s (Rotsvast's own table)" % (
+                rows["kale huur"][0], total[0])
         other = rows.get("overige kosten")
         if other:
             states = [v.lower() for k, v in other[1].items() if k in ("Gas/Warmte", "Water", "Elektriciteit")]

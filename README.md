@@ -130,7 +130,8 @@ not in this public repository.
 **What a subscriber sees:** after tapping the link and pressing Start, one welcome message (with the dashboard link).
 From then on they get every new match, price drop and the daily digest, exactly like you. They do **not** get the
 technical messages (a site that stops working, the first-run site report, the Mac backup's warnings): those are for
-you only. `/stop` ends it, `/status` says whether the chat is subscribed. If they remove the bot from their group or
+you only. `/stop` ends it, `/status` says whether the chat is subscribed (right after a change it can take a minute
+to show the new state). If they remove the bot from their group or
 block it, they are taken off the list automatically.
 
 **What is stored where:**
@@ -151,7 +152,7 @@ version is pushed to GitHub):
 
 It creates the storage, deploys the relay, connects GitHub, points the bot at the relay, tests the whole path
 without subscribing anyone, and prints two invite links: one for a private chat with the bot and one for adding the bot
-to a group. Send them only to people you trust. At most 50 chats can subscribe.
+to a group. Send them only to people you trust. About 50 chats can subscribe.
 
 Two things to know. A person who has the link can pass it on, and in a group the other members may see the
 invite code in the chat. If that matters, make a new link afterwards with `--new-invite`: the old link stops

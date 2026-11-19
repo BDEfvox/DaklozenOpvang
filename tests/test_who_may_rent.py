@@ -451,3 +451,360 @@ def test_what_the_search_page_says_today_beats_the_saved_page_and_a_new_listing_
     lower = make_listing("1", price_total=1100, extra={"mandatory_costs": 180, "price_basis": "from"})
     st, n = _run(cfg, tmp_path, FakeSource("fake", [make_listing("0"), lower]))
     assert len(n.messages) == 1 and st.matches["fake:1"]["price_drop_from"] == 1300
+
+
+# ----------------------------------------------------------------------------- found by the live audit of 19 Nov 2026
+def test_not_only_for_couples_limits_nobody(cfg):
+    for text in ("Deze woning is niet alleen voor stellen, ook gezinnen zijn welkom.",
+                 "Not only for couples: families are welcome too.", "This is not a couple only apartment."):
+        flags, _ = detect(make_listing(description=text), cfg)
+        assert not [f for f in flags if f.startswith("max_persons")], text
+    for text in ("Alleen voor een stel.", "Deze woning is uitsluitend voor een stel", "Couple only."):
+        flags, quotes = detect(make_listing(description=text), cfg)
+        assert "max_persons:2" in flags and quotes["max_persons"], text
+
+
+def test_far_too_little_rent_for_the_size_is_warned_about_not_dropped(cfg):
+    # An alert email: "€ 750 per maand 200 m² · 6 kamers", no type named. Almost certainly one room of that home.
+    def mail(price, area, rooms):
+        return evaluate(make_listing(source="email_alerts", title="Pararius: Straat", price_total=price, area_m2=area,
+                                     rooms=rooms, bedrooms=None, property_type=None,
+                                     extra={"site_prefiltered": True, "private_text": True}), cfg)
+    r = mail(750, 200, 6)
+    assert r.matched and "suspicious_price" in r.flags
+    for price, area, rooms in ((1166, 101, 4), (880, 38, 3), (1023, 84, 3), (1500, None, None)):   # real cards of that day
+        assert "suspicious_price" not in mail(price, area, rooms).flags
+    # a rent the listing itself states per person is cheap for a reason
+    pp = evaluate(make_listing(price_total=500, area_m2=120, bedrooms=3, rooms=4,
+                               description="De huurprijs is per persoon."), cfg)
+    assert "price_per_person" in pp.flags and "suspicious_price" not in pp.flags
+    off = dict(cfg, suspicious_rent_per_m2_below=None)
+    assert "suspicious_price" not in evaluate(make_listing(price_total=750, area_m2=200, rooms=6, bedrooms=None), off).flags
+
+
+# ----------------------------------------------------------------------------- the page-by-page audit of 19 Nov 2026
+# 120 saved listing pages were read by independent readers and compared with the checker. Each case below is a
+# sentence or field from one of those pages that the checker read wrongly or missed.
+def _flags(cfg, text, **kw):
+    return detect(make_listing(description=text, **kw), cfg)
+
+
+def test_audit_sharing_and_housemates_wordings(cfg):
+    flags, quotes = _flags(cfg, "- No students or house sharing -")
+    assert "no_sharers" in flags and "no_students" in flags
+    for text in ("Naast de kamers heeft het pand 2 toiletten, 1 badkamer en 1 keuken, die gedeeld worden door 5 kamers.",
+                 "Een nette zelfstandige studio voor een student, te delen met een student in de kamer er naast."):
+        assert "housemates" in _flags(cfg, text)[0], text
+    for text in ("De tuin wordt gedeeld met de andere bewoners.", "Gedeelde fietsenstalling, te delen met de buren."):
+        assert "housemates" not in _flags(cfg, text)[0], text
+
+
+def test_audit_a_list_that_names_sharers_is_no_two_person_limit(cfg):
+    flags, quotes = _flags(cfg, "Er zijn twee slaapkamers aanwezig waardoor de woning geschikt is voor een alleenstaande, "
+                                "een stel of voor woningdelers!")
+    assert "sharers_ok" in flags and not [f for f in flags if f.startswith("max_persons")]
+    assert "woningdelers" in quotes["sharers_ok"]
+    # without sharers in the list the older reading stays: one or two people
+    assert "max_persons:2" in _flags(cfg, "Geschikt voor zowel een alleenstaande als een stel.")[0]
+    flags, _ = _flags(cfg, "Niet geschikt voor woningdelers, wel voor een alleenstaande of een stel.")
+    assert "no_sharers" in flags and "max_persons:2" in flags
+
+
+def test_audit_ages_of_the_people_who_live_there_are_no_limit(cfg):
+    for text in ("The current roommates are two young professionals, aged 26 and 28, who are both working in The Hague.",
+                 "Huisgenoten tussen 22 en 28 jaar oud.", "We are aged 26 and 28."):
+        assert not [f for f in _flags(cfg, text)[0] if "age" in f], text
+    assert {"min_age:22", "max_age:28"} <= set(_flags(cfg, "Wij zoeken een nieuwe huisgenoot tussen de 22 en 28 jaar.")[0])
+    assert {"min_age:25", "max_age:35"} <= set(_flags(cfg, "We are looking for a new roommate aged 25 to 35.")[0])
+    assert {"min_age:25", "max_age:40"} <= set(_flags(cfg, "Tenants must be between the ages of 25 and 40.")[0])
+    flags = _flags(cfg, "Mijn huisgenoten zijn tussen 24 en 30 jaar en wij zoeken iemand van 23 jaar of ouder.")[0]
+    assert "min_age:23" in flags and "max_age:30" not in flags
+
+
+def test_audit_no_registration_wording(cfg):
+    flags, quotes = _flags(cfg, "Let op! Inschrijven bij de gemeente niet mogelijk omdat het een vakantiewoning is!")
+    assert "no_registration" in flags and "niet mogelijk" in quotes["no_registration"]
+    assert "no_registration" not in _flags(cfg, "Inschrijven bij de gemeente is mogelijk.")[0]
+
+
+def test_audit_short_stay_wordings_and_dates(cfg):
+    short = ("Strictly available for a temporary period of 2 months (January & February 2027)",
+             "Available for 1 to 6 months, fully furnished",
+             "Beschikbaar vanaf 16 december t/m 28 februari (mogelijk ook maart en april).",
+             "Available from 1 January until 31 March 2027.", "Huurperiode: 1 maart - 31 augustus")
+    for text in short:
+        flags, quotes = _flags(cfg, text)
+        assert "short_term" in flags and quotes["short_term"], text
+    not_short = ("Te huur van 1 februari 2027 tot 1 februari 2028.", "Beschikbaar per 1 december 2026 tot 30 november 2027",
+                 "Bezichtigingen van 1 december tot 5 december.", "Available for 12 to 24 months.",
+                 "Beschikbaar vanaf 1 december. Bezichtigingen van 3 december tot 5 december.",
+                 "Te huur voor 6 tot 12 maanden", "De woning is beschikbaar vanaf 1 januari 2027.",
+                 "Not only available from 1 June to 31 August, longer is possible.")
+    for text in not_short:
+        assert "short_term" not in _flags(cfg, text)[0], text
+
+
+def test_audit_a_year_less_a_day_is_a_one_year_contract(cfg):
+    # Kamernet: "Beschikbaar vanaf 1 nov 2026 tot 31 oct 2027; Verblijfsduur 1 jaar" was marked short-term.
+    for start, end, short in (("2026-11-01", "2027-10-31", False), ("2026-12-01", "2027-11-30", False),
+                              ("2026-12-01", "2027-06-30", True), ("2026-12-16", "2027-02-28", True)):
+        flags, _ = detect(make_listing(available_from=start, available_until=end), cfg)
+        assert ("short_term" in flags) is short, (start, end)
+
+
+def test_audit_service_costs_on_top_are_shown_and_counted(cfg):
+    # MVGM Randveen 808: rent € 1.248,55, "Servicekosten € 85"; the text: "De maandelijkse huurprijs bedraagt € 1.333,55".
+    l = make_listing(price_total=1249, bedrooms=2, extra={"service_costs": 85, "service_costs_on_top": True,
+                                                          "service_costs_note": "Servicekosten € 85 per maand"})
+    r = evaluate(l, cfg)
+    assert "service_costs:85" in r.flags and r.evidence["service_costs"] == "Servicekosten € 85 per maand"
+    assert [m.price_pp for m in r.matches if m.persons == 2] == [667]           # (1249 + 85) / 2
+    assert "Plus €85 service costs a month" in fmt.format_new_match(l, r, cfg)
+    # the budget test uses the total: € 1.545 + € 65 is over € 1.600 for two
+    over = evaluate(make_listing(price_total=1545, bedrooms=2, extra={"service_costs": 65, "service_costs_on_top": True}), cfg)
+    assert "2 people" not in names(over)
+    # a source that is not sure the amount comes on top only stores it
+    unsure = evaluate(make_listing(price_total=1545, bedrooms=2, extra={"service_costs": 65}), cfg)
+    assert "2 people" in names(unsure) and not [f for f in unsure.flags if f.startswith("service_costs")]
+    # with a compulsory parking place both are added
+    both = evaluate(make_listing(price_total=1300, bedrooms=2, extra={"service_costs": 60, "service_costs_on_top": True,
+                                                                     "mandatory_costs": 100}), cfg)
+    assert [m.price_pp for m in both.matches if m.persons == 2] == [730]
+
+
+def test_audit_utilities_text_against_the_sites_field(cfg):
+    def said(have, text):
+        l = make_listing(description=text, price_includes_utilities=have)
+        evaluate(l, cfg)
+        return l.price_includes_utilities
+    assert said(None, "De prijs is inclusief gas, water, elektriciteit en internet.") is True
+    assert said(None, "Huurprijs is exclusief g/w/e") is False
+    assert said(None, "Niet inclusief gas, water en licht") is False
+    # Kamernet said "Incl. vaste lasten"; the text: "incl. the utilities (water, internet). Gas and electricity excl."
+    assert said(True, "Price per month: €1.875 incl. the utilities (water, internet, TV). Gas and electricity excl.") is None
+    assert said(True, "Huur exclusief gas en elektra.") is None
+    assert said(False, "All-in huurprijs") is None
+    # an advance that covers them is paid on top
+    assert said(None, "- € 175.00 per maand voorschot inclusief gas, water, elektriciteit") is False
+    assert said(True, "Mooi appartement") is True and said(None, "Inclusief servicekosten") is None
+    assert said(None, "Een all-in-one printer is aanwezig") is None
+
+
+# ----------------------------------------------------------------------------- cards that left the search pages
+def _old_reading(st, uid, extra):
+    """What an older version saved for a card: a detail snapshot without a version, and its values on the card."""
+    st.seen[uid]["details"] = {"bedrooms": 2, "flags": [], "search_price": 1400, "extra": dict(extra)}     # no "v"
+    st.seen[uid].pop("detail_tries", None)
+    st.matches[uid]["listing"]["extra"] = dict(st.matches[uid]["listing"].get("extra") or {}, **extra)
+
+
+def test_a_card_that_left_the_search_pages_is_read_once_more_by_todays_reader(cfg, tmp_path):
+    st, _ = _run(cfg, tmp_path, FakeSource("fake", [make_listing("1"), make_listing("2")]))
+    _old_reading(st, "fake:1", {"max_persons": 8})          # an id an older version took for a head count
+    assert "max_persons:8" not in st.matches["fake:1"]["flags"]
+    st.save(NOW)
+    gone = FakeSource("fake", [make_listing("2")])          # the search page no longer shows listing 1
+    gone.description = "Ruim appartement. Geen woningdelers."
+    st, n = _run(cfg, tmp_path, gone, now=NOW.replace(hour=13))
+    card = st.matches["fake:1"]
+    assert "max_persons" not in card["listing"]["extra"] and not any(f.startswith("max_persons") for f in card["flags"])
+    assert "no_sharers" in card["flags"] and card["evidence"]["no_sharers"] == "Geen woningdelers"
+    assert st.seen["fake:1"]["details"]["v"] == DETAIL_VERSION and st.seen["fake:1"]["detail_tries"] == 1
+    assert not n.messages                                   # a correction is not news
+    calls = gone.detail_calls
+    st, _ = _run(cfg, tmp_path, gone, now=NOW.replace(hour=14))
+    assert gone.detail_calls == calls                       # read once, not on every run
+
+
+def test_a_lost_card_whose_new_reading_no_longer_fits_goes(cfg, tmp_path):
+    st, _ = _run(cfg, tmp_path, FakeSource("fake", [make_listing("1"), make_listing("2")]))
+    _old_reading(st, "fake:1", {})
+    st.save(NOW)
+    gone = FakeSource("fake", [make_listing("2")])
+    gone.description = "Deze woning is uitsluitend voor 1 persoon."
+    st, n = _run(cfg, tmp_path, gone, now=NOW.replace(hour=13))
+    assert "fake:1" not in st.matches and st.seen["fake:1"]["matched"] == [] and not n.messages
+
+
+def test_a_lost_card_whose_page_cannot_be_read_stays_and_is_tried_three_times(cfg, tmp_path, capsys):
+    st, _ = _run(cfg, tmp_path, FakeSource("fake", [make_listing("1"), make_listing("2")]))
+    _old_reading(st, "fake:1", {"max_persons": 2})
+    st.save(NOW)
+    down = FakeSource("fake", [make_listing("2")])
+    tries = []
+
+    def fail(listing, http):
+        tries.append(listing.uid)
+        raise RuntimeError("page is gone")
+    down.fetch_details = fail
+    for hour in (13, 14, 15, 16, 17):
+        st, _ = _run(cfg, tmp_path, down, now=NOW.replace(hour=hour))
+    assert tries == ["fake:1"] * 3 and "fake:1" in st.matches
+    assert st.matches["fake:1"]["listing"]["extra"]["max_persons"] == 2      # what was known is kept
+    assert "[detail] fake:1" in capsys.readouterr().err
+
+
+def test_lost_cards_stay_within_the_runs_detail_allowance_and_skip_sites_that_failed(cfg, tmp_path):
+    cfg = dict(cfg, detail_fetch_max_per_run=1)
+    st, _ = _run(cfg, tmp_path, FakeSource("fake", [make_listing("1"), make_listing("2"), make_listing("3")]))
+    for uid in ("fake:1", "fake:2"):
+        _old_reading(st, uid, {})
+    st.save(NOW)
+    broken = FakeSource("fake", raises=RuntimeError("site down"))
+    st, _ = _run(cfg, tmp_path, broken, now=NOW.replace(hour=13))
+    assert broken.detail_calls == 0                          # the site did not answer: its pages are left alone
+    quiet = FakeSource("fake", [make_listing("3")])
+    st, _ = _run(cfg, tmp_path, quiet, now=NOW.replace(hour=14))
+    assert quiet.detail_calls == 1                           # one page per run here
+    st, _ = _run(cfg, tmp_path, quiet, now=NOW.replace(hour=15))
+    assert quiet.detail_calls == 2
+    assert all(st.seen[uid]["details"]["v"] == DETAIL_VERSION for uid in ("fake:1", "fake:2"))
+
+
+# ----------------------------------------------------------------------------- second review (Gemini, 19 Nov 2026)
+import pytest  # noqa: E402
+
+
+def _said(text, **kw):
+    return detect(make_listing(description=text, **kw), cfg_for_tests())[0]
+
+
+def cfg_for_tests():
+    from hunter.config import load_config
+    return load_config("config.json")
+
+
+@pytest.mark.parametrize("text", [
+    "De woning is niet uitsluitend voor een stel.",          # a phrase from config.json with "niet" in front
+    "Uitsluitend voor een stel of woningdelers.",            # ... followed by a choice
+    "Je hoeft geen studenten te zijn om te reageren.",
+    "Geen omzettingsvergunning aanwezig.",
+    "Alleen voor een stel of woningdelers.",
+    "Geschikt voor 2 personen of een gezin.",
+    "Niet geschikt voor 1 persoon.",
+    "Niet voor een alleenstaande.",
+    "Niet alleen voor een stel.",
+    "Het pand is tussen 20 en 25 jaar geleden gerenoveerd.",
+    "De woning is tussen 20 en 30 jaar oud.",
+    "In dit complex verhuren wij ook 55+ woningen.",
+    "Geschikt voor starters en senioren (55+ woning).",
+    "Leeftijd van het pand is 20 tot 30 jaar.",
+    "Je deelt de woning met je partner of een vriend.",
+    "You will share the apartment with your partner or friend.",
+    "Voor studenten werken wij met een campuscontract.",
+    "Indien je student bent krijg je een campuscontract.",
+    "Alleen beschikbaar voor werkenden of gepensioneerden.",
+    "Must have a permanent job or sufficient savings.",
+    "Alleen voor studenten (of starters met garantstelling).",
+    "Alleen voor vrouwen of stellen.",
+    "De prijs voor de eindschoonmaak is per kamer.",
+    "De prijs voor het linnenpakket is per persoon.",
+])
+def test_sentences_that_restrict_nothing_set_no_flag(text):
+    assert _said(text) == [], text
+
+
+def test_the_same_wordings_still_count_when_they_are_statements():
+    assert _said("Uitsluitend voor een stel.") == ["no_sharers", "max_persons:2"]
+    assert _said("Geen studenten.") == ["no_students"]
+    assert _said("Omzettingsvergunning aanwezig.") == ["sharers_ok"]
+    assert _said("Woningdelers toegestaan: nee.") == ["no_sharers"]            # a field answered with no
+    assert _said("Geschikt voor 2 personen.") == ["max_persons:2"]
+    assert _said("Geschikt voor 2 personen of 3 woningdelers.") == ["sharers_ok", "max_persons:3"]   # the larger group
+    assert _said("Alleen voor 1 persoon.") == ["max_persons:1"]
+    assert _said("Niet roken en alleen voor 1 persoon.") == ["max_persons:1"]  # the denial is about smoking
+    assert _said("Wij zoeken huurders tussen 25 en 35 jaar.") == ["min_age:25", "max_age:35"]
+    assert _said("De woning is alleen voor huurders vanaf 23 jaar.") == ["min_age:23"]
+    assert _said("Dit is een 55+ woning.") == ["min_age:55"]
+    assert _said("Je deelt de woning met twee andere studenten.") == ["housemates"]
+    assert _said("Je deelt de keuken en badkamer met je medehuurder.") == ["housemates"]
+    assert _said("Deze woning wordt verhuurd met een campuscontract.") == ["students_only"]
+    assert _said("Alleen voor werkenden of expats.") == ["working_only"]
+    assert _said("Voorwaarden: max. 1 werkende persoon of stel.") == ["working_only", "max_persons:2"]
+    assert _said("Alleen voor vrouwen.") == ["women_only"]
+    assert _said("De huurprijs is per persoon.") == ["price_per_person"]
+    assert "price_per_person" not in _said("Geen kamerverhuur: niet de huurprijs is per persoon, maar voor de hele woning.")
+
+
+def test_a_room_for_one_person_in_a_home_with_more_bedrooms_is_no_limit(cfg):
+    text = "Twee grote slaapkamers en een derde kamer voor een persoon."
+    assert names(evaluate(make_listing(description=text, bedrooms=3, price_total=1500), cfg)) == ["2 people", "3 people"]
+    assert "max_persons:1" in detect(make_listing(description="De slaapkamer is geschikt voor één persoon.", bedrooms=1), cfg)[0]
+
+
+def test_two_lines_of_a_listing_are_never_read_as_one_sentence(cfg):
+    # "Huisdieren: geen" and "Studenten welkom" are two lines. Read as one they said "geen studenten".
+    flags, quotes = detect(make_listing(description="Huisdieren: geen\nStudenten welkom\nRoken: niet\nWoningdelers toegestaan"), cfg)
+    assert flags == ["sharers_ok", "students_ok"]
+    assert quotes == {"students_ok": "Studenten welkom", "sharers_ok": "Woningdelers toegestaan"}
+    flags, _ = detect(make_listing(description="Geschikt voor\n2 personen. Alleen voor\nstudenten."), cfg)
+    assert flags == []                                       # a statement cut by a line break is not guessed at
+    flags, quotes = detect(make_listing(description="Kenmerken:\nGeen huisdieren\nGeen woningdelers\nMaximaal 2 personen"), cfg)
+    assert flags == ["no_sharers", "max_persons:2"] and quotes["max_persons"] == "Maximaal 2 personen"
+
+
+def test_a_rent_that_depends_on_the_group_is_used_for_that_group(cfg):
+    text = ("Huurprijs voor 3 personen € 2395,- (er kan een extra kamer gemaakt worden in de woonkamer)\n"
+            "Huurprijs voor 2 pesonen € 1995,-\nOok beschikbaar voor woningdelers van max 3 personen.")
+    r = evaluate(make_listing(description=text, price_total=1995, bedrooms=3, rooms=4, area_m2=122), cfg)
+    assert "rent_for_3:2395" in r.flags and not any(f.startswith("rent_for_2") for f in r.flags)
+    assert [(m.search, m.price_pp, m.tier) for m in r.matches] == [("3 people", 798, "ok")]   # was €665, "great"
+    assert r.evidence["rent_for_3"].startswith("Huurprijs voor 3 personen € 2395")
+    assert fmt.flag_label("rent_for_3:2395") == "€2395 a month for 3 people"
+    # over budget for three at the stated rent: no match for three
+    r = evaluate(make_listing(description="Huur voor 3 personen: € 2.600. Huur voor 2 personen: € 1.500.",
+                              price_total=1500, bedrooms=3), cfg)
+    assert names(r) == ["2 people"]
+    # two different amounts for the same group, or an amount far from the listed rent: the text does not decide
+    for text in ("Huur voor 3 personen € 2.000. Huur voor 3 personen € 2.200.", "Borg: prijs voor 3 personen € 4.500."):
+        assert not any(f.startswith("rent_for") for f in detect(make_listing(description=text, price_total=1500), cfg)[0])
+    # a rent per person already says what a group pays
+    flags, _ = detect(make_listing(description="De huurprijs is per persoon. Huur voor 3 personen € 2.100.", price_total=700), cfg)
+    assert "price_per_person" in flags and not any(f.startswith("rent_for") for f in flags)
+
+
+# ----------------------------------------------------------------------------- advisor review of the fixes above
+@pytest.mark.parametrize("text,expected", [
+    ("Niet roken, geen huisdieren, geen woningdelers en geen studenten.", ["no_sharers", "no_students"]),
+    ("Geen woningdelers, geen studenten.", ["no_sharers", "no_students"]),
+    ("Geen woningdelers of studenten.", ["no_sharers", "no_students"]),
+    ("Geen woningdelers / studenten.", ["no_sharers", "no_students"]),
+    ("Uitsluitend voor een stel, geen studenten.", ["no_sharers", "no_students", "max_persons:2"]),
+    ("Max. 2 personen, geen gezin.", ["max_persons:2"]),
+    ("Max 2 personen en geen gezinnen.", ["max_persons:2"]),
+    ("Alleen voor een stel en geen vrienden.", ["no_sharers", "max_persons:2"]),
+    ("Indien u interesse heeft: geen studenten.", ["no_students"]),
+    ("Open keuken inclusief elektrische kookplaat.", []),
+    ("Keuken incl. gas kookplaat en badkamer inclusief elektrische vloerverwarming.", []),
+    ("Huur is inclusief gas, water en elektra.", ["utilities_included"]),
+])
+def test_refusals_and_limits_survive_the_new_guards(cfg, text, expected):
+    r = evaluate(make_listing(description=text), cfg)
+    assert r.flags == expected, text
+
+
+@pytest.mark.parametrize("text", [
+    "Prijs voor 2 personen € 950 per persoon.", "Prijs voor 2 personen € 950,- p.p.", "Rent for 2 people € 1100 per person",
+    "Prijs voor 3 personen € 1.100 borg", "Huur voor 3 personen € 2100 per week", "Huur voor 2 personen € 950 per kamer",
+])
+def test_an_amount_per_person_per_week_or_a_deposit_is_no_group_rent(cfg, text):
+    flags = detect(make_listing(description=text, price_total=1900), cfg)[0]
+    assert not any(f.startswith("rent_for") for f in flags), text
+
+
+def test_a_lost_cards_reread_keeps_what_the_search_page_knew(cfg, tmp_path):
+    first = make_listing("1", extra={"site_min_age": 65, "site_facts": "Leeftijd: 65+", "price_max": 1500})
+    st, _ = _run(cfg, tmp_path, FakeSource("fake", [first, make_listing("2")]))
+    assert "min_age:65" in st.matches["fake:1"]["flags"]
+    st.seen["fake:1"]["details"] = {"bedrooms": 2, "flags": [], "search_price": 1400,
+                                    "extra": dict(st.matches["fake:1"]["listing"]["extra"], max_persons=8)}   # no "v"
+    st.matches["fake:1"]["listing"]["extra"]["max_persons"] = 8
+    st.seen["fake:1"].pop("detail_tries", None)
+    st.save(NOW)
+    gone = FakeSource("fake", [make_listing("2")])
+    st, n = _run(cfg, tmp_path, gone, now=NOW.replace(hour=13))
+    assert gone.detail_calls == 1 and not n.messages
+    card = st.matches["fake:1"]
+    assert "min_age:65" in card["flags"] and "price_varies:1500" in card["flags"]       # from the search page: kept
+    assert "max_persons" not in card["listing"]["extra"]                                # the old misreading: gone
+    assert st.seen["fake:1"]["last_price"] == 1400 and st.seen["fake:1"]["details"]["v"] == DETAIL_VERSION

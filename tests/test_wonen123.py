@@ -140,6 +140,7 @@ def test_details_costs_schaarbeekstraat():
     l = _fetch("3620-14")
     assert l.price_includes_utilities is False          # "€ 2.500,- per maand exclusief nutsvoorzieningen"
     assert l.extra["service_costs"] == 100              # "Servicekosten: €100,- per maand"
+    assert l.extra["service_costs_on_top"] is True and "Servicekosten" in l.extra["service_costs_note"]
     assert l.furnished == "furnished"                   # "Oplevering: volledig gemeubileerd"
     assert l.rooms == 4 and l.property_type == "house" and l.bedrooms == 3
     assert "Niet geschikt" not in l.description and "Roken niet toegestaan" in l.description
@@ -168,3 +169,84 @@ def test_details_layout_change_raises():
         SOURCE.fetch_details(listing, FakeHttp("<html><body>Welkom</body></html>"))
     with pytest.raises(SourceError):  # description block present, specification block gone
         SOURCE.fetch_details(listing, FakeHttp(_detail("3629-14").replace("pand-specs panddetail-desc", "x")))
+
+
+# ---- later pages: read only when every card on the page before is still for rent ---------------------------------
+def _page_of(cards_html, counter, next_page=None):
+    nav = '<a href="/huurwoningen/in/amsterdam/page/%d/sort/newest">%d</a>' % (next_page, next_page) if next_page else ""
+    return "<html><body><span>Gevonden</span> <i>%d</i>%s%s</body></html>" % (counter, cards_html, nav)
+
+
+def _card_html(sid, rented=False):
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup((FIX / "wonen123_cards.html").read_text(), "html.parser")
+    card = next(c for c in soup.select("div.pandlist-container") if "3629-14" in str(c))
+    html = str(card).replace("3629-14", sid)
+    if rented:
+        html = html.replace('class="pandlist-container', 'class="verhuurd pandlist-container', 1)
+    return html
+
+
+class _Pages:
+    def __init__(self, pages):
+        self.pages, self.asked = pages, []
+
+    def get_text(self, url, **kw):
+        self.asked.append(url)
+        page = self.pages[len(self.asked) - 1]
+        if isinstance(page, Exception):
+            raise page
+        return page
+
+
+def test_page_two_is_read_only_when_every_card_on_page_one_is_for_rent():
+    from hunter.sources.wonen123 import SOURCE, more_may_follow
+    full = _page_of(_card_html("1-1") + _card_html("2-1"), 30, next_page=2)
+    mixed = _page_of(_card_html("3-1") + _card_html("9-9", rented=True), 30, next_page=3)
+    assert more_may_follow(full, 1) and not more_may_follow(mixed, 2)
+    assert not more_may_follow(_page_of(_card_html("1-1"), 1), 1)            # no link to a next page
+    http = _Pages([full, mixed, AssertionError("page 3 must not be asked for")])
+    got = SOURCE.fetch("amsterdam", http)
+    assert [l.source_id for l in got] == ["1-1", "2-1", "3-1"]
+    assert http.asked == ["https://www.123wonen.nl/huurwoningen/in/amsterdam/sort/newest",
+                          "https://www.123wonen.nl/huurwoningen/in/amsterdam/page/2/sort/newest"]
+    # the usual case: rented homes on page 1, so one request
+    http = _Pages([mixed])
+    assert [l.source_id for l in SOURCE.fetch("amsterdam", http)] == ["3-1"] and len(http.asked) == 1
+
+
+def test_a_failing_later_page_keeps_what_page_one_gave_and_three_pages_is_the_most():
+    from hunter.sources.base import SourceError, SourcePartial
+    from hunter.sources.wonen123 import SOURCE
+    full = _page_of(_card_html("1-1"), 30, next_page=2)
+    with pytest.raises(SourcePartial) as caught:
+        SOURCE.fetch("amsterdam", _Pages([full, SourceError("HTTP 503")]))
+    assert [l.source_id for l in caught.value.listings] == ["1-1"]
+    pages = [_page_of(_card_html("%d-1" % n), 99, next_page=n + 1) for n in (1, 2, 3, 4)]
+    http = _Pages(pages)
+    assert len(SOURCE.fetch("amsterdam", http)) == 3 and len(http.asked) == 3
+
+
+@pytest.mark.parametrize("line, amount", [
+    ("- € 30.00 per maand servicekosten  inclusief internet", 30),             # 1713-36, a line of a breakdown
+    ("Huurprijs: 2.500,- + €10,- servicekosten exclusief nutsvoorzieningen per maand", 10),   # 3632-14
+    ("Servicekosten: €100,- per maand", 100),
+])
+def test_service_costs_wordings_seen_on_19_nov_2026(line, amount):
+    from hunter.sources.wonen123 import _SERVICE_BEFORE_RE, _SERVICE_RE
+    m = _SERVICE_RE.search(line) or _SERVICE_BEFORE_RE.search(line)
+    assert m and int(m.group(1).replace(".", "")) == amount
+
+
+@pytest.mark.parametrize("line, on_top", [
+    ("- € 30.00 per maand servicekosten  inclusief internet", True),           # the service costs include internet
+    ("Huurprijs: 2.500,- + €10,- servicekosten exclusief nutsvoorzieningen per maand", True),
+    ("Servicekosten: €100,- per maand", True),
+    ("Huurprijs: € 1.575,- inclusief € 50,- servicekosten", False),            # the rent already holds them
+    ("Waarvan € 45,- servicekosten", False),
+    ("(inclusief servicekosten: € 50 per maand)", False),
+])
+def test_service_costs_the_rent_already_includes_are_not_added(line, on_top):
+    from hunter.sources.wonen123 import _SERVICE_BEFORE_RE, _SERVICE_INCLUDED_RE, _SERVICE_RE
+    m = _SERVICE_RE.search(line) or _SERVICE_BEFORE_RE.search(line)
+    assert m and (not _SERVICE_INCLUDED_RE.search(line[:m.start()])) is on_top

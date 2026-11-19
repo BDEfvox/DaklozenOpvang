@@ -192,12 +192,12 @@ def _public_dict(l: Listing) -> Dict[str, Any]:
 _DETAIL_FLAGS = ("no_sharers", "max_persons", "no_students", "scam_signals", "no_registration",
                  "income_requirement", "sharers_ok", "students_only", "students_ok", "working_only",
                  "min_age", "max_age", "housemates", "women_only", "men_only", "price_per_person",
-                 "mandatory_costs", "short_term")
+                 "mandatory_costs", "short_term", "rent_for_2", "rent_for_3", "rent_for_4")
 CARD_TEXT_MAX = 4000      # description kept on a dashboard card (data/matches.json)
 SNAPSHOT_TEXT_MAX = 2500  # description kept in a detail snapshot (data/seen.json)
 # Raise this when the flags read from a detail page change: every card whose page was read by an older
 # version is read once more (a few per run), so the new flags reach listings that were found earlier.
-DETAIL_VERSION = 2
+DETAIL_VERSION = 3
 
 
 def _flag_name(flag: str) -> str:
@@ -343,6 +343,71 @@ def rejudge_cards(state: State, cfg: Dict[str, Any], skip: Any = ()) -> int:
 
 
 DETAIL_MAX_TRIES = 3
+_REREAD_DROPS = ("max_persons", "description_from_summary")
+
+
+def reread_lost_cards(state: State, cfg: Dict[str, Any], sources: Dict[str, Source], http: Any,
+                      budget: List[int], skip: Any = ()) -> int:
+    """Read the detail page once more for cards whose listing has left the search pages and whose page was last
+    read by an older DETAIL_VERSION. No alerts.
+
+    Such a card is never refreshed by a search page again, so without this it keeps what an older reader made of
+    its page (an id misread as "max 8 persons") until it expires. `sources` are the ones that answered this run;
+    `budget` is what is left of the run's detail allowance. Returns how many pages were read."""
+    done = 0
+    for uid, card in list(state.matches.items()):
+        if budget[0] <= 0:
+            break
+        entry = state.seen.get(uid)
+        raw = card.get("listing") if isinstance(card, dict) else None
+        if uid in skip or not isinstance(entry, dict) or not isinstance(raw, dict):
+            continue
+        src = sources.get(str(raw.get("source") or ""))
+        if src is None or not src.has_detail_pages or _detail_tries(entry) >= DETAIL_MAX_TRIES:
+            continue
+        d = entry.get("details") if isinstance(entry.get("details"), dict) else {}
+        old_extra = d.get("extra") if isinstance(d.get("extra"), dict) else {}
+        try:
+            if int(d.get("v") or 1) >= DETAIL_VERSION or old_extra.get("details_unavailable"):
+                continue
+            l = Listing(**{k: v for k, v in raw.items() if k in _LISTING_FIELDS})
+        except (TypeError, ValueError):
+            continue
+        if _private_text(l) or not isinstance(l.extra, dict):
+            continue
+        budget[0] -= 1
+        entry["detail_tries"] = _detail_tries(entry) + 1     # every look counts, also one that fails
+        entry["detail_tries_v"] = DETAIL_VERSION
+        search_price = d.get("search_price") if type(d.get("search_price")) is int else l.price_total
+        # The card's extra holds what the search page said and what the old reader made of the detail page, and
+        # nothing tells the two apart. Everything is kept (the new read overwrites what it reads), except the
+        # head count: that is what older readers got wrong, and a wrong one hides the home.
+        l.extra = {k: v for k, v in l.extra.items() if k not in _REREAD_DROPS}
+        try:
+            l = src.fetch_details(l, http) or l
+            res = evaluate(l, cfg)
+        except Exception as exc:
+            print("[detail] %s: %s" % (uid, _describe(exc)), file=sys.stderr)   # the card stays as it was
+            continue
+        done += 1
+        entry["details"] = detail_snapshot(l, search_price, res.flags, res.evidence)
+        entry["last_price"] = l.price_total
+        new_fp = fingerprint(l)                               # the detail page may give the full address
+        if new_fp:
+            entry["fp"] = new_fp
+        if not res.matched:
+            del state.matches[uid]
+            entry["matched"] = []
+            continue
+        card.update({
+            "listing": _public_dict(l),
+            "matches": [m.to_dict() for m in res.matches],
+            "flags": list(res.flags),
+            "evidence": {} if _private_text(l) else dict(res.evidence),
+            "best_tier": res.best_tier,
+        })
+        entry["matched"] = [m.search for m in res.matches]
+    return done
 
 
 def _bedrooms_unsure(it: Item) -> bool:
@@ -840,6 +905,10 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
             if sender.send(fmt.format_digest(per_city, rows, dash, yday)):
                 state.meta["last_digest_date"] = today
 
+    # 8a. cards whose listing has left the search pages and whose page an older version read: read it once more,
+    # with what is left of the run's detail allowance
+    answered = {n: s for n, s in active.items() if fetched[n].status not in ("blocked", "error")}
+    reread_lost_cards(state, cfg, answered, http, detail_budget, skip=seen_uids)
     # 8b. cards whose listing was not on a search page this run: judged again from what was saved
     rejudge_cards(state, cfg, skip=seen_uids)
 

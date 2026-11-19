@@ -173,11 +173,13 @@ def test_visible_persons_text_wins_over_the_id():
 @pytest.mark.parametrize("ids,expected", [
     ([1], {"site_students_only"}),
     ([1, 2], {"site_students_only"}),
-    ([4], {"site_no_students", "site_working_only"}),
+    ([4], {"site_working_only"}),          # "Werkend" alone: one mark, it already says no students
     ([8], {"site_no_students"}),
     ([4, 8], {"site_no_students"}),
-    ([1, 4], set()),
-    ([2, 8], set()),
+    ([1, 4], {"site_students_ok"}),        # students are named next to others: "Students welcome"
+    ([2, 8], set()),                       # "Werkende student, Werkzoekend": no mark says exactly that
+    ([2, 4], set()),
+    ([1, 2, 4, 8], {"site_students_ok"}),
     (None, set()),
     ([16], set()),   # unknown bit: believe nothing
     ([1, 99], set()),
@@ -203,10 +205,18 @@ def test_age_limits_only_when_real(lo, hi, expected):
     assert {k: v for k, v in ex.items() if k.startswith("site_") and k != "site_facts"} == expected
 
 
-@pytest.mark.parametrize("gender,women", [(2, True), (8, False), (None, False), (1, False), (4, False)])
-def test_gender_only_the_proven_id_counts(gender, women):
+@pytest.mark.parametrize("gender,women,men", [(2, True, False), (8, False, False), (None, False, False),
+                                              (1, False, True),      # "Geslacht: Man" on 2417454 and 2417735
+                                              (4, False, False)])
+def test_gender_only_the_proven_ids_count(gender, women, men):
     ex = apply_details(_fresh(), _detail_html({"candidateGenderId": gender})).extra
-    assert ex.get("site_women_only", False) is women and "site_men_only" not in ex
+    assert ex.get("site_women_only", False) is women and ex.get("site_men_only", False) is men
+
+
+def test_gender_id_that_disagrees_with_the_visible_label_is_ignored():
+    block = ('<section><h5>Verhuurders ideale huurder</h5><div><div><p>Geslacht</p><p>Vrouw</p></div></div></section>')
+    ex = apply_details(_fresh(), _detail_html({"candidateGenderId": 1}, block)).extra
+    assert "site_men_only" not in ex and "site_women_only" not in ex
 
 
 @pytest.mark.parametrize("field", ["kitchenId", "livingRoomId", "showerId", "toiletId"])
@@ -252,12 +262,12 @@ def test_description_uses_dutch_then_english_without_repeating_the_title():
 def test_description_keeps_a_title_that_is_not_a_prefix_and_skips_identical_english():
     det = {"dutchTitle": "Zeer mooi", "dutchDescription": "Appartement van 2005. ",
            "englishTitle": "Zeer mooi", "englishDescription": "Appartement van 2005."}
-    assert apply_details(_fresh(), _detail_html(det)).description == "Zeer mooi Appartement van 2005."
+    assert apply_details(_fresh(), _detail_html(det)).description == "Zeer mooi\nAppartement van 2005."
 
 
 def test_description_english_only():
     det = {"dutchTitle": None, "dutchDescription": None, "englishTitle": "T", "englishDescription": "Registration not possible."}
-    assert apply_details(_fresh(), _detail_html(det)).description == "T Registration not possible."
+    assert apply_details(_fresh(), _detail_html(det)).description == "T\nRegistration not possible."
 
 
 def test_rooms_from_num_of_rooms_and_registration():

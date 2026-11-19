@@ -13,7 +13,7 @@ from bs4.element import Tag
 
 from ..http import Http
 from ..models import CITIES, Listing
-from ..utils import city_slug, clean_text, parse_int, parse_price
+from ..utils import block_text, city_slug, clean_text, parse_int, parse_price
 from .base import Source, SourceError
 
 BASE = "https://www.vanderlinden.nl"
@@ -95,7 +95,9 @@ _AMOUNT = r"€\s?(\d{1,3}(?:\.\d{3})*|\d+)(?:,-|,\d{2})?"
 _SERVICE_RE = re.compile(r"servicekosten\s*:?\s*" + _AMOUNT + r"\s*(?:per\s+maand|p/m|p\.m\.|/\s*maand)", re.I)
 _MONTHS = {"januari": 1, "februari": 2, "maart": 3, "april": 4, "mei": 5, "juni": 6, "juli": 7, "augustus": 8,
            "september": 9, "oktober": 10, "november": 11, "december": 12}
-_AVAIL_RE = re.compile(r"beschikbaar\s+per\s+(\d{1,2})\s+(" + "|".join(_MONTHS) + r")\s+(\d{4})\b", re.I)
+# "Beschikbaar per 1 november 2026!" and "Per 15 november 2026 beschikbaar!"
+_AVAIL_RE = re.compile(r"(?:beschikbaar\s+(?:per|vanaf)\s+(\d{1,2})\s+(" + "|".join(_MONTHS) + r")\s+(\d{4})\b"
+                       r"|\bper\s+(\d{1,2})\s+(" + "|".join(_MONTHS) + r")\s+(\d{4})\s+beschikbaar\b)", re.I)
 _SHARED_HOME_RE = re.compile(r"woonruimte\s+in\s+een\s+gedeelde\s+2peer-woning", re.I)
 _FACT_LINE_RE = re.compile(r"^[-•\s]*((?:kale huurprijs|servicekosten|totaal maandbedrag)\s*:.*?)[.;]?$", re.I)
 _UNFURNISHED_RE = re.compile(r"niet\s+gemeubileerd|ongemeubileerd|niet\s+gestoffeerd", re.I)
@@ -131,12 +133,12 @@ def apply_details(listing: Listing, html: str) -> Listing:
         raise SourceError("layout changed: vanderlinden 'Over de woning' section has no listing text")
     for junk in block.select("a.readmore"):
         junk.decompose()
-    lines = [re.sub(r"\s+", " ", x.replace("\xa0", " ")).strip() for x in block.get_text("\n").split("\n")]
+    lines = [re.sub(r"\s+", " ", x.replace("\xa0", " ")).strip() for x in block_text(block).split("\n")]
     lines = [x for x in lines if x]
-    desc = " ".join(lines)
+    desc = "\n".join(lines)
     if not desc:
         raise SourceError("layout changed: vanderlinden 'Over de woning' section is empty")
-    listing.description = clean_text(desc)
+    listing.description = clean_text(desc, keep_lines=True)
 
     m = _ROOMS_RE.search(page)
     if m:
@@ -165,7 +167,8 @@ def apply_details(listing: Listing, html: str) -> Listing:
             facts.append(m.group(0))
     m = _AVAIL_RE.search(desc)  # "Beschikbaar per 1 november 2026!"; without a year the page gives no date
     if m:
-        listing.available_from = "%s-%02d-%02d" % (m.group(3), _MONTHS[m.group(2).lower()], int(m.group(1)))
+        day, month, year = [g for g in m.groups() if g]
+        listing.available_from = "%s-%02d-%02d" % (year, _MONTHS[month.lower()], int(day))
     if _UNFURNISHED_RE.search(desc):
         listing.furnished = "unfurnished"
     elif _FURNISHED_RE.search(desc):

@@ -72,10 +72,99 @@ Text and facts
   Rotsvast, MVGM, Vesteda, Van der Linden and HousingAnywhere.
 - Short stay stated in words ("alleen short stay", "maximaal 6 maanden") was not flagged.
 
+### Checked against the pages
+
+On 19 Nov 2026 the checker's reading of 120 listings on 9 sites was compared, field by field, with what
+independent readers wrote down from the same saved pages. Rent agreed on 118 of 120 (the two others were cents,
+rounded down) and the size on all 120. These misreadings were found and fixed:
+
+Short stay
+- A one-year contract ("1 nov 2026 tot 31 okt 2027", 364 days) was marked as a short stay.
+- Short stays in words were missed: "available for a temporary period of 2 months", "available for 1 to 6
+  months", and two dates in the text ("beschikbaar vanaf 16 december t/m 28 februari").
+
+Who may rent
+- HousingAnywhere: "Space for 1 person", the maximum age and "students welcome" were not read. A room for one
+  person, for two months, was shown as a home for three.
+- "No students or house sharing" refused students but not sharers.
+- Housemates were missed in "wordt gedeeld met 3 andere bewoners" and "te delen met een student".
+- "Geschikt voor een alleenstaande, een stel of woningdelers" was read as "two people at most" and did not get
+  "sharers welcome".
+- The ages of the people who live there ("the roommates are aged 26 and 28") were read as an age limit.
+- "Inschrijven bij de gemeente is niet mogelijk" and "you can't register" were not flagged.
+- Kamernet: "Geslacht: Man" was not read. "Werkende student" next to "Werkend" was read as "students only".
+
+Costs
+- Service costs that the site lists next to the rent (MVGM, Vesteda, Heimstaden, 123Wonen, and Rotsvast's
+  "Totale huur") were not shown and not counted. They are now added to the total before the budget test and
+  shown as "Plus €N service costs a month". Some cards leave the list because their real total is over budget.
+- HousingAnywhere: a compulsory monthly fee (cleaning, for example) was left out of the total.
+- Rents with cents were cut off instead of rounded (€1,228.55 is now €1,229).
+- "Inclusief gas, water en elektra" in the text was ignored when the site had no field for it. When text and
+  site disagree, nothing is claimed.
+- A whole home far below any real rent for its size (€750 for 200 m²) now gets the "suspiciously cheap" warning.
+
+What kind of home it is
+- MVGM: a card whose title has no type word ("Schipholweg 386") was dropped as "not a home". The type is now
+  read from the listing's page.
+- Bedrooms described one by one ("slaapkamer van 13 m² ... drie slaapkamers van 10, 9 en 6 m²") were counted
+  as three instead of four. "2-BR" was not read.
+- Van der Linden: "Per 15 november 2026 beschikbaar" was not read as the available-from date.
+
+Listings that were missed
+- 123Wonen: only the first page was read. The next pages (three at most) are read while a page is still full
+  of homes that are for rent.
+
+Not checked, because the pages may not be fetched: the cards that come from Pararius and Funda mail alerts,
+and DirectWonen's members-only pages.
+
+Relay
+- `/stop` right after `/start` could leave a chat subscribed, and `/status` could show the old state, because
+  Cloudflare answers reads from a cache for up to a minute. `/start` and `/stop` now always write.
+
+### Found by a second review
+
+A second reviewer (Gemini) read the whole project and tried sentences against the rules. Confirmed and fixed:
+
+- Phrases from the lists in `config.json` skipped the checks for "niet", "of" and "hoeft". "Je hoeft geen
+  student te zijn" set "no students", "niet uitsluitend voor een stel" set "no sharers", and "geen
+  omzettingsvergunning aanwezig" set "sharers welcome". They now pass the same checks as every other rule.
+- A limit on the number of people was read from sentences that set none: "geschikt voor 2 personen of een
+  gezin", "alleen voor een stel of woningdelers", "niet geschikt voor 1 persoon", and "een derde kamer voor een
+  persoon" (which dropped a three-bedroom home for everyone).
+- An age limit was read from the age of the building ("de woning is tussen 20 en 30 jaar oud") and from "wij
+  verhuren ook 55+ woningen".
+- "Je deelt de woning met je partner of een vriend" was read as "shared with housemates".
+- "Students only" from "voor studenten werken wij met een campuscontract"; "working only" from "werkenden of
+  gepensioneerden" and "a permanent job or sufficient savings"; "women only" from "vrouwen of stellen".
+- "De prijs voor de eindschoonmaak is per kamer" was read as a rent per person, which tripled the total and
+  dropped the home.
+- Bedrooms: "Bedrooms: 3 rooms in total", "voorheen 2 slaapkamers" and "mogelijkheid tot 2 slaapkamers" were
+  counted as the bedrooms the home has.
+- A rent that depends on the group ("Huurprijs voor 3 personen € 2395, voor 2 personen € 1995") was shown to
+  three people at the two-person rent, as a "great price". The amount stated for the group is now used and
+  shown ("€2395 a month for 3 people").
+- A card whose listing had left the search pages kept what an older version had read from its page (one card
+  still said "max 8 persons", an id read as a head count). Such pages are now read once more.
+- List items without a full stop were read as one sentence, so the quoted sentence ran on into the next line,
+  and "Huisdieren: geen" above "Studenten welkom" could be read as "geen studenten". Line breaks of the
+  listing's text are now kept and no rule reads across them. On the 120 audited pages this changed no mark,
+  and 22 quoted sentences became the exact line.
+
+A last review of these fixes (the advisor) found seven more slips, all fixed before this was published. Among
+them: "geen woningdelers, geen studenten" lost its "no sharers" mark, "prijs voor 2 personen € 950 per persoon"
+was read as the rent for two, "keuken inclusief elektrische kookplaat" was read as "utilities included",
+123Wonen's "huurprijs inclusief € 50 servicekosten" was added on top, and two lists of the same bedrooms were
+added up.
+
+Checked and not changed: the Mac backup runs on when it cannot read GitHub's memory (it only checks sites
+GitHub cannot reach, so a double alert is rare and a missed home costs more), and the subscriber limit of 50
+is approximate when several chats subscribe within the same minute.
+
 ### Other changes
 - Every existing card is read once more by the new readers (about 10 per run), so the dashboard corrects itself
   over the next hours without sending alerts.
-- 333 new tests (695 in total), 30 dashboard checks and 25 relay checks. The who-may-rent rules are tested
+- 443 new tests (805 in total), 30 dashboard checks and 26 relay checks. The who-may-rent rules are tested
   against 77 real and made-up phrases.
 
 ## v1.1.0 (2026-11-19)

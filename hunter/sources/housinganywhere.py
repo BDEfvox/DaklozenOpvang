@@ -191,6 +191,29 @@ def _entity(html: str) -> Dict[str, Any]:
     return entity
 
 
+# Costs the site lists per listing (entity.costs.costs). A bill for gas, water, electricity or internet is not a
+# fixed extra: it is an estimate of what the tenant will use, and "bills included" already covers it.
+_BILLS = ("electricity-bill", "gas-bill", "water-bill", "internet-bill", "utility-bills", "broadcasting-bill")
+
+
+def _required_monthly(entity: Dict[str, Any]) -> "tuple[int, str]":
+    """(euros, what): fixed amounts the tenant must pay every month besides the rent, e.g. a cleaning fee.
+    ut1747098: cleaning-fee {value: 10000 (cents), payableBy: tenant, payableAt: monthly, required: true}."""
+    costs = entity.get("costs") if isinstance(entity.get("costs"), dict) else {}
+    items = costs.get("costs") if isinstance(costs.get("costs"), dict) else {}
+    total, names = 0, []
+    for name, c in sorted(items.items()):
+        if name in _BILLS or not isinstance(c, dict):
+            continue
+        value = c.get("value")
+        if (c.get("required") is True and c.get("payableBy") == "tenant" and c.get("payableAt") == "monthly"
+                and c.get("isEstimated") is not True and isinstance(value, int) and not isinstance(value, bool)
+                and value >= 100):
+            total += value // 100
+            names.append("%s €%d" % (str(name).replace("-", " "), value // 100))
+    return total, ", ".join(names)[:100]
+
+
 def _tenant_extra(listing: Listing, entity: Dict[str, Any]) -> None:
     extra = listing.extra
     facilities = entity.get("facilities") if isinstance(entity.get("facilities"), dict) else {}
@@ -200,16 +223,29 @@ def _tenant_extra(listing: Listing, entity: Dict[str, Any]) -> None:
         facts.append("Tenant type: " + _TENANT_LABELS[status])
         if status == "working professionals only":
             extra["site_working_only"] = True
-    min_age = entity.get("minAge")
-    if isinstance(min_age, int) and not isinstance(min_age, bool) and min_age > 0:
+        elif status == "any":
+            extra["site_students_ok"] = True
+    min_age, max_age = entity.get("minAge"), entity.get("maxAge")
+    has_min = isinstance(min_age, int) and not isinstance(min_age, bool) and min_age > 0
+    # maxAge 0 means no limit (the page then shows "At least N" or "No preference"); ut1747098 has minAge 25,
+    # maxAge 45 and shows "Age: 25 - 45".
+    has_max = isinstance(max_age, int) and not isinstance(max_age, bool) and 16 <= max_age <= 99 and \
+        (not has_min or max_age >= min_age)
+    if has_min and has_max:
+        facts.append("Age: %d - %d" % (min_age, max_age))
+    elif has_min:
         facts.append("Age: At least %d" % min_age)
-        if min_age > 18:
-            extra["site_min_age"] = min_age
-    # maxAge was 0 on every saved page and its label was never seen: it is ignored.
+    elif has_max:
+        facts.append("Age: Up to %d" % max_age)
+    if has_min and min_age > 18:
+        extra["site_min_age"] = min_age
+    if has_max:
+        extra["site_max_age"] = max_age
+    # freePlaces 1 is shown as "Space for 1 person" (ut1698524, ut1749760, ut260681); 0 shows no such line.
     places = entity.get("freePlaces")
-    if isinstance(places, int) and not isinstance(places, bool) and places >= 2:
+    if isinstance(places, int) and not isinstance(places, bool) and places >= 1:
         extra["max_persons"] = places
-        facts.append("Space for %d people" % places)
+        facts.append("Space for 1 person" if places == 1 else "Space for %d people" % places)
     registration = facilities.get("registration_possible")
     if registration == "no":
         extra["registration_possible"] = False
@@ -220,6 +256,11 @@ def _tenant_extra(listing: Listing, entity: Dict[str, Any]) -> None:
     # tenants who are leaving is unknown. A facility marked "shared" is the site's own statement.
     if any(facilities.get(k) == "shared" for k in ("kitchen", "bathroom", "toilet", "living_room")):
         extra["site_housemates"] = True
+    must, what = _required_monthly(entity)
+    if must:
+        extra["mandatory_costs"] = must
+        extra["mandatory_costs_note"] = "Required every month on top of the rent: %s" % what
+        facts.append("Required every month: %s" % what)
     if facts:
         extra["site_facts"] = " · ".join(facts)[:200]
 
@@ -239,7 +280,7 @@ def apply_details(listing: Listing, html: str) -> Listing:
         or meta(name="description")
     if text is None:
         raise SourceError("layout changed: housinganywhere detail page has no description")
-    listing.description = clean_text(text)
+    listing.description = clean_text(text, keep_lines=True)
     summary = meta(name="description") or ""
     m = re.search(r"(\d+)\s*bedroom", summary)
     if m and listing.bedrooms is None:

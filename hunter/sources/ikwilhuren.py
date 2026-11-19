@@ -19,7 +19,7 @@ from bs4.element import Tag
 
 from ..http import Http
 from ..models import CITIES, Listing
-from ..utils import city_slug, clean_text, parse_int, parse_price
+from ..utils import block_text, city_slug, clean_text, parse_int, parse_price
 from .base import Source, SourceBlocked, SourceError, SourcePartial, summary_description
 
 BASE = "https://ikwilhuren.nu"
@@ -58,6 +58,12 @@ def _ptype(label: str) -> Optional[str]:
         if key in low:
             return val
     return "other" if low else None
+
+
+# first words that do name something that is not a home
+_OTHER_WORD = re.compile(r"bedrijf|kantoor|winkel|berging|opslag|praktijk|horeca|atelier|loods|stalling", re.I)
+# the detail page's own type, after the postcode and town: "2316XD Leiden (Appartement)"
+_PAGE_TYPE = re.compile(r"\b\d{4}\s?[A-Z]{2}\s+[^\n()]{2,40}\(([^()\n]{3,40})\)")
 
 
 def _iso(dmy: Optional[str]) -> Optional[str]:
@@ -126,6 +132,11 @@ def parse_page(html: str) -> List[Listing]:
             label_end = 2
         ptype_label = " ".join(words[:label_end])
         address = " ".join(words[label_end:]) or None
+        ptype = _ptype(ptype_label)
+        if ptype == "other" and not _OTHER_WORD.search(ptype_label):
+            # "Schipholweg 386": a card whose title has no type word. The first word is the street, not a type;
+            # the detail page states the type ("2316XD Leiden (Appartement)").
+            ptype, address = None, title
         img = card.select_one("img")
         src = img.get("src") if img else None
         if src and src.startswith("//"):
@@ -146,7 +157,7 @@ def parse_page(html: str) -> List[Listing]:
             price_total=price,
             bedrooms=bedrooms,
             area_m2=area,
-            property_type=_ptype(ptype_label),
+            property_type=ptype,
             address=address,
             postcode=place[0],
             available_from=_iso(avail),
@@ -202,12 +213,16 @@ class IkWilHuren(Source):
     def fetch_details(self, listing: Listing, http: Http) -> Listing:
         html = http.get_text(listing.url)
         soup = BeautifulSoup(html, "html.parser")
-        text = soup.get_text(" ", strip=True).replace("\xa0", " ")
+        text = block_text(soup).replace("\xa0", " ")
         m = re.search(r"Omschrijving\s+(.*?)\s+(?:Gebruik van deze site|Kenmerken)", text, re.S)
         if m:
-            listing.description = clean_text(m.group(1))
+            listing.description = clean_text(m.group(1), keep_lines=True)
         else:
             summary_description(listing, html, "ikwilhuren")
+        if listing.property_type is None:
+            tm = _PAGE_TYPE.search(text)
+            if tm:
+                listing.property_type = _ptype(tm.group(1).strip())
         rows = _kenmerken(soup)
         # the Kenmerken table is the detail page's own data; it overrides the search card (area was 1 m2 off)
         if rows.get("woonoppervlakte"):
@@ -224,6 +239,10 @@ class IkWilHuren(Source):
             costs = sm.group(1) if sm else None
         if costs is not None and parse_price(costs) is not None:
             listing.extra["service_costs"] = parse_price(costs)
+            # MVGM shows the rent and the service costs as two lines; where the text gives a total it is their sum
+            # ("De maandelijkse huurprijs bedraagt € 1.333,55" = € 1.248,55 + € 85, Randveen 808, 19 Nov 2026).
+            listing.extra["service_costs_on_top"] = True
+            listing.extra["service_costs_note"] = "Servicekosten € %s per maand (MVGM lists them next to the rent)" % costs.strip()
         if "mandatory_costs" not in listing.extra:
             # not the whole page text: "Vergelijkbare huurwoningen" shows the badges of other homes
             parking = _mandatory_parking(listing.description or "") or _mandatory_parking(" ".join(rows.values()))

@@ -49,7 +49,8 @@ def test_fetch_details():
     l = Listing(source="ikwilhuren", source_id="x", url="https://ikwilhuren.nu/object/x/", title="x", city="amsterdam")
     out = SOURCE.fetch_details(l, FakeHttp((FIX / "ikwilhuren_detail.html").read_text()))
     assert out.description and "Amstelveenseweg" in out.description
-    assert out.extra["service_costs"] == 115
+    assert out.extra["service_costs"] == 115 and out.extra["service_costs_on_top"] is True
+    assert "115" in out.extra["service_costs_note"]
 
 
 @pytest.mark.parametrize("html", ["", "<html>x</html>"])
@@ -116,3 +117,23 @@ def test_detail_text_mandatory_parking():
 
 def test_no_mandatory_parking_without_text():
     assert "mandatory_costs" not in _details("ikwilhuren_detail_randveen_82.html").extra
+
+
+def test_card_without_a_type_word_keeps_its_address_and_gets_its_type_from_the_detail_page():
+    # Seen 19 Nov 2026: the card "Schipholweg 386" (no "Appartement" in front) was typed "other" and dropped,
+    # with "386" as its address. Its page says "2316XD Leiden (Appartement)".
+    html = (FIX / "ikwilhuren.html").read_text().replace("Appartement Schedeldoekshaven 320", "Schedeldoekshaven 320")
+    by = {l.address: l for l in parse_page(html)}
+    card = by["Schedeldoekshaven 320"]
+    assert card.property_type is None and by["Batteryparkstraat 3"].property_type == "apartment"
+    detail = "<html><body><h1>Schedeldoekshaven 320</h1><p>2511EM Den Haag (Appartement)</p>" \
+             "<h2>Omschrijving</h2><p>Een ruim appartement.</p><h2>Kenmerken</h2></body></html>"
+    assert SOURCE.fetch_details(card, FakeHttp(detail)).property_type == "apartment"
+    parking = Listing(source="ikwilhuren", source_id="p", url="https://ikwilhuren.nu/object/p/", title="Schipholweg 1 PG",
+                      city="leiden")
+    page = "<html><body><p>2316XD Leiden (Parkeerplaats/Parkeergarage)</p><h2>Omschrijving</h2><p>Een plek.</p>" \
+           "<h2>Kenmerken</h2></body></html>"
+    assert SOURCE.fetch_details(parking, FakeHttp(page)).property_type == "parking"
+    # a first word that does name something else stays "other"
+    office = (FIX / "ikwilhuren.html").read_text().replace("Appartement Schedeldoekshaven 320", "Bedrijfsruimte Schedeldoekshaven 320")
+    assert {l.address: l for l in parse_page(office)}["Schedeldoekshaven 320"].property_type == "other"

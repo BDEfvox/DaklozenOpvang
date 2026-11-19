@@ -78,13 +78,28 @@ _COUPLE_AFTER = re.compile(r"\W{0,3}" + _OR + r"\W{1,3}(?:(?:a|an|een)\W+)?(?:\w
 # right before it: "a couple or ", "stel of een "
 _COUPLE_BEFORE = re.compile(r"\b" + _COUPLE + r"\W{1,3}" + _OR + r"\W{1,3}(?:\w+\W+){0,2}$")
 
-_FAMILY_WORD = re.compile(r"\b(?:gezin(?:nen|netje)?|famil(?:y|ies|ie))\b")
+# who widens the list beyond one or two people: a family, or people who share the home
+_FAMILY_WORD = re.compile(r"\b(?:gezin(?:nen|netje)?|famil(?:y|ies|ie)|woningdelers|delers|(?:house|home|flat)[- ]?sharers|sharers)\b")
 _COUPLE_WORD = re.compile(r"\b(?:couples?|stel(?:len|letje)?|koppels?)\b")
 _NOT_FOR = re.compile(r"\b(?:geen|niet|not|no|ongeschikt|unsuitable)\b[^,;]{0,25}$")
+# A denial up to three words before one-person wording: "niet geschikt voor 1 persoon", "niet voor een alleenstaande".
+# A new part of the sentence ("niet roken en alleen voor 1 persoon") starts over.
+_DENIED_NEAR = re.compile(r"(?:\b(?:geen|niet|not|no|ongeschikt|unsuitable)|n['’]t)"
+                          r"(?:\s+(?!(?:en|and|maar|but|of|or|wel)\b)[\w-]+){0,3}\s+$")
+# "... een derde kamer voor een persoon", "the second bedroom fits one person": about one room of the home
+_ROOM_BEFORE = re.compile(r"\b(?:slaap)?kamers?\b(?:\s+[\w-]+){0,3}\s+$|\b(?:bed)?rooms?\b(?:\s+[\w-]+){0,3}\s+$")
+# right after "2 personen" / "een stel": "... of een gezin", "... of 3 woningdelers", "... or friends"
+_OR_MORE = re.compile(r"\s*\(?\s*(?:,|/|&|\bof\b|\bor\b|\ben\b|\band\b)\s*"
+                      r"(?:(?!(?:geen|niet|no|not|zonder|without)\b)[\w-]+\s+){0,3}?"    # "max. 2 personen, geen gezin" stays a limit
+                      r"(?:gezin(?:nen)?|famil(?:y|ies|ie)|woningdelers|delers|sharers|vrienden|friends|woongroep)\b")
+_OR_NUMBER = re.compile(r"\s*\(?\s*(?:/|\bof\b|\bor\b)\s*(?:max(?:imaal|imum|\.)?\s*)?(\d)\s+(?:werkende\s+|working\s+)?"
+                        r"(?:personen|persons|people|woningdelers|delers|sharers|bewoners|huurders|studenten|students|"
+                        r"volwassenen|adults|tenants|occupants)\b")
 
 
 def _listed_with(text: str, raw: str, start: int, end: int) -> Optional[str]:
-    """Who else the sentence around one-person wording names: "family", "couple" or None.
+    """Who else the sentence around one-person wording names: "family" (or sharers: "een alleenstaande, een stel
+    of woningdelers"), "couple" or None.
     "single-family home" names no family, and "niet geschikt voor gezinnen" names none either."""
     left, right = tenancy.clause(raw, start, end)
     found = None
@@ -155,10 +170,20 @@ _NOT_RENT = re.compile(r"(?:borg|waarborg|deposit|servicekosten|service\s+costs?
                        r"energie|utilities|nutsvoorzieningen|fee|kosten)\W{0,3}(?:\w+\W+){0,3}$")
 
 
-def _per_person_span(text: str, price: Optional[int]) -> Optional[Tuple[int, int]]:
+# "De prijs voor de eindschoonmaak is per kamer": the price of something else than the home
+_PP_OF_OTHER = re.compile(r"\b(?:prijs|price|huur|rent)\s+(?:voor|van|for|of)\s+(?:de\s+|het\s+|een\s+|the\s+|a\s+|an\s+)?"
+                          r"(?!(?:woning|appartement|huis|kamer|kamers|studio|woonruimte|huur|apartment|house|home|"
+                          r"property|flat|room|rooms|accommodation|rent|deze|dit|this)\b)\w")
+
+
+def _per_person_span(text: str, price: Optional[int], raw: Optional[str] = None) -> Optional[Tuple[int, int]]:
+    raw = raw if raw is not None and len(raw) == len(text) else text
     for m in _PP_STATED.finditer(text):
-        if not _PP_NOT.search(m.group(0)):
-            return m.span()
+        if "\n" in m.group(0) or _PP_NOT.search(m.group(0)) or _PP_OF_OTHER.match(text, m.start()):
+            continue
+        if tenancy.denied_before(raw, text, m.start()):      # "niet de huurprijs is per persoon, maar ..."
+            continue
+        return m.span()
     if price is None:
         return None
     for rx in (_PP_AMOUNT, _PP_AMOUNT_AFTER):
@@ -171,6 +196,43 @@ def _per_person_span(text: str, price: Optional[int]) -> Optional[Tuple[int, int
             if amount == price and not _NOT_RENT.search(text[max(0, m.start() - 40):m.start()]):
                 return m.span()
     return None
+
+
+# The rent depends on how many people rent: "Huurprijs voor 3 personen € 2395,- ... Huurprijs voor 2 personen € 1995,-".
+_GROUP_WORDS = {"twee": 2, "drie": 3, "vier": 4, "two": 2, "three": 3, "four": 4}
+_GROUP_RENT = re.compile(
+    r"\b(?:huur(?:prijs)?|prijs|rent(?:al\s+price)?|price)\s+(?:voor|bij|met|for|with)\s+([2-4]|twee|drie|vier|two|three|four)\s+"
+    r"(?:pers(?:onen|oons|ons)?|pesonen|people|bewoners|huurders|tenants|occupants)\b\s*(?:is|bedraagt|:|=)?\s*"
+    r"(?:€|\beur(?:o)?\b)\s?(\d{1,2}[.,]\d{3}|\d{3,4})(?![\d.,]*\d)")
+# ... unless the amount is per person, per week or a deposit: "prijs voor 2 personen € 950 per persoon"
+_GROUP_RENT_NOT = re.compile(
+    r"\s*(?:,-|[.,]-|[.,]\d{2})?\s*(?:(?:p\.?/?m\.?|per\s+maand|per\s+month|/\s?m(?:aa)?nd|/\s?month|a\s+month)\s*)?"
+    r"(?:p\.?\s?p\.?|per\s+pers|per\s+kamer|per\s+room|per\s+slaapkamer|per\s+bedroom|each\b|borg|waarborg|deposit|"
+    r"per\s+week|p\.?/?w\b|/\s?week|a\s+week|per\s+nacht|per\s+night|per\s+dag|per\s+day)")
+
+
+def _group_rents(text: str, raw: str, price: Optional[int]) -> Dict[int, Tuple[int, Tuple[int, int]]]:
+    """persons -> (monthly rent the text states for that many people, span). Only amounts that differ from the listed
+    rent and are in its range: the listed rent already stands for the group it was listed for."""
+    out: Dict[int, Tuple[int, Tuple[int, int]]] = {}
+    if type(price) is not int or price <= 0:
+        return out
+    seen: Dict[int, set] = {}
+    for m in _GROUP_RENT.finditer(text):
+        if "\n" in m.group(0) or tenancy.denied_before(raw, text, m.start()) or _GROUP_RENT_NOT.match(text, m.end()):
+            continue
+        if _NOT_RENT.search(text[max(0, m.start() - 40):m.start()]):     # "Borg: prijs voor 3 personen ..."
+            continue
+        n = int(m.group(1)) if m.group(1).isdigit() else _GROUP_WORDS[m.group(1)]
+        try:
+            amount = int(re.sub(r"[.,]", "", m.group(2)))
+        except ValueError:
+            continue
+        seen.setdefault(n, set()).add(amount)
+        if amount != price and price / 2 <= amount <= price * 2:
+            out.setdefault(n, (amount, m.span()))
+    # two different amounts for the same number of people: the text does not decide
+    return {n: v for n, v in out.items() if len(seen[n]) == 1}
 
 
 # Flags found by a phrase list in config.json ("flags"), in the order they are reported.
@@ -201,7 +263,45 @@ _SHORT_STAY = re.compile(
     # "te huur voor maximaal 6 maanden", "available for a maximum of 6 months"
     r"|\b(?:te\s+huur(?:\s+aanbieden)?|verhuurd?|beschikbaar|huren|available|for\s+rent)\s+(?:voor\s+|for\s+)"
     r"(?:een\s+periode\s+van\s+|a\s+period\s+of\s+)?(?:max(?:imaal|imum|\.)?|a\s+maximum\s+of|up\s+to)\s+"
+    r"(\d{1,2})\s+(?:maanden|months)\b"
+    # "available for a temporary period of 2 months", "beschikbaar voor een tijdelijke periode van 3 maanden"
+    r"|\b(?:te\s+huur|beschikbaar|available|for\s+rent)\s+(?:voor\s+|for\s+)(?:een\s+|a\s+)"
+    r"(?:tijdelijke\s+periode\s+van|temporary\s+period\s+of)\s+(\d{1,2})\s+(?:maanden|months)\b"
+    # "available for 1 to 6 months", "te huur voor 3 tot 6 maanden": the longest stay is the second number
+    r"|\b(?:te\s+huur|beschikbaar|available|for\s+rent)\s+(?:voor\s+|for\s+)\d{1,2}\s*(?:tot|to|t/m|-|–)\s*"
     r"(\d{1,2})\s+(?:maanden|months)\b")
+
+# "Beschikbaar vanaf 16 december t/m 28 februari", "available from 1 January until 31 March 2027": a stay between
+# two dates the text names. Only next to a word about availability, because viewing days are written the same way.
+_MONTHS = {"januari": 1, "january": 1, "jan": 1, "februari": 2, "february": 2, "feb": 2, "maart": 3, "march": 3, "mrt": 3,
+           "mar": 3, "april": 4, "apr": 4, "mei": 5, "may": 5, "juni": 6, "june": 6, "jun": 6, "juli": 7, "july": 7,
+           "jul": 7, "augustus": 8, "august": 8, "aug": 8, "september": 9, "sept": 9, "sep": 9, "oktober": 10,
+           "october": 10, "okt": 10, "oct": 10, "november": 11, "nov": 11, "december": 12, "dec": 12}
+_MONTH = r"(" + "|".join(sorted(_MONTHS, key=len, reverse=True)) + r")\.?"
+_DAY_MONTH = r"(\d{1,2})(?:st|nd|rd|th|e)?\s+(?:of\s+)?" + _MONTH + r"(?:\s+(20\d{2}))?"
+_TEXT_PERIOD = re.compile(
+    r"\b(?:beschikbaar|te\s+huur|verhuurd?|huurperiode|onderhuur|available|for\s+rent|rental\s+period|sublet)\b"
+    r"[^.!?;\n]{0,25}?\b(?:van(?:af)?|from|per|:)?\s*" + _DAY_MONTH
+    + r"\s*(?:t/m|tot\s+en\s+met|tot|until|till|to|-|–)\s*" + _DAY_MONTH + r"\b")
+
+
+def _text_period_days(m: "re.Match[str]") -> Optional[int]:
+    """Days between the two dates of a _TEXT_PERIOD match. Without years the end is the first such day after the start."""
+    d1, mo1, y1, d2, mo2, y2 = m.groups()
+    try:
+        month1, month2 = _MONTHS[mo1], _MONTHS[mo2]
+        year1 = int(y1) if y1 else (int(y2) if y2 and (month2, int(d2)) >= (month1, int(d1)) else (int(y2) - 1 if y2 else 2001))
+        start = date(year1, month1, int(d1))
+        year2 = int(y2) if y2 else (year1 if (month2, int(d2)) > (month1, int(d1)) else year1 + 1)
+        end = date(year2, month2, int(d2))
+    except (KeyError, ValueError):
+        return None
+    days = (end - start).days
+    return days if days > 0 else None
+
+
+# A year less a day ("1 nov 2026 tot 31 okt 2027") is a one-year contract, not a short stay.
+SHORT_STAY_DAYS = 350
 
 
 def detect(listing: Listing, cfg: Dict[str, Any]) -> Tuple[List[str], Dict[str, str]]:
@@ -216,22 +316,21 @@ def detect(listing: Listing, cfg: Dict[str, Any]) -> Tuple[List[str], Dict[str, 
     site_facts = extra.get("site_facts") if isinstance(extra.get("site_facts"), str) else ""
     spans: Dict[str, Tuple[int, int]] = {}
     for key in _PHRASE_FLAGS:
+        if key in tenancy.RULES:
+            continue      # who-may-rent phrases are read by tenancy.read, with its checks for "niet", "of", "hoeft"
         span = _phrase_span(text, fl.get(key, []))
         if span:
             spans[key] = span
     ev: Dict[str, str] = {k: tenancy.evidence(raw, *v) for k, v in spans.items()}
 
     # who may rent: students, working people, age, sharers, housemates (rules in tenancy.py)
-    who, who_ev = tenancy.read(raw, cfg.get("tenant_rules"), known=spans)
+    who, who_ev = tenancy.read(raw, cfg.get("tenant_rules"),
+                               phrases={k: fl.get(k, []) for k in _PHRASE_FLAGS if k in tenancy.RULES})
     names: Dict[str, Optional[str]] = {k: None for k in spans}       # name -> value after the colon
     for f in who:
         k, _, v = f.partition(":")
         names[k] = v or None
-        ev[k] = who_ev.get(k, ev.get(k, ""))
-    for k in list(names):                                             # the phrase flags read() dropped
-        if k in tenancy.RULES and k not in {f.partition(":")[0] for f in who}:
-            del names[k]
-            ev.pop(k, None)
+        ev[k] = who_ev.get(k, "")
     # the site's own fields say it too, or say it alone
     for k in _SITE_FLAGS:
         if extra.get("site_" + k) is True and k not in names:
@@ -275,16 +374,36 @@ def detect(listing: Listing, cfg: Dict[str, Any]) -> Tuple[List[str], Dict[str, 
     for pat in cfg.get("max_persons_patterns", []):
         for m in re.finditer(pat, text):
             try:
-                nums.append((int(m.group(1)), m.span()))
+                n = int(m.group(1))
             except (IndexError, ValueError):
-                pass
-    couple_spans = [m.span() for pat in cfg.get("couple_patterns", []) for m in re.finditer(pat, text)]
+                continue
+            if "\n" in m.group(0):
+                continue      # the words stand on two lines of the listing: no statement
+            # "niet geschikt voor 2 personen" limits nothing; neither does "2 personen of een gezin"
+            if tenancy.denied_before(raw, text, m.start()):
+                continue
+            more = _OR_NUMBER.match(text, m.end())   # "2 personen of 3 woningdelers": the larger group may rent
+            if more:
+                n = max(n, int(more.group(1)))
+            elif _OR_MORE.match(text, m.end()):
+                continue
+            nums.append((n, m.span()))
+    # "niet alleen voor stellen, ook voor gezinnen" limits nothing, and neither does "een stel of woningdelers"
+    couple_spans = [m.span() for pat in cfg.get("couple_patterns", []) for m in re.finditer(pat, text)
+                    if "\n" not in m.group(0) and not tenancy.denied_before(raw, text, m.start())
+                    and not _OR_MORE.match(text, m.end())]
     if couple_spans:
         nums.append((2, couple_spans[0]))
+    many_bedrooms = type(listing.bedrooms) is int and listing.bedrooms >= 2
     for pat in cfg.get("single_patterns", []):
         for m in re.finditer(pat, text):
             # A single-person option within a couple allowance does not lower that allowance.
             if any(start < m.end() and m.start() < end for start, end in couple_spans):
+                continue
+            left, _ = tenancy.clause(raw, m.start(), m.end())
+            if "\n" in m.group(0) or _DENIED_NEAR.search(text[left:m.start()]):
+                continue
+            if many_bedrooms and _ROOM_BEFORE.search(text[left:m.start()]):
                 continue
             # "alleenstaande of werkend stel", "a couple or a single person": one or two people may live there
             offered_with_couple = (_COUPLE_AFTER.match(text, m.end())
@@ -308,12 +427,18 @@ def detect(listing: Listing, cfg: Dict[str, Any]) -> Tuple[List[str], Dict[str, 
     stay = None
     for m in _SHORT_STAY.finditer(text):
         months = next((g for g in m.groups() if g), None)
-        if tenancy.denied_before(raw, text, m.start()):  # "niet alleen voor short stay"
+        if "\n" in m.group(0) or tenancy.denied_before(raw, text, m.start()):  # "niet alleen voor short stay"
             continue
         if months is None or 0 < int(months) < 12:      # "maximaal 24 maanden" is not short
             stay = m.span()
             break
-    if ((a and b and (b - a).days < 365)
+    if stay is None:
+        for m in _TEXT_PERIOD.finditer(text):
+            days = _text_period_days(m)
+            if days is not None and days < SHORT_STAY_DAYS and not tenancy.denied_before(raw, text, m.start()):
+                stay = m.span()
+                break
+    if ((a and b and (b - a).days < SHORT_STAY_DAYS)
             or (type(max_stay_months) is int and 0 < max_stay_months < 12) or stay):
         out.append("short_term")
         if stay:
@@ -327,7 +452,7 @@ def detect(listing: Listing, cfg: Dict[str, Any]) -> Tuple[List[str], Dict[str, 
         must, must_note = None, ""
         for m in _MANDATORY_COSTS.finditer(text):
             # "geen verplichte afname van een parkeerplaats (optioneel € 125)" obliges nothing
-            if tenancy.denied_before(raw, text, m.start()) or _OPTIONAL.search(m.group(0)):
+            if "\n" in m.group(0) or tenancy.denied_before(raw, text, m.start()) or _OPTIONAL.search(m.group(0)):
                 continue
             must = int(next(g for g in m.groups() if g))
             must_note = tenancy.evidence(raw, *m.span())
@@ -335,16 +460,27 @@ def detect(listing: Listing, cfg: Dict[str, Any]) -> Tuple[List[str], Dict[str, 
     if type(must) is int and must > 0:
         out.append("mandatory_costs:%d" % must)
         ev["mandatory_costs"] = must_note or site_facts
+    # Service costs the site lists next to the rent (a separate line, or the difference between its bare rent and
+    # its total): they are paid every month on top. Only where the source is sure of that (service_costs_on_top).
+    svc = extra.get("service_costs")
+    if extra.get("service_costs_on_top") is True and type(svc) is int and svc > 0:
+        out.append("service_costs:%d" % svc)
+        note = extra.get("service_costs_note")
+        ev["service_costs"] = note if isinstance(note, str) and note else site_facts
     if listing.price_includes_utilities:
         out.append("utilities_included")
     # The site prices per month of the year (HousingAnywhere): the listed rent is the lowest, this is the highest.
     top = extra.get("price_max")
     if type(top) is int and type(listing.price_total) is int and top > listing.price_total:
         out.append("price_varies:%d" % top)
-    pp = _per_person_span(text, listing.price_total)
+    pp = _per_person_span(text, listing.price_total, raw)
     if pp or extra.get("price_per_person") is True:
         out.append("price_per_person")
         ev["price_per_person"] = tenancy.evidence(raw, *pp) if pp else site_facts
+    else:
+        for n, (amount, span) in sorted(_group_rents(text, raw, listing.price_total).items()):
+            out.append("rent_for_%d:%d" % (n, amount))
+            ev["rent_for_%d" % n] = tenancy.evidence(raw, *span)
     if extra.get("private_text"):
         # The text came from the user's mailbox (an alert email), which can hold their name and address.
         # It may decide flags, but no sentence of it is quoted anywhere: not in Telegram, not on the dashboard.
@@ -354,6 +490,53 @@ def detect(listing: Listing, cfg: Dict[str, Any]) -> Tuple[List[str], Dict[str, 
 
 def detect_flags(listing: Listing, cfg: Dict[str, Any]) -> List[str]:
     return detect(listing, cfg)[0]
+
+
+# Gas, water and electricity in the rent or not, said in the listing's own words.
+# ("Keuken inclusief elektrische kookplaat" and "incl. gas hob" are about the kitchen.)
+_NOT_AN_APPLIANCE = (r"(?!\s*-?\s*(?:kook|fornuis|oven|hob|stove|cooker|haard|kachel|boiler|vloerverwarming|verwarming|heating|"
+                     r"fireplace|aansluiting|connection))")
+_UTIL = (r"(?:gas\b" + _NOT_AN_APPLIANCE + r"|g\s?/\s?w\s?/\s?[el]\b|gwe\b|gwl\b|nutsvoorzieningen|energie(?:kosten)?\b|"
+         r"utilities|bills\b|vaste\s+lasten|water\s*(?:,|en|and|&)\s*(?:elektr|electr|gas|licht)|"
+         r"(?:elektra|elektriciteit|electricity|stroom)\b)")
+_UTIL_INCL = re.compile(
+    r"\b(?:inclusief|incl\.?|including|inclusive\s+of)\s+(?:alle\s+|all\s+|de\s+|the\s+)?" + _UTIL
+    + r"|\b(?:utilities|bills|gas,?\s+water\b[^.!?;]{0,30}?)\s+(?:are\s+|is\s+|zijn\s+)?(?:included|inbegrepen|inclusief)\b"
+    + r"|\ball[- ]in\s+(?:huur|huurprijs|prijs|rent|price)\b|\b(?:huur|huurprijs|prijs|rent|price)\s+(?:is\s+)?all[- ]in\b")
+_UTIL_EXCL = re.compile(
+    r"\b(?:exclusief|excl\.?|excluding|exclusive\s+of)\s+(?:alle\s+|all\s+|de\s+|the\s+)?" + _UTIL
+    + r"|\b(?:utilities|bills|gas|water|elektra|elektriciteit|electricity|energie)\s+(?:are\s+|is\s+|zijn\s+)?"
+      r"(?:not\s+included|niet\s+inbegrepen|niet\s+inclusief|excluded|exclusief|excl\.?(?!\w))")
+# "€ 175 per maand voorschot inclusief gas, water, elektriciteit": an advance that covers them is paid on top
+_ADVANCE = re.compile(r"\b(?:voorschot|voorschotbedrag|advance(?:\s+payment)?)\b")
+
+
+def infer_utilities(listing: Listing) -> None:
+    """What the text says about gas, water and electricity, set against what the site's field says.
+    The text alone decides when the site says nothing. When the two disagree ("Incl. vaste lasten" on the site,
+    "exclusief gas en elektra" in the text), or the text says both, nothing is claimed."""
+    raw = (listing.title or "") + " \n " + (listing.description or "")
+    low = raw.lower()
+    if len(low) != len(raw):
+        raw = low
+    incl = excl = False
+    for m in _UTIL_INCL.finditer(low):
+        if "\n" in m.group(0):
+            continue
+        left, _ = tenancy.clause(raw, m.start(), m.end())
+        if tenancy.denied_before(raw, low, m.start()) or _ADVANCE.search(low[left:m.start()]):
+            excl = True
+        else:
+            incl = True
+    excl = excl or any("\n" not in m.group(0) for m in _UTIL_EXCL.finditer(low))
+    if not incl and not excl:
+        return
+    said = None if incl and excl else incl
+    have = listing.price_includes_utilities
+    if have is None:
+        listing.price_includes_utilities = said
+    elif said is None or said != have:
+        listing.price_includes_utilities = None
 
 
 def infer_bedrooms(listing: Listing) -> None:
@@ -444,6 +627,7 @@ def evaluate(listing: Listing, cfg: Dict[str, Any],
     forgotten by the next run, and the match it ruled out would come back."""
     infer_bedrooms(listing)   # first: a text that states its bedrooms is about a home
     infer_type(listing)
+    infer_utilities(listing)
     flags, evidence = detect(listing, cfg)
     if remembered:
         flags, evidence = _with_remembered(flags, evidence, remembered[0], remembered[1])
@@ -479,16 +663,28 @@ def evaluate(listing: Listing, cfg: Dict[str, Any],
     per_person = "price_per_person" in flags
     must_pay = 0  # what must be paid every month on top of the rent (a compulsory parking place)
     for f in flags:
-        if f.startswith("mandatory_costs:"):
-            must_pay = int(f.split(":", 1)[1])
+        if f.startswith("mandatory_costs:") or f.startswith("service_costs:"):
+            must_pay += int(f.split(":", 1)[1])
     susp = cfg.get("suspicious_total_below")
     if price is not None and susp and price < susp and (eff_bed is None or eff_bed >= 2) and not per_person:
         flags.append("suspicious_price")
+    # "€750, 200 m², 6 kamers" (an alert email, which names no type): far too little rent for that much home.
+    # It is almost certainly one room of it, or a price per person. Warned about, not dropped: it is a guess.
+    per_m2 = cfg.get("suspicious_rent_per_m2_below")
+    area = listing.area_m2
+    if ("suspicious_price" not in flags and not per_person and type(per_m2) in (int, float) and per_m2 > 0
+            and type(price) is int and type(area) is int and area >= 30 and price < per_m2 * area):
+        flags.append("suspicious_price")
 
     max_persons: Optional[int] = None
+    group_rent: Dict[int, int] = {}    # what the listing says this many people pay together
     for f in flags:
         if f.startswith("max_persons:"):
             max_persons = int(f.split(":", 1)[1])
+        elif f.startswith("rent_for_") and not per_person:
+            name, _, value = f.partition(":")
+            if name[9:].isdigit() and value.isdigit():
+                group_rent[int(name[9:])] = int(value)
     no_sharers = "no_sharers" in flags
 
     used_unknown = False
@@ -496,6 +692,8 @@ def evaluate(listing: Listing, cfg: Dict[str, Any],
     for s in searches:
         persons = int(s["persons"])
         total = price * persons if (price is not None and per_person) else price
+        if total is not None and persons in group_rent:
+            total = group_rent[persons]
         if total is not None:
             total += must_pay
         if total is not None and total > s["max_total"]:

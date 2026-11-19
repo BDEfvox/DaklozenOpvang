@@ -32,6 +32,7 @@
     "other"
   ],
   "suspicious_total_below": 700,
+  "suspicious_rent_per_m2_below": 6,
   "disabled_sources": [],
   "telegram": {
     "quiet_hours": [
@@ -95,7 +96,23 @@
       "no registration possible",
       "not possible to register",
       "cannot register",
-      "geen brp-inschrijving"
+      "geen brp-inschrijving",
+      "inschrijven bij de gemeente niet mogelijk",
+      "inschrijven bij de gemeente is niet mogelijk",
+      "inschrijving bij de gemeente niet mogelijk",
+      "inschrijving bij de gemeente is niet mogelijk",
+      "inschrijven is niet mogelijk",
+      "inschrijven op het adres is niet mogelijk",
+      "inschrijven op dit adres is niet mogelijk",
+      "inschrijven op het adres niet mogelijk",
+      "niet mogelijk om in te schrijven",
+      "niet mogelijk om je in te schrijven",
+      "niet mogelijk om u in te schrijven",
+      "registration at the address is not possible",
+      "registration at the municipality is not possible",
+      "registering is not possible",
+      "can't register",
+      "can not register"
     ],
     "income_requirement": [
       "inkomenseis",

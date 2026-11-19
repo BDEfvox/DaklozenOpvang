@@ -15,6 +15,7 @@ DEFAULTS: Dict[str, Any] = {
     "searches": [],
     "exclude_types": ["room", "studio", "parking", "other"],
     "suspicious_total_below": 700,
+    "suspicious_rent_per_m2_below": 6,
     "disabled_sources": [],
     "telegram": {"quiet_hours": [23, 7], "max_messages_per_run": 15, "first_run_max": 10,
                  "digest_hour": 9, "timezone": "Europe/Amsterdam"},

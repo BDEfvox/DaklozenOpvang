@@ -92,7 +92,7 @@ def test_price_is_taken_from_the_header_when_the_card_had_none():
 
 def test_description_is_the_listing_text_only():
     l = _fetch("2703", 966)
-    assert l.description.startswith("NEDERLANDS Cruquiusweg 85R, Amsterdam – eigen woonruimte")
+    assert l.description.startswith("NEDERLANDS\nCruquiusweg 85R, Amsterdam – eigen woonruimte")
     assert "Meer informatie over het woonconcept vind je op 2peer.nl." in l.description
     assert "More information about the housing concept is available at 2peer.nl." in l.description  # complete, not cut
     for junk in ("Hier ga je wonen", "Inloggen", "Lees verder", "MAP"):

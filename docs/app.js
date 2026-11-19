@@ -7,7 +7,7 @@
   var GOOD = ["sharers_ok", "students_ok"];
   // Who may rent. Not a warning in itself: whether it matters depends on who you are, which the filters ask.
   var REQ = ["students_only", "working_only", "women_only", "men_only", "min_age", "max_age", "housemates",
-    "price_per_person", "mandatory_costs"];
+    "price_per_person", "mandatory_costs", "service_costs", "rent_for_2", "rent_for_3", "rent_for_4"];
   // In the order the choices stand in the control: the thumb's position is the index. "Any" comes last.
   var GROUPS = ["2", "3", "any"], TENANTS = ["students", "working", "any"];
   // Details of a listing that the reply text can hold: {title}, {address}, ...

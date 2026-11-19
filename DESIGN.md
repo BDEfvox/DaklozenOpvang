@@ -56,6 +56,11 @@ stable across runs.
   2 at most.
 - `fetch_details(listing, http) -> Listing` (optional): called only for NEW listings that pass the
   filters, at most ~10 per run, to fill `description` (used for flags) and missing fields.
+  The description keeps the listing's own line breaks: `clean_text(text, keep_lines=True)`, and for HTML
+  `utils.block_text(element)`, which breaks the line at `<br>` and around paragraphs and list items (not at every
+  `<strong>` or link). The flag rules never read two lines as one sentence, so a list such as "Huisdieren: geen" /
+  "Studenten welkom" is not read as "geen studenten". Text from alert emails stays on one line (mail wraps lines
+  in the middle of a sentence).
 - **Who may rent, from the site's own fields.** A source may put what the site states as data into
   `listing.extra`; `filters.detect` turns it into flags. Scalars only. Set a key only when the saved pages show
   the field's value next to the label the site prints for it; an id whose label was never seen sets nothing.
@@ -64,7 +69,8 @@ stable across runs.
   - `site_min_age`, `site_max_age`: int. `max_persons`: int. `registration_possible`: `False`.
   - `max_stay_months`: int. `price_per_person`: `True` (the listed rent is for one person).
   - `mandatory_costs`: int, a monthly cost that cannot be declined (a compulsory parking place), with
-    `mandatory_costs_note`: the page's words for it. `service_costs`: int (kept, not used for matching).
+    `mandatory_costs_note`: the page's words for it. `service_costs`: int; with `service_costs_on_top: True` (and
+    `service_costs_note`) when the page lists it next to the rent, so that it is paid on top (see "Service costs").
   - `site_facts`: up to 200 characters in the page's own labels ("Bezigheid: Student · Leeftijd: 23 - 30 jaar").
     It is shown to the user as the proof for every flag that came from these keys.
 - Raise `SourceBlocked` for bot walls, `SourceError` for anything else. Never return a half-parsed
@@ -97,7 +103,8 @@ Flags (case-insensitive phrase lists in config.json, Dutch + English), detected 
 `no_sharers`, `max_persons:N`, `no_students`, `sharers_ok`, `no_registration`, `income_requirement`,
 `short_term` (rental period < 12 months when dates are known, a site field, or wording such as "alleen short
 stay" / "maximaal 6 maanden"), `utilities_included`,
-`suspicious_price` (total < €700 for 2+ bedrooms), `scam_signals` (payment before viewing, landlord abroad,
+`suspicious_price` (total < €700 for 2+ bedrooms, or less than `suspicious_rent_per_m2_below` = €6 per m² for 30 m² or
+more: "€750, 200 m², 6 kamers" is almost certainly one room or a price per person), `scam_signals` (payment before viewing, landlord abroad,
 keys by mail, western union, airbnb payment, whatsapp-only…). Flags never hide a listing; a
 `no_sharers` or `max_persons:2` flag removes it from the 3-person search only.
 
@@ -120,6 +127,22 @@ shared). The dashboard filters on these, so the rules put accuracy before covera
 - **Ages** count only from 19 to 80 (minimum) and 18 to 99 (maximum), so "18+" and house numbers set nothing.
 - The site's own fields (`extra["site_*"]`, see the source contract) set the same flags. A site's age beats the
   age in the text.
+  Kamernet's occupation list: only student kinds → students only; exactly "Werkend" → working only; no student
+  kind → no students; "Student" among others → students welcome; "Werkende student" next to non-student kinds →
+  nothing (it is not clear whether a full-time student may rent). Kamernet's gender id is believed only when the
+  visible label agrees. HousingAnywhere: `tenantStatus` "any" → students welcome; `maxAge` 16 to 99; `freePlaces`
+  → `max_persons`; costs that are required, monthly, paid by the tenant, not an estimate and not a utility bill
+  → `mandatory_costs`.
+- The phrase lists in config.json (`flags.no_sharers`, `flags.no_students`, `flags.sharers_ok`) go through the
+  same checks as the built-in rules (`tenancy.read(..., phrases=...)`): "je hoeft geen student te zijn", "niet
+  uitsluitend voor een stel" and "geen omzettingsvergunning aanwezig" set nothing. A field answered with no
+  ("Woningdelers toegestaan: nee") sets the opposite flag.
+- **A choice is no restriction**: "alleen voor werkenden of gepensioneerden", "a permanent job or sufficient
+  savings", "alleen voor vrouwen of stellen", "alleen voor studenten (of starters)". "Werkenden of expats" and
+  "werkende persoon of stel" still name working people only.
+- **Not about the tenant**: the age of the building or the kitchen ("de woning is tussen 20 en 30 jaar oud",
+  "leeftijd van het pand"), "wij verhuren ook 55+ woningen", a campus contract "voor studenten" (the students
+  among the tenants get one), and "je deelt de woning met je partner" (no housemates).
 - `tenant_rules` in config.json can add patterns per flag (`{"students_only": ["..."], "age": [["...", "min"]]}`);
   a broken pattern is ignored.
 - The corpus of real and made-up phrases is `tests/test_tenancy.py`. Add the phrase there first when a rule
@@ -134,6 +157,12 @@ Text from the user's mailbox decides flags but is never quoted or saved (`eviden
 **Rent per person** (`price_per_person`): set when the listing says the listed amount is per person ("de prijs
 is per persoon", or the listed amount itself followed by "per persoon"), or by the source. The total for a
 search is then rent × persons. Deposits and service costs "per persoon" do not count.
+
+**Rent that depends on the group** (`rent_for_2:N`, `rent_for_3:N`, `rent_for_4:N`): "Huurprijs voor 3 personen
+€ 2395,- ... Huurprijs voor 2 personen € 1995,-" on a listing of €1,995. The amount stated for a group replaces
+the listed rent in that group's search (three people pay €2,395 here, not €1,995). Only an amount that differs
+from the listed rent, lies between half and double of it, and is the only amount named for that group; not
+when the rent is per person.
 
 **Compulsory costs** (`mandatory_costs:N`): a monthly amount that cannot be declined, from the source or from
 wording such as "verplichte afname van een parkeerplaats voor € 150 per maand". It is added to the total
@@ -154,12 +183,18 @@ well as for display: a "geen woningdelers" from the end of a long text keeps the
 a snapshot of the current `DETAIL_VERSION` is believed; what an older version remembered is ignored until the
 page has been read again.
 `runner.DETAIL_VERSION` is raised when the readers learn something new: every card whose page was read by an
-older version is read once more (within the normal allowance per run), without alerts.
+older version is read once more (within the normal allowance per run), without alerts. It is 3 since the page audit of
+19 Nov 2026 (see CHANGELOG, "Checked against the pages").
 
 **Saved cards follow today's rules.** At the end of every run `runner.rejudge_cards` judges each card whose
 listing was not on a search page in that run again, from what was saved (no request, no alert). A correction
 to the matcher therefore reaches every card in the next run; a card that no longer fits is removed. Cards made
 from mailbox text are left alone, because their text was never saved.
+What was saved can itself be an old misreading (an id stored as "max 8 persons"). So before that step,
+`runner.reread_lost_cards` reads the detail page once more for cards that have left the search pages and whose
+page was last read by an older `DETAIL_VERSION`: with what is left of the run's detail allowance, only for
+sites that answered in this run, three tries at most, no alerts. A page that cannot be read leaves the card as
+it was.
 
 **Not a home.** A listing without a type, bedrooms or rooms whose first words name something else gets type
 `other` (`filters.infer_type`) and never matches: either the thing is named as what is for rent ("Opslagruimte
@@ -172,7 +207,39 @@ month of the year: `price_total` is the page's headline "From €X" (stable), `e
 `price_max` hold the rest, and the flag `price_varies:N` says "Rent depends on the month, up to €N".
 
 **One person in a list.** "Geschikt voor alleenstaanden, stellen en kleine gezinnen" is a list of who the
-home suits, not a limit: with families in the sentence it sets no `max_persons`, with couples it sets 2.
+home suits, not a limit: with families or house sharers in the sentence ("een alleenstaande, een stel of
+woningdelers") it sets no `max_persons`, with couples only it sets 2. "Niet alleen voor stellen" sets nothing.
+The same holds for a number and for a couple: "geschikt voor 2 personen of een gezin" and "alleen voor een stel
+of woningdelers" set nothing, "2 personen of 3 woningdelers" sets 3. A denial up to three words in front
+("niet geschikt voor 1 persoon") cancels one-person wording, and "een derde kamer voor een persoon" in a home
+with two or more bedrooms describes a room.
+
+**Service costs** (`service_costs:N`, "Plus €N service costs a month"). MVGM, Vesteda, Heimstaden and 123Wonen
+show the rent and the service costs as two lines; Rotsvast shows a "Totale huur" above its "Kale huur". Those
+sources set `service_costs_on_top`, and the amount is then added to the total before the budget test and in the
+price per person, like a compulsory parking place. Checked on 19 Nov 2026: MVGM's text for Randveen 808 says
+"De maandelijkse huurprijs bedraagt € 1.333,55", which is its rent of € 1.248,55 plus € 85 service costs. An
+amount found in running text only (Van der Linden) is stored but not counted, because the page does not say
+whether the rent includes it.
+
+**Short stay.** `short_term` is set by dates less than 350 days apart (a year less a day, "1 nov 2026 tot
+31 okt 2027", is a one-year contract), by `max_stay_months` < 12, or by wording: a named maximum period,
+"available for a temporary period of 2 months", "available for 1 to 6 months", or two dates in the text next
+to a word about availability ("Beschikbaar vanaf 16 december t/m 28 februari"). Viewing days ("bezichtigingen
+van 3 tot 5 december") are not a rental period.
+
+**Utilities.** `filters.infer_utilities` reads the text ("inclusief gas, water en elektra", "exclusief g/w/e",
+"utilities are not included"). It decides when the site says nothing. When text and site field disagree, or
+the text says both, `price_includes_utilities` becomes unknown: nothing is claimed. An advance ("voorschot
+inclusief gas, water, elektriciteit") is paid on top.
+
+**Ages of the people who live there** ("the current roommates are aged 26 and 28", "huisgenoten tussen 22 en
+28 jaar") are no limit, unless the sentence is about who is wanted ("wij zoeken een huisgenoot tussen 22 en 28").
+
+**Bedrooms described one by one** with their sizes are added up ("Slaapkamer van 13 m². ... Drie slaapkamers
+van 10 m², 9 m², 6 m²" is four), per language, each mention once. Bedrooms the home had or could have are not
+counted ("voorheen 2 slaapkamers", "mogelijkheid tot 2 slaapkamers", "geen 2 slaapkamers maar 1"), and
+"Bedrooms: 3 rooms in total" is no bedroom count.
 
 `income_requirement` has two more inputs besides its phrase list. (1) `income_patterns` in config.json:
 regexes for the many wordings ("inkomensrichtlijnen", "bruto maandsalaris 3,5x keer de huurprijs", "proof of
@@ -298,9 +365,14 @@ Endpoints:
   Handles, in private/group/supergroup chats only: `/start <code>`, `/stop`, `/status` (case-insensitive, `@botname`
   allowed); `my_chat_member` with new status `left` or `kicked` (chat removed); `message.migrate_to_chat_id` (group
   became a supergroup: the subscription moves to the new id). Anything else: 204, no reply.
-  `/start`: already subscribed → says so; else code equal to `INVITE_CODE` (constant time, unset never matches) and
-  fewer than `MAX_SUBSCRIBERS` (default 50) → subscribe + welcome (with `DASHBOARD_URL`); wrong or missing code → one fixed
-  "invite-only" reply; full → fixed reply.
+  `/start`: code equal to `INVITE_CODE` (constant time, unset never matches) and fewer than `MAX_SUBSCRIBERS`
+  (default 50; a soft cap, because the count is read from the same cached list: chats that subscribe within the
+  same minute can take it a few over, and the checker itself sends to 200 at most) → the chat is written to the list and welcomed (with `DASHBOARD_URL`), or told it already gets the
+  alerts; wrong or missing code → "already" for a subscribed chat, else one fixed "invite-only" reply; full → fixed reply.
+  Workers KV answers reads from an edge cache for up to a minute after a change (seen in the live test of 19 Nov
+  2026: `/stop` right after `/start` answered "not subscribed" and left the chat on the list). So `/start` with the
+  right code always writes and `/stop` always deletes, whatever the read says; reads use `cacheTtl: 30`, the
+  shortest KV allows; and the `/status` replies say that a change can take a minute to show.
 - `GET /subscribers`: bearer `PULL_SECRET` → `{"chats": ["<id>", ...]}` (strings).
 - `POST /subscribers/remove` `{"chat_id"}` and `POST /subscribers/migrate` `{"from", "to"}`: same bearer; ids must match
   `^-?\d{1,20}$`; 204.
@@ -337,6 +409,9 @@ Marktplaats (`/lrp/api/search`, category 2143 "Huizen te huur"), 123Wonen, Direc
 Van der Linden, Vesteda (SPA). To check: ikwilhuren.nu (MVGM), wonenbijbouwinvest.nl, Heimstaden,
 Rotsvast, vbtverhuurmakelaars.nl, rebowonenhuur.nl, Domica, HouseHunting, Duinzigt Wonen.
 Avoid: Rentola (paywalled aggregator, many complaints).
+Pages: 123Wonen sorts homes that are for rent first, so its page 2 and 3 are read only while every card on the
+page before is still for rent and the page links to the next (`wonen123.more_may_follow`). HousingAnywhere's
+page 2 is disallowed by its robots.txt and is not read.
 
 ## Dashboard data schema (`docs/data.json`, written by `hunter/dashboard.py`, read by `docs/app.js`)
 ```json
@@ -357,7 +432,9 @@ Avoid: Rentola (paywalled aggregator, many complaints).
                   "scam_signals": "Possible scam", "bedrooms_unknown": "Bedrooms unknown",
                   "students_only": "Students only", "working_only": "Working people only",
                   "min_age": "Minimum age {n}", "housemates": "Shared with housemates",
-                  "price_per_person": "Rent is per person", "mandatory_costs": "Compulsory extra €{n} a month"},
+                  "price_per_person": "Rent is per person", "mandatory_costs": "Compulsory extra €{n} a month",
+                  "service_costs": "Plus €{n} service costs a month",
+                  "rent_for_3": "€{n} a month for 3 people"},
   "reply_template": "Beste verhuurder, ... {title} ... {address} ... {url}",
   "sources": [
     {"name": "kamernet", "label": "Kamernet", "homepage": "https://kamernet.nl",

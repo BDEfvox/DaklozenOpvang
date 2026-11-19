@@ -38,6 +38,9 @@ _GAP = r"(?:[^.!?;:()]{0,60}?[\s,/])?"       # a few words between the verb and 
 _SHARERS_NL = r"(?:woningdelers|delers|woongroep(?:en)?)"
 _SHARERS_EN = r"(?:(?:house|home|flat)[- ]?)?sharers"
 _NOT_A_PET = r"(?!\s+(?:(?:a|an|my|our|the|two|three|\d)\s+)?(?:\w+\s+)?(?:cats?|dogs?|pets?|katten|kat|honden|hond|huisdier(?:en)?)\b)"
+# "je deelt de woning met je partner of een vriend": the people who move in together, not someone who lives there
+_NOT_OWN_COMPANY = (r"(?!\s+(?:(?:je|uw|jouw|jullie|your)\s+(?:eigen\s+|own\s+)?(?:partner|vriend(?:in|en|innen)?|friends?|"
+                    r"girlfriend|boyfriend|spouse|wife|husband|gezin|family)\b|elkaar\b|each\s+other\b))")
 
 RULES: Dict[str, List[str]] = {
     "students_only": [
@@ -55,6 +58,7 @@ RULES: Dict[str, List[str]] = {
     ],
     "no_students": [
         rf"\bgeen\s+{_STUD}(?!\s+(?:te\s+zijn|bent|zijn|nodig|hoeft|hoeven)\b)",
+        rf"\bgeen\s+[\w-]+\s*(?:,|of|en|/)\s*{_STUD}(?!\s+(?:te\s+zijn|bent|zijn|nodig|hoeft|hoeven)\b)",   # "geen huisdieren of studenten"
         rf"\bniet\s+(?:geschikt|bedoeld|beschikbaar|mogelijk|toegestaan)\s+voor\s+(?:[^.!?;:()]{{0,40}}?[\s,/])?{_STUD}",
         rf"\bniet\s+voor\s+{_STUD}",
         rf"\b{_STUD}\s+(?:zijn\s+|is\s+|helaas\s+|are\s+)*(?:niet|not)\s+"
@@ -99,9 +103,11 @@ RULES: Dict[str, List[str]] = {
         r"(?:is\s+|zijn\s+|helaas\s+|hier\s+)*(?:niet|not)\s+(?:toegestaan|mogelijk|welkom|geschikt|bespreekbaar)\b",
         r"\bgeen\s+(?:\w+\s*(?:,|of|en|/)\s*)?(?:woningdelers|woningdelen|delers|woongroep(?:en)?|kamerbewoning|kamerverhuur)\b",
         r"\bniet\s+voor\s+(?:woningdelers|delers)\b",
+        r"\b(?:woningdelers|woningdelen|delers|delen)\s+(?:toegestaan|mogelijk|welkom)\s*[:=]\s*(?:nee|neen|niet)\b",
+        r"\b(?:sharers|(?:house|home|flat)[- ]?sharing|sharing)\s+(?:allowed|possible|permitted|welcome)\s*[:=]\s*no\b",
         rf"\bnot\s+for\s+{_SHARERS_EN}\b",
         rf"\bno\s+(?:\w+\s*(?:,|or|and|/)\s*)?{_SHARERS_EN}\b",
-        r"\bno\s+(?:house|home|flat|apartment)[- ]?sharing\b",
+        r"\bno\s+(?:\w+\s*(?:,|or|and|/)\s*)?(?:house|home|flat|apartment)[- ]?sharing\b",   # "no students or house sharing"
         r"\bnot\s+(?:suitable|available|possible|allowed|meant|intended)\s+(?:for|to)\s+(?:[^.!?;:()]{0,30}?[\s,/])?"
         r"(?:(?:house|home|flat)[- ]?)?(?:sharers|sharing|share)\b",
         r"\b(?:(?:house|home|flat)[- ]?)?(?:sharing|sharers)\s+(?:is\s+|are\s+)?not\s+(?:allowed|possible|permitted|welcome|accepted)\b",
@@ -112,7 +118,7 @@ RULES: Dict[str, List[str]] = {
         r"\bonly\s+(?:suitable\s+|available\s+)?for\s+(?:a\s+)?(?:couples?|famil(?:y|ies))\b",
     ],
     "sharers_ok": [
-        r"\b(?:geschikt|ideaal|ideale\s+woning|perfect|bedoeld|beschikbaar|ontwikkeld|ontworpen|gebouwd)\s+voor\s+"
+        r"\b(?:geschikt|ideaal|ideale\s+woning|perfect|bedoeld|beschikbaar|ontwikkeld|ontworpen|gebouwd)\s+(?:is\s+|zijn\s+)?voor\s+"
         rf"(?:[^.!?;:()]{{0,50}}?[\s,/])?{_SHARERS_NL}\b",
         rf"\b{_SHARERS_NL}\s+(?:zijn\s+|is\s+)?(?:ook\s+|van\s+harte\s+)?(?:toegestaan|welkom|mogelijk)\b",
         r"\bwoningdelen\s+(?:is\s+)?(?:ook\s+)?(?:toegestaan|mogelijk)\b",
@@ -129,19 +135,24 @@ RULES: Dict[str, List[str]] = {
         r"\b(?:op\s+zoek\s+naar|zoeken|zoek)\s+(?:een\s+|één\s+|twee\s+|\d\s+)?"
         r"(?:nieuwe\s+|leuke\s+|gezellige\s+|rustige\s+|werkende\s+)*huisgeno\w+",
         r"\b(?:je|u|jij)\s+deelt\s+(?:hier\s+)?(?:dus\s+)?(?:de|het|dit|deze)\s+"
-        r"(?:woning|appartement|huis|keuken|badkamer|woonkamer|douche|toilet)\b[^.!?;]{0,40}?\bmet\b",
+        r"(?:woning|appartement|huis|keuken|badkamer|woonkamer|douche|toilet)\b[^.!?;]{0,40}?\bmet\b" + _NOT_OWN_COMPANY,
         r"\bdeel\s+je\s+met\s+(?:\w+\s+){0,5}?"
         r"(?:huisgeno\w+|woningdelers?|medebewoners?|bewoners?|studenten|student|personen|persoon|anderen)\b",
         r"\bmet\s+(?:mij|ons|de\s+(?:eigenaar|eigenaresse|hospita|verhuurder|hoofdbewoner|huidige\s+bewoners?)|"
         r"(?:\w+\s+){0,3}?(?:huisgeno\w+|medebewoners?))\b[^.!?;]{0,30}?\bgedeeld\b",
         r"\bgedeeld\s+met\s+(?:mij|ons|de\s+(?:eigenaar|eigenaresse|hospita|verhuurder|hoofdbewoner)|"
         r"(?:\w+\s+){0,3}?(?:huisgeno\w+|medebewoners?|andere\s+(?:studenten|bewoners|huurders|personen)))\b",
+        # "1 badkamer en 1 keuken, die gedeeld worden door 5 kamers", "te delen met een student in de kamer ernaast"
+        r"\bgedeeld\s+(?:wordt\s+|worden\s+)?(?:door|met)\s+(?:de\s+)?(?:\d+|andere|overige|alle)\s+(?:andere\s+)?"
+        r"(?:kamers|bewoners|huurders|studenten|personen)\b",
+        r"\bte\s+delen\s+met\s+(?:een|één|de|\d+|twee|drie)\s+(?:andere\s+)?"
+        r"(?:student(?:en)?|huisgeno\w+|medebewoners?|bewoners?|huurders?|personen|persoon)\b",
         # Rooms people live in. A shared garden, storage, entrance or laundry room says nothing about housemates.
         r"\b(?:gedeelde|gezamenlijke|gemeenschappelijke)\s+(?:woon)?(?:keuken|badkamer|douche|toilet|woonkamer|sanitair)\b",
         r"\b(?:shared|communal)\s+(?:kitchen|bathroom|shower|toilet|living\s?room)\b",
         r"\b(?:keuken|badkamer|douche|toilet|woonkamer)\s+(?:en\s+\w+\s+)?(?:is|wordt|worden|zijn)\s+(?:gedeeld|gezamenlijk)\b",
         r"\b(?:kitchen|bathroom|shower|toilet|living\s?room)\s+(?:and\s+\w+\s+)?(?:is|are|will\s+be)\s+shared\b",
-        r"\byou\s+(?:will|would|'ll)\s+(?:be\s+)?shar(?:e|ing)\b[^.!?;]{0,60}?\bwith\b" + _NOT_A_PET,
+        r"\byou\s+(?:will|would|'ll)\s+(?:be\s+)?shar(?:e|ing)\b[^.!?;]{0,60}?\bwith\b" + _NOT_A_PET + _NOT_OWN_COMPANY,
         r"\b(?:room|kamer)\s+in\s+(?:a|an|een)\s+shared\s+(?:apartment|house|flat|home)\b",
         r"\b(?:current|other|existing)\s+(?:room|house|flat)mates?\b",
         r"\b(?:andere|huidige)\s+huisgeno\w+",
@@ -180,14 +191,29 @@ AGE_RULES: List[Tuple[str, str]] = [
     (r"\byounger\s+than\s+(\d{2})\b", "max-1 ctx"),
     (r"\bunder\s+the\s+age\s+of\s+(\d{2})\b", "max-1"),
     (r"\b(?:tot|t/m|tot\s+en\s+met)\s+(\d{2})\s+jaar\b(?!\s+(?:geleden|ervaring))", "max ctx"),
-    (r"\b(?:leeftijd|age[sd]?|between\s+the\s+ages\s+of)\s*:?\s*(\d{2})\s*"
-     r"(?:-|–|tot(?:\s+en\s+met)?|t/m|to|and|en)\s*(\d{2})\b(?!\s*(?:m2|m²|uur|euro|%|min))", "range"),
+    # "aged 26 and 28" names two people's ages, so "and" / "en" joins a range only after "between the ages of"
+    (r"\b(?:leeftijd|age[sd]?)\s*:?\s*(\d{2})\s*"
+     r"(?:-|–|tot(?:\s+en\s+met)?|t/m|to)\s*(\d{2})\b(?!\s*(?:m2|m²|uur|euro|%|min))", "range"),
+    (r"\bbetween\s+the\s+ages\s+of\s+(\d{2})\s*(?:-|–|to|and)\s*(\d{2})\b", "range"),
     # "tussen 20 en 30 minuten fietsen" is no age: the years must be named
-    (r"\b(?:tussen(?:\s+de)?|between)\s+(\d{2})\s*(?:-|–|and|en)\s*(\d{2})\s+(?:jaar|years?)\b", "range"),
+    (r"\b(?:tussen(?:\s+de)?|between)\s+(\d{2})\s*(?:-|–|and|en)\s*(\d{2})\s+(?:jaar|years?)\b"
+     r"(?!\s+(?:geleden|ervaring|ago|(?:of\s+)?experience)\b)", "range"),
     (r"\b(?:van|from)\s+(\d{2})\s*(?:-|–|tot(?:\s+en\s+met)?|t/m|to)\s*(\d{2})\s+(?:jaar|years?(?:\s+old)?)\b", "range ctx"),
 ]
 _AGE_CONTEXT = re.compile(r"leeftijd|jongeren|huurders?|bewoners?|kandidat|personen|student|starters|senior|tenant|"
                           r"\bage[sd]?\b|applicant|resident|occupant")
+
+# The age of the building, the kitchen or the boiler: "de woning is tussen 20 en 30 jaar oud", "leeftijd van het pand".
+_THING = (r"(?:pand|gebouw|woning|huis|appartement|complex|keuken|badkamer|cv[- ]?ketel|ketel|dak|vloer|building|house|"
+          r"apartment|property|home|kitchen|bathroom|boiler|roof)")
+_THING_AGE = re.compile(r"\bleeftijd\s+van\s+(?:het|de|dit|deze)\s+" + _THING + r"\b|"
+                        r"\b(?:het|de|dit|deze|the|this)\s+" + _THING + r"\s+(?:is|was|zijn|werd|dateert|stamt)\b")
+_PEOPLE = re.compile(r"jongeren|huurders?|bewoners?|kandidat|personen|student|starters|senior|tenant|applicant|resident|"
+                     r"occupant|iemand|someone|people")
+# "55+ woning": a home for that age. Next to "ook" ("wij verhuren ook 55+ woningen") or a younger group
+# ("voor starters en senioren (55+ woning)") it is no limit on this home.
+_AGED_HOME = re.compile(r"^\d{2}\s?(?:\+|[- ]?plus)[- ]?\s?(?:woning|appartement|(?:woon)?complex|seniorenwoning|housing|flat)")
+_NOT_ONLY_AGED = re.compile(r"\b(?:ook|also|starters?|jongeren|studenten|students|gezinnen|families|young)\b")
 
 # A group named right after "only for <group>": the home is open to both, so it is not "only" anything.
 _OTHER_GROUP = (r"(?:professionals?|werkenden?|werkende\b|expats?|starters?|working\s+people|workers|candidates|kandidaten|"
@@ -195,14 +221,33 @@ _OTHER_GROUP = (r"(?:professionals?|werkenden?|werkende\b|expats?|starters?|work
                 r"couples?|stellen|famil(?:y|ies)|gezinnen|graduates|afgestudeerden)")
 # "... or <anything>" is a choice (interns are students: "only for students or interns" stays). After a comma or
 # "and" it must name another group ("alleen voor studenten, geen huisdieren" stays a statement about students).
-_ALSO_WORKERS = re.compile(r"\s*(?:(?:/|&|\+|\bof\b|\bor\b)(?!\s*(?:\w+\s+)?(?:interns?|stagiaire?s?|stagelopers?)\b)|(?:,|\ben\b|\band\b)\s*(?:[\w-]+\s+){0,3}?" + _OTHER_GROUP + r")")
-_ALSO_STUDENTS = re.compile(r"\s*(?:,|/|&|\+|of|or|en|and)\s*(?:\w+\s+){0,2}?student")
-_ALSO_SHARERS = re.compile(r"\s*(?:,|/|&|\+|of|or|en|and)\s*(?:\w+\s+){0,3}?"
+# A word between the two groups, but no denial: "alleen voor een stel, geen studenten" names no second group.
+_GAP_WORD = r"(?:(?!(?:geen|niet|no|not|zonder|without)\b)[\w-]+\s+)"
+_ALSO_WORKERS = re.compile(r"\s*\(?\s*(?:(?:/|&|\+|\bof\b|\bor\b)(?!\s*(?:\w+\s+)?(?:interns?|stagiaire?s?|stagelopers?)\b)|(?:,|\ben\b|\band\b)\s*" + _GAP_WORD + r"{0,3}?" + _OTHER_GROUP + r")")
+# "... or <anything that is not working people>" is a choice too: "werkenden of gepensioneerden", "a permanent job
+# or sufficient savings". "Werkenden of expats" still names working people only.
+# ("Werkende persoon of stel" names a kind of household, not another occupation.)
+_WORKING_WORD = (r"(?:werkend|working|employed|professional|expat|workers?\b|job\b|employment|baan\b|dienstverband|"
+                 r"stel(?:len)?\b|koppels?\b|couples?\b|alleenstaand|single)")
+_ALSO_STUDENTS = re.compile(r"\s*\(?\s*(?:(?:,|/|&|\+|\bof\b|\bor\b|\ben\b|\band\b)\s*" + _GAP_WORD + r"{0,2}?student|"
+                            r"(?:/|\bof\b|\bor\b)(?!\s*(?:[\w-]+\s+){0,3}?" + _WORKING_WORD + r"))")
+_ALSO_SHARERS = re.compile(r"\s*\(?\s*(?:,|/|&|\+|\bof\b|\bor\b|\ben\b|\band\b)\s*" + _GAP_WORD + r"{0,3}?"
                            r"(?:woningdelers|delers|sharers|vrienden|friends|studenten|students)")
-_FOLLOWED_BY = {"students_only": _ALSO_WORKERS, "working_only": _ALSO_STUDENTS, "no_sharers": _ALSO_SHARERS}
+# "alleen voor vrouwen of stellen": others may rent too
+_ALSO_NOT_WOMEN = re.compile(r"\s*\(?\s*(?:/|\bof\b|\bor\b)(?!\s*(?:\w+\s+){0,2}?(?:vrouw|dame|meid|meisje|female|women|girl|lad(?:y|ies)))")
+_ALSO_NOT_MEN = re.compile(r"\s*\(?\s*(?:/|\bof\b|\bor\b)(?!\s*(?:\w+\s+){0,2}?(?:man(?:nen)?\b|heren|jongens|males?\b|men\b|boys|guys))")
+_FOLLOWED_BY = {"students_only": _ALSO_WORKERS, "working_only": _ALSO_STUDENTS, "no_sharers": _ALSO_SHARERS,
+                "women_only": _ALSO_NOT_WOMEN, "men_only": _ALSO_NOT_MEN}
+# A field answered with "no": "Woningdelers toegestaan: nee", "Students welcome: no".
+_ANSWERED_NO = re.compile(r"\s*[:=]\s*(?:nee|neen|niet|no|not)\b")
+# "Voor studenten werken wij met een campuscontract": a contract for the students among the tenants, not a rule
+# that only students may rent.
+_FOR_STUDENTS = re.compile(r"\b(?:voor|for|aan|bij|with|met)\s+(?:\w+\s+)?student")
 
 # "You don't have to be a student", "ook als je geen student bent": about students, but no rule against them.
-_NOT_REQUIRED = re.compile(r"\b(?:hoef|hoeft|hoeven|als\s+(?:je|u|jij)|if\s+you|don['’]?t\s+(?:have|need)\s+to|"
+_NOT_REQUIRED = re.compile(r"\b(?:hoef|hoeft|hoeven|als\s+(?:je|u|jij)|if\s+you|"
+                           r"(?:indien|wanneer)\s+(?:je|u|jij)\s+(?:[\w-]+\s+){0,2}?(?:student|studeert)|"
+                           r"when\s+you\s+(?:are\s+)?(?:an?\s+)?(?:[\w-]+\s+)?stud(?:ent|y)|don['’]?t\s+(?:have|need)\s+to|"
                            r"do\s+not\s+(?:have|need)\s+to|need\s+not|no\s+need\s+to)\b")
 # "alleen voor stellen", "couples only": the wording of no_sharers that a "niet"/"not" in front turns around.
 _ONLY_START = re.compile(r"(?:alleen|enkel|uitsluitend|only|couples?|famil)")
@@ -314,11 +359,20 @@ def first_match(low: str, patterns: Iterable[str], flag: str = "", raw: Optional
         if rx is None:
             continue
         for m in rx.finditer(low):
+            if "\n" in m.group(0):
+                continue      # two lines of the listing ("Huisdieren: geen" / "Studenten welkom") are no statement
             if guarded and _denied(raw, low, m.start(), m.end()):
                 continue
-            if follow is not None and follow.match(low, m.end()):
+            # For no_sharers the choice only undoes "only for a couple ..." wording ("alleen voor een stel of
+            # woningdelers"); "geen woningdelers, geen studenten" refuses both.
+            if (follow is not None and (flag != "no_sharers" or _ONLY_START.match(low, m.start()))
+                    and follow.match(low, m.end())):
+                continue
+            if guarded and _ANSWERED_NO.match(low, m.end()):
                 continue
             left, right = clause(raw, m.start(), m.end())
+            if flag == "students_only" and m.group(0) == "campuscontract" and _FOR_STUDENTS.search(low[left:m.start()]):
+                continue
             if flag == "no_students" and _NOT_REQUIRED.search(low[left:m.start()]):
                 continue
             if flag == "students_only" and _NOT_REQUIRED.search(low[left:m.start()]):
@@ -331,6 +385,14 @@ def first_match(low: str, patterns: Iterable[str], flag: str = "", raw: Optional
                 best = (m.start(), m.end())
             break
     return best
+
+
+# Ages of the people who live there now ("the current roommates are aged 26 and 28", "huisgenoten tussen 22 en 28
+# jaar") are no limit for the new tenant, unless the sentence is about who is wanted.
+_RESIDENTS = re.compile(r"\b(?:huisgeno\w+|medebewoners?|(?:room|house|flat)mates?|huidige\s+(?:bewoners?|huurders?)|"
+                        r"current\s+(?:tenants?|residents?|occupants?)|wij\s+zijn|we\s+are|ik\s+ben|i\s+am)\b")
+_WANTED = re.compile(r"\b(?:zoek\w*|gezocht|wanted|looking\s+for|seeking|search\w*|nieuwe|new|voorkeur|prefer\w*|"
+                     r"ideal\w*|idea+l\w*|moet\w*|must|should|graag)\b")
 
 
 def _ages(raw: str, low: str, extra: Iterable[Any]) -> Tuple[Optional[Tuple[int, Tuple[int, int]]], Optional[Tuple[int, Tuple[int, int]]]]:
@@ -346,10 +408,19 @@ def _ages(raw: str, low: str, extra: Iterable[Any]) -> Tuple[Optional[Tuple[int,
             continue
         for m in rx.finditer(low):
             span = (m.start(), m.end())
-            if _denied(raw, low, *span):
+            if "\n" in m.group(0) or _denied(raw, low, *span):
+                continue
+            left, right = clause(raw, *span)
+            if _RESIDENTS.search(low[left:m.start()]) and not _WANTED.search(low[left:m.start()]):
+                continue
+            thing = None
+            for thing in _THING_AGE.finditer(low, left, m.end()):
+                pass                                          # the last thing named before the number
+            if thing is not None and not _PEOPLE.search(low[thing.end():m.start()]):
+                continue
+            if _AGED_HOME.match(m.group(0)) and _NOT_ONLY_AGED.search(low[left:right]):
                 continue
             if "ctx" in kind:
-                left, right = clause(raw, *span)
                 if not _AGE_CONTEXT.search(low[left:right]):
                     continue
             try:
@@ -393,19 +464,24 @@ def settle(names: Dict[str, Any]) -> None:
 
 
 def read(raw: str, extra_rules: Optional[Dict[str, Any]] = None,
-         known: Optional[Dict[str, Tuple[int, int]]] = None) -> Tuple[List[str], Dict[str, str]]:
+         phrases: Optional[Dict[str, Any]] = None) -> Tuple[List[str], Dict[str, str]]:
     """(flags, evidence per flag name) for one listing's title + description.
-    `known` holds spans other code already found for these flags (the phrase lists in config.json)."""
+    `phrases` are config.json's phrase lists for these flags ("flags": {"no_sharers": ["geen woningdelers", ...]}).
+    They are whole-word phrases and pass the same checks as the rules here: "je hoeft geen student te zijn",
+    "niet uitsluitend voor een stel" and "geen omzettingsvergunning aanwezig" set nothing."""
     raw = raw or ""
     low = raw.lower()
     if len(low) != len(raw):          # a few letters change length when lowercased: quote the lowercase then
         raw = low
     extra_rules = extra_rules if isinstance(extra_rules, dict) else {}
-    found: Dict[str, Tuple[int, int]] = {k: v for k, v in (known or {}).items() if k in RULES}
+    phrases = phrases if isinstance(phrases, dict) else {}
+    found: Dict[str, Tuple[int, int]] = {}
     for flag, patterns in RULES.items():
-        more = extra_rules.get(flag) or []
-        span = first_match(low, list(patterns) + [p for p in more if isinstance(p, str)], flag, raw)
-        if span and (flag not in found or span[0] < found[flag][0]):
+        more = [p for p in (extra_rules.get(flag) or []) if isinstance(p, str)]
+        listed = phrases.get(flag) if isinstance(phrases.get(flag), (list, tuple)) else []
+        more += [r"(?<!\w)" + re.escape(p.lower()) + r"(?!\w)" for p in listed if isinstance(p, str) and p]
+        span = first_match(low, list(patterns) + more, flag, raw)
+        if span:
             found[flag] = span
     settle(found)
     flags = list(found)

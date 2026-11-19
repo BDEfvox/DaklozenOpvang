@@ -108,7 +108,7 @@ def test_mvgm_first_page_raises_original_error(error_type):
     ("Studio", "studio"),
     ("Parkeerplaats", "parking"),
     ("Garage", "parking"),
-    ("Onbekend", "other"),
+    ("Bedrijfsruimte", "other"),
 ])
 def test_mvgm_type_comes_from_title_prefix(label, property_type):
     html = f"""
@@ -121,6 +121,18 @@ def test_mvgm_type_comes_from_title_prefix(label, property_type):
     """
     listing, = parse_mvgm_page(html)
     assert (listing.property_type, listing.address) == (property_type, "Villastraat 12")
+
+
+def test_mvgm_title_without_a_type_word_is_an_address_not_a_type():
+    # "Schipholweg 386" (19 Nov 2026): no type in front. The first word is the street; the detail page gives the type.
+    html = """
+    <div class="card-woning">
+      <a class="stretched-link" href="/object/test-0123456789abcdef0123456789abcdef">Schipholweg 386</a>
+      <div class="card-body"><span>2316 XD Leiden</span></div>
+    </div>
+    """
+    listing, = parse_mvgm_page(html)
+    assert (listing.property_type, listing.address) == (None, "Schipholweg 386")
 
 
 def test_HH09_housinganywhere_unit_type_path_only(cfg):

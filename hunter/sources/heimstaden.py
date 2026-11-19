@@ -16,7 +16,7 @@ from bs4.element import Tag
 
 from ..http import Http
 from ..models import CITIES, Listing
-from ..utils import city_slug, clean_text, parse_int, parse_price
+from ..utils import block_text, city_slug, clean_text, parse_int, parse_price
 from .base import Source, SourceError, summary_description
 
 URL = "https://heimstaden.com/nl/huurwoningen/"
@@ -126,7 +126,7 @@ class Heimstaden(Source):
         soup = BeautifulSoup(html, "html.parser")
         intro = soup.select_one(".project-intro")
         if intro is not None:
-            listing.description = clean_text(intro.get_text(" ", strip=True))
+            listing.description = clean_text(block_text(intro), keep_lines=True)
         else:
             summary_description(listing, html, "heimstaden")
         for tr in soup.select(".project-facts-table tr"):
@@ -154,6 +154,9 @@ class Heimstaden(Source):
         sm = re.search(r"Servicekosten\s+(\d+)\s+euro", soup.get_text(" ", strip=True))
         if sm:
             listing.extra["service_costs"] = int(sm.group(1))
+            # Heimstaden's page lists "Servicekosten" as its own field next to the rent.
+            listing.extra["service_costs_on_top"] = True
+            listing.extra["service_costs_note"] = "Servicekosten %s euro (Heimstaden lists them next to the rent)" % sm.group(1)
         return listing
 
 

@@ -59,7 +59,7 @@ def test_details_reads_description():
     lst = parse_search(page(items), "den-haag")[0]
     lst.bedrooms = None
     lst = apply_details(lst, html)
-    assert lst.description == "Lovely home. No sharers please."
+    assert lst.description == "Lovely home.\nNo sharers please."   # the text's own line break is kept
     assert lst.bedrooms == 3
     with pytest.raises(SourceError):
         apply_details(lst, "<html></html>")
@@ -173,8 +173,36 @@ def test_housemates_from_a_shared_facility_only_and_unknown_values_ignored():
     ent = dict(base, facilities=dict(base["facilities"], kitchen="shared", tenant_status="students only"),
                preferredGender="female", maxAge=40)
     ex = apply_details(lst, _detail(ent, twitter="x")).extra
-    assert ex["site_housemates"] is True
-    assert not any(k in ex for k in ("site_students_only", "site_working_only", "site_women_only", "site_max_age"))
+    assert ex["site_housemates"] is True and ex["site_max_age"] == 40
+    assert not any(k in ex for k in ("site_students_only", "site_working_only", "site_women_only"))
+
+
+def test_fields_seen_next_to_their_labels_on_19_nov_2026():
+    """ut1747098 showed "Age: 25 - 45", "Space for 2 people" and a required monthly cleaning fee; ut1749760 and
+    ut260681 showed "Space for 1 person" and "Tenant type: Students, working professionals"."""
+    base = _entities()["ut1498809"]
+
+    def read(**fields):
+        ent = dict(base, **fields)
+        return apply_details(_listing(1498809), _detail(ent, twitter="x")).extra
+
+    ex = read(minAge=25, maxAge=45, freePlaces=2, facilities=dict(base["facilities"], tenant_status="working professionals only"),
+              costs={"costs": {
+                  "cleaning-fee": {"value": 10000, "payableBy": "tenant", "payableAt": "monthly", "required": True, "isEstimated": False},
+                  "electricity-bill": {"value": 12000, "payableBy": "tenant", "payableAt": "monthly", "required": True, "isEstimated": True},
+                  "security-deposit": {"value": 500000, "payableBy": "tenant", "payableAt": "move-in", "required": True},
+                  "parking": {"value": 9000, "payableBy": "tenant", "payableAt": "monthly", "required": False}}})
+    assert ex["site_min_age"] == 25 and ex["site_max_age"] == 45 and ex["site_working_only"] is True
+    assert ex["mandatory_costs"] == 100 and "cleaning fee €100" in ex["mandatory_costs_note"]
+    assert "Age: 25 - 45" in ex["site_facts"] and "Required every month: cleaning fee €100" in ex["site_facts"]
+
+    ex = read(minAge=0, maxAge=0, freePlaces=1, facilities=dict(base["facilities"], tenant_status="any"))
+    assert ex["max_persons"] == 1 and ex["site_students_ok"] is True
+    assert ex["site_facts"].startswith("Tenant type: Students, working professionals · Space for 1 person")
+    assert "site_max_age" not in ex and "site_min_age" not in ex and "mandatory_costs" not in ex
+
+    ex = read(minAge=30, maxAge=20, freePlaces=0)                 # a maximum below the minimum is not believed
+    assert ex["site_min_age"] == 30 and "site_max_age" not in ex and "max_persons" not in ex
 
 
 def test_description_prefers_entity_text_over_short_summary():

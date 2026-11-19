@@ -1,8 +1,10 @@
 """123Wonen: rental agency with city searches. Server-rendered list, newest first.
 
 https://www.123wonen.nl/huurwoningen/in/<city>/sort/newest  (12 listings per page, one request per city).
-Only page 1 is read: it is the newest-first page, so new listings land there, and the run repeats every
-~10 minutes; page 2 (/page/2/sort/newest) holds older listings that earlier runs have already seen.
+The site lists the homes that are still for rent first and the rented ones after them (checked on
+19 Nov 2026: Amsterdam page 1 held 10 homes for rent and 2 rented ones, pages 2 and 3 rented ones only).
+So page 1 is normally everything there is. Page 2 (/page/2/sort/newest) and page 3 are read only when
+every card on the page before them is still for rent, which means more homes for rent may follow.
 fetch_details reads the detail page once (description, spec rows, costs).
 Rented listings stay on the page with a "Verhuurd" label; they are skipped here.
 """
@@ -16,8 +18,8 @@ from bs4.element import Tag
 
 from ..http import Http
 from ..models import CITIES, Listing
-from ..utils import city_slug, clean_text, parse_int, parse_price
-from .base import Source, SourceError
+from ..utils import block_text, city_slug, clean_text, parse_int, parse_price
+from .base import Source, SourceBlocked, SourceError, SourcePartial
 
 BASE = "https://www.123wonen.nl"
 
@@ -40,9 +42,14 @@ _ROOM_AD_RE = re.compile(
     r"(?<![\w-])(?<!\d )kamer\s+beschikbaar|"
     r"nog\s+(?:slechts\s+)?(?:één|een|1)\s+(?:\w+\s+)?kamer\b", re.I)
 _SHARED_RE = re.compile(
-    r"je\s+deelt\s+de\s+woning|u\s+deelt\s+de\s+woning|gedeelde\s+(?:woonkamer|keuken|badkamers?)|"
+    # (not "je deelt de woning met je partner": the people who move in together are no housemates)
+    r"(?:je|u)\s+deelt\s+de\s+woning(?!\s+met\s+(?:(?:je|uw|jouw|jullie)\s+(?:eigen\s+)?(?:partner|vriend|gezin)|elkaar))|"
+    r"gedeelde\s+(?:woonkamer|keuken|badkamers?)|"
     r"gezamenlijke\s+(?:woonkamer|keuken)", re.I)
 _UTILITIES_WORDS = r"(?:nutsvoorzieningen|nuts|gas|water|elektra|energie|g/w/e|gwe|internet)"
+# "- € 30.00 per maand servicekosten", "Huurprijs: 2.500,- + €10,- servicekosten" (the amount stands in front)
+_SERVICE_BEFORE_RE = re.compile(r"€\s*(\d[\d.]*?)(?:[.,](?:-|\d{2}))?\s*(?:per\s+maand\s+|p/m\s+|per\s+mnd\s+)?servicekosten\b", re.I)
+_SERVICE_INCLUDED_RE = re.compile(r"\b(?:incl\.?|inclusief|waarvan|inbegrepen|including|included|inclusive)(?!\w)", re.I)
 _SERVICE_RE = re.compile(r"servicekosten\s*:?\s*€\s*(\d[\d.]*)(?:,(?:-|\d{2}))?\s*(?:per\s+maand|p/m|p\.m\.|/\s*maand|per\s+mnd)", re.I)
 
 
@@ -95,6 +102,23 @@ def _facts(*parts: Optional[str]) -> Optional[str]:
         elif not out:
             out = part[:200]
     return out or None
+
+
+MAX_PAGES = 3
+
+
+def more_may_follow(html: str, page: int) -> bool:
+    """True when every card on this page is still for rent and the page links to the next one: the homes for
+    rent come first, so only then can the next page hold more of them."""
+    soup = BeautifulSoup(html, "html.parser")
+    cards = soup.select("div.pandlist-container")
+    if not cards:
+        return False
+    for card in cards:
+        status = _text(card.select_one(".pand-status")).lower()
+        if "verhuurd" in (card.get("class") or []) or any(w in status for w in _NOT_AVAILABLE):
+            return False
+    return soup.select_one("a[href*='/page/%d/']" % (page + 1)) is not None
 
 
 def parse_page(html: str, city: str) -> List[Listing]:
@@ -208,7 +232,9 @@ def apply_details(listing: Listing, html: str) -> Listing:
                 rows.setdefault(_text(spans[0]).lower(), []).append(_text(spans[1]))
     first_row = lambda key: (rows.get(key) or [None])[0]  # noqa: E731
 
-    listing.description = clean_text((slogan + ". " if slogan else "") + " ".join(lines))
+    # line breaks where the page has them (<br>, paragraphs), not at every <strong> or link
+    listing.description = clean_text((slogan + ".\n" if slogan else "") + block_text(body).replace("\xa0", " "),
+                                     keep_lines=True)
     facts: List[Optional[str]] = []
     if listing.property_type != "room" and _is_room_ad(slogan, headline):
         listing.property_type = "room"
@@ -256,9 +282,14 @@ def apply_details(listing: Listing, html: str) -> Listing:
                 facts.append('"%s"' % line)
             break
     for line in lines:
-        m = _SERVICE_RE.search(line)
+        m = _SERVICE_RE.search(line) or _SERVICE_BEFORE_RE.search(line)
         if m:
             listing.extra["service_costs"] = int(m.group(1).replace(".", ""))
+            # its own line next to the rent, "+ €10,- servicekosten", or a line of a breakdown that ends in a total.
+            # "Huurprijs: € 1.575,- inclusief € 50,- servicekosten" says the rent already holds them.
+            if not _SERVICE_INCLUDED_RE.search(line[:m.start()]):
+                listing.extra["service_costs_on_top"] = True
+                listing.extra["service_costs_note"] = line[:160]
             facts.append('"%s"' % line)
             break
     site_facts = _facts(*facts)
@@ -277,8 +308,24 @@ class Wonen123(Source):
     def fetch(self, city: str, http: Http) -> List[Listing]:
         if city not in self.cities:
             return []
-        html = http.get_text("%s/huurwoningen/in/%s/sort/newest" % (BASE, city))
-        return parse_page(html, city)
+        out: List[Listing] = []
+        seen = set()
+        for page in range(1, MAX_PAGES + 1):
+            path = "/sort/newest" if page == 1 else "/page/%d/sort/newest" % page
+            try:
+                html = http.get_text("%s/huurwoningen/in/%s%s" % (BASE, city, path))
+                found = parse_page(html, city)
+            except (SourceError, SourceBlocked) as exc:
+                if page == 1:
+                    raise
+                raise SourcePartial(out, exc, "page %d" % page)
+            for l in found:
+                if l.source_id not in seen:
+                    seen.add(l.source_id)
+                    out.append(l)
+            if not more_may_follow(html, page):
+                break
+        return out
 
     def fetch_details(self, listing: Listing, http: Http) -> Listing:
         return apply_details(listing, http.get_text(listing.url))

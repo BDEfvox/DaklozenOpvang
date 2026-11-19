@@ -16,7 +16,7 @@ from bs4.element import Tag
 
 from ..http import Http
 from ..models import CITIES, Listing
-from ..utils import city_slug, clean_text, parse_int, parse_price
+from ..utils import block_text, city_slug, clean_text, parse_int, parse_price
 from .base import Source, SourceError
 
 BASE = "https://directwonen.nl"
@@ -130,7 +130,7 @@ def apply_details(listing: Listing, html: str) -> Listing:
     full = info.select_one(".contentToToggle") or info.select_one(".shortDescription")
     if full is None:
         raise SourceError("layout changed: directwonen listing page has no description text")
-    listing.description = clean_text(full.get_text(" ", strip=True)) or listing.description
+    listing.description = clean_text(block_text(full), keep_lines=True) or listing.description
     for chip in info.select(".appartment-information-list > div"):
         classes = chip.get("class") or []
         if "advert-furnished" in classes or "advert-unfurnished" in classes:

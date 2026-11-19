@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 from ..http import Http
 from ..models import Listing
-from ..utils import city_slug, clean_text, parse_int, parse_price
+from ..utils import block_text, city_slug, clean_text, parse_int, parse_price
 from .base import Source, SourceError, summary_description
 
 BASE = "https://www.vesteda.com"
@@ -93,9 +93,7 @@ def _description(html: str) -> Optional[str]:
             cell = h.find_parent(class_="o-layout__cell")
             nxt = cell.find_next_sibling(class_="o-layout__cell") if cell is not None else None
             if nxt is not None:
-                for br in nxt.find_all("br"):
-                    br.replace_with(" ")
-                return clean_text(nxt.get_text(" ", strip=True).replace("\xa0", " "))
+                return clean_text(block_text(nxt).replace("\xa0", " "), keep_lines=True)
     return None
 
 
@@ -209,6 +207,9 @@ class Vesteda(Source):
         costs = parse_price(by.get("servicekosten p.m."))
         if costs is not None:
             listing.extra["service_costs"] = costs
+            # Vesteda's page has "Huurprijs p.m." and "Servicekosten p.m." as two lines of what is paid each month.
+            listing.extra["service_costs_on_top"] = True
+            listing.extra["service_costs_note"] = "Servicekosten p.m.: %s (Vesteda lists them next to the rent)" % by.get("servicekosten p.m.")
         beds = parse_int(by.get("aantal slaapkamers"))
         if beds is not None:
             listing.bedrooms = beds
@@ -223,7 +224,7 @@ class Vesteda(Source):
             listing = summary_description(listing, html, "vesteda")
             text = listing.description
         notes = listing.extra.get("api_notes")
-        listing.description = clean_text("%s %s" % (text, notes) if text and notes else text or notes)
+        listing.description = clean_text("%s\n%s" % (text, notes) if text and notes else text or notes, keep_lines=True)
 
         parking = by.get("soort parkeergelegenheid", "")
         found = None  # (amount, the page's own words)

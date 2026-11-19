@@ -78,7 +78,8 @@ def test_kenmerken_available_from_service_costs_and_bedrooms():
     out = _details("38126", "westerdok_248")
     assert out.available_from == "2026-12-17" and out.extra["service_costs"] == 190 and out.bedrooms == 3
     assert _details("103384", "van_boecopkade_18").available_from == "2026-12-22"
-    assert _details("103384", "van_boecopkade_18").extra["service_costs"] == 75
+    ex = _details("103384", "van_boecopkade_18").extra
+    assert ex["service_costs"] == 75 and ex["service_costs_on_top"] is True and "75" in ex["service_costs_note"]
 
 
 def test_mandatory_parking_from_kenmerken():

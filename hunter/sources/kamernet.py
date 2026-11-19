@@ -35,7 +35,9 @@ _PERSONS_BY_ID = {1: 1, 2: 2, 4: 3, 8: 4}
 # candidateStatusId is a list of bit values; the visible "Bezigheid" line shows the matching labels.
 _STATUS_LABELS = {1: "Student", 2: "Werkende student", 4: "Werkend", 8: "Werkzoekend"}
 _STUDENT_KINDS = (1, 2)
-# candidateGenderId: 2 -> "Vrouw", 8 -> "Niet belangrijk", null -> "Iedereen welkom". The id for men was not seen.
+# candidateGenderId: 1 -> "Man" (seen on 2417454 and 2417735, 19 Nov 2026), 2 -> "Vrouw", 8 -> "Niet belangrijk",
+# null -> "Iedereen welkom".
+_GENDER_MAN = 1
 _GENDER_WOMAN = 2
 _IDEAL_HEADING = "Verhuurders ideale huurder"
 _FACT_LABELS = ("Aantal huurders", "Leeftijd", "Geslacht", "Bezigheid")
@@ -150,10 +152,10 @@ def _norm(text: str) -> str:
 
 def _one_language(title: Any, desc: Any) -> str:
     title = clean_text(title) if isinstance(title, str) else ""
-    desc = clean_text(desc) if isinstance(desc, str) else ""
+    desc = clean_text(desc, keep_lines=True) if isinstance(desc, str) else ""
     if title and desc and _norm(desc).startswith(_norm(title)):
         return desc  # the title is the opening words of the text: do not repeat it
-    return " ".join(x for x in (title, desc) if x)
+    return "\n".join(x for x in (title, desc) if x)
 
 
 def _description(det: Dict[str, Any]) -> str:
@@ -164,7 +166,7 @@ def _description(det: Dict[str, Any]) -> str:
         return nl or en
     if not en or _norm(en) in _norm(nl):
         return nl
-    return clean_text(nl + " " + en)
+    return clean_text(nl + "\n" + en, keep_lines=True)
 
 
 def _ideal_tenant_rows(html: str) -> Dict[str, str]:
@@ -219,10 +221,13 @@ def _apply_ideal_tenant(listing: Listing, det: Dict[str, Any], html: str) -> Non
         kinds = set(ids)
         if kinds <= set(_STUDENT_KINDS):
             extra["site_students_only"] = True
+        elif kinds == {4}:
+            extra["site_working_only"] = True       # "Bezigheid: Werkend". That already says no students.
         elif not kinds & set(_STUDENT_KINDS):
-            extra["site_no_students"] = True
-            if kinds == {4}:
-                extra["site_working_only"] = True
+            extra["site_no_students"] = True        # "Werkend, Werkzoekend"
+        elif 1 in kinds:
+            extra["site_students_ok"] = True        # "Student, Werkende student, Werkend": students are named too
+        # "Werkende student, Werkend": a student must have a job. No mark says exactly that, so none is set.
     # 3. age: only real limits (16 and 99 are the site's defaults)
     lo, hi = det.get("candidateMinAgeId"), det.get("candidateMaxAgeId")
     age_ok = all(v is None or (isinstance(v, int) and not isinstance(v, bool)) for v in (lo, hi))
@@ -239,6 +244,8 @@ def _apply_ideal_tenant(listing: Listing, det: Dict[str, Any], html: str) -> Non
     gender = det.get("candidateGenderId")
     if gender == _GENDER_WOMAN and rows.get("Geslacht", "Vrouw") == "Vrouw":
         extra["site_women_only"] = True
+    if gender == _GENDER_MAN and rows.get("Geslacht", "Man") == "Man":
+        extra["site_men_only"] = True
     # 5. the proof line: the page's own labels and values
     facts = [f"{k}: {rows[k]}" for k in _FACT_LABELS if rows.get(k)]
     if facts:
