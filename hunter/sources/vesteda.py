@@ -60,7 +60,7 @@ class Vesteda(Source):
         label, lat, lng, radius = place
         payload = {
             "filters": [], "latitude": lat, "longitude": lng, "place": label, "placeType": 1,
-            "radius": radius, "sorting": 0, "priceFrom": 500, "priceTo": 2400, "language": "nl",
+            "radius": radius, "sorting": 0, "priceFrom": 500, "priceTo": self.max_rent(2400), "language": "nl",
         }
         data = http.post_json(API, payload)
         return self.parse(data, city)

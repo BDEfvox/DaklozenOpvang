@@ -1,7 +1,7 @@
 """Interface every site module implements."""
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List, Optional, Sequence
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, Sequence
 
 from .. import pagereader
 from ..utils import clean_text
@@ -42,6 +42,22 @@ class Source:
     # True: this landlord/agency applies an income test to every home it lets (stated in its own
     # conditions or FAQ), whether or not the individual listing repeats it. Every listing gets the flag.
     income_requirement: bool = False
+    # The settings of this run (config.json), set by the runner before it calls fetch. None when a
+    # source is used on its own, e.g. in a test: sources must work without it.
+    cfg: Optional[Dict[str, Any]] = None
+
+    @property
+    def has_detail_pages(self) -> bool:
+        """False for a source that only has its feed (the base fetch_details does nothing). The runner
+        then spends no detail budget on it and never treats "nothing new" as a confirmation."""
+        return type(self).fetch_details is not Source.fetch_details
+
+    def max_rent(self, default: int) -> int:
+        """The highest rent any configured search accepts, for sites that filter on price themselves."""
+        searches = (self.cfg or {}).get("searches") or []
+        limits = [s.get("max_total") for s in searches if isinstance(s, dict)]
+        limits = [int(x) for x in limits if isinstance(x, (int, float)) and not isinstance(x, bool) and x > 0]
+        return max(limits) if limits else default
 
     def unavailable_reason(self) -> Optional[str]:
         """None if the source can run; otherwise a short reason ("IMAP not configured").

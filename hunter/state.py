@@ -9,7 +9,7 @@ import json
 import os
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Collection, Dict, Optional
 
 from .config import ROOT
 
@@ -134,12 +134,14 @@ class State:
         c = self.meta.setdefault("new_matches", {}).setdefault(day, {})
         c[city] = c.get(city, 0) + 1
 
-    def find_duplicate(self, fingerprint: str, source: str, now: datetime, days: int = 14) -> Optional[str]:
-        """uid of the same property already seen via another source within `days`."""
+    def find_duplicate(self, fingerprint: str, source: str, now: datetime, days: int = 14,
+                       skip: Collection[str] = ()) -> Optional[str]:
+        """uid of the same property already seen via another source within `days`. Only a listing that
+        fits a search and is not itself a duplicate counts; uids in `skip` are left out."""
         cut = now - timedelta(days=days)
         for uid, e in self.seen.items():
             if (e.get("fp") == fingerprint and e.get("source") != source and e.get("matched")
-                    and not e.get("dup_of")):
+                    and not e.get("dup_of") and uid not in skip):
                 if (parse_iso(e.get("last_seen")) or cut) >= cut:
                     return uid
         return None

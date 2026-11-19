@@ -177,7 +177,9 @@ def format_health_alert(label: str, status: str, failures: int, error: Optional[
         e(label), failures, e(why))
 
 
-def format_recovery(label: str) -> str:
+def format_recovery(label: str, still_failing: Optional[str] = None) -> str:
+    if still_failing:
+        return "✅ <b>%s</b> is partly working again. Still failing: %s" % (e(label), e(clip(still_failing, 300)))
     return "✅ <b>%s</b> is working again." % e(label)
 
 

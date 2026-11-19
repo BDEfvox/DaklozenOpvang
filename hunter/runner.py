@@ -1,11 +1,9 @@
 """One hunting run: fetch every source, find new matches, notify, update state and dashboard."""
 from __future__ import annotations
 
-import os
 import re
 import sys
 import traceback
-from urllib.parse import quote
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional, Tuple
@@ -15,6 +13,7 @@ from .filters import MatchResult, evaluate
 from .models import Listing
 from .notify import format as fmt
 from .notify.telegram import Notifier
+from .redact import redact
 from .sources.base import Source, SourceBlocked, SourceError, SourcePartial
 from .state import State, iso
 
@@ -35,17 +34,6 @@ class FetchResult:
     per_city: Dict[str, Tuple[int, Optional[str]]] = field(default_factory=dict)  # city -> (count, error)
 
 
-def redact(text: str) -> str:
-    """Remove secret values (raw and URL-encoded) from text that may be published or logged."""
-    for key in ("TELEGRAM_BOT_TOKEN", "IMAP_PASSWORD", "IMAP_USER", "TELEGRAM_CHAT_ID"):
-        raw = os.environ.get(key, "")
-        # also the cleaned-up forms the code actually uses (an app password without its spaces)
-        for val in {raw.strip(), raw.replace("\xa0", " ").strip(), re.sub(r"\s+", "", raw)}:
-            if len(val) >= 4:
-                text = text.replace(val, "***").replace(quote(val, safe=""), "***")
-    return text
-
-
 def _describe(exc: Exception) -> str:
     if isinstance(exc, (SourceBlocked, SourceError)):
         return redact(str(exc))[:300]
@@ -55,6 +43,7 @@ def _describe(exc: Exception) -> str:
 def fetch_source(source: Source, cfg: Dict[str, Any], http: Any, only_city: Optional[str] = None) -> FetchResult:
     """Fetch all configured cities of one source. Never raises."""
     res = FetchResult()
+    source.cfg = cfg  # for sites that filter on price themselves, see Source.max_rent
     cities_cfg = list(cfg.get("cities", []))
     errors: List[Tuple[str, Exception]] = []
     ok_cities = 0
@@ -64,6 +53,7 @@ def fetch_source(source: Source, cfg: Dict[str, Any], http: Any, only_city: Opti
     for city in cities:
         error = None
         blocked = False
+        partial_empty = False
         try:
             items = list(source.fetch(city, http) or [])
         except SourcePartial as exc:
@@ -71,6 +61,7 @@ def fetch_source(source: Source, cfg: Dict[str, Any], http: Any, only_city: Opti
             error = _describe(exc)
             errors.append((city, exc))
             blocked = exc.blocked
+            partial_empty = not items  # failed before it had anything: that is a failure, not half a success
         except Exception as exc:
             errors.append((city, exc))
             res.per_city[city] = (0, _describe(exc))
@@ -83,14 +74,15 @@ def fetch_source(source: Source, cfg: Dict[str, Any], http: Any, only_city: Opti
             items = [l for l in items if l.city == only_city]
         res.listings.extend(items)
         res.per_city[city] = (len(items), error)
-        ok_cities += 1
+        if not (error and partial_empty):
+            ok_cities += 1
         if blocked:
             break
     if errors and ok_cities:
         res.status = "partial"
         res.error = "; ".join("%s: %s" % (c, _describe(x)) for c, x in errors)[:300]
     elif errors:
-        blocked = all(isinstance(x, SourceBlocked) for _, x in errors)
+        blocked = all(isinstance(x, SourceBlocked) or getattr(x, "blocked", False) for _, x in errors)
         res.status = "blocked" if blocked else "error"
         res.error = _describe(errors[0][1])
     if source.income_requirement:  # the landlord's standing rule, see Source.income_requirement
@@ -111,6 +103,21 @@ def fingerprint(l: Listing) -> Optional[str]:
     return "%s|%s|%d" % (a, l.city, l.price_total)
 
 
+def _same_home(a: Listing, b: Dict[str, Any]) -> bool:
+    """Two listings with the same fingerprint (address, city, rent): one home?
+    With a house number, yes. A street name alone can be two homes on that street: then a clearly
+    different size or bedroom count means two homes. Missing a home costs more than a double alert."""
+    if re.search(r"\d", a.address or ""):
+        return True
+    area_a, area_b = a.area_m2, b.get("area_m2")
+    if area_a and area_b and abs(area_a - area_b) > max(5, 0.1 * max(area_a, area_b)):
+        return False
+    bed_a, bed_b = a.bedrooms, b.get("bedrooms")
+    if bed_a is not None and bed_b is not None and bed_a != bed_b:
+        return False
+    return True
+
+
 def _local_tz(cfg: Dict[str, Any]):
     name = cfg.get("telegram", {}).get("timezone", "Europe/Amsterdam")
     if ZoneInfo is not None:
@@ -129,6 +136,9 @@ class Item:
     detailed: bool = False
     search_price: Optional[int] = None
     had_snapshot: bool = False
+    fp: Optional[str] = None            # fingerprint before any detail page was read this run
+    baseline: bool = False              # found in a source's very first scan
+    was_matched: bool = True            # price drops: did it already fit a search before this run?
 
     @property
     def sort_key(self) -> Tuple[int, int]:
@@ -171,12 +181,20 @@ def _public_dict(l: Listing) -> Dict[str, Any]:
     return d
 
 
+# Flags worth remembering from a detail page whose full text is not kept (it is cut to 2500 characters,
+# and mailbox text is never saved).
+_DETAIL_FLAGS = ("no_sharers", "max_persons", "no_students", "scam_signals", "no_registration",
+                 "income_requirement", "sharers_ok")
+
+
 def _card(state: State, it: Item, now_s: str) -> None:
     old = state.matches.get(it.listing.uid, {})
     flags = list(it.result.flags)
-    for f in old.get("flags", []):  # keep flags found from a detail page earlier
-        if f not in flags and f.split(":")[0] in ("no_sharers", "max_persons", "no_students", "scam_signals",
-                                                  "no_registration", "income_requirement", "sharers_ok"):
+    # Flags the last detail-page read found. They live in that read's snapshot, so they go when the
+    # page is read again or the snapshot is dropped; a flag no current text supports does not linger.
+    details = (state.seen.get(it.listing.uid) or {}).get("details") or {}
+    for f in details.get("flags") or []:
+        if f not in flags and f.split(":")[0] in _DETAIL_FLAGS:
             flags.append(f)
     state.matches[it.listing.uid] = {
         "listing": _public_dict(it.listing),
@@ -193,9 +211,11 @@ _DETAIL_FIELDS = ("bedrooms", "rooms", "area_m2", "property_type", "price_total"
                   "description", "address", "postcode", "available_from", "available_until")
 
 
-def detail_snapshot(l: Listing, search_price: Optional[int]) -> Dict[str, Any]:
-    """What a detail page told us, so later runs (which only see the search page) don't forget it."""
+def detail_snapshot(l: Listing, search_price: Optional[int], flags: Optional[List[str]] = None) -> Dict[str, Any]:
+    """What a detail page told us, so later runs (which only see the search page) don't forget it.
+    Only written after a real read of the page (see Source.has_detail_pages)."""
     d: Dict[str, Any] = {k: getattr(l, k) for k in _DETAIL_FIELDS if getattr(l, k) is not None}
+    d["flags"] = sorted(f for f in (flags or []) if f.split(":")[0] in _DETAIL_FLAGS)
     if _private_text(l):
         d.pop("description", None)
     if "description" in d:
@@ -228,6 +248,8 @@ def _bedrooms_unsure(it: Item) -> bool:
 
 def _needs_detail_check(prev: Dict[str, Any], it: Item) -> bool:
     """Is this known match worth a (new) look at its detail page?"""
+    if not it.source.has_detail_pages:
+        return False  # nothing to look at: the feed is all this source has
     if int(prev.get("detail_tries") or 0) >= DETAIL_MAX_TRIES:
         return False
     d = prev.get("details")
@@ -243,7 +265,7 @@ def _enrich(items: List[Item], cfg: Dict[str, Any], http: Any, budget: List[int]
     """fetch_details for the first `budget[0]` items; re-evaluate; drop those that no longer match."""
     out: List[Item] = []
     for it in items:
-        if budget[0] > 0:
+        if budget[0] > 0 and it.source.has_detail_pages:
             budget[0] -= 1
             try:
                 it.search_price = it.listing.price_total
@@ -315,13 +337,37 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
         except Exception as exc:  # fetch_source should never raise, but be safe
             fetched[name] = FetchResult(status="error", error=_describe(exc))
 
+    def live_duplicate(prev: Dict[str, Any]) -> Optional[str]:
+        """uid of the listing this one duplicates, while that listing still counts: known, fitting a
+        search, and not itself a duplicate. None when it no longer does."""
+        ref = prev.get("dup_of")
+        target = state.seen.get(ref) if isinstance(ref, str) else None
+        if target is None and isinstance(ref, str) and ":" not in ref and prev.get("fp"):
+            # An older version stored the other site's name here in place of its listing: find that listing.
+            for uid, e in state.seen.items():
+                if (e.get("source") == ref and e.get("fp") == prev["fp"] and e.get("matched")
+                        and not e.get("dup_of")):
+                    return uid
+            return None
+        if target is not None and target.get("matched") and not target.get("dup_of"):
+            return ref
+        return None
+
+    def known_duplicate(l: Listing, fp: str, name: str, skip: Any = ()) -> Optional[str]:
+        """uid of the same home that an earlier run already showed from another site."""
+        uid = state.find_duplicate(fp, name, now, skip=skip)
+        if uid is None:
+            return None
+        card = (state.matches.get(uid) or {}).get("listing") or {}
+        return uid if _same_home(l, card) else None
+
     # 3-6. evaluate
     baseline_pool: List[Item] = []
     baseline_sources: List[str] = []
     new_items: List[Item] = []
     drop_items: List[Tuple[Item, int]] = []
     backlog: List[Item] = []  # matches already on the dashboard whose detail page was never read
-    run_fps: Dict[str, str] = {}
+    run_fps: Dict[str, Item] = {}  # fingerprint -> the first new listing with it this run
     seen_uids = set()
 
     for name, src in active.items():
@@ -338,20 +384,30 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
             old_card = state.matches.get(l.uid)
             if old_card and not l.description:
                 l.description = (old_card.get("listing") or {}).get("description")
-            res = evaluate(l, cfg)
-            it = Item(src, l, res)
-            fp = fingerprint(l)
             prev = state.seen.get(l.uid)
+            had_snapshot = False
             if prev is not None and prev.get("details"):
-                apply_detail_snapshot(l, prev["details"])
-                res = evaluate(l, cfg)
-                it = Item(src, l, res, had_snapshot=True)
-                fp = fingerprint(l)
+                if src.has_detail_pages:
+                    apply_detail_snapshot(l, prev["details"])
+                    had_snapshot = True
+                else:
+                    # Written by an older version that "read" a detail page this source does not have.
+                    # It only repeats the feed of that day, and would undo every later correction.
+                    del prev["details"]
+            res = evaluate(l, cfg)
+            fp = fingerprint(l)
+            it = Item(src, l, res, had_snapshot=had_snapshot, fp=fp, baseline=is_baseline)
 
             if prev is not None and prev.get("dup_of"):
-                # same home already shown from another site: keep it out of alerts and the dashboard
-                prev["last_seen"] = now_s
-                continue
+                ref = live_duplicate(prev)
+                if ref:
+                    # same home already shown from another site: keep it out of alerts and the dashboard
+                    prev["dup_of"] = ref
+                    prev["last_seen"] = now_s
+                    continue
+                # The home it duplicated is gone or no longer fits: this listing stands on its own again.
+                del prev["dup_of"]
+                prev["matched"] = []
 
             if prev is not None:
                 # known listing: refresh, check price drop
@@ -368,6 +424,7 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
                             and (not was_matched
                                  or (old_price - l.price_total) / float(old_price) >= PRICE_DROP_MIN_PCT)):
                         state.matches[l.uid]["price_drop_from"] = old_price
+                        it.was_matched = was_matched
                         drop_items.append((it, old_price))
                     elif not was_matched and not is_baseline:
                         new_items.append(it)  # e.g. details or the budget in config.json changed
@@ -380,12 +437,18 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
             # new listing
             dup_of = None
             if fp and res.matched:
-                other = run_fps.get(fp)
-                if other is None:
-                    dup_of = state.find_duplicate(fp, name, now)
-                    run_fps[fp] = name
-                elif other != name:
-                    dup_of = other
+                first = run_fps.get(fp)
+                if first is None:
+                    dup_of = known_duplicate(l, fp, name)
+                    run_fps[fp] = it
+                elif first.source.name != name and _same_home(l, first.listing.to_dict()):
+                    earlier = (state.seen.get(first.listing.uid) or {}).get("dup_of")
+                    if earlier and (state.seen.get(earlier) or {}).get("source") != name:
+                        dup_of = earlier  # both are the home an earlier run already showed
+                    elif is_baseline or first.baseline:
+                        dup_of = first.listing.uid
+                    # Otherwise both are new this run: settle_twins decides after the detail pages are
+                    # read, because a listing that turns out not to fit must not hide its twin.
             entry = {"first_seen": now_s, "last_seen": now_s, "last_price": l.price_total,
                      "matched": [m.search for m in res.matches], "notified_at": None, "source": name}
             if fp:
@@ -417,9 +480,12 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
         for it in items:
             entry = state.seen.get(it.listing.uid)
             if it.detailed and entry is not None:
-                entry["details"] = detail_snapshot(it.listing, it.search_price)
+                entry["details"] = detail_snapshot(it.listing, it.search_price, it.result.flags)
                 entry["last_price"] = it.listing.price_total
                 entry["matched"] = [m.search for m in it.result.matches]
+                new_fp = fingerprint(it.listing)  # the detail page may give the full address
+                if new_fp:
+                    entry["fp"] = new_fp
         kept_ids = {id(i) for i in kept}
         for it in items:
             if id(it) not in kept_ids:
@@ -427,6 +493,34 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
                 if it.listing.uid in state.seen:
                     state.seen[it.listing.uid]["matched"] = []
         return kept
+
+    def settle_twins(items: List[Item]) -> List[Item]:
+        """The same home found on two sites: show the best listing, record the others as its duplicates.
+        Runs after the detail pages were read, so only a listing that still fits can hide its twin, and
+        the comparison uses the full address when the detail page gave one."""
+        kept: Dict[str, Item] = {}
+        out: List[Item] = []
+        new_uids = {i.listing.uid for i in items}
+        for it in items:
+            uid = it.listing.uid
+            entry = state.seen.get(uid)
+            fp = fingerprint(it.listing)
+            dup = None
+            if fp and entry is not None:
+                first = kept.get(fp)
+                if first is not None:
+                    if first.source.name != it.source.name and _same_home(it.listing, first.listing.to_dict()):
+                        dup = first.listing.uid
+                elif fp != it.fp:  # a fuller address: an earlier run may already have shown this home
+                    dup = known_duplicate(it.listing, fp, it.source.name, skip=new_uids)
+            if dup:
+                entry["dup_of"] = dup
+                state.matches.pop(uid, None)
+                continue
+            if fp:
+                kept.setdefault(fp, it)
+            out.append(it)
+        return out
 
     # 4. first-run pool
     if baseline_pool:
@@ -446,6 +540,8 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
             _card(state, it, now_s)
             if sender.send(fmt.format_new_match(it.listing, it.result, cfg, label(it)), it.listing.url):
                 state.seen[it.listing.uid]["notified_at"] = now_s
+            else:
+                unmark(it)  # not delivered: forget it, so the next run finds it as new and alerts
         sender.send(fmt.format_first_run_summary(total, baseline_sources, dash))
 
     # 5/6. new matches and price drops
@@ -453,6 +549,7 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
     new_items.sort(key=lambda i: i.sort_key)
     new_items = enrich_and_prune(new_items)
     new_items.sort(key=lambda i: i.sort_key)
+    new_items = settle_twins(new_items)
     for it in new_items:
         _card(state, it, now_s)
     # Re-check the detail page before announcing a price drop (the search price may be per person, etc.).
@@ -468,12 +565,17 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
                 if it.listing.uid in state.matches:
                     state.matches[it.listing.uid]["price_drop_from"] = None
                 continue
-            if id(it) in kept_drops and price is not None and price < old:
+            # The detail page has the last word, also on how big the drop is: for a home that already
+            # fitted, a verified drop below the threshold (search page 1200, real rent 1399) is no news.
+            if (id(it) in kept_drops and price is not None and price < old
+                    and (not it.was_matched or (old - price) / float(old) >= PRICE_DROP_MIN_PCT)):
                 _card(state, it, now_s)
                 state.matches[it.listing.uid]["price_drop_from"] = old
                 verified_drops.append((it, old))
             elif it.listing.uid in state.matches:
                 state.matches[it.listing.uid]["price_drop_from"] = None
+                if id(it) in kept_drops and not it.was_matched:
+                    new_items.append(it)  # fits now, but the rent did not really fall: a new match
         drop_items = verified_drops
     # 6b. Older matches that were never checked against their detail page (the first run only verifies
     # the ones it sends; busy runs can exceed the budget). Use what is left of this run's budget, starting
@@ -485,8 +587,9 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
         kept_backlog = {id(i) for i in enrich_and_prune(todo)}
         for it in todo:
             entry = state.seen.get(it.listing.uid)
-            if entry is not None and (not it.detailed or not it.listing.description):
-                # the page failed to load or said nothing: try again later, but not forever
+            if entry is not None:
+                # Every look counts, also one that loaded but left the question open (mailbox text is
+                # never saved, so such a listing would otherwise be looked at again on every run).
                 entry["detail_tries"] = int(entry.get("detail_tries") or 0) + 1
             if it.detailed and id(it) in kept_backlog:
                 _card(state, it, now_s)
@@ -515,8 +618,14 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
                 unmark(it)  # retry next run
             else:
                 state.matches.get(it.listing.uid, {})["price_drop_from"] = None
-                if it.listing.uid in state.seen:
-                    state.seen[it.listing.uid]["last_price"] = old
+                entry = state.seen.get(it.listing.uid)
+                if entry is not None:
+                    entry["last_price"] = old  # retry next run
+                    if not it.was_matched:
+                        # It did not fit before this drop. Put that back too, or the next run sees a
+                        # known match with a small price change and never announces it.
+                        entry["matched"] = []
+                        state.matches.pop(it.listing.uid, None)
     if overflow:
         sender.send(fmt.format_overflow(overflow, dash))
 
@@ -531,10 +640,12 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
             h["status"] = fr.status
             h["last_ok"] = now_s
             h["error"] = fr.error if fr.status == "partial" else None
-            if fr.status == "ok":
-                if h.get("alerted") and sender.send(fmt.format_recovery(src.label or name)):
-                    h["alerted"] = False
-                h["consecutive_failures"] = 0
+            # Partly working counts as working again: the failure streak ends, and a warning that was
+            # sent is followed by one message that says which part still fails.
+            still_failing = fr.error if fr.status == "partial" else None
+            if h.get("alerted") and sender.send(fmt.format_recovery(src.label or name, still_failing)):
+                h["alerted"] = False
+            h["consecutive_failures"] = 0
         else:
             h["status"] = fr.status
             h["last_error"] = now_s
