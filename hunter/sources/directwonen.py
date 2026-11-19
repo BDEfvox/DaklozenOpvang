@@ -20,10 +20,19 @@ from ..utils import city_slug, clean_text, parse_int, parse_price
 from .base import Source, SourceError
 
 BASE = "https://directwonen.nl"
+# The tile header. "Woning" is the site's generic word for a dwelling (524088 is headed "Woning" and is a
+# 5-kamerappartement), so it gives no type; fetch_details reads the type from the page's own wording.
 _TYPES = {
-    "appartement": "apartment", "woning": "house", "huis": "house", "eengezinswoning": "house",
+    "appartement": "apartment", "huis": "house", "eengezinswoning": "house",
     "studio": "studio", "kamer": "room", "parkeerplaats": "parking",
 }
+_GENERIC_HEADERS = ("woning",)
+_APARTMENT_WORDS = re.compile(r"appartement|maisonnette|penthouse|portiek|galerij|flat\b|benedenwoning|bovenwoning", re.I)
+_HOUSE_WORDS = re.compile(r"eengezinswoning|tussenwoning|hoekwoning|rijtjeshuis|vrijstaand|twee-onder-een-kap|villa\b|"
+                          r"woonhuis|bungalow|herenhuis", re.I)
+# the floor chip of the detail page ("Gestoffeerd", "Gemeubileerd"); its class names are not trusted
+_FURNISHED_LABELS = {"gemeubileerd": "furnished", "gestoffeerd": "upholstered", "kaal": "unfurnished",
+                     "ongemeubileerd": "unfurnished"}
 
 
 def _text(el: Optional[Tag]) -> str:
@@ -72,7 +81,6 @@ def parse_page(html: str, city: str) -> List[Listing]:
         if city_slug(town.strip()) != city:
             continue
         price = parse_price(_text(tile.select_one(".advert-location-price")))
-        kale = _text(tile.select_one(".kale-huur")).lower()
         rooms = area = None
         for banner in tile.select(".small-banner"):
             classes = banner.get("class") or []
@@ -95,10 +103,9 @@ def parse_page(html: str, city: str) -> List[Listing]:
             title="%s %s" % (header.capitalize() or "Woning", place),
             city=city,
             price_total=price,
-            price_includes_utilities=True if "incl" in kale else (False if "excl" in kale else None),
             rooms=rooms,
             area_m2=area,
-            property_type=_TYPES.get(header, "other" if header else None),
+            property_type=None if header in _GENERIC_HEADERS else _TYPES.get(header, "other" if header else None),
             address=street.strip() or None,
             available_from=avail,
             image_url=img.get("src") if img else None,
@@ -118,7 +125,24 @@ def apply_details(listing: Listing, html: str) -> Listing:
             listing.extra["details_unavailable"] = True
             return listing
         raise SourceError("layout changed: directwonen listing page has no description block")
-    listing.description = clean_text(info.get_text(" ", strip=True)) or listing.description
+    # The listing page shows a cut preview (.shortDescription) and then the full text (.contentToToggle):
+    # take the full text only.
+    full = info.select_one(".contentToToggle") or info.select_one(".shortDescription")
+    if full is None:
+        raise SourceError("layout changed: directwonen listing page has no description text")
+    listing.description = clean_text(full.get_text(" ", strip=True)) or listing.description
+    for chip in info.select(".appartment-information-list > div"):
+        classes = chip.get("class") or []
+        if "advert-furnished" in classes or "advert-unfurnished" in classes:
+            kind = _FURNISHED_LABELS.get(_text(chip).lower())
+            if kind:
+                listing.furnished = kind
+    if listing.property_type is None:
+        heading = _text(info.select_one("font.advert-header"))
+        wording = heading + " " + (listing.description or "")[:400]
+        apartment, house = bool(_APARTMENT_WORDS.search(wording)), bool(_HOUSE_WORDS.search(wording))
+        if apartment != house:  # both or neither: the page does not decide
+            listing.property_type = "apartment" if apartment else "house"
     return listing
 
 

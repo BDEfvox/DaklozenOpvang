@@ -30,6 +30,8 @@ DEFAULTS: Dict[str, Any] = {
     "income_patterns": [],
     "couple_patterns": [],
     "single_patterns": [],
+    "tenant_rules": {},
+    "household": {"age": None, "occupation": None},
 }
 
 

@@ -62,7 +62,9 @@ def in_quiet_hours(now_utc: datetime, quiet: List[int], tz_name: str) -> bool:
 
 
 class Notifier:
-    def send(self, text: str, url: Optional[str] = None, dashboard_url: Optional[str] = None) -> bool:
+    def send(self, text: str, url: Optional[str] = None, dashboard_url: Optional[str] = None,
+             audience: str = "all") -> bool:
+        """audience "all": the owner and every subscriber; "owner": the owner's chat only."""
         raise NotImplementedError
 
 
@@ -71,9 +73,10 @@ class ConsoleNotifier(Notifier):
         self.stream = stream or sys.stdout
         self.sent: List[str] = []
 
-    def send(self, text: str, url: Optional[str] = None, dashboard_url: Optional[str] = None) -> bool:
+    def send(self, text: str, url: Optional[str] = None, dashboard_url: Optional[str] = None,
+             audience: str = "all") -> bool:
         self.sent.append(text)
-        print("---- message ----\n%s\n[url=%s]\n" % (text, url or "-"), file=self.stream)
+        print("---- message [audience=%s] ----\n%s\n[url=%s]\n" % (audience, text, url or "-"), file=self.stream)
         return True
 
 
@@ -81,7 +84,9 @@ class TelegramNotifier(Notifier):
     def __init__(self, token: str, chat_id: str, quiet_hours: Optional[List[int]] = None,
                  timezone: str = "Europe/Amsterdam", min_gap: float = 3.0,
                  sleep: Callable[[float], None] = time.sleep,
-                 clock: Callable[[], datetime] = None, session: Any = None) -> None:
+                 clock: Callable[[], datetime] = None, session: Any = None,
+                 owner: bool = True, on_gone: Optional[Callable[[], Any]] = None,
+                 on_migrate: Optional[Callable[[str], Any]] = None) -> None:
         self.token = token
         self.chat_id = chat_id
         self.quiet = quiet_hours or []
@@ -90,6 +95,9 @@ class TelegramNotifier(Notifier):
         self._sleep = sleep
         self._clock = clock or (lambda: datetime.now().astimezone())
         self.session = session
+        self.owner = owner            # False for a subscriber's chat
+        self.on_gone = on_gone        # called when Telegram says the bot was removed or blocked
+        self.on_migrate = on_migrate  # called with the new id when the group became a supergroup
         self._last = 0.0
 
     def _payload(self, text: str, url: Optional[str], dashboard_url: Optional[str]) -> Dict[str, Any]:
@@ -116,7 +124,8 @@ class TelegramNotifier(Notifier):
         if self._last and gap < self.min_gap:
             self._sleep(self.min_gap - gap)
 
-    def send(self, text: str, url: Optional[str] = None, dashboard_url: Optional[str] = None) -> bool:
+    def send(self, text: str, url: Optional[str] = None, dashboard_url: Optional[str] = None,
+             audience: str = "all") -> bool:
         retried_429 = False
         migrated = False
         while True:
@@ -135,15 +144,17 @@ class TelegramNotifier(Notifier):
             if params.get("migrate_to_chat_id") and not migrated:
                 new_id = str(params["migrate_to_chat_id"])
                 add_secret(new_id)  # never in a log: the Actions log of a public repository is public
-                print("!" * 70, file=sys.stderr)
-                print("[telegram] WARNING: the group was upgraded to a supergroup, so its chat id changed.\n"
-                      "[telegram] Messages still arrive (this run uses the new id), but TELEGRAM_CHAT_ID is\n"
-                      "[telegram] out of date. The new id is not printed here because this log may be public:\n"
-                      "[telegram] on your computer run ./go-live.sh --telegram, which finds it and updates the secret.",
-                      file=sys.stderr)
-                print("!" * 70, file=sys.stderr)
+                if self.owner:
+                    print("!" * 70, file=sys.stderr)
+                    print("[telegram] WARNING: the group was upgraded to a supergroup, so its chat id changed.\n"
+                          "[telegram] Messages still arrive (this run uses the new id), but TELEGRAM_CHAT_ID is\n"
+                          "[telegram] out of date. The new id is not printed here because this log may be public:\n"
+                          "[telegram] on your computer run ./go-live.sh --telegram, which finds it and updates the secret.",
+                          file=sys.stderr)
+                    print("!" * 70, file=sys.stderr)
                 self.chat_id = new_id
                 migrated = True
+                self._call(self.on_migrate, new_id)
                 continue
             if data.get("error_code") == 429 and not retried_429:
                 retried_429 = True
@@ -151,7 +162,83 @@ class TelegramNotifier(Notifier):
                 continue
             print("[telegram] sendMessage failed: %s %s" % (
                 data.get("error_code"), redact(sanitize(data.get("description", ""), self.token))), file=sys.stderr)
+            if _is_gone(data):
+                self._call(self.on_gone)
             return False
+
+    @staticmethod
+    def _call(callback: Optional[Callable[..., Any]], *args: Any) -> None:
+        if callback is None:
+            return
+        try:
+            callback(*args)
+        except Exception as exc:  # a relay problem must never break the run
+            print("[telegram] subscriber bookkeeping failed (%s)" % type(exc).__name__, file=sys.stderr)
+
+
+def _is_gone(data: Dict[str, Any]) -> bool:
+    """The bot was removed from the chat or blocked: 403, or 400 "chat not found"."""
+    code = data.get("error_code")
+    if code == 403:
+        return True
+    return code == 400 and "chat not found" in str(data.get("description", "")).lower()
+
+
+class BroadcastNotifier(Notifier):
+    """The owner's chat first, then every subscriber (best effort).
+
+    send() returns the OWNER's result only: a subscriber who blocked the bot must not make the run think
+    delivery failed (it would retry the alert for the owner). Subscribers get a message only when the owner's
+    send succeeded and the audience is "all"."""
+
+    def __init__(self, owner: Notifier, subscribers: List[TelegramNotifier], relay: Any = None,
+                 spacing: float = 0.1, sleep: Callable[[float], None] = time.sleep) -> None:
+        self.owner = owner
+        self.relay = relay
+        self.spacing = spacing
+        self._sleep = sleep
+        self.gone: set = set()
+        owner_id = str(getattr(owner, "chat_id", ""))
+        self.subscribers: List[TelegramNotifier] = []
+        seen = {owner_id}
+        for sub in subscribers:
+            sid = str(sub.chat_id)
+            if sid in seen:  # the owner's own chat, or a duplicate
+                continue
+            seen.add(sid)
+            sub.owner = False
+            if relay is not None:
+                sub.on_gone = self._gone_callback(sub)
+                sub.on_migrate = self._migrate_callback(sid)
+            self.subscribers.append(sub)
+
+    def _gone_callback(self, sub: Any) -> Callable[[], Any]:
+        def gone() -> None:
+            current = str(sub.chat_id)  # the id after a migration, if the group moved earlier in this run
+            self.gone.add(current)
+            self.relay.remove(current)
+        return gone
+
+    def _migrate_callback(self, sid: str) -> Callable[[str], Any]:
+        def migrated(new_id: str) -> None:
+            self.relay.migrate(sid, new_id)
+        return migrated
+
+    def send(self, text: str, url: Optional[str] = None, dashboard_url: Optional[str] = None,
+             audience: str = "all") -> bool:
+        ok = self.owner.send(text, url=url, dashboard_url=dashboard_url, audience=audience)
+        if not ok or audience != "all":
+            return ok
+        for sub in self.subscribers:
+            if str(sub.chat_id) in self.gone:
+                continue
+            if self.spacing:
+                self._sleep(self.spacing)
+            try:
+                sub.send(text, url=url, dashboard_url=dashboard_url)
+            except Exception as exc:  # best effort
+                print("[telegram] a subscriber send failed (%s)" % type(exc).__name__, file=sys.stderr)
+        return ok
 
 
 def make_notifier(cfg: Dict[str, Any]) -> Notifier:
@@ -162,4 +249,16 @@ def make_notifier(cfg: Dict[str, Any]) -> Notifier:
               file=sys.stderr)
         return ConsoleNotifier()
     t = cfg.get("telegram", {})
-    return TelegramNotifier(token, chat, t.get("quiet_hours"), t.get("timezone", "Europe/Amsterdam"))
+    quiet, tz = t.get("quiet_hours"), t.get("timezone", "Europe/Amsterdam")
+    owner = TelegramNotifier(token, chat, quiet, tz)
+    relay_url = os.environ.get("RELAY_URL", "").strip()
+    relay_secret = os.environ.get("RELAY_PULL_SECRET", "").strip()
+    if not relay_url or not relay_secret:
+        return owner
+    from .subscribers import RelayClient
+    relay = RelayClient(relay_url, relay_secret)
+    chats = relay.list()
+    if chats is None:  # RelayClient has printed the one stderr line
+        return owner
+    subs = [TelegramNotifier(token, cid, quiet, tz, owner=False) for cid in chats]
+    return BroadcastNotifier(owner, subs, relay)

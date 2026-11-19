@@ -1,0 +1,128 @@
+[
+ {
+  "listing_id": 2418936,
+  "details": {
+   "suitableForNumberOfPersons": 2,
+   "candidateStatusId": [
+    1,
+    2
+   ],
+   "candidateMinAgeId": 16,
+   "candidateMaxAgeId": 40,
+   "candidateGenderId": 2,
+   "kitchenId": 2,
+   "livingRoomId": 2,
+   "showerId": 2,
+   "toiletId": 2,
+   "housematesNumberId": null,
+   "numOfRooms": null,
+   "dutchTitle": "Tijdelijke woonruimte tot 31mei op toplocatie.",
+   "englishTitle": "Temporary accommodation 31 may in prime location."
+  },
+  "block_html": "<section class=\"IdealTenant_root__TS7M8\"><h5 class=\"MuiTypography-root MuiTypography-h5 CommonStyles_margin_bottom_2__KEebs mui-1td2ri7\">Verhuurders ideale huurder</h5><div class=\"IdealTenant_rows__UzZJP\"><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Aantal huurders</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">2 personen</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Leeftijd</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">16 - 40 jaar</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Geslacht</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Vrouw</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Bezigheid</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Student , Werkende student</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Gesproken talen</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Iedereen welkom</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Verblijfsduur</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">6 maanden</p></div></div></section>"
+ },
+ {
+  "listing_id": 2414230,
+  "details": {
+   "suitableForNumberOfPersons": 2,
+   "candidateStatusId": [
+    1,
+    2,
+    4,
+    8
+   ],
+   "candidateMinAgeId": 20,
+   "candidateMaxAgeId": 99,
+   "candidateGenderId": 8,
+   "kitchenId": null,
+   "livingRoomId": null,
+   "showerId": null,
+   "toiletId": null,
+   "housematesNumberId": null,
+   "numOfRooms": null,
+   "dutchTitle": "Gemeubileerd 3-Kamerappartement in DenHaag Centrum",
+   "englishTitle": "Newly Furnished 2-BR Apartment in Den Haag Centrum"
+  },
+  "block_html": "<section class=\"IdealTenant_root__TS7M8\"><h5 class=\"MuiTypography-root MuiTypography-h5 CommonStyles_margin_bottom_2__KEebs mui-1td2ri7\">Verhuurders ideale huurder</h5><div class=\"IdealTenant_rows__UzZJP\"><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Aantal huurders</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">2 personen</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Leeftijd</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">20 - 99 jaar</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Geslacht</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Niet belangrijk</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Bezigheid</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Student , Werkende student , Werkend , Werkzoekend</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Gesproken talen</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Engels</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Verblijfsduur</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">3 maanden</p></div></div></section>"
+ },
+ {
+  "listing_id": 2419708,
+  "details": {
+   "suitableForNumberOfPersons": 2,
+   "candidateStatusId": null,
+   "candidateMinAgeId": null,
+   "candidateMaxAgeId": null,
+   "candidateGenderId": null,
+   "kitchenId": null,
+   "livingRoomId": null,
+   "showerId": null,
+   "toiletId": null,
+   "housematesNumberId": null,
+   "numOfRooms": 2,
+   "dutchTitle": "Op de 1e, 2e en 3e etage gelegen ruim volledig 2",
+   "englishTitle": "Situated on the 1st, 2nd and 3rd floor a spacious,"
+  },
+  "block_html": "<section class=\"IdealTenant_root__TS7M8\"><h5 class=\"MuiTypography-root MuiTypography-h5 CommonStyles_margin_bottom_2__KEebs mui-1td2ri7\">Verhuurders ideale huurder</h5><div class=\"IdealTenant_rows__UzZJP\"><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Aantal huurders</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">2 personen</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Leeftijd</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Niet belangrijk</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Geslacht</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Iedereen welkom</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Bezigheid</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Iedereen welkom</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Gesproken talen</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Iedereen welkom</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Verblijfsduur</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Niet belangrijk</p></div></div></section>"
+ },
+ {
+  "listing_id": 2418807,
+  "details": {
+   "suitableForNumberOfPersons": 4,
+   "candidateStatusId": null,
+   "candidateMinAgeId": 16,
+   "candidateMaxAgeId": 99,
+   "candidateGenderId": 8,
+   "kitchenId": 1,
+   "livingRoomId": 1,
+   "showerId": 1,
+   "toiletId": 1,
+   "housematesNumberId": null,
+   "numOfRooms": null,
+   "dutchTitle": "Privékamer (18m²) in kalm appartement bij Den Haag",
+   "englishTitle": "Private Room (18m²) in Calm Apartment at The Hague"
+  },
+  "block_html": "<section class=\"IdealTenant_root__TS7M8\"><h5 class=\"MuiTypography-root MuiTypography-h5 CommonStyles_margin_bottom_2__KEebs mui-1td2ri7\">Verhuurders ideale huurder</h5><div class=\"IdealTenant_rows__UzZJP\"><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Aantal huurders</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">3 personen</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Leeftijd</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">16 - 99 jaar</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Geslacht</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Niet belangrijk</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Bezigheid</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Iedereen welkom</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Gesproken talen</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Iedereen welkom</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Verblijfsduur</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">2 jaar of langer</p></div></div></section>"
+ },
+ {
+  "listing_id": 2419482,
+  "details": {
+   "suitableForNumberOfPersons": 8,
+   "candidateStatusId": null,
+   "candidateMinAgeId": 20,
+   "candidateMaxAgeId": 99,
+   "candidateGenderId": 8,
+   "kitchenId": 2,
+   "livingRoomId": 2,
+   "showerId": 2,
+   "toiletId": 2,
+   "housematesNumberId": null,
+   "numOfRooms": null,
+   "dutchTitle": "Tijdelijke gemeubileerd appartement te huur",
+   "englishTitle": "Furnished Apartment for Rent"
+  },
+  "block_html": "<section class=\"IdealTenant_root__TS7M8\"><h5 class=\"MuiTypography-root MuiTypography-h5 CommonStyles_margin_bottom_2__KEebs mui-1td2ri7\">Verhuurders ideale huurder</h5><div class=\"IdealTenant_rows__UzZJP\"><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Aantal huurders</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">4 personen</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Leeftijd</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">20 - 99 jaar</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Geslacht</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Niet belangrijk</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Bezigheid</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Iedereen welkom</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Gesproken talen</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Iedereen welkom</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Verblijfsduur</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Niet belangrijk</p></div></div></section>"
+ },
+ {
+  "listing_id": 2417636,
+  "details": {
+   "suitableForNumberOfPersons": 2,
+   "candidateStatusId": [
+    1,
+    2,
+    4
+   ],
+   "candidateMinAgeId": 16,
+   "candidateMaxAgeId": 99,
+   "candidateGenderId": 8,
+   "kitchenId": 2,
+   "livingRoomId": 2,
+   "showerId": 2,
+   "toiletId": 2,
+   "housematesNumberId": null,
+   "numOfRooms": null,
+   "dutchTitle": "Zeer mooi appartement ",
+   "englishTitle": "Zeer mooi appartement "
+  },
+  "block_html": "<section class=\"IdealTenant_root__TS7M8\"><h5 class=\"MuiTypography-root MuiTypography-h5 CommonStyles_margin_bottom_2__KEebs mui-1td2ri7\">Verhuurders ideale huurder</h5><div class=\"IdealTenant_rows__UzZJP\"><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Aantal huurders</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">2 personen</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Leeftijd</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">16 - 99 jaar</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Geslacht</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Niet belangrijk</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Bezigheid</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Student , Werkende student , Werkend</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Gesproken talen</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">Nederlands , Engels , Spaans</p></div><div class=\"IdealTenant_row__U4412\"><p class=\"MuiTypography-root MuiTypography-body2 mui-wxwe6r\">Verblijfsduur</p><p class=\"MuiTypography-root MuiTypography-body2 mui-1o41xnc\">6 maanden</p></div></div></section>"
+ }
+]

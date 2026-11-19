@@ -7,6 +7,7 @@ description usually mentions the bedrooms.
 """
 from __future__ import annotations
 
+import json
 import re
 from typing import List, Optional
 
@@ -29,6 +30,19 @@ _BEDROOMS = re.compile(
     rf"\s+slaapkamers\b|\b(\d+)\s+slaapkamer\b",
     re.I,
 )
+
+
+_MONTHS = {"januari": 1, "februari": 2, "maart": 3, "april": 4, "mei": 5, "juni": 6, "juli": 7, "augustus": 8,
+           "september": 9, "oktober": 10, "november": 11, "december": 12}
+_DATE = re.compile(r"\b(\d{1,2})\s+(" + "|".join(_MONTHS) + r")\.?,?\s+(\d{4})\b", re.I)
+# "exclusief g/w/l", "excl. g/w/l", "inclusief g/w/l"; a "niet inclusief" counts as exclusive
+_UTILITIES = re.compile(r"\b(niet\s+)?(excl(?:usief|\.)?|incl(?:usief|\.)?)\s+(?:de\s+)?g/w/l\b", re.I)
+
+
+def _iso_date(text: Optional[str]) -> Optional[str]:
+    """'Beschikbaar 1 december, 2026' -> '2026-12-01'. 'Direct' (or anything without a date) -> None."""
+    m = _DATE.search(text or "")
+    return "%s-%02d-%02d" % (m.group(3), _MONTHS[m.group(2).lower()], int(m.group(1))) if m else None
 
 
 def _text(el: Optional[Tag]) -> str:
@@ -68,10 +82,27 @@ def parse_page(html: str) -> List[Listing]:
             area_m2=parse_int(_text(card.select_one(".object-card__data-size"))),
             property_type=_TYPES.get((link.get("data-hose-tracking-object-type") or "").lower(), None),
             address=address,
+            available_from=_iso_date(avail),
             image_url=img.get("src") if img else None,
             extra={"availability": avail or None},
         ))
     return out
+
+
+def _json_ld_postcode(soup: BeautifulSoup) -> Optional[str]:
+    for script in soup.find_all("script", type="application/ld+json"):
+        try:
+            data = json.loads(script.string or "")
+        except ValueError:
+            continue
+        items = data if isinstance(data, list) else [data]
+        for item in items:
+            offered = item.get("itemOffered") if isinstance(item, dict) else None
+            address = offered.get("address") if isinstance(offered, dict) else None
+            code = address.get("postalCode") if isinstance(address, dict) else None
+            if isinstance(code, str) and re.match(r"^\d{4}\s?[A-Z]{2}$", code.strip(), re.I):
+                return code.replace(" ", "").upper()
+    return None
 
 
 class Heimstaden(Source):
@@ -100,8 +131,20 @@ class Heimstaden(Source):
             summary_description(listing, html, "heimstaden")
         for tr in soup.select(".project-facts-table tr"):
             th, td = tr.find("th"), tr.find("td")
-            if th is not None and td is not None and "kamers" in _text(th).lower():
+            if th is None or td is None:
+                continue
+            label = _text(th).lower()
+            if "kamers" in label:
                 listing.rooms = parse_int(_text(td)) or listing.rooms
+            elif label.startswith("beschikbaar"):
+                # "Direct" has no date. The JSON-LD availabilityStarts is not used: it is stale on "Direct" homes.
+                listing.available_from = _iso_date(_text(td)) or listing.available_from
+        if listing.postcode is None:
+            listing.postcode = _json_ld_postcode(soup)
+        um = _UTILITIES.search(listing.description or "")
+        if um:
+            inclusive = um.group(2).lower().startswith("incl")
+            listing.price_includes_utilities = inclusive != bool(um.group(1))
         bm = _BEDROOMS.search(listing.description or "")
         # A range ("1 tot 3 slaapkamers") is a page for several homes: no single count is right, so the
         # count stays unknown and the filters fall back on the room count, marked as unconfirmed.

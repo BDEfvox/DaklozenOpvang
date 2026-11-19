@@ -30,12 +30,15 @@ def test_parse_tiles():
     assert a.uid == "directwonen:523826"
     assert a.url == "https://directwonen.nl/huurwoningen-huren/den-haag/norenburg/appartement-523826"  # not the payment page
     assert a.price_total == 1080 and a.rooms == 2 and a.area_m2 == 55
-    assert a.property_type == "apartment" and a.price_includes_utilities is False
+    assert a.property_type == "apartment"
     assert a.address == "Norenburg" and a.available_from == "2026-12-01"
     house = out[1]
-    assert house.property_type == "house" and house.rooms == 6 and house.price_total == 4500
+    # the tile header "Woning" is the site's generic word for a dwelling: it does not say house or apartment
+    assert house.property_type is None and house.rooms == 6 and house.price_total == 4500
     assert any(l.property_type == "room" for l in out)
-    assert any(l.price_includes_utilities is True for l in out)
+    # "(Excl.)" / "(Incl.)" are never explained on the tile or the detail page (G.W.E., Servicekosten and
+    # Totale huurprijs are empty): they are not read as "utilities included"
+    assert [l.price_includes_utilities for l in out] == [None] * len(out)
 
 
 def test_other_city_is_dropped():
@@ -103,3 +106,67 @@ def test_smart_only_adverts_are_not_fetched_and_payment_page_is_not_an_error():
     l = Listing(source="directwonen", source_id="523879", url=url, title="t", city="leiden", rooms=4)
     paywall = '<html><title>Smart account betaling</title><input id="RoomAdvertPrice" value="2350"></html>'
     assert SOURCE.fetch_details(l, FakeHttp(paywall)).extra["details_unavailable"] is True
+
+
+# ---------------------------------------------------------------- audit fixes (pages saved 2026-11-19)
+def _detail(sid):
+    return (FIX / ("directwonen_detail_%s.html" % sid)).read_text()
+
+
+def _tiles():
+    return {l.source_id: l for l in parse_page((FIX / "directwonen_tiles.html").read_text(), "den-haag")}
+
+
+def _fetch(sid, tile_id=None, **kw):
+    from hunter.models import Listing
+    url = "https://directwonen.nl/huurwoningen-huren/den-haag/x/appartement-%s" % sid
+    l = Listing(source="directwonen", source_id=sid, url=url, title="t", city="den-haag", **kw)
+    http = FakeHttp(_detail(sid))
+    out = SOURCE.fetch_details(l, http)
+    assert http.urls == [url]
+    return out
+
+
+def test_tile_types_come_from_the_tile_wording_and_excl_is_not_read():
+    tiles = _tiles()
+    assert tiles["524088"].property_type is None            # "Woning": generic
+    assert tiles["514568"].property_type == "apartment" and tiles["524047"].property_type == "room"
+    assert tiles["483719"].property_type == "studio"
+    assert all(l.price_includes_utilities is None for l in tiles.values())  # every tile says "(Excl.)" or "(Incl.)"
+
+
+def test_house_by_tile_header_is_dropped_but_a_real_house_word_is_kept():
+    html = (FIX / "directwonen_tiles.html").read_text().replace(">Woning<", ">Eengezinswoning<")
+    assert {l.source_id: l for l in parse_page(html, "den-haag")}["524088"].property_type == "house"
+
+
+def test_524088_is_an_apartment_by_its_own_wording():
+    # tile header "Woning"; page: "Geweldig en ruim 5-kamerappartement", "Afgesloten portiek ... trappenhuis ... 3e etage"
+    l = _fetch("524088", property_type=_tiles()["524088"].property_type)
+    assert l.property_type == "apartment"
+    assert l.furnished is None                               # the floor chip shows "-"
+    assert l.description.count("Geweldig en ruim 5-kamerappartement") == 1  # not the cut preview twice
+    assert "karakteristie...." not in l.description
+    assert "Het appartement is geschikt voor een stel/ gezin." in l.description
+    assert "Drie slaapkamers van circa. 10 m², 9 m², 6 m²." in l.description  # the end of the text is there too
+
+
+def test_a_tile_type_that_is_specific_is_not_overruled():
+    l = _fetch("524088", property_type="house")
+    assert l.property_type == "house"
+
+
+def test_furnished_from_the_floor_chip():
+    assert _fetch("514568", property_type="apartment").furnished == "upholstered"   # "Gestoffeerd"
+    assert _fetch("509993", property_type="apartment").furnished == "upholstered"
+    l = _fetch("520768", property_type="apartment")                                   # "Gemeubileerd"
+    assert l.furnished == "furnished" and "volledig gemeubileerd opgeleverd" in l.description
+    assert "ideaal is voor professionals, stellen of iedereen" in l.description
+
+
+def test_unknown_chip_wording_gives_no_furnished():
+    html = _detail("514568").replace("Gestoffeerd", "Op aanvraag")
+    from hunter.models import Listing
+    l = Listing(source="directwonen", source_id="1", url="https://directwonen.nl/huurwoningen-huren/den-haag/x/appartement-1",
+                title="t", city="den-haag")
+    assert SOURCE.fetch_details(l, FakeHttp(html)).furnished is None

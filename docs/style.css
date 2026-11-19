@@ -70,7 +70,7 @@ body{margin:0;background:var(--grouped-background);color:var(--label);font:400 1
 h1,h2,h3,p,ul,fieldset,legend{margin:0;padding:0}
 ul{list-style:none}
 fieldset{border:0;min-width:0}
-button,input,select{font:inherit;color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
 button,select,label,a,input{-webkit-tap-highlight-color:transparent}
 [hidden]{display:none!important}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -123,6 +123,11 @@ h1{font-size:2.125rem;line-height:2.5625rem;font-weight:700}
 .count>span{display:block;animation:roll var(--snappy-time) var(--spring-snappy)}
 .filters-pane{display:none}
 
+@media (max-width:35.99em){
+  .reply-btn{justify-content:center;width:44px;padding:0}
+  .reply-btn span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+}
+
 /* ---------- Listings ---------- */
 .list-head{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;padding:0 4px}
 .count-line{color:var(--secondary-label);font-size:.9375rem;line-height:1.25rem;font-variant-numeric:tabular-nums}
@@ -160,6 +165,11 @@ h1{font-size:2.125rem;line-height:2.5625rem;font-weight:700}
 .mark .icon{width:1.125rem;height:1.125rem;margin-top:1px}
 .mark.good .icon,.mark.drop .icon{color:var(--green)}
 .mark.warn .icon{color:var(--red)}
+.mark.req .icon{color:var(--grey-mark)}
+/* The listing's own sentence behind a mark, so it can be checked at a glance. */
+.quote{clear:both;margin-top:5px;padding-inline-start:9px;border-inline-start:2px solid var(--separator);color:var(--secondary-label);
+  font-size:.8125rem;line-height:1.125rem;overflow-wrap:anywhere}
+.quote+.quote{margin-top:4px}
 .mark.drop{font-weight:600}
 .title{margin-top:2px;font-size:1.0625rem;line-height:1.375rem;font-weight:400;overflow-wrap:anywhere}
 .link{color:inherit;text-decoration:none}
@@ -222,6 +232,11 @@ legend{display:block;padding:0 4px 8px;color:var(--secondary-label);font-size:.9
 .pick:checked~.check{stroke-dashoffset:0;opacity:1;transition:stroke-dashoffset .32s cubic-bezier(.3,.7,.3,1),opacity .05s}
 .row:has(:focus-visible){outline:3px solid var(--tint-text);outline-offset:-3px;border-radius:12px}
 .row:has(:focus-visible) :focus-visible{outline:none}
+/* A short typed value at the end of a row. */
+.field{flex:none;width:4.25rem;min-height:36px;padding:0 10px;border:0;border-radius:8px;outline:0;background:var(--tertiary-fill);
+  text-align:end;font-variant-numeric:tabular-nums;-webkit-appearance:none;appearance:none}
+.field::placeholder{color:var(--tertiary-label);opacity:1}
+.after-control{margin-top:12px}
 .row.slider{display:grid;grid-template-columns:1fr auto;column-gap:12px;padding-bottom:2px;cursor:default}
 .row.slider output{color:var(--secondary-label);font-variant-numeric:tabular-nums}
 .row.slider input{grid-column:1/-1;width:100%;min-height:44px;margin:0;accent-color:var(--tint);cursor:pointer}
@@ -253,6 +268,19 @@ legend{display:block;padding:0 4px 8px;color:var(--secondary-label);font-size:.9
 .segmented input:checked+span{font-weight:600}
 .segmented input:focus-visible+span{outline:3px solid var(--tint-text);outline-offset:2px}
 .clear{justify-self:start;margin-top:-8px}
+
+/* ---------- Reply editor ---------- */
+.editor{display:block;width:100%;min-height:11rem;padding:12px 16px;border:0;border-radius:12px;background:var(--surface);
+  line-height:1.375rem;resize:vertical;-webkit-appearance:none;appearance:none}
+.editor:focus-visible{outline-offset:-3px}
+legend label{cursor:default}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{position:relative;min-height:34px;padding:0 13px;border:0;border-radius:999px;background:var(--fill);font-size:.9375rem;font-weight:500;
+  cursor:pointer;transition:transform var(--bouncy-time) var(--spring-bouncy),filter .3s}
+.chip::after{content:"";position:absolute;inset:-5px 0}   /* 34 px tall to look at, 44 px tall to hit */
+.chip:active{transform:scale(.95);filter:brightness(.93);transition-duration:.09s;transition-timing-function:ease-out}
+.preview{padding:12px 16px;border-radius:12px;background:var(--surface);color:var(--secondary-label);font-size:.9375rem;line-height:1.25rem;
+  white-space:pre-wrap;overflow-wrap:anywhere}
 
 /* ---------- Sheets (opened, closed and dragged by app.js) ---------- */
 dialog{max-width:none;max-height:none;padding:0;border:0;background:var(--grouped-background);color:var(--label)}
@@ -316,6 +344,7 @@ dialog::backdrop{background:transparent}
   .bar{position:static;margin:0;padding:0;background:none}
   .bar .glass{background:var(--tertiary-fill);box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
   .bar-btn{display:none}
+  .bar .reply-btn{display:inline-flex}
   .filters-pane{display:block;margin-top:4px}
   main{padding-top:28px}
 }
@@ -349,13 +378,13 @@ dialog::backdrop{background:transparent}
 }
 @media (prefers-contrast:more){
   .glass{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;border:1px solid var(--separator)}
-  .list,.banner{border:1px solid var(--separator)}
+  .list,.banner,.editor,.preview{border:1px solid var(--separator)}
   .segmented.held .thumb{background:var(--thumb);-webkit-backdrop-filter:none;backdrop-filter:none}
 }
 /* Reduce Motion: nothing slides, scales or bounces; changes fade instead. app.js does the same for its springs. */
 @media (prefers-reduced-motion:reduce){
-  .btn,.bar-btn,.icon-btn,.switch::before,.thumb{transition:opacity .2s,background-color .2s}
-  .btn:active,.bar-btn:active,.icon-btn:active{transform:none}
+  .btn,.bar-btn,.icon-btn,.chip,.switch::before,.thumb{transition:opacity .2s,background-color .2s}
+  .btn:active,.bar-btn:active,.icon-btn:active,.chip:active{transform:none}
   .segmented.held .thumb{scale:none}
   .switch:active::before,.row:active .switch::before{width:27px}
   .switch:checked:active::before,.row:active .switch:checked::before{transform:translateX(20px)}
@@ -364,7 +393,7 @@ dialog::backdrop{background:transparent}
   .copy .icon{animation:none}
 }
 @media (forced-colors:active){
-  .glass,.list,.banner,.btn,.switch,.segmented,.thumb-box,.tier{border:1px solid CanvasText}
+  .glass,.list,.banner,.btn,.switch,.segmented,.thumb-box,.tier,.chip,.editor,.preview,.field{border:1px solid CanvasText}
   .thumb{outline:2px solid Highlight;outline-offset:-2px}
   .switch:checked{background:Highlight}
   .dot,.new-dot{forced-color-adjust:none}

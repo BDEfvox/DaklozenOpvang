@@ -45,3 +45,51 @@ def test_fetch_details():
 def test_layout_change_raises(html):
     with pytest.raises(SourceError):
         parse_page(html)
+
+
+def _detail(tag, **kw):
+    l = Listing(source="heimstaden", source_id="x", url="https://heimstaden.com/nl/huurwoningen/x/", title="x", city="den-haag", **kw)
+    return SOURCE.fetch_details(l, FakeHttp((FIX / ("heimstaden_detail_%s.html" % tag)).read_text()))
+
+
+def test_postcode_from_json_ld():
+    assert _detail("direct_denhaag").postcode == "2571AD"
+    assert _detail("dated_rotterdam").postcode == "3059RB"
+
+
+def test_direct_has_no_date_even_though_json_ld_has_one():
+    # page: "Beschikbaar: Direct" next to JSON-LD "availabilityStarts": "2026-11-08" (stale)
+    out = _detail("direct_denhaag")
+    assert '"availabilityStarts": "2026-11-08"' in (FIX / "heimstaden_detail_direct_denhaag.html").read_text()
+    assert out.available_from is None
+
+
+def test_available_from_from_facts_block_and_card():
+    assert _detail("dated_rotterdam").available_from == "2026-12-01"  # "Beschikbaar: 1 december, 2026"
+    assert all(l.available_from is None for l in parse_page((FIX / "heimstaden.html").read_text()))  # cards say "Direct"
+
+
+def test_card_date_is_read():
+    html = (FIX / "heimstaden.html").read_text()
+    html = html.replace("Beschikbaar Direct", "Beschikbaar 1 december, 2026")
+    out = parse_page(html)
+    assert out and all(l.available_from == "2026-12-01" for l in out)
+
+
+def test_utilities_exclusive():
+    # "Huurprijs per maand: € 1.800 – exclusief g/w/l."
+    assert _detail("direct_denhaag").price_includes_utilities is False
+
+
+def test_utilities_inclusive_and_unstated():
+    html = (FIX / "heimstaden_detail_direct_denhaag.html").read_text().replace("exclusief g/w/l", "inclusief g/w/l")
+    l = Listing(source="heimstaden", source_id="x", url="https://heimstaden.com/nl/huurwoningen/x/", title="x", city="den-haag")
+    assert SOURCE.fetch_details(l, FakeHttp(html)).price_includes_utilities is True
+    assert _detail("dated_rotterdam").price_includes_utilities is None  # the Rotterdam page does not say
+
+
+def test_full_description_is_kept():
+    out = _detail("age_amsterdam")
+    # the intro is 4453 characters; the old 4000 character cut lost the end
+    assert len(out.description) > 4400
+    assert out.description.rstrip().endswith("ontleend.") or "Wij adviseren online te reageren" in out.description

@@ -182,10 +182,10 @@ def test_first_batch_that_fails_halfway_sends_the_rest_next_run(cfg, tmp_path):
     src = FakeSource(listings=[make_listing(str(i), price_total=1300 + i) for i in range(4)])
 
     class FailsAfterTwo(FakeNotifier):
-        def send(self, text, url=None, dashboard_url=None):
+        def send(self, text, url=None, dashboard_url=None, audience="all"):
             if len(alerts(self)) >= 2:
                 return False
-            return super().send(text, url, dashboard_url)
+            return super().send(text, url, dashboard_url, audience)
 
     first, _ = go(cfg, tmp_path, [src], notifier=FailsAfterTwo())
     second, _ = go(cfg, tmp_path, [src], now=at(10))

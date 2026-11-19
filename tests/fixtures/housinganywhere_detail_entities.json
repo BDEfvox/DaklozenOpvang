@@ -1,0 +1,94 @@
+{
+ "ut1688576": {
+  "minAge": 30,
+  "maxAge": 0,
+  "preferredGender": "",
+  "freePlaces": 2,
+  "currentOccupancy": 0,
+  "bookablePeriods": [
+   {
+    "from": "2026-11-19T00:00:00Z",
+    "to": "9999-12-31T00:00:00Z"
+   }
+  ],
+  "facilities": {
+   "tenant_status": "working professionals only",
+   "registration_possible": "yes",
+   "kitchen": "private",
+   "bathroom": "private",
+   "toilet": "private",
+   "living_room": "private"
+  },
+  "description": "Ich vermiete meine große, schöne, zentral gelegene, teils möblierte Wohnung in der Nähe vom Strand/Kijkduin. Aktuell ist sie noch sanierungs-und renovierungsbedürftig (siehe Bilder). Ab dem 1.11.26 ist sie fertig renoviert, sauber, teilmöbliert und steht zur Verfügung. Im Wohnzimmer steht ein 5m lan",
+  "og_description": "Bills included, 100 m², Space for 2 people. Check it out."
+ },
+ "ut1342881": {
+  "minAge": 18,
+  "maxAge": 0,
+  "preferredGender": "",
+  "freePlaces": 3,
+  "currentOccupancy": 0,
+  "bookablePeriods": [
+   {
+    "from": "2026-11-19T00:00:00Z",
+    "to": "9999-12-31T00:00:00Z"
+   }
+  ],
+  "facilities": {
+   "tenant_status": "any",
+   "registration_possible": "yes",
+   "kitchen": "private",
+   "bathroom": "private",
+   "toilet": "private",
+   "living_room": "private"
+  },
+  "description": "\n🌟 Luxurious Fully Furnished Apartment for Rent in Valkenboskade, The Hague! 🌟\n\nWelcome to your dream home in the heart of The Hague – where luxury meets convenience! This stunning, fully furnished apartment on Valkenboskade is available for rent, offering an exquisite living experience in a fantast",
+  "og_description": "108 m², Space for 3 people, WiFi. Check it out."
+ },
+ "ut1684872": {
+  "minAge": 25,
+  "maxAge": 0,
+  "preferredGender": "",
+  "freePlaces": 4,
+  "currentOccupancy": 0,
+  "bookablePeriods": [
+   {
+    "from": "2026-11-19T00:00:00Z",
+    "to": "9999-12-31T00:00:00Z"
+   }
+  ],
+  "facilities": {
+   "tenant_status": "any",
+   "registration_possible": "no",
+   "kitchen": "private",
+   "bathroom": "private",
+   "toilet": "private",
+   "living_room": "private"
+  },
+  "description": "Sharing an avenue with the King’s working palace isn’t for everyone — but for those who appreciate a truly exceptional location, this apartment offers a unique stay. Perfectly suited for both business and leisure travellers, it combines an unbeatable address with a stylish and comfortable interior.\n",
+  "og_description": "Bills included, 110 m², Space for 4 people. Check it out."
+ },
+ "ut1498809": {
+  "minAge": 0,
+  "maxAge": 0,
+  "preferredGender": "",
+  "freePlaces": 2,
+  "currentOccupancy": 0,
+  "bookablePeriods": [
+   {
+    "from": "2027-02-28T00:00:00Z",
+    "to": "2028-11-18T00:00:00Z"
+   }
+  ],
+  "facilities": {
+   "tenant_status": null,
+   "registration_possible": null,
+   "kitchen": "private",
+   "bathroom": "private",
+   "toilet": null,
+   "living_room": null
+  },
+  "description": "Welcome to our luxurious one-bedroom apartment located on the prestigious Laan van Meerdervoort in The Hague. This modern and elegantly furnished apartment offers a perfect blend of comfort and style, making it an ideal choice for solo travelers or couples seeking a memorable stay in the heart of th",
+  "og_description": "41 m², Space for 2 people, WiFi. Check it out."
+ }
+}

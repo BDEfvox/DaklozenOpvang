@@ -1,0 +1,21 @@
+{
+ "listingId": 2417441,
+ "isTopAdvert": true,
+ "isReactForFree": false,
+ "furnishingId": 4,
+ "availabilityStartDate": "2027-01-01T00:00:00",
+ "availabilityEndDate": null,
+ "street": "Van Alkemadelaan",
+ "streetSlug": "van-alkemadelaan",
+ "city": "Den Haag",
+ "citySlug": "den-haag",
+ "isFavorite": false,
+ "surfaceArea": 43,
+ "listingType": 2,
+ "totalRentalPrice": 1300,
+ "utilitiesIncluded": true,
+ "isNewAdvert": false,
+ "studentHouseId": null,
+ "isStudentHouseAdvert": false,
+ "cityId": 291
+}

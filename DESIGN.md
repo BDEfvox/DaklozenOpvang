@@ -28,6 +28,8 @@ hunter/
   sources/<site>.py  one module per site, defines SOURCE = <Source instance>
   config.py          loads config.json
   filters.py         decides matches, tiers, flags
+  tenancy.py         who may rent: students / working people / age / sharers / housemates, read from the
+                     listing's text, with the sentence that says so
   state.py           seen listings, source health, daily digest bookkeeping
   notify/telegram.py Telegram Bot API (sendMessage), quiet hours, rate limit
   dashboard.py       writes docs/data.json (the page in docs/ reads it)
@@ -37,6 +39,7 @@ data/                state (committed by the workflow): seen.json, health.json, 
 docs/                dashboard (GitHub Pages from main:/docs): index.html, app.js, style.css, data.json
 .github/workflows/hunt.yml
 go-live.sh           one-time setup the USER runs (gh login, Telegram token, repo, secrets, Pages)
+telegram-relay/     Cloudflare Worker for subscribers (invite link): worker.mjs, deploy.sh (the USER runs it), tests
 tests/
 ```
 
@@ -53,6 +56,17 @@ stable across runs.
   2 at most.
 - `fetch_details(listing, http) -> Listing` (optional): called only for NEW listings that pass the
   filters, at most ~10 per run, to fill `description` (used for flags) and missing fields.
+- **Who may rent, from the site's own fields.** A source may put what the site states as data into
+  `listing.extra`; `filters.detect` turns it into flags. Scalars only. Set a key only when the saved pages show
+  the field's value next to the label the site prints for it; an id whose label was never seen sets nothing.
+  - `site_students_only`, `site_working_only`, `site_no_students`, `site_students_ok`, `site_no_sharers`,
+    `site_sharers_ok`, `site_housemates`, `site_women_only`, `site_men_only`: `True`.
+  - `site_min_age`, `site_max_age`: int. `max_persons`: int. `registration_possible`: `False`.
+  - `max_stay_months`: int. `price_per_person`: `True` (the listed rent is for one person).
+  - `mandatory_costs`: int, a monthly cost that cannot be declined (a compulsory parking place), with
+    `mandatory_costs_note`: the page's words for it. `service_costs`: int (kept, not used for matching).
+  - `site_facts`: up to 200 characters in the page's own labels ("Bezigheid: Student · Leeftijd: 23 - 30 jaar").
+    It is shown to the user as the proof for every flag that came from these keys.
 - Raise `SourceBlocked` for bot walls, `SourceError` for anything else. Never return a half-parsed
   page silently: if the page structure is not recognised, raise `SourceError("layout changed: …")`.
   Returning `[]` means "the site really shows no listings".
@@ -81,10 +95,84 @@ re-check sends no alerts; it only corrects or removes cards. A page that fails i
 
 Flags (case-insensitive phrase lists in config.json, Dutch + English), detected in title + description:
 `no_sharers`, `max_persons:N`, `no_students`, `sharers_ok`, `no_registration`, `income_requirement`,
-`short_term` (rental period < 12 months when dates are known), `utilities_included`,
+`short_term` (rental period < 12 months when dates are known, a site field, or wording such as "alleen short
+stay" / "maximaal 6 maanden"), `utilities_included`,
 `suspicious_price` (total < €700 for 2+ bedrooms), `scam_signals` (payment before viewing, landlord abroad,
 keys by mail, western union, airbnb payment, whatsapp-only…). Flags never hide a listing; a
 `no_sharers` or `max_persons:2` flag removes it from the 3-person search only.
+
+### Who may rent (`tenancy.py`)
+Flags: `students_only`, `no_students`, `students_ok`, `working_only`, `women_only`, `men_only`, `min_age:N`,
+`max_age:N`, `no_sharers`, `sharers_ok`, `housemates` (people already live there, or kitchen or bathroom is
+shared). The dashboard filters on these, so the rules put accuracy before coverage:
+- **Only a statement sets a restriction.** "Alleen voor studenten", "uitsluitend werkenden", "minimale
+  leeftijd 23 jaar", "55+ woning". "Ideaal voor studenten" sets only the mild `students_ok` ("Students
+  welcome"), which hides nothing; "populair bij expats" and "30-plussers in de wijk" set nothing.
+- **Denials are read.** "Niet alleen voor studenten", "je hoeft geen student te zijn", "niet alleen voor
+  stellen", "no shared kitchen", "geen huisgenoten" set nothing.
+- **A choice is not a restriction.** "Alleen voor studenten of young professionals" and "must be a student or
+  have a job" set neither flag.
+- **Look-alikes are excluded.** "Tussen 20 en 30 minuten fietsen" and "€ 65 plus € 120" are no ages; "het pand
+  is ouder dan 25 jaar" is none without people in the sentence; a shared garden, storage or entrance is no
+  housemate.
+- **Contradictions drop both sides.** Students only together with no students or working only: all dropped.
+  Women only with men only: both dropped. A minimum age above the maximum age: both dropped.
+- **Ages** count only from 19 to 80 (minimum) and 18 to 99 (maximum), so "18+" and house numbers set nothing.
+- The site's own fields (`extra["site_*"]`, see the source contract) set the same flags. A site's age beats the
+  age in the text.
+- `tenant_rules` in config.json can add patterns per flag (`{"students_only": ["..."], "age": [["...", "min"]]}`);
+  a broken pattern is ignored.
+- The corpus of real and made-up phrases is `tests/test_tenancy.py`. Add the phrase there first when a rule
+  changes.
+
+**Evidence.** Every flag that comes from text carries the listing's own sentence (the clause around the match,
+at most 160 characters, cut between words). A flag from site fields carries `site_facts`. `MatchResult.evidence`
+maps flag name → sentence; it is saved on the card, sent in the alert (two sentences at most) and shown on the
+dashboard, so every filterable claim can be checked at a glance. Two cuts of one long sentence are shown once.
+Text from the user's mailbox decides flags but is never quoted or saved (`evidence` is `{}`).
+
+**Rent per person** (`price_per_person`): set when the listing says the listed amount is per person ("de prijs
+is per persoon", or the listed amount itself followed by "per persoon"), or by the source. The total for a
+search is then rent × persons. Deposits and service costs "per persoon" do not count.
+
+**Compulsory costs** (`mandatory_costs:N`): a monthly amount that cannot be declined, from the source or from
+wording such as "verplichte afname van een parkeerplaats voor € 150 per maand". It is added to the total
+before the budget test.
+
+**Rooms against bedrooms.** `utils.rooms_from_dutch_text` reads "tweekamerappartement" / "3-kamer appartement"
+(Dutch only; never "slaapkamer"). When the site's bedroom count is not below that room count, the site's
+number is the room count: bedrooms become rooms − 1 and the match is marked "bedrooms not confirmed".
+
+**The household** (`household` in config.json, default empty): `{"age": 24, "occupation": "students"}` or
+`"working"`. When set, a home whose own flags exclude the household (students only for workers, a minimum age
+above the age, …) is not matched and not alerted. A home that says nothing is never excluded.
+
+**Remembering what a detail page said.** The saved text is cut (card 4,000 characters, snapshot 2,500; the
+reading limit is 20,000), so the flags and sentences found in the full text are stored in the snapshot. On
+later runs they are passed back into `evaluate(listing, cfg, remembered=...)`, so they count for matching as
+well as for display: a "geen woningdelers" from the end of a long text keeps the three-person match out. Only
+a snapshot of the current `DETAIL_VERSION` is believed; what an older version remembered is ignored until the
+page has been read again.
+`runner.DETAIL_VERSION` is raised when the readers learn something new: every card whose page was read by an
+older version is read once more (within the normal allowance per run), without alerts.
+
+**Saved cards follow today's rules.** At the end of every run `runner.rejudge_cards` judges each card whose
+listing was not on a search page in that run again, from what was saved (no request, no alert). A correction
+to the matcher therefore reaches every card in the next run; a card that no longer fits is removed. Cards made
+from mailbox text are left alone, because their text was never saved.
+
+**Not a home.** A listing without a type, bedrooms or rooms whose first words name something else gets type
+`other` (`filters.infer_type`) and never matches: either the thing is named as what is for rent ("Opslagruimte
+van circa 48 m2 te huur", "Te huur: garagebox"), or the text names no part of a home anywhere. A home whose
+text opens with "Parkeerplaats voor de deur" stays a home.
+
+**A price that the source reads differently.** A source may set `extra["price_basis"]`. When it differs from
+the one saved with the listing, the new number is not announced as a price drop. HousingAnywhere prices per
+month of the year: `price_total` is the page's headline "From €X" (stable), `extra["price_first_month"]` and
+`price_max` hold the rest, and the flag `price_varies:N` says "Rent depends on the month, up to €N".
+
+**One person in a list.** "Geschikt voor alleenstaanden, stellen en kleine gezinnen" is a list of who the
+home suits, not a limit: with families in the sentence it sets no `max_persons`, with couples it sets 2.
 
 `income_requirement` has two more inputs besides its phrase list. (1) `income_patterns` in config.json:
 regexes for the many wordings ("inkomensrichtlijnen", "bruto maandsalaris 3,5x keer de huurprijs", "proof of
@@ -105,7 +193,8 @@ the flag even when the listing text is silent.
 ## Notifications (`notify/telegram.py`)
 Env: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`. Missing → print messages to stdout (dry run).
 - New match: HTML message. Title line with tier emoji, city, total rent + € pp for each matching group
-  size, bedrooms/rooms/m², furnished, available from, flags as short warnings, source label, link.
+  size, bedrooms/rooms/m², furnished, available from, flags as short warnings, up to two of the listing's
+  own sentences behind those flags (`💬`), source label, link.
   An inline-keyboard button "Open listing". An expandable blockquote with the Dutch reply template
   from config.json.
 - Price drop into budget for a seen listing → "price drop" message.
@@ -123,10 +212,21 @@ Static page (no build step) reading `data.json`. Plain HTML/CSS/JS, system fonts
   per person (cheapest match for the chosen group size first), then title, total rent and facts, warnings
   (icon + text), source and age. The row opens the listing; "Copy Reply" copies the reply text. A blue dot
   marks listings found in the last 24 h.
-- **Filters:** group size, cities, max € per person, "great prices only", "hide listings with warnings";
-  search and sort sit above the list. On a narrow screen the filters are in a sheet behind the Filters
-  button (Done keeps the changes, Cancel puts back what was set before). On a wide screen (60em and up)
-  the same form sits in a side column; `app.js` moves it there. Filters are remembered in localStorage.
+- **Filters:** group size (2 People, 3 People, Any), cities, max € per person, who is renting (Students,
+  Working, Any, and an age), house sharing (hide homes that refuse sharers, only homes that welcome sharers,
+  hide homes with housemates), "hide listings with warnings"; search and sort sit above the list. The
+  who-is-renting and sharing filters only hide a home that states the opposite: a home that says nothing
+  stays. There is no "great prices only" filter: the budget slider does that. On a narrow screen the filters
+  are in a sheet behind the Filters button (Done keeps the changes, Cancel puts back what was set before). On a
+  wide screen (60em and up) the same form sits in a side column; `app.js` moves it there. Filters are
+  remembered in localStorage.
+- **Proof:** under a row's marks stands the sentence of the listing (or the site's own fields) that set them,
+  as a quote (`.quote`, plain text, at most three).
+- **Reply:** the Reply button opens an editor for the text that "Copy Reply" copies. Chips insert a detail
+  (`{title}`, `{address}`, `{city}`, `{price}`, `{bedrooms}`, `{area}`, `{source}`, `{url}`) at the cursor, a
+  preview shows the text filled in for the first listing, and a detail a listing lacks is left out. The text is
+  kept in this browser only (`localStorage["househunter.reply.v1"]`); "Use the Standard Text" goes back to
+  `reply_template` from config.json. Telegram alerts always use `reply_template`.
 - **Status:** the line under the title shows the last check and how many sources work; it opens the
   Sources sheet (one row per source: status icon and word, listings in the last check, note, error).
 - **States:** stale check (> 2 h) banner, sample-data banner, "no matching listings" with Clear Filters,
@@ -186,6 +286,49 @@ repo's `data/health.json`, `meta.json` and `seen.json` (raw.githubusercontent.co
 `stale_hours` (and once on recovery), never sends a digest, and tags every message "💻 Mac backup". State in
 `data-local/` (gitignored). Mode `all` runs every source (only without GitHub).
 
+## Subscribers (`telegram-relay/`)
+Optional. Other chats can receive the same alerts if they have the secret invite link. A Cloudflare Worker
+(`telegram-relay/worker.mjs`, deployed by `telegram-relay/deploy.sh`, tests: `node --test telegram-relay/worker.test.mjs`)
+receives the bot's webhook and keeps the subscriber list in Workers KV. The Worker never holds the bot token: it answers
+Telegram by returning `sendMessage` as the webhook response. The list is never in this public repo.
+
+Endpoints:
+- `POST /telegram`: Telegram's webhook; header `X-Telegram-Bot-Api-Secret-Token` must equal `WEBHOOK_SECRET`
+  (constant time; unset means 403). Body cap 64 KB; a malformed or oversized body gets 204 so Telegram does not retry.
+  Handles, in private/group/supergroup chats only: `/start <code>`, `/stop`, `/status` (case-insensitive, `@botname`
+  allowed); `my_chat_member` with new status `left` or `kicked` (chat removed); `message.migrate_to_chat_id` (group
+  became a supergroup: the subscription moves to the new id). Anything else: 204, no reply.
+  `/start`: already subscribed → says so; else code equal to `INVITE_CODE` (constant time, unset never matches) and
+  fewer than `MAX_SUBSCRIBERS` (default 50) → subscribe + welcome (with `DASHBOARD_URL`); wrong or missing code → one fixed
+  "invite-only" reply; full → fixed reply.
+- `GET /subscribers`: bearer `PULL_SECRET` → `{"chats": ["<id>", ...]}` (strings).
+- `POST /subscribers/remove` `{"chat_id"}` and `POST /subscribers/migrate` `{"from", "to"}`: same bearer; ids must match
+  `^-?\d{1,20}$`; 204.
+- `POST /subscribers/reset` `{"confirm": "remove-all"}`: same bearer; deletes every `chat:` key and answers
+  `{"removed": n}` (`deploy.sh --remove-all`, which first sets a new invite code). Anything else: 404.
+
+Storage: KV binding `SUBSCRIBERS`, one key `chat:<id>`, value `{"type", "added_at"}`. Nothing else about a chat is kept (no
+names, usernames, titles or message text). `deploy.sh` also keeps `RELAY_INVITE_CODE` (re-runs keep the same code),
+`RELAY_URL` and `RELAY_PULL_SECRET` in the local `.env`, and sets `RELAY_PULL_SECRET` (secret) and `RELAY_URL`
+(variable) on GitHub.
+
+Python side: `notify/subscribers.py` (`RelayClient`: `list()` with 3 tries, `remove()`, `migrate()`; never raises, prints
+no id or secret) and `BroadcastNotifier` in `notify/telegram.py`. `make_notifier` builds it when both `RELAY_URL` and
+`RELAY_PULL_SECRET` are set; if the relay cannot be reached the run sends to the owner only. `send()` goes to the owner
+first and returns the OWNER's result; subscribers (skipping the owner's own id) are best effort and only get the message
+when the owner's send worked. A subscriber whose chat answers 403 / "chat not found" is reported to the relay
+(`remove`), and a group that migrated to `migrate`.
+
+Audience rule: `Notifier.send(..., audience="all"|"owner")`. Owner-only: source health alerts, recovery messages, the
+first-ever status report, and the Mac backup's watchdog messages. Everything else (new match, price drop, overflow,
+first-run summary, daily digest) is `"all"`.
+
+Security: invite-only (secret code in the link, compared in constant time; an unset code never matches); every
+reply is a fixed string, nothing a user typed is echoed, no `parse_mode`; chat ids are registered with `redact.add_secret`
+and never logged; `observability` is off on the Worker (requests carry secrets); the bot token is not on Cloudflare; a
+bounded list (50 chats). Anyone in a subscribed group can `/stop` it. While the webhook is set, `getUpdates` answers 409
+(`telegram-setup` explains how to switch the relay off first).
+
 ## Sources
 Bot walls seen on 9 Nov 2026 (from a home connection): Pararius, Huurwoningen.nl, Huurstunt (Cloudflare),
 Funda (own bot check), Holland2Stay (403). → covered via email alerts, not scraped.
@@ -211,7 +354,10 @@ Avoid: Rentola (paywalled aggregator, many complaints).
                   "sharers_ok": "Sharers welcome", "no_registration": "No registration possible",
                   "income_requirement": "Income requirement", "short_term": "Short-term only",
                   "utilities_included": "Utilities included", "suspicious_price": "Suspiciously cheap",
-                  "scam_signals": "Possible scam", "bedrooms_unknown": "Bedrooms unknown"},
+                  "scam_signals": "Possible scam", "bedrooms_unknown": "Bedrooms unknown",
+                  "students_only": "Students only", "working_only": "Working people only",
+                  "min_age": "Minimum age {n}", "housemates": "Shared with housemates",
+                  "price_per_person": "Rent is per person", "mandatory_costs": "Compulsory extra €{n} a month"},
   "reply_template": "Beste verhuurder, ... {title} ... {address} ... {url}",
   "sources": [
     {"name": "kamernet", "label": "Kamernet", "homepage": "https://kamernet.nl",
@@ -226,11 +372,14 @@ Avoid: Rentola (paywalled aggregator, many complaints).
      "available_until": null, "image_url": "https://...", "first_seen": "2026-11-09T16:20:00Z",
      "last_seen": "2026-11-09T16:20:00Z", "price_drop_from": null, "best_tier": "ok",
      "matches": [{"search": "2 people", "persons": 2, "price_pp": 725, "tier": "ok"}],
-     "flags": ["max_persons:2", "income_requirement"]}
+     "flags": ["max_persons:2", "income_requirement"],
+     "evidence": {"max_persons": "Geschikt voor maximaal 2 personen"}}
   ]
 }
 ```
 `status` is one of `ok | partial | blocked | error | disabled`. A flag may carry a value after a colon
 (`max_persons:2`); `flag_labels` is keyed by the part before the colon and may contain `{n}`.
+`evidence` maps a flag's name to the listing's own sentence (or the site's fields) behind it; a flag
+without one has no entry.
 All strings in `listings` come from third-party sites: the page must render them with `textContent`,
 never `innerHTML`.

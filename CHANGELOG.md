@@ -1,5 +1,83 @@
 # Changelog
 
+## v1.2.0 (not released yet)
+
+### New
+- **Who may rent.** The checker reads whether a home is only for students, only for working people, for women
+  or men only, has a minimum or maximum age, refuses or welcomes house sharers, or is shared with housemates.
+  It reads this from the listing text (Dutch and English) and from the site's own fields on Kamernet,
+  HousingAnywhere, Vesteda, 123Wonen and Van der Linden. Only a statement counts as a restriction: "ideaal
+  voor studenten" gives no more than the mild "Students welcome" mark, "niet alleen voor studenten" sets
+  nothing, and two statements that contradict each other set nothing.
+- **Proof for every mark.** Each of these marks, and each warning, carries the sentence of the listing that says
+  so. It is shown under the listing on the dashboard and in the Telegram alert.
+- **Dashboard filters:** Who's Renting (Students, Working, Any, and your age) and House Sharing (hide homes that
+  refuse sharers, only homes that welcome sharers, hide homes with housemates). A home that says nothing is
+  never hidden by these.
+- **Your own reply text.** The Reply button opens an editor for the text "Copy Reply" copies. Details such as
+  the address and the rent are filled in for each listing.
+- **Subscribers.** Other chats can get the alerts through a secret invite link (`telegram-relay/`, optional,
+  off until `./telegram-relay/deploy.sh` is run). The link can be replaced and all subscribers removed.
+- **Optional household profile** in `config.json`: homes that state they are not for you are not alerted.
+
+### Changed
+- Group size reads "2 People, 3 People, Any" (Any moved to the right).
+- The "Great Prices Only" switch is gone: the budget slider does the same.
+- "Students welcome" no longer counts as "sharers welcome". It is its own mark.
+
+### Bug fixes:
+
+Prices
+- A rent stated per person was shown as the total. Five listings on the dashboard were shown at half their
+  real price (for example €1,325 per person as "€662 per person, great price"). The total is now rent × people.
+- A compulsory parking place (Vesteda, MVGM) was left out of the total. It is now added before the budget test.
+- HousingAnywhere: the price shown was one that appears nowhere on the page for some listings. It is now the
+  page's own "From €X per month", and a home whose rent depends on the month says so with the highest amount.
+- Van der Linden 2Peer homes: the total was made up by multiplying a per-person amount. The page's own amount
+  is kept and marked "per person".
+- DirectWonen: "(Excl.)" was read as "excluding utilities" without the site saying so.
+
+Homes that were wrongly dropped or shown
+- "Geschikt voor alleenstaanden, stellen en kleine gezinnen" was read as "one person only", which dropped a
+  two-bedroom home. A list of who the home suits is no longer a limit.
+- A storage room (48 m² for €500, no type on the site) was shown as a great match for two people. A listing
+  whose first words name a storage room, parking place or office is not a home.
+- "Maximaal 2 maanden waarborgsom" (a deposit) was read as a short stay.
+- A condition found at the end of a long text was shown on the card but forgotten for matching on the next
+  run, so the match it ruled out came back.
+- A card whose listing had left the search pages kept whatever an older version decided until it expired
+  after 30 days. Every saved card is now judged again on each run with the current rules.
+
+What kind of home it is
+- 123Wonen: one room in a shared penthouse was shown as a whole apartment with two "great" matches.
+- A site's bedroom count that equals the room count in the text ("tweekamerappartement" with "2 bedrooms") was
+  trusted. The match is now marked "bedrooms not confirmed" and counted as one bedroom less.
+- DirectWonen: "Woning" (the site's word for any home) was read as a house.
+- Kamernet: "suitable for N persons" is an id, not a count; id 4 means 3 people and id 8 means 4.
+
+Listings that were missed
+- Kamernet: paid "top" listings were not read.
+- HousingAnywhere: homes in Scheveningen, Loosduinen, Kijkduin, Ypenburg and Leidschenveen were dropped as "not
+  Den Haag".
+- MVGM (ikwilhuren.nu): the list was read in an order that is not newest first, so new homes could be missed.
+- MVGM: a card with a parking badge in front of its "Verhuurd" badge was not recognised as rented.
+
+Text and facts
+- Conditions at the end of a long description ("geen woningdelers", "alleen voor studenten") were cut off
+  before they were read. The reading limit went from 4,000 to 20,000 characters.
+- 123Wonen and Vesteda had no detail step, so their descriptions and conditions were never read.
+- Van der Linden: the description included the page footer.
+- Kamernet: only one language of a two-language description was read.
+- Available-from dates, postcodes, house numbers, furnishing and utilities were missing or wrong on Heimstaden,
+  Rotsvast, MVGM, Vesteda, Van der Linden and HousingAnywhere.
+- Short stay stated in words ("alleen short stay", "maximaal 6 maanden") was not flagged.
+
+### Other changes
+- Every existing card is read once more by the new readers (about 10 per run), so the dashboard corrects itself
+  over the next hours without sending alerts.
+- 333 new tests (695 in total), 30 dashboard checks and 25 relay checks. The who-may-rent rules are tested
+  against 77 real and made-up phrases.
+
 ## v1.1.0 (2026-11-19)
 
 The first numbered version. Everything before it counts as 1.0.

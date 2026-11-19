@@ -1,0 +1,14 @@
+{
+  // Secrets (set by deploy.sh, never in this file): WEBHOOK_SECRET, PULL_SECRET, INVITE_CODE, DASHBOARD_URL
+  "name": "house-hunter-telegram",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  // no stored request logs: requests carry the webhook and pull secrets in their headers
+  "observability": { "enabled": false },
+  // the subscriber list, one key per chat; deploy.sh creates the namespace and fills in its id
+  "kv_namespaces": [
+    { "binding": "SUBSCRIBERS", "id": "00000000000000000000000000000000" }
+  ]
+}

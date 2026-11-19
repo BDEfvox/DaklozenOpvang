@@ -27,6 +27,7 @@
   <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 4.5l8.5 14.5h-17zM12 10.5v4M12 17h.01"/></symbol>
   <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-compose" viewBox="0 0 24 24"><path d="M11.5 5H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4.5"/><path d="M17.6 4.4l2 2L12.4 13.6l-2.9.9.9-2.9z"/></symbol>
   <!-- Status marks: a filled shape in the status colour with a white sign inside. -->
   <symbol id="i-good" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none"/><path d="M7.5 12.4l3.1 3.1 5.9-6.6" stroke="#fff" stroke-width="2.2"/></symbol>
   <symbol id="i-bad" viewBox="0 0 24 24"><path d="M12 3.2c.6 0 1.1.3 1.4.8l8.2 14.2c.6 1.1-.2 2.4-1.4 2.4H3.8c-1.2 0-2-1.3-1.4-2.4L10.6 4c.3-.5.8-.8 1.4-.8z" fill="currentColor" stroke="none"/><path d="M12 9.2v4.6M12 17h.01" stroke="#fff" stroke-width="2.2"/></symbol>
@@ -34,6 +35,7 @@
   <symbol id="i-part" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none"/><path d="M12 7v6M12 16.8h.01" stroke="#fff" stroke-width="2.2"/></symbol>
   <symbol id="i-fail" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none"/><path d="M8.6 8.6l6.8 6.8M15.4 8.6l-6.8 6.8" stroke="#fff" stroke-width="2.2"/></symbol>
   <symbol id="i-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none"/><path d="M7.8 12h8.4" stroke="#fff" stroke-width="2.2"/></symbol>
+  <symbol id="i-note" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none"/><path d="M12 11.2v5.6M12 7.4h.01" stroke="#fff" stroke-width="2.2"/></symbol>
 </defs></svg>
 
 <div class="app">
@@ -59,6 +61,10 @@
         <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-filter"/></svg>
         <span>Filters</span>
         <span id="filter-count" class="count" hidden></span>
+      </button>
+      <button id="open-reply" class="bar-btn reply-btn glass" type="button" aria-haspopup="dialog" aria-label="Edit Reply" title="Edit Reply">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-compose"/></svg>
+        <span>Reply</span>
       </button>
     </div>
 
@@ -96,7 +102,7 @@
 
     <footer>
       <p><strong>Great price</strong> means comfortably under the budget per person. Everything else shown is within the maximum of €800 per person, but closer to the limit.</p>
-      <p>New matches are sent to the group in Telegram. This page lists everything found in the last 30 days. Always check the listing itself: prices and warnings come from third-party sites and can be wrong.</p>
+      <p>New matches are sent to the group in Telegram. This page lists everything found in the last 30 days. Always check the listing itself: prices and warnings come from third-party sites and can be wrong. A line in quotes is the listing’s own sentence behind a warning.</p>
     </footer>
   </main>
 </div>
@@ -116,9 +122,9 @@
       <legend>Group Size</legend>
       <div id="group-control" class="segmented">
         <span id="group-thumb" class="thumb" aria-hidden="true"></span>
-        <label><input type="radio" name="group" id="group-any" value="any" checked><span>Any</span></label>
         <label><input type="radio" name="group" id="group-2" value="2"><span>2 People</span></label>
         <label><input type="radio" name="group" id="group-3" value="3"><span>3 People</span></label>
+        <label><input type="radio" name="group" id="group-any" value="any" checked><span>Any</span></label>
       </div>
     </fieldset>
 
@@ -136,11 +142,43 @@
           <output id="maxpp-out" for="maxpp"></output>
           <input id="maxpp" type="range" min="400" max="800" step="25" value="800">
         </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Who’s Renting</legend>
+      <div id="tenant-control" class="segmented">
+        <span id="tenant-thumb" class="thumb" aria-hidden="true"></span>
+        <label><input type="radio" name="tenant" id="tenant-students" value="students"><span>Students</span></label>
+        <label><input type="radio" name="tenant" id="tenant-working" value="working"><span>Working</span></label>
+        <label><input type="radio" name="tenant" id="tenant-any" value="any" checked><span>Any</span></label>
+      </div>
+      <div class="list after-control">
         <label class="row">
-          <span class="label">Great Prices Only</span>
-          <input id="only-great" class="switch" type="checkbox" role="switch">
+          <span class="label">Your Age</span>
+          <input id="age" class="field" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" placeholder="Any" autocomplete="off">
         </label>
       </div>
+      <p class="note">Hides homes that are only for the other group, and homes with an age limit you don’t meet. A home that says nothing about this stays in the list.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>House Sharing</legend>
+      <div class="list">
+        <label class="row">
+          <span class="label">Hide Homes That Refuse Sharers</span>
+          <input id="hide-no-sharers" class="switch" type="checkbox" role="switch">
+        </label>
+        <label class="row">
+          <span class="label">Only Homes That Welcome Sharers</span>
+          <input id="only-sharers-ok" class="switch" type="checkbox" role="switch">
+        </label>
+        <label class="row">
+          <span class="label">Hide Homes with Housemates</span>
+          <input id="hide-housemates" class="switch" type="checkbox" role="switch">
+        </label>
+      </div>
+      <p class="note">Sharers (woningdelers) are friends who rent one home together. Housemates are people who already live there, or with whom you share the kitchen or bathroom.</p>
     </fieldset>
 
     <fieldset>
@@ -151,7 +189,7 @@
           <input id="hide-warnings" class="switch" type="checkbox" role="switch">
         </label>
       </div>
-      <p class="note">Warnings are things like no house sharers, no students, no registration or a possible scam.</p>
+      <p class="note">Warnings are things like no house sharers, a limit on the number of people, no students, no registration or a possible scam.</p>
     </fieldset>
 
     <button id="clear-filters" class="btn plain clear" type="button" hidden>Clear Filters</button>
@@ -168,6 +206,29 @@
   </div>
   <ul id="sources" class="list"></ul>
   <p class="note">Each source is a rental site that is checked every few minutes. A source that is blocked or not working can miss listings.</p>
+</dialog>
+
+<!-- The reply text that "Copy Reply" fills in for each listing. Kept on this device only. -->
+<dialog id="reply-sheet" class="sheet" aria-labelledby="reply-title">
+  <div id="reply-top" class="sheet-head">
+    <button id="reply-cancel" class="btn plain" type="button">Cancel</button>
+    <h2 id="reply-title">Reply</h2>
+    <button id="reply-save" class="btn plain strong" type="button">Save</button>
+  </div>
+  <form id="reply-form" class="filters" aria-label="Reply text">
+    <fieldset>
+      <legend><label for="reply-text">Your Message</label></legend>
+      <textarea id="reply-text" class="editor" rows="10" maxlength="5000" spellcheck="true" aria-describedby="reply-note"></textarea>
+      <div id="reply-fields" class="chips" role="group" aria-label="Add a detail of the listing"></div>
+      <p id="reply-note" class="note">Tap a detail to add it where the cursor is. “Copy Reply” fills it in for each listing; a detail the listing doesn’t give is left out. Your text is kept on this device only.</p>
+    </fieldset>
+    <fieldset>
+      <legend>Preview</legend>
+      <div id="reply-preview" class="preview" aria-live="off"></div>
+      <p id="reply-for" class="note"></p>
+    </fieldset>
+    <button id="reply-reset" class="btn plain clear" type="button">Use the Standard Text</button>
+  </form>
 </dialog>
 
 <script src="app.js"></script>

@@ -50,3 +50,121 @@ def test_zero_results_is_empty_list():
 def test_layout_change_raises(html):
     with pytest.raises(SourceError):
         parse_page(html, "amsterdam")
+
+
+# ---------------------------------------------------------------- audit fixes (pages saved 2026-11-19)
+def _cards():
+    out = parse_page((FIX / "wonen123_cards.html").read_text(), "amsterdam")
+    return {l.source_id: l for l in out}
+
+
+def _detail(sid):
+    return (FIX / ("wonen123_detail_%s.html" % sid)).read_text()
+
+
+def _fetch(sid, card_id=None):
+    listing = _cards()[card_id or sid]
+    http = FakeHttp(_detail(sid))
+    out = SOURCE.fetch_details(listing, http)
+    assert http.urls == [listing.url]  # one request per listing
+    return out
+
+
+def test_card_slogan_kamer_te_huur_is_a_room_not_a_penthouse():
+    # card 1002-37: spec "Type Penthouse", slogan "Ruime kamer te huur in stijlvol penthouse in Amsterdam"
+    cards = _cards()
+    assert cards["1002-37"].property_type == "room"
+    assert cards["3629-14"].property_type == "apartment" and cards["3620-14"].property_type == "house"
+
+
+@pytest.mark.parametrize("slogan,expected", [
+    ("Ruime kamer te huur in stijlvol penthouse", "room"),
+    ("Nog slechts één kamer beschikbaar!", "room"),
+    ("Ruim 3-kamerappartement te huur", "apartment"),
+    ("Mooi 3 kamer appartement te huur", "apartment"),
+    ("Tweekamerappartement", "apartment"),
+])
+def test_room_wording_is_specific(slogan, expected):
+    html = (FIX / "wonen123_cards.html").read_text().replace(
+        "Ruime kamer te huur in stijlvol penthouse in Amsterdam", slogan)
+    got = {l.source_id: l for l in parse_page(html, "amsterdam")}["1002-37"]
+    assert got.property_type == expected
+
+
+def test_max_huurperiode_becomes_max_stay_months():
+    cards = _cards()
+    assert cards["3594-14"].extra["max_stay_months"] == 7        # "Max. huurperiode 7 maanden"
+    assert cards["3629-14"].extra["max_stay_months"] == 24       # "24 maanden Minimaal 12 maanden"
+    # "Minimaal 12 maanden" under the label is a minimum, and "Voor onbepaalde tijd" has no limit
+    assert "max_stay_months" not in cards["3637-14"].extra
+    assert "max_stay_months" not in cards["1002-37"].extra
+
+
+def test_negative_furnished_wording_is_not_furnished():
+    html = (FIX / "wonen123_cards.html").read_text()
+    assert _cards()["1002-37"].furnished == "furnished"
+    assert {l.source_id: l for l in parse_page(html.replace("Gemeubileerd", "Ongemeubileerd"), "amsterdam")}[
+        "1002-37"].furnished == "unfurnished"
+    assert {l.source_id: l for l in parse_page(html.replace("Gemeubileerd", "Gem. mogelijk"), "amsterdam")}[
+        "1002-37"].furnished is None
+
+
+def test_source_now_has_detail_pages():
+    assert SOURCE.has_detail_pages is True
+
+
+def test_details_room_in_shared_penthouse():
+    l = _fetch("1002-37")
+    assert l.property_type == "room"
+    assert l.furnished == "furnished" and l.price_total == 750
+    assert l.price_includes_utilities is False          # "Huur: € 750,- per maand (exclusief gas, water, elektra en internet)"
+    assert l.extra.get("site_housemates") is True       # "Je deelt de woning met vier andere werkende professionals"
+    assert "service_costs" not in l.extra               # the € 100 is a utilities advance, not service costs
+    assert "max_stay_months" not in l.extra
+    for phrase in ("Nog slechts één kamer beschikbaar", "Geen studenten", "Uitsluitend beschikbaar voor werkende professionals",
+                   "Minimale huurperiode van 6 maanden", "Huisdieren zijn niet toegestaan"):
+        assert phrase in l.description
+    assert not l.description.startswith("Omschrijving Maria") and "Lees meer" not in l.description
+    assert l.rooms == 6 and l.bedrooms == 5 and l.area_m2 == 200
+    assert 0 < len(l.extra["site_facts"]) <= 200 and "kamer te huur" in l.extra["site_facts"]
+
+
+def test_details_room_found_in_headline_when_the_card_had_no_slogan():
+    listing = _cards()["1002-37"]
+    listing.property_type = "apartment"
+    html = _detail("1002-37").replace("Ruime kamer te huur in stijlvol penthouse in Amsterdam", "")
+    assert SOURCE.fetch_details(listing, FakeHttp(html)).property_type == "room"  # "Nog slechts één kamer beschikbaar!"
+
+
+def test_details_costs_schaarbeekstraat():
+    l = _fetch("3620-14")
+    assert l.price_includes_utilities is False          # "€ 2.500,- per maand exclusief nutsvoorzieningen"
+    assert l.extra["service_costs"] == 100              # "Servicekosten: €100,- per maand"
+    assert l.furnished == "furnished"                   # "Oplevering: volledig gemeubileerd"
+    assert l.rooms == 4 and l.property_type == "house" and l.bedrooms == 3
+    assert "Niet geschikt" not in l.description and "Roken niet toegestaan" in l.description
+    assert "site_housemates" not in l.extra and "mandatory_costs" not in l.extra
+
+
+def test_details_costs_riouwstraat():
+    l = _fetch("3629-14")
+    assert l.price_includes_utilities is False          # "€ 2.050,- per maand exclusief nutsvoorzieningen"
+    assert l.extra["max_stay_months"] == 24             # "Max. huurperiode 24 maanden Minimaal 12 maanden"
+    assert l.furnished == "furnished"                   # line "Volledig gemeubileerd"
+    assert "service_costs" not in l.extra and l.rooms == 3
+
+
+def test_details_costs_nida_senffstraat():
+    l = _fetch("3637-14")
+    assert l.price_includes_utilities is False          # "Huurprijs: €2500 + €150,- voorschot nutsvoorzieningen"
+    assert l.furnished == "furnished"                   # "Oplevering: Volledig gemeubileerd"
+    assert "max_stay_months" not in l.extra and "service_costs" not in l.extra
+    assert "Niet geschikt voor woningdelers" in l.description and l.rooms == 3
+
+
+def test_details_layout_change_raises():
+    listing = _cards()["3629-14"]
+    with pytest.raises(SourceError):
+        SOURCE.fetch_details(listing, FakeHttp("<html><body>Welkom</body></html>"))
+    with pytest.raises(SourceError):  # description block present, specification block gone
+        SOURCE.fetch_details(listing, FakeHttp(_detail("3629-14").replace("pand-specs panddetail-desc", "x")))

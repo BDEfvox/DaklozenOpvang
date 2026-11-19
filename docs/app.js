@@ -1,23 +1,33 @@
 "use strict";
 // All data comes from third-party sites: only textContent / setAttribute are used, never innerHTML.
 (function () {
-  var STORE = "househunter.filters.v1";
+  var STORE = "househunter.filters.v1", REPLY = "househunter.reply.v1";
   var SVG = "http://www.w3.org/2000/svg";
   var WARN = ["no_sharers", "max_persons", "no_students", "no_registration", "suspicious_price", "scam_signals"];
-  var GOOD = ["sharers_ok"];
-  var GROUPS = ["any", "2", "3"];
+  var GOOD = ["sharers_ok", "students_ok"];
+  // Who may rent. Not a warning in itself: whether it matters depends on who you are, which the filters ask.
+  var REQ = ["students_only", "working_only", "women_only", "men_only", "min_age", "max_age", "housemates",
+    "price_per_person", "mandatory_costs"];
+  // In the order the choices stand in the control: the thumb's position is the index. "Any" comes last.
+  var GROUPS = ["2", "3", "any"], TENANTS = ["students", "working", "any"];
+  // Details of a listing that the reply text can hold: {title}, {address}, ...
+  var FIELDS = [["title", "Title"], ["address", "Address"], ["city", "City"], ["price", "Rent"], ["bedrooms", "Bedrooms"],
+    ["area", "Size"], ["source", "Site"], ["url", "Link"]];
   // Source status: the word shown and the icon that goes with it (never colour alone).
   var STATUS = {
     ok: ["Working", "i-good"], partial: ["Partly working", "i-part"], blocked: ["Blocked", "i-fail"],
     error: ["Not working", "i-fail"], disabled: ["Off", "i-off"]
   };
   var data = null, isSample = false, refreshing = false, working = "";
-  var cityInputs = {}, cityCounts = {}, beforeSheet = null, groupControl = null;
+  var cityInputs = {}, cityCounts = {}, beforeSheet = null, groupControl = null, tenantControl = null;
+  var shownList = [];                                          // the listings on screen now, in order
+  var reply = null;                                            // the user's own reply text; null = the standard one
   // Each listing keeps its row, so a filter change moves rows instead of rebuilding them (photo and "Copied" stay).
   var rows = typeof WeakMap === "function" ? new WeakMap() : null, moving = [];
   var photos = typeof Map === "function" ? new Map() : null;   // one photo element per listing, kept when its row is rebuilt
   var leaving = null;                                          // the sheet that is animating out, if any
-  var f = { cities: [], group: "any", maxpp: 800, onlyGreat: false, hideWarn: false, q: "", sort: "newest" };
+  var f = { cities: [], group: "any", maxpp: 800, tenant: "any", age: null, hideNoSharers: false, onlySharersOk: false,
+    hideHousemates: false, hideWarn: false, q: "", sort: "newest" };
   var $ = function (id) { return document.getElementById(id); };
 
   function el(tag, cls, text) {
@@ -133,6 +143,22 @@
   function plural(n, one, many) { return n + " " + (n === 1 ? one : many); }
   function flagKey(fl) { return String(fl).split(":")[0]; }
   function hasWarn(l) { return (l.flags || []).some(function (x) { return WARN.indexOf(flagKey(x)) >= 0; }); }
+  // A listing's flags by name: {no_students: "", min_age: "25"}.
+  function flagsOf(l) {
+    var o = {};
+    (l.flags || []).forEach(function (x) { var t = String(x), i = t.indexOf(":"); o[i < 0 ? t : t.slice(0, i)] = i < 0 ? "" : t.slice(i + 1); });
+    return o;
+  }
+  // Two quotes cut from the same passage of a listing: one holds the other, or they share a long run of text.
+  function samePassage(a, b) {
+    a = a.replace(/…/g, "").trim(); b = b.replace(/…/g, "").trim();
+    if (!a || !b) return false;
+    var s = a.length <= b.length ? a : b, l = s === a ? b : a;
+    if (l.indexOf(s) >= 0) return true;
+    for (var i = 0; i + 40 <= s.length; i++) if (l.indexOf(s.substr(i, 40)) >= 0) return true;
+    return false;
+  }
+  function has(o, k) { return Object.prototype.hasOwnProperty.call(o, k); }
   function minPP(l) {
     var v = matchesFor(l).map(function (m) { return m.price_pp; }).filter(function (x) { return typeof x === "number"; });
     return v.length ? Math.min.apply(null, v) : Infinity;
@@ -201,7 +227,10 @@
         if (Array.isArray(s.cities)) f.cities = s.cities.filter(function (x) { return typeof x === "string"; });
         if (GROUPS.indexOf(s.group) >= 0) f.group = s.group;
         if (typeof s.maxpp === "number") f.maxpp = Math.min(800, Math.max(400, s.maxpp));
-        f.onlyGreat = s.onlyGreat === true; f.hideWarn = s.hideWarn === true;
+        if (TENANTS.indexOf(s.tenant) >= 0) f.tenant = s.tenant;
+        if (typeof s.age === "number" && s.age >= 16 && s.age <= 99) f.age = Math.round(s.age);
+        f.hideNoSharers = s.hideNoSharers === true; f.onlySharersOk = s.onlySharersOk === true;
+        f.hideHousemates = s.hideHousemates === true; f.hideWarn = s.hideWarn === true;
         if (typeof s.q === "string") f.q = s.q;
         if (s.sort === "cheapest") f.sort = "cheapest";
       }
@@ -210,19 +239,25 @@
   // How many of the filters in the Filters form differ from "show everything".
   function activeFilters() {
     return (f.cities.length ? 1 : 0) + (f.group !== "any" ? 1 : 0) + (f.maxpp < 800 ? 1 : 0) +
-      (f.onlyGreat ? 1 : 0) + (f.hideWarn ? 1 : 0);
+      (f.tenant !== "any" ? 1 : 0) + (f.age != null ? 1 : 0) + (f.hideNoSharers ? 1 : 0) + (f.onlySharersOk ? 1 : 0) +
+      (f.hideHousemates ? 1 : 0) + (f.hideWarn ? 1 : 0);
   }
   function clearFilters() {
-    f.cities = []; f.group = "any"; f.maxpp = 800; f.onlyGreat = false; f.hideWarn = false; f.q = "";
+    f.cities = []; f.group = "any"; f.maxpp = 800; f.tenant = "any"; f.age = null; f.hideNoSharers = false;
+    f.onlySharersOk = false; f.hideHousemates = false; f.hideWarn = false; f.q = "";
     syncControls(); update();
   }
   // Put the filter values back into the controls (after Clear Filters or Cancel).
   function syncControls() {
     GROUPS.forEach(function (g) { $("group-" + g).checked = f.group === g; });
+    TENANTS.forEach(function (t) { $("tenant-" + t).checked = f.tenant === t; });
     Object.keys(cityInputs).forEach(function (k) { cityInputs[k].checked = f.cities.indexOf(k) >= 0; });
-    $("maxpp").value = f.maxpp; $("only-great").checked = f.onlyGreat; $("hide-warnings").checked = f.hideWarn;
+    $("maxpp").value = f.maxpp; $("age").value = f.age != null ? String(f.age) : "";
+    $("hide-no-sharers").checked = f.hideNoSharers; $("only-sharers-ok").checked = f.onlySharersOk;
+    $("hide-housemates").checked = f.hideHousemates; $("hide-warnings").checked = f.hideWarn;
     $("search").value = f.q; $("sort").value = f.sort;
     if (groupControl) groupControl.settle();
+    if (tenantControl) tenantControl.settle();
   }
 
   function header() {
@@ -278,7 +313,18 @@
     if (!ms.length) return false;
     // The price slider also keeps listings with unknown prices.
     if (!ms.some(function (m) { return m.price_pp == null || m.price_pp <= f.maxpp; })) return false;
-    if (f.onlyGreat && !ms.some(function (m) { return m.tier === "great"; })) return false;
+    // Who may rent. Only what the listing states counts: a listing that says nothing stays.
+    var fl = flagsOf(l);
+    if (f.tenant === "students" && (has(fl, "no_students") || has(fl, "working_only"))) return false;
+    if (f.tenant === "working" && has(fl, "students_only")) return false;
+    if (f.age != null) {
+      var lo = Number(fl.min_age), hi = Number(fl.max_age);
+      if (has(fl, "min_age") && lo > f.age) return false;
+      if (has(fl, "max_age") && hi < f.age) return false;
+    }
+    if (f.hideNoSharers && has(fl, "no_sharers")) return false;
+    if (f.onlySharersOk && !has(fl, "sharers_ok")) return false;
+    if (f.hideHousemates && has(fl, "housemates")) return false;
     if (f.hideWarn && hasWarn(l)) return false;
     if (f.q) {
       var h = ((l.title || "") + " " + (l.address || "")).toLowerCase();
@@ -293,13 +339,29 @@
     return lab.replace(/\{n\}/g, v);
   }
 
+  // The reply text: the user's own (kept in this browser only), or else the standard one that comes with the data.
+  function standardReply() { return String((data && data.reply_template) || ""); }
+  function template() { return reply != null ? reply : standardReply(); }
+  function loadReply() {
+    try { var s = localStorage.getItem(REPLY); if (typeof s === "string" && s.trim()) reply = s.slice(0, 5000); } catch (e) {}
+  }
+  function saveReply(text) {
+    reply = text.trim() && text !== standardReply() ? text.slice(0, 5000) : null;
+    try { if (reply == null) localStorage.removeItem(REPLY); else localStorage.setItem(REPLY, reply); } catch (e) {}
+  }
+  // Fill in a listing's details. A name in braces that is not a detail stays as it was typed.
+  function fill(tpl, l) {
+    var v = {
+      title: l.title || "", address: l.address || l.title || "", city: (data.cities && data.cities[l.city]) || l.city || "",
+      url: l.url || "", price: typeof l.price_total === "number" ? euro(l.price_total) : "",
+      bedrooms: l.bedrooms != null ? String(l.bedrooms) : "", area: l.area_m2 != null ? l.area_m2 + " m²" : "",
+      source: l.source_label || l.source || ""
+    };
+    return String(tpl).replace(/\{([a-z_]+)\}/g, function (m, k) { return has(v, k) ? v[k] : m; });
+  }
+
   function copyReply(l, btn) {
-    var city = (data.cities && data.cities[l.city]) || l.city || "";
-    var txt = String(data.reply_template || "")
-      .replace(/\{title\}/g, function () { return l.title || ""; })
-      .replace(/\{address\}/g, function () { return l.address || l.title || ""; })
-      .replace(/\{city\}/g, function () { return city; })
-      .replace(/\{url\}/g, function () { return l.url || ""; });
+    var txt = fill(template(), l);
     var label = function (text, mark) {
       btn.textContent = "";
       if (mark) btn.appendChild(icon("i-check"));
@@ -383,7 +445,9 @@
 
     var facts = [];
     if (l.price_total != null) {
-      facts.push(euro(l.price_total) + " per month" + (l.price_includes_utilities === true ? " incl. utilities" :
+      // A listing that states its rent per person: say so, or the amount reads as the rent of the whole home.
+      facts.push(euro(l.price_total) + (has(flagsOf(l), "price_per_person") ? " per person" : "") + " per month" +
+        (l.price_includes_utilities === true ? " incl. utilities" :
         l.price_includes_utilities === false ? " excl. utilities" : ""));
     }
     if (l.bedrooms != null) facts.push(plural(l.bedrooms, "bedroom", "bedrooms"));
@@ -396,17 +460,23 @@
     if (facts.length) b.appendChild(el("p", "facts", facts.join(" · ")));
 
     // Warnings and good signs each get their own line with an icon. Everything else is one quiet line.
-    var marked = el("ul", "flags"), notes = [];
+    var marked = el("ul", "flags"), notes = [], quotes = [];
     (l.flags || []).forEach(function (x) {
-      var k = flagKey(x), kind = WARN.indexOf(k) >= 0 ? "warn" : GOOD.indexOf(k) >= 0 ? "good" : "";
+      var k = flagKey(x), kind = WARN.indexOf(k) >= 0 ? "warn" : GOOD.indexOf(k) >= 0 ? "good" : REQ.indexOf(k) >= 0 ? "req" : "";
       if (!kind) { notes.push(flagText(x)); return; }
       var fl = el("li", "mark " + kind);
-      fl.appendChild(icon(kind === "warn" ? "i-bad" : "i-good"));
+      fl.appendChild(icon(kind === "warn" ? "i-bad" : kind === "good" ? "i-good" : "i-note"));
       fl.appendChild(el("span", null, flagText(x)));
       marked.appendChild(fl);
+      // The sentence of the listing that says so. One sentence often carries several marks: it is shown once.
+      var q = record(l.evidence) ? l.evidence[k] : null;
+      if (typeof q !== "string" || !q) return;
+      for (var i = 0; i < quotes.length; i++) if (samePassage(quotes[i], q)) { if (q.length > quotes[i].length) quotes[i] = q; return; }
+      if (quotes.length < 3) quotes.push(q);
     });
     if (notes.length) b.appendChild(el("p", "notes", notes.join(" · ")));
     if (marked.children.length) b.appendChild(marked);
+    quotes.forEach(function (q) { b.appendChild(el("p", "quote", "“" + q + "”")); });
 
     var foot = el("div", "foot"), meta = el("p", "meta");
     if (isNew) meta.appendChild(el("span", "sr", "New. "));
@@ -487,6 +557,7 @@
     var list = all.filter(visible);
     list.sort(f.sort === "cheapest" ? cheapestFirst : newestFirst);
     if (quiet !== "hold") {
+      shownList = list;
       var box = $("listings"), before = quiet === true ? null : snapshot(box);
       if (!before) still();
       box.textContent = "";
@@ -629,7 +700,7 @@
         if (drag && drag.pointer == null) release();           // a second finger ends the drag
         touch = null; return;
       }
-      var t = e.target, own = t && t.closest && t.closest("input[type=range], .segmented");
+      var t = e.target, own = t && t.closest && t.closest("input[type=range], .segmented, textarea");
       touch = own ? null : { x: e.touches[0].clientX, y: e.touches[0].clientY, top: top.contains(t), free: d.scrollTop <= 0 };
     }, { passive: true });
     d.addEventListener("touchmove", function (e) {
@@ -756,6 +827,46 @@
     return { settle: settle };
   }
 
+  // The reply text, edited in one place. The preview shows it filled in for the first listing on screen, and follows
+  // every keystroke. Save keeps it; Cancel drops the changes. Closing the sheet any other way (pulling it down,
+  // Escape) keeps what was typed for the next time it opens, so nothing typed is lost by accident.
+  function replyEditor() {
+    var sh = sheet($("reply-sheet"), $("reply-top"), $("open-reply"));
+    var ta = $("reply-text"), box = $("reply-fields"), pv = $("reply-preview"), who = $("reply-for"), reset = $("reply-reset");
+    var sample = null, draft = null;
+    function preview() {
+      draft = ta.value;
+      pv.textContent = sample ? fill(ta.value, sample) : ta.value;
+      reset.hidden = ta.value === standardReply();
+    }
+    function insert(text) {
+      var a = ta.selectionStart, b = ta.selectionEnd, v = ta.value;
+      if (typeof a !== "number" || typeof b !== "number") a = b = v.length;
+      ta.value = v.slice(0, a) + text + v.slice(b);
+      if (ta.focus) ta.focus();
+      try { ta.setSelectionRange(a + text.length, a + text.length); } catch (e) {}
+      preview(); tick();
+    }
+    FIELDS.forEach(function (fd) {
+      var chip = el("button", "chip", fd[1]);
+      chip.type = "button";
+      chip.addEventListener("click", function () { insert("{" + fd[0] + "}"); });
+      box.appendChild(chip);
+    });
+    ta.addEventListener("input", preview);
+    $("reply-form").addEventListener("submit", function (e) { if (e) e.preventDefault(); });
+    $("open-reply").addEventListener("click", function () {
+      sample = shownList[0] || (data.listings || [])[0] || null;
+      ta.value = draft != null ? draft : template();
+      who.textContent = sample ? "Filled in for “" + (sample.title || "this listing") + "”." : "";
+      preview();
+      sh.show();
+    });
+    $("reply-cancel").addEventListener("click", function () { draft = null; sh.hide(); });
+    $("reply-save").addEventListener("click", function () { saveReply(ta.value); draft = null; tick(); sh.hide(); });
+    reset.addEventListener("click", function () { ta.value = standardReply(); preview(); });
+  }
+
   // Narrow screens: the filter form lives in a sheet. Wide screens: it sits in the side column, always on screen.
   function placeFilters(wide, filters) {
     var form = $("filters");
@@ -764,11 +875,27 @@
   }
 
   function bind() {
-    var m = $("maxpp"), og = $("only-great"), hw = $("hide-warnings"), q = $("search"), so = $("sort");
+    var m = $("maxpp"), hw = $("hide-warnings"), q = $("search"), so = $("sort"), age = $("age");
     syncControls();
     GROUPS.forEach(function (g) {
       var r = $("group-" + g);
       r.addEventListener("change", function () { if (r.checked) { f.group = g; tick(); update(); } });
+    });
+    TENANTS.forEach(function (t) {
+      var r = $("tenant-" + t);
+      r.addEventListener("change", function () { if (r.checked) { f.tenant = t; tick(); update(); } });
+    });
+    // Age: two digits make an age. Anything shorter means "any", so the list changes once per finished number.
+    age.addEventListener("input", function () {
+      var v = age.value.replace(/\D/g, "").slice(0, 2);
+      if (age.value !== v) age.value = v;
+      var n = v.length === 2 && Number(v) >= 16 ? Number(v) : null;
+      if (n !== f.age) { f.age = n; update(); }
+    });
+    age.addEventListener("change", function () { if (f.age == null) age.value = ""; });
+    [["hide-no-sharers", "hideNoSharers"], ["only-sharers-ok", "onlySharersOk"], ["hide-housemates", "hideHousemates"]].forEach(function (pair) {
+      var box = $(pair[0]);
+      box.addEventListener("change", function () { f[pair[1]] = box.checked; tick(); update(); });
     });
     // The budget slider: while it moves only the numbers follow. The list animates once, when the slider pauses
     // for a moment or is let go, so a drag across many steps is one calm change instead of many.
@@ -781,7 +908,6 @@
       rest = setTimeout(settleList, 120);
     });
     m.addEventListener("change", settleList);
-    og.addEventListener("change", function () { f.onlyGreat = og.checked; tick(); update(); });
     hw.addEventListener("change", function () { f.hideWarn = hw.checked; tick(); update(); });
     q.addEventListener("input", function () { f.q = q.value.trim(); update(true); });
     so.addEventListener("change", function () { f.sort = so.value; update(); });
@@ -802,6 +928,7 @@
     var sources = sheet($("sources-sheet"), $("sources-top"), $("open-sources"));
     $("open-sources").addEventListener("click", function () { sources.show(); });
     $("sources-close").addEventListener("click", function () { sources.hide(); });
+    replyEditor();
 
     var wide = window.matchMedia ? window.matchMedia("(min-width: 60em)") : null;
     placeFilters(wide, filters);
@@ -811,9 +938,11 @@
   }
 
   loadF();
-  // The saved filters show from the first frame, before the data arrives; the thumb starts under the saved group size.
+  loadReply();
+  // The saved filters show from the first frame, before the data arrives; each thumb starts under the saved choice.
   syncControls();
   groupControl = segmented($("group-control"), $("group-thumb"), GROUPS.map(function (g) { return $("group-" + g); }));
+  tenantControl = segmented($("tenant-control"), $("tenant-thumb"), TENANTS.map(function (t) { return $("tenant-" + t); }));
   $("retry").addEventListener("click", function () { window.location.reload(); });
   load("data.json").then(function (d) {
     render(d, false);

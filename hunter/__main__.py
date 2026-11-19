@@ -109,7 +109,12 @@ def cmd_telegram_setup(args: argparse.Namespace) -> int:
                 continue
             if data.get("ok") is False:
                 print("Telegram getUpdates failed: %s" % sanitize(data.get("description", ""), token))
-                if data.get("error_code") in (401, 409):
+                if data.get("error_code") == 409:
+                    print("A webhook is set on this bot (the subscriber relay), so getUpdates is blocked.\n"
+                          "Switch the relay off with ./telegram-relay/deploy.sh --off, run this again,\n"
+                          "then deploy the relay again with ./telegram-relay/deploy.sh.")
+                    return 1
+                if data.get("error_code") == 401:
                     return 1
                 time.sleep(3)
                 continue

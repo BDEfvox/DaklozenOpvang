@@ -6,7 +6,8 @@ import re
 from typing import Set
 from urllib.parse import quote
 
-_SECRET_ENV = ("TELEGRAM_BOT_TOKEN", "IMAP_PASSWORD", "IMAP_USER", "TELEGRAM_CHAT_ID")
+_SECRET_ENV = ("TELEGRAM_BOT_TOKEN", "IMAP_PASSWORD", "IMAP_USER", "TELEGRAM_CHAT_ID",
+               "RELAY_PULL_SECRET")
 _extra: Set[str] = set()
 
 

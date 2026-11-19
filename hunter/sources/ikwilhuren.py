@@ -1,14 +1,18 @@
 """ikwilhuren.nu (MVGM): large institutional landlord/manager; many Den Haag and Amsterdam homes.
 
 The search page can only filter per city through a CSRF-protected form plus two geocoding POSTs, which would be
-4 requests per city. Instead we read the nationwide list sorted by "newest offered":
-GET https://ikwilhuren.nu/aanbod/?sort=aanbodDESC[&page=N]  (10 per page, server-rendered), pages 1-3,
-and keep what lies in the configured cities. New listings always appear on the first pages.
+4 requests per city. Instead we read the nationwide list in the site's default order:
+GET https://ikwilhuren.nu/aanbod/[?page=N]  (10 per page, server-rendered), pages 1-3,
+and keep what lies in the configured cities. The default order is newest first (the cards marked "Nieuw" come first,
+with a growing "Sinds N dagen online"). The sort option "Publicatiedatum nieuw - oud" (?sort=aanbodDESC) is NOT
+newest first: checked live on 2026-11-19, ?sort=aanbodDESC page 1 had the same ten cards as a page saved earlier the
+same day, none marked "Nieuw", while the default /aanbod/ page 1 had ten "Nieuw" cards (0.68 days online) and page 2
+went on with 0.68, 1 and 1.68 days.
 """
 from __future__ import annotations
 
 import re
-from typing import List, Optional
+from typing import Dict, List, Optional, Tuple
 
 from bs4 import BeautifulSoup
 from bs4.element import Tag
@@ -30,6 +34,16 @@ _TYPES = (
     ("portiek", "apartment"), ("flat", "apartment"),
 )
 _NOT_AVAILABLE = ("verhuurd", "optie", "gereserveerd")
+_MONTHS = {"januari": 1, "februari": 2, "maart": 3, "april": 4, "mei": 5, "juni": 6, "juli": 7, "augustus": 8,
+           "september": 9, "oktober": 10, "november": 11, "december": 12}
+_LONG_DATE = re.compile(r"\b(\d{1,2})\s+(" + "|".join(_MONTHS) + r")\s+(\d{4})\b", re.I)
+# "verplichte afname parkeerplaats €214" (card badge) and the same in a description: the amount follows the phrase
+_MANDATORY_PARKING = re.compile(
+    r"verplichte?\s+afname\s+(?:van\s+(?:een\s+)?)?(?:de\s+)?parkeer(?:plaats|gelegenheid)\D{0,60}?"
+    r"(?:€|euro)\s*(\d+(?:[.,]\d+)?)|"
+    r"verplichte?\s+afname\s+(?:van\s+(?:een\s+)?)?(?:de\s+)?parkeer(?:plaats|gelegenheid)\D{0,60}?(\d+(?:[.,]\d+)?)\s*euro",
+    re.I,
+)
 
 
 def _text(el: Optional[Tag]) -> str:
@@ -51,6 +65,20 @@ def _iso(dmy: Optional[str]) -> Optional[str]:
     return "%s-%02d-%02d" % (m.group(3), int(m.group(2)), int(m.group(1))) if m else None
 
 
+def _long_iso(text: Optional[str]) -> Optional[str]:
+    """'1 april 2027' -> '2027-04-01'; 'Per direct' -> None."""
+    m = _LONG_DATE.search(text or "")
+    return "%s-%02d-%02d" % (m.group(3), _MONTHS[m.group(2).lower()], int(m.group(1))) if m else None
+
+
+def _mandatory_parking(text: str) -> Optional[Tuple[int, str]]:
+    m = _MANDATORY_PARKING.search(text or "")
+    if not m:
+        return None
+    amount = m.group(1) or m.group(2)
+    return int(float(amount.replace(",", "."))), re.sub(r"\s+", " ", m.group(0)).strip()
+
+
 def parse_page(html: str) -> List[Listing]:
     """All listings on one page, any town (the caller filters by city)."""
     soup = BeautifulSoup(html, "html.parser")
@@ -68,8 +96,9 @@ def parse_page(html: str) -> List[Listing]:
         m = re.search(r"-([0-9a-f]{32})/?$", href)
         if not m:
             raise SourceError("layout changed: ikwilhuren object link has no id: %s" % href)
-        badge = _text(card.select_one(".badge")).lower()
-        if any(w in badge for w in _NOT_AVAILABLE):
+        # a card can carry several badges ("verplichte afname parkeerplaats €214" before "Te huur")
+        badges = [_text(b) for b in card.select(".badge")]
+        if any(w in b.lower() for b in badges for w in _NOT_AVAILABLE):
             continue
         title = _text(link)
         place = None
@@ -102,6 +131,12 @@ def parse_page(html: str) -> List[Listing]:
         if src and src.startswith("//"):
             src = "https:" + src
         avail = _text(card.select_one(".small .d-flex"))
+        extra: Dict[str, object] = {"availability": avail or None}
+        for b in badges:
+            parking = _mandatory_parking(b)
+            if parking:
+                extra["mandatory_costs"], extra["mandatory_costs_note"] = parking
+                break
         out.append(Listing(
             source="ikwilhuren",
             source_id=m.group(1),
@@ -116,9 +151,24 @@ def parse_page(html: str) -> List[Listing]:
             postcode=place[0],
             available_from=_iso(avail),
             image_url=src,
-            extra={"availability": avail or None},
+            extra=extra,
         ))
     return out
+
+
+def _kenmerken(soup: BeautifulSoup) -> Dict[str, str]:
+    """The 'Kenmerken' table of the detail page as {lower-case label: text}. Empty when the page has none."""
+    for th in soup.select("th"):
+        if _text(th).lower() == "huurprijs":
+            table = th.find_parent("table")
+            if table is not None:
+                rows: Dict[str, str] = {}
+                for tr in table.select("tr"):
+                    h, d = tr.find("th"), tr.find("td")
+                    if h is not None and d is not None:
+                        rows[_text(h).lower()] = _text(d)
+                return rows
+    return {}
 
 
 class IkWilHuren(Source):
@@ -135,7 +185,7 @@ class IkWilHuren(Source):
         out: List[Listing] = []
         seen = set()
         for page in range(1, PAGES + 1):
-            url = BASE + "/aanbod/?sort=aanbodDESC" + ("&page=%d" % page if page > 1 else "")
+            url = BASE + "/aanbod/" + ("?page=%d" % page if page > 1 else "")
             try:
                 listings = parse_page(http.get_text(url))
             except (SourceError, SourceBlocked) as exc:
@@ -158,9 +208,27 @@ class IkWilHuren(Source):
             listing.description = clean_text(m.group(1))
         else:
             summary_description(listing, html, "ikwilhuren")
-        sm = re.search(r"Servicekosten\s+€\s*([\d.,]+)", text)
-        if sm:
-            listing.extra["service_costs"] = parse_price(sm.group(1))
+        rows = _kenmerken(soup)
+        # the Kenmerken table is the detail page's own data; it overrides the search card (area was 1 m2 off)
+        if rows.get("woonoppervlakte"):
+            listing.area_m2 = parse_int(rows["woonoppervlakte"]) or listing.area_m2
+        if rows.get("slaapkamers"):
+            beds = parse_int(rows["slaapkamers"])
+            listing.bedrooms = beds if beds is not None else listing.bedrooms
+        if rows.get("beschikbaar vanaf"):
+            listing.available_from = _long_iso(rows["beschikbaar vanaf"]) or listing.available_from  # "Per direct": no date
+            listing.extra["availability"] = rows["beschikbaar vanaf"]
+        costs = rows.get("servicekosten")
+        if costs is None:
+            sm = re.search(r"Servicekosten\s+€\s*([\d.,]+)", text)
+            costs = sm.group(1) if sm else None
+        if costs is not None and parse_price(costs) is not None:
+            listing.extra["service_costs"] = parse_price(costs)
+        if "mandatory_costs" not in listing.extra:
+            # not the whole page text: "Vergelijkbare huurwoningen" shows the badges of other homes
+            parking = _mandatory_parking(listing.description or "") or _mandatory_parking(" ".join(rows.values()))
+            if parking:
+                listing.extra["mandatory_costs"], listing.extra["mandatory_costs_note"] = parking
         if listing.bedrooms is None and listing.description:
             bm = re.search(r"(\d+)\s*slaapkamers?", listing.description, re.I)
             if bm:

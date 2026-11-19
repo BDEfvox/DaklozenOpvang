@@ -7,7 +7,10 @@ from typing import Optional
 
 from .models import CITIES
 
-_HAGUE_ALIASES = ("den haag", "'s-gravenhage", "s-gravenhage", "the hague", "hague", "'s gravenhage")
+_HAGUE_ALIASES = ("den haag", "'s-gravenhage", "s-gravenhage", "the hague", "hague", "'s gravenhage",
+                  # districts of Den Haag that sites use as the "city"; Rijswijk, Voorburg, Leidschendam and
+                  # Wassenaar are separate municipalities and stay out
+                  "scheveningen", "loosduinen", "kijkduin", "ypenburg", "leidschenveen")
 
 
 def city_slug(name: Optional[str]) -> Optional[str]:
@@ -47,7 +50,12 @@ def parse_int(text: Optional[str]) -> Optional[int]:
     return int(m.group()) if m else None
 
 
-def clean_text(text: Optional[str], limit: int = 4000) -> Optional[str]:
+# A description as it is read for flags. Conditions ("geen woningdelers", "alleen voor studenten") often stand
+# at the very end of a long text, so the reading limit is generous; what is saved is cut later (see runner.py).
+TEXT_MAX = 20000
+
+
+def clean_text(text: Optional[str], limit: int = TEXT_MAX) -> Optional[str]:
     if not text:
         return None
     t = re.sub(r"\s+", " ", str(text)).strip()
@@ -115,3 +123,30 @@ def bedrooms_from_text(text: Optional[str]) -> Optional[int]:
     found += [_ORDINALS[m.group(1).lower()] for m in _BED_ORDINAL_RE.finditer(t)]
     found += [int(m.group(1)) for m in _BED_INDEX_RE.finditer(t)]
     return max(found) if found else None
+
+
+# --------------------------------------------------------------------------- rooms in free text
+_ROOM_WORDS = {"een": 1, "één": 1, "twee": 2, "drie": 3, "vier": 4, "vijf": 5, "zes": 6}
+_HOME_NL = (r"(?:huur)?(?:appartement|woning|flat|bovenwoning|benedenwoning|maisonnette|hoekwoning|tussenwoning|penthouse|"
+            r"etagewoning|portiekwoning|galerijflat|hoekappartement|stadswoning|eengezinswoning)")
+# "tweekamerappartement", "3-kamerappartement", "2 kamer appartement", "3-kamer huurappartement".
+# Never "slaapkamer": "2-slaapkamer appartement" counts bedrooms, which is another question.
+_ROOMS_NL_RE = re.compile(r"(?<![\w-])(\d|" + "|".join(_ROOM_WORDS) + r")[\s-]?kamer[\s-]?" + _HOME_NL + r"\b", re.I)
+
+
+def rooms_from_dutch_text(text: Optional[str]) -> Optional[int]:
+    """Number of rooms ("kamers", living room included) a Dutch description states about the home, or None.
+
+    'tweekamerappartement' -> 2, 'Ruim 3-kamer appartement' -> 3. Only Dutch wording counts, because there the
+    meaning is fixed: a "driekamerappartement" has a living room and two bedrooms. English "two-room apartment"
+    is used both ways and is left alone. Different numbers in one text (a building with several homes): None.
+    """
+    if not text:
+        return None
+    found = set()
+    for m in _ROOMS_NL_RE.finditer(unicodedata.normalize("NFKC", str(text))):
+        raw = m.group(1).lower()
+        n = int(raw) if raw.isdigit() else _ROOM_WORDS.get(raw)
+        if n and 1 <= n <= 9:
+            found.add(n)
+    return found.pop() if len(found) == 1 else None

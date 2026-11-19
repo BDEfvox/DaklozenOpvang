@@ -51,18 +51,95 @@ def test_layout_change_raises(html):
         parse_page(html)
 
 
-def test_detail_per_person_price_becomes_total():
+def _detail(sid):
+    return (FIX / ("vanderlinden_detail_%s.html" % sid)).read_text()
+
+
+def _listing(sid, price, **kw):
     from hunter.models import Listing
-    from hunter.sources.vanderlinden import apply_details
-    html = ("<html><body><nav>menu</nav><div>Woon oppervlakte 72 m² Aantal kamers 3</div>"
-            "<div>Over de woning Speciaal ontwikkeld voor woningdelers. Huren vanaf €1.682,- all-in, bestaande uit; "
-            "Gemiddelde kale huurprijs €841,- per persoon</div></body></html>")
-    l = Listing("vanderlinden", "2627", "https://www.vanderlinden.nl/huurwoning/x/2627/", "x", "amsterdam",
-                price_total=841, rooms=3, area_m2=72)
-    l = apply_details(l, html)
-    assert l.price_total == 1682 and l.extra["price_per_person"] == 841 and l.rooms == 3
+    return Listing("vanderlinden", sid, "https://www.vanderlinden.nl/huurwoning/x/%s/" % sid, "x", "amsterdam",
+                   price_total=price, **kw)
+
+
+def _fetch(sid, price, **kw):
+    listing = _listing(sid, price, **kw)
+    http = FakeHttp(_detail(sid))
+    out = SOURCE.fetch_details(listing, http)
+    assert http.urls == [listing.url]
+    return out
+
+
+def test_2peer_reports_what_the_page_states_and_invents_no_total():
+    # card and header: "€ 966 per maand"; text: "Kale huurprijs: € 966 per maand per persoon. Servicekosten: € 195 ...
+    # per persoon. Totaal maandbedrag: € 1.161 per persoon"; the old code reported 1161 x 2 = 2322
+    l = _fetch("2703", 966, rooms=3, area_m2=86)
+    assert l.price_total == 966
+    assert l.extra["price_per_person"] is True
+    assert l.extra["service_costs"] == 195
+    assert l.extra["site_housemates"] is True            # "eigen woonruimte in een gedeelde 2Peer-woning"
+    facts = l.extra["site_facts"]
+    assert len(facts) <= 200 and "Kale huurprijs: € 966 per maand per persoon" in facts
+    assert "Totaal maandbedrag: € 1.161 per persoon" in facts and "gedeelde 2Peer-woning" in facts
+    assert l.furnished == "furnished"                    # "Meubilering en stoffering inbegrepen"
+    assert l.available_from is None                      # "Per direct beschikbaar"
+    assert l.rooms == 3 and l.area_m2 == 86
+    assert all(isinstance(v, (str, int, bool, type(None))) for v in l.extra.values())
+
+
+def test_price_is_taken_from_the_header_when_the_card_had_none():
+    assert _fetch("2703", None).price_total == 966
+
+
+def test_description_is_the_listing_text_only():
+    l = _fetch("2703", 966)
+    assert l.description.startswith("NEDERLANDS Cruquiusweg 85R, Amsterdam – eigen woonruimte")
+    assert "Meer informatie over het woonconcept vind je op 2peer.nl." in l.description
+    assert "More information about the housing concept is available at 2peer.nl." in l.description  # complete, not cut
+    for junk in ("Hier ga je wonen", "Inloggen", "Lees verder", "MAP"):
+        assert junk not in l.description
+    l = _fetch("2603", 1173)
+    assert l.description.endswith("er kunnen geen rechten aan ontleend worden.")
+    assert "Hier ga je wonen" not in l.description and "Lees verder" not in l.description
+    assert "De woning is niet gemeubileerd" in l.description
+
+
+def test_studio_service_costs_and_no_year_dates():
+    l = _fetch("2603", 1173)
+    assert l.property_type == "studio"                   # bullet "• Studio •"
+    assert l.extra["service_costs"] == 105               # "Servicekosten €105,- per maand"
+    assert l.available_from is None                      # "Beschikbaar per 1 oktober": no year on the page
+    assert l.furnished == "unfurnished"                  # "De woning is niet gemeubileerd"
+    assert "price_per_person" not in l.extra and "site_housemates" not in l.extra
+
+
+def test_available_from_with_year_and_service_costs():
+    l = _fetch("2579", 1550, rooms=3)
+    assert l.available_from == "2026-11-01"              # "Beschikbaar per 1 november 2026!"
+    assert l.extra["service_costs"] == 65                # "Servicekosten €65,00 per maand"
+    assert l.furnished is None and l.property_type is None and l.price_total == 1550
+    assert "price_per_person" not in l.extra
+
+
+def test_not_furnished_and_date_without_year():
+    l = _fetch("2326", 2905)
+    assert l.furnished == "unfurnished" and l.available_from is None  # "Beschikbaar per 15 Juli!"
+    assert l.extra["service_costs"] == 65 and l.property_type is None
+
+
+def test_per_person_amount_is_not_multiplied():
+    html = ("<html><body><div>Woon oppervlakte 72 m² Aantal kamers 3</div><div><h2>Over de woning</h2>"
+            "<p>Speciaal ontwikkeld voor woningdelers. Huren vanaf €1.682,- all-in, bestaande uit; "
+            "Gemiddelde kale huurprijs €841,- per persoon<br/>Servicekosten: € 195 per maand per persoon</p></div></body></html>")
+    l = SOURCE.fetch_details(_listing("2627", 841, rooms=3), FakeHttp(html))
+    assert l.price_total == 841 and l.extra["price_per_person"] is True and l.extra["service_costs"] == 195
+    assert "1682" not in str(l.to_dict()["price_total"]) and l.rooms == 3
     assert "woningdelers" in l.description
-    # without an all-in total: per person x bedrooms (rooms - 1)
-    l2 = Listing("vanderlinden", "1", "u", "x", "amsterdam", price_total=887, rooms=4)
-    l2 = apply_details(l2, html.replace("Huren vanaf €1.682,- all-in, bestaande uit; ", "").replace("841", "887").replace("kamers 3", "kamers 4"))
-    assert l2.price_total == 887 * 3
+
+
+@pytest.mark.parametrize("cut", [
+    lambda h: h.replace("Over de woning", "Iets anders"),
+    lambda h: h.replace("<p>", "<div>").replace("</p>", "</div>"),
+])
+def test_detail_layout_change_raises(cut):
+    with pytest.raises(SourceError):
+        SOURCE.fetch_details(_listing("2579", 1550), FakeHttp(cut(_detail("2579"))))

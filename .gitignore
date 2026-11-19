@@ -7,3 +7,7 @@ tests/fixtures/live/
 *.log
 data-local/
 data.local-backup/
+.DS_Store
+node_modules/
+telegram-relay/.wrangler/
+telegram-relay/.dev.vars

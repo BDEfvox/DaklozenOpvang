@@ -78,8 +78,6 @@
       "omzettingsvergunning aanwezig",
       "sharing allowed",
       "sharers welcome",
-      "students welcome",
-      "studenten welkom",
       "ontwikkeld voor woningdelers",
       "speciaal voor woningdelers",
       "geschikt voor delers",
@@ -143,7 +141,12 @@
       "rooms are rented separately",
       "rooms are rented out separately",
       "only individual rooms",
-      "only single rooms available"
+      "only single rooms available",
+      "nog slechts één kamer beschikbaar",
+      "nog maar één kamer beschikbaar",
+      "nog één kamer beschikbaar",
+      "only one room left",
+      "only one room available"
     ]
   },
   "_income_patterns": "Regexes on the lowercased title + description; any hit sets the income_requirement flag, next to the plain phrases in flags.income_requirement. A multiple of the rent counts on its own only from 2.5x up, or next to a word about income: a deposit is worded the same way ('borg 2x de huur') but is at most 2 months.",
@@ -163,7 +166,9 @@
     "max(?:imaal|\\.)?\\s?(\\d)\\s?(?:personen|persons|people)",
     "geschikt voor (\\d) (?:personen|persoons)",
     "max (\\d) persons",
-    "suitable for (\\d) (?:people|persons)"
+    "suitable for (\\d) (?:people|persons)",
+    "\\bmax(?:imaal|imum|\\.)?\\s?(\\d)\\s+(?:werkende\\s+)?(?:woningdelers|delers|bewoners|huurders|studenten|volwassenen|sharers|tenants|occupants|adults|students)\\b",
+    "\\b(?:up to|maximum of|max\\. of)\\s+(\\d)\\s+(?:people|persons|tenants|occupants|adults|sharers)\\b"
   ],
   "couple_patterns": [
     "alleen voor (?:een )?stel",
@@ -184,8 +189,16 @@
     "\\balleenstaanden?\\b(?!\\s+(?:woning|huis|villa|bungalow|garage))",
     "\\beenpersoonshuishoudens?\\b",
     "\\bvoor\\s+(?:een|\u00e9\u00e9n)\\s+persoon\\b",
-    "\\b(?:geschikt|bedoeld|alleen|uitsluitend|max(?:imaal|\\.)?)\\s+(?:voor\\s+)?1\\s+persoon\\b"
+    "\\b(?:geschikt|bedoeld|alleen|uitsluitend|max(?:imaal|\\.)?)\\s+(?:voor\\s+)?1\\s+persoon\\b",
+    "\\bmax(?:imaal|imum|\\.)?\\s*1\\s+(?:werkende?\\s+|working\\s+)(?:persoon|person)\\b"
   ],
+  "_tenant_rules": "Extra regexes (on the lowercased title + description) for the 'who may rent' flags, added to the built-in ones in hunter/tenancy.py: students_only, no_students, students_ok, working_only, no_sharers, sharers_ok, housemates. 'age' takes [pattern, kind] pairs, kind = min | max | range.",
+  "tenant_rules": {},
+  "_household": "Who is looking. Leave both null to be alerted about every home. With an age (a number: for a group, the youngest) and/or an occupation ('students' or 'working'), homes whose own text or fields exclude you (minimum or maximum age, students only, no students, working people only) are no longer matched or alerted. A home that says nothing about this always stays.",
+  "household": {
+    "age": null,
+    "occupation": null
+  },
   "first_run_detail_max": 30,
   "local_backup": {
     "_comment": "Mac backup (./local-backup.sh on). auto = only sites GitHub can't reach + warn if GitHub stops; all = every site (only if you don't use GitHub).",

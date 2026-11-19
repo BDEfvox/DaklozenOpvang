@@ -65,9 +65,10 @@ function settle() {
 }
 
 // `saved` is the filter state left in localStorage by an earlier visit.
-function dashboard(responses, saved) {
+function dashboard(responses, saved, storage) {
   var elements = {}, intervals = {}, timeouts = [], calls = [], copied = [], stored = {};
   if (saved) stored["househunter.filters.v1"] = JSON.stringify(saved);
+  Object.keys(storage || {}).forEach(function (key) { stored[key] = storage[key]; });
   var clock = now;
   var document = new EventTarget();
   document.hidden = false;
@@ -87,7 +88,8 @@ function dashboard(responses, saved) {
     URL: URL,
     localStorage: {
       getItem: function (key) { return stored[key]; },
-      setItem: function (key, value) { stored[key] = value; }
+      setItem: function (key, value) { stored[key] = value; },
+      removeItem: function (key) { delete stored[key]; }
     },
     navigator: { clipboard: { writeText: function (value) {
       copied.push(value);
@@ -113,6 +115,7 @@ function dashboard(responses, saved) {
     get: document.getElementById,
     calls: calls,
     copied: copied,
+    stored: stored,
     timeouts: timeouts,
     advance: function (ms) { clock += ms; },
     tick: function (delay) {
@@ -131,10 +134,15 @@ function dashboard(responses, saved) {
       control.value = value;
       control.fire(event || "change");
     },
-    // Group size is a set of radio buttons: group-any, group-2 and group-3.
+    // Group size is a set of radio buttons: group-2, group-3 and group-any.
     group: function (value) {
       ["any", "2", "3"].forEach(function (g) { document.getElementById("group-" + g).checked = g === value; });
       document.getElementById("group-" + value).fire("change");
+    },
+    // Who is renting: tenant-students, tenant-working and tenant-any.
+    tenant: function (value) {
+      ["students", "working", "any"].forEach(function (t) { document.getElementById("tenant-" + t).checked = t === value; });
+      document.getElementById("tenant-" + value).fire("change");
     },
     toggle: function (id, on) {
       var control = document.getElementById(id);
@@ -345,7 +353,7 @@ var checks = [
     assert.strictEqual(view.get("clear-filters").hidden, true);
     assert.strictEqual(view.get("filter-count").hidden, true);
     view.group("2");
-    view.toggle("only-great", true);
+    view.toggle("hide-housemates", true);
     view.change("maxpp", "500", "input");
     view.get("maxpp").fire("change");
     view.change("search", "cheap", "input");
@@ -359,7 +367,9 @@ var checks = [
     assert.strictEqual(view.get("count").textContent, "2 listings");
     assert.strictEqual(view.get("group-any").checked, true);
     assert.strictEqual(view.get("group-2").checked, false);
-    assert.strictEqual(view.get("only-great").checked, false);
+    assert.strictEqual(view.get("hide-housemates").checked, false);
+    assert.strictEqual(view.get("tenant-any").checked, true);
+    assert.strictEqual(view.get("age").value, "");
     assert.strictEqual(view.get("maxpp").value, 800);
     assert.strictEqual(view.get("search").value, "");
     assert.strictEqual(view.get("filter-count").hidden, true);
@@ -456,16 +466,144 @@ var checks = [
   check("the group thumb sits under the chosen group, from the first moment", async function () {
     var view = dashboard([["data.json", payload([home("For three", [match(3, 500)])])]],
       { cities: [], group: "3", maxpp: 800, onlyGreat: false, hideWarn: false, q: "", sort: "newest" });
+    // The choices stand in the order 2 People, 3 People, Any: "Any" is the last one, on the right.
     var thumb = view.get("group-thumb");
-    assert.strictEqual(thumb.style.transform, "translateX(200.00%)");   // before the data has arrived
+    assert.strictEqual(thumb.style.transform, "translateX(100.00%)");   // before the data has arrived
     assert.strictEqual(view.get("group-3").checked, true);
     await settle();
-    assert.strictEqual(thumb.style.transform, "translateX(200.00%)");
-    view.group("2");
     assert.strictEqual(thumb.style.transform, "translateX(100.00%)");
-    view.click("clear-filters");
+    view.group("2");
     assert.strictEqual(thumb.style.transform, "translateX(0.00%)");
+    view.click("clear-filters");
+    assert.strictEqual(thumb.style.transform, "translateX(200.00%)");
     assert.strictEqual(view.get("group-any").checked, true);
+    assert.strictEqual(view.get("tenant-thumb").style.transform, "translateX(200.00%)");   // "Any" is last there too
+  }),
+  check("a 'great prices only' choice saved by an older version no longer hides anything", async function () {
+    var view = dashboard([["data.json", payload([home("Great", [match(2, 450, "great")]), home("Fine", [match(2, 700)])])]],
+      { cities: [], group: "any", maxpp: 800, onlyGreat: true, hideWarn: false, q: "", sort: "newest" });
+    await settle();
+    assert.deepStrictEqual(titles(view), ["Great", "Fine"]);
+    assert.strictEqual(view.get("filter-count").hidden, true);
+    assert.deepStrictEqual(byClass(view, "tier").map(function (node) { return node.textContent; }), ["Great price"]);
+  }),
+  check("who is renting, age and sharing filters act only on what a listing states", async function () {
+    function flagged(title, flags) { var l = home(title, [match(2, 500)]); l.flags = flags; return l; }
+    var view = dashboard([["data.json", payload([
+      flagged("Silent", []), flagged("Students only", ["students_only"]), flagged("No students", ["no_students"]),
+      flagged("Working only", ["working_only"]), flagged("From 25", ["min_age:25"]), flagged("Up to 27", ["max_age:27"]),
+      flagged("No sharers", ["no_sharers"]), flagged("Sharers welcome", ["sharers_ok"]), flagged("Housemates", ["housemates"])
+    ])]]);
+    await settle();
+    assert.strictEqual(titles(view).length, 9);
+    view.tenant("students");
+    assert.deepStrictEqual(titles(view), ["Silent", "Students only", "From 25", "Up to 27", "No sharers", "Sharers welcome", "Housemates"]);
+    view.tenant("working");
+    assert.deepStrictEqual(titles(view), ["Silent", "No students", "Working only", "From 25", "Up to 27", "No sharers", "Sharers welcome", "Housemates"]);
+    view.tenant("any");
+    view.change("age", "2", "input");                                // half a number is no age yet
+    assert.strictEqual(titles(view).length, 9);
+    view.change("age", "23", "input");
+    assert.ok(titles(view).indexOf("From 25") < 0 && titles(view).indexOf("Up to 27") >= 0, titles(view).join());
+    view.change("age", "30", "input");
+    assert.ok(titles(view).indexOf("From 25") >= 0 && titles(view).indexOf("Up to 27") < 0, titles(view).join());
+    view.change("age", "27x", "input");                              // only digits count; 27 is still within "up to 27"
+    assert.strictEqual(view.get("age").value, "27");
+    assert.strictEqual(titles(view).length, 9);
+    view.change("age", "", "input");
+    view.toggle("hide-no-sharers", true);
+    assert.ok(titles(view).indexOf("No sharers") < 0 && titles(view).length === 8, titles(view).join());
+    view.toggle("hide-no-sharers", false);
+    view.toggle("only-sharers-ok", true);
+    assert.deepStrictEqual(titles(view), ["Sharers welcome"]);
+    view.toggle("only-sharers-ok", false);
+    view.toggle("hide-housemates", true);
+    assert.ok(titles(view).indexOf("Housemates") < 0 && titles(view).length === 8, titles(view).join());
+    assert.strictEqual(view.get("filter-count").textContent, "1");
+  }),
+  check("a listing's own sentence stands once under its marks, as plain text", async function () {
+    var listing = home("Quoted", [match(2, 500)]);
+    listing.flags = ["no_students", "working_only", "min_age:25", "income_requirement"];
+    listing.evidence = {
+      no_students: "Max. 1 WERKEND PERSOON OF STEL (GEEN STUDENTEN)", working_only: "Max. 1 WERKEND PERSOON OF STEL (GEEN STUDENTEN)",
+      min_age: "<b>Minimale leeftijd 25</b>", income_requirement: "Inkomenseis 3x de huur", stray: 7
+    };
+    var plain = home("Plain", [match(2, 500)]);
+    plain.flags = ["no_students"];
+    plain.evidence = "not an object";
+    var data = payload([listing, plain]);
+    data.flag_labels = { no_students: "No students", working_only: "Working people only", min_age: "Minimum age {n}" };
+    var view = dashboard([["data.json", data]]);
+    await settle();
+    assert.deepStrictEqual(byClass(view, "quote").map(function (node) { return node.textContent; }),
+      ["“Max. 1 WERKEND PERSOON OF STEL (GEEN STUDENTEN)”", "“<b>Minimale leeftijd 25</b>”"]);
+    assert.deepStrictEqual(byClass(view, "req").map(function (node) { return node.textContent; }),
+      ["Working people only", "Minimum age 25"]);
+    assert.deepStrictEqual(byClass(view, "warn").map(function (node) { return node.textContent; }), ["No students", "No students"]);
+  }),
+  check("two cuts of the same long sentence are shown as one quote", async function () {
+    var listing = home("Run-on", [match(3, 600)]);
+    listing.flags = ["students_only", "min_age:23", "housemates"];
+    listing.evidence = {
+      students_only: "…Huurprijs voor 2 personen € 1995,- Ook beschikbaar voor studenten van 23 jaar en ouder…",
+      min_age: "…in de woonkamer) Huurprijs voor 2 personen € 1995,- Ook beschikbaar voor studenten van 23 jaar en ouder…",
+      housemates: "Je deelt de keuken met twee huisgenoten"
+    };
+    var view = dashboard([["data.json", payload([listing])]]);
+    await settle();
+    assert.deepStrictEqual(byClass(view, "quote").map(function (node) { return node.textContent; }),
+      ["“…in de woonkamer) Huurprijs voor 2 personen € 1995,- Ook beschikbaar voor studenten van 23 jaar en ouder…”",
+        "“Je deelt de keuken met twee huisgenoten”"]);
+  }),
+  check("the reply text is changed in one place and fills in each listing", async function () {
+    var a = home("Canal Street 1", [match(2, 500)]);
+    a.address = "Canal Street 1"; a.price_total = 1450; a.bedrooms = 2; a.area_m2 = 70; a.source_label = "Kamernet";
+    a.url = "https://example.com/a";
+    var b = home("Dam 5", [match(2, 600)]);
+    var view = dashboard([["data.json", payload([a, b])]]);
+    await settle();
+    function copyButtons() { return byClass(view, "copy"); }
+    copyButtons()[0].fire("click");
+    await settle();
+    assert.strictEqual(view.copied[0], "Interested in Canal Street 1.");   // the standard text
+    view.click("open-reply");
+    var text = view.get("reply-text");
+    assert.strictEqual(text.value, "Interested in {address}.");
+    assert.strictEqual(view.get("reply-reset").hidden, true);
+    text.value = "Hi, {title} in {city}: {price}, {bedrooms} bedrooms, {area}, via {source}. {url} {unknown}";
+    text.fire("input");
+    assert.strictEqual(view.get("reply-preview").textContent,
+      "Hi, Canal Street 1 in Utrecht: €1.450, 2 bedrooms, 70 m², via Kamernet. https://example.com/a {unknown}");
+    assert.strictEqual(view.get("reply-reset").hidden, false);
+    view.click("reply-cancel");                                       // Cancel keeps the old text
+    copyButtons()[0].fire("click");
+    await settle();
+    assert.strictEqual(view.copied[1], "Interested in Canal Street 1.");
+    assert.strictEqual(view.stored["househunter.reply.v1"], undefined);
+    view.click("open-reply");
+    assert.strictEqual(text.value, "Interested in {address}.");       // the cancelled draft is gone
+    text.value = "Hello about {title} ({price})";
+    text.fire("input");
+    view.click("reply-save");
+    assert.strictEqual(view.stored["househunter.reply.v1"], "Hello about {title} ({price})");
+    copyButtons()[0].fire("click");
+    copyButtons()[1].fire("click");
+    await settle();
+    assert.strictEqual(view.copied[2], "Hello about Canal Street 1 (€1.450)");
+    assert.strictEqual(view.copied[3], "Hello about Dam 5 ()");       // a detail the listing lacks is left out
+    view.click("open-reply");
+    view.click("reply-reset");                                         // back to the standard text
+    assert.strictEqual(text.value, "Interested in {address}.");
+    view.click("reply-save");
+    assert.strictEqual(view.stored["househunter.reply.v1"], undefined);
+  }),
+  check("a reply text saved earlier is used from the start", async function () {
+    var a = home("Canal Street 1", [match(2, 500)]);
+    var saved = dashboard([["data.json", payload([a])]], null, { "househunter.reply.v1": "Mine: {title}" });
+    await settle();
+    byClass(saved, "copy")[0].fire("click");
+    await settle();
+    assert.strictEqual(saved.copied[0], "Mine: Canal Street 1");
   }),
   check("a sheet dims the page while open, and gives focus back once when it closes", async function () {
     var view = dashboard([["data.json", payload([home("Home", [match(2, 500)])])]]);

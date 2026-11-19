@@ -6,6 +6,7 @@ from typing import Any, Dict, List, Optional
 
 from ..filters import MatchResult
 from ..models import CITIES, Listing
+from ..tenancy import same_passage
 
 MAX_LEN = 3900
 
@@ -13,6 +14,15 @@ FLAG_LABELS: Dict[str, str] = {
     "no_sharers": "No house sharers",
     "max_persons": "Max {n} persons",
     "no_students": "No students",
+    "students_only": "Students only",
+    "students_ok": "Students welcome",
+    "working_only": "Working people only",
+    "min_age": "Minimum age {n}",
+    "max_age": "Maximum age {n}",
+    "housemates": "Shared with housemates",
+    "women_only": "Women only",
+    "men_only": "Men only",
+    "mandatory_costs": "Compulsory extra €{n} a month",
     "sharers_ok": "Sharers welcome",
     "no_registration": "No registration possible",
     "income_requirement": "Income requirement",
@@ -23,8 +33,13 @@ FLAG_LABELS: Dict[str, str] = {
     "bedrooms_unknown": "Bedrooms unknown",
     "bedrooms_unconfirmed": "Bedrooms not confirmed",
     "price_unknown": "Price unknown",
+    "price_per_person": "Rent is per person",
+    "price_varies": "Rent depends on the month, up to €{n}",
     "rooms_only": "Only single rooms",
 }
+
+GOOD_FLAGS = ("sharers_ok", "students_ok")
+MAX_QUOTES = 2
 
 STATUS_EMOJI = {"ok": "✅", "partial": "🟡", "blocked": "⛔", "error": "❌", "disabled": "💤"}
 
@@ -53,6 +68,22 @@ def flag_label(flag: str, labels: Optional[Dict[str, str]] = None) -> str:
     key, _, val = flag.partition(":")
     label = labels.get(key, key.replace("_", " "))
     return label.replace("{n}", val)
+
+
+def quotes(result: MatchResult) -> List[str]:
+    """The listing's own sentences behind its flags, each once, in the order of the flags."""
+    out: List[str] = []
+    evidence = getattr(result, "evidence", None) or {}
+    for f in result.flags:
+        q = evidence.get(f.partition(":")[0])
+        if not q:
+            continue
+        twin = next((i for i, seen in enumerate(out) if same_passage(seen, q)), None)
+        if twin is None:
+            out.append(q)
+        elif len(q) > len(out[twin]):
+            out[twin] = q                      # two cuts of one long sentence: the longer one, once
+    return out
 
 
 def fill_reply(listing: Listing, cfg: Dict[str, Any]) -> str:
@@ -86,6 +117,8 @@ def _facts(listing: Listing) -> List[str]:
 
 def _price_line(listing: Listing, result: MatchResult) -> str:
     line = "💶 <b>%s</b>/month" % e(euro(listing.price_total))
+    if "price_per_person" in result.flags:
+        line += " per person"
     if listing.price_includes_utilities is True:
         line += " (incl. utilities)"
     elif listing.price_includes_utilities is False:
@@ -119,11 +152,14 @@ def _body(listing: Listing, result: MatchResult, cfg: Dict[str, Any], header: st
         if listing.available_until:
             d += (" " if listing.available_from else "") + "until " + e(listing.available_until)
         lines.append(d)
-    warn = [f for f in result.flags if f not in ("utilities_included", "sharers_ok")]
+    warn = [f for f in result.flags if f not in ("utilities_included",) + GOOD_FLAGS]
     if warn:
         lines.append("⚠️ " + e(" · ".join(flag_label(f, labels) for f in warn)))
-    if "sharers_ok" in result.flags:
-        lines.append("✅ " + e(flag_label("sharers_ok", labels)))
+    good = [f for f in result.flags if f in GOOD_FLAGS]
+    if good:
+        lines.append("✅ " + e(" · ".join(flag_label(f, labels) for f in good)))
+    for quote in quotes(result)[:MAX_QUOTES]:
+        lines.append("💬 <i>“%s”</i>" % e(clip(quote, 140)))
     lines.append("🔎 " + e(source_label))
     return "\n".join(lines)
 

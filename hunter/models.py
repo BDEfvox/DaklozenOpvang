@@ -32,7 +32,7 @@ class Listing:
     postcode: Optional[str] = None
     available_from: Optional[str] = None         # ISO date (YYYY-MM-DD)
     available_until: Optional[str] = None        # ISO date, for fixed-term rentals
-    description: Optional[str] = None            # free text, used for flag detection (keep <= 4000 chars)
+    description: Optional[str] = None            # free text, used for flag detection (utils.TEXT_MAX; saved copies are cut)
     image_url: Optional[str] = None
     posted_at: Optional[str] = None              # ISO datetime if the site gives it
     extra: Dict[str, Any] = field(default_factory=dict)

@@ -55,6 +55,9 @@ def build_data(cfg: Dict[str, Any], state: State, now: Optional[datetime] = None
         item["best_tier"] = e.get("best_tier")
         item["matches"] = e.get("matches", [])
         item["flags"] = e.get("flags", [])
+        # flag name -> the listing's own sentence behind it (third-party text: the page renders it as text only)
+        evidence = e.get("evidence")
+        item["evidence"] = {k: v for k, v in evidence.items() if isinstance(v, str)} if isinstance(evidence, dict) else {}
         listings.append(item)
     listings.sort(key=lambda x: x.get("first_seen") or "", reverse=True)
     last_run = state.meta.get("last_run") or iso(now)

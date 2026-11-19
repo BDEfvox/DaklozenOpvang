@@ -88,40 +88,95 @@ def parse_page(html: str) -> List[Listing]:
     return out
 
 
-_PP_RE = re.compile(r"€\s?(\d{1,3}(?:\.\d{3})*|\d+)(?:,-|,\d{2})?\s*(?:all-in\s*)?per persoon", re.I)
-_ALLIN_RE = re.compile(r"vanaf\s*€\s?(\d{1,3}(?:\.\d{3})*|\d+)(?:,-|,\d{2})?\s*all-in", re.I)
+_PP_RE = re.compile(r"€\s?(?:\d{1,3}(?:\.\d{3})*|\d+)(?:,-|,\d{2})?\s*(?:all-in\s*)?(?:per\s+maand\s+)?per\s+persoon", re.I)
 _ROOMS_RE = re.compile(r"Aantal kamers\s*(\d+)", re.I)
 _BEDS_RE = re.compile(r"Aantal slaapkamers\s*(\d+)", re.I)
+_AMOUNT = r"€\s?(\d{1,3}(?:\.\d{3})*|\d+)(?:,-|,\d{2})?"
+_SERVICE_RE = re.compile(r"servicekosten\s*:?\s*" + _AMOUNT + r"\s*(?:per\s+maand|p/m|p\.m\.|/\s*maand)", re.I)
+_MONTHS = {"januari": 1, "februari": 2, "maart": 3, "april": 4, "mei": 5, "juni": 6, "juli": 7, "augustus": 8,
+           "september": 9, "oktober": 10, "november": 11, "december": 12}
+_AVAIL_RE = re.compile(r"beschikbaar\s+per\s+(\d{1,2})\s+(" + "|".join(_MONTHS) + r")\s+(\d{4})\b", re.I)
+_SHARED_HOME_RE = re.compile(r"woonruimte\s+in\s+een\s+gedeelde\s+2peer-woning", re.I)
+_FACT_LINE_RE = re.compile(r"^[-•\s]*((?:kale huurprijs|servicekosten|totaal maandbedrag)\s*:.*?)[.;]?$", re.I)
+_UNFURNISHED_RE = re.compile(r"niet\s+gemeubileerd|ongemeubileerd|niet\s+gestoffeerd", re.I)
+_FURNISHED_RE = re.compile(r"meubilering\s+en\s+stoffering\s+inbegrepen|(?:woning|appartement)\s+is\s+(?:volledig\s+)?gemeubileerd", re.I)
+_UPHOLSTERED_RE = re.compile(r"(?:woning|appartement)\s+is\s+(?:volledig\s+)?gestoffeerd", re.I)
+
+
+def _facts(parts: List[Optional[str]]) -> Optional[str]:
+    """The page's own words behind the extra keys: whole quotes only, at most 200 characters."""
+    out = ""
+    for part in (p.strip(" ;") for p in parts if p and p.strip(" ;")):
+        joined = out + ("; " if out else "") + part
+        if len(joined) <= 200:
+            out = joined
+        elif not out:
+            out = part[:200]
+    return out or None
 
 
 def apply_details(listing: Listing, html: str) -> Listing:
-    """Description, rooms/bedrooms, and per-person pricing (e.g. the "2PEER" sharer homes list the
-    price per person on the overview page)."""
+    """Description (the listing's own text only), rooms/bedrooms and what the text states: service costs,
+    availability, furnishing, studio, and the amounts of a 2Peer shared home (reported as the page
+    states them: per person, never multiplied)."""
     soup = BeautifulSoup(html, "html.parser")
     for t in soup(["script", "style", "form", "nav", "footer", "header", "noscript"]):
         t.decompose()
-    text = re.sub(r"\s+", " ", soup.get_text(" ", strip=True)).replace("\xa0", " ")
-    i = text.find("Over de woning")
-    if i < 0:
+    page = re.sub(r"\s+", " ", soup.get_text(" ", strip=True)).replace("\xa0", " ")
+    heading = soup.find("h2", string=re.compile(r"^\s*Over de woning\s*$"))
+    if heading is None:
         raise SourceError("layout changed: vanderlinden detail page has no 'Over de woning' section")
-    desc = text[i + len("Over de woning"):]
+    block = heading.find_next_sibling("p")
+    if block is None:
+        raise SourceError("layout changed: vanderlinden 'Over de woning' section has no listing text")
+    for junk in block.select("a.readmore"):
+        junk.decompose()
+    lines = [re.sub(r"\s+", " ", x.replace("\xa0", " ")).strip() for x in block.get_text("\n").split("\n")]
+    lines = [x for x in lines if x]
+    desc = " ".join(lines)
+    if not desc:
+        raise SourceError("layout changed: vanderlinden 'Over de woning' section is empty")
     listing.description = clean_text(desc)
-    m = _ROOMS_RE.search(text)
+
+    m = _ROOMS_RE.search(page)
     if m:
         listing.rooms = int(m.group(1))
-    m = _BEDS_RE.search(text)
+    m = _BEDS_RE.search(page)
     if m:
         listing.bedrooms = int(m.group(1))
-    pp = _PP_RE.search(desc)
-    if pp:
-        per_person = parse_price(pp.group(1))
-        listing.extra["price_per_person"] = per_person
-        allin = _ALLIN_RE.search(desc)
-        if allin:
-            listing.price_total = parse_price(allin.group(1))
-        elif per_person:
-            beds = listing.bedrooms if listing.bedrooms else max((listing.rooms or 3) - 1, 2)
-            listing.price_total = per_person * beds
+    if listing.price_total is None:
+        price = soup.select_one("h2.price")
+        listing.price_total = parse_price(_text(price)) if price is not None else None
+
+    facts: List[Optional[str]] = []
+    if _PP_RE.search(desc):
+        listing.extra["price_per_person"] = True
+        for line in lines:
+            m = _FACT_LINE_RE.match(line)
+            if m:
+                facts.append(re.split(r",\s*inclusief", m.group(1))[0])
+    if _SHARED_HOME_RE.search(desc):
+        listing.extra["site_housemates"] = True
+        facts.append(_SHARED_HOME_RE.search(desc).group(0))
+    m = _SERVICE_RE.search(desc)
+    if m:
+        listing.extra["service_costs"] = parse_price(m.group(1))
+        if not any(f and f.lower().startswith("servicekosten") for f in facts):
+            facts.append(m.group(0))
+    m = _AVAIL_RE.search(desc)  # "Beschikbaar per 1 november 2026!"; without a year the page gives no date
+    if m:
+        listing.available_from = "%s-%02d-%02d" % (m.group(3), _MONTHS[m.group(2).lower()], int(m.group(1)))
+    if _UNFURNISHED_RE.search(desc):
+        listing.furnished = "unfurnished"
+    elif _FURNISHED_RE.search(desc):
+        listing.furnished = "furnished"
+    elif _UPHOLSTERED_RE.search(desc):
+        listing.furnished = "upholstered"
+    if any(re.sub(r"^[•\-\s]+|[•\-\s]+$", "", x).lower() == "studio" for x in lines):
+        listing.property_type = "studio"
+    site_facts = _facts(facts) if listing.extra.keys() & {"price_per_person", "site_housemates", "service_costs"} else None
+    if site_facts:
+        listing.extra["site_facts"] = site_facts
     return listing
 
 

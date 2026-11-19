@@ -40,8 +40,9 @@ class TaggedNotifier(Notifier):
         self.inner = inner
         self.tag = tag
 
-    def send(self, text: str, url: Optional[str] = None, dashboard_url: Optional[str] = None) -> bool:
-        return self.inner.send(self.tag + "\n" + text, url=url, dashboard_url=dashboard_url)
+    def send(self, text: str, url: Optional[str] = None, dashboard_url: Optional[str] = None,
+             audience: str = "all") -> bool:
+        return self.inner.send(self.tag + "\n" + text, url=url, dashboard_url=dashboard_url, audience=audience)
 
 
 def parse_repo(url: Optional[str]) -> Optional[str]:
@@ -193,10 +194,10 @@ def run_backup(cfg: Dict[str, Any], mode: str = "auto", dry_run: bool = False, n
             return 0
 
         if github_stale(meta, now, float(lb.get("stale_hours", 3))):
-            if not state.meta.get("watchdog_alerted") and tagged.send(_down_message(meta.get("last_run"), repo)):
+            if not state.meta.get("watchdog_alerted") and tagged.send(_down_message(meta.get("last_run"), repo), audience="owner"):
                 state.meta["watchdog_alerted"] = True
         elif state.meta.get("watchdog_alerted"):
-            if tagged.send("✅ The GitHub checker is running again."):
+            if tagged.send("✅ The GitHub checker is running again.", audience="owner"):
                 state.meta["watchdog_alerted"] = False
 
         disabled = set(cfg.get("disabled_sources", []))

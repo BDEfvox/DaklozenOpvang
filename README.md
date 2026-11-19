@@ -8,7 +8,11 @@ so about €800 per person or less. New matches go to your **Telegram group**, a
 - 🟢 **great**: €700 per person or less. 🟡 **ok**: up to €800 per person.
 - Warnings on each listing: no house sharers, max N persons, no students, no registration possible,
   income requirement, short-term only, suspiciously cheap, possible scam.
-- Each alert has a ready-to-send Dutch reply. The tool never contacts landlords itself.
+- **Who may rent:** it reads whether a home is only for students, only for working people, has a minimum or
+  maximum age, refuses or welcomes house sharers (woningdelers), or is shared with housemates. Each of these is
+  shown with the listing's own sentence, so you can check it at a glance, and you can filter on all of them.
+- Each alert has a ready-to-send Dutch reply, and the dashboard lets you write your own. The tool never contacts
+  landlords itself.
 - A daily summary at 9:00 tells you it's still alive. **If the daily summary stops coming, the checker has stopped.**
   See [Troubleshooting](#troubleshooting).
 
@@ -116,13 +120,92 @@ Your Mac can cover just those sites:
   Don't do this while GitHub is running too, or you'll get every alert twice.
 - One small catch: if GitHub later regains access to a site the Mac was covering, a few listings may be alerted twice once.
 
+## Let other chats subscribe (optional)
+
+By default the alerts go to your own chat only. If you want a friend (or their family group) to get the same
+alerts, you can give them a **secret invite link**. Whoever opens it can add the bot to their own private chat or
+group; nobody else can. It stays private: the bot answers only to the invite link, and the list of subscribers is
+not in this public repository.
+
+**What a subscriber sees:** after tapping the link and pressing Start, one welcome message (with the dashboard link).
+From then on they get every new match, price drop and the daily digest, exactly like you. They do **not** get the
+technical messages (a site that stops working, the first-run site report, the Mac backup's warnings): those are for
+you only. `/stop` ends it, `/status` says whether the chat is subscribed. If they remove the bot from their group or
+block it, they are taken off the list automatically.
+
+**What is stored where:**
+- On Cloudflare (free, a small "relay"): per subscribed chat only its numeric id, whether it is a private chat or a
+  group, and the time it joined. No names, usernames, group titles or messages.
+- The relay never holds the bot token. Telegram's answers to `/start` and `/stop` are sent back through the relay's own
+  reply, so it needs no token.
+- On GitHub and in your `.env`: `RELAY_URL` and `RELAY_PULL_SECRET`, so each run can ask the relay who is subscribed.
+  Chat ids are never printed in the run log.
+- Your own chat is separate and unchanged (`TELEGRAM_CHAT_ID`). If the relay is unreachable, a run sends to you only.
+
+**Set it up** (once; the first time run `npx wrangler login` to sign in to a free Cloudflare account, and make sure this
+version is pushed to GitHub):
+
+```bash
+./telegram-relay/deploy.sh
+```
+
+It creates the storage, deploys the relay, connects GitHub, points the bot at the relay, tests the whole path
+without subscribing anyone, and prints two invite links: one for a private chat with the bot and one for adding the bot
+to a group. Send them only to people you trust. At most 50 chats can subscribe.
+
+Two things to know. A person who has the link can pass it on, and in a group the other members may see the
+invite code in the chat. If that matters, make a new link afterwards with `--new-invite`: the old link stops
+working and everyone who already subscribed stays. If someone got in who should not have, `--remove-all`
+removes every subscriber and makes a new link; then invite the right people again (the list holds only chat
+numbers, so single chats cannot be picked out by name). And subscribers are best effort: if the relay cannot be
+reached during a run, that run's alerts go to your own chat only and are not sent to subscribers later.
+
+**Useful commands:**
+
+```bash
+./telegram-relay/deploy.sh --links        # print the invite links again
+./telegram-relay/deploy.sh --new-invite   # a new invite link; the old one stops working, current subscribers stay
+./telegram-relay/deploy.sh --count        # how many chats are subscribed (never which)
+./telegram-relay/deploy.sh --remove-all   # remove every subscriber and make a new invite link
+./telegram-relay/deploy.sh --off          # switch it off: alerts go to your own chat only again
+```
+
+`--off` removes the webhook and the GitHub and `.env` settings and tells you how to erase the stored list and the relay
+itself from Cloudflare. One thing to know: while the relay is on, the bot's webhook is set, and Telegram then refuses
+`./go-live.sh --telegram` (it cannot look for your group). Run `./telegram-relay/deploy.sh --off` first, then that
+command, then `./telegram-relay/deploy.sh` again.
+
+## The dashboard filters
+
+- **Group size:** 2 People, 3 People or Any.
+- **Cities** and **Maximum per Person**.
+- **Who's Renting:** Students, Working or Any, and your age. This hides homes that are only for the other group
+  and homes with an age limit you don't meet.
+- **House Sharing:** hide homes that refuse sharers, show only homes that welcome sharers, hide homes where you'd
+  have housemates (people who already live there, or a shared kitchen or bathroom).
+- **Warnings:** hide every listing with a warning.
+
+These filters only act on what a listing actually states. A home that says nothing about students, age or
+sharing always stays in the list. Under each listing you see the sentence the tool based its marks on, in the
+listing's own words. If a mark looks wrong, that sentence shows why.
+
+**Your reply text.** Tap **Reply** (next to the search field) to write the message that "Copy Reply" copies. Tap
+a detail (Title, Address, City, Rent, Bedrooms, Size, Site, Link) to put it where the cursor is; it is filled
+in for each listing when you copy, and the preview shows the result. The text is kept on that device only.
+"Use the Standard Text" brings back the text from `config.json`.
+
 ## Changing the search
 
 Edit `config.json` and push (or edit it on github.com: open the file and click the pencil). The next run picks it up.
 - `searches`: group sizes, bedrooms, max total rent, the "great" threshold.
 - `cities`: `den-haag`, `amsterdam`, `leiden`, `delft`, `rotterdam`.
 - `disabled_sources`: e.g. `["marktplaats"]` to stop a site.
-- `reply_template`: your reply text. Fill in the parts in [brackets].
+- `reply_template`: your reply text. Fill in the parts in [brackets]. (Telegram alerts use this one; the
+  dashboard uses it until you write your own there.)
+- `household`: optional, e.g. `{"age": 24, "occupation": "students"}` (or `"working"`). When set, homes that
+  state they are not for you (students only, a minimum age above yours, …) are not alerted at all. Leave it empty
+  to get everything and filter on the dashboard.
+- `tenant_rules`: optional extra wordings for the who-may-rent flags, for a phrase the tool misses.
 - `telegram.quiet_hours`: messages between 23:00 and 07:00 arrive silently.
 
 ## Commands (on your Mac, in this folder)

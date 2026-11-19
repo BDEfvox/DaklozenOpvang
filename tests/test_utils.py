@@ -43,3 +43,12 @@ def test_bedrooms_from_text(text, want):
 ])
 def test_bedrooms_from_text_says_nothing(text):
     assert bedrooms_from_text(text) is None
+
+
+def test_city_slug_den_haag_districts():
+    from hunter.utils import city_slug
+    for name in ("Scheveningen", "Loosduinen", "Kijkduin", "Ypenburg", "Leidschenveen", " scheveningen "):
+        assert city_slug(name) == "den-haag", name
+    for name in ("Rijswijk", "Voorburg", "Leidschendam", "Wassenaar", "Zoetermeer", "Delft"):
+        assert city_slug(name) != "den-haag", name
+    assert city_slug("Rijswijk") is None and city_slug("Voorburg") is None

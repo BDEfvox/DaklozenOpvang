@@ -68,11 +68,14 @@ class FakeNotifier(Notifier):
     def __init__(self) -> None:
         self.messages: List[str] = []
         self.urls: List[Optional[str]] = []
+        self.audiences: List[str] = []
         self.ok = True
 
-    def send(self, text: str, url: Optional[str] = None, dashboard_url: Optional[str] = None) -> bool:
+    def send(self, text: str, url: Optional[str] = None, dashboard_url: Optional[str] = None,
+             audience: str = "all") -> bool:
         if not self.ok:
             return False
+        self.audiences.append(audience)
         self.messages.append(text)
         self.urls.append(url)
         return True

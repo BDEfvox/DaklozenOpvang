@@ -4,7 +4,7 @@ from __future__ import annotations
 import re
 import sys
 import traceback
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, fields as dataclass_fields
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -144,6 +144,8 @@ class Item:
     baseline: bool = False              # found in a source's very first scan
     was_matched: bool = True            # price drops: did it already fit a search before this run?
     dup_pending: bool = False           # street-only address: "same home?" is decided after the detail page
+    # extra keys that came from the saved detail snapshot (not from this run's search page)
+    snapshot_extra: Dict[str, Any] = field(default_factory=dict)
 
     @property
     def sort_key(self) -> Tuple[int, int]:
@@ -163,10 +165,10 @@ class Sender:
     def broken(self) -> bool:
         return self.fail_streak >= 2
 
-    def send(self, text: str, url: Optional[str] = None) -> bool:
+    def send(self, text: str, url: Optional[str] = None, audience: str = "all") -> bool:
         if self.broken:
             return False
-        ok = self.n.send(text, url=url, dashboard_url=self.dash)
+        ok = self.n.send(text, url=url, dashboard_url=self.dash, audience=audience)
         self.fail_streak = 0 if ok else self.fail_streak + 1
         return ok
 
@@ -180,48 +182,81 @@ def _public_dict(l: Listing) -> Dict[str, Any]:
     d = l.to_dict()
     if _private_text(l):  # text from the user's mailbox: fine for filtering, never for saving
         d["description"] = None
+    elif d.get("description"):
+        d["description"] = d["description"][:CARD_TEXT_MAX]  # flags are read from the full text before this cut
     return d
 
 
 # Flags worth remembering from a detail page whose full text is not kept (it is cut to 2500 characters,
 # and mailbox text is never saved).
 _DETAIL_FLAGS = ("no_sharers", "max_persons", "no_students", "scam_signals", "no_registration",
-                 "income_requirement", "sharers_ok")
+                 "income_requirement", "sharers_ok", "students_only", "students_ok", "working_only",
+                 "min_age", "max_age", "housemates", "women_only", "men_only", "price_per_person",
+                 "mandatory_costs", "short_term")
+CARD_TEXT_MAX = 4000      # description kept on a dashboard card (data/matches.json)
+SNAPSHOT_TEXT_MAX = 2500  # description kept in a detail snapshot (data/seen.json)
+# Raise this when the flags read from a detail page change: every card whose page was read by an older
+# version is read once more (a few per run), so the new flags reach listings that were found earlier.
+DETAIL_VERSION = 2
+
+
+def _flag_name(flag: str) -> str:
+    return flag.split(":")[0]
 
 
 def _card(state: State, it: Item, now_s: str) -> None:
     old = state.matches.get(it.listing.uid, {})
     flags = list(it.result.flags)
+    evidence = dict(it.result.evidence)
     # Flags the last detail-page read found. They live in that read's snapshot, so they go when the
     # page is read again or the snapshot is dropped; a flag no current text supports does not linger.
+    # What the text at hand says about the same thing wins ("max_persons:2" now, "max_persons:3" then).
     details = (state.seen.get(it.listing.uid) or {}).get("details") or {}
-    for f in details.get("flags") or []:
-        if f not in flags and f.split(":")[0] in _DETAIL_FLAGS:
+    have = {_flag_name(f) for f in flags}
+    remembered = _remembered(details)
+    for f in (remembered[0] if remembered else []):
+        name = _flag_name(f)
+        if name not in have and name in _DETAIL_FLAGS:
             flags.append(f)
+            have.add(name)
+            quote = (details.get("evidence") or {}).get(name)
+            if isinstance(quote, str) and quote:
+                evidence[name] = quote
+    if _private_text(it.listing):
+        evidence = {}  # sentences from the user's mailbox are never saved (the repository is public)
     state.matches[it.listing.uid] = {
         "listing": _public_dict(it.listing),
         "first_seen": old.get("first_seen") or now_s,
         "last_seen": now_s,
         "matches": [m.to_dict() for m in it.result.matches],
         "flags": flags,
+        "evidence": {k: v for k, v in evidence.items() if k in have},
         "best_tier": it.result.best_tier,
         "price_drop_from": old.get("price_drop_from"),
     }
 
 
 _DETAIL_FIELDS = ("bedrooms", "rooms", "area_m2", "property_type", "price_total", "price_includes_utilities",
-                  "description", "address", "postcode", "available_from", "available_until")
+                  "description", "address", "postcode", "available_from", "available_until", "furnished")
 
 
-def detail_snapshot(l: Listing, search_price: Optional[int], flags: Optional[List[str]] = None) -> Dict[str, Any]:
+def detail_snapshot(l: Listing, search_price: Optional[int], flags: Optional[List[str]] = None,
+                    evidence: Optional[Dict[str, str]] = None) -> Dict[str, Any]:
     """What a detail page told us, so later runs (which only see the search page) don't forget it.
-    Only written after a real read of the page (see Source.has_detail_pages)."""
+    Only written after a real read of the page (see Source.has_detail_pages). The flags were read from
+    the page's full text; the text kept here is cut, so the flags and their sentences are kept too."""
     d: Dict[str, Any] = {k: getattr(l, k) for k in _DETAIL_FIELDS if getattr(l, k) is not None}
-    d["flags"] = sorted(f for f in (flags or []) if f.split(":")[0] in _DETAIL_FLAGS)
+    d["flags"] = sorted(f for f in (flags or []) if _flag_name(f) in _DETAIL_FLAGS)
+    d["v"] = DETAIL_VERSION
+    names = {_flag_name(f) for f in d["flags"]}
+    quotes = {k: v for k, v in (evidence or {}).items() if k in names and isinstance(v, str) and v}
     if _private_text(l):
         d.pop("description", None)
+        quotes = {}
+    if quotes:
+        d["evidence"] = quotes
     if "description" in d:
-        d["description"] = d["description"][:2500]
+        d["description"] = d["description"][:SNAPSHOT_TEXT_MAX]
     if l.extra:
         d["extra"] = {k: v for k, v in l.extra.items() if isinstance(v, (str, int, float, bool)) or v is None}
     d["search_price"] = search_price
@@ -232,6 +267,9 @@ def apply_detail_snapshot(l: Listing, d: Dict[str, Any]) -> None:
     for k in _DETAIL_FIELDS:
         if k == "price_total" or d.get(k) is None:
             continue
+        if (k == "description" and isinstance(l.description, str) and isinstance(d[k], str)
+                and len(l.description) > len(d[k]) and l.description.startswith(d[k][:200])):
+            continue  # the card kept more of the same text than the snapshot did
         setattr(l, k, d[k])
     # Only reuse a detail-page price while the search page still shows the same price as back then;
     # if the landlord changed the price, the search page wins.
@@ -241,6 +279,69 @@ def apply_detail_snapshot(l: Listing, d: Dict[str, Any]) -> None:
         l.extra.update(d["extra"])
 
 
+def _remembered(details: Optional[Dict[str, Any]]) -> Optional[Tuple[List[str], Dict[str, str]]]:
+    """What a detail snapshot remembers of the page's full text, in the form filters.evaluate takes."""
+    if not details or not details.get("flags"):
+        return None
+    try:
+        if int(details.get("v") or 1) < DETAIL_VERSION:
+            return None   # read by older rules, some of them wrong since; the page is read again (see below)
+    except (TypeError, ValueError):
+        return None
+    flags = [f for f in details["flags"] if isinstance(f, str) and _flag_name(f) in _DETAIL_FLAGS]
+    evidence = details.get("evidence") if isinstance(details.get("evidence"), dict) else {}
+    return (flags, evidence) if flags else None
+
+
+_LISTING_FIELDS = {f.name for f in dataclass_fields(Listing)}
+
+
+def rejudge_cards(state: State, cfg: Dict[str, Any], skip: Any = ()) -> int:
+    """Judge the saved cards again with today's rules, from what was saved (no request, no alert).
+
+    A card whose listing was not on a search page this run keeps what an earlier run decided. Without this, a
+    correction to the matcher (a rent that turned out to be per person, a storage room that is not a home)
+    would reach such a card only if its listing happened to be seen again, and otherwise never: the card
+    would stay wrong until it expires. Returns how many cards changed or went."""
+    changed = 0
+    for uid, card in list(state.matches.items()):
+        raw = card.get("listing") if isinstance(card, dict) else None
+        if uid in skip or not isinstance(raw, dict):
+            continue
+        try:
+            l = Listing(**{k: v for k, v in raw.items() if k in _LISTING_FIELDS})
+        except TypeError:
+            continue
+        if _private_text(l):
+            continue  # its text came from the mailbox and was never saved: the earlier decision stands
+        entry = state.seen.get(uid)
+        if not isinstance(entry, dict):
+            entry = None
+        try:
+            res = evaluate(l, cfg, remembered=_remembered((entry or {}).get("details")))
+        except Exception as exc:  # a card saved by an older version in a shape today's rules cannot read:
+            print("[rejudge] %s: %s" % (uid, _describe(exc)), file=sys.stderr)   # it stays as it is
+            continue
+        if not res.matched:
+            del state.matches[uid]
+            if entry is not None:
+                entry["matched"] = []
+            changed += 1
+            continue
+        new = {
+            "matches": [m.to_dict() for m in res.matches],
+            "flags": list(res.flags),
+            "evidence": {} if _private_text(l) else dict(res.evidence),
+            "best_tier": res.best_tier,
+        }
+        if any(card.get(k) != v for k, v in new.items()):
+            card.update(new)
+            if entry is not None:
+                entry["matched"] = [m.search for m in res.matches]
+            changed += 1
+    return changed
+
+
 DETAIL_MAX_TRIES = 3
 
 
@@ -248,15 +349,24 @@ def _bedrooms_unsure(it: Item) -> bool:
     return any(f in ("bedrooms_unconfirmed", "bedrooms_unknown") for f in it.result.flags)
 
 
+def _detail_tries(entry: Dict[str, Any]) -> int:
+    """Looks at the detail page that left the question open, counted per DETAIL_VERSION."""
+    if entry.get("detail_tries_v", 1) != DETAIL_VERSION:
+        return 0
+    return int(entry.get("detail_tries") or 0)
+
+
 def _needs_detail_check(prev: Dict[str, Any], it: Item) -> bool:
     """Is this known match worth a (new) look at its detail page?"""
     if not it.source.has_detail_pages:
         return False  # nothing to look at: the feed is all this source has
-    if int(prev.get("detail_tries") or 0) >= DETAIL_MAX_TRIES:
+    if _detail_tries(prev) >= DETAIL_MAX_TRIES:
         return False
     d = prev.get("details")
     if not d:
         return True
+    if int(d.get("v") or 1) < DETAIL_VERSION and not (d.get("extra") or {}).get("details_unavailable"):
+        return True  # read by an older version, which did not look for everything this one does
     # An earlier look that taught us nothing about the bedrooms and found no description
     # (e.g. the source could not read detail pages yet): look again, unless the site hides the page.
     return (_bedrooms_unsure(it) and not d.get("description")
@@ -269,6 +379,10 @@ def _enrich(items: List[Item], cfg: Dict[str, Any], http: Any, budget: List[int]
     for it in items:
         if budget[0] > 0 and it.source.has_detail_pages:
             budget[0] -= 1
+            # What the last read of the page found is read afresh: a value today's reader no longer sets
+            # (an id it used to misread as a head count) must not survive the new read.
+            for k in it.snapshot_extra:
+                it.listing.extra.pop(k, None)
             try:
                 it.search_price = it.listing.price_total
                 it.listing.extra.pop("description_from_summary", None)  # restored from an older snapshot
@@ -280,6 +394,8 @@ def _enrich(items: List[Item], cfg: Dict[str, Any], http: Any, budget: List[int]
                           "summary" % it.listing.uid, file=sys.stderr)
             except Exception as exc:
                 print("[detail] %s: %s" % (it.listing.uid, _describe(exc)), file=sys.stderr)  # redacted
+                for k, v in it.snapshot_extra.items():   # the page could not be read: keep what was known
+                    it.listing.extra.setdefault(k, v)
         if it.result.matched:
             out.append(it)
     return out
@@ -388,17 +504,29 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
                 l.description = (old_card.get("listing") or {}).get("description")
             prev = state.seen.get(l.uid)
             had_snapshot = False
+            snapshot_extra: Dict[str, Any] = {}
             if prev is not None and prev.get("details"):
                 if src.has_detail_pages:
+                    own = dict(l.extra) if isinstance(l.extra, dict) else {}
                     apply_detail_snapshot(l, prev["details"])
                     had_snapshot = True
+                    saved = prev["details"].get("extra")
+                    if isinstance(saved, dict):
+                        snapshot_extra = {k: v for k, v in saved.items() if k not in own}
+                    # What this run's search page says itself is newer than the snapshot (a parking badge that
+                    # changed). The snapshot's text stays when it only adds to the same words.
+                    for k, v in own.items():
+                        old = l.extra.get(k)
+                        if v is not None and not (isinstance(v, str) and isinstance(old, str) and old.startswith(v)):
+                            l.extra[k] = v
                 else:
                     # Written by an older version that "read" a detail page this source does not have.
                     # It only repeats the feed of that day, and would undo every later correction.
                     del prev["details"]
-            res = evaluate(l, cfg)
+            res = evaluate(l, cfg, remembered=_remembered(prev["details"]) if had_snapshot else None)
             fp = fingerprint(l)
-            it = Item(src, l, res, had_snapshot=had_snapshot, fp=fp, baseline=is_baseline)
+            it = Item(src, l, res, had_snapshot=had_snapshot, fp=fp, baseline=is_baseline,
+                      snapshot_extra=snapshot_extra)
 
             if prev is not None and prev.get("dup_of"):
                 ref = live_duplicate(prev)
@@ -422,6 +550,15 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
             if prev is not None:
                 # known listing: refresh, check price drop
                 old_price = prev.get("last_price")
+                # A source that reads its price another way than last time (extra["price_basis"]) shows another
+                # number for the same rent: that is not a price drop.
+                basis = l.extra.get("price_basis") if isinstance(l.extra, dict) else None
+                if basis != prev.get("price_basis"):
+                    old_price = None
+                    if basis is None:
+                        prev.pop("price_basis", None)
+                    else:
+                        prev["price_basis"] = basis
                 prev["last_seen"] = now_s
                 prev["last_price"] = l.price_total
                 if fp:
@@ -472,6 +609,8 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
                 entry["fp"] = fp
             if dup_of:
                 entry["dup_of"] = dup_of
+            if isinstance(l.extra, dict) and l.extra.get("price_basis") is not None:
+                entry["price_basis"] = l.extra["price_basis"]
             state.seen[l.uid] = entry
             if dup_of or not res.matched:
                 continue
@@ -497,7 +636,8 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
         for it in items:
             entry = state.seen.get(it.listing.uid)
             if it.detailed and entry is not None:
-                entry["details"] = detail_snapshot(it.listing, it.search_price, it.result.flags)
+                entry["details"] = detail_snapshot(it.listing, it.search_price, it.result.flags,
+                                                   it.result.evidence)
                 entry["last_price"] = it.listing.price_total
                 entry["matched"] = [m.search for m in it.result.matches]
                 new_fp = fingerprint(it.listing)  # the detail page may give the full address
@@ -613,7 +753,8 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
             if entry is not None:
                 # Every look counts, also one that loaded but left the question open (mailbox text is
                 # never saved, so such a listing would otherwise be looked at again on every run).
-                entry["detail_tries"] = int(entry.get("detail_tries") or 0) + 1
+                entry["detail_tries"] = _detail_tries(entry) + 1
+                entry["detail_tries_v"] = DETAIL_VERSION
             if it.detailed and id(it) in kept_backlog:
                 _card(state, it, now_s)
 
@@ -666,7 +807,7 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
             # Partly working counts as working again: the failure streak ends, and a warning that was
             # sent is followed by one message that says which part still fails.
             still_failing = fr.error if fr.status == "partial" else None
-            if h.get("alerted") and sender.send(fmt.format_recovery(src.label or name, still_failing)):
+            if h.get("alerted") and sender.send(fmt.format_recovery(src.label or name, still_failing), audience="owner"):
                 h["alerted"] = False
             h["consecutive_failures"] = 0
         else:
@@ -676,7 +817,7 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
             h["consecutive_failures"] = int(h.get("consecutive_failures", 0)) + 1
             if h["consecutive_failures"] >= threshold and not h.get("alerted"):
                 if sender.send(fmt.format_health_alert(src.label or name, fr.status,
-                                                       h["consecutive_failures"], fr.error)):
+                                                       h["consecutive_failures"], fr.error), audience="owner"):
                     h["alerted"] = True
 
     # 7b. very first run: tell the group which sites work from where this runs (GitHub's servers)
@@ -684,7 +825,7 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
         rows = [{"name": n, "label": h.get("label"), "status": h.get("status"), "note": h.get("note"),
                  "error": h.get("error"), "count": h.get("listings_last_run")}
                 for n, h in sorted(state.health.items())]
-        sender.send(fmt.format_status_report(rows, dash))
+        sender.send(fmt.format_status_report(rows, dash), audience="owner")
 
     # 8. daily digest
     if (tcfg.get("digest", True) and int(tcfg.get("digest_hour", 9)) <= local_now.hour
@@ -698,6 +839,9 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
                     for n, h in sorted(state.health.items())]
             if sender.send(fmt.format_digest(per_city, rows, dash, yday)):
                 state.meta["last_digest_date"] = today
+
+    # 8b. cards whose listing was not on a search page this run: judged again from what was saved
+    rejudge_cards(state, cfg, skip=seen_uids)
 
     # 9. save
     state.meta["last_run"] = now_s

@@ -94,3 +94,86 @@ def test_pagination_block_keeps_page_one_and_stops_requests(cfg):
     assert http.urls == [first_url, second_url]
     assert result.status == "partial"
     assert result.per_city == {"den-haag": (4, "page 2: HTTP 429")}
+
+
+def _details(tag, city="amsterdam", **kw):
+    base = dict(source="rotsvast", source_id="h1", url="https://www.rotsvast.nl/huren/x-h1/", title="x", city=city)
+    base.update(kw)
+    return SOURCE.fetch_details(Listing(**base), FakeHttp((FIX / ("rotsvast_detail_%s.html" % tag)).read_text()))
+
+
+@pytest.mark.parametrize("tag, card_street, expected", [
+    ("wolbrantskerkweg_64k", "Wolbrantskerkweg", "Wolbrantskerkweg 64 K"),  # "Deel deze woning Wolbrantskerkweg 64 K Amsterdam ..."
+    ("ariana_nozemanstraat_82", "Ariana Nozemanstraat", "Ariana Nozemanstraat 82"),
+    ("ariana_nozemanstraat_156", "Ariana Nozemanstraat", "Ariana Nozemanstraat 156"),
+])
+def test_address_gets_house_number_from_share_block(tag, card_street, expected):
+    assert _details(tag, address=card_street).address == expected
+
+
+def test_address_stays_when_share_block_has_no_number():
+    # "Waldeck Pyrmontkade Den Haag 1 kamers EUR 10 p.m."
+    assert _details("waldeck_shortstay", city="den-haag", address="Waldeck Pyrmontkade").address == "Waldeck Pyrmontkade"
+
+
+def test_details_table_fills_rooms_bedrooms_area_and_date():
+    out = _details("ariana_nozemanstraat_156", bedrooms=1, area_m2=80)  # table: Aantal kamers 3, slaapkamers 2, 83 m2
+    assert out.rooms == 3 and out.bedrooms == 2 and out.area_m2 == 83
+    assert out.available_from is None  # "Startdatum Per direct beschikbaar"
+    assert _details("ariana_nozemanstraat_82").rooms == 4  # the description has no "N-kamer"
+
+
+def test_utilities_not_included_from_overige_kosten():
+    for tag in ("wolbrantskerkweg_64k", "ariana_nozemanstraat_82", "ariana_nozemanstraat_156", "waldeck_shortstay"):
+        assert _details(tag).price_includes_utilities is False, tag
+
+
+def test_utilities_included_when_the_table_says_so():
+    html = (FIX / "rotsvast_detail_wolbrantskerkweg_64k.html").read_text().replace("Niet inbegrepen", "Inbegrepen")
+    l = Listing(source="rotsvast", source_id="h1", url="u", title="x", city="amsterdam")
+    assert SOURCE.fetch_details(l, FakeHttp(html)).price_includes_utilities is True
+
+
+def test_price_total_is_kept_and_contradicting_figures_are_not_guessed():
+    # "Kale huur 3.450", "Totale huur 3.450 / Servicekosten Inbegrepen"; the description says "Servicekosten: 100 per maand"
+    out = _details("ariana_nozemanstraat_82", price_total=3450)
+    assert out.price_total == 3450
+    assert "service_costs" not in out.extra and "total_rent" not in out.extra and "service_costs_included" not in out.extra
+    assert "Servicekosten: € 100 per maand" in out.description
+
+
+def test_service_costs_amount_in_the_table_is_used():
+    html = (FIX / "rotsvast_detail_ariana_nozemanstraat_82.html").read_text().replace("Inbegrepen", "€100", 1)
+    l = Listing(source="rotsvast", source_id="h1", url="u", title="x", city="amsterdam")
+    assert SOURCE.fetch_details(l, FakeHttp(html)).extra["service_costs"] == 100
+
+
+def test_placeholder_rent_gives_no_price():
+    out = _details("waldeck_shortstay", city="den-haag")  # "Kale huur EUR 10"
+    assert out.price_total is None
+
+
+def test_short_stay_only():
+    out = _details("waldeck_shortstay", city="den-haag")
+    assert out.extra["max_stay_months"] == 6
+    assert "alleen short stay" in out.description
+    assert "max_stay_months" not in _details("wolbrantskerkweg_64k").extra
+
+
+def test_old_detail_fixture_still_works():
+    html = (FIX / "rotsvast_detail.html").read_text()
+    l = Listing(source="rotsvast", source_id="h1", url="u", title="x", city="den-haag", address="Van Diemenstraat", bedrooms=3)
+    out = SOURCE.fetch_details(l, FakeHttp(html))
+    assert out.address == "Van Diemenstraat" and out.bedrooms == 3 and out.rooms == 4
+
+
+@pytest.mark.parametrize("sentence", [
+    "Geen short stay mogelijk. De borg bedraagt maximaal 2 maanden huur.",
+    "Niet voor short stay. Waarborgsom van maximaal 2 maanden.",
+    "Huurcontract voor onbepaalde tijd, maximaal 3 maanden opzegtermijn.",
+])
+def test_ordinary_home_is_not_short_stay(sentence):
+    html = ('<div class="house-description"><h2>Beschrijving</h2><div class="house-description__intro"><p>Ruim appartement. %s</p>'
+            '</div></div>' % sentence)
+    l = Listing(source="rotsvast", source_id="h1", url="u", title="x", city="amsterdam")
+    assert "max_stay_months" not in SOURCE.fetch_details(l, FakeHttp(html)).extra
