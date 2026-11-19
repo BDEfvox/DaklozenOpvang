@@ -7,29 +7,74 @@
   "rotterdam": "Rotterdam"
  },
  "dashboard_url": "https://BDEfvox.github.io/DaklozenOpvang/",
+ "flag_kinds": {
+  "age_unclear": "check",
+  "apply_together": "good",
+  "bedrooms_unconfirmed": "check",
+  "bedrooms_unknown": "check",
+  "capacity": "info",
+  "housemates": "info",
+  "income_requirement": "info",
+  "mandatory_costs": "info",
+  "max_age": "info",
+  "max_persons": "info",
+  "men_only": "info",
+  "min_age": "info",
+  "no_registration": "warn",
+  "no_sharers": "warn",
+  "no_students": "warn",
+  "places_free": "info",
+  "places_unclear": "check",
+  "price_per_person": "info",
+  "price_unknown": "check",
+  "price_varies": "info",
+  "rent_for_2": "info",
+  "rent_for_3": "info",
+  "rent_for_4": "info",
+  "rent_unclear": "check",
+  "rooms_only": "warn",
+  "scam_signals": "warn",
+  "service_costs": "info",
+  "sharers_ok": "good",
+  "sharing_unclear": "check",
+  "short_term": "info",
+  "students_ok": "good",
+  "students_only": "info",
+  "suspicious_price": "warn",
+  "utilities_included": "good",
+  "women_only": "info",
+  "working_only": "warn"
+ },
  "flag_labels": {
+  "age_unclear": "Age limit unclear",
+  "apply_together": "Two can apply together",
   "bedrooms_unconfirmed": "Bedrooms not confirmed",
   "bedrooms_unknown": "Bedrooms unknown",
+  "capacity": "Shared home for {n} people",
   "housemates": "Shared with housemates",
   "income_requirement": "Income requirement",
   "mandatory_costs": "Compulsory extra €{n} a month",
   "max_age": "Maximum age {n}",
-  "max_persons": "Max {n} persons",
+  "max_persons": "Up to {n} people",
   "men_only": "Men only",
   "min_age": "Minimum age {n}",
   "no_registration": "No registration possible",
   "no_sharers": "No house sharers",
   "no_students": "No students",
-  "price_per_person": "Rent is per person",
+  "places_free": "Places free: {n}",
+  "places_unclear": "Free places unclear",
+  "price_per_person": "Rent is per person or room",
   "price_unknown": "Price unknown",
   "price_varies": "Rent depends on the month, up to €{n}",
   "rent_for_2": "€{n} a month for 2 people",
   "rent_for_3": "€{n} a month for 3 people",
   "rent_for_4": "€{n} a month for 4 people",
+  "rent_unclear": "Rent basis unclear",
   "rooms_only": "Only single rooms",
   "scam_signals": "Possible scam",
   "service_costs": "Plus €{n} service costs a month",
   "sharers_ok": "Sharers welcome",
+  "sharing_unclear": "Sharing policy unclear",
   "short_term": "Short-term only",
   "students_ok": "Students welcome",
   "students_only": "Students only",
@@ -38,81 +83,52 @@
   "women_only": "Women only",
   "working_only": "Working people only"
  },
- "generated_at": "2026-11-19T21:50:52Z",
- "last_run": "2026-11-19T21:50:52Z",
+ "generated_at": "2026-11-19T22:30:49Z",
+ "household": {
+  "persons": 2
+ },
+ "last_run": "2026-11-19T22:30:49Z",
  "listings": [
-  {
-   "address": "J. Meewisstraat",
-   "area_m2": 91,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "amsterdam",
-   "evidence": {},
-   "first_seen": "2026-11-19T18:21:01Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/4198dc50-c152-44f2-afef-63782d4b544b",
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 778,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2335,
-   "property_type": "apartment",
-   "rooms": 7,
-   "source": "directwonen",
-   "source_label": "DirectWonen",
-   "title": "Appartement J. Meewisstraat, Amsterdam",
-   "uid": "directwonen:524312",
-   "url": "https://directwonen.nl/huurwoningen-huren/amsterdam/johannes-meewisstraat/appartement-524312"
-  },
   {
    "address": "Maria Snelplantsoen",
    "area_m2": 200,
    "available_from": null,
    "available_until": null,
    "bedrooms": null,
-   "best_tier": "great",
+   "best_tier": "ok",
+   "capacity": null,
    "city": "amsterdam",
    "evidence": {},
    "first_seen": "2026-11-19T16:49:29Z",
    "flags": [
     "suspicious_price",
+    "rent_unclear",
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "u:email_alerts:pararius-764de232",
    "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
-     "price_pp": 375,
+     "price_pp": null,
      "search": "2 people",
-     "tier": "great"
-    },
-    {
-     "persons": 3,
-     "price_pp": 250,
-     "search": "3 people",
-     "tier": "great"
+     "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 750,
    "property_type": null,
+   "rent_basis": null,
    "rooms": 6,
    "source": "email_alerts",
    "source_label": "Pararius/Funda email alerts",
@@ -121,53 +137,13 @@
    "url": "https://www.pararius.nl/appartement-te-huur/amsterdam/764de232/maria-snelplantsoen"
   },
   {
-   "address": "Sumatrakade 1213",
-   "area_m2": 66,
-   "available_from": "2027-01-01",
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "amsterdam",
-   "evidence": {
-    "income_requirement": "Inkomenseis",
-    "service_costs": "Servicekosten € € 63,- /mnd per maand (MVGM lists them next to the rent)"
-   },
-   "first_seen": "2026-11-19T16:49:29Z",
-   "flags": [
-    "income_requirement",
-    "service_costs:63",
-    "bedrooms_unknown"
-   ],
-   "furnished": null,
-   "image_url": "https://a.static.nbo.nl/media/b9/b964ce954bc1f321dae814bf53dc41f6/768x510/thumb.jpg",
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 549,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": "1019RJ",
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1585,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "ikwilhuren",
-   "source_label": "MVGM (ikwilhuren.nu)",
-   "title": "Appartement Sumatrakade 1213, Amsterdam",
-   "uid": "ikwilhuren:2d29e89fbf8e2582e16d2c7beba0df15",
-   "url": "https://ikwilhuren.nu/object/amsterdam-1019rj-1213-sumatrakade-2d29e89fbf8e2582e16d2c7beba0df15/"
-  },
-  {
    "address": "Randveen 808",
    "area_m2": 70,
    "available_from": "2026-12-22",
    "available_until": null,
    "bedrooms": 2,
    "best_tier": "great",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {
     "service_costs": "Servicekosten € € 85,- /mnd per maand (MVGM lists them next to the rent)"
@@ -178,21 +154,29 @@
     "service_costs:85"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "a:den-haag:randveen:808",
    "image_url": "https://c.static.nbo.nl/media/dd/ddfdbe5289dfaac2f94bed1d4146af08/768x510/thumb.jpg",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 42,
      "persons": 2,
-     "price_pp": 667,
+     "price_pp": 625,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": "2544RM",
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1249,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "ikwilhuren",
    "source_label": "MVGM (ikwilhuren.nu)",
@@ -201,52 +185,13 @@
    "url": "https://ikwilhuren.nu/object/den-haag-2544rm-808-randveen-322f0095871659da6a7a35a41f209579/"
   },
   {
-   "address": "Ceramiquelaan 61",
-   "area_m2": 82,
-   "available_from": "2026-12-01",
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "amsterdam",
-   "evidence": {
-    "service_costs": "Servicekosten € € 46,- /mnd per maand (MVGM lists them next to the rent)"
-   },
-   "first_seen": "2026-11-19T16:49:29Z",
-   "flags": [
-    "income_requirement",
-    "service_costs:46",
-    "bedrooms_unknown"
-   ],
-   "furnished": null,
-   "image_url": "https://c.static.nbo.nl/media/a0/a0741157f5981386f14983089b9305f9/768x510/thumb.jpg",
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 715,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": "1031KG",
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2100,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "ikwilhuren",
-   "source_label": "MVGM (ikwilhuren.nu)",
-   "title": "Appartement Ceramiquelaan 61, Amsterdam",
-   "uid": "ikwilhuren:48ae5817e4656d5cdd8011cd9b443224",
-   "url": "https://ikwilhuren.nu/object/amsterdam-1031kg-61-ceramiquelaan-48ae5817e4656d5cdd8011cd9b443224/"
-  },
-  {
    "address": "Baanweg 13 E",
    "area_m2": 111,
    "available_from": null,
    "available_until": null,
    "bedrooms": 3,
-   "best_tier": "great",
+   "best_tier": "ok",
+   "capacity": null,
    "city": "rotterdam",
    "evidence": {
     "service_costs": "Servicekosten € € 100,- /mnd per maand (MVGM lists them next to the rent)"
@@ -257,27 +202,29 @@
     "service_costs:100"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "a:rotterdam:baanweg:13e",
    "image_url": "https://a.static.nbo.nl/media/dd/dd52515fdb734c3de5ba98d32258e830/768x510/thumb.jpg",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 50,
      "persons": 2,
-     "price_pp": 775,
+     "price_pp": 725,
      "search": "2 people",
      "tier": "ok"
-    },
-    {
-     "persons": 3,
-     "price_pp": 517,
-     "search": "3 people",
-     "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": "3042AB",
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1450,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "ikwilhuren",
    "source_label": "MVGM (ikwilhuren.nu)",
@@ -292,6 +239,7 @@
    "available_until": null,
    "bedrooms": 2,
    "best_tier": "great",
+   "capacity": null,
    "city": "rotterdam",
    "evidence": {
     "service_costs": "Servicekosten € € 52,- /mnd per maand (MVGM lists them next to the rent)"
@@ -302,21 +250,29 @@
     "service_costs:52"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "a:rotterdam:hogefilterweg:658",
    "image_url": "https://b.static.nbo.nl/media/d3/d33b7015e1acd7ec352938c137c5cf12/768x510/thumb.jpg",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 26,
      "persons": 2,
-     "price_pp": 651,
+     "price_pp": 625,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": "3063KM",
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1250,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "ikwilhuren",
    "source_label": "MVGM (ikwilhuren.nu)",
@@ -325,48 +281,13 @@
    "url": "https://ikwilhuren.nu/object/rotterdam-3063km-658-hoge-filterweg-b1b38e764c10bfbc6b96a585c77bafde/"
   },
   {
-   "address": "H. Zwaardecroonstraat",
-   "area_m2": 99,
-   "available_from": "2026-12-15",
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "den-haag",
-   "evidence": {},
-   "first_seen": "2026-11-19T10:47:47Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/b116f603-724e-4c0e-96df-2ddde3bec77c",
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 717,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 2150,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_label": "DirectWonen",
-   "title": "Appartement H. Zwaardecroonstraat, Den Haag",
-   "uid": "directwonen:524280",
-   "url": "https://directwonen.nl/huurwoningen-huren/den-haag/hendrik-zwaardecroonstraat/appartement-524280"
-  },
-  {
    "address": "Saturnusstraat 241204",
    "area_m2": 80,
    "available_from": null,
    "available_until": null,
    "bedrooms": 2,
    "best_tier": "ok",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {
     "service_costs": "Servicekosten p.m.: € 108,- (Vesteda lists them next to the rent)"
@@ -377,21 +298,29 @@
     "service_costs:108"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "a:den-haag:saturnusstraat:241204",
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/bd/bd22cdb3031326082f72d42f1e231d52/o/1a3a8657-edit.jpg?rmode=crop&width=570&height=276&hmac=14adc5fad59ee178b753d3e03e48c809378e875dbfa2b782668e261984608f66",
    "last_seen": "2026-11-19T12:58:58Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 54,
      "persons": 2,
-     "price_pp": 776,
+     "price_pp": 723,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": "2516AH",
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1445,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "vesteda",
    "source_label": "Vesteda",
@@ -406,6 +335,7 @@
    "available_until": null,
    "bedrooms": null,
    "best_tier": "great",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-19T09:03:04Z",
@@ -413,27 +343,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "street",
+   "home_key": "u:email_alerts:pararius-1c9e876d",
    "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": 52.06063,
+   "lon": 4.32785,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 680,
      "search": "2 people",
      "tier": "great"
-    },
-    {
-     "persons": 3,
-     "price_pp": 453,
-     "search": "3 people",
-     "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1359,
    "property_type": null,
+   "rent_basis": "home",
    "rooms": 4,
    "source": "email_alerts",
    "source_label": "Pararius/Funda email alerts",
@@ -442,120 +374,13 @@
    "url": "https://www.pararius.nl/appartement-te-huur/den-haag/1c9e876d/lorentzplein"
   },
   {
-   "address": "Obrechtstraat",
-   "area_m2": 81,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "den-haag",
-   "evidence": {},
-   "first_seen": "2026-11-19T09:03:04Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 717,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2150,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Pararius: Obrechtstraat",
-   "uid": "email_alerts:pararius-2b4b2e3f",
-   "url": "https://www.pararius.nl/appartement-te-huur/den-haag/2b4b2e3f/obrechtstraat"
-  },
-  {
-   "address": "Soembastraat",
-   "area_m2": 88,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "leiden",
-   "evidence": {},
-   "first_seen": "2026-11-19T09:03:04Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 750,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2250,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Pararius: Soembastraat",
-   "uid": "email_alerts:pararius-50d3770f",
-   "url": "https://www.pararius.nl/appartement-te-huur/leiden/50d3770f/soembastraat"
-  },
-  {
-   "address": "Hendrik Zwaardecroonstraat",
-   "area_m2": 99,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "den-haag",
-   "evidence": {},
-   "first_seen": "2026-11-19T09:03:04Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 717,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2150,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Pararius: Hendrik Zwaardecroonstraat",
-   "uid": "email_alerts:pararius-9c6e02d3",
-   "url": "https://www.pararius.nl/appartement-te-huur/den-haag/9c6e02d3/hendrik-zwaardecroonstraat"
-  },
-  {
    "address": "Sneeuwbalstraat 48",
    "area_m2": 98,
    "available_from": "2026-12-20",
    "available_until": "2027-01-10",
    "bedrooms": 2,
    "best_tier": "ok",
+   "capacity": 4,
    "city": "den-haag",
    "evidence": {
     "max_persons": "Aantal huurders: 4 personen · Leeftijd: 20 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Iedereen welkom",
@@ -569,21 +394,29 @@
     "utilities_included"
    ],
    "furnished": "furnished",
+   "geo": null,
+   "home_key": "a:den-haag:sneeuwbalstraat:48",
    "image_url": "https://resources.kamernet.nl/image/a4e2f931-0ca2-42ee-bdeb-926ad9dcd010/resize/422-225",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 750,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": "2565WC",
+   "price_basis": "incl",
    "price_drop_from": null,
    "price_includes_utilities": true,
    "price_total": 1500,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "kamernet",
    "source_label": "Kamernet",
@@ -592,48 +425,13 @@
    "url": "https://kamernet.nl/huren/appartement-den-haag/sneeuwbalstraat/appartement-2419482"
   },
   {
-   "address": "Van Alkemadelaan 470",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "den-haag",
-   "evidence": {},
-   "first_seen": "2026-11-19T04:22:48Z",
-   "flags": [
-    "bedrooms_unknown"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 583,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1750,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Funda: Van Alkemadelaan 470",
-   "uid": "email_alerts:funda-44688747",
-   "url": "https://www.funda.nl/detail/huur/den-haag/appartement-van-alkemadelaan-470/44688747"
-  },
-  {
    "address": "Laan Van Wateringse Veld 528",
    "area_m2": 108,
    "available_from": null,
    "available_until": null,
    "bedrooms": null,
    "best_tier": "ok",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-19T04:22:48Z",
@@ -641,21 +439,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "address",
+   "home_key": "a:den-haag:laanvanwateringseveld:528",
    "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": 52.03124,
+   "lon": 4.28736,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 718,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1435,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "email_alerts",
    "source_label": "Pararius/Funda email alerts",
@@ -664,52 +470,13 @@
    "url": "https://www.funda.nl/detail/huur/den-haag/appartement-laan-van-wateringse-veld-528/44689252"
   },
   {
-   "address": "Sidelingeplein 124",
-   "area_m2": 78,
-   "available_from": "2026-12-01",
-   "available_until": null,
-   "bedrooms": 3,
-   "best_tier": "great",
-   "city": "rotterdam",
-   "evidence": {
-    "max_persons": "Aantal huurders: 3 personen · Leeftijd: 16 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Student, Werkende student, Werkend",
-    "students_ok": "Geschikt voor studenten/werkende/expats"
-   },
-   "first_seen": "2026-11-18T15:12:27Z",
-   "flags": [
-    "students_ok",
-    "max_persons:3"
-   ],
-   "furnished": "furnished",
-   "image_url": "https://resources.kamernet.nl/image/ff58b658-8596-4393-8f8d-a0d6b4450a81/resize/422-225",
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 650,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": "3043GT",
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 1950,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "kamernet",
-   "source_label": "Kamernet",
-   "title": "Appartement te huur: Sidelingeplein",
-   "uid": "kamernet:2419515",
-   "url": "https://kamernet.nl/huren/appartement-rotterdam/sidelingeplein/appartement-2419515"
-  },
-  {
    "address": "Lorentzplein",
    "area_m2": 80,
    "available_from": "2026-12-11",
    "available_until": null,
    "bedrooms": null,
    "best_tier": "great",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-18T15:02:22Z",
@@ -717,27 +484,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "street",
+   "home_key": "u:directwonen:484382",
    "image_url": "https://resources.directwonen.nl/image/00fe85df-f443-4b67-a011-57f802cce215",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": 52.06063,
+   "lon": 4.32785,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 625,
      "search": "2 people",
      "tier": "great"
-    },
-    {
-     "persons": 3,
-     "price_pp": 417,
-     "search": "3 people",
-     "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1250,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 4,
    "source": "directwonen",
    "source_label": "DirectWonen",
@@ -752,6 +521,7 @@
    "available_until": null,
    "bedrooms": null,
    "best_tier": "ok",
+   "capacity": null,
    "city": "rotterdam",
    "evidence": {},
    "first_seen": "2026-11-18T12:50:24Z",
@@ -759,21 +529,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": "upholstered",
+   "geo": "street",
+   "home_key": "u:directwonen:521556",
    "image_url": "https://resources.directwonen.nl/image/a10cfb24-aa5d-461d-acfc-0c953209e1d0",
    "last_seen": "2026-11-18T13:00:52Z",
+   "lat": 51.8889,
+   "lon": 4.49017,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 738,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1475,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "directwonen",
    "source_label": "DirectWonen",
@@ -788,6 +566,7 @@
    "available_until": "2027-01-03",
    "bedrooms": 2,
    "best_tier": "ok",
+   "capacity": 8,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-18T12:50:24Z",
@@ -797,21 +576,29 @@
     "utilities_included"
    ],
    "furnished": "furnished",
+   "geo": null,
+   "home_key": "a:den-haag:sneeuwbalstraat:48",
    "image_url": "https://resources.kamernet.nl/image/507eeddd-036f-4bd3-a9a8-e066534a014f/resize/422-225",
    "last_seen": "2026-11-18T13:00:52Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 750,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": "2565WC",
+   "price_basis": "incl",
    "price_drop_from": null,
    "price_includes_utilities": true,
    "price_total": 1500,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "kamernet",
    "source_label": "Kamernet",
@@ -826,6 +613,7 @@
    "available_until": null,
    "bedrooms": null,
    "best_tier": "great",
+   "capacity": null,
    "city": "rotterdam",
    "evidence": {},
    "first_seen": "2026-11-18T12:39:04Z",
@@ -833,21 +621,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "street",
+   "home_key": "u:directwonen:514959",
    "image_url": "https://resources.directwonen.nl/image/178bec68-ba20-46ee-aa27-e32470aca162",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": 51.93661,
+   "lon": 4.4273,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 607,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1214,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "directwonen",
    "source_label": "DirectWonen",
@@ -862,26 +658,35 @@
    "available_until": null,
    "bedrooms": 2,
    "best_tier": "great",
+   "capacity": null,
    "city": "rotterdam",
    "evidence": {},
    "first_seen": "2026-11-18T12:39:04Z",
    "flags": [],
    "furnished": "upholstered",
+   "geo": "street",
+   "home_key": "u:directwonen:524009",
    "image_url": "https://resources.directwonen.nl/content/images/no_photo.png",
    "last_seen": "2026-11-18T16:52:21Z",
+   "lat": 51.89171,
+   "lon": 4.4964,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 545,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1090,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "directwonen",
    "source_label": "DirectWonen",
@@ -896,26 +701,35 @@
    "available_until": null,
    "bedrooms": 2,
    "best_tier": "great",
+   "capacity": null,
    "city": "rotterdam",
    "evidence": {},
    "first_seen": "2026-11-18T12:39:04Z",
    "flags": [],
    "furnished": "upholstered",
+   "geo": "street",
+   "home_key": "u:directwonen:524064",
    "image_url": "https://resources.directwonen.nl/image/95195505-99da-4033-a5e7-1230478c5af4",
    "last_seen": "2026-11-19T10:37:55Z",
+   "lat": 51.87327,
+   "lon": 4.47164,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
-     "price_pp": 532,
+     "price_pp": 533,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1065,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "directwonen",
    "source_label": "DirectWonen",
@@ -924,54 +738,13 @@
    "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/middelharnisstraat/appartement-524064"
   },
   {
-   "address": "Ramlehweg",
-   "area_m2": 122,
-   "available_from": "2026-12-01",
-   "available_until": null,
-   "bedrooms": 3,
-   "best_tier": "ok",
-   "city": "rotterdam",
-   "evidence": {
-    "max_persons": "…2 pesonen € 1995,- Ook beschikbaar voor een woongroep/woningdelers van max 3 personen.",
-    "rent_for_3": "Huurprijs voor 3 personen € 2395,- (er kan door de verhuurder een extra kamer gemaakt worden in de woonkamer) Huurprijs voor 2 pesonen € 1995,- Ook beschikbaar…",
-    "sharers_ok": "…worden in de woonkamer) Huurprijs voor 2 pesonen € 1995,- Ook beschikbaar voor een woongroep/woningdelers van max 3 personen."
-   },
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [
-    "sharers_ok",
-    "max_persons:3",
-    "rent_for_3:2395"
-   ],
-   "furnished": "upholstered",
-   "image_url": "https://resources.directwonen.nl/content/images/no_photo.png",
-   "last_seen": "2026-11-19T11:08:18Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 798,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 1995,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_label": "DirectWonen",
-   "title": "Appartement Ramlehweg, Rotterdam",
-   "uid": "directwonen:524084",
-   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/ramlehweg/appartement-524084"
-  },
-  {
    "address": "J.W. Frisostraat",
    "area_m2": 120,
    "available_from": null,
    "available_until": null,
    "bedrooms": 5,
    "best_tier": "great",
+   "capacity": 2,
    "city": "rotterdam",
    "evidence": {
     "max_persons": "Te huur: Deze woonruimte is ALLEEN beschikbaar voor MAX 2 studenten die niet staan ingeschreven in de gemeente Rotterdam",
@@ -983,21 +756,29 @@
     "max_persons:2"
    ],
    "furnished": "upholstered",
+   "geo": "street",
+   "home_key": "u:directwonen:524085",
    "image_url": "https://resources.directwonen.nl/content/images/no_photo.png",
    "last_seen": "2026-11-19T11:08:18Z",
+   "lat": 51.94399,
+   "lon": 4.47766,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 588,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1175,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 6,
    "source": "directwonen",
    "source_label": "DirectWonen",
@@ -1012,26 +793,35 @@
    "available_until": null,
    "bedrooms": 2,
    "best_tier": "ok",
+   "capacity": null,
    "city": "rotterdam",
    "evidence": {},
    "first_seen": "2026-11-18T12:39:04Z",
    "flags": [],
    "furnished": null,
+   "geo": "street",
+   "home_key": "u:directwonen:524093",
    "image_url": "https://resources.directwonen.nl/image/364c7396-58c4-444b-9063-920cf3e951e3",
    "last_seen": "2026-11-19T11:58:31Z",
+   "lat": 51.92171,
+   "lon": 4.53817,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
-     "price_pp": 782,
+     "price_pp": 783,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1565,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "directwonen",
    "source_label": "DirectWonen",
@@ -1040,120 +830,13 @@
    "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/'s-gravenweg/appartement-524093"
   },
   {
-   "address": "Mariniersweg",
-   "area_m2": 120,
-   "available_from": "2026-12-01",
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "rotterdam",
-   "evidence": {},
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/c1848cad-1f18-4af8-81cf-87000f3d04ed",
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 683,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 2050,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_label": "DirectWonen",
-   "title": "Appartement Mariniersweg, Rotterdam",
-   "uid": "directwonen:524166",
-   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/mariniersweg/appartement-524166"
-  },
-  {
-   "address": "Tamboerstraat",
-   "area_m2": 107,
-   "available_from": "2026-12-01",
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "rotterdam",
-   "evidence": {},
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/b43fae7b-fe0d-4693-abe5-12373f940c9a",
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 665,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 1995,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_label": "DirectWonen",
-   "title": "Appartement Tamboerstraat, Rotterdam",
-   "uid": "directwonen:524205",
-   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/tamboerstraat/appartement-524205"
-  },
-  {
-   "address": "Mariniersweg",
-   "area_m2": 98,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "rotterdam",
-   "evidence": {},
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/77ccf51e-3cf9-4ebd-9728-1766ee51ee3b",
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 565,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 1695,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_label": "DirectWonen",
-   "title": "Appartement Mariniersweg, Rotterdam",
-   "uid": "directwonen:524209",
-   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/mariniersweg/appartement-524209"
-  },
-  {
    "address": "Grote Beer 127",
    "area_m2": 81,
    "available_from": null,
    "available_until": null,
    "bedrooms": 2,
    "best_tier": "great",
+   "capacity": null,
    "city": "rotterdam",
    "evidence": {
     "income_requirement": "Noteer in de bericht minimaal je bruto maandinkomen",
@@ -1167,21 +850,29 @@
     "service_costs:65"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "a:rotterdam:grotebeer:127",
    "image_url": "https://heimstaden.com/app/uploads/sites/2/heimstaden-ose/rental-object-attachments/17c246b1-4d8f-440d-96a8-7b2dd18b77b0/md/10-0-3c61e09086483422f90b71dc9dc61634.jpg",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 33,
      "persons": 2,
-     "price_pp": 592,
+     "price_pp": 559,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": "3067TR",
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1118,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "heimstaden",
    "source_label": "Heimstaden",
@@ -1190,128 +881,13 @@
    "url": "https://heimstaden.com/nl/huurwoningen/ROTTERDAM-81m²-17c246b1-4d8f-440d-96a8-7b2dd18b77b0/"
   },
   {
-   "address": "Paul Desmondsingel 66",
-   "area_m2": 128,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": 3,
-   "best_tier": "great",
-   "city": "rotterdam",
-   "evidence": {
-    "income_requirement": "Inkomenseis"
-   },
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [
-    "income_requirement"
-   ],
-   "furnished": null,
-   "image_url": "https://c.static.nbo.nl/media/97/97a0298ca3cb9cd328c8f5e771019e2b/768x510/thumb.jpg",
-   "last_seen": "2026-11-19T16:09:31Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 535,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": "3069XT",
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1605,
-   "property_type": "house",
-   "rooms": 4,
-   "source": "ikwilhuren",
-   "source_label": "MVGM (ikwilhuren.nu)",
-   "title": "Eengezinswoning Paul Desmondsingel 66, Rotterdam",
-   "uid": "ikwilhuren:6f7cf9a2745d91da5cb4d3315d95e7c8",
-   "url": "https://ikwilhuren.nu/object/rotterdam-3069xt-66-paul-desmondsingel-6f7cf9a2745d91da5cb4d3315d95e7c8/"
-  },
-  {
-   "address": "Van Oldenbarneveltplaats 14 C",
-   "area_m2": 120,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": 3,
-   "best_tier": "ok",
-   "city": "rotterdam",
-   "evidence": {
-    "service_costs": "Servicekosten € € 90,- /mnd per maand (MVGM lists them next to the rent)"
-   },
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [
-    "income_requirement",
-    "service_costs:90"
-   ],
-   "furnished": null,
-   "image_url": "https://c.static.nbo.nl/media/50/50f60004392eabfb65d61382db3fb6a2/768x510/thumb.jpg",
-   "last_seen": "2026-11-19T16:09:31Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 747,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": "3012AH",
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2150,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "ikwilhuren",
-   "source_label": "MVGM (ikwilhuren.nu)",
-   "title": "Appartement Van Oldenbarneveltplaats 14 C, Rotterdam",
-   "uid": "ikwilhuren:70aa51a4d6bc837f556425813c248358",
-   "url": "https://ikwilhuren.nu/object/rotterdam-3012ah-14-c-van-oldenbarneveltplaats-70aa51a4d6bc837f556425813c248358/"
-  },
-  {
-   "address": "Albertina Sisulupad 248",
-   "area_m2": 105,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": 3,
-   "best_tier": "great",
-   "city": "rotterdam",
-   "evidence": {
-    "service_costs": "Servicekosten p.m.: € 92,- (Vesteda lists them next to the rent)"
-   },
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [
-    "income_requirement",
-    "service_costs:92"
-   ],
-   "furnished": null,
-   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/4a/4a602119e658b5f291151ded1d64726a/o/blok-a-1-.jpg?rmode=crop&width=570&height=276&hmac=816ba6728a499eb0985c9bfca7b9cd3c42fe07a03758b20acc0935db57171f56",
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 681,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": "3072DH",
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1950,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "vesteda",
-   "source_label": "Vesteda",
-   "title": "Maisonette Albertina Sisulupad 248, Rotterdam",
-   "uid": "vesteda:125914",
-   "url": "https://www.vesteda.com/nl/huurwoningen-rotterdam/de-kuil/albertina-sisulupad-248-rotterdam-125914"
-  },
-  {
    "address": "Buitenbassinweg 320",
    "area_m2": 81,
    "available_from": null,
    "available_until": null,
    "bedrooms": 2,
    "best_tier": "ok",
+   "capacity": null,
    "city": "rotterdam",
    "evidence": {
     "service_costs": "Servicekosten p.m.: € 41,- (Vesteda lists them next to the rent)",
@@ -1324,21 +900,29 @@
     "service_costs:41"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "a:rotterdam:buitenbassinweg:320",
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/ec/ecf3c2a4c6d19e75d9d04197c0caf83a/o/buitenbassinweg-306-19.jpg?rmode=crop&width=570&height=276&hmac=685b18a031f2b7ccc3810fdf2076adcdabb511c80a27db13215fec40284bb57e",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 21,
      "persons": 2,
-     "price_pp": 746,
+     "price_pp": 725,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": "3063TC",
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1450,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "vesteda",
    "source_label": "Vesteda",
@@ -1353,6 +937,7 @@
    "available_until": null,
    "bedrooms": 2,
    "best_tier": "great",
+   "capacity": null,
    "city": "rotterdam",
    "evidence": {
     "service_costs": "Servicekosten p.m.: € 40,- (Vesteda lists them next to the rent)"
@@ -1363,21 +948,29 @@
     "service_costs:40"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "a:rotterdam:admiraalderuyterweg:135",
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/90/9074749ddd1f55a3ac50721573a24f60/o/10568-linker-rottekade-rotterdam-vrije-sector-huurwoningen-ft2265.jpg?rmode=crop&width=570&height=276&hmac=fd1f38ea17718d42ca5990bf3af6267a91d3d5f7806af699f6b0f89cdbbb97d5",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 20,
      "persons": 2,
-     "price_pp": 596,
+     "price_pp": 577,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": "3031AA",
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1153,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "vesteda",
    "source_label": "Vesteda",
@@ -1392,6 +985,7 @@
    "available_until": null,
    "bedrooms": 2,
    "best_tier": "ok",
+   "capacity": null,
    "city": "rotterdam",
    "evidence": {
     "service_costs": "Servicekosten p.m.: € 45,- (Vesteda lists them next to the rent)"
@@ -1402,21 +996,29 @@
     "service_costs:45"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "a:rotterdam:watertorenweg:411",
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/ee/ee5e5c5e798459c6c564378d3e5aacfb/o/complex-foto.jpg?rmode=crop&width=570&height=276&hmac=370a662eaf7a66ed5fc8455f7cefe94fb601facf2d80da61f1891eab41f90ebe",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 23,
      "persons": 2,
-     "price_pp": 782,
+     "price_pp": 760,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": "3063HD",
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1520,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "vesteda",
    "source_label": "Vesteda",
@@ -1425,51 +1027,13 @@
    "url": "https://www.vesteda.com/nl/huurwoningen-rotterdam/watertorenweg/watertorenweg-411-rotterdam-3459"
   },
   {
-   "address": "Nieuwehaven 128",
-   "area_m2": 104,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": 3,
-   "best_tier": "great",
-   "city": "rotterdam",
-   "evidence": {
-    "service_costs": "Servicekosten p.m.: € 89,- (Vesteda lists them next to the rent)"
-   },
-   "first_seen": "2026-11-18T12:39:04Z",
-   "flags": [
-    "income_requirement",
-    "service_costs:89"
-   ],
-   "furnished": null,
-   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/04/049dc90f858023a98bffeecfca209bc4/o/10817-oude-haven-rotterdam-vrije-sector-huurwoningen-ft2204.jpg?rmode=crop&width=570&height=276&hmac=814f4159f5cb4ef9e866200f3857b953ea5c2b61c53d93ac9bb87afc891fdb0b",
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 646,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": "3011VT",
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1850,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "vesteda",
-   "source_label": "Vesteda",
-   "title": "Appartement Nieuwehaven 128, Rotterdam",
-   "uid": "vesteda:4146",
-   "url": "https://www.vesteda.com/nl/huurwoningen-rotterdam/oude-haven/nieuwehaven-128-rotterdam-4146"
-  },
-  {
    "address": "Tafelbergstraat",
    "area_m2": 204,
    "available_from": "2026-11-20",
    "available_until": null,
    "bedrooms": null,
    "best_tier": "great",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-18T11:39:03Z",
@@ -1477,27 +1041,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "street",
+   "home_key": "u:directwonen:524219",
    "image_url": "https://resources.directwonen.nl/image/561bc73e-30e8-4be9-9472-861471714500",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": 52.06221,
+   "lon": 4.29467,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 645,
      "search": "2 people",
      "tier": "great"
-    },
-    {
-     "persons": 3,
-     "price_pp": 430,
-     "search": "3 people",
-     "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1290,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 4,
    "source": "directwonen",
    "source_label": "DirectWonen",
@@ -1506,48 +1072,13 @@
    "url": "https://directwonen.nl/huurwoningen-huren/den-haag/tafelbergstraat/appartement-524219"
   },
   {
-   "address": "De Sitterlaan",
-   "area_m2": 110,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "leiden",
-   "evidence": {},
-   "first_seen": "2026-11-18T09:09:10Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 782,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2345,
-   "property_type": null,
-   "rooms": 5,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Pararius: De Sitterlaan",
-   "uid": "email_alerts:pararius-05987e91",
-   "url": "https://www.pararius.nl/appartement-te-huur/leiden/05987e91/de-sitterlaan"
-  },
-  {
    "address": "Dirk Buserf",
    "area_m2": 61,
    "available_from": null,
    "available_until": null,
    "bedrooms": null,
    "best_tier": "great",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-18T09:09:10Z",
@@ -1555,21 +1086,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "u:email_alerts:pararius-d607f6f7",
    "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 525,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1050,
    "property_type": null,
+   "rent_basis": "home",
    "rooms": 3,
    "source": "email_alerts",
    "source_label": "Pararius/Funda email alerts",
@@ -1584,6 +1123,7 @@
    "available_until": null,
    "bedrooms": null,
    "best_tier": "great",
+   "capacity": null,
    "city": "amsterdam",
    "evidence": {},
    "first_seen": "2026-11-18T09:09:10Z",
@@ -1591,21 +1131,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "u:email_alerts:pararius-df39ac80",
    "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 700,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1400,
    "property_type": null,
+   "rent_basis": "home",
    "rooms": 3,
    "source": "email_alerts",
    "source_label": "Pararius/Funda email alerts",
@@ -1620,6 +1168,7 @@
    "available_until": null,
    "bedrooms": null,
    "best_tier": "ok",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-18T04:19:03Z",
@@ -1627,21 +1176,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "address",
+   "home_key": "a:den-haag:loevesteinlaan:483b",
    "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": 52.0491,
+   "lon": 4.28267,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 746,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1492,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "email_alerts",
    "source_label": "Pararius/Funda email alerts",
@@ -1650,84 +1207,13 @@
    "url": "https://www.funda.nl/detail/huur/den-haag/appartement-loevesteinlaan-483-b/44687728"
   },
   {
-   "address": "Knsm Laan 534",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "amsterdam",
-   "evidence": {},
-   "first_seen": "2026-11-18T04:19:03Z",
-   "flags": [
-    "bedrooms_unknown"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 733,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2200,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Funda: KNSM-laan 534",
-   "uid": "email_alerts:funda-44687840",
-   "url": "https://www.funda.nl/detail/huur/amsterdam/appartement-knsm-laan-534/44687840"
-  },
-  {
-   "address": "Osdorper Ban 21 F",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "amsterdam",
-   "evidence": {},
-   "first_seen": "2026-11-18T04:19:03Z",
-   "flags": [
-    "bedrooms_unknown"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 752,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2255,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Funda: Osdorper Ban 21 F",
-   "uid": "email_alerts:funda-44688910",
-   "url": "https://www.funda.nl/detail/huur/amsterdam/appartement-osdorper-ban-21-f/44688910"
-  },
-  {
    "address": "Beemsterstraat 542 E2",
    "area_m2": 85,
    "available_from": null,
    "available_until": null,
    "bedrooms": null,
    "best_tier": "ok",
+   "capacity": null,
    "city": "amsterdam",
    "evidence": {
     "income_requirement": "De inkomenseis die wij hanteren is 4 keer de huur bruto of 3 keer de huur netto",
@@ -1742,21 +1228,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "u:heimstaden:edb08d5e-4fe0-43d4-9057-421ab4282756",
    "image_url": "https://heimstaden.com/app/uploads/sites/2/heimstaden-ose/rental-object-attachments/edb08d5e-4fe0-43d4-9057-421ab4282756/md/10-0-54166d3a3be425dc3ff97f2c43796c5f.jpg",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 59,
      "persons": 2,
-     "price_pp": 759,
+     "price_pp": 700,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": "1024BV",
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1400,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "heimstaden",
    "source_label": "Heimstaden",
@@ -1771,6 +1265,7 @@
    "available_until": null,
    "bedrooms": null,
    "best_tier": "great",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-17T19:39:08Z",
@@ -1778,21 +1273,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "street",
+   "home_key": "u:directwonen:524210",
    "image_url": "https://resources.directwonen.nl/image/60cdc373-aabc-464e-b042-eed8f96957da",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": 52.05667,
+   "lon": 4.24957,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 525,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1050,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "directwonen",
    "source_label": "DirectWonen",
@@ -1801,76 +1304,48 @@
    "url": "https://directwonen.nl/huurwoningen-huren/den-haag/dirk-buserf/appartement-524210"
   },
   {
-   "address": "Betaplein 276",
-   "area_m2": 79,
-   "available_from": "2026-12-11",
-   "available_until": null,
-   "bedrooms": 3,
-   "best_tier": "great",
-   "city": "leiden",
-   "evidence": {
-    "service_costs": "Servicekosten p.m.: € 55,- (Vesteda lists them next to the rent)"
-   },
-   "first_seen": "2026-11-17T17:59:03Z",
-   "flags": [
-    "income_requirement",
-    "service_costs:55"
-   ],
-   "furnished": null,
-   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/85/857db1864604eafae20cf70355c857f0/o/content.jpg?rmode=crop&width=570&height=276&hmac=e502691b6ae60fe3c366895720f10e0944cb6dbc54228e4d2f1acfd805f0e6ad",
-   "last_seen": "2026-11-19T09:29:30Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 617,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": "2321KS",
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1795,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "vesteda",
-   "source_label": "Vesteda",
-   "title": "Appartement Betaplein 276, Leiden",
-   "uid": "vesteda:10538",
-   "url": "https://www.vesteda.com/nl/huurwoningen-leiden/alpha/betaplein-276-leiden-10538"
-  },
-  {
    "address": "Betaplein 66",
    "area_m2": 84,
    "available_from": "2026-12-25",
    "available_until": null,
    "bedrooms": 2,
    "best_tier": "ok",
+   "capacity": null,
    "city": "leiden",
    "evidence": {
-    "service_costs": "Servicekosten p.m.: € 55,- (Vesteda lists them next to the rent)"
+    "service_costs": "Servicekosten p.m.: € 55,- (Vesteda lists them next to the rent)",
+    "sharing_unclear": "Ideaal voor stellen, starters of iedereen die graag een extra kamer gebruikt als thuiskantoor, studeerkamer, hobbyruimte of logeerkamer"
    },
    "first_seen": "2026-11-17T17:29:02Z",
    "flags": [
     "income_requirement",
+    "sharing_unclear",
     "service_costs:55"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "a:leiden:betaplein:66",
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/80/8017084f53a41b164a2f3dd770e9015e/o/01.jpg?rmode=crop&width=570&height=276&hmac=3087b2037fb978271d89521e9a86b86279aad8876e502a92037c521318e1dd54",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 28,
      "persons": 2,
-     "price_pp": 778,
+     "price_pp": 750,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": "2321KS",
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1500,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "vesteda",
    "source_label": "Vesteda",
@@ -1879,156 +1354,13 @@
    "url": "https://www.vesteda.com/nl/huurwoningen-leiden/alpha/betaplein-66-leiden-8702"
   },
   {
-   "address": "D.L. Reyweg",
-   "area_m2": 95,
-   "available_from": "2026-12-01",
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "den-haag",
-   "evidence": {},
-   "first_seen": "2026-11-17T15:19:11Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/6d3c8214-7f10-4457-ab2b-fd13a178937c",
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 765,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 2295,
-   "property_type": "apartment",
-   "rooms": 5,
-   "source": "directwonen",
-   "source_label": "DirectWonen",
-   "title": "Appartement D.L. Reyweg, Den Haag",
-   "uid": "directwonen:524179",
-   "url": "https://directwonen.nl/huurwoningen-huren/den-haag/de-la-reyweg/appartement-524179"
-  },
-  {
-   "address": "Dijkstraat",
-   "area_m2": 107,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "amsterdam",
-   "evidence": {},
-   "first_seen": "2026-11-17T09:08:54Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 762,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2285,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Pararius: Dijkstraat",
-   "uid": "email_alerts:pararius-8ad3f8a4",
-   "url": "https://www.pararius.nl/appartement-te-huur/amsterdam/8ad3f8a4/dijkstraat"
-  },
-  {
-   "address": "Geleenstraat",
-   "area_m2": 75,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "amsterdam",
-   "evidence": {},
-   "first_seen": "2026-11-17T09:08:54Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 733,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2200,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Pararius: Geleenstraat",
-   "uid": "email_alerts:pararius-dcef3ae2",
-   "url": "https://www.pararius.nl/appartement-te-huur/amsterdam/dcef3ae2/geleenstraat"
-  },
-  {
-   "address": "Fritz Dietrich Kahlenbergstraat 46 D",
-   "area_m2": 128,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "amsterdam",
-   "evidence": {},
-   "first_seen": "2026-11-17T03:28:54Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 750,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2250,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Funda: Fritz Dietrich Kahlenbergstraat 46 D",
-   "uid": "email_alerts:funda-44686036",
-   "url": "https://www.funda.nl/detail/huur/amsterdam/appartement-fritz-dietrich-kahlenbergstraat-46-d/44686036"
-  },
-  {
    "address": "Robijnhof 28",
    "area_m2": 75,
    "available_from": null,
    "available_until": null,
    "bedrooms": null,
    "best_tier": "ok",
+   "capacity": null,
    "city": "leiden",
    "evidence": {},
    "first_seen": "2026-11-17T03:28:54Z",
@@ -2036,21 +1368,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "address",
+   "home_key": "a:leiden:robijnhof:28",
    "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": 52.15469,
+   "lon": 4.46243,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 747,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1494,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "email_alerts",
    "source_label": "Pararius/Funda email alerts",
@@ -2059,86 +1399,13 @@
    "url": "https://www.funda.nl/detail/huur/leiden/appartement-robijnhof-28/44686162"
   },
   {
-   "address": "Zeeburgerkade 1258",
-   "area_m2": 91,
-   "available_from": "2026-11-01",
-   "available_until": null,
-   "bedrooms": 3,
-   "best_tier": "great",
-   "city": "amsterdam",
-   "evidence": {
-    "income_requirement": "Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee, in dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen."
-   },
-   "first_seen": "2026-11-16T12:45:10Z",
-   "flags": [
-    "income_requirement"
-   ],
-   "furnished": null,
-   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2208908.jpg",
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 578,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1735,
-   "property_type": null,
-   "rooms": 4,
-   "source": "vanderlinden",
-   "source_label": "Van der Linden",
-   "title": "Zeeburgerkade 1258, Amsterdam",
-   "uid": "vanderlinden:2625",
-   "url": "https://www.vanderlinden.nl/huurwoning/Zeeburgerkade-1258-Amsterdam/2625/"
-  },
-  {
-   "address": "Loevesteinlaan 387 A",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "den-haag",
-   "evidence": {},
-   "first_seen": "2026-11-16T03:47:25Z",
-   "flags": [
-    "bedrooms_unknown"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 632,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1895,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Funda: Loevesteinlaan 387 A",
-   "uid": "email_alerts:funda-44685913",
-   "url": "https://www.funda.nl/detail/huur/den-haag/appartement-loevesteinlaan-387-a/44685913"
-  },
-  {
    "address": "Leusdenhof 326",
    "area_m2": 88,
    "available_from": null,
    "available_until": null,
    "bedrooms": null,
    "best_tier": "great",
+   "capacity": null,
    "city": "amsterdam",
    "evidence": {},
    "first_seen": "2026-11-16T03:47:25Z",
@@ -2146,27 +1413,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "address",
+   "home_key": "a:amsterdam:leusdenhof:326",
    "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": 52.30687,
+   "lon": 4.97966,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 548,
      "search": "2 people",
      "tier": "great"
-    },
-    {
-     "persons": 3,
-     "price_pp": 365,
-     "search": "3 people",
-     "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1095,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 4,
    "source": "email_alerts",
    "source_label": "Pararius/Funda email alerts",
@@ -2181,6 +1450,7 @@
    "available_until": "2027-02-09",
    "bedrooms": 2,
    "best_tier": "great",
+   "capacity": 2,
    "city": "amsterdam",
    "evidence": {
     "max_persons": "Aantal huurders: 2 personen · Leeftijd: 27 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Werkende student, Werkend",
@@ -2194,21 +1464,29 @@
     "utilities_included"
    ],
    "furnished": "furnished",
+   "geo": null,
+   "home_key": "a:amsterdam:madurastraat:79a",
    "image_url": "https://resources.kamernet.nl/image/e2034366-fcee-4870-8087-f1cd65538e24/resize/422-225",
    "last_seen": "2026-11-18T12:19:03Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 600,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": "1094GH",
+   "price_basis": "incl",
    "price_drop_from": null,
    "price_includes_utilities": true,
    "price_total": 1200,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "kamernet",
    "source_label": "Kamernet",
@@ -2217,124 +1495,13 @@
    "url": "https://kamernet.nl/huren/appartement-amsterdam/madurastraat/appartement-2418757"
   },
   {
-   "address": "Sumatrakade 1153",
-   "area_m2": 96,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "amsterdam",
-   "evidence": {
-    "service_costs": "Servicekosten € € 63,- /mnd per maand (MVGM lists them next to the rent)"
-   },
-   "first_seen": "2026-11-15T12:36:15Z",
-   "flags": [
-    "income_requirement",
-    "service_costs:63",
-    "bedrooms_unknown"
-   ],
-   "furnished": null,
-   "image_url": "https://d.static.nbo.nl/media/bf/bf42e59fbe7680f83ab178e5ce493717/768x510/thumb.jpg",
-   "last_seen": "2026-11-19T16:09:31Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 706,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": "1019RG",
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2055,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "ikwilhuren",
-   "source_label": "MVGM (ikwilhuren.nu)",
-   "title": "Appartement Sumatrakade 1153, Amsterdam",
-   "uid": "ikwilhuren:9eaf8ef04579c79e5c37ef421633c9be",
-   "url": "https://ikwilhuren.nu/object/amsterdam-1019rg-1153-sumatrakade-9eaf8ef04579c79e5c37ef421633c9be/"
-  },
-  {
-   "address": "Kijkduinsestraat",
-   "area_m2": 110,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "den-haag",
-   "evidence": {},
-   "first_seen": "2026-11-15T09:06:16Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 583,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1749,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Pararius: Kijkduinsestraat",
-   "uid": "email_alerts:pararius-867e6188",
-   "url": "https://www.pararius.nl/appartement-te-huur/den-haag/867e6188/kijkduinsestraat"
-  },
-  {
-   "address": "N.W. Buitensingel",
-   "area_m2": 128,
-   "available_from": "2026-11-20",
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "den-haag",
-   "evidence": {},
-   "first_seen": "2026-11-14T10:49:45Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/53a3016e-46e3-4539-a4f0-0809378f2529",
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 593,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 1780,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_label": "DirectWonen",
-   "title": "Appartement N.W. Buitensingel, Den Haag",
-   "uid": "directwonen:524090",
-   "url": "https://directwonen.nl/huurwoningen-huren/den-haag/noord-west-buitensingel/appartement-524090"
-  },
-  {
    "address": "Amerbos 174",
    "area_m2": 85,
    "available_from": "2026-12-05",
    "available_until": "2027-01-03",
    "bedrooms": 2,
    "best_tier": "ok",
+   "capacity": 2,
    "city": "amsterdam",
    "evidence": {
     "max_persons": "Aantal huurders: 2 personen · Leeftijd: 25 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Werkend",
@@ -2350,21 +1517,29 @@
     "short_term"
    ],
    "furnished": "furnished",
+   "geo": null,
+   "home_key": "a:amsterdam:amerbos:174",
    "image_url": "https://resources.kamernet.nl/image/58ad0b05-97a6-4422-8ee7-f2f7e5b1cda0/resize/422-225",
    "last_seen": "2026-11-17T10:28:46Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 775,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": "1025ZR",
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1550,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "kamernet",
    "source_label": "Kamernet",
@@ -2373,48 +1548,13 @@
    "url": "https://kamernet.nl/huren/appartement-amsterdam/amerbos/appartement-2418534"
   },
   {
-   "address": "Veenendaalkade",
-   "area_m2": 110,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "den-haag",
-   "evidence": {},
-   "first_seen": "2026-11-14T09:09:47Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-18T23:42:34Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 647,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1940,
-   "property_type": null,
-   "rooms": 5,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Pararius: Veenendaalkade",
-   "uid": "email_alerts:pararius-2c56d703",
-   "url": "https://www.pararius.nl/appartement-te-huur/den-haag/2c56d703/veenendaalkade"
-  },
-  {
    "address": "Heiloostraat",
    "area_m2": 94,
    "available_from": null,
    "available_until": null,
    "bedrooms": null,
    "best_tier": "great",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-14T09:09:47Z",
@@ -2422,27 +1562,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "street",
+   "home_key": "u:email_alerts:pararius-75771092",
    "image_url": null,
    "last_seen": "2026-11-18T23:42:34Z",
+   "lat": 52.06218,
+   "lon": 4.26751,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 545,
      "search": "2 people",
      "tier": "great"
-    },
-    {
-     "persons": 3,
-     "price_pp": 363,
-     "search": "3 people",
-     "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1090,
    "property_type": null,
+   "rent_basis": "home",
    "rooms": 5,
    "source": "email_alerts",
    "source_label": "Pararius/Funda email alerts",
@@ -2451,156 +1593,13 @@
    "url": "https://www.pararius.nl/appartement-te-huur/den-haag/75771092/heiloostraat"
   },
   {
-   "address": "Noord West Buitensingel",
-   "area_m2": 76,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "den-haag",
-   "evidence": {},
-   "first_seen": "2026-11-14T09:09:47Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-18T23:42:34Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 593,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1780,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Pararius: Noord West Buitensingel",
-   "uid": "email_alerts:pararius-83c63eae",
-   "url": "https://www.pararius.nl/appartement-te-huur/den-haag/83c63eae/noord-west-buitensingel"
-  },
-  {
-   "address": "Simon Carmiggelthof",
-   "area_m2": 115,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "den-haag",
-   "evidence": {},
-   "first_seen": "2026-11-14T09:09:47Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-18T23:42:34Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 750,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2250,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Pararius: Simon Carmiggelthof",
-   "uid": "email_alerts:pararius-b1668baa",
-   "url": "https://www.pararius.nl/appartement-te-huur/den-haag/b1668baa/simon-carmiggelthof"
-  },
-  {
-   "address": "Zuster Meijboomstraat 175",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "leiden",
-   "evidence": {},
-   "first_seen": "2026-11-14T04:19:45Z",
-   "flags": [
-    "bedrooms_unknown"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-18T23:42:34Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 625,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1875,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Funda: Zuster Meijboomstraat 175",
-   "uid": "email_alerts:funda-44673282",
-   "url": "https://www.funda.nl/detail/huur/leiden/appartement-zuster-meijboomstraat-175/44673282"
-  },
-  {
-   "address": "Wijnand Nuijenstraat 8",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "amsterdam",
-   "evidence": {},
-   "first_seen": "2026-11-14T04:19:45Z",
-   "flags": [
-    "bedrooms_unknown"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-18T23:42:34Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 700,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2100,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Funda: Wijnand Nuijenstraat 8",
-   "uid": "email_alerts:funda-44674853",
-   "url": "https://www.funda.nl/detail/huur/amsterdam/appartement-wijnand-nuijenstraat-8/44674853"
-  },
-  {
    "address": "Postjesweg 163 T",
    "area_m2": 56,
    "available_from": null,
    "available_until": null,
    "bedrooms": null,
    "best_tier": "great",
+   "capacity": null,
    "city": "amsterdam",
    "evidence": {},
    "first_seen": "2026-11-14T04:19:45Z",
@@ -2608,21 +1607,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "address",
+   "home_key": "a:amsterdam:postjesweg:163t",
    "image_url": null,
    "last_seen": "2026-11-18T23:42:34Z",
+   "lat": 52.36366,
+   "lon": 4.84142,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 662,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1324,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "email_alerts",
    "source_label": "Pararius/Funda email alerts",
@@ -2631,48 +1638,13 @@
    "url": "https://www.funda.nl/detail/huur/amsterdam/appartement-postjesweg-163-t/44674937"
   },
   {
-   "address": "David Ricardostraat 318",
-   "area_m2": 120,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "amsterdam",
-   "evidence": {},
-   "first_seen": "2026-11-14T04:19:45Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-18T23:42:34Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 775,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2325,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Funda: David Ricardostraat 318",
-   "uid": "email_alerts:funda-44685583",
-   "url": "https://www.funda.nl/detail/huur/amsterdam/appartement-david-ricardostraat-318/44685583"
-  },
-  {
    "address": "Heiloostraat 349",
    "area_m2": null,
    "available_from": null,
    "available_until": null,
    "bedrooms": null,
    "best_tier": "great",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-14T04:19:45Z",
@@ -2680,27 +1652,29 @@
     "bedrooms_unknown"
    ],
    "furnished": null,
+   "geo": "address",
+   "home_key": "a:den-haag:heiloostraat:349",
    "image_url": null,
    "last_seen": "2026-11-18T23:42:34Z",
+   "lat": 52.0619,
+   "lon": 4.26699,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 545,
      "search": "2 people",
      "tier": "great"
-    },
-    {
-     "persons": 3,
-     "price_pp": 363,
-     "search": "3 people",
-     "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1090,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "email_alerts",
    "source_label": "Pararius/Funda email alerts",
@@ -2709,230 +1683,13 @@
    "url": "https://www.funda.nl/detail/huur/den-haag/appartement-heiloostraat-349/44685746"
   },
   {
-   "address": "Veenendaalkade 56",
-   "area_m2": 110,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "den-haag",
-   "evidence": {},
-   "first_seen": "2026-11-14T04:19:45Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-18T23:42:34Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 647,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1940,
-   "property_type": "apartment",
-   "rooms": 5,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Funda: Veenendaalkade 56",
-   "uid": "email_alerts:funda-80049123",
-   "url": "https://www.funda.nl/detail/huur/den-haag/appartement-veenendaalkade-56/80049123"
-  },
-  {
-   "address": "Noord West Buitensingel 6",
-   "area_m2": 76,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "den-haag",
-   "evidence": {},
-   "first_seen": "2026-11-14T04:19:45Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-18T23:42:34Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 593,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1780,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Funda: Noord West Buitensingel 6",
-   "uid": "email_alerts:funda-80049247",
-   "url": "https://www.funda.nl/detail/huur/den-haag/appartement-noord-west-buitensingel-6/80049247"
-  },
-  {
-   "address": "Jan Tooropstraat 1-G",
-   "area_m2": 71,
-   "available_from": "2026-12-15",
-   "available_until": null,
-   "bedrooms": 3,
-   "best_tier": "great",
-   "city": "amsterdam",
-   "evidence": {
-    "income_requirement": "Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee, in dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen."
-   },
-   "first_seen": "2026-11-13T09:59:46Z",
-   "flags": [
-    "income_requirement"
-   ],
-   "furnished": null,
-   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2192758.jpg",
-   "last_seen": "2026-11-16T15:45:16Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 593,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1780,
-   "property_type": null,
-   "rooms": 4,
-   "source": "vanderlinden",
-   "source_label": "Van der Linden",
-   "title": "Jan Tooropstraat 1-G, Amsterdam",
-   "uid": "vanderlinden:2721",
-   "url": "https://www.vanderlinden.nl/huurwoning/Jan-Tooropstraat-1-Amsterdam/2721/"
-  },
-  {
-   "address": "Achillesstraat",
-   "area_m2": 65,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "amsterdam",
-   "evidence": {},
-   "first_seen": "2026-11-13T09:19:46Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-17T23:49:03Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 633,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1900,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Pararius: Achillesstraat",
-   "uid": "email_alerts:pararius-b87b75a5",
-   "url": "https://www.pararius.nl/appartement-te-huur/amsterdam/b87b75a5/achillesstraat"
-  },
-  {
-   "address": "Zuster Meijboomstraat 261",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "leiden",
-   "evidence": {},
-   "first_seen": "2026-11-13T04:19:45Z",
-   "flags": [
-    "bedrooms_unknown"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-17T23:49:03Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 612,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1835,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Funda: Zuster Meijboomstraat 261",
-   "uid": "email_alerts:funda-44671917",
-   "url": "https://www.funda.nl/detail/huur/leiden/appartement-zuster-meijboomstraat-261/44671917"
-  },
-  {
-   "address": "Loenermark 509",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "amsterdam",
-   "evidence": {},
-   "first_seen": "2026-11-13T04:19:45Z",
-   "flags": [
-    "bedrooms_unknown"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-17T23:49:03Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 800,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2400,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Funda: Loenermark 509",
-   "uid": "email_alerts:funda-80030140",
-   "url": "https://www.funda.nl/detail/huur/amsterdam/appartement-loenermark-509/80030140"
-  },
-  {
    "address": "Leyweg 1424 B",
    "area_m2": 101,
    "available_from": null,
    "available_until": null,
    "bedrooms": null,
    "best_tier": "great",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-13T04:19:45Z",
@@ -2940,27 +1697,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "address",
+   "home_key": "a:den-haag:leyweg:1424b",
    "image_url": null,
    "last_seen": "2026-11-17T23:49:03Z",
+   "lat": 52.04318,
+   "lon": 4.28442,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 583,
      "search": "2 people",
      "tier": "great"
-    },
-    {
-     "persons": 3,
-     "price_pp": 389,
-     "search": "3 people",
-     "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1166,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 4,
    "source": "email_alerts",
    "source_label": "Pararius/Funda email alerts",
@@ -2975,6 +1734,7 @@
    "available_until": null,
    "bedrooms": null,
    "best_tier": "great",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-13T04:19:45Z",
@@ -2982,21 +1742,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "address",
+   "home_key": "a:den-haag:grotemarktstraat:1a",
    "image_url": null,
    "last_seen": "2026-11-17T23:49:03Z",
+   "lat": 52.07551,
+   "lon": 4.30971,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 512,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1023,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "email_alerts",
    "source_label": "Pararius/Funda email alerts",
@@ -3011,6 +1779,7 @@
    "available_until": null,
    "bedrooms": 2,
    "best_tier": "great",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {
     "service_costs": "Servicekosten p.m.: € 53,- (Vesteda lists them next to the rent)"
@@ -3021,21 +1790,29 @@
     "service_costs:53"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "a:den-haag:slachthuisstraat:159",
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/6a/6a0287a8db753cbf5b3a1575feda3304/o/img-7133-medium-.jpg?rmode=crop&width=570&height=276&hmac=c6f692ebcca6f8ba60a65872484cdaa30a82ebf2fb19d3d4c72a5d7db3c1d5c6",
    "last_seen": "2026-11-16T06:37:34Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 26,
      "persons": 2,
-     "price_pp": 630,
+     "price_pp": 604,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": "2521SZ",
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1207,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "vesteda",
    "source_label": "Vesteda",
@@ -3050,6 +1827,7 @@
    "available_until": null,
    "bedrooms": null,
    "best_tier": "ok",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-12T14:19:46Z",
@@ -3057,21 +1835,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "street",
+   "home_key": "u:directwonen:508260",
    "image_url": "https://resources.directwonen.nl/image/d50c666f-c02c-4e62-a963-4a66692ff2bd",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": 52.06811,
+   "lon": 4.24207,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 798,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1595,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "directwonen",
    "source_label": "DirectWonen",
@@ -3086,6 +1872,7 @@
    "available_until": null,
    "bedrooms": null,
    "best_tier": "ok",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-12T14:19:46Z",
@@ -3093,21 +1880,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "street",
+   "home_key": "u:directwonen:509993",
    "image_url": "https://resources.directwonen.nl/image/dad24e06-d0f9-4c7c-b5b2-245321b17b25",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": 52.07148,
+   "lon": 4.24175,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 748,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1495,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "directwonen",
    "source_label": "DirectWonen",
@@ -3121,7 +1916,8 @@
    "available_from": null,
    "available_until": null,
    "bedrooms": null,
-   "best_tier": "great",
+   "best_tier": "ok",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-12T14:19:46Z",
@@ -3129,27 +1925,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "street",
+   "home_key": "u:directwonen:514568",
    "image_url": "https://resources.directwonen.nl/image/630bbed7-d781-4e03-b76a-6408fba9c493",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": 52.05441,
+   "lon": 4.25768,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 750,
      "search": "2 people",
      "tier": "ok"
-    },
-    {
-     "persons": 3,
-     "price_pp": 500,
-     "search": "3 people",
-     "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1500,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 4,
    "source": "directwonen",
    "source_label": "DirectWonen",
@@ -3164,6 +1962,7 @@
    "available_until": "2027-01-25",
    "bedrooms": 2,
    "best_tier": "ok",
+   "capacity": 2,
    "city": "amsterdam",
    "evidence": {
     "max_age": "Aantal huurders: 2 personen · Leeftijd: 20 - 50 jaar · Geslacht: Vrouw · Bezigheid: Werkend",
@@ -3182,21 +1981,29 @@
     "short_term"
    ],
    "furnished": "furnished",
+   "geo": null,
+   "home_key": "a:amsterdam:circusplein:34",
    "image_url": "https://resources.kamernet.nl/image/417043d2-144b-4ec1-ba4c-47f8c12bed35/resize/422-225",
    "last_seen": "2026-11-14T09:09:47Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 800,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": "1033ZG",
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1600,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "kamernet",
    "source_label": "Kamernet",
@@ -3211,6 +2018,7 @@
    "available_until": null,
    "bedrooms": null,
    "best_tier": "great",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-12T09:09:31Z",
@@ -3218,21 +2026,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "street",
+   "home_key": "u:email_alerts:pararius-1c12c6a8",
    "image_url": null,
    "last_seen": "2026-11-16T23:48:45Z",
+   "lat": 52.10163,
+   "lon": 4.31368,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 440,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 880,
    "property_type": null,
+   "rent_basis": "home",
    "rooms": 3,
    "source": "email_alerts",
    "source_label": "Pararius/Funda email alerts",
@@ -3241,48 +2057,13 @@
    "url": "https://www.pararius.nl/appartement-te-huur/den-haag/1c12c6a8/waalsdorperweg"
   },
   {
-   "address": "Watervlierstraat",
-   "area_m2": 78,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "den-haag",
-   "evidence": {},
-   "first_seen": "2026-11-12T09:09:31Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-16T23:48:45Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 733,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2200,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Pararius: Watervlierstraat",
-   "uid": "email_alerts:pararius-bfd4bf76",
-   "url": "https://www.pararius.nl/appartement-te-huur/den-haag/bfd4bf76/watervlierstraat"
-  },
-  {
    "address": "Betaplein 124",
    "area_m2": 79,
    "available_from": null,
    "available_until": null,
    "bedrooms": 2,
    "best_tier": "ok",
+   "capacity": null,
    "city": "leiden",
    "evidence": {
     "service_costs": "Servicekosten p.m.: € 55,- (Vesteda lists them next to the rent)"
@@ -3293,21 +2074,29 @@
     "service_costs:55"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "a:leiden:betaplein:124",
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/80/8017084f53a41b164a2f3dd770e9015e/o/01.jpg?rmode=crop&width=570&height=276&hmac=3087b2037fb978271d89521e9a86b86279aad8876e502a92037c521318e1dd54",
    "last_seen": "2026-11-12T11:49:29Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 27,
      "persons": 2,
-     "price_pp": 780,
+     "price_pp": 753,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": "2321KS",
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1505,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "vesteda",
    "source_label": "Vesteda",
@@ -3321,7 +2110,8 @@
    "available_from": null,
    "available_until": null,
    "bedrooms": null,
-   "best_tier": "great",
+   "best_tier": "ok",
+   "capacity": null,
    "city": "amsterdam",
    "evidence": {},
    "first_seen": "2026-11-12T04:19:30Z",
@@ -3329,27 +2119,29 @@
     "bedrooms_unknown"
    ],
    "furnished": null,
+   "geo": "address",
+   "home_key": "a:amsterdam:lekstraat:13f",
    "image_url": null,
    "last_seen": "2026-11-16T23:48:45Z",
+   "lat": 52.34497,
+   "lon": 4.90657,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 800,
      "search": "2 people",
      "tier": "ok"
-    },
-    {
-     "persons": 3,
-     "price_pp": 533,
-     "search": "3 people",
-     "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1600,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "email_alerts",
    "source_label": "Pararius/Funda email alerts",
@@ -3358,194 +2150,13 @@
    "url": "https://www.funda.nl/detail/huur/amsterdam/appartement-lekstraat-13-f/44671905"
   },
   {
-   "address": "Pippelingstraat 157",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "great",
-   "city": "den-haag",
-   "evidence": {},
-   "first_seen": "2026-11-11T18:39:18Z",
-   "flags": [
-    "bedrooms_unknown"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-15T23:47:28Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 700,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": 2350,
-   "price_includes_utilities": null,
-   "price_total": 2100,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Funda: Pippelingstraat 157",
-   "uid": "email_alerts:funda-44679954",
-   "url": "https://www.funda.nl/detail/huur/den-haag/appartement-pippelingstraat-157/44679954"
-  },
-  {
-   "address": "Volmolengracht 26",
-   "area_m2": 98,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "leiden",
-   "evidence": {},
-   "first_seen": "2026-11-11T18:09:15Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-15T23:47:28Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 783,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2350,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Funda: Volmolengracht 26",
-   "uid": "email_alerts:funda-80033503",
-   "url": "https://www.funda.nl/detail/huur/leiden/appartement-volmolengracht-26/80033503"
-  },
-  {
-   "address": "Oostzaanstraat",
-   "area_m2": 93,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "amsterdam",
-   "evidence": {},
-   "first_seen": "2026-11-11T18:09:15Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-16T23:48:45Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 732,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2195,
-   "property_type": null,
-   "rooms": 5,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Pararius: Oostzaanstraat",
-   "uid": "email_alerts:pararius-82f52e60",
-   "url": "https://www.pararius.nl/appartement-te-huur/amsterdam/82f52e60/oostzaanstraat"
-  },
-  {
-   "address": "De La Reyweg",
-   "area_m2": 95,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "den-haag",
-   "evidence": {},
-   "first_seen": "2026-11-11T18:09:15Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": null,
-   "last_seen": "2026-11-15T23:47:28Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 765,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2295,
-   "property_type": null,
-   "rooms": 5,
-   "source": "email_alerts",
-   "source_label": "Pararius/Funda email alerts",
-   "title": "Pararius: De la Reyweg",
-   "uid": "email_alerts:pararius-eda80a90",
-   "url": "https://www.pararius.nl/appartement-te-huur/den-haag/eda80a90/de-la-reyweg"
-  },
-  {
-   "address": "Borgloonstraat 101",
-   "area_m2": 141,
-   "available_from": "2026-11-15",
-   "available_until": null,
-   "bedrooms": 3,
-   "best_tier": "great",
-   "city": "amsterdam",
-   "evidence": {
-    "income_requirement": "Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee, in dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen."
-   },
-   "first_seen": "2026-11-10T16:49:14Z",
-   "flags": [
-    "income_requirement"
-   ],
-   "furnished": null,
-   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2206055.jpg",
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 658,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1975,
-   "property_type": null,
-   "rooms": 4,
-   "source": "vanderlinden",
-   "source_label": "Van der Linden",
-   "title": "Borgloonstraat 101, Amsterdam",
-   "uid": "vanderlinden:2696",
-   "url": "https://www.vanderlinden.nl/huurwoning/Borgloonstraat-101-Amsterdam/2696/"
-  },
-  {
    "address": "Wesselsstraat 482",
    "area_m2": 85,
    "available_from": "2026-11-14",
    "available_until": "2027-02-06",
    "bedrooms": 2,
    "best_tier": "ok",
+   "capacity": 2,
    "city": "den-haag",
    "evidence": {
     "max_persons": "Aantal huurders: 2 personen · Leeftijd: 16 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Student, Werkende student, Werkend",
@@ -3559,21 +2170,29 @@
     "utilities_included"
    ],
    "furnished": "furnished",
+   "geo": null,
+   "home_key": "a:den-haag:wesselsstraat:482",
    "image_url": "https://resources.kamernet.nl/image/ed9ea9bd-e2f5-4a92-aa48-944f3ac1b6de/resize/422-225",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 750,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": "2572WC",
+   "price_basis": "incl",
    "price_drop_from": null,
    "price_includes_utilities": true,
    "price_total": 1500,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "kamernet",
    "source_label": "Kamernet",
@@ -3588,6 +2207,7 @@
    "available_until": null,
    "bedrooms": null,
    "best_tier": "ok",
+   "capacity": null,
    "city": "leiden",
    "evidence": {},
    "first_seen": "2026-11-10T13:14:32Z",
@@ -3595,21 +2215,29 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": "street",
+   "home_key": "u:directwonen:520581",
    "image_url": "https://resources.directwonen.nl/image/eca3053f-f3f2-4209-8e0c-670bc8cdc54f",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": 52.14313,
+   "lon": 4.47555,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
-     "price_pp": 722,
+     "price_pp": 723,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1445,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "directwonen",
    "source_label": "DirectWonen",
@@ -3624,26 +2252,35 @@
    "available_until": null,
    "bedrooms": 2,
    "best_tier": "ok",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-10T13:14:32Z",
    "flags": [],
    "furnished": "upholstered",
+   "geo": "street",
+   "home_key": "u:directwonen:523549",
    "image_url": "https://resources.directwonen.nl/image/3a75a11d-dc19-4b5c-bee1-775620863ba2",
    "last_seen": "2026-11-12T16:29:49Z",
+   "lat": 52.05667,
+   "lon": 4.24957,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 725,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1450,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": 3,
    "source": "directwonen",
    "source_label": "DirectWonen",
@@ -3657,29 +2294,39 @@
    "available_from": "2026-11-13",
    "available_until": null,
    "bedrooms": 2,
-   "best_tier": "great",
+   "best_tier": "ok",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {},
    "first_seen": "2026-11-10T13:14:32Z",
    "flags": [
-    "suspicious_price"
+    "suspicious_price",
+    "rent_unclear"
    ],
    "furnished": null,
+   "geo": "street",
+   "home_key": "u:directwonen:523654",
    "image_url": "https://resources.directwonen.nl/image/6bfb5251-06d0-4aea-90b4-1bf604f764f8",
    "last_seen": "2026-11-14T10:39:47Z",
+   "lat": 52.05552,
+   "lon": 4.31659,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
-     "price_pp": 500,
+     "price_pp": null,
      "search": "2 people",
-     "tier": "great"
+     "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1001,
    "property_type": "apartment",
+   "rent_basis": null,
    "rooms": 4,
    "source": "directwonen",
    "source_label": "DirectWonen",
@@ -3688,48 +2335,13 @@
    "url": "https://directwonen.nl/huurwoningen-huren/den-haag/van-zeggelenlaan/appartement-523654"
   },
   {
-   "address": "Volmolengracht",
-   "area_m2": 100,
-   "available_from": "2026-12-01",
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "leiden",
-   "evidence": {},
-   "first_seen": "2026-11-10T13:14:32Z",
-   "flags": [
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/cfeaa1a3-4b09-4ae9-9310-df6d3af633aa",
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 783,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 2350,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_label": "DirectWonen",
-   "title": "Appartement Volmolengracht, Leiden",
-   "uid": "directwonen:523879",
-   "url": "https://directwonen.nl/huurwoningen-huren/leiden/volmolengracht/appartement-523879"
-  },
-  {
    "address": "Turfhaven 221",
    "area_m2": 62,
    "available_from": null,
    "available_until": null,
    "bedrooms": null,
-   "best_tier": "great",
+   "best_tier": "ok",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {
     "service_costs": "Servicekosten € € 70,- /mnd per maand (MVGM lists them next to the rent)"
@@ -3741,27 +2353,29 @@
     "bedrooms_unknown"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "a:den-haag:turfhaven:221",
    "image_url": "https://d.static.nbo.nl/media/da/da8a0047fde10bfd0db01d2f0918ecbb/768x510/thumb.jpg",
    "last_seen": "2026-11-11T09:09:15Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 35,
      "persons": 2,
-     "price_pp": 748,
+     "price_pp": 713,
      "search": "2 people",
      "tier": "ok"
-    },
-    {
-     "persons": 3,
-     "price_pp": 499,
-     "search": "3 people",
-     "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": "2511DK",
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1426,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "ikwilhuren",
    "source_label": "MVGM (ikwilhuren.nu)",
@@ -3770,52 +2384,13 @@
    "url": "https://ikwilhuren.nu/object/den-haag-2511dk-221-turfhaven-66862d7ded0d0f8071d37b88f88d9422/"
   },
   {
-   "address": "Haringbuisdijk 909",
-   "area_m2": 89,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "city": "amsterdam",
-   "evidence": {
-    "service_costs": "Servicekosten € € 100,- /mnd per maand (MVGM lists them next to the rent)"
-   },
-   "first_seen": "2026-11-10T13:14:32Z",
-   "flags": [
-    "income_requirement",
-    "service_costs:100",
-    "bedrooms_unknown"
-   ],
-   "furnished": null,
-   "image_url": "https://c.static.nbo.nl/media/87/877112276f588a3a7f1d5972e08e0a61/768x510/thumb.jpg",
-   "last_seen": "2026-11-19T16:09:31Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 767,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": "1086VA",
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2200,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "ikwilhuren",
-   "source_label": "MVGM (ikwilhuren.nu)",
-   "title": "Appartement Haringbuisdijk 909, Amsterdam",
-   "uid": "ikwilhuren:dafce730e10cd59484b49103f93c84c4",
-   "url": "https://ikwilhuren.nu/object/amsterdam-1086va-909-haringbuisdijk-dafce730e10cd59484b49103f93c84c4/"
-  },
-  {
    "address": "Turfhaven 449",
    "area_m2": 58,
    "available_from": null,
    "available_until": null,
    "bedrooms": null,
    "best_tier": "ok",
+   "capacity": null,
    "city": "den-haag",
    "evidence": {
     "service_costs": "Servicekosten € € 70,- /mnd per maand (MVGM lists them next to the rent)"
@@ -3827,21 +2402,29 @@
     "bedrooms_unknown"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "a:den-haag:turfhaven:449",
    "image_url": "https://b.static.nbo.nl/media/d3/d3ad03f4b036cd48d18ed0207f3e2aab/768x510/thumb.jpg",
    "last_seen": "2026-11-19T16:09:31Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 35,
      "persons": 2,
-     "price_pp": 758,
+     "price_pp": 724,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": "2511DK",
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1447,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "ikwilhuren",
    "source_label": "MVGM (ikwilhuren.nu)",
@@ -3856,6 +2439,7 @@
    "available_until": "2027-10-31",
    "bedrooms": 2,
    "best_tier": "great",
+   "capacity": 2,
    "city": "den-haag",
    "evidence": {
     "max_persons": "Aantal huurders: 2 personen · Leeftijd: 16 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Student, Werkende student",
@@ -3867,21 +2451,29 @@
     "max_persons:2"
    ],
    "furnished": "furnished",
+   "geo": null,
+   "home_key": "a:den-haag:loosduinseweg:1103",
    "image_url": "https://resources.kamernet.nl/image/f133c357-dd63-4e68-bf4c-2bf2bb3cf464/resize/422-225",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 614,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": "2571BD",
+   "price_basis": "excl",
    "price_drop_from": null,
    "price_includes_utilities": false,
    "price_total": 1228,
    "property_type": "apartment",
+   "rent_basis": "home",
    "rooms": null,
    "source": "kamernet",
    "source_label": "Kamernet",
@@ -3890,114 +2482,46 @@
    "url": "https://kamernet.nl/huren/appartement-den-haag/loosduinseweg/appartement-1959057"
   },
   {
-   "address": "Vlietpark 42",
-   "area_m2": 60,
-   "available_from": "2026-12-01",
-   "available_until": "2027-11-30",
-   "bedrooms": 3,
-   "best_tier": "ok",
-   "city": "leiden",
-   "evidence": {
-    "max_persons": "Aantal huurders: 3 personen · Leeftijd: 16 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Iedereen welkom",
-    "no_registration": "Inschrijven bij de gemeente niet mogelijk omdat het een vakantiewoning is"
-   },
-   "first_seen": "2026-11-10T13:14:32Z",
-   "flags": [
-    "no_registration",
-    "max_persons:3"
-   ],
-   "furnished": "upholstered",
-   "image_url": "https://resources.kamernet.nl/image/90e91c00-4c83-4053-9c71-723538f1ea20/resize/422-225",
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 733,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": "2323LK",
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 2200,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "kamernet",
-   "source_label": "Kamernet",
-   "title": "Appartement te huur: Vlietpark",
-   "uid": "kamernet:2414041",
-   "url": "https://kamernet.nl/huren/appartement-leiden/vlietpark/appartement-2414041"
-  },
-  {
-   "address": "Lorriestraat 49",
-   "area_m2": 94,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": 3,
-   "best_tier": "ok",
-   "city": "amsterdam",
-   "evidence": {
-    "income_requirement": "In dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen."
-   },
-   "first_seen": "2026-11-10T13:14:32Z",
-   "flags": [
-    "income_requirement"
-   ],
-   "furnished": null,
-   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2206097.jpg",
-   "last_seen": "2026-11-19T21:50:52Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 724,
-     "search": "3 people",
-     "tier": "ok"
-    }
-   ],
-   "postcode": null,
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 2172,
-   "property_type": null,
-   "rooms": 4,
-   "source": "vanderlinden",
-   "source_label": "Van der Linden",
-   "title": "Lorriestraat 49, Amsterdam",
-   "uid": "vanderlinden:2180",
-   "url": "https://www.vanderlinden.nl/huurwoning/Lorriestraat-49-Amsterdam/2180/"
-  },
-  {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
    "available_from": "2026-11-01",
    "available_until": null,
    "bedrooms": 2,
    "best_tier": "ok",
+   "capacity": null,
    "city": "amsterdam",
    "evidence": {
     "income_requirement": "Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee, in dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen."
    },
    "first_seen": "2026-11-10T13:14:32Z",
    "flags": [
-    "income_requirement"
+    "income_requirement",
+    "rent_unclear"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "a:amsterdam:berthaanstrakade:552",
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2209571.jpg",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
-     "price_pp": 775,
+     "price_pp": null,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1550,
    "property_type": null,
+   "rent_basis": null,
    "rooms": 3,
    "source": "vanderlinden",
    "source_label": "Van der Linden",
@@ -4012,30 +2536,40 @@
    "available_until": null,
    "bedrooms": 2,
    "best_tier": "ok",
+   "capacity": null,
    "city": "amsterdam",
    "evidence": {
     "income_requirement": "Inkomensrichtlijnen"
    },
    "first_seen": "2026-11-10T13:14:32Z",
    "flags": [
-    "income_requirement"
+    "income_requirement",
+    "rent_unclear"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "a:amsterdam:zeeburgerkade:1334",
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2184033.jpg",
    "last_seen": "2026-11-13T11:09:47Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
-     "price_pp": 790,
+     "price_pp": null,
      "search": "2 people",
      "tier": "ok"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1580,
    "property_type": null,
+   "rent_basis": null,
    "rooms": 3,
    "source": "vanderlinden",
    "source_label": "Van der Linden",
@@ -4050,6 +2584,7 @@
    "available_until": null,
    "bedrooms": null,
    "best_tier": "great",
+   "capacity": null,
    "city": "amsterdam",
    "evidence": {
     "income_requirement": "Inkomensrichtlijnen"
@@ -4060,82 +2595,45 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
+   "geo": null,
+   "home_key": "a:amsterdam:berthaanstrakade:880",
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2209557.jpg",
-   "last_seen": "2026-11-19T21:50:52Z",
+   "last_seen": "2026-11-19T22:30:49Z",
+   "lat": null,
+   "lon": null,
    "matches": [
     {
+     "extra_pp": 0,
      "persons": 2,
      "price_pp": 685,
      "search": "2 people",
      "tier": "great"
     }
    ],
+   "places_available": null,
    "postcode": null,
+   "price_basis": null,
    "price_drop_from": null,
    "price_includes_utilities": null,
    "price_total": 1370,
    "property_type": null,
+   "rent_basis": "home",
    "rooms": 3,
    "source": "vanderlinden",
    "source_label": "Van der Linden",
    "title": "Bert Haanstrakade 880, Amsterdam",
    "uid": "vanderlinden:2642",
    "url": "https://www.vanderlinden.nl/huurwoning/Bert-Haanstrakade-880-Amsterdam/2642/"
-  },
-  {
-   "address": "Betaplein 60",
-   "area_m2": 93,
-   "available_from": "2027-01-30",
-   "available_until": null,
-   "bedrooms": 3,
-   "best_tier": "great",
-   "city": "leiden",
-   "evidence": {
-    "service_costs": "Servicekosten p.m.: € 55,- (Vesteda lists them next to the rent)"
-   },
-   "first_seen": "2026-11-10T13:14:32Z",
-   "flags": [
-    "income_requirement",
-    "service_costs:55"
-   ],
-   "furnished": null,
-   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/76/76697455c1f0637d718f5d073b6b94b5/o/content.jpg?rmode=crop&width=570&height=276&hmac=2d7135c26e41d0941bf1801f1a5ce5d11b24a3ac122d8a046767600067917c40",
-   "last_seen": "2026-11-13T18:39:47Z",
-   "matches": [
-    {
-     "persons": 3,
-     "price_pp": 618,
-     "search": "3 people",
-     "tier": "great"
-    }
-   ],
-   "postcode": "2321KS",
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1800,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "vesteda",
-   "source_label": "Vesteda",
-   "title": "Appartement Betaplein 60, Leiden",
-   "uid": "vesteda:7562",
-   "url": "https://www.vesteda.com/nl/huurwoningen-leiden/alpha/betaplein-60-leiden-7562"
   }
  ],
  "reply_template": "Beste verhuurder,\n\nMet veel interesse zagen wij de woning \"{title}\" aan {address} in {city} ({url}). Wij zijn [namen], [werk/studie], met een gezamenlijk bruto inkomen van [bruto inkomen] per maand. Wij zoeken een rustige, langdurige huurwoning en kunnen snel reageren.\n\nZou het mogelijk zijn om de woning te komen bezichtigen? U kunt ons bereiken op [telefoon].\n\nMet vriendelijke groet,\n[namen]",
- "schema": 1,
+ "schema": 2,
  "searches": [
   {
    "great_total": 1400,
    "max_total": 1600,
    "name": "2 people",
    "persons": 2
-  },
-  {
-   "great_total": 2100,
-   "max_total": 2400,
-   "name": "3 people",
-   "persons": 3
   }
  ],
  "sources": [
@@ -4144,7 +2642,7 @@
    "homepage": "https://www.123wonen.nl",
    "label": "123Wonen",
    "last_error": "2026-11-19T09:55:18Z",
-   "last_ok": "2026-11-19T21:50:52Z",
+   "last_ok": "2026-11-19T22:30:49Z",
    "listings_last_run": 11,
    "name": "123wonen",
    "note": "Reply via the agency (free)",
@@ -4155,7 +2653,7 @@
    "homepage": "https://directwonen.nl",
    "label": "DirectWonen",
    "last_error": "2026-11-19T02:12:48Z",
-   "last_ok": "2026-11-19T21:50:52Z",
+   "last_ok": "2026-11-19T22:30:49Z",
    "listings_last_run": 133,
    "name": "directwonen",
    "note": "Paid account needed to reply",
@@ -4166,7 +2664,7 @@
    "homepage": "https://www.pararius.nl",
    "label": "Pararius/Funda email alerts",
    "last_error": "2026-11-19T11:08:18Z",
-   "last_ok": "2026-11-19T21:50:52Z",
+   "last_ok": "2026-11-19T22:30:49Z",
    "listings_last_run": 51,
    "name": "email_alerts",
    "note": "Reads the alert emails these sites send you",
@@ -4177,7 +2675,7 @@
    "homepage": "https://heimstaden.com/nl/huurwoningen/",
    "label": "Heimstaden",
    "last_error": "2026-11-18T14:20:47Z",
-   "last_ok": "2026-11-19T21:50:52Z",
+   "last_ok": "2026-11-19T22:30:49Z",
    "listings_last_run": 5,
    "name": "heimstaden",
    "note": "Reply via Heimstaden (free)",
@@ -4188,7 +2686,7 @@
    "homepage": "https://housinganywhere.com",
    "label": "HousingAnywhere",
    "last_error": "2026-11-14T06:49:46Z",
-   "last_ok": "2026-11-19T21:50:52Z",
+   "last_ok": "2026-11-19T22:30:49Z",
    "listings_last_run": 67,
    "name": "housinganywhere",
    "note": "Mostly furnished, mid-term; platform fee applies",
@@ -4199,7 +2697,7 @@
    "homepage": "https://ikwilhuren.nu/aanbod/",
    "label": "MVGM (ikwilhuren.nu)",
    "last_error": "2026-11-19T12:39:00Z",
-   "last_ok": "2026-11-19T21:50:52Z",
+   "last_ok": "2026-11-19T22:30:49Z",
    "listings_last_run": 14,
    "name": "ikwilhuren",
    "note": "Free account on ikwilhuren.nu needed to reply",
@@ -4210,7 +2708,7 @@
    "homepage": "https://kamernet.nl",
    "label": "Kamernet",
    "last_error": "2026-11-12T15:19:44Z",
-   "last_ok": "2026-11-19T21:50:52Z",
+   "last_ok": "2026-11-19T22:30:49Z",
    "listings_last_run": 59,
    "name": "kamernet",
    "note": "Paid Kamernet account needed to reply",
@@ -4221,7 +2719,7 @@
    "homepage": "https://www.rotsvast.nl/huren/",
    "label": "Rotsvast",
    "last_error": "2026-11-19T08:53:06Z",
-   "last_ok": "2026-11-19T21:50:52Z",
+   "last_ok": "2026-11-19T22:30:49Z",
    "listings_last_run": 17,
    "name": "rotsvast",
    "note": "Reply via the agency (free)",
@@ -4232,7 +2730,7 @@
    "homepage": "https://www.vanderlinden.nl/woning-huren/",
    "label": "Van der Linden",
    "last_error": "2026-11-19T18:50:47Z",
-   "last_ok": "2026-11-19T21:50:52Z",
+   "last_ok": "2026-11-19T22:30:49Z",
    "listings_last_run": 58,
    "name": "vanderlinden",
    "note": "Reply via the agency (free)",
@@ -4243,8 +2741,8 @@
    "homepage": "https://www.vesteda.com/nl",
    "label": "Vesteda",
    "last_error": null,
-   "last_ok": "2026-11-19T21:50:52Z",
-   "listings_last_run": 27,
+   "last_ok": "2026-11-19T22:30:49Z",
+   "listings_last_run": 8,
    "name": "vesteda",
    "note": "Free account on hurenbij.vesteda.com needed to reply",
    "status": "ok"

@@ -6,7 +6,13 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "geo": {
+   "lat": 52.06062959,
+   "lon": 4.32784873,
+   "precision": "street",
+   "q": "[\"lorentzplein\",\"\",\"\",\"denhaag\"]"
+  },
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 80,
@@ -36,15 +42,10 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 625,
     "search": "2 people",
-    "tier": "great"
-   },
-   {
-    "persons": 3,
-    "price_pp": 417,
-    "search": "3 people",
     "tier": "great"
    }
   ],
@@ -57,7 +58,13 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "geo": {
+   "lat": 52.06811408,
+   "lon": 4.24207399,
+   "precision": "street",
+   "q": "[\"godetiaweg\",\"\",\"\",\"denhaag\"]"
+  },
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Godetiaweg",
    "area_m2": 82,
@@ -87,6 +94,7 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 798,
     "search": "2 people",
@@ -102,7 +110,13 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "geo": {
+   "lat": 52.07148376,
+   "lon": 4.24175495,
+   "precision": "street",
+   "q": "[\"dslohmanlaan\",\"\",\"\",\"denhaag\"]"
+  },
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "D.S. Lohmanlaan",
    "area_m2": 66,
@@ -132,6 +146,7 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 748,
     "search": "2 people",
@@ -141,13 +156,19 @@
   "price_drop_from": null
  },
  "directwonen:514568": {
-  "best_tier": "great",
+  "best_tier": "ok",
   "evidence": {},
   "first_seen": "2026-11-12T14:19:46Z",
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "geo": {
+   "lat": 52.05440888,
+   "lon": 4.25767545,
+   "precision": "street",
+   "q": "[\"escamplaan\",\"\",\"\",\"denhaag\"]"
+  },
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Escamplaan",
    "area_m2": 86,
@@ -177,16 +198,11 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 750,
     "search": "2 people",
     "tier": "ok"
-   },
-   {
-    "persons": 3,
-    "price_pp": 500,
-    "search": "3 people",
-    "tier": "great"
    }
   ],
   "price_drop_from": null
@@ -198,7 +214,13 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "geo": {
+   "lat": 51.9366117,
+   "lon": 4.4273038,
+   "precision": "street",
+   "q": "[\"bbaumannlaan\",\"\",\"\",\"rotterdam\"]"
+  },
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "B. Baumannlaan",
    "area_m2": 63,
@@ -228,6 +250,7 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 607,
     "search": "2 people",
@@ -243,7 +266,13 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "geo": {
+   "lat": 52.14313468,
+   "lon": 4.47555378,
+   "precision": "street",
+   "q": "[\"bachstraat\",\"\",\"\",\"leiden\"]"
+  },
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -273,8 +302,9 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
-    "price_pp": 722,
+    "price_pp": 723,
     "search": "2 people",
     "tier": "ok"
    }
@@ -288,6 +318,12 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
+  "geo": {
+   "lat": 51.88889904,
+   "lon": 4.49017308,
+   "precision": "street",
+   "q": "[\"zuidplein\",\"\",\"\",\"rotterdam\"]"
+  },
   "last_seen": "2026-11-18T13:00:52Z",
   "listing": {
    "address": "Zuidplein",
@@ -317,6 +353,7 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 738,
     "search": "2 people",
@@ -330,6 +367,12 @@
   "evidence": {},
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [],
+  "geo": {
+   "lat": 52.05667157,
+   "lon": 4.24957004,
+   "precision": "street",
+   "q": "[\"dbuserf\",\"\",\"\",\"denhaag\"]"
+  },
   "last_seen": "2026-11-12T16:29:49Z",
   "listing": {
    "address": "D. Buserf",
@@ -359,6 +402,7 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 725,
     "search": "2 people",
@@ -368,12 +412,19 @@
   "price_drop_from": null
  },
  "directwonen:523654": {
-  "best_tier": "great",
+  "best_tier": "ok",
   "evidence": {},
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [
-   "suspicious_price"
+   "suspicious_price",
+   "rent_unclear"
   ],
+  "geo": {
+   "lat": 52.05551814,
+   "lon": 4.31659186,
+   "precision": "street",
+   "q": "[\"vzeggelenlaan\",\"\",\"\",\"denhaag\"]"
+  },
   "last_seen": "2026-11-14T10:39:47Z",
   "listing": {
    "address": "V. Zeggelenlaan",
@@ -403,54 +454,10 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
-    "price_pp": 500,
+    "price_pp": null,
     "search": "2 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "directwonen:523879": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Volmolengracht",
-   "area_m2": 100,
-   "available_from": "2026-12-01",
-   "available_until": null,
-   "bedrooms": null,
-   "city": "leiden",
-   "description": null,
-   "extra": {
-    "age": "9 dagen geleden",
-    "details_unavailable": true,
-    "smart_only": false
-   },
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/cfeaa1a3-4b09-4ae9-9310-df6d3af633aa",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 2350,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_id": "523879",
-   "title": "Appartement Volmolengracht, Leiden",
-   "uid": "directwonen:523879",
-   "url": "https://directwonen.nl/huurwoningen-huren/leiden/volmolengracht/appartement-523879"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 783,
-    "search": "3 people",
     "tier": "ok"
    }
   ],
@@ -461,6 +468,12 @@
   "evidence": {},
   "first_seen": "2026-11-18T12:39:04Z",
   "flags": [],
+  "geo": {
+   "lat": 51.89171392,
+   "lon": 4.49640343,
+   "precision": "street",
+   "q": "[\"resedastraat\",\"\",\"\",\"rotterdam\"]"
+  },
   "last_seen": "2026-11-18T16:52:21Z",
   "listing": {
    "address": "Resedastraat",
@@ -490,6 +503,7 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 545,
     "search": "2 people",
@@ -503,6 +517,12 @@
   "evidence": {},
   "first_seen": "2026-11-18T12:39:04Z",
   "flags": [],
+  "geo": {
+   "lat": 51.87327075,
+   "lon": 4.4716405,
+   "precision": "street",
+   "q": "[\"middelharnisstraat\",\"\",\"\",\"rotterdam\"]"
+  },
   "last_seen": "2026-11-19T10:37:55Z",
   "listing": {
    "address": "Middelharnisstraat",
@@ -532,60 +552,11 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
-    "price_pp": 532,
+    "price_pp": 533,
     "search": "2 people",
     "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "directwonen:524084": {
-  "best_tier": "ok",
-  "evidence": {
-   "max_persons": "…2 pesonen € 1995,- Ook beschikbaar voor een woongroep/woningdelers van max 3 personen.",
-   "rent_for_3": "Huurprijs voor 3 personen € 2395,- (er kan door de verhuurder een extra kamer gemaakt worden in de woonkamer) Huurprijs voor 2 pesonen € 1995,- Ook beschikbaar…",
-   "sharers_ok": "…worden in de woonkamer) Huurprijs voor 2 pesonen € 1995,- Ook beschikbaar voor een woongroep/woningdelers van max 3 personen."
-  },
-  "first_seen": "2026-11-18T12:39:04Z",
-  "flags": [
-   "sharers_ok",
-   "max_persons:3",
-   "rent_for_3:2395"
-  ],
-  "last_seen": "2026-11-19T11:08:18Z",
-  "listing": {
-   "address": "Ramlehweg",
-   "area_m2": 122,
-   "available_from": "2026-12-01",
-   "available_until": null,
-   "bedrooms": 3,
-   "city": "rotterdam",
-   "description": "Te huur: In de woonkamer komt nog een nieuwe vloer! Huurprijs voor 3 personen € 2395,- (er kan door de verhuurder een extra kamer gemaakt worden in de woonkamer) Huurprijs voor 2 pesonen € 1995,- Ook beschikbaar voor een woongroep/woningdelers van max 3 personen. **Van deze 3 personen mag er maar een student zijn. Indien 2 personen de woning willen huren dan kunnen beide personen student zijn en geldt de regel hierboven niet Ik wil een Woongroep oprichten. Kan dat?** Als u met meer dan 2 personen in 1 woning wilt wonen moet u met alles bewoners samenleven als 1 gezin.\nDit noemen we vaak een 'Woongroep'. Voor een woongroep bestaat geen vergunning of registratie. De gemeente bepaalt of er sprake is van een woongroep door te kijken naar de manier waarop de woning wordt gebruikt. De bewoners moeten duurzaam een gemeenschappelijke huishouding voeren. De inspecteur die de woning bezoekt, beoordeelt of dit zo is. Duurzaam betekent dat de bewoners ervoor hebben gekozen om voor langere tijd met elkaar op dit adres te gaan wonen en niet alleen voor de duur van (een onderdeel van) een studie. Dus de inspecteur moet ervan overtuigd zijn dat de bewoners niet alleen hier wonen omdat ze een kamer nodig hadden in Rotterdam. Duidelijk moet zijn dat zij hier wonen omdat zij echt voor elkaar gekozen hebben. Studenten wonen meestal alleen voor de duur van hun studie in Rotterdam. Daarom zien we een groep bewoners die voor de helft of meer uit studenten bestaat meestal niet als woongroep. Er is dan een vergunning kamerverhuur nodig. Gemeenschappelijk houdt in dat de woning door alle bewoners wordt bewoond en dat ze samen de kosten van het wonen betalen. Dit betekent in elk geval: Er zijn geen delen van de woning die maar door 1 persoon mag worden gebruikt. Dit betekent geen sloten op deuren van slaapkamers. Er is 1 keuken die duidelijk geschikt is voor gezamenlijk gebruik.\nEr is 1 woonkamer die duidelijk geschikt is als gezamenlijke ruimte voor alle bewoners. De kosten van het huishouden worden onderling verdeeld. 2e verdieping: Hal (4.57 m x 1.70 m) 7.77 m2 Toilet (0.90 m x 0.93 m) 0.84 m2 Woonkamer (3.65 m x 3.73 m) 13.61 m2 Keuken (2.95 m x 1.50 m) 4.43 m2 Balkon (2.66 m x 0.93 m) 2.47 m2 Meterkast (1.34 m x 0.86 m) 1.15 m2 Berging (0.93 m x 0.86 m) 0.80 m2 3e verdieping: Overloop (4.60 m x 1.15 m) 5.29 m2 Slaapkamer 1 (6.00 m x 3.80 m) 22.80 m2 Slaapkamer 2 (3.72 m x 3.63 m) 13.50 m2 Balkon (2.66 m x 0.93 m) 2.47 m2 Slaapkamer 3 (4.47 m x 1.98 m) 8.85 m2 Badkamer (3.00 m x 1.52 m) 4.56 m2 Toilet (1.03 m x 0.95 m) 0.98 m2",
-   "extra": {
-    "age": "5 dagen geleden",
-    "smart_only": false
-   },
-   "furnished": "upholstered",
-   "image_url": "https://resources.directwonen.nl/content/images/no_photo.png",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 1995,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_id": "524084",
-   "title": "Appartement Ramlehweg, Rotterdam",
-   "uid": "directwonen:524084",
-   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/ramlehweg/appartement-524084"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 798,
-    "search": "3 people",
-    "tier": "ok"
    }
   ],
   "price_drop_from": null
@@ -601,6 +572,12 @@
    "students_only",
    "max_persons:2"
   ],
+  "geo": {
+   "lat": 51.94398721,
+   "lon": 4.47766481,
+   "precision": "street",
+   "q": "[\"jwfrisostraat\",\"\",\"\",\"rotterdam\"]"
+  },
   "last_seen": "2026-11-19T11:08:18Z",
   "listing": {
    "address": "J.W. Frisostraat",
@@ -630,54 +607,10 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 588,
     "search": "2 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "directwonen:524090": {
-  "best_tier": "great",
-  "evidence": {},
-  "first_seen": "2026-11-14T10:49:45Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "N.W. Buitensingel",
-   "area_m2": 128,
-   "available_from": "2026-11-20",
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "age": "6 dagen geleden",
-    "details_unavailable": true,
-    "smart_only": false
-   },
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/53a3016e-46e3-4539-a4f0-0809378f2529",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 1780,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_id": "524090",
-   "title": "Appartement N.W. Buitensingel, Den Haag",
-   "uid": "directwonen:524090",
-   "url": "https://directwonen.nl/huurwoningen-huren/den-haag/noord-west-buitensingel/appartement-524090"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 593,
-    "search": "3 people",
     "tier": "great"
    }
   ],
@@ -688,6 +621,12 @@
   "evidence": {},
   "first_seen": "2026-11-18T12:39:04Z",
   "flags": [],
+  "geo": {
+   "lat": 51.92170706,
+   "lon": 4.53817423,
+   "precision": "street",
+   "q": "[\"sgravenweg\",\"\",\"\",\"rotterdam\"]"
+  },
   "last_seen": "2026-11-19T11:58:31Z",
   "listing": {
    "address": "'s-Gravenweg",
@@ -717,190 +656,11 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
-    "price_pp": 782,
+    "price_pp": 783,
     "search": "2 people",
     "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "directwonen:524166": {
-  "best_tier": "great",
-  "evidence": {},
-  "first_seen": "2026-11-18T12:39:04Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Mariniersweg",
-   "area_m2": 120,
-   "available_from": "2026-12-01",
-   "available_until": null,
-   "bedrooms": null,
-   "city": "rotterdam",
-   "description": null,
-   "extra": {
-    "age": "2 dagen geleden",
-    "details_unavailable": true,
-    "smart_only": true
-   },
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/c1848cad-1f18-4af8-81cf-87000f3d04ed",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 2050,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_id": "524166",
-   "title": "Appartement Mariniersweg, Rotterdam",
-   "uid": "directwonen:524166",
-   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/mariniersweg/appartement-524166"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 683,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "directwonen:524179": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-17T15:19:11Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "D.L. Reyweg",
-   "area_m2": 95,
-   "available_from": "2026-12-01",
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "age": "2 dagen geleden",
-    "details_unavailable": true,
-    "smart_only": true
-   },
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/6d3c8214-7f10-4457-ab2b-fd13a178937c",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 2295,
-   "property_type": "apartment",
-   "rooms": 5,
-   "source": "directwonen",
-   "source_id": "524179",
-   "title": "Appartement D.L. Reyweg, Den Haag",
-   "uid": "directwonen:524179",
-   "url": "https://directwonen.nl/huurwoningen-huren/den-haag/de-la-reyweg/appartement-524179"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 765,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "directwonen:524205": {
-  "best_tier": "great",
-  "evidence": {},
-  "first_seen": "2026-11-18T12:39:04Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Tamboerstraat",
-   "area_m2": 107,
-   "available_from": "2026-12-01",
-   "available_until": null,
-   "bedrooms": null,
-   "city": "rotterdam",
-   "description": null,
-   "extra": {
-    "age": "2 dagen geleden",
-    "details_unavailable": true,
-    "smart_only": true
-   },
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/b43fae7b-fe0d-4693-abe5-12373f940c9a",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 1995,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_id": "524205",
-   "title": "Appartement Tamboerstraat, Rotterdam",
-   "uid": "directwonen:524205",
-   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/tamboerstraat/appartement-524205"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 665,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "directwonen:524209": {
-  "best_tier": "great",
-  "evidence": {},
-  "first_seen": "2026-11-18T12:39:04Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Mariniersweg",
-   "area_m2": 98,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "rotterdam",
-   "description": null,
-   "extra": {
-    "age": "2 dagen geleden",
-    "details_unavailable": true,
-    "smart_only": true
-   },
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/77ccf51e-3cf9-4ebd-9728-1766ee51ee3b",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 1695,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_id": "524209",
-   "title": "Appartement Mariniersweg, Rotterdam",
-   "uid": "directwonen:524209",
-   "url": "https://directwonen.nl/huurwoningen-huren/rotterdam/mariniersweg/appartement-524209"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 565,
-    "search": "3 people",
-    "tier": "great"
    }
   ],
   "price_drop_from": null
@@ -912,7 +672,13 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "geo": {
+   "lat": 52.05667157,
+   "lon": 4.24957004,
+   "precision": "street",
+   "q": "[\"dbuserf\",\"\",\"\",\"denhaag\"]"
+  },
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 61,
@@ -942,6 +708,7 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 525,
     "search": "2 people",
@@ -957,7 +724,13 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "geo": {
+   "lat": 52.06220944,
+   "lon": 4.29467185,
+   "precision": "street",
+   "q": "[\"tafelbergstraat\",\"\",\"\",\"denhaag\"]"
+  },
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Tafelbergstraat",
    "area_m2": 204,
@@ -987,116 +760,28 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 645,
     "search": "2 people",
     "tier": "great"
-   },
-   {
-    "persons": 3,
-    "price_pp": 430,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "directwonen:524280": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-19T10:47:47Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "H. Zwaardecroonstraat",
-   "area_m2": 99,
-   "available_from": "2026-12-15",
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "age": null,
-    "details_unavailable": true,
-    "smart_only": true
-   },
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/b116f603-724e-4c0e-96df-2ddde3bec77c",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 2150,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "directwonen",
-   "source_id": "524280",
-   "title": "Appartement H. Zwaardecroonstraat, Den Haag",
-   "uid": "directwonen:524280",
-   "url": "https://directwonen.nl/huurwoningen-huren/den-haag/hendrik-zwaardecroonstraat/appartement-524280"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 717,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "directwonen:524312": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-19T18:21:01Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "J. Meewisstraat",
-   "area_m2": 91,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": null,
-   "extra": {
-    "age": null,
-    "details_unavailable": true,
-    "smart_only": true
-   },
-   "furnished": null,
-   "image_url": "https://resources.directwonen.nl/image/4198dc50-c152-44f2-afef-63782d4b544b",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 2335,
-   "property_type": "apartment",
-   "rooms": 7,
-   "source": "directwonen",
-   "source_id": "524312",
-   "title": "Appartement J. Meewisstraat, Amsterdam",
-   "uid": "directwonen:524312",
-   "url": "https://directwonen.nl/huurwoningen-huren/amsterdam/johannes-meewisstraat/appartement-524312"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 778,
-    "search": "3 people",
-    "tier": "ok"
    }
   ],
   "price_drop_from": null
  },
  "email_alerts:funda-44671905": {
-  "best_tier": "great",
+  "best_tier": "ok",
+  "evidence": {},
   "first_seen": "2026-11-12T04:19:30Z",
   "flags": [
    "bedrooms_unknown"
   ],
+  "geo": {
+   "lat": 52.34497119,
+   "lon": 4.90656504,
+   "precision": "address",
+   "q": "[\"lekstraat\",\"13f\",\"\",\"amsterdam\"]"
+  },
   "last_seen": "2026-11-16T23:48:45Z",
   "listing": {
    "address": "Lekstraat 13 F",
@@ -1128,161 +813,28 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 800,
     "search": "2 people",
     "tier": "ok"
-   },
-   {
-    "persons": 3,
-    "price_pp": 533,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:funda-44671917": {
-  "best_tier": "great",
-  "first_seen": "2026-11-13T04:19:45Z",
-  "flags": [
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-17T23:49:03Z",
-  "listing": {
-   "address": "Zuster Meijboomstraat 261",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "leiden",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "funda",
-    "site_prefiltered": true,
-    "via": "Funda"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-13T04:15:04Z",
-   "price_includes_utilities": null,
-   "price_total": 1835,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_id": "funda-44671917",
-   "title": "Funda: Zuster Meijboomstraat 261",
-   "uid": "email_alerts:funda-44671917",
-   "url": "https://www.funda.nl/detail/huur/leiden/appartement-zuster-meijboomstraat-261/44671917"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 612,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:funda-44673282": {
-  "best_tier": "great",
-  "first_seen": "2026-11-14T04:19:45Z",
-  "flags": [
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-18T23:42:34Z",
-  "listing": {
-   "address": "Zuster Meijboomstraat 175",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "leiden",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "funda",
-    "site_prefiltered": true,
-    "via": "Funda"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-14T04:17:06Z",
-   "price_includes_utilities": null,
-   "price_total": 1875,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_id": "funda-44673282",
-   "title": "Funda: Zuster Meijboomstraat 175",
-   "uid": "email_alerts:funda-44673282",
-   "url": "https://www.funda.nl/detail/huur/leiden/appartement-zuster-meijboomstraat-175/44673282"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 625,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:funda-44674853": {
-  "best_tier": "great",
-  "first_seen": "2026-11-14T04:19:45Z",
-  "flags": [
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-18T23:42:34Z",
-  "listing": {
-   "address": "Wijnand Nuijenstraat 8",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "funda",
-    "site_prefiltered": true,
-    "via": "Funda"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-14T04:17:06Z",
-   "price_includes_utilities": null,
-   "price_total": 2100,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_id": "funda-44674853",
-   "title": "Funda: Wijnand Nuijenstraat 8",
-   "uid": "email_alerts:funda-44674853",
-   "url": "https://www.funda.nl/detail/huur/amsterdam/appartement-wijnand-nuijenstraat-8/44674853"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 700,
-    "search": "3 people",
-    "tier": "great"
    }
   ],
   "price_drop_from": null
  },
  "email_alerts:funda-44674937": {
   "best_tier": "great",
+  "evidence": {},
   "first_seen": "2026-11-14T04:19:45Z",
   "flags": [
    "bedrooms_unconfirmed"
   ],
+  "geo": {
+   "lat": 52.3636551,
+   "lon": 4.84142331,
+   "precision": "address",
+   "q": "[\"postjesweg\",\"163t\",\"\",\"amsterdam\"]"
+  },
   "last_seen": "2026-11-18T23:42:34Z",
   "listing": {
    "address": "Postjesweg 163 T",
@@ -1314,6 +866,7 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 662,
     "search": "2 people",
@@ -1322,102 +875,19 @@
   ],
   "price_drop_from": null
  },
- "email_alerts:funda-44679954": {
-  "best_tier": "great",
-  "first_seen": "2026-11-11T18:39:18Z",
-  "flags": [
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-15T23:47:28Z",
-  "listing": {
-   "address": "Pippelingstraat 157",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "funda",
-    "site_prefiltered": true,
-    "via": "Funda"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-11T04:06:04Z",
-   "price_includes_utilities": null,
-   "price_total": 2100,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_id": "funda-44679954",
-   "title": "Funda: Pippelingstraat 157",
-   "uid": "email_alerts:funda-44679954",
-   "url": "https://www.funda.nl/detail/huur/den-haag/appartement-pippelingstraat-157/44679954"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 700,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": 2350
- },
- "email_alerts:funda-44685583": {
-  "best_tier": "ok",
-  "first_seen": "2026-11-14T04:19:45Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-18T23:42:34Z",
-  "listing": {
-   "address": "David Ricardostraat 318",
-   "area_m2": 120,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "funda",
-    "site_prefiltered": true,
-    "via": "Funda"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-14T04:17:06Z",
-   "price_includes_utilities": null,
-   "price_total": 2325,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_id": "funda-44685583",
-   "title": "Funda: David Ricardostraat 318",
-   "uid": "email_alerts:funda-44685583",
-   "url": "https://www.funda.nl/detail/huur/amsterdam/appartement-david-ricardostraat-318/44685583"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 775,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
  "email_alerts:funda-44685746": {
   "best_tier": "great",
+  "evidence": {},
   "first_seen": "2026-11-14T04:19:45Z",
   "flags": [
    "bedrooms_unknown"
   ],
+  "geo": {
+   "lat": 52.06190492,
+   "lon": 4.26699087,
+   "precision": "address",
+   "q": "[\"heiloostraat\",\"349\",\"\",\"denhaag\"]"
+  },
   "last_seen": "2026-11-18T23:42:34Z",
   "listing": {
    "address": "Heiloostraat 349",
@@ -1449,108 +919,11 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 545,
     "search": "2 people",
     "tier": "great"
-   },
-   {
-    "persons": 3,
-    "price_pp": 363,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:funda-44685913": {
-  "best_tier": "great",
-  "evidence": {},
-  "first_seen": "2026-11-16T03:47:25Z",
-  "flags": [
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Loevesteinlaan 387 A",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "funda",
-    "site_prefiltered": true,
-    "via": "Funda"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-16T03:43:56Z",
-   "price_includes_utilities": null,
-   "price_total": 1895,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_id": "funda-44685913",
-   "title": "Funda: Loevesteinlaan 387 A",
-   "uid": "email_alerts:funda-44685913",
-   "url": "https://www.funda.nl/detail/huur/den-haag/appartement-loevesteinlaan-387-a/44685913"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 632,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:funda-44686036": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-17T03:28:54Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Fritz Dietrich Kahlenbergstraat 46 D",
-   "area_m2": 128,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "funda",
-    "site_prefiltered": true,
-    "via": "Funda"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-17T03:24:14Z",
-   "price_includes_utilities": null,
-   "price_total": 2250,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_id": "funda-44686036",
-   "title": "Funda: Fritz Dietrich Kahlenbergstraat 46 D",
-   "uid": "email_alerts:funda-44686036",
-   "url": "https://www.funda.nl/detail/huur/amsterdam/appartement-fritz-dietrich-kahlenbergstraat-46-d/44686036"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 750,
-    "search": "3 people",
-    "tier": "ok"
    }
   ],
   "price_drop_from": null
@@ -1562,7 +935,13 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "geo": {
+   "lat": 52.15469411,
+   "lon": 4.4624334,
+   "precision": "address",
+   "q": "[\"robijnhof\",\"28\",\"\",\"leiden\"]"
+  },
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Robijnhof 28",
    "area_m2": 75,
@@ -1593,6 +972,7 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 747,
     "search": "2 people",
@@ -1608,7 +988,13 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "geo": {
+   "lat": 52.0490962,
+   "lon": 4.28267243,
+   "precision": "address",
+   "q": "[\"loevesteinlaan\",\"483b\",\"\",\"denhaag\"]"
+  },
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Loevesteinlaan 483 B",
    "area_m2": 110,
@@ -1639,147 +1025,10 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 746,
     "search": "2 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:funda-44687840": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-18T04:19:03Z",
-  "flags": [
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Knsm Laan 534",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "funda",
-    "site_prefiltered": true,
-    "via": "Funda"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-18T04:13:29Z",
-   "price_includes_utilities": null,
-   "price_total": 2200,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_id": "funda-44687840",
-   "title": "Funda: KNSM-laan 534",
-   "uid": "email_alerts:funda-44687840",
-   "url": "https://www.funda.nl/detail/huur/amsterdam/appartement-knsm-laan-534/44687840"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 733,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:funda-44688747": {
-  "best_tier": "great",
-  "evidence": {},
-  "first_seen": "2026-11-19T04:22:48Z",
-  "flags": [
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Van Alkemadelaan 470",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "funda",
-    "site_prefiltered": true,
-    "via": "Funda"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-19T04:15:16Z",
-   "price_includes_utilities": null,
-   "price_total": 1750,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_id": "funda-44688747",
-   "title": "Funda: Van Alkemadelaan 470",
-   "uid": "email_alerts:funda-44688747",
-   "url": "https://www.funda.nl/detail/huur/den-haag/appartement-van-alkemadelaan-470/44688747"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 583,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:funda-44688910": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-18T04:19:03Z",
-  "flags": [
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Osdorper Ban 21 F",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "funda",
-    "site_prefiltered": true,
-    "via": "Funda"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-18T04:13:29Z",
-   "price_includes_utilities": null,
-   "price_total": 2255,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_id": "funda-44688910",
-   "title": "Funda: Osdorper Ban 21 F",
-   "uid": "email_alerts:funda-44688910",
-   "url": "https://www.funda.nl/detail/huur/amsterdam/appartement-osdorper-ban-21-f/44688910"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 752,
-    "search": "3 people",
     "tier": "ok"
    }
   ],
@@ -1792,7 +1041,13 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "geo": {
+   "lat": 52.0312399,
+   "lon": 4.28735949,
+   "precision": "address",
+   "q": "[\"laanvanwateringseveld\",\"528\",\"\",\"denhaag\"]"
+  },
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Laan Van Wateringse Veld 528",
    "area_m2": 108,
@@ -1823,6 +1078,7 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 718,
     "search": "2 people",
@@ -1831,102 +1087,19 @@
   ],
   "price_drop_from": null
  },
- "email_alerts:funda-80030140": {
-  "best_tier": "ok",
-  "first_seen": "2026-11-13T04:19:45Z",
-  "flags": [
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-17T23:49:03Z",
-  "listing": {
-   "address": "Loenermark 509",
-   "area_m2": null,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "funda",
-    "site_prefiltered": true,
-    "via": "Funda"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-13T04:15:04Z",
-   "price_includes_utilities": null,
-   "price_total": 2400,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "email_alerts",
-   "source_id": "funda-80030140",
-   "title": "Funda: Loenermark 509",
-   "uid": "email_alerts:funda-80030140",
-   "url": "https://www.funda.nl/detail/huur/amsterdam/appartement-loenermark-509/80030140"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 800,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:funda-80033503": {
-  "best_tier": "ok",
-  "first_seen": "2026-11-11T18:09:15Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-15T23:47:28Z",
-  "listing": {
-   "address": "Volmolengracht 26",
-   "area_m2": 98,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "leiden",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "funda",
-    "site_prefiltered": true,
-    "via": "Funda"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-11T04:06:04Z",
-   "price_includes_utilities": null,
-   "price_total": 2350,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_id": "funda-80033503",
-   "title": "Funda: Volmolengracht 26",
-   "uid": "email_alerts:funda-80033503",
-   "url": "https://www.funda.nl/detail/huur/leiden/appartement-volmolengracht-26/80033503"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 783,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
  "email_alerts:funda-80035293": {
   "best_tier": "great",
+  "evidence": {},
   "first_seen": "2026-11-13T04:19:45Z",
   "flags": [
    "bedrooms_unconfirmed"
   ],
+  "geo": {
+   "lat": 52.04318169,
+   "lon": 4.28441982,
+   "precision": "address",
+   "q": "[\"leyweg\",\"1424b\",\"\",\"denhaag\"]"
+  },
   "last_seen": "2026-11-17T23:49:03Z",
   "listing": {
    "address": "Leyweg 1424 B",
@@ -1958,15 +1131,10 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 583,
     "search": "2 people",
-    "tier": "great"
-   },
-   {
-    "persons": 3,
-    "price_pp": 389,
-    "search": "3 people",
     "tier": "great"
    }
   ],
@@ -1974,10 +1142,17 @@
  },
  "email_alerts:funda-80035920": {
   "best_tier": "great",
+  "evidence": {},
   "first_seen": "2026-11-13T04:19:45Z",
   "flags": [
    "bedrooms_unconfirmed"
   ],
+  "geo": {
+   "lat": 52.07550862,
+   "lon": 4.30971196,
+   "precision": "address",
+   "q": "[\"grotemarktstraat\",\"1a\",\"\",\"denhaag\"]"
+  },
   "last_seen": "2026-11-17T23:49:03Z",
   "listing": {
    "address": "Grote Marktstraat 1 A",
@@ -2009,99 +1184,10 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 512,
     "search": "2 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:funda-80049123": {
-  "best_tier": "great",
-  "first_seen": "2026-11-14T04:19:45Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-18T23:42:34Z",
-  "listing": {
-   "address": "Veenendaalkade 56",
-   "area_m2": 110,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "funda",
-    "site_prefiltered": true,
-    "via": "Funda"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-14T04:17:06Z",
-   "price_includes_utilities": null,
-   "price_total": 1940,
-   "property_type": "apartment",
-   "rooms": 5,
-   "source": "email_alerts",
-   "source_id": "funda-80049123",
-   "title": "Funda: Veenendaalkade 56",
-   "uid": "email_alerts:funda-80049123",
-   "url": "https://www.funda.nl/detail/huur/den-haag/appartement-veenendaalkade-56/80049123"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 647,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:funda-80049247": {
-  "best_tier": "great",
-  "first_seen": "2026-11-14T04:19:45Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-18T23:42:34Z",
-  "listing": {
-   "address": "Noord West Buitensingel 6",
-   "area_m2": 76,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "funda",
-    "site_prefiltered": true,
-    "via": "Funda"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-14T04:17:06Z",
-   "price_includes_utilities": null,
-   "price_total": 1780,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_id": "funda-80049247",
-   "title": "Funda: Noord West Buitensingel 6",
-   "uid": "email_alerts:funda-80049247",
-   "url": "https://www.funda.nl/detail/huur/den-haag/appartement-noord-west-buitensingel-6/80049247"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 593,
-    "search": "3 people",
     "tier": "great"
    }
   ],
@@ -2114,7 +1200,13 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "geo": {
+   "lat": 52.30686778,
+   "lon": 4.97965987,
+   "precision": "address",
+   "q": "[\"leusdenhof\",\"326\",\"\",\"amsterdam\"]"
+  },
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Leusdenhof 326",
    "area_m2": 88,
@@ -2145,72 +1237,28 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 548,
     "search": "2 people",
     "tier": "great"
-   },
-   {
-    "persons": 3,
-    "price_pp": 365,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:pararius-05987e91": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-18T09:09:10Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "De Sitterlaan",
-   "area_m2": 110,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "leiden",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "pararius",
-    "site_prefiltered": true,
-    "via": "Pararius"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-18T09:01:46Z",
-   "price_includes_utilities": null,
-   "price_total": 2345,
-   "property_type": null,
-   "rooms": 5,
-   "source": "email_alerts",
-   "source_id": "pararius-05987e91",
-   "title": "Pararius: De Sitterlaan",
-   "uid": "email_alerts:pararius-05987e91",
-   "url": "https://www.pararius.nl/appartement-te-huur/leiden/05987e91/de-sitterlaan"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 782,
-    "search": "3 people",
-    "tier": "ok"
    }
   ],
   "price_drop_from": null
  },
  "email_alerts:pararius-1c12c6a8": {
   "best_tier": "great",
+  "evidence": {},
   "first_seen": "2026-11-12T09:09:31Z",
   "flags": [
    "bedrooms_unconfirmed"
   ],
+  "geo": {
+   "lat": 52.10163184,
+   "lon": 4.3136757,
+   "precision": "street",
+   "q": "[\"waalsdorperweg\",\"\",\"\",\"denhaag\"]"
+  },
   "last_seen": "2026-11-16T23:48:45Z",
   "listing": {
    "address": "Waalsdorperweg",
@@ -2242,6 +1290,7 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 440,
     "search": "2 people",
@@ -2257,7 +1306,13 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "geo": {
+   "lat": 52.06062959,
+   "lon": 4.32784873,
+   "precision": "street",
+   "q": "[\"lorentzplein\",\"\",\"\",\"denhaag\"]"
+  },
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 78,
@@ -2288,163 +1343,28 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 680,
     "search": "2 people",
     "tier": "great"
-   },
-   {
-    "persons": 3,
-    "price_pp": 453,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:pararius-2b4b2e3f": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-19T09:03:04Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Obrechtstraat",
-   "area_m2": 81,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "pararius",
-    "site_prefiltered": true,
-    "via": "Pararius"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-19T09:05:29Z",
-   "price_includes_utilities": null,
-   "price_total": 2150,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_id": "pararius-2b4b2e3f",
-   "title": "Pararius: Obrechtstraat",
-   "uid": "email_alerts:pararius-2b4b2e3f",
-   "url": "https://www.pararius.nl/appartement-te-huur/den-haag/2b4b2e3f/obrechtstraat"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 717,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:pararius-2c56d703": {
-  "best_tier": "great",
-  "first_seen": "2026-11-14T09:09:47Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-18T23:42:34Z",
-  "listing": {
-   "address": "Veenendaalkade",
-   "area_m2": 110,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "pararius",
-    "site_prefiltered": true,
-    "via": "Pararius"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-14T09:05:30Z",
-   "price_includes_utilities": null,
-   "price_total": 1940,
-   "property_type": null,
-   "rooms": 5,
-   "source": "email_alerts",
-   "source_id": "pararius-2c56d703",
-   "title": "Pararius: Veenendaalkade",
-   "uid": "email_alerts:pararius-2c56d703",
-   "url": "https://www.pararius.nl/appartement-te-huur/den-haag/2c56d703/veenendaalkade"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 647,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:pararius-50d3770f": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-19T09:03:04Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Soembastraat",
-   "area_m2": 88,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "leiden",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "pararius",
-    "site_prefiltered": true,
-    "via": "Pararius"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-19T09:05:29Z",
-   "price_includes_utilities": null,
-   "price_total": 2250,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_id": "pararius-50d3770f",
-   "title": "Pararius: Soembastraat",
-   "uid": "email_alerts:pararius-50d3770f",
-   "url": "https://www.pararius.nl/appartement-te-huur/leiden/50d3770f/soembastraat"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 750,
-    "search": "3 people",
-    "tier": "ok"
    }
   ],
   "price_drop_from": null
  },
  "email_alerts:pararius-75771092": {
   "best_tier": "great",
+  "evidence": {},
   "first_seen": "2026-11-14T09:09:47Z",
   "flags": [
    "bedrooms_unconfirmed"
   ],
+  "geo": {
+   "lat": 52.06218356,
+   "lon": 4.26751469,
+   "precision": "street",
+   "q": "[\"heiloostraat\",\"\",\"\",\"denhaag\"]"
+  },
   "last_seen": "2026-11-18T23:42:34Z",
   "listing": {
    "address": "Heiloostraat",
@@ -2476,29 +1396,25 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 545,
     "search": "2 people",
-    "tier": "great"
-   },
-   {
-    "persons": 3,
-    "price_pp": 363,
-    "search": "3 people",
     "tier": "great"
    }
   ],
   "price_drop_from": null
  },
  "email_alerts:pararius-764de232": {
-  "best_tier": "great",
+  "best_tier": "ok",
   "evidence": {},
   "first_seen": "2026-11-19T16:49:29Z",
   "flags": [
    "suspicious_price",
+   "rent_unclear",
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Maria Snelplantsoen",
    "area_m2": 200,
@@ -2529,378 +1445,10 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
-    "price_pp": 375,
+    "price_pp": null,
     "search": "2 people",
-    "tier": "great"
-   },
-   {
-    "persons": 3,
-    "price_pp": 250,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:pararius-82f52e60": {
-  "best_tier": "ok",
-  "first_seen": "2026-11-11T18:09:15Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-16T23:48:45Z",
-  "listing": {
-   "address": "Oostzaanstraat",
-   "area_m2": 93,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "pararius",
-    "site_prefiltered": true,
-    "via": "Pararius"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-12T09:02:08Z",
-   "price_includes_utilities": null,
-   "price_total": 2195,
-   "property_type": null,
-   "rooms": 5,
-   "source": "email_alerts",
-   "source_id": "pararius-82f52e60",
-   "title": "Pararius: Oostzaanstraat",
-   "uid": "email_alerts:pararius-82f52e60",
-   "url": "https://www.pararius.nl/appartement-te-huur/amsterdam/82f52e60/oostzaanstraat"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 732,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:pararius-83c63eae": {
-  "best_tier": "great",
-  "first_seen": "2026-11-14T09:09:47Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-18T23:42:34Z",
-  "listing": {
-   "address": "Noord West Buitensingel",
-   "area_m2": 76,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "pararius",
-    "site_prefiltered": true,
-    "via": "Pararius"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-14T09:05:30Z",
-   "price_includes_utilities": null,
-   "price_total": 1780,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_id": "pararius-83c63eae",
-   "title": "Pararius: Noord West Buitensingel",
-   "uid": "email_alerts:pararius-83c63eae",
-   "url": "https://www.pararius.nl/appartement-te-huur/den-haag/83c63eae/noord-west-buitensingel"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 593,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:pararius-867e6188": {
-  "best_tier": "great",
-  "evidence": {},
-  "first_seen": "2026-11-15T09:06:16Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Kijkduinsestraat",
-   "area_m2": 110,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "pararius",
-    "site_prefiltered": true,
-    "via": "Pararius"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-15T09:02:20Z",
-   "price_includes_utilities": null,
-   "price_total": 1749,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_id": "pararius-867e6188",
-   "title": "Pararius: Kijkduinsestraat",
-   "uid": "email_alerts:pararius-867e6188",
-   "url": "https://www.pararius.nl/appartement-te-huur/den-haag/867e6188/kijkduinsestraat"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 583,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:pararius-8ad3f8a4": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-17T09:08:54Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Dijkstraat",
-   "area_m2": 107,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "pararius",
-    "site_prefiltered": true,
-    "via": "Pararius"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-17T09:01:49Z",
-   "price_includes_utilities": null,
-   "price_total": 2285,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_id": "pararius-8ad3f8a4",
-   "title": "Pararius: Dijkstraat",
-   "uid": "email_alerts:pararius-8ad3f8a4",
-   "url": "https://www.pararius.nl/appartement-te-huur/amsterdam/8ad3f8a4/dijkstraat"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 762,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:pararius-9c6e02d3": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-19T09:03:04Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Hendrik Zwaardecroonstraat",
-   "area_m2": 99,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "pararius",
-    "site_prefiltered": true,
-    "via": "Pararius"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-19T09:05:29Z",
-   "price_includes_utilities": null,
-   "price_total": 2150,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_id": "pararius-9c6e02d3",
-   "title": "Pararius: Hendrik Zwaardecroonstraat",
-   "uid": "email_alerts:pararius-9c6e02d3",
-   "url": "https://www.pararius.nl/appartement-te-huur/den-haag/9c6e02d3/hendrik-zwaardecroonstraat"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 717,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:pararius-b1668baa": {
-  "best_tier": "ok",
-  "first_seen": "2026-11-14T09:09:47Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-18T23:42:34Z",
-  "listing": {
-   "address": "Simon Carmiggelthof",
-   "area_m2": 115,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "pararius",
-    "site_prefiltered": true,
-    "via": "Pararius"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-14T09:05:30Z",
-   "price_includes_utilities": null,
-   "price_total": 2250,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_id": "pararius-b1668baa",
-   "title": "Pararius: Simon Carmiggelthof",
-   "uid": "email_alerts:pararius-b1668baa",
-   "url": "https://www.pararius.nl/appartement-te-huur/den-haag/b1668baa/simon-carmiggelthof"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 750,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:pararius-b87b75a5": {
-  "best_tier": "great",
-  "first_seen": "2026-11-13T09:19:46Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-17T23:49:03Z",
-  "listing": {
-   "address": "Achillesstraat",
-   "area_m2": 65,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "pararius",
-    "site_prefiltered": true,
-    "via": "Pararius"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-13T09:06:17Z",
-   "price_includes_utilities": null,
-   "price_total": 1900,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_id": "pararius-b87b75a5",
-   "title": "Pararius: Achillesstraat",
-   "uid": "email_alerts:pararius-b87b75a5",
-   "url": "https://www.pararius.nl/appartement-te-huur/amsterdam/b87b75a5/achillesstraat"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 633,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:pararius-bfd4bf76": {
-  "best_tier": "ok",
-  "first_seen": "2026-11-12T09:09:31Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-16T23:48:45Z",
-  "listing": {
-   "address": "Watervlierstraat",
-   "area_m2": 78,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "pararius",
-    "site_prefiltered": true,
-    "via": "Pararius"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-12T09:02:11Z",
-   "price_includes_utilities": null,
-   "price_total": 2200,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_id": "pararius-bfd4bf76",
-   "title": "Pararius: Watervlierstraat",
-   "uid": "email_alerts:pararius-bfd4bf76",
-   "url": "https://www.pararius.nl/appartement-te-huur/den-haag/bfd4bf76/watervlierstraat"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 733,
-    "search": "3 people",
     "tier": "ok"
    }
   ],
@@ -2913,7 +1461,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Dirk Buserf",
    "area_m2": 61,
@@ -2944,56 +1492,11 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 525,
     "search": "2 people",
     "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:pararius-dcef3ae2": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-17T09:08:54Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Geleenstraat",
-   "area_m2": 75,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "pararius",
-    "site_prefiltered": true,
-    "via": "Pararius"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-17T09:01:49Z",
-   "price_includes_utilities": null,
-   "price_total": 2200,
-   "property_type": null,
-   "rooms": 4,
-   "source": "email_alerts",
-   "source_id": "pararius-dcef3ae2",
-   "title": "Pararius: Geleenstraat",
-   "uid": "email_alerts:pararius-dcef3ae2",
-   "url": "https://www.pararius.nl/appartement-te-huur/amsterdam/dcef3ae2/geleenstraat"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 733,
-    "search": "3 people",
-    "tier": "ok"
    }
   ],
   "price_drop_from": null
@@ -3005,7 +1508,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Beemsterstraat",
    "area_m2": 85,
@@ -3036,55 +1539,11 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 700,
     "search": "2 people",
     "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "email_alerts:pararius-eda80a90": {
-  "best_tier": "ok",
-  "first_seen": "2026-11-11T18:09:15Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-15T23:47:28Z",
-  "listing": {
-   "address": "De La Reyweg",
-   "area_m2": 95,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": null,
-   "extra": {
-    "private_text": true,
-    "site": "pararius",
-    "site_prefiltered": true,
-    "via": "Pararius"
-   },
-   "furnished": null,
-   "image_url": null,
-   "postcode": null,
-   "posted_at": "2026-11-11T09:00:21Z",
-   "price_includes_utilities": null,
-   "price_total": 2295,
-   "property_type": null,
-   "rooms": 5,
-   "source": "email_alerts",
-   "source_id": "pararius-eda80a90",
-   "title": "Pararius: De la Reyweg",
-   "uid": "email_alerts:pararius-eda80a90",
-   "url": "https://www.pararius.nl/appartement-te-huur/den-haag/eda80a90/de-la-reyweg"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 765,
-    "search": "3 people",
-    "tier": "ok"
    }
   ],
   "price_drop_from": null
@@ -3102,7 +1561,7 @@
    "students_only",
    "service_costs:65"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Grote Beer 127",
    "area_m2": 81,
@@ -3134,8 +1593,9 @@
   },
   "matches": [
    {
+    "extra_pp": 33,
     "persons": 2,
-    "price_pp": 592,
+    "price_pp": 559,
     "search": "2 people",
     "tier": "great"
    }
@@ -3156,7 +1616,7 @@
    "service_costs:118",
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Beemsterstraat 542 E2",
    "area_m2": 85,
@@ -3188,62 +1648,11 @@
   },
   "matches": [
    {
+    "extra_pp": 59,
     "persons": 2,
-    "price_pp": 759,
+    "price_pp": 700,
     "search": "2 people",
     "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "ikwilhuren:2d29e89fbf8e2582e16d2c7beba0df15": {
-  "best_tier": "great",
-  "evidence": {
-   "income_requirement": "Inkomenseis",
-   "service_costs": "Servicekosten € € 63,- /mnd per maand (MVGM lists them next to the rent)"
-  },
-  "first_seen": "2026-11-19T16:49:29Z",
-  "flags": [
-   "income_requirement",
-   "service_costs:63",
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Sumatrakade 1213",
-   "area_m2": 66,
-   "available_from": "2027-01-01",
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": "Een appartement van 66 m². Wonen aan het water, vlakbij het centrum van Amsterdam. Dit appartement ligt op het Java-eiland, een unieke wijk met spraakmakende architectuur. Winkels, restaurants en musea liggen op fietsafstand. Via de Piet Heintunnel is de A10 snel bereikbaar.\nDe keuken is het type wit/betonblad, de mooie keuken is voorzien van gaspitten.\nDe keuken is voorzien van de volgende inbouwapparatuur van het Nederlandse merk Atag: vaatwasmachine, combinatie magnetron/hete lucht oven, koelkast, vrieskast met drie laden, afzuigkap (recirculatie). Kortom, een volledig uitgeruste keuken, voor heerlijke maaltijden.\nHet appartement beschikt over een badkamer met inloopdouche, toilet en een luxe wastafel. Ook is er een apart toilet, de badkamer en toilet zijn volledig betegeld en afgewerkt.\n- Financieel -\n• Huurprijs: €1.585,00 per maand.\n• servicekosten €63 per maand.\n- Huurperiode -\nEen huurovereenkomst wordt aangegaan voor ten minste één jaar en wordt vanaf dan verlengd met onbepaalde tijd. Na de minimale termijn van 12 kalendermaanden geldt er een opzegtermijn van 1 kalendermaand.\n- Inkomenseis -\nOm een woning te huren kun je de volgende inkomenseis als richtlijn aanhouden:\nHet bruto jaarinkomen (verminderd met eventuele betalingsverplichtingen, zoals alimentatie, hypotheken, persoonlijke leningen e.d.) moet zo hoog zijn als:\n* Bij 1 inkomen:\n• Het bruto-jaarinkomen moet 45x de kale maandhuur zijn, bij een huurprijs die hoger ligt dan € 1.600. Omgerekend is deze berekening van toepassing wanneer jouw bruto-jaarinkomen € 72.000 of hoger is.\n* Bij 2 inkomens\n• Bij 2 inkomens worden de bruto-jaarinkomens van beide partners bij elkaar opgeteld om het gezamenlijk rekeninkomen te bepalen. Vervolgens wordt er getoetst aan de hand van de onderlinge verhouding tussen de beide partnerinkomens binnen dit gezamenlijk rekeninkomen.\n• Jullie mogen beide inkomens voor 100% meetellen, mits één van jullie minimaal 70% van jullie totale gezamenlijk rekeninkomen verdient. De verhouding is dan 70/30 of hoger (bijvoorbeeld 80/20).\n- Interesse? -\nHeb je interesse in deze woning?\nReageer dan via de interesse button in deze advertentie en vraag voor deze woning een bezichtiging aan, wij werken door middel van een loting. Wij nemen contact op met de uitgeloten kandidaat.\nDe gepresenteerde foto's zijn van een ander appartement in dit project, maar de afwerking is vergelijkbaar. Aan deze foto's kunnen geen rechten worden ontleend.",
-   "extra": {
-    "availability": "Beschikbaar vanaf 01-01-2027",
-    "income_requirement": true,
-    "service_costs": 63,
-    "service_costs_note": "Servicekosten € € 63,- /mnd per maand (MVGM lists them next to the rent)",
-    "service_costs_on_top": true
-   },
-   "furnished": null,
-   "image_url": "https://a.static.nbo.nl/media/b9/b964ce954bc1f321dae814bf53dc41f6/768x510/thumb.jpg",
-   "postcode": "1019RJ",
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 1585,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "ikwilhuren",
-   "source_id": "2d29e89fbf8e2582e16d2c7beba0df15",
-   "title": "Appartement Sumatrakade 1213, Amsterdam",
-   "uid": "ikwilhuren:2d29e89fbf8e2582e16d2c7beba0df15",
-   "url": "https://ikwilhuren.nu/object/amsterdam-1019rj-1213-sumatrakade-2d29e89fbf8e2582e16d2c7beba0df15/"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 549,
-    "search": "3 people",
-    "tier": "great"
    }
   ],
   "price_drop_from": null
@@ -3258,7 +1667,7 @@
    "income_requirement",
    "service_costs:85"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Randveen 808",
    "area_m2": 70,
@@ -3268,7 +1677,7 @@
    "city": "den-haag",
    "description": "Ruim en modern appartement aan de Randveen 808 in Den Haag\nAan de Randveen 808 in Den Haag bieden wij dit moderne appartement aan. De woning heeft een woonoppervlakte van circa 70 m² en biedt een prettige woonomgeving met diverse voorzieningen in de nabije omgeving.\nHet appartement is gelegen in een woonomgeving waar verschillende voorzieningen, zoals winkels, openbaar vervoer en andere dagelijkse faciliteiten, goed bereikbaar zijn. Ook zijn er in de omgeving diverse mogelijkheden om te wandelen en te recreëren. Hierdoor is de woning geschikt voor wie comfortabel wil wonen met voorzieningen binnen handbereik.\nDe woning beschikt over een energielabel A++, wat bijdraagt aan energiezuinig wonen.\nDe maandelijkse huurprijs bedraagt € 1.333,55.\nDe woning is beschikbaar per 22 december 2026.\nBent u geïnteresseerd in deze woning? Dan kunt u eenvoudig via onze website een bezichtigingsaanvraag indienen.\nLet op: De informatie en afbeeldingen op onze website zijn uitsluitend bedoeld ter indicatie. Aan de verstrekte informatie en getoonde afbeeldingen kunnen geen rechten worden ontleend.",
    "extra": {
-    "availability": "Beschikbaar vanaf 22-12-2026",
+    "availability": "22 december 2026",
     "income_requirement": true,
     "service_costs": 85,
     "service_costs_note": "Servicekosten € € 85,- /mnd per maand (MVGM lists them next to the rent)",
@@ -3290,67 +1699,17 @@
   },
   "matches": [
    {
+    "extra_pp": 42,
     "persons": 2,
-    "price_pp": 667,
+    "price_pp": 625,
     "search": "2 people",
     "tier": "great"
    }
   ],
   "price_drop_from": null
  },
- "ikwilhuren:48ae5817e4656d5cdd8011cd9b443224": {
-  "best_tier": "ok",
-  "evidence": {
-   "service_costs": "Servicekosten € € 46,- /mnd per maand (MVGM lists them next to the rent)"
-  },
-  "first_seen": "2026-11-19T16:49:29Z",
-  "flags": [
-   "income_requirement",
-   "service_costs:46",
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Ceramiquelaan 61",
-   "area_m2": 82,
-   "available_from": "2026-12-01",
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": "Ceramiquelaan 61, Amsterdam\nBen je op zoek naar een moderne huurwoning op een aantrekkelijke locatie in Amsterdam? Dan is deze fraaie woning aan de Ceramiquelaan 61 wellicht precies wat je zoekt. De woning is gelegen in het populaire en eigentijdse stadsdeel Amsterdam-Noord, een gebied dat zich de afgelopen jaren heeft ontwikkeld tot één van de meest dynamische woonomgevingen van de stad.\nDeze comfortabele meergezinswoning beschikt over een woonoppervlakte van circa 67 m² en biedt een prettige combinatie van ruimte, licht en modern wooncomfort. De woning is gebouwd in 2016 en is voorzien van een complete keuken met onder andere een inductiekookplaat, koelkast, vriezer, oven, magnetron, vaatwasser en afzuigkap. Daarnaast beschikt de woning over een moderne badkamer met douche, handdoekradiator en thermostatische mengkraan.\nEen bijzonder pluspunt is de ruime privétuin van circa 34 m², waar je heerlijk kunt genieten van het buitenleven. Daarnaast behoort een parkeerplaats in een afgesloten parkeergarage tot het gehuurde, wat het wooncomfort verder vergroot.\nOmgeving\nDe woning ligt in het geliefde Amsterdam-Noord, een stadsdeel dat bekend staat om zijn moderne architectuur, creatieve hotspots en uitstekende voorzieningen. In de directe omgeving vind je diverse winkels, supermarkten, horecagelegenheden en recreatiemogelijkheden. Dankzij de goede verbindingen met het openbaar vervoer en de nabijheid van de Noord/Zuidlijn bereik je het centrum van Amsterdam in korte tijd.\nHuurgegevens\nKale huurprijs: € 2.100,00 per maand\nServicekosten: € 46,00 per maand\nBeschikbaar per: 1 december 2026\nKortom, een moderne en comfortabele woning met tuin en parkeerplaats op een aantrekkelijke locatie in Amsterdam-Noord. Een ideale plek voor wie rustig wil wonen met alle stedelijke voorzieningen binnen handbereik.",
-   "extra": {
-    "availability": "Beschikbaar vanaf 01-12-2026",
-    "income_requirement": true,
-    "service_costs": 46,
-    "service_costs_note": "Servicekosten € € 46,- /mnd per maand (MVGM lists them next to the rent)",
-    "service_costs_on_top": true
-   },
-   "furnished": null,
-   "image_url": "https://c.static.nbo.nl/media/a0/a0741157f5981386f14983089b9305f9/768x510/thumb.jpg",
-   "postcode": "1031KG",
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 2100,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "ikwilhuren",
-   "source_id": "48ae5817e4656d5cdd8011cd9b443224",
-   "title": "Appartement Ceramiquelaan 61, Amsterdam",
-   "uid": "ikwilhuren:48ae5817e4656d5cdd8011cd9b443224",
-   "url": "https://ikwilhuren.nu/object/amsterdam-1031kg-61-ceramiquelaan-48ae5817e4656d5cdd8011cd9b443224/"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 715,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
  "ikwilhuren:66862d7ded0d0f8071d37b88f88d9422": {
-  "best_tier": "great",
+  "best_tier": "ok",
   "evidence": {
    "service_costs": "Servicekosten € € 70,- /mnd per maand (MVGM lists them next to the rent)"
   },
@@ -3392,22 +1751,17 @@
   },
   "matches": [
    {
+    "extra_pp": 35,
     "persons": 2,
-    "price_pp": 748,
+    "price_pp": 713,
     "search": "2 people",
     "tier": "ok"
-   },
-   {
-    "persons": 3,
-    "price_pp": 499,
-    "search": "3 people",
-    "tier": "great"
    }
   ],
   "price_drop_from": null
  },
  "ikwilhuren:6e62a6244ff15a2d04611908d347e7f6": {
-  "best_tier": "great",
+  "best_tier": "ok",
   "evidence": {
    "service_costs": "Servicekosten € € 100,- /mnd per maand (MVGM lists them next to the rent)"
   },
@@ -3416,7 +1770,7 @@
    "income_requirement",
    "service_costs:100"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Baanweg 13 E",
    "area_m2": 111,
@@ -3426,7 +1780,7 @@
    "city": "rotterdam",
    "description": "Op zoek naar een ruim en comfortabel appartement in Rotterdam? Dan is dit appartement aan de Baanweg 13-E wellicht precies wat u zoekt!\nDit ruime appartement beschikt over een woonoppervlakte van circa 111 m² en biedt dankzij de praktische indeling volop leefruimte. De woning beschikt over 3 slaapkamers, waardoor het appartement ideaal is voor wie behoefte heeft aan extra ruimte voor bijvoorbeeld een thuiswerkplek, logeerkamer of gezin.\nDe ruime woonkamer biedt voldoende mogelijkheden om een gezellige zit- en eethoek te creëren. De woning combineert comfortabel wonen met een praktische indeling en een prettige woonomgeving.\nDe omgeving\nHet appartement is gelegen in de wijk Overschie, in de buurt Kleinpolder. Deze omgeving kenmerkt zich door een combinatie van rustig wonen en goede bereikbaarheid.\nIn de directe omgeving vindt u diverse voorzieningen, waaronder supermarkten, winkels, scholen en horecagelegenheden. Ook zijn er verschillende mogelijkheden voor openbaar vervoer. Via de nabijgelegen uitvalswegen zijn andere delen van Rotterdam en omliggende steden goed bereikbaar.\nDankzij de gunstige ligging woont u hier op een praktische locatie, met dagelijkse voorzieningen binnen handbereik en het centrum van Rotterdam op relatief korte afstand.\nBent u enthousiast geworden over deze woning en wilt u graag een kijkje nemen?\nDan kunt u via onze website eenvoudig een bezichtigingsaanvraag indienen.\nGraag wijzen wij u erop dat de informatie en afbeeldingen op de website ter indicatie zijn en dat hieraan geen rechten kunnen worden ontleend.",
    "extra": {
-    "availability": "Direct beschikbaar",
+    "availability": "Per direct",
     "income_requirement": true,
     "service_costs": 100,
     "service_costs_note": "Servicekosten € € 100,- /mnd per maand (MVGM lists them next to the rent)",
@@ -3448,165 +1802,10 @@
   },
   "matches": [
    {
+    "extra_pp": 50,
     "persons": 2,
-    "price_pp": 775,
+    "price_pp": 725,
     "search": "2 people",
-    "tier": "ok"
-   },
-   {
-    "persons": 3,
-    "price_pp": 517,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "ikwilhuren:6f7cf9a2745d91da5cb4d3315d95e7c8": {
-  "best_tier": "great",
-  "evidence": {
-   "income_requirement": "Inkomenseis"
-  },
-  "first_seen": "2026-11-18T12:39:04Z",
-  "flags": [
-   "income_requirement"
-  ],
-  "last_seen": "2026-11-19T16:09:31Z",
-  "listing": {
-   "address": "Paul Desmondsingel 66",
-   "area_m2": 128,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": 3,
-   "city": "rotterdam",
-   "description": "- Financieel -\n• Huurprijs: €1.605,00 per maand.\nMVGM Vastgoedmanagement biedt een zeer ruime eengezinswoning gelegen aan een rustige straat in een groene omgeving. De woning heeft 4 kamers waaronder drie riante slaapkamers en een riante tuin.\nVoor en nabij de woningen is voldoende gratis parkeergelegenheid. Uw auto kunt u gemakkelijk in de straat kwijt!\nDe woning is gunstig gelegen ten opzichte van openbaar vervoer en uitvalswegen, met recreatieplas de Zevenhuizen plassen naast de deur.\n- Huurperiode -\nEen huurovereenkomst wordt aangegaan voor ten minste één jaar en wordt vanaf dan verlengd met onbepaalde tijd. Na de minimale termijn van 12 kalendermaanden geldt er een opzegtermijn van 1 kalendermaand.\n- Inkomenseis -\nOm een woning te huren kun je de volgende inkomenseis als richtlijn aanhouden:\nHet bruto jaarinkomen (verminderd met eventuele betalingsverplichtingen, zoals alimentatie, hypotheken, persoonlijke leningen e.d.) moet zo hoog zijn als:\n* Bij 1 inkomen:\n• Het bruto-jaarinkomen moet 42x de kale maandhuur zijn, bij een huurprijs die hoger ligt dan € 1.600. Omgerekend is deze berekening van toepassing wanneer jouw bruto-jaarinkomen € 72.000 of hoger is.\n* Bij 2 inkomens\n• Bij 2 inkomens worden de bruto-jaarinkomens van beide partners bij elkaar opgeteld om het gezamenlijk rekeninkomen te bepalen. Vervolgens wordt er getoetst aan de hand van de onderlinge verhouding tussen de beide partnerinkomens binnen dit gezamenlijk rekeninkomen.\n• Jullie mogen beide inkomens voor 100% meetellen, mits één van jullie minimaal 70% van jullie totale gezamenlijk rekeninkomen verdient. De verhouding is dan 70/30 of hoger (bijvoorbeeld 80/20).\nInteresse? -\nHeb je interesse in deze woning?\nReageer dan via de interesse button in deze advertentie en vraag voor deze woning een bezichtiging aan, wij werken door middel van een loting. Wij nemen contact op met de uitgeloten kandidaat.\nDe gepresenteerde foto's zijn van een ander appartement in dit project, maar de afwerking is vergelijkbaar. Aan deze foto's kunnen geen rechten worden ontleend.",
-   "extra": {
-    "availability": "Per direct",
-    "income_requirement": true,
-    "service_costs": 0,
-    "service_costs_note": "Servicekosten € € 0,- /mnd per maand (MVGM lists them next to the rent)",
-    "service_costs_on_top": true
-   },
-   "furnished": null,
-   "image_url": "https://c.static.nbo.nl/media/97/97a0298ca3cb9cd328c8f5e771019e2b/768x510/thumb.jpg",
-   "postcode": "3069XT",
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 1605,
-   "property_type": "house",
-   "rooms": 4,
-   "source": "ikwilhuren",
-   "source_id": "6f7cf9a2745d91da5cb4d3315d95e7c8",
-   "title": "Eengezinswoning Paul Desmondsingel 66, Rotterdam",
-   "uid": "ikwilhuren:6f7cf9a2745d91da5cb4d3315d95e7c8",
-   "url": "https://ikwilhuren.nu/object/rotterdam-3069xt-66-paul-desmondsingel-6f7cf9a2745d91da5cb4d3315d95e7c8/"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 535,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "ikwilhuren:70aa51a4d6bc837f556425813c248358": {
-  "best_tier": "ok",
-  "evidence": {
-   "service_costs": "Servicekosten € € 90,- /mnd per maand (MVGM lists them next to the rent)"
-  },
-  "first_seen": "2026-11-18T12:39:04Z",
-  "flags": [
-   "income_requirement",
-   "service_costs:90"
-  ],
-  "last_seen": "2026-11-19T16:09:31Z",
-  "listing": {
-   "address": "Van Oldenbarneveltplaats 14 C",
-   "area_m2": 120,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": 3,
-   "city": "rotterdam",
-   "description": "Ruim wonen in het hart van Rotterdam\nAan de Van Oldenbarneveltplaats 14C, in het markante complex Het Forum, bevindt zich dit royale 4-kamer apartement van ca. 120 m². De woning beschikt over maar liefst drie slaapkamers, een ruime woonkamer en een moderne keuken, en wordt aangeboden voor een kale huur van € 2.190 per maand. Het appartement is beschikbaar vanaf 1 juni.\nHet appartement\nDeze ruime woning is ideaal voor een gezin of voor wie graag extra kamers wil gebruiken als werk- of hobbyruimte. De woonkamer biedt veel lichtinval dankzij de grote raampartijen en voelt zeer ruimtelijk aan. De keuken is praktisch ingericht en voorzien van moderne inbouwapparatuur. Daarnaast beschikt het appartement over een nette badkamer en meerdere bergruimtes. Met zijn 120 m² woonoppervlak biedt dit appartement volop mogelijkheden voor comfortabel wonen in de binnenstad.\nDe omgeving\nHet Forum is gelegen midden in het bruisende centrum van Rotterdam. Direct buiten de deur vind je een groot aanbod aan winkels, supermarkten, cafés en restaurants. Iconische plekken zoals de Koopgoot, de Lijnbaan en de Markthal liggen allemaal op loopafstand. Ook culturele voorzieningen zoals theaters en musea zijn eenvoudig bereikbaar. Voor dagelijkse ontspanning kun je terecht in de nabijgelegen Witte de Withstraat of de groene wandelroutes langs de Maas.\nQua bereikbaarheid is de ligging uitstekend: Rotterdam Centraal ligt op korte afstand en is zowel lopend, met de fiets als met het OV snel te bereiken. Ook de uitvalswegen richting Den Haag en Utrecht zijn goed toegankelijk.\nKortom: een zeer ruim appartement op een toplocatie in Rotterdam, waar stadse levendigheid en comfortabel wonen samenkomen.\nDisclaimer\nDeze foto’s en informatie zijn uitsluitend bedoeld ter indicatie. Er kunnen geen rechten aan worden ontleend.",
-   "extra": {
-    "availability": "Per direct",
-    "income_requirement": true,
-    "service_costs": 90,
-    "service_costs_note": "Servicekosten € € 90,- /mnd per maand (MVGM lists them next to the rent)",
-    "service_costs_on_top": true
-   },
-   "furnished": null,
-   "image_url": "https://c.static.nbo.nl/media/50/50f60004392eabfb65d61382db3fb6a2/768x510/thumb.jpg",
-   "postcode": "3012AH",
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 2150,
-   "property_type": "apartment",
-   "rooms": 4,
-   "source": "ikwilhuren",
-   "source_id": "70aa51a4d6bc837f556425813c248358",
-   "title": "Appartement Van Oldenbarneveltplaats 14 C, Rotterdam",
-   "uid": "ikwilhuren:70aa51a4d6bc837f556425813c248358",
-   "url": "https://ikwilhuren.nu/object/rotterdam-3012ah-14-c-van-oldenbarneveltplaats-70aa51a4d6bc837f556425813c248358/"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 747,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "ikwilhuren:9eaf8ef04579c79e5c37ef421633c9be": {
-  "best_tier": "ok",
-  "evidence": {
-   "service_costs": "Servicekosten € € 63,- /mnd per maand (MVGM lists them next to the rent)"
-  },
-  "first_seen": "2026-11-15T12:36:15Z",
-  "flags": [
-   "income_requirement",
-   "service_costs:63",
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-19T16:09:31Z",
-  "listing": {
-   "address": "Sumatrakade 1153",
-   "area_m2": 96,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": "Vrij leven, vlakbij het centrum van Amsterdam. Deze appartementen liggen op het Java-eiland, een unieke wijk met spraakmakende architectuur. Winkels, restaurants en musea liggen op fietsafstand. Via de Piet Heintunnel is de A10 snel bereikbaar.\nVrij uitzicht en zonnig balkon\nAan de Sumatrakade zijn studio’s, twee-, drie- of vierkamerappartementen en seniorenwoningen te huur. Lichte woningen met een vrij uitzicht over het IJ of de groene binnentuinen. Qua grootte en indeling variëren de woningen sterk. Wel zijn alle woningen standaard voorzien van een ruime woonkamer en een open keuken. De badkamer bestaat uit een douche en wastafel. Sommige appartementen hebben een uitgebreidere badkamer met ligbad en tweede toilet.\nStoere gebouwen aan de kade\nDeze 118 appartementen, ontworpen door de architecten Sjoerd Soeters, Rudy Uytenhaak, Cruz/Ortiz en Kees Christiaanse, liggen verspreid over vijf kadegebouwen. Markante woonblokken met een eigen centrale entree, lift en trappenhuis. Een van de gebouwen bestaat uit seniorenwoningen en bevat een gemeenschappelijke, multifunctionele ruimte en een logeerunit. Bij alle appartementen hoort een zonnig balkon op het zuiden. In een ondergrondse parkeergarage, te bereiken met de lift, kunnen bewoners een parkeerplek huren.\nAlles bij de hand\nHet Java-eiland is onderdeel van het Oostelijk Havengebied, dat verder bestaat uit Borneo, KNSM-eiland, Sporenburg en de Rietlanden. De bekende architect Sjoerd Soeters maakte het stedenbouwkundig ontwerp voor het Java-eiland. In zijn ambitie om een sfeer te creëren waar mensen zich prettig voelen is hij geslaagd. Java-eiland is uitgegroeid tot een zeer geliefde woonwijk, met een rijke mix aan bouwstijlen. De centrale ligging is ideaal. Aan de Oostelijke Handelskade, op zes minuten fietsafstand, ligt winkelcentrum Brazilië. Hier zijn supermarkten, banken, een stomerij, kapper, bakker, slager en allerlei andere winkels gevestigd. Het centrum van Amsterdam en het Centraal Station zijn met de fiets, met tram 10 of bus 48 binnen vijf minuten bereikbaar. De ringweg A10 is snel bereikbaar via de Piet Heintunnel.",
-   "extra": {
-    "availability": "Per direct",
-    "income_requirement": true,
-    "service_costs": 63,
-    "service_costs_note": "Servicekosten € € 63,- /mnd per maand (MVGM lists them next to the rent)",
-    "service_costs_on_top": true
-   },
-   "furnished": null,
-   "image_url": "https://d.static.nbo.nl/media/bf/bf42e59fbe7680f83ab178e5ce493717/768x510/thumb.jpg",
-   "postcode": "1019RG",
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 2055,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "ikwilhuren",
-   "source_id": "9eaf8ef04579c79e5c37ef421633c9be",
-   "title": "Appartement Sumatrakade 1153, Amsterdam",
-   "uid": "ikwilhuren:9eaf8ef04579c79e5c37ef421633c9be",
-   "url": "https://ikwilhuren.nu/object/amsterdam-1019rg-1153-sumatrakade-9eaf8ef04579c79e5c37ef421633c9be/"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 706,
-    "search": "3 people",
     "tier": "ok"
    }
   ],
@@ -3622,7 +1821,7 @@
    "income_requirement",
    "service_costs:52"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Hoge Filterweg 658",
    "area_m2": 84,
@@ -3632,7 +1831,7 @@
    "city": "rotterdam",
    "description": "Bent u op zoek naar een ruime woning op een prettige locatie? Dan is deze woning aan de Hoge Filterweg 658 wellicht iets voor u!\nDeze woning beschikt over een woonoppervlakte van 84 m² en biedt 2 slaapkamers. De praktische indeling zorgt voor voldoende leefruimte en maakt de woning geschikt voor zowel alleenstaanden, stellen als kleine gezinnen.\nDe huurprijs bedraagt € 1.250,- per maand, exclusief € 52,- servicekosten per maand.\nDe woning heeft een energielabel D.\nOmgeving\nDe woning is gelegen in een prettige woonomgeving met diverse voorzieningen in de nabije omgeving. Winkels, openbaar vervoer, scholen en uitvalswegen zijn goed bereikbaar, wat zorgt voor een comfortabele en praktische woonlocatie. Daarnaast zijn er verschillende recreatiemogelijkheden in de omgeving aanwezig.\nBeschikbaarheid\nDe woning is per direct beschikbaar.\nInteresse?\nBent u geïnteresseerd in deze woning? Dan kunt u eenvoudig een bezichtigingsaanvraag indienen via onze website. Wij nemen vervolgens zo spoedig mogelijk contact met u op over de verdere procedure.\nGraag wijzen wij u erop dat de informatie en afbeeldingen op de website ter indicatie zijn en dat hieraan geen rechten kunnen worden ontleend.",
    "extra": {
-    "availability": "Direct beschikbaar",
+    "availability": "Per direct",
     "income_requirement": true,
     "service_costs": 52,
     "service_costs_note": "Servicekosten € € 52,- /mnd per maand (MVGM lists them next to the rent)",
@@ -3654,61 +1853,11 @@
   },
   "matches": [
    {
+    "extra_pp": 26,
     "persons": 2,
-    "price_pp": 651,
+    "price_pp": 625,
     "search": "2 people",
     "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "ikwilhuren:dafce730e10cd59484b49103f93c84c4": {
-  "best_tier": "ok",
-  "evidence": {
-   "service_costs": "Servicekosten € € 100,- /mnd per maand (MVGM lists them next to the rent)"
-  },
-  "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [
-   "income_requirement",
-   "service_costs:100",
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-19T16:09:31Z",
-  "listing": {
-   "address": "Haringbuisdijk 909",
-   "area_m2": 89,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": "Wonen in het splinternieuwe Sluishuis betekent: wonen op een bijzondere plek. Je woont namelijk niet aan, maar in het IJ! Hier, aan de rand van de volwassen wijk IJburg, komen wonen, ontspannen en recreëren op een wel heel bijzondere manier samen. In totaal worden er 441 appartementen en studio's aangeboden in een mix van koopwoningen en huurappartementen. Natuurlijk heeft Amsterdam al veel plekken aan het water waar gewoond en ontspannen wordt, maar Sluishuis is daarin uniek.\n- Huurperiode -\nEen huurovereenkomst wordt aangegaan voor ten minste één jaar en wordt vanaf dan verlengd met onbepaalde tijd. Na de minimale termijn van 12 kalendermaanden geldt er een opzegtermijn van 1 kalendermaand.\nInteresse? -\nHeb je interesse in deze woning?\nReageer dan via de interesse button in deze advertentie en vraag voor deze woning een bezichtiging aan, wij werken door middel van een loting. Wij nemen contact op met de uitgeloten kandidaat.\nDe gepresenteerde foto's zijn van een ander appartement in dit project, maar de afwerking is vergelijkbaar. Aan deze foto's kunnen geen rechten worden ontleend.",
-   "extra": {
-    "availability": "Per direct",
-    "income_requirement": true,
-    "service_costs": 100,
-    "service_costs_note": "Servicekosten € € 100,- /mnd per maand (MVGM lists them next to the rent)",
-    "service_costs_on_top": true
-   },
-   "furnished": null,
-   "image_url": "https://c.static.nbo.nl/media/87/877112276f588a3a7f1d5972e08e0a61/768x510/thumb.jpg",
-   "postcode": "1086VA",
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 2200,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "ikwilhuren",
-   "source_id": "dafce730e10cd59484b49103f93c84c4",
-   "title": "Appartement Haringbuisdijk 909, Amsterdam",
-   "uid": "ikwilhuren:dafce730e10cd59484b49103f93c84c4",
-   "url": "https://ikwilhuren.nu/object/amsterdam-1086va-909-haringbuisdijk-dafce730e10cd59484b49103f93c84c4/"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 767,
-    "search": "3 people",
-    "tier": "ok"
    }
   ],
   "price_drop_from": null
@@ -3756,8 +1905,9 @@
   },
   "matches": [
    {
+    "extra_pp": 35,
     "persons": 2,
-    "price_pp": 758,
+    "price_pp": 724,
     "search": "2 people",
     "tier": "ok"
    }
@@ -3775,7 +1925,7 @@
    "students_only",
    "max_persons:2"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -3807,60 +1957,11 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 614,
     "search": "2 people",
     "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "kamernet:2414041": {
-  "best_tier": "ok",
-  "evidence": {
-   "max_persons": "Aantal huurders: 3 personen · Leeftijd: 16 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Iedereen welkom",
-   "no_registration": "Inschrijven bij de gemeente niet mogelijk omdat het een vakantiewoning is"
-  },
-  "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [
-   "no_registration",
-   "max_persons:3"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Vlietpark 42",
-   "area_m2": 60,
-   "available_from": "2026-12-01",
-   "available_until": "2027-11-30",
-   "bedrooms": 3,
-   "city": "leiden",
-   "description": "Moderne vrijstaande woning\nModerne vrijstaande vakantiewoning te huur in Leiden.\nInclusief internet\nVrij uitzicht\nWoonkamer\nBadkamer met douche, bad en dubbele wastafel\nApart toilet\nOpen keuken met combi oven, vaatwasser en koelvriescombinatie\n3 slaapkamers\nMet 3 personen te huren, huur en kosten samen delen\nLet op! Inschrijven bij de gemeente niet mogelijk omdat het een vakantiewoning is!\nModern holiday home\nModern detached holiday home for rent in Leiden.\nIncluding internet\nUnobstructed view\nLiving room\nBathroom with shower, bath and double sink\nSeparate toilet\nOpen kitchen with combi-oven, dishwasher and fridge-freezer\n3 bedrooms\nYou can rent it with 3 people, split rent and costs\nPlease note! Registration with the municipality is not possible because it is a holiday home!",
-   "extra": {
-    "deposit": 2200,
-    "max_persons": 3,
-    "site_facts": "Aantal huurders: 3 personen · Leeftijd: 16 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Iedereen welkom",
-    "student_house": false
-   },
-   "furnished": "upholstered",
-   "image_url": "https://resources.kamernet.nl/image/90e91c00-4c83-4053-9c71-723538f1ea20/resize/422-225",
-   "postcode": "2323LK",
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 2200,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "kamernet",
-   "source_id": "2414041",
-   "title": "Appartement te huur: Vlietpark",
-   "uid": "kamernet:2414041",
-   "url": "https://kamernet.nl/huren/appartement-leiden/vlietpark/appartement-2414041"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 733,
-    "search": "3 people",
-    "tier": "ok"
    }
   ],
   "price_drop_from": null
@@ -3878,7 +1979,7 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Wesselsstraat 482",
    "area_m2": 85,
@@ -3910,6 +2011,7 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 750,
     "search": "2 people",
@@ -3971,6 +2073,7 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 800,
     "search": "2 people",
@@ -4027,6 +2130,7 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 775,
     "search": "2 people",
@@ -4080,6 +2184,7 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 600,
     "search": "2 people",
@@ -4127,6 +2232,7 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 750,
     "search": "2 people",
@@ -4148,7 +2254,7 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Sneeuwbalstraat 48",
    "area_m2": 98,
@@ -4180,106 +2286,10 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 750,
     "search": "2 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "kamernet:2419515": {
-  "best_tier": "great",
-  "evidence": {
-   "max_persons": "Aantal huurders: 3 personen · Leeftijd: 16 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Student, Werkende student, Werkend",
-   "students_ok": "Geschikt voor studenten/werkende/expats"
-  },
-  "first_seen": "2026-11-18T15:12:27Z",
-  "flags": [
-   "students_ok",
-   "max_persons:3"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Sidelingeplein 124",
-   "area_m2": 78,
-   "available_from": "2026-12-01",
-   "available_until": null,
-   "bedrooms": 3,
-   "city": "rotterdam",
-   "description": "Mooi appartement in Rotterdam Overschie\nMooi appartement op een ideale plek met alle dagelijkse voorzieningen in de buurt. Appartement kan bewoond worden door 3 personen maar tegen meerprijs kan ook een 4e bewoner in. Geschikt voor studenten/werkende/expats.\nBeautiful apartment in Rotterdam Overschie\nLovely apartment in an ideal place with all amenities. Apartment can be occupied by 3 persons or 4 with additional cost. Suitable for students/working/expats.",
-   "extra": {
-    "deposit": 1950,
-    "max_persons": 3,
-    "site_facts": "Aantal huurders: 3 personen · Leeftijd: 16 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Student, Werkende student, Werkend",
-    "site_students_ok": true,
-    "student_house": false
-   },
-   "furnished": "furnished",
-   "image_url": "https://resources.kamernet.nl/image/ff58b658-8596-4393-8f8d-a0d6b4450a81/resize/422-225",
-   "postcode": "3043GT",
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 1950,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "kamernet",
-   "source_id": "2419515",
-   "title": "Appartement te huur: Sidelingeplein",
-   "uid": "kamernet:2419515",
-   "url": "https://kamernet.nl/huren/appartement-rotterdam/sidelingeplein/appartement-2419515"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 650,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "vanderlinden:2180": {
-  "best_tier": "ok",
-  "evidence": {
-   "income_requirement": "In dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen."
-  },
-  "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [
-   "income_requirement"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Lorriestraat 49",
-   "area_m2": 94,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": 3,
-   "city": "amsterdam",
-   "description": "*** English below ***\nPer direct beschikbaar!\n- Unieke plek -\nCruquius 2.3 Berkhout ligt aan het Amsterdam Rijnkanaal. Het is een unieke plek aan het water, met een geweldig uitzicht. Je geniet hier van het ontspannen leven op Cruquiuseiland, met alles in de buurt. Denk aan horeca, een supermarkt, medische zorg en een sportschool, waar je gemakkelijk naartoe loopt.\nCruquius ligt in het Oostelijk Havengebied: Binnen de ring van Amsterdam, aan de stadskant van het IJ. Het is uitstekend te bereiken. Openbaar vervoer vind je om de hoek en met de auto ben je zo op de snelweg. Bovendien woon je hier vlakbij de Indische buurt met de gezellige drukte van de Javastraat en de Dappermarkt. Maar ook het groen van het Flevopark is op jog-afstand. Met de fiets ben je zo in de natuur van Waterland of in het centrum van Amsterdam. Een ideale plek dus.\n- 5 gebouwen in waaiervorm -\nCruquius 2.3 bestaat uit vijf gebouwen en biedt een mix van koop- en huurappartementen en commerciële ruimten. De gebouwen zijn in waaiervorm ontworpen rond een autovrij binnengebied, waardoor optimaal zicht op het water is gecreëerd. Naast mooie bestrating en stijlvolle entrees wordt het een mooie groene woonplek met een fraai binnengebied. Er is dus alle ruimte om te ontspannen en te spelen.\nDe huurappartementen in Cruquius 2.3 zijn luxe afgewerkt, met een keuken van Bruynzeel, sanitair van Villeroy & Boch, vloerverwarming (en koeling), stompe binnendeuren en sausklare wanden. Bovendien hebben alle appartementen een uitkragend balkon. De appartementen op de begane grond in blok C hebben een privé-terras en/of balkon.\n- Bijzonderheden Lorriestraat 49 -\n• Woonoppervlakte ca. 94 m2\n• 4-kamerappartement\n• 3 slaapkamers\n• Balkon op het zuiden\n• € 80,- servicekosten p/m\n• Energielabel A++\n- Inkomensrichtlijnen -\n• Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3,5x keer de vermelde huurprijs van deze woning.\n• Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee. In dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen.\n• Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.000,- per maand kost is dus € 4.000 (1.000 x 3,5 of €1.000,- x 4 bij tweeverdieners)\n• In sommige gevallen is een waarborgsom verplicht.\n• Ben je een zelfstandig ondernemer of gepensioneerd? Ga dan voor meer informatie naar onze website: vanderlinden.nl/woning-huren/faq. Hier vind je ook meer informatie over de inkomensrichtlijnen.\n- Wil je in aanmerking komen voor deze woning? -\nBen je enthousiast geworden over deze woning en voldoe je aan de inkomensrichtlijnen? Schrijf je dan in via vanderlinden.nl/woning-huren als woningzoekende.\nBij het selecteren van de meest geschikte kandidaat maken wij enkel gebruik van objectieve selectiecriteria zoals leeftijd, de hoogte van het inkomen in relatie tot\nde hoogte van de huur, gezinsomvang en soortgelijke criteria.\nHierbij maken wij in geen enkele situatie positieve of negatieve uitzonderingen op basis van geslacht, huidskleur, achternaam, geaardheid, afkomst, geloof of etniciteit van de woningzoekende.\nAls er meerdere, vergelijkbare inschrijvingen op een woning zijn, dan zal er een willekeurig dossier gekozen worden door het systeem.\nJe ontvangt hier dan vanzelf bericht over. Mocht je niets hebben vernomen, dan ben je helaas niet geselecteerd. Je kunt uiteraard altijd contact met ons opnemen waarom er gekozen is voor een andere kandidaat.\nWanneer je zoveel mogelijk kans wilt maken op een woning, raden we je aan om meerdere voorkeuren door te geven indien je in meerdere woningen geïnteresseerd bent.\n- Goed om te weten -\n• Getoonde foto's zijn van een modelwoning en niet van de specifieke woning zelf.\n• De huurovereenkomst wordt aangegaan voor de duur van 12 maanden. Na deze periode is deze maandelijks opzegbaar, de opzegtermijn bedraagt één maand.\n",
-   "extra": {
-    "income_requirement": true,
-    "label": "direct beschikbaar"
-   },
-   "furnished": null,
-   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2206097.jpg",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 2172,
-   "property_type": null,
-   "rooms": 4,
-   "source": "vanderlinden",
-   "source_id": "2180",
-   "title": "Lorriestraat 49, Amsterdam",
-   "uid": "vanderlinden:2180",
-   "url": "https://www.vanderlinden.nl/huurwoning/Lorriestraat-49-Amsterdam/2180/"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 724,
-    "search": "3 people",
     "tier": "ok"
    }
   ],
@@ -4292,9 +2302,10 @@
   },
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [
-   "income_requirement"
+   "income_requirement",
+   "rent_unclear"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -4306,6 +2317,7 @@
    "extra": {
     "income_requirement": true,
     "label": "binnenkort beschikbaar",
+    "rent_basis_unread": true,
     "service_costs": 65,
     "site_facts": "Servicekosten €65,00 per maand"
    },
@@ -4325,8 +2337,9 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
-    "price_pp": 775,
+    "price_pp": null,
     "search": "2 people",
     "tier": "ok"
    }
@@ -4340,7 +2353,8 @@
   },
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [
-   "income_requirement"
+   "income_requirement",
+   "rent_unclear"
   ],
   "last_seen": "2026-11-13T11:09:47Z",
   "listing": {
@@ -4371,56 +2385,11 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
-    "price_pp": 790,
+    "price_pp": null,
     "search": "2 people",
     "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "vanderlinden:2625": {
-  "best_tier": "great",
-  "evidence": {
-   "income_requirement": "Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee, in dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen."
-  },
-  "first_seen": "2026-11-16T12:45:10Z",
-  "flags": [
-   "income_requirement"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Zeeburgerkade 1258",
-   "area_m2": 91,
-   "available_from": "2026-11-01",
-   "available_until": null,
-   "bedrooms": 3,
-   "city": "amsterdam",
-   "description": "*** English below ***\nPer 1 november 2026 beschikbaar!\n- Wonen aan de Zeeburgerkade in Amsterdam -\nWelkom aan de Zeeburgerkade in Amsterdam: een bijzondere woonlocatie waar comfortabel wonen, de dynamiek van de stad en de rust van het water samenkomen.\nHet complex biedt een aantrekkelijke variatie aan woningen, geschikt voor verschillende woonwensen. De woningen beschikken over een eigentijdse uitstraling en zijn ontworpen met aandacht voor comfort, functionaliteit en een prettige leefomgeving. Of je nu alleen woont, samenwoont of op zoek bent naar een fijne plek voor het hele gezin: aan de Zeeburgerkade is ruimte voor verschillende manieren van wonen. - Een aantrekkelijke woonomgeving -\nDe Zeeburgerkade ligt in een karakteristiek deel van Amsterdam, met het water en de stad binnen handbereik. De omgeving combineert stedelijke voorzieningen met ruimte om te ontspannen en te genieten van de buitenlucht. Cruquius in Amsterdam-Oost transformeert van een voormalige industriële zone naar een nieuw en levendig woon- een werkgebied. Gevarieerde architectuur wordt afgewisseld met gerestaureerde historische gebouwen. Er is veel aandacht voor groen, biodiversiteit en duurzaamheid. En het omringende water speelt een hoofdrol op Cruquius met zijn nieuwe boardwalk aan de Entrepothaven. Een geweldige nieuwe plek in Amsterdam.\nIn de nabijheid vind je diverse voorzieningen, zoals winkels, horeca, sportfaciliteiten en recreatiemogelijkheden. Ook het centrum van Amsterdam en andere delen van de stad zijn goed bereikbaar met het openbaar vervoer, de fiets en de auto.\n- Comfortabel wonen -\nDe woningen vormen samen met de gemeenschappelijke omgeving een eigentijds wooncomplex met een prettige uitstraling. Er is aandacht voor een goede balans tussen privacy en verbondenheid, waardoor bewoners hier op een comfortabele manier hun eigen plek kunnen creëren.\nDe combinatie van de ligging, de uitstraling van het complex en de diversiteit aan woningen maakt de Zeeburgerkade tot een aantrekkelijke plek om te wonen in Amsterdam. Ontdek de woningen aan de Zeeburgerkade en ervaar zelf het gemak en de kwaliteit van wonen op deze bijzondere Amsterdamse locatie.\n- Zeeburgerkade 1258 -\n• Gelegen op de 1e etage\n• Woonoppervlakte ca. 91 m2\n• 4-kamerappartement\n• 3 slaapkamers\n• Balkon op het oosten\n- Inkomensrichtlijnen -\n• Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3.5x keer de vermelde huurprijs van deze woning.\n• Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee, in dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen.\n• Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.500,- per maand kost is dus € 6.000 (€1.500,- x 3,5 of €1.500,- x 4 bij tweeverdieners)\n• In sommige gevallen is een waarborgsom verplicht.\n• Ben je een zelfstandig ondernemer, gepensioneerd of meer informatie over de inkomensrichtlijnen? Ga naar dan naar onze website: vanderlinden.nl/woning-huren/faq\n- Wil je in aanmerking komen voor deze woning? -\nBen je enthousiast geworden over deze woning en voldoe je aan de inkomensrichtlijnen? Schrijf je dan in via vanderlinden.nl/woning-huren als woningzoekende.\nAls er meerdere, vergelijkbare inschrijvingen op een woning zijn, dan zal er een willekeurig dossier gekozen worden op volgorde van binnenkomst.\nJe ontvangt hier dan vanzelf bericht over. Mocht je niets hebben vernomen, dan ben je helaas niet geselecteerd. Je kunt uiteraard altijd contact met ons opnemen waarom er gekozen is voor een andere kandidaat.\nWanneer je zoveel mogelijk kans wilt maken op een woning, raden we je aan om meerdere voorkeuren door te geven indien je in meerdere woningen geïnteresseerd bent.\n- Goed om te weten -\n• Getoonde foto's zijn van een modelwoning en niet van de specifieke woning zelf.\n• De huurovereenkomst wordt aangegaan voor de duur van 12 maand",
-   "extra": {
-    "income_requirement": true,
-    "label": "binnenkort beschikbaar"
-   },
-   "furnished": null,
-   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2208908.jpg",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 1735,
-   "property_type": null,
-   "rooms": 4,
-   "source": "vanderlinden",
-   "source_id": "2625",
-   "title": "Zeeburgerkade 1258, Amsterdam",
-   "uid": "vanderlinden:2625",
-   "url": "https://www.vanderlinden.nl/huurwoning/Zeeburgerkade-1258-Amsterdam/2625/"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 578,
-    "search": "3 people",
-    "tier": "great"
    }
   ],
   "price_drop_from": null
@@ -4435,7 +2404,7 @@
    "income_requirement",
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -4464,101 +2433,10 @@
   },
   "matches": [
    {
+    "extra_pp": 0,
     "persons": 2,
     "price_pp": 685,
     "search": "2 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "vanderlinden:2696": {
-  "best_tier": "great",
-  "evidence": {
-   "income_requirement": "Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee, in dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen."
-  },
-  "first_seen": "2026-11-10T16:49:14Z",
-  "flags": [
-   "income_requirement"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Borgloonstraat 101",
-   "area_m2": 141,
-   "available_from": "2026-11-15",
-   "available_until": null,
-   "bedrooms": 3,
-   "city": "amsterdam",
-   "description": "*** English below ***\nPer 15 november 2026 beschikbaar!\n- Jouw nieuwe thuis! -\nBen je op zoek naar een fijne woning in Amsterdam? Ontdek de woningen aan de Borgloonstraat! Een mooie kans voor wie comfortabel wil wonen op een prettige locatie, met voorzieningen en dagelijkse gemakken binnen handbereik.\nDe woningen bieden een fijne basis om helemaal je eigen plek te creëren. Of je nu alleen woont, samenwoont of met je gezin op zoek bent naar een nieuwe thuisbasis: aan de Bastenakenstraat kun je werken aan jouw woongeluk.\n- Locatie -\nSloten bevindt zich aan de rand van Amsterdam en is mede daardoor heel goed te bereiken via snelwegen de A10 en A4 en A9. Hier bevindt zich ook een metrostation (lijn 50) vlakbij het winkelcentrum die met 5 minuten te bereiken is. Lijn 50 biedt u ook de gelegenheid om makkelijk bij hetstation Amsterdam Sloterdijk te komen en met tram 2 bent u zo in hartje Amsterdam.\nWinkelcentrum Belgieplein is zeer divers met oa de Albert Heijn, Dirk van den Broek, Blokker, Kruidvat, bakker, slager, bloemist, restaurants, sportclub, etc. Nieuw-Sloten staat ook bekend als heel kindvriendelijk, met diverse scholen en kinderdagverblijven in de buurt.\n- Bijzonderheden Borgloonstraat -\nHet gebouw bestaat uit 8 woonlagen, op elke etage bevinden zich 2 tot 4 appartementen. Alle appartementen beschikken over een extra berging in de garage en is er de mogelijkheid om een parkeerplaats te huren in de ondergelegen parkeergarage. De appartementen zijn zowel per lift als per trap te bereiken.\n- Borgloonstraat 101 -\n• Woonoppervlakte ca. 140 m2\n• Gelegen op de 7e etage\n• 4-kamerappartement\n• 3 slaapkamers\n• Energielabel A\n- Inkomensrichtlijnen -\n• Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3.5x keer de vermelde huurprijs van deze woning.\n• Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee, in dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen.\n• Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.500,- per maand kost is dus € 6.000 (€1.500,- x 3,5 of €1.500,- x 4 bij tweeverdieners)\n• In sommige gevallen is een waarborgsom verplicht.\n• Ben je een zelfstandig ondernemer, gepensioneerd of meer informatie over de inkomensrichtlijnen? Ga naar dan naar onze website: vanderlinden.nl/woning-huren/faq\n- Wil je in aanmerking komen voor deze woning? -\nBen je enthousiast geworden over deze woning en voldoe je aan de inkomensrichtlijnen? Schrijf je dan in via vanderlinden.nl/woning-huren als woningzoekende.\nAls er meerdere, vergelijkbare inschrijvingen op een woning zijn, dan zal er een willekeurig dossier gekozen worden op volgorde van binnenkomst. Je ontvangt hier dan vanzelf bericht over. Mocht je niets hebben vernomen, dan ben je helaas niet geselecteerd. Je kunt uiteraard altijd contact met ons opnemen waarom er gekozen is voor een andere kandidaat.\nWanneer je zoveel mogelijk kans wilt maken op een woning, raden we je aan om meerdere voorkeuren door te geven indien je in meerdere woningen geïnteresseerd bent.\n- Goed om te weten -\n• Getoonde foto's zijn van een modelwoning en niet van de specifieke woning zelf.\n• De huurovereenkomst wordt aangegaan voor de duur van 12 maanden. Na deze periode is deze maandelijks opzegbaar, de opzegtermijn bedraagt één maand.\nAlle informatie met betrekking tot de woning is met zorg samengesteld. Deze is echter indicatief en er kunnen geen rechten aan ontleend worden.\n*** English ***\nAvailable per the 1st of November 2026!\n- Living on Borgloonstraat in Amsterdam– your new home! -\nAre you looking for a lovely home in Amsterdam? Discover the properties on Borgloonstraat! A great opportunity for anyone wanting comfortable living in a pleasant location, with amenities and daily conveniences right at your fingertips.\nThese homes offer a wonderful foundation for creating a space that is tr",
-   "extra": {
-    "income_requirement": true,
-    "label": "direct beschikbaar"
-   },
-   "furnished": null,
-   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2206055.jpg",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 1975,
-   "property_type": null,
-   "rooms": 4,
-   "source": "vanderlinden",
-   "source_id": "2696",
-   "title": "Borgloonstraat 101, Amsterdam",
-   "uid": "vanderlinden:2696",
-   "url": "https://www.vanderlinden.nl/huurwoning/Borgloonstraat-101-Amsterdam/2696/"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 658,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "vanderlinden:2721": {
-  "best_tier": "great",
-  "evidence": {
-   "income_requirement": "Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee, in dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen."
-  },
-  "first_seen": "2026-11-13T09:59:46Z",
-  "flags": [
-   "income_requirement"
-  ],
-  "last_seen": "2026-11-16T15:45:16Z",
-  "listing": {
-   "address": "Jan Tooropstraat 1-G",
-   "area_m2": 71,
-   "available_from": "2026-12-15",
-   "available_until": null,
-   "bedrooms": 3,
-   "city": "amsterdam",
-   "description": "*** See English version below ***\nPer 15 december 2026 beschikbaar!\n- De nieuwe Meester -\nIs een prachtige nieuwbouwcomplex bestaande uit 7 woonlagen met in totaal 66 appartementen variërend van 49m2 tot 82m2. Alle appartementen zijn voorzien van een luxe Bruynzeel keuken en een hoogwaardige badkamer en toilet. Daarnaast is er een externe berging van 5 m2 in de parkeergarage. Voor de bewoners zijn in er in totaal 40 parkeerplaatsen beschikbaar in de half verdiepte parkeergarage.\n- Locatie -\nIn de wijk Overtoomse Veld in het bruisende Amsterdam West waar de straten vernoemd zijn naar de kunstenaars van het verleden herrijst nu een Nieuwe Meester. Station Amsterdam Lelylaan is binnen 5 minuten te voet te bereiken. Met de auto rijd je binnen no-time de ring A10 op en het Vondelpark ligt op 10 fietsen van je woning.\n- Bijzonderheden Jan Tooropstraat 1G\n• Woonoppervlakte ca. 78 m2;\n• Ruim 4-kamer appartement;\n• 3 slaapkamers;\n• Balkon op het oosten\n• Woonkamer met open keuken en toegang tot het balkon;\n• Luxe witte keuken met spoeleiland incl. zwart composiet blad en inbouwapparatuur:\ninductiekookplaat, afzuigkap, vaatwasser, combi oven en koel/vriescombinatie;\n• Badkamer met douchehoek en wastafel;\n• Separate toilet;\n• 1 berging met aansluiting voor een wasmachine en droger;\n• Externe berging in de kelder;\n• Parkeermogelijkheid in de ondergrondse parkeergarage;\n• Bouwjaar: 2020;\n• Energielabel: A\n- Inkomensrichtlijnen -\n• Om in aanmerking te komen voor deze woning is het goed te weten dat we hiervoor inkomensrichtlijnen hanteren. Als alleenverdiener bedraagt je bruto maandsalaris (inclusief vakantiegeld en 13e maand) 3.5x keer de vermelde huurprijs van deze woning.\n• Voor tweeverdieners tellen wij het tweede inkomen voor 100% mee, in dit geval geldt een inkomenseis van 4x de huur als een bruto maandinkomen.\n• Rekenvoorbeeld: het bruto (gezamenlijke inkomen) maandinkomen voor een woning die € 1.500,- per maand kost is dus € 6.000 (€1.500,- x 3,5 of €1.500,- x 4 bij tweeverdieners)\n• In sommige gevallen is een waarborgsom verplicht.\n• Ben je een zelfstandig ondernemer, gepensioneerd of meer informatie over de inkomensrichtlijnen? Ga naar dan naar onze website: vanderlinden.nl/woning-huren/faq\n- Wil je in aanmerking komen voor deze woning? -\nBen je enthousiast geworden over deze woning en voldoe je aan de inkomensrichtlijnen? Kijk dan op vanderlinden.nl/woning-huren om je direct digitaal in te schrijven als woningzoekende.\n- Goed om te weten -\n• Getoonde foto's zijn van een modelwoning en niet van de specifieke woning zelf.\n• De huurovereenkomst wordt aangegaan voor de duur van 12 maanden. Na deze periode is deze maandelijks opzegbaar, de opzegtermijn bedraagt één maand.\nAlle informatie met betrekking tot de woning is met zorg samengesteld. Deze is echter indicatief en er kunnen geen rechten aan ontleend worden.\n*** English ***\nAvailable from the 15th of December 2026\n- De Nieuwe Meester -\nThis is a stunning new-build complex spanning 7 floors, comprising a total of 66 apartments that range in size from 49m² to 82m². Each apartment features a high-end Bruynzeel kitchen, as well as a premium-quality bathroom and toilet. Additionally, there is an external 5m² storage unit located in the parking garage. For residents, a total of 40 parking spaces are available within the semi-underground parking garage.\n- Location -\nIn the Overtoomse Veld neighborhood—part of the vibrant Amsterdam West district, where streets are named after historic artists—rises \"De Nieuwe Meester.\" Amsterdam Lelylaan station is just a 5-minute walk away. By car, you can reach the A10 ring road in no time, and the Vondelpark is a mere 10-minute bike ride from your home.\n- Facts and features Jan Tooropstraat 1G\n• Living space approx. 78 square meter;\n• Spacious 4 room apartment;\n• 3 bedrooms;\n• Balcony facing south;\n• Living room with open kitchen and access to the balcony;\n• Luxurious white kitchen including a black composite countertop and built-in appliances:\ninduct",
-   "extra": {
-    "income_requirement": true,
-    "label": "binnenkort beschikbaar"
-   },
-   "furnished": null,
-   "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2192758.jpg",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 1780,
-   "property_type": null,
-   "rooms": 4,
-   "source": "vanderlinden",
-   "source_id": "2721",
-   "title": "Jan Tooropstraat 1-G, Amsterdam",
-   "uid": "vanderlinden:2721",
-   "url": "https://www.vanderlinden.nl/huurwoning/Jan-Tooropstraat-1-Amsterdam/2721/"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 593,
-    "search": "3 people",
     "tier": "great"
    }
   ],
@@ -4607,113 +2485,11 @@
   },
   "matches": [
    {
+    "extra_pp": 27,
     "persons": 2,
-    "price_pp": 780,
+    "price_pp": 753,
     "search": "2 people",
     "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "vesteda:10538": {
-  "best_tier": "great",
-  "evidence": {
-   "service_costs": "Servicekosten p.m.: € 55,- (Vesteda lists them next to the rent)"
-  },
-  "first_seen": "2026-11-17T17:59:03Z",
-  "flags": [
-   "income_requirement",
-   "service_costs:55"
-  ],
-  "last_seen": "2026-11-19T09:29:30Z",
-  "listing": {
-   "address": "Betaplein 276",
-   "area_m2": 79,
-   "available_from": "2026-12-11",
-   "available_until": null,
-   "bedrooms": 3,
-   "city": "leiden",
-   "description": "Een fijne en ruime woning in complex Alpha in Leiden. De woning beschikt over drie comfortabele slaapkamers en biedt daarmee volop ruimte voor gezinnen, stellen of iedereen die extra kamers wil gebruiken als thuiskantoor, hobbyruimte of logeerkamer. De lichte woonkamer vormt een prettige leefruimte waar je heerlijk kunt ontspannen, mede dankzij de grote ramen die zorgen voor een aangename lichtinval en een open, rustige sfeer. De keuken is praktisch ingericht en voorzien van de benodigde apparatuur, waardoor dagelijks koken eenvoudig en comfortabel is.\nDe ligging van de woning is bijzonder prettig. Alpha bevindt zich in een rustige en groene woonwijk, terwijl alle dagelijkse voorzieningen binnen handbereik zijn. Supermarkten, winkels, scholen en sportfaciliteiten liggen op korte afstand. Ook het historische en levendige centrum van Leiden, met zijn grachten, winkels, cafés en restaurants, is eenvoudig bereikbaar per fiets of openbaar vervoer. Voor ontspanning kun je terecht in de nabijgelegen parken en wandelroutes, ideaal voor een moment in het groen.\nDe bereikbaarheid is uitstekend. Met de auto ben je binnen enkele minuten op de A4 en A44, waardoor steden als Den Haag, Amsterdam en Schiphol goed bereikbaar zijn. Ook het openbaar vervoer is goed geregeld: bushaltes bevinden zich op loopafstand en bieden directe verbindingen naar Leiden Centraal en omliggende plaatsen. Dit maakt de woning zeer geschikt voor forenzen en iedereen die flexibel wil reizen.\nKortom: een ruime en lichte woning met drie slaapkamers, gelegen op een rustige maar centrale locatie in Leiden, met alle voorzieningen dichtbij én uitstekende bereikbaarheid. Ideaal voor wie prettig en zorgeloos wil wonen!",
-   "extra": {
-    "complex": "Alpha",
-    "income_requirement": true,
-    "service_costs": 55,
-    "service_costs_note": "Servicekosten p.m.: € 55,- (Vesteda lists them next to the rent)",
-    "service_costs_on_top": true,
-    "status": 1
-   },
-   "furnished": null,
-   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/85/857db1864604eafae20cf70355c857f0/o/content.jpg?rmode=crop&width=570&height=276&hmac=e502691b6ae60fe3c366895720f10e0944cb6dbc54228e4d2f1acfd805f0e6ad",
-   "postcode": "2321KS",
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 1795,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "vesteda",
-   "source_id": "10538",
-   "title": "Appartement Betaplein 276, Leiden",
-   "uid": "vesteda:10538",
-   "url": "https://www.vesteda.com/nl/huurwoningen-leiden/alpha/betaplein-276-leiden-10538"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 617,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "vesteda:125914": {
-  "best_tier": "great",
-  "evidence": {
-   "service_costs": "Servicekosten p.m.: € 92,- (Vesteda lists them next to the rent)"
-  },
-  "first_seen": "2026-11-18T12:39:04Z",
-  "flags": [
-   "income_requirement",
-   "service_costs:92"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Albertina Sisulupad 248",
-   "area_m2": 105,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": 3,
-   "city": "rotterdam",
-   "description": "Bent u op zoek naar een prettige woning in het hart van Rotterdam? Lees dan snel verder!\nDeze nieuwbouw Maisonettewoning is gelegen in het complex de Kuil. Het beschikt onder andere over een lichte woonkamer met een open keuken, hierdoor blijft u tijdens het koken gezellig in contact met uw gasten. Er zijn maarliefst drie slaapkamers aanwezig waardoor dit geschikt is voor zowel een klein gezin als een stel. Heeft u extra opbergruimte nodig? De woning is voorzien van een binnenberging!\nDe Helen Suzmanhof ligt in een rustige buurt, maar wel op korte afstand van het bruisende stadsleven. Binnen enkele minuten bereikt u gezellige cafés, restaurants en winkels. Ook culturele hotspots zoals musea, theaters en de iconische skyline langs de Maas liggen dichtbij. Het openbaar vervoer is uitstekend geregeld, waardoor u eenvoudig de hele stad kunt verkennen.\nKortom: een fijne plek om thuis te komen in een stad die altijd in beweging is.\nHeeft u interesse? Reageer dan snel en wie weet wordt dit uw nieuwe thuis!\nComplex De Kuil",
-   "extra": {
-    "api_notes": "Complex De Kuil",
-    "complex": "De Kuil",
-    "income_requirement": true,
-    "service_costs": 92,
-    "service_costs_note": "Servicekosten p.m.: € 92,- (Vesteda lists them next to the rent)",
-    "service_costs_on_top": true,
-    "status": 1
-   },
-   "furnished": null,
-   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/4a/4a602119e658b5f291151ded1d64726a/o/blok-a-1-.jpg?rmode=crop&width=570&height=276&hmac=816ba6728a499eb0985c9bfca7b9cd3c42fe07a03758b20acc0935db57171f56",
-   "postcode": "3072DH",
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 1950,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "vesteda",
-   "source_id": "125914",
-   "title": "Maisonette Albertina Sisulupad 248, Rotterdam",
-   "uid": "vesteda:125914",
-   "url": "https://www.vesteda.com/nl/huurwoningen-rotterdam/de-kuil/albertina-sisulupad-248-rotterdam-125914"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 681,
-    "search": "3 people",
-    "tier": "great"
    }
   ],
   "price_drop_from": null
@@ -4761,8 +2537,9 @@
   },
   "matches": [
    {
+    "extra_pp": 26,
     "persons": 2,
-    "price_pp": 630,
+    "price_pp": 604,
     "search": "2 people",
     "tier": "great"
    }
@@ -4781,7 +2558,7 @@
    "income_requirement",
    "service_costs:41"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Buitenbassinweg 320",
    "area_m2": 81,
@@ -4815,8 +2592,9 @@
   },
   "matches": [
    {
+    "extra_pp": 21,
     "persons": 2,
-    "price_pp": 746,
+    "price_pp": 725,
     "search": "2 people",
     "tier": "ok"
    }
@@ -4833,7 +2611,7 @@
    "income_requirement",
    "service_costs:40"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Admiraal De Ruyterweg 135",
    "area_m2": 63,
@@ -4867,8 +2645,9 @@
   },
   "matches": [
    {
+    "extra_pp": 20,
     "persons": 2,
-    "price_pp": 596,
+    "price_pp": 577,
     "search": "2 people",
     "tier": "great"
    }
@@ -4918,8 +2697,9 @@
   },
   "matches": [
    {
+    "extra_pp": 54,
     "persons": 2,
-    "price_pp": 776,
+    "price_pp": 723,
     "search": "2 people",
     "tier": "ok"
    }
@@ -4936,7 +2716,7 @@
    "income_requirement",
    "service_costs:45"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Watertorenweg 411",
    "area_m2": 103,
@@ -4970,113 +2750,11 @@
   },
   "matches": [
    {
+    "extra_pp": 23,
     "persons": 2,
-    "price_pp": 782,
+    "price_pp": 760,
     "search": "2 people",
     "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "vesteda:4146": {
-  "best_tier": "great",
-  "evidence": {
-   "service_costs": "Servicekosten p.m.: € 89,- (Vesteda lists them next to the rent)"
-  },
-  "first_seen": "2026-11-18T12:39:04Z",
-  "flags": [
-   "income_requirement",
-   "service_costs:89"
-  ],
-  "last_seen": "2026-11-19T21:50:52Z",
-  "listing": {
-   "address": "Nieuwehaven 128",
-   "area_m2": 104,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": 3,
-   "city": "rotterdam",
-   "description": "Een zeer ruim appartement met loggia dichtbij het centrum met goede metro- en busverbindingen. Het appartement is voorzien van een woonkamer met afgesloten keuken, inpandige berging, badkamer met ligbad en toilet.\nComplex Oude Haven",
-   "extra": {
-    "api_notes": "Complex Oude Haven",
-    "complex": "Oude Haven",
-    "income_requirement": true,
-    "service_costs": 89,
-    "service_costs_note": "Servicekosten p.m.: € 89,- (Vesteda lists them next to the rent)",
-    "service_costs_on_top": true,
-    "status": 1
-   },
-   "furnished": null,
-   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/04/049dc90f858023a98bffeecfca209bc4/o/10817-oude-haven-rotterdam-vrije-sector-huurwoningen-ft2204.jpg?rmode=crop&width=570&height=276&hmac=814f4159f5cb4ef9e866200f3857b953ea5c2b61c53d93ac9bb87afc891fdb0b",
-   "postcode": "3011VT",
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 1850,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "vesteda",
-   "source_id": "4146",
-   "title": "Appartement Nieuwehaven 128, Rotterdam",
-   "uid": "vesteda:4146",
-   "url": "https://www.vesteda.com/nl/huurwoningen-rotterdam/oude-haven/nieuwehaven-128-rotterdam-4146"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 646,
-    "search": "3 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
- "vesteda:7562": {
-  "best_tier": "great",
-  "evidence": {
-   "service_costs": "Servicekosten p.m.: € 55,- (Vesteda lists them next to the rent)"
-  },
-  "first_seen": "2026-11-10T13:14:32Z",
-  "flags": [
-   "income_requirement",
-   "service_costs:55"
-  ],
-  "last_seen": "2026-11-13T18:39:47Z",
-  "listing": {
-   "address": "Betaplein 60",
-   "area_m2": 93,
-   "available_from": "2027-01-30",
-   "available_until": null,
-   "bedrooms": 3,
-   "city": "leiden",
-   "description": "Een fijne woning in complex Alpha in Leiden. Met drie comfortabele slaapkamers biedt deze woning volop mogelijkheden voor wie graag wat extra ruimte heeft. De slaapkamers kunnen uitstekend worden gebruikt als slaapvertrek, maar ook als thuiskantoor, hobbyruimte of logeerkamer. Zo is de woning flexibel in te richten en geschikt voor verschillende woonwensen. De lichte leefruimte vormt een prettige plek om samen te komen, te ontspannen en te genieten van het dagelijkse wooncomfort.\nHet Bètaplein ligt in de Lammenschansdriehoek, een gebied dat zich heeft ontwikkeld van voormalig bedrijfs- en winkelgebied tot een levendige, stedelijke woonomgeving. De moderne woontoren Alpha vormt een belangrijk onderdeel van deze gebiedsontwikkeling. In de directe omgeving zijn commerciële en maatschappelijke voorzieningen aanwezig, waardoor je profiteert van het gemak van wonen in een dynamische stadswijk.\nVoor de dagelijkse boodschappen hoef je niet ver van huis. In de omgeving bevinden zich supermarkten, winkels, scholen en sportvoorzieningen. Ook het historische centrum van Leiden ligt op fietsafstand. Hier vind je de bekende grachten, gezellige terrassen, restaurants, musea en een uitgebreid aanbod aan winkels. Voor wie graag de natuur opzoekt, liggen het Rijn-Schiekanaal en Polderpark Cronesteyn eveneens in de omgeving.\nEen belangrijk voordeel van deze locatie is de uitstekende bereikbaarheid. Het Bètaplein ligt direct naast station Leiden Lammenschans, waardoor je gemakkelijk met de trein reist richting onder andere Utrecht en Den Haag. Ook andere grote steden zijn vanuit Leiden goed bereikbaar. Daarnaast bevinden zich verschillende bushaltes in de omgeving.\nOok met de auto zit je hier goed. Vanaf het Bètaplein is er een goede aansluiting richting de A4, waardoor je gemakkelijk onderweg bent richting onder andere Den Haag, Schiphol en Amsterdam.\nKortom: een fijne woning met drie slaapkamers op een moderne en dynamische locatie in Leiden. Met dagelijkse voorzieningen dichtbij, het historische centrum op fietsafstand, groen in de omgeving en uitstekende verbindingen per auto en openbaar vervoer is dit een aantrekkelijke woning voor wie ruimte en stedelijk wooncomfort wil combineren.",
-   "extra": {
-    "complex": "Alpha",
-    "income_requirement": true,
-    "service_costs": 55,
-    "service_costs_note": "Servicekosten p.m.: € 55,- (Vesteda lists them next to the rent)",
-    "service_costs_on_top": true,
-    "status": 1
-   },
-   "furnished": null,
-   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/76/76697455c1f0637d718f5d073b6b94b5/o/content.jpg?rmode=crop&width=570&height=276&hmac=2d7135c26e41d0941bf1801f1a5ce5d11b24a3ac122d8a046767600067917c40",
-   "postcode": "2321KS",
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 1800,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "vesteda",
-   "source_id": "7562",
-   "title": "Appartement Betaplein 60, Leiden",
-   "uid": "vesteda:7562",
-   "url": "https://www.vesteda.com/nl/huurwoningen-leiden/alpha/betaplein-60-leiden-7562"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 618,
-    "search": "3 people",
-    "tier": "great"
    }
   ],
   "price_drop_from": null
@@ -5084,14 +2762,16 @@
  "vesteda:8702": {
   "best_tier": "ok",
   "evidence": {
-   "service_costs": "Servicekosten p.m.: € 55,- (Vesteda lists them next to the rent)"
+   "service_costs": "Servicekosten p.m.: € 55,- (Vesteda lists them next to the rent)",
+   "sharing_unclear": "Ideaal voor stellen, starters of iedereen die graag een extra kamer gebruikt als thuiskantoor, studeerkamer, hobbyruimte of logeerkamer"
   },
   "first_seen": "2026-11-17T17:29:02Z",
   "flags": [
    "income_requirement",
+   "sharing_unclear",
    "service_costs:55"
   ],
-  "last_seen": "2026-11-19T21:50:52Z",
+  "last_seen": "2026-11-19T22:30:49Z",
   "listing": {
    "address": "Betaplein 66",
    "area_m2": 84,
@@ -5125,8 +2805,9 @@
   },
   "matches": [
    {
+    "extra_pp": 28,
     "persons": 2,
-    "price_pp": 778,
+    "price_pp": 750,
     "search": "2 people",
     "tier": "ok"
    }
