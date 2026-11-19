@@ -20,6 +20,15 @@ from .base import Source, SourceError, summary_description
 
 URL = "https://heimstaden.com/nl/huurwoningen/"
 _TYPES = {"apartment": "apartment", "house": "house", "room": "room", "studio": "studio", "parking": "parking"}
+_BEDROOM_WORDS = {"twee": 2, "drie": 3, "vier": 4}
+_BEDROOM_NUMBER = r"\d+|" + "|".join(_BEDROOM_WORDS)
+# "twee slaapkamers", "1 slaapkamer"; "een slaapkamer" is left out, because "een" is also the article
+# ("een slaapkamer aan de voorzijde en een aan de achterzijde"). group(2) is set for a range.
+_BEDROOMS = re.compile(
+    rf"\b({_BEDROOM_NUMBER})(\s+(?:tot|t/m|tot\s+en\s+met|of|à)\s+(?:{_BEDROOM_NUMBER})|\s*[-–]\s*(?:{_BEDROOM_NUMBER}))?"
+    rf"\s+slaapkamers\b|\b(\d+)\s+slaapkamer\b",
+    re.I,
+)
 
 
 def _text(el: Optional[Tag]) -> str:
@@ -93,12 +102,12 @@ class Heimstaden(Source):
             th, td = tr.find("th"), tr.find("td")
             if th is not None and td is not None and "kamers" in _text(th).lower():
                 listing.rooms = parse_int(_text(td)) or listing.rooms
-        if listing.description:
-            bm = re.search(r"(\d+|twee|drie|vier)\s+slaapkamers", listing.description, re.I)
-            if bm:
-                words = {"twee": 2, "drie": 3, "vier": 4}
-                v = bm.group(1).lower()
-                listing.bedrooms = words.get(v) or int(v)
+        bm = _BEDROOMS.search(listing.description or "")
+        # A range ("1 tot 3 slaapkamers") is a page for several homes: no single count is right, so the
+        # count stays unknown and the filters fall back on the room count, marked as unconfirmed.
+        if bm and not bm.group(2):
+            count = (bm.group(1) or bm.group(3)).lower()
+            listing.bedrooms = int(count) if count.isdecimal() else _BEDROOM_WORDS[count]
         sm = re.search(r"Servicekosten\s+(\d+)\s+euro", soup.get_text(" ", strip=True))
         if sm:
             listing.extra["service_costs"] = int(sm.group(1))

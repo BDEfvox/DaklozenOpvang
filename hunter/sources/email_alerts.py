@@ -41,7 +41,7 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 from urllib.parse import parse_qsl, unquote, urlparse
 
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, CData, NavigableString, Tag
 
 from ..models import Listing
 from ..utils import city_slug, clean_text, parse_price
@@ -94,7 +94,7 @@ _GENERIC_ANCHOR = re.compile(
 _SKIP_ANCHOR = re.compile(r"afmelden|unsubscribe|uitschrijven|privacy|voorwaarden|terms|opzeggen|preferences|voorkeuren",
                           re.I)
 _URL_IN_TEXT = re.compile(r"https?://[^\s<>\"')\]]+")
-_PRICE = re.compile(r"(?:€|\bEUR\b)\s?(\d{1,3}(?:[.,]\d{3})+|\d{3,6})(?:[.,]\d{1,2}|,-)?")
+_PRICE = re.compile(r"(?:€|\bEUR\b)\s*(\d{1,3}(?:[.,]\d{3})+|\d+)(?:[.,]\d{1,2}|,-)?")
 _ROOMS = re.compile(r"(\d{1,2})\s*(?:kamers?|rooms?)\b", re.I)
 _BEDROOMS = re.compile(r"(\d{1,2})\s*(?:slaapkamers?|slaapk\.?|slk|bedrooms?|bed\b)", re.I)
 _AREA = re.compile(r"(\d{2,4})\s*(?:m²|m2|m\^2|vierkante meter)", re.I)
@@ -245,11 +245,11 @@ def _sender_site(msg: Message) -> Optional[str]:
 
 def _extract_facts(text: str) -> Dict[str, Optional[int]]:
     price = None
-    m = _PRICE.search(text)
-    if m:
+    for m in _PRICE.finditer(text):
         p = parse_price(m.group(1))
         if p is not None and 300 <= p <= 20000:
             price = p
+            break
     rooms = _ROOMS.search(text)
     beds = _BEDROOMS.search(text)
     area = _AREA.search(text)
@@ -336,6 +336,24 @@ def _slug(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", t).strip("-")
 
 
+def _pararius_card_text(anchor: Tag) -> str:
+    """Read from this title link to the next titled link in the email."""
+    parts: List[str] = []
+    remaining = CARD_TEXT_MAX
+    for node in anchor.next_elements:
+        if isinstance(node, Tag) and node.name == "a" and str(node.get("href", "")).startswith("http"):
+            if len(node.get_text(" ", strip=True)) >= 4:
+                break
+        if type(node) in (NavigableString, CData):
+            part = node.strip()
+            if part:
+                parts.append(part[:remaining])
+                remaining -= len(part) + 1
+                if remaining <= 0:
+                    break
+    return " ".join(parts).strip()
+
+
 def _pararius_cards(html: str) -> List[_Link]:
     """Listings of a Pararius mail, as links to the listings' own pages.
 
@@ -360,12 +378,15 @@ def _pararius_cards(html: str) -> List[_Link]:
         text = tag.get_text(" ", strip=True)
         if not _good_anchor(text) or "@" in text or _SKIP_ANCHOR.search(text):
             continue
-        listing_id, pending = pending, None
-        context = _anchor_context(tag)
+        context = _pararius_card_text(tag)
         where = _POSTCODE_CITY.search(context)
-        city = city_slug(where.group("city").strip()) if where else None
+        if where is None:
+            continue  # no postcode line after it: not the card's title, so the photo waits for that
+        # The photo belongs to this card and to no other, also when the card is then left out.
+        listing_id, pending = pending, None
+        city = city_slug(where.group("city").strip())
         if city is None:
-            continue  # no postcode line, or a town that is not searched
+            continue  # a town that is not searched
         kind = _KIND_PREFIX.match(text)
         kind_slug = _KIND_SLUG[kind.group(1).lower()] if kind else "appartement"
         street = _slug(text[kind.end():] if kind else text) or "woning"
@@ -538,7 +559,8 @@ class EmailAlerts(Source):
             direct = match_listing_url(link.href)
             if direct is not None:
                 has_direct = True
-                if direct["slug"]:
+                # Photo-based cards already carry their own facts and can share the same street.
+                if direct["slug"] and link not in cards:
                     by_street.setdefault(_slug(direct["slug"]), direct)
         found: Dict[Tuple[str, str], Listing] = {}
         anchors: Dict[Tuple[str, str], bool] = {}
@@ -554,7 +576,7 @@ class EmailAlerts(Source):
                 info = self._try_redirect(link.href, budget)
             if info is None:
                 continue
-            if link.from_html and _good_anchor(link.anchor_text):
+            if link.from_html and link not in cards and _good_anchor(link.anchor_text):
                 if full_texts is None:
                     full_texts = [_html_text(h) for h in htmls]
                     # where a card ends: the next home's title, or a button ("Bekijk het huis", "View all ...")

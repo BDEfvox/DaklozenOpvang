@@ -127,8 +127,8 @@ def parse_search(html: str, city: str) -> List[Listing]:
         lst = parse_listing(it, city)
         if lst is not None:
             out.append(lst)
-    if items and not any(isinstance(i, dict) and i.get("listingPath") for i in items):
-        raise SourceError("layout changed: housinganywhere listing items have no listingPath")
+    if items and not any(isinstance(i, dict) and (i.get("listingPath") or i.get("unitTypePath")) for i in items):
+        raise SourceError("layout changed: housinganywhere listing items have no listingPath or unitTypePath")
     return out
 
 

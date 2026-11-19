@@ -16,16 +16,18 @@ from bs4.element import Tag
 from ..http import Http
 from ..models import CITIES, Listing
 from ..utils import city_slug, clean_text, parse_int, parse_price
-from .base import Source, SourceError, summary_description
+from .base import Source, SourceBlocked, SourceError, SourcePartial, summary_description
 
 BASE = "https://ikwilhuren.nu"
 PAGES = 3
 _TYPES = (
     ("kamer", "room"), ("studio", "studio"), ("parkeer", "parking"), ("garage", "parking"),
     ("eengezins", "house"), ("woonhuis", "house"), ("tussenwoning", "house"), ("hoekwoning", "house"),
-    ("villa", "house"), ("herenhuis", "house"),
+    ("villa", "house"), ("herenhuis", "house"), ("kapwoning", "house"), ("bungalow", "house"),
+    ("vrijstaande woning", "house"), ("geschakelde woning", "house"),
     ("appartement", "apartment"), ("maisonnette", "apartment"), ("benedenwoning", "apartment"),
-    ("bovenwoning", "apartment"), ("penthouse", "apartment"), ("galerij", "apartment"), ("portiek", "apartment"),
+    ("bovenwoning", "apartment"), ("penthouse", "apartment"), ("galerij", "apartment"),
+    ("portiek", "apartment"), ("flat", "apartment"),
 )
 _NOT_AVAILABLE = ("verhuurd", "optie", "gereserveerd")
 
@@ -36,6 +38,8 @@ def _text(el: Optional[Tag]) -> str:
 
 def _ptype(label: str) -> Optional[str]:
     low = label.lower()
+    if low == "woning":
+        return "house"
     for key, val in _TYPES:
         if key in low:
             return val
@@ -87,8 +91,12 @@ def parse_page(html: str) -> List[Listing]:
                 bedrooms = parse_int(txt)
             elif "m" in txt and area is None and re.search(r"\d+\s*m", txt):
                 area = parse_int(txt)
-        ptype_label = title.split(" ")[0] if title else ""
-        address = title[len(ptype_label):].strip() or None
+        words = title.split(maxsplit=2)
+        label_end = 1
+        if len(words) >= 2 and words[0].lower() in ("vrijstaande", "geschakelde") and words[1].lower() == "woning":
+            label_end = 2
+        ptype_label = " ".join(words[:label_end])
+        address = " ".join(words[label_end:]) or None
         img = card.select_one("img")
         src = img.get("src") if img else None
         if src and src.startswith("//"):
@@ -128,12 +136,17 @@ class IkWilHuren(Source):
         seen = set()
         for page in range(1, PAGES + 1):
             url = BASE + "/aanbod/?sort=aanbodDESC" + ("&page=%d" % page if page > 1 else "")
-            for l in parse_page(http.get_text(url)):
+            try:
+                listings = parse_page(http.get_text(url))
+            except (SourceError, SourceBlocked) as exc:
+                if page == 1:
+                    raise
+                raise SourcePartial(out, exc, city) from exc
+            for l in listings:
                 if l.source_id not in seen:
                     seen.add(l.source_id)
-                    out.append(l)
-        if city in self.cities:
-            out = [l for l in out if l.city == city]
+                    if city not in self.cities or l.city == city:
+                        out.append(l)
         return out
 
     def fetch_details(self, listing: Listing, http: Http) -> Listing:

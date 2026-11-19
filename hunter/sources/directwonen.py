@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import re
 from typing import List, Optional
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, urljoin, urlparse
 
 from bs4 import BeautifulSoup
 from bs4.element import Tag
@@ -40,7 +40,8 @@ def _listing_url(href: str) -> str:
     if "premiumaccountpayment" in href:
         q = parse_qs(urlparse(href).query)
         if q.get("returnUrl"):
-            return q["returnUrl"][0]
+            target = q["returnUrl"][0]
+            return target if urlparse(target).scheme else urljoin(BASE, target)
     return href if href.startswith("http") else BASE + href
 
 
