@@ -478,7 +478,7 @@
       animate(box, [{ height: before.height + "px" }, { height: after.height + "px" }], move);
   }
 
-  // `quiet` is for changes that follow the finger or the keyboard (the budget slider, typing a search): no animation.
+  // `quiet` is for changes that follow the keyboard (typing a search): no animation.
   function update(quiet) {
     saveF();
     $("maxpp-out").textContent = euro(f.maxpp);
@@ -767,7 +767,7 @@
       var r = $("group-" + g);
       r.addEventListener("change", function () { if (r.checked) { f.group = g; tick(); update(); } });
     });
-    m.addEventListener("input", function () { f.maxpp = Number(m.value); update(true); });
+    m.addEventListener("input", function () { f.maxpp = Number(m.value); update(); });   // each step of the slider animates; the next step takes over mid-move
     og.addEventListener("change", function () { f.onlyGreat = og.checked; tick(); update(); });
     hw.addEventListener("change", function () { f.hideWarn = hw.checked; tick(); update(); });
     q.addEventListener("input", function () { f.q = q.value.trim(); update(true); });
