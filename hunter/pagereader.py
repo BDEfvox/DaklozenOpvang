@@ -24,8 +24,8 @@ import html as _html
 import json
 import re
 from html.parser import HTMLParser
-from typing import Any, Dict, Iterator, List, Optional
-from urllib.parse import unquote, urlsplit
+from typing import Any, Dict, Iterator, List, Optional, Tuple
+from urllib.parse import unquote, urljoin, urlsplit
 
 # Status codes that mean "not for you": login, payment, bot check, rate limit.
 # 503 is left out: usually it is a server fault, so the caller decides.
@@ -81,6 +81,7 @@ class PageSummary:
         self.meta: Dict[str, str] = {}          # lower-cased name/property -> first content
         self.canonical: Optional[str] = None
         self.json_ld: List[Dict[str, Any]] = []  # every object, nested @graph/mainEntity/offers included
+        self.json_ld_urls: List[Optional[str]] = []  # per object: the page URL it (or its parent) names
         self.password_field = False
         self.captcha_frame = False
 
@@ -102,17 +103,10 @@ def read_page(text: str) -> PageSummary:
 def same_page(page: PageSummary, url: str) -> bool:
     """Does the page say it is the one at `url`? Compares its og:url and canonical URL with `url`:
     the same path, or the same listing number (the readable part of an address can change when the
-    seller edits the title). A page that names no URL of its own does not count."""
-    want = _path(url)
-    if not want:
-        return False
-    ids = re.findall(r"\d{6,}", want)
-    number = max(ids, key=len) if ids else None
-    for own in page.own_urls():
-        have = _path(own)
-        if have == want or (number and number in have):
-            return True
-    return False
+    seller edits the title). The number must match as a whole: 123456 is not 1234567.
+    Relative URLs are resolved against `url`; the host is not compared, so www/m. aliases count.
+    A page that names no URL of its own does not count."""
+    return any(_same_item(own, url) for own in page.own_urls())
 
 
 def own_description(page: PageSummary, url: str) -> str:
@@ -121,11 +115,17 @@ def own_description(page: PageSummary, url: str) -> str:
     Only a page whose og:url or canonical URL is `url` counts (see same_page): a listing that was
     taken down often redirects to a search page, whose JSON-LD describes other people's items.
     Sources: JSON-LD objects of a listing type (LISTING_TYPES), then the og/twitter/meta description.
+    A JSON-LD object that names another page as its own (its `url` or `mainEntityOfPage`, or its
+    parent's) is someone else's item, such as a "similar ads" tile, and is left out. Photo objects
+    are kept whatever their `url` says: that is the picture's address, and Kleinanzeigen puts the
+    ad's full text in its photos' descriptions.
     """
     if not same_page(page, url):
         return ""
-    found = [obj["description"] for obj in page.json_ld
-             if _types(obj) & LISTING_TYPES and isinstance(obj.get("description"), str)]
+    urls = page.json_ld_urls + [None] * (len(page.json_ld) - len(page.json_ld_urls))
+    found = [obj["description"] for obj, named in zip(page.json_ld, urls)
+             if _types(obj) & LISTING_TYPES and isinstance(obj.get("description"), str)
+             and ("imageobject" in _types(obj) or not named or _same_item(named, url))]
     found += [page.meta[k] for k in ("og:description", "twitter:description", "description") if page.meta.get(k)]
     texts = [t for t in (_plain(f) for f in found) if t]
     return max(texts, key=len) if texts else ""
@@ -187,23 +187,54 @@ class _Reader(HTMLParser):
             data = json.loads(raw, strict=False)
         except ValueError:
             return
-        for obj in _walk(data):
+        for obj, named in _walk(data):
             if len(self.page.json_ld) >= _MAX_LD_OBJECTS:
                 break
             self.page.json_ld.append(obj)
+            self.page.json_ld_urls.append(named)
 
 
-def _walk(obj: Any, depth: int = 0) -> Iterator[Dict[str, Any]]:
+def _walk(obj: Any, depth: int = 0, named: Optional[str] = None) -> Iterator[Tuple[Dict[str, Any], Optional[str]]]:
+    """Every JSON-LD object with the page URL it names for itself, or else the one its parent names."""
     if depth > 4:
         return
     if isinstance(obj, list):
         for item in obj:
-            yield from _walk(item, depth + 1)
+            yield from _walk(item, depth + 1, named)
     elif isinstance(obj, dict):
-        yield obj
+        named = _named_url(obj) or named
+        yield obj, named
         for key in ("@graph", "mainEntity", "itemOffered", "offers"):
             if key in obj:
-                yield from _walk(obj[key], depth + 1)
+                yield from _walk(obj[key], depth + 1, named)
+
+
+def _named_url(obj: Dict[str, Any]) -> Optional[str]:
+    for key in ("url", "mainEntityOfPage"):
+        value = obj.get(key)
+        if isinstance(value, dict):
+            value = value.get("@id") or value.get("url")
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    return None
+
+
+def _same_item(own: str, url: str) -> bool:
+    """Is `own` (a URL a page or JSON-LD object gives for itself, possibly relative) the item at `url`?"""
+    want = _path(url)
+    if not want:
+        return False
+    try:
+        have = _path(urljoin(url.strip(), own.strip()))
+    except ValueError:
+        return False
+    if have == want:
+        return True
+    ids = re.findall(r"\d{6,}", want)
+    if not ids:
+        return False
+    number = max(ids, key=len)
+    return re.search(r"(?<!\d)%s(?!\d)" % number, have) is not None
 
 
 def _types(obj: Dict[str, Any]) -> set:
