@@ -2,76 +2,163 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <meta name="referrer" content="no-referrer">
 <title>House Hunter</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="top">
-  <h1>House Hunter</h1>
-  <p id="last-check" class="muted">Loading…</p>
-  <p id="stale-warning" class="banner danger" role="alert" hidden></p>
-  <p id="sample-banner" class="banner info" role="status" hidden>Showing sample data: data.json could not be loaded.</p>
-</header>
+<!-- Icons: simple original line drawings on a 24 px grid, drawn in the text colour. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-updown" viewBox="0 0 24 24"><path d="M8 9.5l4-4 4 4M8 14.5l4 4 4-4"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M8 16l8-8M9.5 8H16v6.5"/></symbol>
+  <symbol id="i-house" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v8.5a.5.5 0 01-.5.5H15v-5H9v5H4.5a.5.5 0 01-.5-.5z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.3h.01"/></symbol>
+  <symbol id="i-x-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></symbol>
+  <symbol id="i-minus-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 4.5l8.5 14.5h-17zM12 10.5v4M12 17h.01"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+</defs></svg>
 
-<main>
-  <section class="filters" aria-label="Filters">
-    <div class="field">
-      <span class="label" id="city-label">City</span>
-      <div id="city-chips" class="chips" role="group" aria-labelledby="city-label"></div>
+<div class="app">
+  <div class="side">
+    <header class="intro">
+      <h1>House Hunter</h1>
+      <button id="open-sources" class="status" type="button" aria-haspopup="dialog">
+        <span id="status-dot" class="dot" aria-hidden="true"></span>
+        <span class="status-text"><span id="last-check">Loading…</span><span id="sources-summary"></span></span>
+        <svg class="icon chev" aria-hidden="true" focusable="false"><use href="#i-chev"/></svg>
+      </button>
+      <p id="stale-warning" class="banner danger" role="alert" hidden></p>
+      <p id="sample-banner" class="banner info" role="status" hidden>Showing sample data. The real data could not be loaded.</p>
+    </header>
+
+    <div class="bar">
+      <form id="search-form" class="search glass" role="search">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-search"/></svg>
+        <label class="sr" for="search">Search listings</label>
+        <input id="search" type="search" placeholder="Title or address" autocomplete="off" enterkeyhint="search">
+      </form>
+      <button id="open-filters" class="bar-btn glass" type="button" aria-haspopup="dialog">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-filter"/></svg>
+        <span>Filters</span>
+        <span id="filter-count" class="count" hidden></span>
+      </button>
     </div>
-    <div class="row">
-      <div class="field">
-        <label for="group" class="label">Group size</label>
-        <select id="group">
-          <option value="any">Any</option>
-          <option value="2">2 people</option>
-          <option value="3">3 people</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="maxpp" class="label">Max per person: <output id="maxpp-out"></output></label>
-        <input id="maxpp" type="range" min="400" max="800" step="25" value="800">
-      </div>
-      <div class="field">
-        <label for="sort" class="label">Sort</label>
+
+    <div id="filters-pane" class="filters-pane"></div>
+  </div>
+
+  <main>
+    <div class="list-head">
+      <p id="count" class="count-line" aria-live="polite"></p>
+      <label class="popup">
+        <span class="sr">Sort</span>
         <select id="sort">
-          <option value="newest">Newest first</option>
-          <option value="cheapest">Cheapest per person</option>
+          <option value="newest">Newest First</option>
+          <option value="cheapest">Cheapest per Person</option>
         </select>
-      </div>
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-updown"/></svg>
+      </label>
     </div>
-    <div class="row">
-      <label class="check"><input type="checkbox" id="only-great"> Only great</label>
-      <label class="check"><input type="checkbox" id="hide-warnings"> Hide warnings</label>
-      <div class="field grow">
-        <label for="search" class="label">Search</label>
-        <input id="search" type="search" placeholder="Title or address" autocomplete="off">
+
+    <ul id="listings" class="list" aria-label="Listings"></ul>
+
+    <section id="empty" class="empty" hidden>
+      <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-search"/></svg>
+      <h2>No Matching Listings</h2>
+      <p>Try a higher budget, more cities or a different search.</p>
+      <button id="clear-empty" class="btn tinted" type="button">Clear Filters</button>
+    </section>
+
+    <section id="load-error" class="empty" hidden>
+      <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-alert"/></svg>
+      <h2>Can’t Load Listings</h2>
+      <p>Check your connection, then try again.</p>
+      <button id="retry" class="btn tinted" type="button">Try Again</button>
+    </section>
+
+    <footer>
+      <p><strong>Great price</strong> means comfortably under the budget per person. Everything else shown is within the maximum of €800 per person, but closer to the limit.</p>
+      <p>New matches are sent to the group in Telegram. This page lists everything found in the last 30 days. Always check the listing itself: prices and warnings come from third-party sites and can be wrong.</p>
+    </footer>
+  </main>
+</div>
+
+<!-- Filters: a sheet on narrow screens. On wide screens app.js moves the form into the side column. -->
+<dialog id="filters-sheet" class="sheet" aria-labelledby="filters-title">
+  <div class="sheet-head">
+    <button id="filters-cancel" class="btn plain" type="button">Cancel</button>
+    <h2 id="filters-title">Filters</h2>
+    <button id="filters-done" class="btn plain strong" type="button">Done</button>
+  </div>
+  <form id="filters" class="filters" aria-label="Filters">
+    <fieldset>
+      <legend>Group Size</legend>
+      <div class="segmented">
+        <label><input type="radio" name="group" id="group-any" value="any" checked><span>Any</span></label>
+        <label><input type="radio" name="group" id="group-2" value="2"><span>2 People</span></label>
+        <label><input type="radio" name="group" id="group-3" value="3"><span>3 People</span></label>
       </div>
-    </div>
-    <p id="count" class="muted" aria-live="polite"></p>
-  </section>
+    </fieldset>
 
-  <section id="listings" class="grid" aria-label="Listings"></section>
-  <p id="empty" class="muted" hidden>No listings match these filters.</p>
+    <fieldset>
+      <legend>Cities</legend>
+      <ul id="city-chips" class="list"></ul>
+      <p class="note">With no city selected, all cities are shown.</p>
+    </fieldset>
 
-  <section aria-labelledby="sources-h">
+    <fieldset>
+      <legend>Budget</legend>
+      <div class="list">
+        <div class="row slider">
+          <label for="maxpp">Maximum per Person</label>
+          <output id="maxpp-out" for="maxpp"></output>
+          <input id="maxpp" type="range" min="400" max="800" step="25" value="800">
+        </div>
+        <label class="row">
+          <span class="label">Great Prices Only</span>
+          <input id="only-great" class="switch" type="checkbox" role="switch">
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Warnings</legend>
+      <div class="list">
+        <label class="row">
+          <span class="label">Hide Listings with Warnings</span>
+          <input id="hide-warnings" class="switch" type="checkbox" role="switch">
+        </label>
+      </div>
+      <p class="note">Warnings are things like no house sharers, no students, no registration or a possible scam.</p>
+    </fieldset>
+
+    <button id="clear-filters" class="btn plain clear" type="button" hidden>Clear Filters</button>
+  </form>
+</dialog>
+
+<dialog id="sources-sheet" class="sheet" aria-labelledby="sources-h">
+  <div class="sheet-head">
+    <span class="spacer" aria-hidden="true"></span>
     <h2 id="sources-h">Sources</h2>
-    <div class="table-wrap">
-      <table id="sources">
-        <thead><tr><th>Source</th><th>Status</th><th>Last OK</th><th>Listings</th><th>Error</th><th>Note</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </section>
-</main>
+    <button id="sources-close" class="icon-btn" type="button" aria-label="Close">
+      <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-x"/></svg>
+    </button>
+  </div>
+  <ul id="sources" class="list"></ul>
+  <p class="note">Each source is a rental site that is checked every few minutes. A source that is blocked or not working can miss listings.</p>
+</dialog>
 
-<footer>
-  <p><strong>Tiers:</strong> <span class="badge great">great</span> is comfortably under the budget per person; <span class="badge ok">ok</span> is within the maximum (€800 per person) but closer to the limit.</p>
-  <p>New matches are sent to the group in Telegram. This page is an overview of everything found in the last 30 days. Always check the listing itself; prices and flags come from third-party sites and can be wrong.</p>
-</footer>
 <script src="app.js"></script>
 </body>
 </html>

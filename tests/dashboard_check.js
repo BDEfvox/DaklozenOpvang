@@ -31,6 +31,8 @@ function Element(tag) {
 Element.prototype = Object.create(EventTarget.prototype);
 Element.prototype.appendChild = function (child) { this.children.push(child); };
 Element.prototype.setAttribute = function (name, value) { this.attributes[name] = String(value); };
+Element.prototype.removeAttribute = function (name) { delete this.attributes[name]; };
+Element.prototype.blur = function () {};
 Object.defineProperty(Element.prototype, "textContent", {
   get: function () {
     return this.text + this.children.map(function (child) { return child.textContent; }).join("");
@@ -65,17 +67,13 @@ function dashboard(responses) {
   var elements = {}, intervals = {}, timeouts = [], calls = [], copied = [], stored = {};
   var clock = now;
   var document = new EventTarget();
-  var table = new Element("tbody");
   document.hidden = false;
   document.visibilityState = "visible";
   document.getElementById = function (id) {
     return elements[id] || (elements[id] = new Element(id));
   };
   document.createElement = function (tag) { return new Element(tag); };
-  document.querySelector = function (selector) {
-    assert.strictEqual(selector, "#sources tbody");
-    return table;
-  };
+  document.createElementNS = function (namespace, tag) { return new Element(tag); };
   // Use a separate Date constructor so changing this clock cannot affect another check.
   function TestDate(value) { return new Date(value); }
   TestDate.parse = Date.parse;
@@ -109,7 +107,6 @@ function dashboard(responses) {
   vm.runInNewContext(script, window, { filename: "docs/app.js" });
   return {
     get: document.getElementById,
-    table: table,
     calls: calls,
     copied: copied,
     timeouts: timeouts,
@@ -129,7 +126,18 @@ function dashboard(responses) {
       var control = document.getElementById(id);
       control.value = value;
       control.fire(event || "change");
-    }
+    },
+    // Group size is a set of radio buttons: group-any, group-2 and group-3.
+    group: function (value) {
+      ["any", "2", "3"].forEach(function (g) { document.getElementById("group-" + g).checked = g === value; });
+      document.getElementById("group-" + value).fire("change");
+    },
+    toggle: function (id, on) {
+      var control = document.getElementById(id);
+      control.checked = on;
+      control.fire("change");
+    },
+    click: function (id) { document.getElementById(id).fire("click"); }
   };
 }
 
@@ -145,6 +153,14 @@ function titles(view) {
     .map(function (node) { return node.textContent; });
 }
 
+function byClass(view, name) {
+  return descendants(view.get("listings"), function (node) { return String(node.className).split(" ").indexOf(name) >= 0; });
+}
+
+// A city row is li > label > [checkbox, name, count, checkmark].
+function cityBox(row) { return row.children[0].children[0]; }
+function cityName(row) { return row.children[0].children[1].textContent; }
+
 function check(name, run) {
   return { name: name, run: run };
 }
@@ -155,8 +171,9 @@ var checks = [
     await settle();
     var text = view.get("listings").textContent;
     assert.ok(text.includes("Price unknown"), text);
-    assert.ok(text.includes("Price per person unknown (2 people)"), text);
+    assert.ok(text.includes("2 people"), text);
     assert.ok(!text.includes("€0"), text);
+    assert.ok(!text.includes("per month"), text);
   }),
   check("cheapest sort follows the selected group", async function () {
     var view = dashboard([["data.json", payload([
@@ -168,7 +185,7 @@ var checks = [
     await settle();
     view.change("sort", "cheapest");
     assert.deepStrictEqual(titles(view).slice(0, 2), ["Low for two", "Low for three"]);
-    view.change("group", "3");
+    view.group("3");
     assert.deepStrictEqual(titles(view).slice(0, 2), ["Low for three", "Low for two"]);
   }),
   check("cheapest ties use newest first and unknown prices sort last", async function () {
@@ -181,21 +198,29 @@ var checks = [
     await settle();
     view.change("sort", "cheapest");
     ["any", "3"].forEach(function (group) {
-      view.change("group", group);
+      view.group(group);
       assert.deepStrictEqual(titles(view), ["Known newer", "Known older", "Unknown newer", "Unknown older"]);
     });
   }),
-  check("tier badge follows the selected group", async function () {
+  check("great price label follows the selected group", async function () {
     var view = dashboard([["data.json", payload([home("Different tiers", [
       match(2, 600), match(3, 400, "great")
     ])])]]);
     await settle();
-    function tier() { return view.get("listings").children[0].children[0].children[0].children[0].textContent; }
-    assert.strictEqual(tier(), "great");
-    view.change("group", "2");
-    assert.strictEqual(tier(), "ok");
-    view.change("group", "3");
-    assert.strictEqual(tier(), "great");
+    function great() { return byClass(view, "tier").map(function (node) { return node.textContent; }); }
+    assert.deepStrictEqual(great(), ["Great price"]);
+    view.group("2");
+    assert.deepStrictEqual(great(), []);
+    view.group("3");
+    assert.deepStrictEqual(great(), ["Great price"]);
+  }),
+  check("the lead price is the cheapest match for the selected group", async function () {
+    var view = dashboard([["data.json", payload([home("Two prices", [match(2, 600), match(3, 400)])])]]);
+    await settle();
+    function amounts() { return byClass(view, "amount").map(function (node) { return node.textContent; }); }
+    assert.deepStrictEqual(amounts(), ["€400", "€600"]);
+    view.group("2");
+    assert.deepStrictEqual(amounts(), ["€600"]);
   }),
   check("unknown price stays visible at the slider minimum", async function () {
     var view = dashboard([["data.json", payload([
@@ -214,20 +239,21 @@ var checks = [
     ]);
     await settle();
     assert.strictEqual(view.get("stale-warning").hidden, false);
-    var chip = view.get("city-chips").children[0];
-    chip.fire("click");
-    view.change("group", "3");
+    var row = view.get("city-chips").children[0], box = cityBox(row);
+    box.checked = true;
+    box.fire("change");
+    view.group("3");
     await view.tick(refreshInterval);
     assert.strictEqual(view.get("stale-warning").hidden, true);
-    assert.strictEqual(view.get("last-check").textContent, "Last check: 2 min ago");
+    assert.strictEqual(view.get("last-check").textContent, "Checked 2 min ago");
     assert.deepStrictEqual(titles(view), ["New for three"]);
-    assert.ok(view.table.textContent.includes("Updated source"));
-    assert.strictEqual(view.get("city-chips").children[0], chip);
-    assert.strictEqual(chip.attributes["aria-pressed"], "true");
-    assert.strictEqual(view.get("group").listeners.change.length, 1);
+    assert.ok(view.get("sources").textContent.includes("Updated source"));
+    assert.strictEqual(view.get("city-chips").children[0], row);
+    assert.strictEqual(box.checked, true);
+    assert.strictEqual(view.get("group-3").listeners.change.length, 1);
     view.advance(60000);
     await view.tick(60000);
-    assert.strictEqual(view.get("last-check").textContent, "Last check: 3 min ago");
+    assert.strictEqual(view.get("last-check").textContent, "Checked 3 min ago");
     assert.deepStrictEqual(view.calls, ["data.json", "data.json"]);
   }),
   check("failed and malformed refreshes keep the listings, sources, and old timestamp", async function () {
@@ -244,10 +270,10 @@ var checks = [
       await view.tick(refreshInterval);
       await view.tick(60000);
       assert.deepStrictEqual(titles(view), ["Keep me"]);
-      assert.ok(view.table.textContent.includes("Original source"));
+      assert.ok(view.get("sources").textContent.includes("Original source"));
       assert.strictEqual(view.get("sample-banner").hidden, true);
       assert.strictEqual(view.get("stale-warning").hidden, false);
-      assert.strictEqual(view.get("last-check").textContent, "Last check: 2 h ago");
+      assert.strictEqual(view.get("last-check").textContent, "Checked 2 h ago");
     }
     assert.deepStrictEqual(view.calls, ["data.json", "data.json", "data.json", "data.json", "data.json"]);
   }),
@@ -267,10 +293,10 @@ var checks = [
     await view.visibility("visible");
     assert.deepStrictEqual(titles(view), ["Real listing"]);
     assert.strictEqual(view.get("sample-banner").hidden, true);
-    var chips = view.get("city-chips").children;
-    assert.deepStrictEqual(chips.map(function (chip) { return chip.textContent; }), ["Delft"]);
-    assert.strictEqual(chips[0].listeners.click.length, 1);
-    assert.strictEqual(view.get("group").listeners.change.length, 1);
+    var rows = view.get("city-chips").children;
+    assert.deepStrictEqual(rows.map(cityName), ["Delft"]);
+    assert.strictEqual(cityBox(rows[0]).listeners.change.length, 1);
+    assert.strictEqual(view.get("group-3").listeners.change.length, 1);
   }),
   check("copy reply uses title when the address is absent", async function () {
     var view = dashboard([["data.json", payload([home("Canal home", [match(2, 500)])])]]);
@@ -279,9 +305,9 @@ var checks = [
     button.fire("click");
     await settle();
     assert.deepStrictEqual(view.copied, ["Interested in Canal home."]);
-    assert.strictEqual(button.textContent, "Copied!");
+    assert.strictEqual(button.textContent, "Copied");
     view.timeouts[0]();
-    assert.strictEqual(button.textContent, "Copy reply");
+    assert.strictEqual(button.textContent, "Copy Reply");
   }),
   check("singular bedroom and room labels", async function () {
     var listing = home("One of each", [match(2, 500)]);
@@ -302,6 +328,129 @@ var checks = [
     assert.strictEqual(view.get("listings").children[0], card);   // same node: not rebuilt
     await view.tick(refreshInterval);
     assert.deepStrictEqual(titles(view), ["Newer"]);              // a newer save does replace it
+  }),
+  check("clear filters resets the filters, the search and the controls", async function () {
+    var view = dashboard([["data.json", payload([
+      home("Cheap for two", [match(2, 450, "great")]), home("Dear for three", [match(3, 700)])
+    ])]]);
+    await settle();
+    assert.strictEqual(view.get("clear-filters").hidden, true);
+    assert.strictEqual(view.get("filter-count").hidden, true);
+    view.group("2");
+    view.toggle("only-great", true);
+    view.change("maxpp", "500", "input");
+    view.change("search", "cheap", "input");
+    assert.deepStrictEqual(titles(view), ["Cheap for two"]);
+    assert.strictEqual(view.get("count").textContent, "1 of 2 listings");
+    assert.strictEqual(view.get("filter-count").textContent, "3");     // the search is not counted: it is on screen
+    assert.strictEqual(view.get("filter-count").hidden, false);
+    assert.strictEqual(view.get("clear-filters").hidden, false);
+    view.click("clear-filters");
+    assert.deepStrictEqual(titles(view), ["Cheap for two", "Dear for three"]);
+    assert.strictEqual(view.get("count").textContent, "2 listings");
+    assert.strictEqual(view.get("group-any").checked, true);
+    assert.strictEqual(view.get("group-2").checked, false);
+    assert.strictEqual(view.get("only-great").checked, false);
+    assert.strictEqual(view.get("maxpp").value, 800);
+    assert.strictEqual(view.get("search").value, "");
+    assert.strictEqual(view.get("filter-count").hidden, true);
+  }),
+  check("no matches shows the empty state, and its button clears the filters", async function () {
+    var view = dashboard([["data.json", payload([home("Only one", [match(2, 500)])])]]);
+    await settle();
+    assert.strictEqual(view.get("empty").hidden, true);
+    view.change("search", "nothing like this", "input");
+    assert.strictEqual(view.get("empty").hidden, false);
+    assert.strictEqual(view.get("listings").hidden, true);
+    view.click("clear-empty");
+    assert.strictEqual(view.get("empty").hidden, true);
+    assert.deepStrictEqual(titles(view), ["Only one"]);
+  }),
+  check("cancel in the filter sheet puts back the filters from before it opened", async function () {
+    var view = dashboard([["data.json", payload([
+      home("For two", [match(2, 500)]), home("For three", [match(3, 500)])
+    ])]]);
+    await settle();
+    view.group("2");
+    view.click("open-filters");
+    assert.strictEqual(view.get("filters-sheet").attributes.open, "");
+    view.group("3");
+    view.toggle("hide-warnings", true);
+    assert.deepStrictEqual(titles(view), ["For three"]);
+    view.click("filters-cancel");
+    assert.deepStrictEqual(titles(view), ["For two"]);
+    assert.strictEqual(view.get("group-2").checked, true);
+    assert.strictEqual(view.get("hide-warnings").checked, false);
+    assert.strictEqual(view.get("filters-sheet").attributes.open, undefined);
+    view.click("open-filters");
+    view.group("3");
+    view.click("filters-done");                                     // Done keeps the change
+    assert.deepStrictEqual(titles(view), ["For three"]);
+  }),
+  check("the status line counts working sources and the sheet names each status", async function () {
+    var data = payload([home("Any", [match(2, 500)])]);
+    data.sources = [
+      { label: "Fine", status: "ok", listings_last_run: 1 },
+      { label: "Half", status: "partial", last_ok: old, error: "city 2 failed" },
+      { label: "Walled", status: "blocked" },
+      { label: "Unused", status: "disabled" },
+      { label: "Odd", status: "something new" }
+    ];
+    var view = dashboard([["data.json", data]]);
+    await settle();
+    assert.strictEqual(view.get("sources-summary").textContent, "1 of 4 sources working");   // "disabled" is not counted
+    assert.strictEqual(view.get("status-dot").className, "dot warn");
+    var rows = view.get("sources").children.map(function (row) { return row.textContent; });
+    assert.deepStrictEqual(rows, [
+      "Fine1 listing in the last checkWorking",
+      "Halflast worked 3 h agocity 2 failedPartly working",
+      "Walledhas never workedBlocked",
+      "UnusedOff",
+      "Oddhas never workedNot working"
+    ]);
+  }),
+  check("all sources working, and a stale check, set the status dot", async function () {
+    var view = dashboard([["data.json", payload([home("Any", [match(2, 500)])], recent)]]);
+    await settle();
+    assert.strictEqual(view.get("sources-summary").textContent, "The source is working");
+    assert.strictEqual(view.get("status-dot").className, "dot good");
+    view.advance(2 * 3600 * 1000);
+    await view.tick(60000);
+    assert.strictEqual(view.get("status-dot").className, "dot bad");
+    assert.strictEqual(view.get("stale-warning").textContent, "The last check was 3 h ago. The checker may be down.");
+  }),
+  check("the address line only adds what the title does not say", async function () {
+    var inTitle = home("Flat Canal Street, Utrecht", [match(2, 500)]);
+    inTitle.address = "Canal Street";
+    var partly = home("Flat to rent: Canal Street", [match(2, 500)]);
+    partly.address = "Canal Street 12";
+    var view = dashboard([["data.json", payload([inTitle, partly])]]);
+    await settle();
+    assert.deepStrictEqual(byClass(view, "addr").map(function (node) { return node.textContent; }), ["Canal Street 12, Utrecht"]);
+  }),
+  check("price, availability dates and flags read as plain text", async function () {
+    var listing = home("Dated", [match(2, 500)]);
+    listing.price_total = 1000;
+    listing.price_includes_utilities = false;
+    listing.available_from = "2026-03-01";
+    listing.available_until = "2027-01-10";
+    listing.flags = ["no_students", "max_persons:2", "sharers_ok", "income_requirement"];
+    var data = payload([listing]);
+    data.flag_labels = { max_persons: "Max {n} persons", sharers_ok: "Sharers welcome" };
+    var view = dashboard([["data.json", data]]);
+    await settle();
+    assert.strictEqual(byClass(view, "facts")[0].textContent, "€1.000 per month excl. utilities · 1 Mar to 10 Jan 2027");
+    assert.deepStrictEqual(byClass(view, "warn").map(function (node) { return node.textContent; }), ["no students", "Max 2 persons"]);
+    assert.deepStrictEqual(byClass(view, "good").map(function (node) { return node.textContent; }), ["Sharers welcome"]);
+    assert.strictEqual(byClass(view, "notes")[0].textContent, "income requirement");
+  }),
+  check("no data at all shows the error state", async function () {
+    var view = dashboard([["data.json", null], ["sample-data.json", null]]);
+    await settle();
+    await settle();
+    assert.strictEqual(view.get("load-error").hidden, false);
+    assert.strictEqual(view.get("last-check").textContent, "No data");
+    assert.strictEqual(view.get("status-dot").className, "dot bad");
   })
 ];
 

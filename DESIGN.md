@@ -118,9 +118,20 @@ Env: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`. Missing → print messages to std
   status, dashboard link.
 
 ## Dashboard (`docs/`)
-Static page (no build step) reading `data.json`: cards for matches from the last 30 days, newest first;
-filters for city, group size, max € pp, "hide flagged"; NEW badge (< 24 h); source health table; last
-check time. Works on a phone. Plain HTML/CSS/JS.
+Static page (no build step) reading `data.json`. Plain HTML/CSS/JS, system fonts, light and dark.
+- **Listings:** one list of the matches from the last 30 days, newest first. Each row leads with the price
+  per person (cheapest match for the chosen group size first), then title, total rent and facts, warnings
+  (icon + text), source and age. The row opens the listing; "Copy Reply" copies the reply text. A blue dot
+  marks listings found in the last 24 h.
+- **Filters:** group size, cities, max € per person, "great prices only", "hide listings with warnings";
+  search and sort sit above the list. On a narrow screen the filters are in a sheet behind the Filters
+  button (Done keeps the changes, Cancel puts back what was set before). On a wide screen (60em and up)
+  the same form sits in a side column; `app.js` moves it there. Filters are remembered in localStorage.
+- **Status:** the line under the title shows the last check and how many sources work; it opens the
+  Sources sheet (one row per source: status icon and word, listings in the last check, note, error).
+- **States:** stale check (> 2 h) banner, sample-data banner, "no matching listings" with Clear Filters,
+  and "can't load listings" with Try Again.
+- Checked by `tests/dashboard_check.js` (run through `tests/test_dashboard_js.py`).
 
 ## Workflow (`.github/workflows/hunt.yml`)
 GitHub's `schedule` event is not used for timing: after go-live it did not fire at all for hours, and it is
