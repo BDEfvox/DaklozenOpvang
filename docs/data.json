@@ -38,8 +38,8 @@
   "women_only": "Women only",
   "working_only": "Working people only"
  },
- "generated_at": "2026-11-19T21:10:49Z",
- "last_run": "2026-11-19T21:10:49Z",
+ "generated_at": "2026-11-19T21:20:49Z",
+ "last_run": "2026-11-19T21:20:49Z",
  "listings": [
   {
    "address": "J. Meewisstraat",
@@ -56,7 +56,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/4198dc50-c152-44f2-afef-63782d4b544b",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -93,7 +93,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -140,7 +140,7 @@
    ],
    "furnished": null,
    "image_url": "https://a.static.nbo.nl/media/b9/b964ce954bc1f321dae814bf53dc41f6/768x510/thumb.jpg",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -179,7 +179,7 @@
    ],
    "furnished": null,
    "image_url": "https://c.static.nbo.nl/media/dd/ddfdbe5289dfaac2f94bed1d4146af08/768x510/thumb.jpg",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -219,7 +219,7 @@
    ],
    "furnished": null,
    "image_url": "https://c.static.nbo.nl/media/a0/a0741157f5981386f14983089b9305f9/768x510/thumb.jpg",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -258,7 +258,7 @@
    ],
    "furnished": null,
    "image_url": "https://a.static.nbo.nl/media/dd/dd52515fdb734c3de5ba98d32258e830/768x510/thumb.jpg",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -303,7 +303,7 @@
    ],
    "furnished": null,
    "image_url": "https://b.static.nbo.nl/media/d3/d33b7015e1acd7ec352938c137c5cf12/768x510/thumb.jpg",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -339,7 +339,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/b116f603-724e-4c0e-96df-2ddde3bec77c",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -368,10 +368,13 @@
    "bedrooms": 2,
    "best_tier": "ok",
    "city": "den-haag",
-   "evidence": {},
+   "evidence": {
+    "service_costs": "Servicekosten p.m.: € 108,- (Vesteda lists them next to the rent)"
+   },
    "first_seen": "2026-11-19T09:42:19Z",
    "flags": [
-    "income_requirement"
+    "income_requirement",
+    "service_costs:108"
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/bd/bd22cdb3031326082f72d42f1e231d52/o/1a3a8657-edit.jpg?rmode=crop&width=570&height=276&hmac=14adc5fad59ee178b753d3e03e48c809378e875dbfa2b782668e261984608f66",
@@ -379,7 +382,7 @@
    "matches": [
     {
      "persons": 2,
-     "price_pp": 722,
+     "price_pp": 776,
      "search": "2 people",
      "tier": "ok"
     }
@@ -411,7 +414,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -453,7 +456,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -489,7 +492,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -525,7 +528,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -567,7 +570,7 @@
    ],
    "furnished": "furnished",
    "image_url": "https://resources.kamernet.nl/image/a4e2f931-0ca2-42ee-bdeb-926ad9dcd010/resize/422-225",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -603,7 +606,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -639,7 +642,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -679,7 +682,7 @@
    ],
    "furnished": "furnished",
    "image_url": "https://resources.kamernet.nl/image/ff58b658-8596-4393-8f8d-a0d6b4450a81/resize/422-225",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -715,7 +718,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/00fe85df-f443-4b67-a011-57f802cce215",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -831,7 +834,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/178bec68-ba20-46ee-aa27-e32470aca162",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -1051,7 +1054,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/c1848cad-1f18-4af8-81cf-87000f3d04ed",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -1087,7 +1090,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/b43fae7b-fe0d-4693-abe5-12373f940c9a",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -1123,7 +1126,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/77ccf51e-3cf9-4ebd-9728-1766ee51ee3b",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -1165,7 +1168,7 @@
    ],
    "furnished": null,
    "image_url": "https://heimstaden.com/app/uploads/sites/2/heimstaden-ose/rental-object-attachments/17c246b1-4d8f-440d-96a8-7b2dd18b77b0/md/10-0-3c61e09086483422f90b71dc9dc61634.jpg",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -1281,7 +1284,7 @@
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/4a/4a602119e658b5f291151ded1d64726a/o/blok-a-1-.jpg?rmode=crop&width=570&height=276&hmac=816ba6728a499eb0985c9bfca7b9cd3c42fe07a03758b20acc0935db57171f56",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -1322,7 +1325,7 @@
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/ec/ecf3c2a4c6d19e75d9d04197c0caf83a/o/buitenbassinweg-306-19.jpg?rmode=crop&width=570&height=276&hmac=685b18a031f2b7ccc3810fdf2076adcdabb511c80a27db13215fec40284bb57e",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -1361,7 +1364,7 @@
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/90/9074749ddd1f55a3ac50721573a24f60/o/10568-linker-rottekade-rotterdam-vrije-sector-huurwoningen-ft2265.jpg?rmode=crop&width=570&height=276&hmac=fd1f38ea17718d42ca5990bf3af6267a91d3d5f7806af699f6b0f89cdbbb97d5",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -1400,7 +1403,7 @@
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/ee/ee5e5c5e798459c6c564378d3e5aacfb/o/complex-foto.jpg?rmode=crop&width=570&height=276&hmac=370a662eaf7a66ed5fc8455f7cefe94fb601facf2d80da61f1891eab41f90ebe",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -1439,7 +1442,7 @@
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/04/049dc90f858023a98bffeecfca209bc4/o/10817-oude-haven-rotterdam-vrije-sector-huurwoningen-ft2204.jpg?rmode=crop&width=570&height=276&hmac=814f4159f5cb4ef9e866200f3857b953ea5c2b61c53d93ac9bb87afc891fdb0b",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -1475,7 +1478,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/561bc73e-30e8-4be9-9472-861471714500",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -1517,7 +1520,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -1553,7 +1556,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -1589,7 +1592,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -1625,7 +1628,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -1661,7 +1664,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -1697,7 +1700,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -1740,7 +1743,7 @@
    ],
    "furnished": null,
    "image_url": "https://heimstaden.com/app/uploads/sites/2/heimstaden-ose/rental-object-attachments/edb08d5e-4fe0-43d4-9057-421ab4282756/md/10-0-54166d3a3be425dc3ff97f2c43796c5f.jpg",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -1776,7 +1779,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/60cdc373-aabc-464e-b042-eed8f96957da",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -1800,15 +1803,18 @@
   {
    "address": "Betaplein 276",
    "area_m2": 79,
-   "available_from": null,
+   "available_from": "2026-12-11",
    "available_until": null,
    "bedrooms": 3,
    "best_tier": "great",
    "city": "leiden",
-   "evidence": {},
+   "evidence": {
+    "service_costs": "Servicekosten p.m.: € 55,- (Vesteda lists them next to the rent)"
+   },
    "first_seen": "2026-11-17T17:59:03Z",
    "flags": [
-    "income_requirement"
+    "income_requirement",
+    "service_costs:55"
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/85/857db1864604eafae20cf70355c857f0/o/content.jpg?rmode=crop&width=570&height=276&hmac=e502691b6ae60fe3c366895720f10e0944cb6dbc54228e4d2f1acfd805f0e6ad",
@@ -1816,7 +1822,7 @@
    "matches": [
     {
      "persons": 3,
-     "price_pp": 598,
+     "price_pp": 617,
      "search": "3 people",
      "tier": "great"
     }
@@ -1851,7 +1857,7 @@
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/80/8017084f53a41b164a2f3dd770e9015e/o/01.jpg?rmode=crop&width=570&height=276&hmac=3087b2037fb978271d89521e9a86b86279aad8876e502a92037c521318e1dd54",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -1887,7 +1893,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/6d3c8214-7f10-4457-ab2b-fd13a178937c",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -1923,7 +1929,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -1959,7 +1965,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -1995,7 +2001,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -2031,7 +2037,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -2069,7 +2075,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2208908.jpg",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -2105,7 +2111,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -2141,7 +2147,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -2265,7 +2271,7 @@
    ],
    "furnished": null,
    "image_url": null,
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -2301,7 +2307,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/53a3016e-46e3-4539-a4f0-0809378f2529",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -3007,11 +3013,12 @@
    "best_tier": "great",
    "city": "den-haag",
    "evidence": {
-    "income_requirement": "Middenhuur: inkomenseis"
+    "service_costs": "Servicekosten p.m.: € 53,- (Vesteda lists them next to the rent)"
    },
    "first_seen": "2026-11-12T18:29:46Z",
    "flags": [
-    "income_requirement"
+    "income_requirement",
+    "service_costs:53"
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/6a/6a0287a8db753cbf5b3a1575feda3304/o/img-7133-medium-.jpg?rmode=crop&width=570&height=276&hmac=c6f692ebcca6f8ba60a65872484cdaa30a82ebf2fb19d3d4c72a5d7db3c1d5c6",
@@ -3019,7 +3026,7 @@
    "matches": [
     {
      "persons": 2,
-     "price_pp": 604,
+     "price_pp": 630,
      "search": "2 people",
      "tier": "great"
     }
@@ -3051,7 +3058,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/d50c666f-c02c-4e62-a963-4a66692ff2bd",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -3087,7 +3094,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/dad24e06-d0f9-4c7c-b5b2-245321b17b25",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -3123,7 +3130,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/630bbed7-d781-4e03-b76a-6408fba9c493",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -3277,10 +3284,13 @@
    "bedrooms": 2,
    "best_tier": "ok",
    "city": "leiden",
-   "evidence": {},
+   "evidence": {
+    "service_costs": "Servicekosten p.m.: € 55,- (Vesteda lists them next to the rent)"
+   },
    "first_seen": "2026-11-12T09:09:31Z",
    "flags": [
-    "income_requirement"
+    "income_requirement",
+    "service_costs:55"
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/80/8017084f53a41b164a2f3dd770e9015e/o/01.jpg?rmode=crop&width=570&height=276&hmac=3087b2037fb978271d89521e9a86b86279aad8876e502a92037c521318e1dd54",
@@ -3288,7 +3298,7 @@
    "matches": [
     {
      "persons": 2,
-     "price_pp": 752,
+     "price_pp": 780,
      "search": "2 people",
      "tier": "ok"
     }
@@ -3298,7 +3308,7 @@
    "price_includes_utilities": null,
    "price_total": 1505,
    "property_type": "apartment",
-   "rooms": null,
+   "rooms": 3,
    "source": "vesteda",
    "source_label": "Vesteda",
    "title": "Appartement Betaplein 124, Leiden",
@@ -3508,7 +3518,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2206055.jpg",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -3550,7 +3560,7 @@
    ],
    "furnished": "furnished",
    "image_url": "https://resources.kamernet.nl/image/ed9ea9bd-e2f5-4a92-aa48-944f3ac1b6de/resize/422-225",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -3586,7 +3596,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/eca3053f-f3f2-4209-8e0c-670bc8cdc54f",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -3692,7 +3702,7 @@
    ],
    "furnished": null,
    "image_url": "https://resources.directwonen.nl/image/cfeaa1a3-4b09-4ae9-9310-df6d3af633aa",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -3858,7 +3868,7 @@
    ],
    "furnished": "furnished",
    "image_url": "https://resources.kamernet.nl/image/f133c357-dd63-4e68-bf4c-2bf2bb3cf464/resize/422-225",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -3898,7 +3908,7 @@
    ],
    "furnished": "upholstered",
    "image_url": "https://resources.kamernet.nl/image/90e91c00-4c83-4053-9c71-723538f1ea20/resize/422-225",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -3936,7 +3946,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2206097.jpg",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 3,
@@ -3974,7 +3984,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2209571.jpg",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -4051,7 +4061,7 @@
    ],
    "furnished": null,
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2209557.jpg",
-   "last_seen": "2026-11-19T21:10:49Z",
+   "last_seen": "2026-11-19T21:20:49Z",
    "matches": [
     {
      "persons": 2,
@@ -4075,15 +4085,18 @@
   {
    "address": "Betaplein 60",
    "area_m2": 93,
-   "available_from": null,
+   "available_from": "2027-01-30",
    "available_until": null,
    "bedrooms": 3,
    "best_tier": "great",
    "city": "leiden",
-   "evidence": {},
+   "evidence": {
+    "service_costs": "Servicekosten p.m.: € 55,- (Vesteda lists them next to the rent)"
+   },
    "first_seen": "2026-11-10T13:14:32Z",
    "flags": [
-    "income_requirement"
+    "income_requirement",
+    "service_costs:55"
    ],
    "furnished": null,
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/76/76697455c1f0637d718f5d073b6b94b5/o/content.jpg?rmode=crop&width=570&height=276&hmac=2d7135c26e41d0941bf1801f1a5ce5d11b24a3ac122d8a046767600067917c40",
@@ -4091,7 +4104,7 @@
    "matches": [
     {
      "persons": 3,
-     "price_pp": 600,
+     "price_pp": 618,
      "search": "3 people",
      "tier": "great"
     }
@@ -4131,7 +4144,7 @@
    "homepage": "https://www.123wonen.nl",
    "label": "123Wonen",
    "last_error": "2026-11-19T09:55:18Z",
-   "last_ok": "2026-11-19T21:10:49Z",
+   "last_ok": "2026-11-19T21:20:49Z",
    "listings_last_run": 11,
    "name": "123wonen",
    "note": "Reply via the agency (free)",
@@ -4142,7 +4155,7 @@
    "homepage": "https://directwonen.nl",
    "label": "DirectWonen",
    "last_error": "2026-11-19T02:12:48Z",
-   "last_ok": "2026-11-19T21:10:49Z",
+   "last_ok": "2026-11-19T21:20:49Z",
    "listings_last_run": 133,
    "name": "directwonen",
    "note": "Paid account needed to reply",
@@ -4153,7 +4166,7 @@
    "homepage": "https://www.pararius.nl",
    "label": "Pararius/Funda email alerts",
    "last_error": "2026-11-19T11:08:18Z",
-   "last_ok": "2026-11-19T21:10:49Z",
+   "last_ok": "2026-11-19T21:20:49Z",
    "listings_last_run": 51,
    "name": "email_alerts",
    "note": "Reads the alert emails these sites send you",
@@ -4164,7 +4177,7 @@
    "homepage": "https://heimstaden.com/nl/huurwoningen/",
    "label": "Heimstaden",
    "last_error": "2026-11-18T14:20:47Z",
-   "last_ok": "2026-11-19T21:10:49Z",
+   "last_ok": "2026-11-19T21:20:49Z",
    "listings_last_run": 5,
    "name": "heimstaden",
    "note": "Reply via Heimstaden (free)",
@@ -4175,7 +4188,7 @@
    "homepage": "https://housinganywhere.com",
    "label": "HousingAnywhere",
    "last_error": "2026-11-14T06:49:46Z",
-   "last_ok": "2026-11-19T21:10:49Z",
+   "last_ok": "2026-11-19T21:20:49Z",
    "listings_last_run": 67,
    "name": "housinganywhere",
    "note": "Mostly furnished, mid-term; platform fee applies",
@@ -4186,7 +4199,7 @@
    "homepage": "https://ikwilhuren.nu/aanbod/",
    "label": "MVGM (ikwilhuren.nu)",
    "last_error": "2026-11-19T12:39:00Z",
-   "last_ok": "2026-11-19T21:10:49Z",
+   "last_ok": "2026-11-19T21:20:49Z",
    "listings_last_run": 14,
    "name": "ikwilhuren",
    "note": "Free account on ikwilhuren.nu needed to reply",
@@ -4197,7 +4210,7 @@
    "homepage": "https://kamernet.nl",
    "label": "Kamernet",
    "last_error": "2026-11-12T15:19:44Z",
-   "last_ok": "2026-11-19T21:10:49Z",
+   "last_ok": "2026-11-19T21:20:49Z",
    "listings_last_run": 59,
    "name": "kamernet",
    "note": "Paid Kamernet account needed to reply",
@@ -4208,7 +4221,7 @@
    "homepage": "https://www.rotsvast.nl/huren/",
    "label": "Rotsvast",
    "last_error": "2026-11-19T08:53:06Z",
-   "last_ok": "2026-11-19T21:10:49Z",
+   "last_ok": "2026-11-19T21:20:49Z",
    "listings_last_run": 17,
    "name": "rotsvast",
    "note": "Reply via the agency (free)",
@@ -4219,7 +4232,7 @@
    "homepage": "https://www.vanderlinden.nl/woning-huren/",
    "label": "Van der Linden",
    "last_error": "2026-11-19T18:50:47Z",
-   "last_ok": "2026-11-19T21:10:49Z",
+   "last_ok": "2026-11-19T21:20:49Z",
    "listings_last_run": 58,
    "name": "vanderlinden",
    "note": "Reply via the agency (free)",
@@ -4230,7 +4243,7 @@
    "homepage": "https://www.vesteda.com/nl",
    "label": "Vesteda",
    "last_error": null,
-   "last_ok": "2026-11-19T21:10:49Z",
+   "last_ok": "2026-11-19T21:20:49Z",
    "listings_last_run": 27,
    "name": "vesteda",
    "note": "Free account on hurenbij.vesteda.com needed to reply",
