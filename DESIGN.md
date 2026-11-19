@@ -131,6 +131,26 @@ Static page (no build step) reading `data.json`. Plain HTML/CSS/JS, system fonts
   Sources sheet (one row per source: status icon and word, listings in the last check, note, error).
 - **States:** stale check (> 2 h) banner, sample-data banner, "no matching listings" with Clear Filters,
   and "can't load listings" with Try Again.
+- **Colour:** text is neutral (label, secondary, tertiary). Blue is the only accent and means "you can
+  tap this" or "new". Status is never coloured text: it is a small filled symbol (green tick, red triangle,
+  orange or grey circle) next to plain text. The one coloured label is the green "Great price" capsule.
+  Every colour is a custom property at the top of `style.css` with light, dark and increased-contrast
+  values; text pairs are at least 4.5:1.
+- **Motion:** everything that moves runs on a spring and can be interrupted.
+  - `spring()` in `app.js` is a small spring solver (duration, bounce, starting velocity). It drives what
+    follows a finger: the group-size thumb and the sheets. CSS transitions use the same springs as
+    `linear()` curves, with a `cubic-bezier` fallback for browsers without `linear()`.
+  - Group size: the thumb slides to the touched choice at touch-down, can be dragged, and settles on the
+    choice its speed carries it to.
+  - Sheets open and close on a spring, can be dragged down by the top bar (or by the content when it is
+    scrolled to the top), resist when pulled up, and close on a long or fast pull. The dimmed background
+    (`#scrim`) follows the sheet. While a sheet closes, the page behind is already usable.
+  - The list: when a filter changes, rows that stay slide to their new place, new rows fade in and removed
+    rows fade out (`snapshot()` / `flip()`). Rows are reused per listing (`rowFor()`). Typing in search and
+    moving the budget slider update the list without animation.
+  - Small feedback: buttons shrink while pressed and spring back, rows highlight at touch-down, the city
+    tick draws in, the filter count pops, "Copy Reply" rolls to "Copied".
+  - With Reduce Motion nothing slides or scales: sheets and rows fade, and sheets cannot be dragged.
 - Checked by `tests/dashboard_check.js` (run through `tests/test_dashboard_js.py`).
 
 ## Workflow (`.github/workflows/hunt.yml`)

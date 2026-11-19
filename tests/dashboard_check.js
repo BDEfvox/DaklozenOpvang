@@ -27,6 +27,7 @@ function Element(tag) {
   this.attributes = {};
   this.hidden = true;
   this.text = "";
+  this.style = {};
 }
 Element.prototype = Object.create(EventTarget.prototype);
 Element.prototype.appendChild = function (child) { this.children.push(child); };
@@ -63,8 +64,10 @@ function settle() {
   return new Promise(function (resolve) { setImmediate(resolve); });
 }
 
-function dashboard(responses) {
+// `saved` is the filter state left in localStorage by an earlier visit.
+function dashboard(responses, saved) {
   var elements = {}, intervals = {}, timeouts = [], calls = [], copied = [], stored = {};
+  if (saved) stored["househunter.filters.v1"] = JSON.stringify(saved);
   var clock = now;
   var document = new EventTarget();
   document.hidden = false;
@@ -250,7 +253,7 @@ var checks = [
     assert.ok(view.get("sources").textContent.includes("Updated source"));
     assert.strictEqual(view.get("city-chips").children[0], row);
     assert.strictEqual(box.checked, true);
-    assert.strictEqual(view.get("group-3").listeners.change.length, 1);
+    assert.strictEqual(view.get("group-3").listeners.change.length, 2);   // one filters, one moves the thumb: bound once
     view.advance(60000);
     await view.tick(60000);
     assert.strictEqual(view.get("last-check").textContent, "Checked 3 min ago");
@@ -296,7 +299,7 @@ var checks = [
     var rows = view.get("city-chips").children;
     assert.deepStrictEqual(rows.map(cityName), ["Delft"]);
     assert.strictEqual(cityBox(rows[0]).listeners.change.length, 1);
-    assert.strictEqual(view.get("group-3").listeners.change.length, 1);
+    assert.strictEqual(view.get("group-3").listeners.change.length, 2);   // one filters, one moves the thumb: bound once
   }),
   check("copy reply uses title when the address is absent", async function () {
     var view = dashboard([["data.json", payload([home("Canal home", [match(2, 500)])])]]);
@@ -443,6 +446,64 @@ var checks = [
     assert.deepStrictEqual(byClass(view, "warn").map(function (node) { return node.textContent; }), ["no students", "Max 2 persons"]);
     assert.deepStrictEqual(byClass(view, "good").map(function (node) { return node.textContent; }), ["Sharers welcome"]);
     assert.strictEqual(byClass(view, "notes")[0].textContent, "income requirement");
+  }),
+  check("the group thumb sits under the chosen group, from the first moment", async function () {
+    var view = dashboard([["data.json", payload([home("For three", [match(3, 500)])])]],
+      { cities: [], group: "3", maxpp: 800, onlyGreat: false, hideWarn: false, q: "", sort: "newest" });
+    var thumb = view.get("group-thumb");
+    assert.strictEqual(thumb.style.transform, "translateX(200.00%)");   // before the data has arrived
+    assert.strictEqual(view.get("group-3").checked, true);
+    await settle();
+    assert.strictEqual(thumb.style.transform, "translateX(200.00%)");
+    view.group("2");
+    assert.strictEqual(thumb.style.transform, "translateX(100.00%)");
+    view.click("clear-filters");
+    assert.strictEqual(thumb.style.transform, "translateX(0.00%)");
+    assert.strictEqual(view.get("group-any").checked, true);
+  }),
+  check("a sheet dims the page while open, and gives focus back once when it closes", async function () {
+    var view = dashboard([["data.json", payload([home("Home", [match(2, 500)])])]]);
+    await settle();
+    var focused = 0, sheet = view.get("sources-sheet"), scrim = view.get("scrim");
+    view.get("open-sources").focus = function () { focused++; };
+    view.click("open-sources");
+    assert.strictEqual(sheet.attributes.open, "");
+    assert.strictEqual(scrim.hidden, false);
+    assert.strictEqual(scrim.style.opacity, "1");
+    view.click("sources-close");
+    assert.strictEqual(sheet.attributes.open, undefined);
+    assert.strictEqual(scrim.hidden, true);
+    sheet.fire("close");
+    sheet.fire("close");                                            // a late second event must not pull focus back again
+    assert.strictEqual(focused, 1);
+    view.click("open-filters");                                     // the other sheet uses the same dimming
+    assert.strictEqual(view.get("filters-sheet").attributes.open, "");
+    assert.strictEqual(scrim.hidden, false);
+    view.click("filters-done");
+    assert.strictEqual(scrim.hidden, true);
+  }),
+  check("a listing keeps its photo element when its row is rebuilt", async function () {
+    var first = home("Home", [match(2, 500), match(3, 400)]), same = home("Home", [match(2, 500), match(3, 380)]);
+    var other = home("Home", [match(2, 500), match(3, 380)]);
+    first.uid = same.uid = other.uid = "a";
+    first.image_url = same.image_url = "https://example.com/a.jpg";
+    other.image_url = "https://example.com/b.jpg";
+    var view = dashboard([["data.json", payload([first], old)], ["data.json", payload([same], recent)],
+      ["data.json", payload([other], fresh)]]);
+    await settle();
+    var photo = function () {
+      return descendants(view.get("listings"), function (node) { return node.tagName === "img"; })[0];
+    };
+    var img = photo();
+    assert.strictEqual(img.attributes.src, "https://example.com/a.jpg");
+    view.group("3");                                                // the row is rebuilt for the new group size
+    assert.strictEqual(photo(), img);
+    await view.tick(refreshInterval);                               // new data, same listing and photo
+    assert.ok(view.get("listings").textContent.includes("€380"));
+    assert.strictEqual(photo(), img);
+    await view.tick(refreshInterval);                               // the listing got another photo
+    assert.notStrictEqual(photo(), img);
+    assert.strictEqual(photo().attributes.src, "https://example.com/b.jpg");
   }),
   check("no data at all shows the error state", async function () {
     var view = dashboard([["data.json", null], ["sample-data.json", null]]);
