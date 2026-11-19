@@ -83,11 +83,11 @@
   "women_only": "Women only",
   "working_only": "Working people only"
  },
- "generated_at": "2026-11-19T22:30:49Z",
+ "generated_at": "2026-11-19T22:41:27Z",
  "household": {
   "persons": 2
  },
- "last_run": "2026-11-19T22:30:49Z",
+ "last_run": "2026-11-19T22:41:27Z",
  "listings": [
   {
    "address": "Maria Snelplantsoen",
@@ -106,12 +106,12 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "street",
    "home_key": "u:email_alerts:pararius-764de232",
    "image_url": null,
-   "last_seen": "2026-11-19T22:30:49Z",
-   "lat": null,
-   "lon": null,
+   "last_seen": "2026-11-19T22:41:27Z",
+   "lat": 52.29726,
+   "lon": 4.99254,
    "matches": [
     {
      "extra_pp": 0,
@@ -154,12 +154,12 @@
     "service_costs:85"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "address",
    "home_key": "a:den-haag:randveen:808",
    "image_url": "https://c.static.nbo.nl/media/dd/ddfdbe5289dfaac2f94bed1d4146af08/768x510/thumb.jpg",
-   "last_seen": "2026-11-19T22:30:49Z",
-   "lat": null,
-   "lon": null,
+   "last_seen": "2026-11-19T22:41:27Z",
+   "lat": 52.03941,
+   "lon": 4.25176,
    "matches": [
     {
      "extra_pp": 42,
@@ -202,12 +202,12 @@
     "service_costs:100"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "address",
    "home_key": "a:rotterdam:baanweg:13e",
    "image_url": "https://a.static.nbo.nl/media/dd/dd52515fdb734c3de5ba98d32258e830/768x510/thumb.jpg",
-   "last_seen": "2026-11-19T22:30:49Z",
-   "lat": null,
-   "lon": null,
+   "last_seen": "2026-11-19T22:41:27Z",
+   "lat": 51.93508,
+   "lon": 4.42851,
    "matches": [
     {
      "extra_pp": 50,
@@ -250,12 +250,12 @@
     "service_costs:52"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "address",
    "home_key": "a:rotterdam:hogefilterweg:658",
    "image_url": "https://b.static.nbo.nl/media/d3/d33b7015e1acd7ec352938c137c5cf12/768x510/thumb.jpg",
-   "last_seen": "2026-11-19T22:30:49Z",
-   "lat": null,
-   "lon": null,
+   "last_seen": "2026-11-19T22:41:27Z",
+   "lat": 51.9076,
+   "lon": 4.52447,
    "matches": [
     {
      "extra_pp": 26,
@@ -298,12 +298,12 @@
     "service_costs:108"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "street",
    "home_key": "a:den-haag:saturnusstraat:241204",
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/bd/bd22cdb3031326082f72d42f1e231d52/o/1a3a8657-edit.jpg?rmode=crop&width=570&height=276&hmac=14adc5fad59ee178b753d3e03e48c809378e875dbfa2b782668e261984608f66",
    "last_seen": "2026-11-19T12:58:58Z",
-   "lat": null,
-   "lon": null,
+   "lat": 52.06647,
+   "lon": 4.34645,
    "matches": [
     {
      "extra_pp": 54,
@@ -346,7 +346,7 @@
    "geo": "street",
    "home_key": "u:email_alerts:pararius-1c9e876d",
    "image_url": null,
-   "last_seen": "2026-11-19T22:30:49Z",
+   "last_seen": "2026-11-19T22:41:27Z",
    "lat": 52.06063,
    "lon": 4.32785,
    "matches": [
@@ -394,12 +394,12 @@
     "utilities_included"
    ],
    "furnished": "furnished",
-   "geo": null,
+   "geo": "address",
    "home_key": "a:den-haag:sneeuwbalstraat:48",
    "image_url": "https://resources.kamernet.nl/image/a4e2f931-0ca2-42ee-bdeb-926ad9dcd010/resize/422-225",
-   "last_seen": "2026-11-19T22:30:49Z",
-   "lat": null,
-   "lon": null,
+   "last_seen": "2026-11-19T22:41:27Z",
+   "lat": 52.07793,
+   "lon": 4.26525,
    "matches": [
     {
      "extra_pp": 0,
@@ -442,7 +442,7 @@
    "geo": "address",
    "home_key": "a:den-haag:laanvanwateringseveld:528",
    "image_url": null,
-   "last_seen": "2026-11-19T22:30:49Z",
+   "last_seen": "2026-11-19T22:41:27Z",
    "lat": 52.03124,
    "lon": 4.28736,
    "matches": [
@@ -487,7 +487,7 @@
    "geo": "street",
    "home_key": "u:directwonen:484382",
    "image_url": "https://resources.directwonen.nl/image/00fe85df-f443-4b67-a011-57f802cce215",
-   "last_seen": "2026-11-19T22:30:49Z",
+   "last_seen": "2026-11-19T22:41:27Z",
    "lat": 52.06063,
    "lon": 4.32785,
    "matches": [
@@ -576,12 +576,12 @@
     "utilities_included"
    ],
    "furnished": "furnished",
-   "geo": null,
+   "geo": "address",
    "home_key": "a:den-haag:sneeuwbalstraat:48",
    "image_url": "https://resources.kamernet.nl/image/507eeddd-036f-4bd3-a9a8-e066534a014f/resize/422-225",
    "last_seen": "2026-11-18T13:00:52Z",
-   "lat": null,
-   "lon": null,
+   "lat": 52.07793,
+   "lon": 4.26525,
    "matches": [
     {
      "extra_pp": 0,
@@ -624,7 +624,7 @@
    "geo": "street",
    "home_key": "u:directwonen:514959",
    "image_url": "https://resources.directwonen.nl/image/178bec68-ba20-46ee-aa27-e32470aca162",
-   "last_seen": "2026-11-19T22:30:49Z",
+   "last_seen": "2026-11-19T22:41:27Z",
    "lat": 51.93661,
    "lon": 4.4273,
    "matches": [
@@ -850,12 +850,12 @@
     "service_costs:65"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "address",
    "home_key": "a:rotterdam:grotebeer:127",
    "image_url": "https://heimstaden.com/app/uploads/sites/2/heimstaden-ose/rental-object-attachments/17c246b1-4d8f-440d-96a8-7b2dd18b77b0/md/10-0-3c61e09086483422f90b71dc9dc61634.jpg",
-   "last_seen": "2026-11-19T22:30:49Z",
-   "lat": null,
-   "lon": null,
+   "last_seen": "2026-11-19T22:41:27Z",
+   "lat": 51.94814,
+   "lon": 4.55613,
    "matches": [
     {
      "extra_pp": 33,
@@ -900,12 +900,12 @@
     "service_costs:41"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "address",
    "home_key": "a:rotterdam:buitenbassinweg:320",
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/ec/ecf3c2a4c6d19e75d9d04197c0caf83a/o/buitenbassinweg-306-19.jpg?rmode=crop&width=570&height=276&hmac=685b18a031f2b7ccc3810fdf2076adcdabb511c80a27db13215fec40284bb57e",
-   "last_seen": "2026-11-19T22:30:49Z",
-   "lat": null,
-   "lon": null,
+   "last_seen": "2026-11-19T22:41:27Z",
+   "lat": 51.90798,
+   "lon": 4.51989,
    "matches": [
     {
      "extra_pp": 21,
@@ -948,12 +948,12 @@
     "service_costs:40"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "address",
    "home_key": "a:rotterdam:admiraalderuyterweg:135",
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/90/9074749ddd1f55a3ac50721573a24f60/o/10568-linker-rottekade-rotterdam-vrije-sector-huurwoningen-ft2265.jpg?rmode=crop&width=570&height=276&hmac=fd1f38ea17718d42ca5990bf3af6267a91d3d5f7806af699f6b0f89cdbbb97d5",
-   "last_seen": "2026-11-19T22:30:49Z",
-   "lat": null,
-   "lon": null,
+   "last_seen": "2026-11-19T22:41:27Z",
+   "lat": 51.92716,
+   "lon": 4.48519,
    "matches": [
     {
      "extra_pp": 20,
@@ -996,12 +996,12 @@
     "service_costs:45"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "address",
    "home_key": "a:rotterdam:watertorenweg:411",
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/ee/ee5e5c5e798459c6c564378d3e5aacfb/o/complex-foto.jpg?rmode=crop&width=570&height=276&hmac=370a662eaf7a66ed5fc8455f7cefe94fb601facf2d80da61f1891eab41f90ebe",
-   "last_seen": "2026-11-19T22:30:49Z",
-   "lat": null,
-   "lon": null,
+   "last_seen": "2026-11-19T22:41:27Z",
+   "lat": 51.90993,
+   "lon": 4.51947,
    "matches": [
     {
      "extra_pp": 23,
@@ -1044,7 +1044,7 @@
    "geo": "street",
    "home_key": "u:directwonen:524219",
    "image_url": "https://resources.directwonen.nl/image/561bc73e-30e8-4be9-9472-861471714500",
-   "last_seen": "2026-11-19T22:30:49Z",
+   "last_seen": "2026-11-19T22:41:27Z",
    "lat": 52.06221,
    "lon": 4.29467,
    "matches": [
@@ -1086,12 +1086,12 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "street",
    "home_key": "u:email_alerts:pararius-d607f6f7",
    "image_url": null,
-   "last_seen": "2026-11-19T22:30:49Z",
-   "lat": null,
-   "lon": null,
+   "last_seen": "2026-11-19T22:41:27Z",
+   "lat": 52.05667,
+   "lon": 4.24957,
    "matches": [
     {
      "extra_pp": 0,
@@ -1131,12 +1131,12 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "street",
    "home_key": "u:email_alerts:pararius-df39ac80",
    "image_url": null,
-   "last_seen": "2026-11-19T22:30:49Z",
-   "lat": null,
-   "lon": null,
+   "last_seen": "2026-11-19T22:41:27Z",
+   "lat": 52.39683,
+   "lon": 4.95129,
    "matches": [
     {
      "extra_pp": 0,
@@ -1179,7 +1179,7 @@
    "geo": "address",
    "home_key": "a:den-haag:loevesteinlaan:483b",
    "image_url": null,
-   "last_seen": "2026-11-19T22:30:49Z",
+   "last_seen": "2026-11-19T22:41:27Z",
    "lat": 52.0491,
    "lon": 4.28267,
    "matches": [
@@ -1207,58 +1207,6 @@
    "url": "https://www.funda.nl/detail/huur/den-haag/appartement-loevesteinlaan-483-b/44687728"
   },
   {
-   "address": "Beemsterstraat 542 E2",
-   "area_m2": 85,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "best_tier": "ok",
-   "capacity": null,
-   "city": "amsterdam",
-   "evidence": {
-    "income_requirement": "De inkomenseis die wij hanteren is 4 keer de huur bruto of 3 keer de huur netto",
-    "min_age": "Voor deze woning geldt een minimale leeftijd van 55 jaar of ouder.",
-    "service_costs": "Servicekosten 118 euro (Heimstaden lists them next to the rent)"
-   },
-   "first_seen": "2026-11-18T01:09:05Z",
-   "flags": [
-    "income_requirement",
-    "min_age:55",
-    "service_costs:118",
-    "bedrooms_unconfirmed"
-   ],
-   "furnished": null,
-   "geo": null,
-   "home_key": "u:heimstaden:edb08d5e-4fe0-43d4-9057-421ab4282756",
-   "image_url": "https://heimstaden.com/app/uploads/sites/2/heimstaden-ose/rental-object-attachments/edb08d5e-4fe0-43d4-9057-421ab4282756/md/10-0-54166d3a3be425dc3ff97f2c43796c5f.jpg",
-   "last_seen": "2026-11-19T22:30:49Z",
-   "lat": null,
-   "lon": null,
-   "matches": [
-    {
-     "extra_pp": 59,
-     "persons": 2,
-     "price_pp": 700,
-     "search": "2 people",
-     "tier": "ok"
-    }
-   ],
-   "places_available": null,
-   "postcode": "1024BV",
-   "price_basis": "excl",
-   "price_drop_from": null,
-   "price_includes_utilities": null,
-   "price_total": 1400,
-   "property_type": "apartment",
-   "rent_basis": "home",
-   "rooms": 3,
-   "source": "heimstaden",
-   "source_label": "Heimstaden",
-   "title": "Beemsterstraat 542 E2, Amsterdam",
-   "uid": "heimstaden:edb08d5e-4fe0-43d4-9057-421ab4282756",
-   "url": "https://heimstaden.com/nl/huurwoningen/AMSTERDAM-85m²-edb08d5e-4fe0-43d4-9057-421ab4282756/"
-  },
-  {
    "address": "D. Buserf",
    "area_m2": 61,
    "available_from": "2026-12-01",
@@ -1276,7 +1224,7 @@
    "geo": "street",
    "home_key": "u:directwonen:524210",
    "image_url": "https://resources.directwonen.nl/image/60cdc373-aabc-464e-b042-eed8f96957da",
-   "last_seen": "2026-11-19T22:30:49Z",
+   "last_seen": "2026-11-19T22:41:27Z",
    "lat": 52.05667,
    "lon": 4.24957,
    "matches": [
@@ -1323,12 +1271,12 @@
     "service_costs:55"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "address",
    "home_key": "a:leiden:betaplein:66",
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/80/8017084f53a41b164a2f3dd770e9015e/o/01.jpg?rmode=crop&width=570&height=276&hmac=3087b2037fb978271d89521e9a86b86279aad8876e502a92037c521318e1dd54",
-   "last_seen": "2026-11-19T22:30:49Z",
-   "lat": null,
-   "lon": null,
+   "last_seen": "2026-11-19T22:41:27Z",
+   "lat": 52.14543,
+   "lon": 4.49458,
    "matches": [
     {
      "extra_pp": 28,
@@ -1371,7 +1319,7 @@
    "geo": "address",
    "home_key": "a:leiden:robijnhof:28",
    "image_url": null,
-   "last_seen": "2026-11-19T22:30:49Z",
+   "last_seen": "2026-11-19T22:41:27Z",
    "lat": 52.15469,
    "lon": 4.46243,
    "matches": [
@@ -1416,7 +1364,7 @@
    "geo": "address",
    "home_key": "a:amsterdam:leusdenhof:326",
    "image_url": null,
-   "last_seen": "2026-11-19T22:30:49Z",
+   "last_seen": "2026-11-19T22:41:27Z",
    "lat": 52.30687,
    "lon": 4.97966,
    "matches": [
@@ -1442,110 +1390,6 @@
    "title": "Funda: Leusdenhof 326",
    "uid": "email_alerts:funda-80049521",
    "url": "https://www.funda.nl/detail/huur/amsterdam/appartement-leusdenhof-326/80049521"
-  },
-  {
-   "address": "Madurastraat 79A",
-   "area_m2": 59,
-   "available_from": "2026-12-23",
-   "available_until": "2027-02-09",
-   "bedrooms": 2,
-   "best_tier": "great",
-   "capacity": 2,
-   "city": "amsterdam",
-   "evidence": {
-    "max_persons": "Aantal huurders: 2 personen · Leeftijd: 27 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Werkende student, Werkend",
-    "min_age": "Aantal huurders: 2 personen · Leeftijd: 27 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Werkende student, Werkend"
-   },
-   "first_seen": "2026-11-15T15:27:18Z",
-   "flags": [
-    "min_age:27",
-    "max_persons:2",
-    "short_term",
-    "utilities_included"
-   ],
-   "furnished": "furnished",
-   "geo": null,
-   "home_key": "a:amsterdam:madurastraat:79a",
-   "image_url": "https://resources.kamernet.nl/image/e2034366-fcee-4870-8087-f1cd65538e24/resize/422-225",
-   "last_seen": "2026-11-18T12:19:03Z",
-   "lat": null,
-   "lon": null,
-   "matches": [
-    {
-     "extra_pp": 0,
-     "persons": 2,
-     "price_pp": 600,
-     "search": "2 people",
-     "tier": "great"
-    }
-   ],
-   "places_available": null,
-   "postcode": "1094GH",
-   "price_basis": "incl",
-   "price_drop_from": null,
-   "price_includes_utilities": true,
-   "price_total": 1200,
-   "property_type": "apartment",
-   "rent_basis": "home",
-   "rooms": null,
-   "source": "kamernet",
-   "source_label": "Kamernet",
-   "title": "Appartement te huur: Madurastraat",
-   "uid": "kamernet:2418757",
-   "url": "https://kamernet.nl/huren/appartement-amsterdam/madurastraat/appartement-2418757"
-  },
-  {
-   "address": "Amerbos 174",
-   "area_m2": 85,
-   "available_from": "2026-12-05",
-   "available_until": "2027-01-03",
-   "bedrooms": 2,
-   "best_tier": "ok",
-   "capacity": 2,
-   "city": "amsterdam",
-   "evidence": {
-    "max_persons": "Aantal huurders: 2 personen · Leeftijd: 25 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Werkend",
-    "min_age": "Aantal huurders: 2 personen · Leeftijd: 25 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Werkend",
-    "short_term": "Bright 2-Bedroom Apartment for 1 month Sublet in Amsterdam Noord from 5th Dec 2026 until 3rd Jan 2027",
-    "working_only": "Aantal huurders: 2 personen · Leeftijd: 25 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Werkend"
-   },
-   "first_seen": "2026-11-14T10:29:55Z",
-   "flags": [
-    "working_only",
-    "min_age:25",
-    "max_persons:2",
-    "short_term"
-   ],
-   "furnished": "furnished",
-   "geo": null,
-   "home_key": "a:amsterdam:amerbos:174",
-   "image_url": "https://resources.kamernet.nl/image/58ad0b05-97a6-4422-8ee7-f2f7e5b1cda0/resize/422-225",
-   "last_seen": "2026-11-17T10:28:46Z",
-   "lat": null,
-   "lon": null,
-   "matches": [
-    {
-     "extra_pp": 0,
-     "persons": 2,
-     "price_pp": 775,
-     "search": "2 people",
-     "tier": "ok"
-    }
-   ],
-   "places_available": null,
-   "postcode": "1025ZR",
-   "price_basis": "excl",
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 1550,
-   "property_type": "apartment",
-   "rent_basis": "home",
-   "rooms": null,
-   "source": "kamernet",
-   "source_label": "Kamernet",
-   "title": "Appartement te huur: Amerbos",
-   "uid": "kamernet:2418534",
-   "url": "https://kamernet.nl/huren/appartement-amsterdam/amerbos/appartement-2418534"
   },
   {
    "address": "Heiloostraat",
@@ -1790,12 +1634,12 @@
     "service_costs:53"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "address",
    "home_key": "a:den-haag:slachthuisstraat:159",
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/6a/6a0287a8db753cbf5b3a1575feda3304/o/img-7133-medium-.jpg?rmode=crop&width=570&height=276&hmac=c6f692ebcca6f8ba60a65872484cdaa30a82ebf2fb19d3d4c72a5d7db3c1d5c6",
    "last_seen": "2026-11-16T06:37:34Z",
-   "lat": null,
-   "lon": null,
+   "lat": 52.06382,
+   "lon": 4.3237,
    "matches": [
     {
      "extra_pp": 26,
@@ -1838,7 +1682,7 @@
    "geo": "street",
    "home_key": "u:directwonen:508260",
    "image_url": "https://resources.directwonen.nl/image/d50c666f-c02c-4e62-a963-4a66692ff2bd",
-   "last_seen": "2026-11-19T22:30:49Z",
+   "last_seen": "2026-11-19T22:41:27Z",
    "lat": 52.06811,
    "lon": 4.24207,
    "matches": [
@@ -1883,7 +1727,7 @@
    "geo": "street",
    "home_key": "u:directwonen:509993",
    "image_url": "https://resources.directwonen.nl/image/dad24e06-d0f9-4c7c-b5b2-245321b17b25",
-   "last_seen": "2026-11-19T22:30:49Z",
+   "last_seen": "2026-11-19T22:41:27Z",
    "lat": 52.07148,
    "lon": 4.24175,
    "matches": [
@@ -1928,7 +1772,7 @@
    "geo": "street",
    "home_key": "u:directwonen:514568",
    "image_url": "https://resources.directwonen.nl/image/630bbed7-d781-4e03-b76a-6408fba9c493",
-   "last_seen": "2026-11-19T22:30:49Z",
+   "last_seen": "2026-11-19T22:41:27Z",
    "lat": 52.05441,
    "lon": 4.25768,
    "matches": [
@@ -1954,62 +1798,6 @@
    "title": "Appartement Escamplaan, Den Haag",
    "uid": "directwonen:514568",
    "url": "https://directwonen.nl/huurwoningen-huren/den-haag/escamplaan/appartement-514568"
-  },
-  {
-   "address": "Circusplein 34",
-   "area_m2": 72,
-   "available_from": "2026-12-01",
-   "available_until": "2027-01-25",
-   "bedrooms": 2,
-   "best_tier": "ok",
-   "capacity": 2,
-   "city": "amsterdam",
-   "evidence": {
-    "max_age": "Aantal huurders: 2 personen · Leeftijd: 20 - 50 jaar · Geslacht: Vrouw · Bezigheid: Werkend",
-    "max_persons": "Aantal huurders: 2 personen · Leeftijd: 20 - 50 jaar · Geslacht: Vrouw · Bezigheid: Werkend",
-    "min_age": "Aantal huurders: 2 personen · Leeftijd: 20 - 50 jaar · Geslacht: Vrouw · Bezigheid: Werkend",
-    "women_only": "Aantal huurders: 2 personen · Leeftijd: 20 - 50 jaar · Geslacht: Vrouw · Bezigheid: Werkend",
-    "working_only": "Aantal huurders: 2 personen · Leeftijd: 20 - 50 jaar · Geslacht: Vrouw · Bezigheid: Werkend"
-   },
-   "first_seen": "2026-11-12T10:59:33Z",
-   "flags": [
-    "working_only",
-    "women_only",
-    "min_age:20",
-    "max_age:50",
-    "max_persons:2",
-    "short_term"
-   ],
-   "furnished": "furnished",
-   "geo": null,
-   "home_key": "a:amsterdam:circusplein:34",
-   "image_url": "https://resources.kamernet.nl/image/417043d2-144b-4ec1-ba4c-47f8c12bed35/resize/422-225",
-   "last_seen": "2026-11-14T09:09:47Z",
-   "lat": null,
-   "lon": null,
-   "matches": [
-    {
-     "extra_pp": 0,
-     "persons": 2,
-     "price_pp": 800,
-     "search": "2 people",
-     "tier": "ok"
-    }
-   ],
-   "places_available": null,
-   "postcode": "1033ZG",
-   "price_basis": "excl",
-   "price_drop_from": null,
-   "price_includes_utilities": false,
-   "price_total": 1600,
-   "property_type": "apartment",
-   "rent_basis": "home",
-   "rooms": null,
-   "source": "kamernet",
-   "source_label": "Kamernet",
-   "title": "Appartement te huur: Circusplein",
-   "uid": "kamernet:2417940",
-   "url": "https://kamernet.nl/huren/appartement-amsterdam/circusplein/appartement-2417940"
   },
   {
    "address": "Waalsdorperweg",
@@ -2074,12 +1862,12 @@
     "service_costs:55"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "address",
    "home_key": "a:leiden:betaplein:124",
    "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/80/8017084f53a41b164a2f3dd770e9015e/o/01.jpg?rmode=crop&width=570&height=276&hmac=3087b2037fb978271d89521e9a86b86279aad8876e502a92037c521318e1dd54",
    "last_seen": "2026-11-12T11:49:29Z",
-   "lat": null,
-   "lon": null,
+   "lat": 52.14538,
+   "lon": 4.49449,
    "matches": [
     {
      "extra_pp": 27,
@@ -2170,12 +1958,12 @@
     "utilities_included"
    ],
    "furnished": "furnished",
-   "geo": null,
+   "geo": "address",
    "home_key": "a:den-haag:wesselsstraat:482",
    "image_url": "https://resources.kamernet.nl/image/ed9ea9bd-e2f5-4a92-aa48-944f3ac1b6de/resize/422-225",
-   "last_seen": "2026-11-19T22:30:49Z",
-   "lat": null,
-   "lon": null,
+   "last_seen": "2026-11-19T22:41:27Z",
+   "lat": 52.06244,
+   "lon": 4.30027,
    "matches": [
     {
      "extra_pp": 0,
@@ -2218,7 +2006,7 @@
    "geo": "street",
    "home_key": "u:directwonen:520581",
    "image_url": "https://resources.directwonen.nl/image/eca3053f-f3f2-4209-8e0c-670bc8cdc54f",
-   "last_seen": "2026-11-19T22:30:49Z",
+   "last_seen": "2026-11-19T22:41:27Z",
    "lat": 52.14313,
    "lon": 4.47555,
    "matches": [
@@ -2353,12 +2141,12 @@
     "bedrooms_unknown"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "address",
    "home_key": "a:den-haag:turfhaven:221",
    "image_url": "https://d.static.nbo.nl/media/da/da8a0047fde10bfd0db01d2f0918ecbb/768x510/thumb.jpg",
    "last_seen": "2026-11-11T09:09:15Z",
-   "lat": null,
-   "lon": null,
+   "lat": 52.07776,
+   "lon": 4.31939,
    "matches": [
     {
      "extra_pp": 35,
@@ -2402,12 +2190,12 @@
     "bedrooms_unknown"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "address",
    "home_key": "a:den-haag:turfhaven:449",
    "image_url": "https://b.static.nbo.nl/media/d3/d3ad03f4b036cd48d18ed0207f3e2aab/768x510/thumb.jpg",
    "last_seen": "2026-11-19T16:09:31Z",
-   "lat": null,
-   "lon": null,
+   "lat": 52.07791,
+   "lon": 4.31949,
    "matches": [
     {
      "extra_pp": 35,
@@ -2451,12 +2239,12 @@
     "max_persons:2"
    ],
    "furnished": "furnished",
-   "geo": null,
+   "geo": "address",
    "home_key": "a:den-haag:loosduinseweg:1103",
    "image_url": "https://resources.kamernet.nl/image/f133c357-dd63-4e68-bf4c-2bf2bb3cf464/resize/422-225",
-   "last_seen": "2026-11-19T22:30:49Z",
-   "lat": null,
-   "lon": null,
+   "last_seen": "2026-11-19T22:41:27Z",
+   "lat": 52.06772,
+   "lon": 4.27213,
    "matches": [
     {
      "extra_pp": 0,
@@ -2495,21 +2283,20 @@
    },
    "first_seen": "2026-11-10T13:14:32Z",
    "flags": [
-    "income_requirement",
-    "rent_unclear"
+    "income_requirement"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "address",
    "home_key": "a:amsterdam:berthaanstrakade:552",
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2209571.jpg",
-   "last_seen": "2026-11-19T22:30:49Z",
-   "lat": null,
-   "lon": null,
+   "last_seen": "2026-11-19T22:41:27Z",
+   "lat": 52.3552,
+   "lon": 5.00334,
    "matches": [
     {
      "extra_pp": 0,
      "persons": 2,
-     "price_pp": null,
+     "price_pp": 775,
      "search": "2 people",
      "tier": "ok"
     }
@@ -2521,7 +2308,7 @@
    "price_includes_utilities": null,
    "price_total": 1550,
    "property_type": null,
-   "rent_basis": null,
+   "rent_basis": "home",
    "rooms": 3,
    "source": "vanderlinden",
    "source_label": "Van der Linden",
@@ -2547,12 +2334,12 @@
     "rent_unclear"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "address",
    "home_key": "a:amsterdam:zeeburgerkade:1334",
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2184033.jpg",
    "last_seen": "2026-11-13T11:09:47Z",
-   "lat": null,
-   "lon": null,
+   "lat": 52.36899,
+   "lon": 4.95274,
    "matches": [
     {
      "extra_pp": 0,
@@ -2595,12 +2382,12 @@
     "bedrooms_unconfirmed"
    ],
    "furnished": null,
-   "geo": null,
+   "geo": "address",
    "home_key": "a:amsterdam:berthaanstrakade:880",
    "image_url": "https://www.vanderlinden.nl/media_huur/thumbs/414x276/2209557.jpg",
-   "last_seen": "2026-11-19T22:30:49Z",
-   "lat": null,
-   "lon": null,
+   "last_seen": "2026-11-19T22:41:27Z",
+   "lat": 52.35476,
+   "lon": 5.00418,
    "matches": [
     {
      "extra_pp": 0,
@@ -2642,7 +2429,7 @@
    "homepage": "https://www.123wonen.nl",
    "label": "123Wonen",
    "last_error": "2026-11-19T09:55:18Z",
-   "last_ok": "2026-11-19T22:30:49Z",
+   "last_ok": "2026-11-19T22:41:27Z",
    "listings_last_run": 11,
    "name": "123wonen",
    "note": "Reply via the agency (free)",
@@ -2653,7 +2440,7 @@
    "homepage": "https://directwonen.nl",
    "label": "DirectWonen",
    "last_error": "2026-11-19T02:12:48Z",
-   "last_ok": "2026-11-19T22:30:49Z",
+   "last_ok": "2026-11-19T22:41:27Z",
    "listings_last_run": 133,
    "name": "directwonen",
    "note": "Paid account needed to reply",
@@ -2664,7 +2451,7 @@
    "homepage": "https://www.pararius.nl",
    "label": "Pararius/Funda email alerts",
    "last_error": "2026-11-19T11:08:18Z",
-   "last_ok": "2026-11-19T22:30:49Z",
+   "last_ok": "2026-11-19T22:41:27Z",
    "listings_last_run": 51,
    "name": "email_alerts",
    "note": "Reads the alert emails these sites send you",
@@ -2675,7 +2462,7 @@
    "homepage": "https://heimstaden.com/nl/huurwoningen/",
    "label": "Heimstaden",
    "last_error": "2026-11-18T14:20:47Z",
-   "last_ok": "2026-11-19T22:30:49Z",
+   "last_ok": "2026-11-19T22:41:27Z",
    "listings_last_run": 5,
    "name": "heimstaden",
    "note": "Reply via Heimstaden (free)",
@@ -2686,7 +2473,7 @@
    "homepage": "https://housinganywhere.com",
    "label": "HousingAnywhere",
    "last_error": "2026-11-14T06:49:46Z",
-   "last_ok": "2026-11-19T22:30:49Z",
+   "last_ok": "2026-11-19T22:41:27Z",
    "listings_last_run": 67,
    "name": "housinganywhere",
    "note": "Mostly furnished, mid-term; platform fee applies",
@@ -2697,7 +2484,7 @@
    "homepage": "https://ikwilhuren.nu/aanbod/",
    "label": "MVGM (ikwilhuren.nu)",
    "last_error": "2026-11-19T12:39:00Z",
-   "last_ok": "2026-11-19T22:30:49Z",
+   "last_ok": "2026-11-19T22:41:27Z",
    "listings_last_run": 14,
    "name": "ikwilhuren",
    "note": "Free account on ikwilhuren.nu needed to reply",
@@ -2708,7 +2495,7 @@
    "homepage": "https://kamernet.nl",
    "label": "Kamernet",
    "last_error": "2026-11-12T15:19:44Z",
-   "last_ok": "2026-11-19T22:30:49Z",
+   "last_ok": "2026-11-19T22:41:27Z",
    "listings_last_run": 59,
    "name": "kamernet",
    "note": "Paid Kamernet account needed to reply",
@@ -2719,7 +2506,7 @@
    "homepage": "https://www.rotsvast.nl/huren/",
    "label": "Rotsvast",
    "last_error": "2026-11-19T08:53:06Z",
-   "last_ok": "2026-11-19T22:30:49Z",
+   "last_ok": "2026-11-19T22:41:27Z",
    "listings_last_run": 17,
    "name": "rotsvast",
    "note": "Reply via the agency (free)",
@@ -2730,7 +2517,7 @@
    "homepage": "https://www.vanderlinden.nl/woning-huren/",
    "label": "Van der Linden",
    "last_error": "2026-11-19T18:50:47Z",
-   "last_ok": "2026-11-19T22:30:49Z",
+   "last_ok": "2026-11-19T22:41:27Z",
    "listings_last_run": 58,
    "name": "vanderlinden",
    "note": "Reply via the agency (free)",
@@ -2741,7 +2528,7 @@
    "homepage": "https://www.vesteda.com/nl",
    "label": "Vesteda",
    "last_error": null,
-   "last_ok": "2026-11-19T22:30:49Z",
+   "last_ok": "2026-11-19T22:41:27Z",
    "listings_last_run": 8,
    "name": "vesteda",
    "note": "Free account on hurenbij.vesteda.com needed to reply",

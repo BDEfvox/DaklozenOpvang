@@ -12,7 +12,7 @@
    "precision": "street",
    "q": "[\"lorentzplein\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-19T22:30:49Z",
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 80,
@@ -64,7 +64,7 @@
    "precision": "street",
    "q": "[\"godetiaweg\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-19T22:30:49Z",
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Godetiaweg",
    "area_m2": 82,
@@ -116,7 +116,7 @@
    "precision": "street",
    "q": "[\"dslohmanlaan\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-19T22:30:49Z",
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "D.S. Lohmanlaan",
    "area_m2": 66,
@@ -168,7 +168,7 @@
    "precision": "street",
    "q": "[\"escamplaan\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-19T22:30:49Z",
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Escamplaan",
    "area_m2": 86,
@@ -220,7 +220,7 @@
    "precision": "street",
    "q": "[\"bbaumannlaan\",\"\",\"\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-19T22:30:49Z",
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "B. Baumannlaan",
    "area_m2": 63,
@@ -272,7 +272,7 @@
    "precision": "street",
    "q": "[\"bachstraat\",\"\",\"\",\"leiden\"]"
   },
-  "last_seen": "2026-11-19T22:30:49Z",
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -678,7 +678,7 @@
    "precision": "street",
    "q": "[\"dbuserf\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-19T22:30:49Z",
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 61,
@@ -730,7 +730,7 @@
    "precision": "street",
    "q": "[\"tafelbergstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-19T22:30:49Z",
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Tafelbergstraat",
    "area_m2": 204,
@@ -941,7 +941,7 @@
    "precision": "address",
    "q": "[\"robijnhof\",\"28\",\"\",\"leiden\"]"
   },
-  "last_seen": "2026-11-19T22:30:49Z",
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Robijnhof 28",
    "area_m2": 75,
@@ -994,7 +994,7 @@
    "precision": "address",
    "q": "[\"loevesteinlaan\",\"483b\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-19T22:30:49Z",
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Loevesteinlaan 483 B",
    "area_m2": 110,
@@ -1047,7 +1047,7 @@
    "precision": "address",
    "q": "[\"laanvanwateringseveld\",\"528\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-19T22:30:49Z",
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Laan Van Wateringse Veld 528",
    "area_m2": 108,
@@ -1206,7 +1206,7 @@
    "precision": "address",
    "q": "[\"leusdenhof\",\"326\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-19T22:30:49Z",
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Leusdenhof 326",
    "area_m2": 88,
@@ -1312,7 +1312,7 @@
    "precision": "street",
    "q": "[\"lorentzplein\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-19T22:30:49Z",
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 78,
@@ -1414,7 +1414,13 @@
    "rent_unclear",
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T22:30:49Z",
+  "geo": {
+   "lat": 52.29726045,
+   "lon": 4.9925387,
+   "precision": "street",
+   "q": "[\"mariasnelplantsoen\",\"\",\"\",\"amsterdam\"]"
+  },
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Maria Snelplantsoen",
    "area_m2": 200,
@@ -1461,7 +1467,13 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T22:30:49Z",
+  "geo": {
+   "lat": 52.05667157,
+   "lon": 4.24957004,
+   "precision": "street",
+   "q": "[\"dirkbuserf\",\"\",\"\",\"denhaag\"]"
+  },
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Dirk Buserf",
    "area_m2": 61,
@@ -1508,7 +1520,13 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T22:30:49Z",
+  "geo": {
+   "lat": 52.39682623,
+   "lon": 4.95128636,
+   "precision": "street",
+   "q": "[\"beemsterstraat\",\"\",\"\",\"amsterdam\"]"
+  },
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Beemsterstraat",
    "area_m2": 85,
@@ -1561,7 +1579,13 @@
    "students_only",
    "service_costs:65"
   ],
-  "last_seen": "2026-11-19T22:30:49Z",
+  "geo": {
+   "lat": 51.94813794,
+   "lon": 4.55613287,
+   "precision": "address",
+   "q": "[\"grotebeer\",\"127\",\"3067tr\",\"rotterdam\"]"
+  },
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Grote Beer 127",
    "area_m2": 81,
@@ -1602,61 +1626,6 @@
   ],
   "price_drop_from": null
  },
- "heimstaden:edb08d5e-4fe0-43d4-9057-421ab4282756": {
-  "best_tier": "ok",
-  "evidence": {
-   "income_requirement": "De inkomenseis die wij hanteren is 4 keer de huur bruto of 3 keer de huur netto",
-   "min_age": "Voor deze woning geldt een minimale leeftijd van 55 jaar of ouder.",
-   "service_costs": "Servicekosten 118 euro (Heimstaden lists them next to the rent)"
-  },
-  "first_seen": "2026-11-18T01:09:05Z",
-  "flags": [
-   "income_requirement",
-   "min_age:55",
-   "service_costs:118",
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T22:30:49Z",
-  "listing": {
-   "address": "Beemsterstraat 542 E2",
-   "area_m2": 85,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": null,
-   "city": "amsterdam",
-   "description": "*** LET OP! Voor deze woning geldt een minimale leeftijd van 55 jaar of ouder. ***\nEen ruim 3-kamer appartement van 83 m² gelegen in Amsterdam, met balkon en inpandige berging.\nDit complex is uitermate gunstig gelegen! Amsterdam Noord; het groenste stadsdeel van Amsterdam. In de omgeving van de Beemsterstraat is er volop gelegenheid tot winkelen, onder meer in het nabij gelegen winkelcentrum Boven ’t Y. Op het Buikslotermeerplein wordt er vrijwel dagelijks een markt gehouden. Op loopafstand vindt je bovendien enkele bushaltes, zodat je in korte tijd in het centrum van Amsterdam bent.\nVia de IJdoornlaan ben je met de auto via een directe aansluiting binnen no time op de rondweg en de autosnelwegen naar Zaandam Hilversum, Utrecht en Den Haag.\nDe woning\nDeze woning is per direct te huur. Dit 3-kamerappartement op de 4e verdieping heeft een totale woonoppervlakte van 85 vierkante meter.\nAls u het appartement betreedt, komt u in de centrale hal die toegang geeft tot alle vertrekken.\nZo vindt u aan de linkerkant van deze gang een interne berging (met cv-ketel en wasmachineaansluiting) en de badkamer. Deze is voorzien van een wastafel, douche en toilet.\nAan de rechterzijde van de hal is de ingang naar de woonkamer. Deze woonkamer met open keuken is bijna 35 vierkante meter groot, waardoor u veel bewegingsruimte heeft!\nDe keuken is uitgerust met een standaard keukenblok, dus zonder afzuigkap en inbouwapparatuur. Voor zaken als een oven/magnetron, koelkast/vriezer en vaatwasser dient u zelf te zorgen.\nVia de centrale gang en ook de woonkamer heeft u toegang tot de ruime slaapkamer. Deze is zo’n 15 vierkante meter groot. Vanuit de slaapkamer loopt u naar het balkon, waar u heerlijk buiten kunt zitten.\nFinanciële cijfers\nDe maandelijkse huur is € 1400,00 euro en de servicekosten bedragen 118,35 euro per maand. Afhankelijk van uw situatie wordt bij het huren van deze woning standaard minimaal 1 en maximaal 2 maanden waarborgsom gevraagd. De inkomenseis die wij hanteren is 4 keer de huur bruto of 3 keer de huur netto. Eventuele toeslagen tellen niet mee bij het bepalen van het inkomen.\nVoorzieningen bij het complex\nU bereikt uw appartement via de afgesloten entree en één van de liften of het trappenhuis. Alle appartementen hebben, naast een inpandige opslagruimte, ook een extra berging. Deze bevindt zich óf op de eigen verdieping óf op de begane grond. U kunt uw auto bij het complex gratis parkeren.\nBereikbaarheid met auto en openbaar vervoer\nVia de Beemsterstraat heeft u een directe aansluiting op de ringweg A10 en de snelwegen naar Zaandam, Hilversum, Utrecht en Den Haag. Amsterdam-Noord is, dankzij enkele tunnels en de pont over het IJ, verbonden met de rest van de stad. Op loopafstand bevinden zich enkele bushaltes. Via stadsbus 37 en de metro van de nieuwe Noord-Zuid-lijn bent u binnen 15 minuten in Amsterdam-centrum.\nVoorzieningen in de omgeving\nAmsterdam-Noord heeft meerdere winkelcentra, markten, een eigen zwembad en een golfterrein. In de omgeving van de Beemsterstraat is er volop gelegenheid tot shoppen met de winkelcentra Waterlandplein en Boven ‘t Y. Het wooncomplex is bovendien gelegen in het groenste stadsdeel van Amsterdam. Een groot deel van dit stadsdeel, landelijk Noord genaamd, bestaat uit open polderland. Het grenst aan een prachtig natuurgebied met mooie fiets- en wandelroutes. De Kimme ligt bovendien pal naast het Baanakkerspark.\nContact\nHeeft u interesse in een appartement in dit complex, neem dan contact met ons op. Alle door ons verstrekte informatie is met de grootst mogelijke aandacht en zorg samengesteld. Toch kan het voorkomen dat de informatie enigszins afwijkt van wat u in of rond de woning of het complex ziet of hebt gezien. Hieraan kunnen dan ook geen rechten worden ontleend.\nPer direct beschikbaar!\nAfhankelijk van jouw situatie wordt bij het huren van een woning in dit complex standaard minimaal 1 maand waarborgsom gevraagd en maximaal 2 maanden huur (excl. servicekosten).\nHeb je interesse in een woning in",
-   "extra": {
-    "availability": "Beschikbaar Direct",
-    "income_requirement": true,
-    "service_costs": 118,
-    "service_costs_note": "Servicekosten 118 euro (Heimstaden lists them next to the rent)",
-    "service_costs_on_top": true
-   },
-   "furnished": null,
-   "image_url": "https://heimstaden.com/app/uploads/sites/2/heimstaden-ose/rental-object-attachments/edb08d5e-4fe0-43d4-9057-421ab4282756/md/10-0-54166d3a3be425dc3ff97f2c43796c5f.jpg",
-   "postcode": "1024BV",
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 1400,
-   "property_type": "apartment",
-   "rooms": 3,
-   "source": "heimstaden",
-   "source_id": "edb08d5e-4fe0-43d4-9057-421ab4282756",
-   "title": "Beemsterstraat 542 E2, Amsterdam",
-   "uid": "heimstaden:edb08d5e-4fe0-43d4-9057-421ab4282756",
-   "url": "https://heimstaden.com/nl/huurwoningen/AMSTERDAM-85m²-edb08d5e-4fe0-43d4-9057-421ab4282756/"
-  },
-  "matches": [
-   {
-    "extra_pp": 59,
-    "persons": 2,
-    "price_pp": 700,
-    "search": "2 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
  "ikwilhuren:322f0095871659da6a7a35a41f209579": {
   "best_tier": "great",
   "evidence": {
@@ -1667,7 +1636,13 @@
    "income_requirement",
    "service_costs:85"
   ],
-  "last_seen": "2026-11-19T22:30:49Z",
+  "geo": {
+   "lat": 52.0394148,
+   "lon": 4.25175612,
+   "precision": "address",
+   "q": "[\"randveen\",\"808\",\"2544rm\",\"denhaag\"]"
+  },
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Randveen 808",
    "area_m2": 70,
@@ -1677,7 +1652,7 @@
    "city": "den-haag",
    "description": "Ruim en modern appartement aan de Randveen 808 in Den Haag\nAan de Randveen 808 in Den Haag bieden wij dit moderne appartement aan. De woning heeft een woonoppervlakte van circa 70 m² en biedt een prettige woonomgeving met diverse voorzieningen in de nabije omgeving.\nHet appartement is gelegen in een woonomgeving waar verschillende voorzieningen, zoals winkels, openbaar vervoer en andere dagelijkse faciliteiten, goed bereikbaar zijn. Ook zijn er in de omgeving diverse mogelijkheden om te wandelen en te recreëren. Hierdoor is de woning geschikt voor wie comfortabel wil wonen met voorzieningen binnen handbereik.\nDe woning beschikt over een energielabel A++, wat bijdraagt aan energiezuinig wonen.\nDe maandelijkse huurprijs bedraagt € 1.333,55.\nDe woning is beschikbaar per 22 december 2026.\nBent u geïnteresseerd in deze woning? Dan kunt u eenvoudig via onze website een bezichtigingsaanvraag indienen.\nLet op: De informatie en afbeeldingen op onze website zijn uitsluitend bedoeld ter indicatie. Aan de verstrekte informatie en getoonde afbeeldingen kunnen geen rechten worden ontleend.",
    "extra": {
-    "availability": "22 december 2026",
+    "availability": "Beschikbaar vanaf 22-12-2026",
     "income_requirement": true,
     "service_costs": 85,
     "service_costs_note": "Servicekosten € € 85,- /mnd per maand (MVGM lists them next to the rent)",
@@ -1719,6 +1694,12 @@
    "service_costs:70",
    "bedrooms_unknown"
   ],
+  "geo": {
+   "lat": 52.07776108,
+   "lon": 4.31938723,
+   "precision": "address",
+   "q": "[\"turfhaven\",\"221\",\"2511dk\",\"denhaag\"]"
+  },
   "last_seen": "2026-11-11T09:09:15Z",
   "listing": {
    "address": "Turfhaven 221",
@@ -1770,7 +1751,13 @@
    "income_requirement",
    "service_costs:100"
   ],
-  "last_seen": "2026-11-19T22:30:49Z",
+  "geo": {
+   "lat": 51.93507782,
+   "lon": 4.42850701,
+   "precision": "address",
+   "q": "[\"baanweg\",\"13e\",\"3042ab\",\"rotterdam\"]"
+  },
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Baanweg 13 E",
    "area_m2": 111,
@@ -1780,7 +1767,7 @@
    "city": "rotterdam",
    "description": "Op zoek naar een ruim en comfortabel appartement in Rotterdam? Dan is dit appartement aan de Baanweg 13-E wellicht precies wat u zoekt!\nDit ruime appartement beschikt over een woonoppervlakte van circa 111 m² en biedt dankzij de praktische indeling volop leefruimte. De woning beschikt over 3 slaapkamers, waardoor het appartement ideaal is voor wie behoefte heeft aan extra ruimte voor bijvoorbeeld een thuiswerkplek, logeerkamer of gezin.\nDe ruime woonkamer biedt voldoende mogelijkheden om een gezellige zit- en eethoek te creëren. De woning combineert comfortabel wonen met een praktische indeling en een prettige woonomgeving.\nDe omgeving\nHet appartement is gelegen in de wijk Overschie, in de buurt Kleinpolder. Deze omgeving kenmerkt zich door een combinatie van rustig wonen en goede bereikbaarheid.\nIn de directe omgeving vindt u diverse voorzieningen, waaronder supermarkten, winkels, scholen en horecagelegenheden. Ook zijn er verschillende mogelijkheden voor openbaar vervoer. Via de nabijgelegen uitvalswegen zijn andere delen van Rotterdam en omliggende steden goed bereikbaar.\nDankzij de gunstige ligging woont u hier op een praktische locatie, met dagelijkse voorzieningen binnen handbereik en het centrum van Rotterdam op relatief korte afstand.\nBent u enthousiast geworden over deze woning en wilt u graag een kijkje nemen?\nDan kunt u via onze website eenvoudig een bezichtigingsaanvraag indienen.\nGraag wijzen wij u erop dat de informatie en afbeeldingen op de website ter indicatie zijn en dat hieraan geen rechten kunnen worden ontleend.",
    "extra": {
-    "availability": "Per direct",
+    "availability": "Direct beschikbaar",
     "income_requirement": true,
     "service_costs": 100,
     "service_costs_note": "Servicekosten € € 100,- /mnd per maand (MVGM lists them next to the rent)",
@@ -1821,7 +1808,13 @@
    "income_requirement",
    "service_costs:52"
   ],
-  "last_seen": "2026-11-19T22:30:49Z",
+  "geo": {
+   "lat": 51.9075954,
+   "lon": 4.52447054,
+   "precision": "address",
+   "q": "[\"hogefilterweg\",\"658\",\"3063km\",\"rotterdam\"]"
+  },
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Hoge Filterweg 658",
    "area_m2": 84,
@@ -1831,7 +1824,7 @@
    "city": "rotterdam",
    "description": "Bent u op zoek naar een ruime woning op een prettige locatie? Dan is deze woning aan de Hoge Filterweg 658 wellicht iets voor u!\nDeze woning beschikt over een woonoppervlakte van 84 m² en biedt 2 slaapkamers. De praktische indeling zorgt voor voldoende leefruimte en maakt de woning geschikt voor zowel alleenstaanden, stellen als kleine gezinnen.\nDe huurprijs bedraagt € 1.250,- per maand, exclusief € 52,- servicekosten per maand.\nDe woning heeft een energielabel D.\nOmgeving\nDe woning is gelegen in een prettige woonomgeving met diverse voorzieningen in de nabije omgeving. Winkels, openbaar vervoer, scholen en uitvalswegen zijn goed bereikbaar, wat zorgt voor een comfortabele en praktische woonlocatie. Daarnaast zijn er verschillende recreatiemogelijkheden in de omgeving aanwezig.\nBeschikbaarheid\nDe woning is per direct beschikbaar.\nInteresse?\nBent u geïnteresseerd in deze woning? Dan kunt u eenvoudig een bezichtigingsaanvraag indienen via onze website. Wij nemen vervolgens zo spoedig mogelijk contact met u op over de verdere procedure.\nGraag wijzen wij u erop dat de informatie en afbeeldingen op de website ter indicatie zijn en dat hieraan geen rechten kunnen worden ontleend.",
    "extra": {
-    "availability": "Per direct",
+    "availability": "Direct beschikbaar",
     "income_requirement": true,
     "service_costs": 52,
     "service_costs_note": "Servicekosten € € 52,- /mnd per maand (MVGM lists them next to the rent)",
@@ -1873,6 +1866,12 @@
    "service_costs:70",
    "bedrooms_unknown"
   ],
+  "geo": {
+   "lat": 52.07791063,
+   "lon": 4.3194932,
+   "precision": "address",
+   "q": "[\"turfhaven\",\"449\",\"2511dk\",\"denhaag\"]"
+  },
   "last_seen": "2026-11-19T16:09:31Z",
   "listing": {
    "address": "Turfhaven 449",
@@ -1925,7 +1924,13 @@
    "students_only",
    "max_persons:2"
   ],
-  "last_seen": "2026-11-19T22:30:49Z",
+  "geo": {
+   "lat": 52.0677205,
+   "lon": 4.27213065,
+   "precision": "address",
+   "q": "[\"loosduinseweg\",\"1103\",\"2571bd\",\"denhaag\"]"
+  },
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -1979,7 +1984,13 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-19T22:30:49Z",
+  "geo": {
+   "lat": 52.06244463,
+   "lon": 4.30026795,
+   "precision": "address",
+   "q": "[\"wesselsstraat\",\"482\",\"2572wc\",\"denhaag\"]"
+  },
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Wesselsstraat 482",
    "area_m2": 85,
@@ -2020,179 +2031,6 @@
   ],
   "price_drop_from": null
  },
- "kamernet:2417940": {
-  "best_tier": "ok",
-  "evidence": {
-   "max_age": "Aantal huurders: 2 personen · Leeftijd: 20 - 50 jaar · Geslacht: Vrouw · Bezigheid: Werkend",
-   "max_persons": "Aantal huurders: 2 personen · Leeftijd: 20 - 50 jaar · Geslacht: Vrouw · Bezigheid: Werkend",
-   "min_age": "Aantal huurders: 2 personen · Leeftijd: 20 - 50 jaar · Geslacht: Vrouw · Bezigheid: Werkend",
-   "women_only": "Aantal huurders: 2 personen · Leeftijd: 20 - 50 jaar · Geslacht: Vrouw · Bezigheid: Werkend",
-   "working_only": "Aantal huurders: 2 personen · Leeftijd: 20 - 50 jaar · Geslacht: Vrouw · Bezigheid: Werkend"
-  },
-  "first_seen": "2026-11-12T10:59:33Z",
-  "flags": [
-   "working_only",
-   "women_only",
-   "min_age:20",
-   "max_age:50",
-   "max_persons:2",
-   "short_term"
-  ],
-  "last_seen": "2026-11-14T09:09:47Z",
-  "listing": {
-   "address": "Circusplein 34",
-   "area_m2": 72,
-   "available_from": "2026-12-01",
-   "available_until": "2027-01-25",
-   "bedrooms": 2,
-   "city": "amsterdam",
-   "description": "Circusplein 34\nBright 2-Bedroom Apartment with Spacious Balcony in Amsterdam Noord (Molenwijk)\nI am looking for a tenant to sublet my well-maintained 72 m² apartment located at Circusplein 34, Amsterdam Noord for 2 months(from 1st DEC 2026 to 26th JAN 2027.\nThe apartment features:\n2 bedrooms\nA bright and spacious living room with large windows\nOpen kitchen equipped with a dishwasher, refrigerator, freezer, oven, and 4-burner gas stove\nModern bathroom with shower, vanity unit, and washing machine connection\nSeparate toilet\nLarge sunny balcony, perfect for relaxing outdoors\nThe layout is practical and comfortable, making it ideal for a couple, small family, or professionals working from home. The second bedroom can easily be used as a home office, guest room, or hobby space.\nLocated in the popular and green Molenwijk neighborhood, the apartment is within walking distance of supermarkets, shops, schools, sports facilities, playgrounds, and parks. Public transport is just 1 minute away, providing quick access to Amsterdam city center and surrounding areas. The A10 motorway and other major roads are also easily accessible. Sloterdijk station is 10min away via public transport\nA comfortable home in a quiet, well-connected neighbourhood with all daily amenities nearby.\nAdditional Information\nViewings can be scheduled for anyone interested in getting a better look and feel of the apartment before making a decision.\nIf you're interested or would like to arrange a viewing, feel free to get in touch with a short introduction about yourself. We would be happy to show you around and answer any questions.",
-   "extra": {
-    "deposit": 1000,
-    "max_persons": 2,
-    "site_facts": "Aantal huurders: 2 personen · Leeftijd: 20 - 50 jaar · Geslacht: Vrouw · Bezigheid: Werkend",
-    "site_max_age": 50,
-    "site_min_age": 20,
-    "site_women_only": true,
-    "site_working_only": true,
-    "student_house": false
-   },
-   "furnished": "furnished",
-   "image_url": "https://resources.kamernet.nl/image/417043d2-144b-4ec1-ba4c-47f8c12bed35/resize/422-225",
-   "postcode": "1033ZG",
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 1600,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "kamernet",
-   "source_id": "2417940",
-   "title": "Appartement te huur: Circusplein",
-   "uid": "kamernet:2417940",
-   "url": "https://kamernet.nl/huren/appartement-amsterdam/circusplein/appartement-2417940"
-  },
-  "matches": [
-   {
-    "extra_pp": 0,
-    "persons": 2,
-    "price_pp": 800,
-    "search": "2 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "kamernet:2418534": {
-  "best_tier": "ok",
-  "evidence": {
-   "max_persons": "Aantal huurders: 2 personen · Leeftijd: 25 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Werkend",
-   "min_age": "Aantal huurders: 2 personen · Leeftijd: 25 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Werkend",
-   "short_term": "Bright 2-Bedroom Apartment for 1 month Sublet in Amsterdam Noord from 5th Dec 2026 until 3rd Jan 2027",
-   "working_only": "Aantal huurders: 2 personen · Leeftijd: 25 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Werkend"
-  },
-  "first_seen": "2026-11-14T10:29:55Z",
-  "flags": [
-   "working_only",
-   "min_age:25",
-   "max_persons:2",
-   "short_term"
-  ],
-  "last_seen": "2026-11-17T10:28:46Z",
-  "listing": {
-   "address": "Amerbos 174",
-   "area_m2": 85,
-   "available_from": "2026-12-05",
-   "available_until": "2027-01-03",
-   "bedrooms": 2,
-   "city": "amsterdam",
-   "description": "Peaceful Canal-Side 2-Bedroom Apartment\nBright 2-Bedroom Apartment for 1 month Sublet in Amsterdam Noord from 5th Dec 2026 until 3rd Jan 2027. Looking for a peaceful place to call home while staying close to the city? This bright and spacious 2-bedroom apartment in Amsterdam Noord is available for a short duration.\n✨ Highlights:\nTwo comfortable bedrooms\nBeautiful canal-facing views\nSurrounded by nature, walking and cycling paths\nQuiet, green neighbourhood with a relaxed atmosphere\nJust 15 minutes from Amsterdam city centre by ferry or public transport\nFully furnished and move-in ready (if applicable)\nWake up to the calming views of the canal, enjoy the nearby parks and waterfront, and still have the convenience of reaching the heart of Amsterdam in just 15 minutes.\nIdeal for professionals, couples looking for a comfortable home in one of Amsterdam's most desirable neighbourhoods.\nSend a message with a little information about yourself to arrange a viewing or learn more.\nShort term Peaceful Canal-Side 2-Bedroom Apartment\nBright 2-Bedroom Apartment for 1 month Sublet in Amsterdam Noord from 5th Dec 2026 until 3rd Jan 2027. Looking for a peaceful place to call home while staying close to the city? This bright and spacious 2-bedroom apartment in Amsterdam Noord is available for a short duration.\n✨ Highlights:\nTwo comfortable bedrooms\nBeautiful canal-facing views\nSurrounded by nature, walking and cycling paths\nQuiet, green neighbourhood with a relaxed atmosphere\nJust 15 minutes from Amsterdam city centre by ferry or public transport\nFully furnished and move-in ready (if applicable)\nWake up to the calming views of the canal, enjoy the nearby parks and waterfront, and still have the convenience of reaching the heart of Amsterdam in just 15 minutes.\nIdeal for professionals, couples looking for a comfortable home in one of Amsterdam's most desirable neighbourhoods.\nSend a message with a little information about yourself to arrange a viewing or learn more.",
-   "extra": {
-    "deposit": 1550,
-    "max_persons": 2,
-    "site_facts": "Aantal huurders: 2 personen · Leeftijd: 25 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Werkend",
-    "site_min_age": 25,
-    "site_working_only": true,
-    "student_house": false
-   },
-   "furnished": "furnished",
-   "image_url": "https://resources.kamernet.nl/image/58ad0b05-97a6-4422-8ee7-f2f7e5b1cda0/resize/422-225",
-   "postcode": "1025ZR",
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 1550,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "kamernet",
-   "source_id": "2418534",
-   "title": "Appartement te huur: Amerbos",
-   "uid": "kamernet:2418534",
-   "url": "https://kamernet.nl/huren/appartement-amsterdam/amerbos/appartement-2418534"
-  },
-  "matches": [
-   {
-    "extra_pp": 0,
-    "persons": 2,
-    "price_pp": 775,
-    "search": "2 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "kamernet:2418757": {
-  "best_tier": "great",
-  "evidence": {
-   "max_persons": "Aantal huurders: 2 personen · Leeftijd: 27 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Werkende student, Werkend",
-   "min_age": "Aantal huurders: 2 personen · Leeftijd: 27 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Werkende student, Werkend"
-  },
-  "first_seen": "2026-11-15T15:27:18Z",
-  "flags": [
-   "min_age:27",
-   "max_persons:2",
-   "short_term",
-   "utilities_included"
-  ],
-  "last_seen": "2026-11-18T12:19:03Z",
-  "listing": {
-   "address": "Madurastraat 79A",
-   "area_m2": 59,
-   "available_from": "2026-12-23",
-   "available_until": "2027-02-09",
-   "bedrooms": 2,
-   "city": "amsterdam",
-   "description": "Bright, cosy, temporary apartment Indische Buurt\nMy apartment will be for rent between Dec 23 to approx Feb 10 due to travel. Please note it's only for this short period, but with a possibility also to stay a little longer in one of the rooms (with its own ensuite bathroom) if your leaving date doesn't exactly match my return. I prefer to rent to someone already in NL who can view the place in person. Quiet building and lovely neighbourhood in Amsterdam Oost with great fresh food shopping, eating, parks and many nice cafes. 10-15 minutes bike to centre. Place has 2 bathrooms, the one not pictured needs renovation but is fully functional, the other is new. It would suit a person or couple needing a temporary place while looking for something longer term. Rent is inclusive utilities for one person- assuming similar use o to me. For two it's more (bills are verifed)\nBright, cosy, temporary apartment Indische Buurt\nMy apartment will be for rent between Dec 23 2026 to approx Feb 9 2027 due to travel. Please note its only short term, but there is a possibility also to stay a little longer in one of the rooms (with its own ensuite bathroom) if your moving date to your next place doesn't match my return date. I prefer to rent to someone already in NL who can view the place in person. Quiet building and lovely neighbourhood in Amsterdam Oost with great fresh food shopping, eating, parks and many nice cafes. 10-15 minutes bike to centre. Place has 2 bathrooms, the one not pictured needs renovation but is fully functional, the other is new. It would suit a person or couple needing a temporary place while looking for something longer term. Rent is inclusive utilities for one person- assuming similar use of heating to me. For two it's more (bills are verifed)",
-   "extra": {
-    "deposit": 650,
-    "max_persons": 2,
-    "site_facts": "Aantal huurders: 2 personen · Leeftijd: 27 - 99 jaar · Geslacht: Niet belangrijk · Bezigheid: Werkende student, Werkend",
-    "site_min_age": 27,
-    "student_house": false
-   },
-   "furnished": "furnished",
-   "image_url": "https://resources.kamernet.nl/image/e2034366-fcee-4870-8087-f1cd65538e24/resize/422-225",
-   "postcode": "1094GH",
-   "posted_at": null,
-   "price_includes_utilities": true,
-   "price_total": 1200,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "kamernet",
-   "source_id": "2418757",
-   "title": "Appartement te huur: Madurastraat",
-   "uid": "kamernet:2418757",
-   "url": "https://kamernet.nl/huren/appartement-amsterdam/madurastraat/appartement-2418757"
-  },
-  "matches": [
-   {
-    "extra_pp": 0,
-    "persons": 2,
-    "price_pp": 600,
-    "search": "2 people",
-    "tier": "great"
-   }
-  ],
-  "price_drop_from": null
- },
  "kamernet:2419433": {
   "best_tier": "ok",
   "evidence": {},
@@ -2202,6 +2040,12 @@
    "short_term",
    "utilities_included"
   ],
+  "geo": {
+   "lat": 52.07792525,
+   "lon": 4.26524676,
+   "precision": "address",
+   "q": "[\"sneeuwbalstraat\",\"48\",\"2565wc\",\"denhaag\"]"
+  },
   "last_seen": "2026-11-18T13:00:52Z",
   "listing": {
    "address": "Sneeuwbalstraat 48",
@@ -2254,7 +2098,13 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-19T22:30:49Z",
+  "geo": {
+   "lat": 52.07792525,
+   "lon": 4.26524676,
+   "precision": "address",
+   "q": "[\"sneeuwbalstraat\",\"48\",\"2565wc\",\"denhaag\"]"
+  },
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Sneeuwbalstraat 48",
    "area_m2": 98,
@@ -2302,10 +2152,15 @@
   },
   "first_seen": "2026-11-10T13:14:32Z",
   "flags": [
-   "income_requirement",
-   "rent_unclear"
+   "income_requirement"
   ],
-  "last_seen": "2026-11-19T22:30:49Z",
+  "geo": {
+   "lat": 52.35520135,
+   "lon": 5.00334284,
+   "precision": "address",
+   "q": "[\"berthaanstrakade\",\"552\",\"\",\"amsterdam\"]"
+  },
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -2317,7 +2172,6 @@
    "extra": {
     "income_requirement": true,
     "label": "binnenkort beschikbaar",
-    "rent_basis_unread": true,
     "service_costs": 65,
     "site_facts": "Servicekosten €65,00 per maand"
    },
@@ -2339,7 +2193,7 @@
    {
     "extra_pp": 0,
     "persons": 2,
-    "price_pp": null,
+    "price_pp": 775,
     "search": "2 people",
     "tier": "ok"
    }
@@ -2356,6 +2210,12 @@
    "income_requirement",
    "rent_unclear"
   ],
+  "geo": {
+   "lat": 52.36899116,
+   "lon": 4.95273618,
+   "precision": "address",
+   "q": "[\"zeeburgerkade\",\"1334\",\"\",\"amsterdam\"]"
+  },
   "last_seen": "2026-11-13T11:09:47Z",
   "listing": {
    "address": "Zeeburgerkade 1334",
@@ -2404,7 +2264,13 @@
    "income_requirement",
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T22:30:49Z",
+  "geo": {
+   "lat": 52.35475547,
+   "lon": 5.00417583,
+   "precision": "address",
+   "q": "[\"berthaanstrakade\",\"880\",\"\",\"amsterdam\"]"
+  },
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -2452,6 +2318,12 @@
    "income_requirement",
    "service_costs:55"
   ],
+  "geo": {
+   "lat": 52.14537589,
+   "lon": 4.49448883,
+   "precision": "address",
+   "q": "[\"betaplein\",\"124\",\"2321ks\",\"leiden\"]"
+  },
   "last_seen": "2026-11-12T11:49:29Z",
   "listing": {
    "address": "Betaplein 124",
@@ -2504,6 +2376,12 @@
    "income_requirement",
    "service_costs:53"
   ],
+  "geo": {
+   "lat": 52.06381564,
+   "lon": 4.32370279,
+   "precision": "address",
+   "q": "[\"slachthuisstraat\",\"159\",\"2521sz\",\"denhaag\"]"
+  },
   "last_seen": "2026-11-16T06:37:34Z",
   "listing": {
    "address": "Slachthuisstraat 159",
@@ -2558,7 +2436,13 @@
    "income_requirement",
    "service_costs:41"
   ],
-  "last_seen": "2026-11-19T22:30:49Z",
+  "geo": {
+   "lat": 51.90797772,
+   "lon": 4.51989479,
+   "precision": "address",
+   "q": "[\"buitenbassinweg\",\"320\",\"3063tc\",\"rotterdam\"]"
+  },
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Buitenbassinweg 320",
    "area_m2": 81,
@@ -2611,7 +2495,13 @@
    "income_requirement",
    "service_costs:40"
   ],
-  "last_seen": "2026-11-19T22:30:49Z",
+  "geo": {
+   "lat": 51.92715948,
+   "lon": 4.48519191,
+   "precision": "address",
+   "q": "[\"admiraalderuyterweg\",\"135\",\"3031aa\",\"rotterdam\"]"
+  },
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Admiraal De Ruyterweg 135",
    "area_m2": 63,
@@ -2664,6 +2554,12 @@
    "income_requirement",
    "service_costs:108"
   ],
+  "geo": {
+   "lat": 52.06647072,
+   "lon": 4.34645206,
+   "precision": "street",
+   "q": "[\"saturnusstraat\",\"241204\",\"2516ah\",\"denhaag\"]"
+  },
   "last_seen": "2026-11-19T12:58:58Z",
   "listing": {
    "address": "Saturnusstraat 241204",
@@ -2716,7 +2612,13 @@
    "income_requirement",
    "service_costs:45"
   ],
-  "last_seen": "2026-11-19T22:30:49Z",
+  "geo": {
+   "lat": 51.90993236,
+   "lon": 4.51947485,
+   "precision": "address",
+   "q": "[\"watertorenweg\",\"411\",\"3063hd\",\"rotterdam\"]"
+  },
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Watertorenweg 411",
    "area_m2": 103,
@@ -2771,7 +2673,13 @@
    "sharing_unclear",
    "service_costs:55"
   ],
-  "last_seen": "2026-11-19T22:30:49Z",
+  "geo": {
+   "lat": 52.14542931,
+   "lon": 4.49458175,
+   "precision": "address",
+   "q": "[\"betaplein\",\"66\",\"2321ks\",\"leiden\"]"
+  },
+  "last_seen": "2026-11-19T22:41:27Z",
   "listing": {
    "address": "Betaplein 66",
    "area_m2": 84,
