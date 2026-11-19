@@ -9,6 +9,8 @@ from typing import Any, Callable, Dict, List, Optional
 
 import requests
 
+from ..redact import add_secret, redact
+
 try:
     from zoneinfo import ZoneInfo
 except ImportError:  # pragma: no cover
@@ -120,7 +122,7 @@ class TelegramNotifier(Notifier):
             try:
                 data = api_call(self.token, "sendMessage", payload, session=self.session)
             except RuntimeError as exc:
-                print("[telegram] %s" % exc, file=sys.stderr)
+                print("[telegram] %s" % redact(str(exc)), file=sys.stderr)
                 self._last = time.monotonic()
                 return False
             self._last = time.monotonic()
@@ -130,9 +132,12 @@ class TelegramNotifier(Notifier):
             params = data.get("parameters") or {}
             if params.get("migrate_to_chat_id") and not migrated:
                 new_id = str(params["migrate_to_chat_id"])
+                add_secret(new_id)  # never in a log: the Actions log of a public repository is public
                 print("!" * 70, file=sys.stderr)
-                print("[telegram] WARNING: the group was upgraded to a supergroup.\n"
-                      "[telegram] Set the secret/variable TELEGRAM_CHAT_ID to the NEW id: %s" % new_id,
+                print("[telegram] WARNING: the group was upgraded to a supergroup, so its chat id changed.\n"
+                      "[telegram] Messages still arrive (this run uses the new id), but TELEGRAM_CHAT_ID is\n"
+                      "[telegram] out of date. The new id is not printed here because this log may be public:\n"
+                      "[telegram] on your computer run ./go-live.sh --telegram, which finds it and updates the secret.",
                       file=sys.stderr)
                 print("!" * 70, file=sys.stderr)
                 self.chat_id = new_id
@@ -143,7 +148,7 @@ class TelegramNotifier(Notifier):
                 self._sleep(min(float(params.get("retry_after", 5)) + 1, 60))
                 continue
             print("[telegram] sendMessage failed: %s %s" % (
-                data.get("error_code"), sanitize(data.get("description", ""), self.token)), file=sys.stderr)
+                data.get("error_code"), redact(sanitize(data.get("description", ""), self.token))), file=sys.stderr)
             return False
 
 
