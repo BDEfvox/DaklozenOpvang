@@ -562,6 +562,9 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
                 # the old price came from a detail page we couldn't re-check this run: try again next run
                 if it.listing.uid in state.seen:
                     state.seen[it.listing.uid]["last_price"] = old
+                    if not it.was_matched:  # as after a failed send: it did not fit before, keep it that way
+                        state.seen[it.listing.uid]["matched"] = []
+                        state.matches.pop(it.listing.uid, None)
                 if it.listing.uid in state.matches:
                     state.matches[it.listing.uid]["price_drop_from"] = None
                 continue

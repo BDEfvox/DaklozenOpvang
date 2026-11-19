@@ -305,6 +305,21 @@ def test_R2_2_6_failed_small_drop_into_budget_is_retried(cfg, tmp_path):
     assert alerts(n) == []
 
 
+def test_small_drop_into_budget_waits_for_the_detail_page_and_is_then_announced(cfg, tmp_path):
+    """Same loss as R2 2.6, by another road: no detail budget left in the run that sees the drop."""
+    src = FakeSource(listings=[make_listing("base"), make_listing("x", price_total=1620)])
+    _, st = go(cfg, tmp_path, [src])
+    st.seen["fake:x"]["details"] = {"price_total": 1620, "search_price": 1620}  # its page was read before
+    st.save(at(1), force=True)
+    src.listings = [make_listing("base"), make_listing("x", price_total=1600)]
+    cfg["detail_fetch_max_per_run"] = 0
+    n, st = go(cfg, tmp_path, [src], now=at(10))
+    assert alerts(n) == [] and "fake:x" not in st.matches
+    cfg["detail_fetch_max_per_run"] = 10
+    n, _ = go(cfg, tmp_path, [src], now=at(20))
+    assert alerts(n) == ["https://example.com/x"]
+
+
 def test_home_that_fits_now_without_a_real_drop_is_announced_as_new(cfg, tmp_path):
     cfg["searches"] = [dict(s, max_total=1600) if s["persons"] == 3 else s for s in cfg["searches"]]
     src = DetailPrice(listings=[make_listing("base"), make_listing("x", price_total=1700, bedrooms=3, rooms=4)])
