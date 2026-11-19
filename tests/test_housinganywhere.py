@@ -136,7 +136,7 @@ def _details(uid):
 
 def test_saved_ut1688576_working_professionals_over_30_space_for_2():
     ex = _details("ut1688576").extra
-    assert ex["site_working_only"] is True and ex["site_min_age"] == 30 and ex["max_persons"] == 2
+    assert ex["site_working_only"] is True and ex["site_min_age"] == 30 and ex["places_free"] == 2
     assert ex["site_facts"] == ("Tenant type: Working professionals only · Age: At least 30 · Space for 2 people · "
                                 "You can register at this address (inschrijven)")
     assert "site_housemates" not in ex and ex["registration_possible"] is True
@@ -145,21 +145,21 @@ def test_saved_ut1688576_working_professionals_over_30_space_for_2():
 def test_saved_ut1342881_students_and_workers_age_18_is_no_limit():
     lst = _details("ut1342881")
     ex = lst.extra
-    assert ex["max_persons"] == 3 and "site_min_age" not in ex and "site_working_only" not in ex
+    assert ex["places_free"] == 3 and "site_min_age" not in ex and "site_working_only" not in ex
     assert ex["site_facts"].startswith("Tenant type: Students, working professionals · Age: At least 18 · Space for 3 people")
     assert lst.available_from == "2026-11-19"  # bookablePeriods[0].from
 
 
 def test_saved_ut1684872_no_registration_min_age_25():
     ex = _details("ut1684872").extra
-    assert ex["registration_possible"] is False and ex["site_min_age"] == 25 and ex["max_persons"] == 4
+    assert ex["registration_possible"] is False and ex["site_min_age"] == 25 and ex["places_free"] == 4
     assert "You can't register at this address (inschrijven)" in ex["site_facts"]
 
 
 def test_saved_ut1498809_nothing_stated_means_no_keys():
     lst = _details("ut1498809")
     ex = lst.extra
-    assert ex["max_persons"] == 2 and ex["site_facts"] == "Space for 2 people"
+    assert ex["places_free"] == 2 and ex["site_facts"] == "Space for 2 people"
     assert not any(k.startswith("site_") and k != "site_facts" for k in ex)
     assert lst.available_from == "2027-02-28"
 
@@ -197,12 +197,12 @@ def test_fields_seen_next_to_their_labels_on_19_nov_2026():
     assert "Age: 25 - 45" in ex["site_facts"] and "Required every month: cleaning fee €100" in ex["site_facts"]
 
     ex = read(minAge=0, maxAge=0, freePlaces=1, facilities=dict(base["facilities"], tenant_status="any"))
-    assert ex["max_persons"] == 1 and ex["site_students_ok"] is True
+    assert ex["places_free"] == 1 and ex["site_students_ok"] is True
     assert ex["site_facts"].startswith("Tenant type: Students, working professionals · Space for 1 person")
     assert "site_max_age" not in ex and "site_min_age" not in ex and "mandatory_costs" not in ex
 
     ex = read(minAge=30, maxAge=20, freePlaces=0)                 # a maximum below the minimum is not believed
-    assert ex["site_min_age"] == 30 and "site_max_age" not in ex and "max_persons" not in ex
+    assert ex["site_min_age"] == 30 and "site_max_age" not in ex and "places_free" not in ex
 
 
 def test_description_prefers_entity_text_over_short_summary():

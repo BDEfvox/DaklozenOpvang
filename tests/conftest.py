@@ -8,15 +8,49 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+import os  # noqa: E402
+
+import hunter.config  # noqa: E402
 from hunter.config import load_config  # noqa: E402
+
+# The tests never read who is really looking: not from the environment, not from a local household.json.
+os.environ.pop("HOUSEHOLD", None)
+hunter.config.HOUSEHOLD_PATH = None
 from hunter.models import Listing  # noqa: E402
 from hunter.notify.telegram import Notifier  # noqa: E402
 from hunter.sources.base import Source  # noqa: E402
 
 
+NEUTRAL_HOUSEHOLD = {"persons": None, "occupation": None, "ages": [], "sharers": False}
+# An example household for the tests: two students who share, the younger 19 and the older 24.
+TWO_STUDENTS = {"persons": 2, "occupation": "students", "ages": [19, 24], "sharers": True}
+THREE_PEOPLE = {"name": "3 people", "persons": 3, "min_bedrooms": 3, "max_total": 2400, "great_total": 2100,
+                "min_area_if_unknown": 60}
+
+
+def neutral_config() -> Dict[str, Any]:
+    """config.json's rules with nobody in particular looking: no household, and a search for two and for three
+    people. The general rules are tested with this; the real household has its own tests (test_household.py)."""
+    c = load_config()
+    c["household"] = dict(NEUTRAL_HOUSEHOLD)
+    c["geo_lookups_per_run"] = 0      # no address lookups in tests that are not about the map
+    if not any(s["persons"] == 3 for s in c["searches"]):
+        c["searches"] = list(c["searches"]) + [dict(THREE_PEOPLE)]
+    return c
+
+
 @pytest.fixture
 def cfg() -> Dict[str, Any]:
+    c = neutral_config()
+    c["dashboard_url"] = "https://example.github.io/house-hunter/"
+    return c
+
+
+@pytest.fixture
+def household_cfg() -> Dict[str, Any]:
+    """config.json's one search for two people, with two students who share as the household."""
     c = load_config()
+    c["household"] = dict(TWO_STUDENTS)
     c["dashboard_url"] = "https://example.github.io/house-hunter/"
     return c
 

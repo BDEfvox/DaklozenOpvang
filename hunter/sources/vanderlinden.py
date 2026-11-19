@@ -83,7 +83,9 @@ def parse_page(html: str) -> List[Listing]:
             address=address,
             image_url=(BASE + src) if src and src.startswith("/") else src,
             description=clean_text(". ".join(notes)) if notes else None,
-            extra={"label": label or None},
+            # The card shows one amount for a whole home and for one place in a shared home alike: what the rent
+            # buys is known once the listing's own page has been read (apply_details).
+            extra={"label": label or None, "rent_basis_unread": True},
         ))
     return out
 
@@ -93,6 +95,8 @@ _ROOMS_RE = re.compile(r"Aantal kamers\s*(\d+)", re.I)
 _BEDS_RE = re.compile(r"Aantal slaapkamers\s*(\d+)", re.I)
 _AMOUNT = r"€\s?(\d{1,3}(?:\.\d{3})*|\d+)(?:,-|,\d{2})?"
 _SERVICE_RE = re.compile(r"servicekosten\s*:?\s*" + _AMOUNT + r"\s*(?:per\s+maand|p/m|p\.m\.|/\s*maand)", re.I)
+_BARE_RE = re.compile(r"kale\s+huur(?:prijs)?\s*:?\s*" + _AMOUNT, re.I)
+_TOTAL_RE = re.compile(r"totaal\s+maandbedrag\s*:?\s*" + _AMOUNT, re.I)
 _MONTHS = {"januari": 1, "februari": 2, "maart": 3, "april": 4, "mei": 5, "juni": 6, "juli": 7, "augustus": 8,
            "september": 9, "oktober": 10, "november": 11, "december": 12}
 # "Beschikbaar per 1 november 2026!" and "Per 15 november 2026 beschikbaar!"
@@ -139,6 +143,7 @@ def apply_details(listing: Listing, html: str) -> Listing:
     if not desc:
         raise SourceError("layout changed: vanderlinden 'Over de woning' section is empty")
     listing.description = clean_text(desc, keep_lines=True)
+    listing.extra.pop("rent_basis_unread", None)      # the page has been read: its text says what the rent buys
 
     m = _ROOMS_RE.search(page)
     if m:
@@ -165,6 +170,14 @@ def apply_details(listing: Listing, html: str) -> Listing:
         listing.extra["service_costs"] = parse_price(m.group(1))
         if not any(f and f.lower().startswith("servicekosten") for f in facts):
             facts.append(m.group(0))
+        # "Kale huurprijs: € 966 ... Servicekosten: € 195 ... Totaal maandbedrag: € 1.161": the page's own sum
+        # shows that the listed rent is the bare rent and the service costs come on top of it.
+        bare, total = _BARE_RE.search(desc), _TOTAL_RE.search(desc)
+        if bare and total and listing.price_total is not None:
+            bare_n, total_n, svc_n = parse_price(bare.group(1)), parse_price(total.group(1)), listing.extra["service_costs"]
+            if bare_n == listing.price_total and svc_n and bare_n + svc_n == total_n:
+                listing.extra["service_costs_on_top"] = True
+                listing.extra["service_costs_note"] = re.sub(r"\s+", " ", m.group(0)).strip()
     m = _AVAIL_RE.search(desc)  # "Beschikbaar per 1 november 2026!"; without a year the page gives no date
     if m:
         day, month, year = [g for g in m.groups() if g]
@@ -189,6 +202,7 @@ class VanDerLinden(Source):
     homepage = "https://www.vanderlinden.nl/woning-huren/"
     cities = ("amsterdam",)
     per_city = False
+    rent_basis_from_page = True    # "€ 966 per maand" is one place in a home for two, or a whole home
     note = "Reply via the agency (free)"
     # every listing carries the same "Inkomensrichtlijnen" block: 3.5x the rent alone, 4x together
     income_requirement = True

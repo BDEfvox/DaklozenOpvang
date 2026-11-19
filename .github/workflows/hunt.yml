@@ -252,6 +252,10 @@ jobs:
 
       - name: Hunt
         if: ${{ steps.setup.outputs.ready == 'true' && steps.next.outputs.stop != 'true' }}
+        env:
+          # Who is looking (see "household" in config.json). A secret, not a variable, and only for this step:
+          # the logs of a public repository show every variable in a step's environment; secrets are masked.
+          HOUSEHOLD: ${{ secrets.HOUSEHOLD }}
         run: |
           if [ "$DRY_RUN" = "true" ]; then
             python -m hunter run --dry-run

@@ -41,6 +41,9 @@ class Source:
     # True: this landlord/agency applies an income test to every home it lets (stated in its own
     # conditions or FAQ), whether or not the individual listing repeats it. Every listing gets the flag.
     income_requirement: bool = False
+    # True: the search page shows one amount for whole homes and for single places alike, so only the listing's
+    # own page says what the rent buys. Until that page has been read (by today's rules) the rent is not divided.
+    rent_basis_from_page: bool = False
     # The settings of this run (config.json), set by the runner before it calls fetch. None when a
     # source is used on its own, e.g. in a test: sources must work without it.
     cfg: Optional[Dict[str, Any]] = None

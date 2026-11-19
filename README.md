@@ -1,8 +1,8 @@
 # House Hunter
 
 Checks Dutch rental sites every ~10 minutes for a whole home in **Den Haag, Amsterdam, Leiden, Delft or Rotterdam**
-that fits **2 people (2+ bedrooms, up to €1,600/month)** or **3 people (3+ bedrooms, up to €2,400/month)**,
-so about €800 per person or less. New matches go to your **Telegram group**, and every match is on a
+that fits **2 people who rent together (2+ bedrooms, up to €1,600/month)**, so about €800 per person or less.
+It works out whether both can move in and what each would pay, and leaves a figure open when the listing does. New matches go to your **Telegram group**, and every match is on a
 **dashboard page**. It runs for free on **GitHub Actions**, so your computer can be off.
 
 - 🟢 **great**: €700 per person or less. 🟡 **ok**: up to €800 per person.
@@ -59,9 +59,13 @@ the tool finds in the mailbox (counts, senders, the shape of the links; no names
 
 ## Things to know
 
-- **Three people is harder than two.** A landlord often needs a permit (omzettingsvergunning)
-  to rent a normal home to 3 or more unrelated adults. That's why many listings say "max 2 personen" or "geen woningdelers".
-  The tool flags those and leaves them out of the 3-person search.
+- **Sharing is not the same as a couple.** Two friends who rent together are "woningdelers" to most landlords, and a
+  landlord often needs a permit (omzettingsvergunning) for 3 or more unrelated adults. That's why listings say "max 2
+  personen", "geen woningdelers" or "alleenstaande of stel". The tool drops the homes that refuse you outright and
+  marks the unclear ones "Sharing policy unclear": ask before you count on those.
+- **A room is not a home.** A rent "per persoon" or "per kamer" is what each of you pays; it is never halved. When a
+  listing does not settle whether its rent is for the home or for one room, the card shows the listed rent and "Rent
+  basis unclear" instead of a share.
 - **Income:** landlords usually want a gross monthly income of 3 to 4 times the rent, combined. Some count a second earner
   for only 50%. Students often need a guarantor (garantsteller).
 - **Utilities:** listed rent usually excludes gas, water, electricity and internet. Add roughly €150–250 a month for the household.
@@ -178,7 +182,7 @@ command, then `./telegram-relay/deploy.sh` again.
 
 ## The dashboard filters
 
-- **Group size:** 2 People, 3 People or Any.
+- **Group size:** 2 People, 3 People or Any (not shown when only one search is set up).
 - **Cities** and **Maximum per Person**.
 - **Your Age:** hides homes with an age limit you don't meet.
 - **What the Listing Says:** one line for each thing the tool reads from a listing, with how many listings say
@@ -191,10 +195,14 @@ command, then `./telegram-relay/deploy.sh` again.
   No House Sharers, Sharers Welcome, Shared with Housemates, Limit on People · Utilities Included, Service Costs
   on Top, Compulsory Extra Costs, Rent per Person, Rent Depends on Month or Group, Price Dropped · Furnished,
   Short-Term Only, No Registration, Income Requirement · Any Warning, Suspiciously Cheap, Possible Scam, Bedrooms
-  Not Confirmed, Price Unknown.
+  Not Confirmed, Price Unknown. Also: Sharing Policy Unclear, Room or Shared Place, Rent Unclear.
 
   Examples: as students, press Hide on "No Students" and on "Working People Only". To see only homes that say
   sharers are welcome, press Only on "Sharers Welcome".
+- **Hide Listing** (on each card) removes a home for good on that device; **Undo** appears for a few seconds, and
+  **Hidden Homes** at the end of the filters brings homes back.
+- **Map:** switch List | Map. **Search This Area** keeps only the homes inside the part of the map you see (chip
+  "Map Area"). Homes without a known location are in the list but not on the map.
 - **Filters in use** stand above the list. Tap one to remove just that filter, or "Clear All".
 
 These filters only act on what a listing actually states. A home that says nothing about students, age or
@@ -214,9 +222,15 @@ Edit `config.json` and push (or edit it on github.com: open the file and click t
 - `disabled_sources`: e.g. `["marktplaats"]` to stop a site.
 - `reply_template`: your reply text. Fill in the parts in [brackets]. (Telegram alerts use this one; the
   dashboard uses it until you write your own there.)
-- `household`: optional, e.g. `{"age": 24, "occupation": "students"}` (or `"working"`). When set, homes that
-  state they are not for you (students only, a minimum age above yours, …) are not alerted at all. Leave it empty
-  to get everything and filter on the dashboard.
+- `household`: who is looking, e.g. `{"persons": 2, "occupation": "students", "ages": [24, 25], "sharers": true}`
+  (`"working"` for working people; `sharers` is false for a couple). Homes that state they are not for you (no
+  students, working people only, a minimum age above the youngest, no house sharers, …) are dropped; a home that
+  says nothing or says it unclearly always stays. This repository is public: to keep your details out of it, leave
+  the block in `config.json` as it is and put the same JSON in the repository secret `HOUSEHOLD` (GitHub:
+  Settings → Secrets and variables → Actions → Secrets; not a variable, those show in the public run logs) and, for runs on your Mac, in a file `household.json`
+  next to `config.json` (git ignores it). A run without it, after runs that had it, logs a `[household]` line and
+  alerts only homes it sees for the first time.
+- `geo_lookups_per_run`: address lookups for the map per run (free, PDOK). 0 switches them off.
 - `tenant_rules`: optional extra wordings for the who-may-rent flags, for a phrase the tool misses.
 - `telegram.quiet_hours`: messages between 23:00 and 07:00 arrive silently.
 

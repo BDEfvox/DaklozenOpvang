@@ -65,7 +65,7 @@ function settle() {
 }
 
 // `saved` is the filter state left in localStorage by an earlier visit.
-function dashboard(responses, saved, storage) {
+function dashboard(responses, saved, storage, extra) {
   var elements = {}, intervals = {}, timeouts = [], calls = [], copied = [], stored = {};
   if (saved) stored["househunter.filters.v1"] = JSON.stringify(saved);
   Object.keys(storage || {}).forEach(function (key) { stored[key] = storage[key]; });
@@ -109,6 +109,7 @@ function dashboard(responses, saved, storage) {
     setTimeout: function (callback) { timeouts.push(callback); return timeouts.length; },
     clearTimeout: function (id) { if (id) timeouts[id - 1] = function () {}; }
   };
+  Object.keys(extra || {}).forEach(function (key) { window[key] = extra[key]; });   // e.g. a fake Leaflet as window.L
   window.window = window;
   vm.runInNewContext(script, window, { filename: "docs/app.js" });
   return {
@@ -144,7 +145,12 @@ function dashboard(responses, saved, storage) {
     // The filters in use above the list, as text; `remove(i)` presses the i-th chip.
     used: function () { return chips(document.getElementById).map(function (b) { return b.textContent; }); },
     remove: function (i) { chips(document.getElementById)[i].fire("click"); },
-    click: function (id) { document.getElementById(id).fire("click"); }
+    click: function (id) { document.getElementById(id).fire("click"); },
+    // List | Map
+    mode: function (value) {
+      ["list", "map"].forEach(function (v) { document.getElementById("view-" + v).checked = v === value; });
+      document.getElementById("view-" + value).fire("change");
+    }
   };
 }
 
@@ -335,7 +341,7 @@ var checks = [
   check("copy reply uses title when the address is absent", async function () {
     var view = dashboard([["data.json", payload([home("Canal home", [match(2, 500)])])]]);
     await settle();
-    var button = descendants(view.get("listings"), function (node) { return node.tagName === "button"; })[0];
+    var button = byClass(view, "copy")[0];
     button.fire("click");
     await settle();
     assert.deepStrictEqual(view.copied, ["Interested in Canal home."]);
@@ -343,14 +349,14 @@ var checks = [
     view.timeouts[0]();
     assert.strictEqual(button.textContent, "Copy Reply");
   }),
-  check("singular bedroom and room labels", async function () {
+  check("singular bedroom label, and the number of rooms is not shown", async function () {
     var listing = home("One of each", [match(2, 500)]);
     listing.bedrooms = 1;
     listing.rooms = 1;
     var view = dashboard([["data.json", payload([listing])]]);
     await settle();
     var facts = descendants(view.get("listings"), function (node) { return node.className === "facts"; });
-    assert.strictEqual(facts[0].textContent, "1 bedroom · 1 room");
+    assert.strictEqual(facts[0].textContent, "1 bedroom");
   }),
   check("refresh without a newer save leaves the cards on screen in place", async function () {
     var same = payload([home("Still here", [match(2, 500)])], recent);
@@ -478,8 +484,11 @@ var checks = [
     data.flag_labels = { max_persons: "Max {n} persons", sharers_ok: "Sharers welcome" };
     var view = dashboard([["data.json", data]]);
     await settle();
-    assert.strictEqual(byClass(view, "facts")[0].textContent, "€1.000 per month excl. utilities · 1 Mar to 10 Jan 2027");
-    assert.deepStrictEqual(byClass(view, "warn").map(function (node) { return node.textContent; }), ["no students", "Max 2 persons"]);
+    assert.strictEqual(byClass(view, "facts")[0].textContent, "1 Mar to 10 Jan 2027");
+    assert.strictEqual(byClass(view, "pp")[0].textContent, "€500 excl.2 people");   // no search list in this data: the group is named
+    // a limit on people is a plain fact, not a warning
+    assert.deepStrictEqual(byClass(view, "warn").map(function (node) { return node.textContent; }), ["no students"]);
+    assert.deepStrictEqual(byClass(view, "req").map(function (node) { return node.textContent; }), ["Max 2 persons"]);
     assert.deepStrictEqual(byClass(view, "good").map(function (node) { return node.textContent; }), ["Sharers welcome"]);
     assert.strictEqual(byClass(view, "notes")[0].textContent, "income requirement");
   }),
@@ -606,17 +615,17 @@ var checks = [
     await settle();
     var rows = attrRowsShown(view), count = {};
     rows.forEach(function (r) { count[r[0]] = r[1]; });
-    assert.strictEqual(rows.length, 26);
+    assert.strictEqual(rows.length, 31);
     assert.deepStrictEqual(rows.filter(function (r) { return r[1] !== "0"; }), [["Students Welcome", "2"], ["Limit on People", "1"],
-      ["Service Costs on Top", "1"], ["Rent Depends on Month or Group", "1"], ["Price Dropped", "1"], ["Furnished", "1"],
-      ["Any Warning", "1"]]);
+      ["Service Costs on Top", "1"], ["Rent Depends on Month or Group", "1"], ["Price Dropped", "1"], ["Furnished", "1"]]);
+    assert.strictEqual(count["Any Warning"], "0");                   // a limit on people is a fact, not a warning
     assert.strictEqual(count["No House Sharers"], "0");
     view.attr("no_sharers", "hide");                                 // set before any listing says it
     assert.deepStrictEqual(titles(view), ["A", "B", "C"]);
     await view.tick(refreshInterval);                                // a new listing says it: it never shows
     assert.deepStrictEqual(titles(view), ["A"]);
     rows = attrRowsShown(view);
-    assert.strictEqual(rows.length, 26);
+    assert.strictEqual(rows.length, 31);
     assert.deepStrictEqual(rows.filter(function (r) { return r[1] !== "0"; }), [["No House Sharers", "1"], ["Service Costs on Top", "1"],
       ["Any Warning", "1"]]);
   }),
@@ -793,6 +802,576 @@ var checks = [
     assert.strictEqual(view.get("status-dot").className, "dot bad");
   })
 ];
+
+
+// ---------- New cards, hiding, the map ----------
+var ONE = [{ name: "2 people", persons: 2 }];
+function oneSearch(listings, more) { return Object.assign(payload(listings), { searches: ONE }, more || {}); }
+function priced(title, pp, extra) {
+  return Object.assign(home(title, [match(2, pp)]), extra || {});
+}
+function ppTexts(view) { return byClass(view, "pp").map(function (node) { return node.textContent; }); }
+function hideButtons(view) { return byClass(view, "hide"); }
+var STORE_HIDDEN = "househunter.hidden.v1";
+
+// A small stand-in for Leaflet: it records what the map code asks for and lets a check move the map and click markers.
+function fakeLeaflet() {
+  var seen = { maps: [], markers: [], tiles: [] };
+  var L = {
+    map: function (node, options) {
+      var handlers = {}, map = { options: options, bounds: { s: 51, w: 4, n: 53, e: 6 }, views: [], fits: [] };
+      map.on = function (event, fn) { (handlers[event] || (handlers[event] = [])).push(fn); return map; };
+      map.fire = function (event) { (handlers[event] || []).forEach(function (fn) { fn(); }); };
+      map.setView = function (centre, zoom, o) { map.views.push([centre, zoom, o]); map.fire("moveend"); return map; };
+      map.fitBounds = function (points, o) { map.fits.push([points, o]); map.fire("moveend"); return map; };
+      map.getZoom = function () { return 7; };
+      map.invalidateSize = function () { map.fire("moveend"); };
+      map.remove = function () {};
+      map.getBounds = function () {
+        return { getSouth: function () { return map.bounds.s; }, getWest: function () { return map.bounds.w; },
+          getNorth: function () { return map.bounds.n; }, getEast: function () { return map.bounds.e; } };
+      };
+      seen.maps.push(map);
+      return map;
+    },
+    tileLayer: function (url, options) {
+      var layer = { url: url, options: options, addTo: function () { return layer; } };
+      seen.tiles.push(layer);
+      return layer;
+    },
+    divIcon: function (options) { return options; },
+    marker: function (latlng, options) {
+      var click = null, marker = { latlng: latlng, options: options, icon: options.icon, z: 0 };
+      marker.on = function (event, fn) { if (event === "click") click = fn; return marker; };
+      marker.addTo = function () { seen.markers.push(marker); return marker; };
+      marker.remove = function () { seen.markers.splice(seen.markers.indexOf(marker), 1); };
+      marker.setIcon = function (icon) { marker.icon = icon; };
+      marker.setLatLng = function (ll) { marker.latlng = ll; };
+      marker.setZIndexOffset = function (z) { marker.z = z; };
+      marker.click = function () { click(); };
+      return marker;
+    }
+  };
+  seen.L = L;
+  return seen;
+}
+function located(title, pp, lat, lon, extra) {
+  return Object.assign(priced(title, pp, { lat: lat, lon: lon, geo: "address", uid: "u-" + title, home_key: "hk-" + title }), extra || {});
+}
+function pins(seen) { return seen.markers.map(function (m) { return m.icon.html.textContent; }); }
+function pillClass(marker) { return marker.icon.html.className; }
+
+checks.push(
+  check("the words the page itself holds: the bar after hiding, the map messages", async function () {
+    var html = fs.readFileSync(path.join(__dirname, "../docs/index.html"), "utf8");
+    ["Listing hidden", ">Undo<", "Search This Area", "The map could not be loaded", "Hidden Homes", "Show All Again", ">List<", ">Map<",
+      "Prices are per person per month"].forEach(function (text) { assert.ok(html.includes(text), text); });
+    assert.ok(!html.includes("innerHTML"));
+    var script = fs.readFileSync(path.join(__dirname, "../docs/app.js"), "utf8");
+    assert.ok(!/innerHTML|insertAdjacentHTML/.test(script.replace(/never innerHTML/, "")), "no innerHTML in app.js");
+  }),
+  check("a mark's class never collides with another style of the page", async function () {
+    // "check" is the tick of a chosen city, which is invisible until chosen: a mark with that class did not show.
+    var css = fs.readFileSync(path.join(__dirname, "../docs/style.css"), "utf8");
+    var script = fs.readFileSync(path.join(__dirname, "../docs/app.js"), "utf8");
+    var marks = /var MARKS = \{([^}]*)\}/.exec(script)[1].match(/\["([a-z]+)", "i-[a-z]+"\]/g).map(function (m) { return /"([a-z]+)"/.exec(m)[1]; });
+    assert.deepStrictEqual(marks, ["warn", "good", "req", "ask"]);
+    marks.forEach(function (name) {
+      var alone = new RegExp("(^|[},\\s])\\." + name + "\\s*[{,]", "m");
+      assert.ok(!alone.test(css), "." + name + " is styled on its own in style.css");
+    });
+  }),
+  check("the card keeps what to review; plain facts and the listing's sentences are under Details", async function () {
+    var data = oneSearch([
+      Object.assign(priced("Review", 700), {
+        flags: ["no_registration", "sharing_unclear", "sharers_ok", "income_requirement", "service_costs:85"],
+        evidence: { sharing_unclear: "Geschikt voor een alleenstaande of stel.", service_costs: "Servicekosten € 85 per maand" }
+      }),
+      priced("Bare", 710)
+    ], {
+      flag_labels: { no_registration: "No registration possible", sharing_unclear: "Sharing policy unclear", sharers_ok: "Sharers welcome",
+        income_requirement: "Income requirement", service_costs: "Plus €{n} service costs a month" },
+      flag_kinds: { no_registration: "warn", sharing_unclear: "check", sharers_ok: "good", income_requirement: "info", service_costs: "info" }
+    });
+    var view = dashboard([["data.json", data]]);
+    await settle();
+    var details = descendants(view.get("listings"), function (n) { return n.tagName === "details"; });
+    assert.strictEqual(details.length, 1);                               // a card with nothing more to say has no "Details"
+    assert.strictEqual(details[0].children[0].tagName, "summary");
+    assert.strictEqual(details[0].children[0].textContent, "Details");
+    function inside(name) {
+      return descendants(details[0], function (n) { return String(n.className || "").split(" ").indexOf(name) >= 0; })
+        .map(function (n) { return n.textContent; });
+    }
+    assert.deepStrictEqual(inside("req"), ["Income requirement", "Plus €85 service costs a month"]);
+    assert.deepStrictEqual(inside("quote"), ["“Geschikt voor een alleenstaande of stel.”", "“Servicekosten € 85 per maand”"]);
+    assert.deepStrictEqual(inside("warn").concat(inside("ask"), inside("good")), []);
+    function onCard(name) { return byClass(view, name).map(function (n) { return n.textContent; }); }
+    assert.deepStrictEqual(onCard("warn"), ["No registration possible"]);
+    assert.deepStrictEqual(onCard("ask"), ["Sharing policy unclear"]);
+    assert.deepStrictEqual(onCard("good"), ["Sharers welcome"]);
+  }),
+  check("a listing from an alert email is named without the site", async function () {
+    var view = dashboard([["data.json", oneSearch([
+      Object.assign(priced("Pararius: Maria Snelplantsoen", 700), { source: "email_alerts", source_label: "Email alerts" }),
+      Object.assign(priced("Vesteda: Daltonstraat 4", 710), { source: "vesteda", source_label: "Vesteda" }),
+      Object.assign(priced("Te huur: ruim appartement", 720), { source: "kamernet", source_label: "Kamernet" })
+    ])]]);
+    await settle();
+    assert.deepStrictEqual(titles(view), ["Maria Snelplantsoen", "Daltonstraat 4", "Te huur: ruim appartement"]);
+  }),
+  check("the price each person pays leads, as a short label", async function () {
+    var view = dashboard([["data.json", oneSearch([
+      Object.assign(priced("Incl", 750), { price_includes_utilities: true }),
+      Object.assign(priced("Excl", 750), { price_includes_utilities: false }),
+      Object.assign(priced("Plain", 750), { price_includes_utilities: null }),
+      Object.assign(home("Listed", [match(2, null)]), { price_total: 1700, price_includes_utilities: true }),
+      home("Nothing", [match(2, null)])
+    ])]]);
+    await settle();
+    assert.deepStrictEqual(titles(view), ["Incl", "Excl", "Plain", "Listed", "Nothing"]);
+    assert.deepStrictEqual(ppTexts(view), ["€750 incl.", "€750 excl.", "€750", "€1.700 listed", "Price unknown"]);
+    assert.ok(!view.get("listings").textContent.includes("per person"));
+    assert.ok(!view.get("listings").textContent.includes("per month"));
+    // The pipeline's own decision wins: service costs on top make it "excl." even when utilities are included, and
+    // a rent for one place (Cruquiusweg 85: € 967 bare rent, € 195 service costs) is shown as it is, never halved.
+    var decided = dashboard([["data.json", oneSearch([
+      Object.assign(priced("Costs on top", 650), { price_includes_utilities: true, price_basis: "excl" }),
+      Object.assign(priced("Not said", 700), { price_includes_utilities: true, price_basis: null }),
+      Object.assign(home("One place", [Object.assign(match(2, 967), { extra_pp: 195 })]),
+        { price_total: 967, price_basis: "excl", rent_basis: "place", flags: ["price_per_person", "service_costs:195"] })
+    ])]]);
+    await settle();
+    assert.deepStrictEqual(ppTexts(decided), ["€650 excl.", "€700", "€967 excl."]);
+    assert.ok(!decided.get("listings").textContent.includes("€483") && !decided.get("listings").textContent.includes("€484"));
+    // the green tag stays
+    var great = oneSearch([Object.assign(home("Cheap", [match(2, 450, "great")]), { price_includes_utilities: true })]);
+    view = dashboard([["data.json", great]]);
+    await settle();
+    assert.deepStrictEqual(byClass(view, "tier").map(function (n) { return n.textContent; }), ["Great price"]);
+    assert.strictEqual(ppTexts(view)[0], "€450 incl.Great price");
+  }),
+  check("the facts line holds only bedrooms, size, term and Furnished, and leaves out what is missing", async function () {
+    function facts(extra) {
+      var l = priced("Home", 500, extra);
+      return l;
+    }
+    var view = dashboard([["data.json", oneSearch([
+      facts({ bedrooms: 2, area_m2: 78, available_from: "2026-12-01", furnished: "furnished", price_total: 1000, rooms: 4 }),
+      facts({ bedrooms: 1, available_from: "2025-12-01" }),
+      facts({ area_m2: 40, available_from: "2026-12-20", available_until: "2026-12-31", furnished: "upholstered" }),
+      facts({ available_until: "2026-11-30" }),
+      facts({ furnished: "unfurnished" })
+    ])]]);
+    await settle();
+    var lines = byClass(view, "facts").map(function (node) { return node.textContent; });
+    assert.deepStrictEqual(lines, ["2 bedrooms · 78 m² · from 1 Dec · Furnished", "1 bedroom · now", "40 m² · 20 Dec to 31 Dec", "until 30 Nov"]);
+    assert.strictEqual(byClass(view, "facts").length, 4);                 // the last home has nothing to say: no empty line
+    var text = view.get("listings").textContent;
+    assert.ok(!text.includes("Original source") && !text.includes("ago") && !text.includes("per month"), text);
+  }),
+  check("one search: no source name, no group size anywhere; several searches keep it", async function () {
+    var l = priced("Home", 600, { source_label: "Kamernet", source: "kamernet" });
+    var view = dashboard([["data.json", oneSearch([l])]], { cities: [], group: "3", maxpp: 800, q: "", sort: "newest" });
+    await settle();
+    var text = view.get("listings").textContent;
+    assert.ok(!text.includes("Kamernet") && !text.includes("people") && !text.includes("person"), text);
+    assert.strictEqual(view.get("group-fieldset").hidden, true);
+    assert.deepStrictEqual(titles(view), ["Home"]);                       // an old saved group size hides nothing
+    assert.deepStrictEqual(view.used(), []);
+    assert.strictEqual(view.get("filter-count").hidden, true);
+    assert.strictEqual(byClass(view, "meta").length, 0);
+    assert.strictEqual(byClass(view, "out").length, 0);                   // the arrow icon is gone
+    // the whole card still opens the listing
+    var withUrl = priced("Linked", 600, { url: "https://example.com/a" });
+    view = dashboard([["data.json", oneSearch([withUrl])]]);
+    await settle();
+    var links = byClass(view, "link");
+    assert.strictEqual(links.length, 1);
+    assert.strictEqual(links[0].attributes.href, "https://example.com/a");
+    assert.strictEqual(links[0].attributes.target, "_blank");
+    // two searches: today's behaviour
+    var two = Object.assign(payload([home("Both", [match(2, 500), match(3, 400)])]),
+      { searches: [{ name: "2 people", persons: 2 }, { name: "3 people", persons: 3 }] });
+    view = dashboard([["data.json", two]]);
+    await settle();
+    assert.strictEqual(view.get("group-fieldset").hidden, false);
+    assert.ok(view.get("listings").textContent.includes("3 people"));
+    assert.ok(view.get("listings").textContent.includes("2 people"));
+    view.group("2");
+    assert.deepStrictEqual(view.used(), ["2 People"]);
+  }),
+  check("flag_kinds decides what a mark is; unknown kinds fall back to the built-in lists", async function () {
+    var l = priced("Marked", 500, {
+      flags: ["max_persons:2", "sharing_unclear", "students_ok", "no_students", "made_up", "price_per_person", "scam_signals"],
+      evidence: { sharing_unclear: "Delen met anderen: in overleg" }
+    });
+    var data = oneSearch([l], {
+      flag_labels: { max_persons: "Up to {n} people", sharing_unclear: "Sharing policy unclear", students_ok: "Students welcome", no_students: "No students" },
+      flag_kinds: { max_persons: "info", sharing_unclear: "check", students_ok: "warn", price_per_person: "nonsense", scam_signals: 7 }
+    });
+    var view = dashboard([["data.json", data]]);
+    await settle();
+    function texts(name) { return byClass(view, name).map(function (n) { return n.textContent; }); }
+    assert.deepStrictEqual(texts("ask"), ["Sharing policy unclear"]);
+    assert.deepStrictEqual(texts("req"), ["Up to 2 people", "price per person"]);   // "info" and the old list
+    assert.deepStrictEqual(texts("warn"), ["Students welcome", "No students", "scam signals"]);
+    assert.deepStrictEqual(texts("good"), []);
+    assert.deepStrictEqual(texts("notes"), ["made up"]);
+    var mark = byClass(view, "ask")[0];
+    var use = descendants(mark, function (n) { return n.tagName === "use"; })[0];
+    assert.strictEqual(use.attributes.href, "#i-help");                       // its own question-mark symbol
+    assert.deepStrictEqual(texts("quote"), ["“Delen met anderen: in overleg”"]);
+    // without flag_kinds the lists decide, as before
+    view = dashboard([["data.json", oneSearch([Object.assign({}, l, { flags: ["max_persons:2", "sharing_unclear"] })])]]);
+    await settle();
+    assert.deepStrictEqual(byClass(view, "warn").length, 0);          // "Up to 2 people" is a plain fact there too
+    assert.deepStrictEqual(byClass(view, "req").length, 1);
+    assert.deepStrictEqual(byClass(view, "ask").length, 0);
+  }),
+  check("the filters for unclear sharing, a room or shared place, and unclear rent", async function () {
+    var view = dashboard([["data.json", oneSearch([
+      priced("Sharing?", 500, { flags: ["sharing_unclear"] }), priced("Room", 500, { rent_basis: "place" }),
+      priced("Whole home", 500, { rent_basis: "home" }), home("Rent?", [match(2, null), match(3, null)]),
+      priced("Unknown basis", 500, { rent_basis: null })
+    ])]]);
+    await settle();
+    var rows = {};
+    attrRowsShown(view).forEach(function (r) { rows[r[0]] = r[1]; });
+    assert.deepStrictEqual([rows["Sharing Policy Unclear"], rows["Room or Shared Place"], rows["Rent Unclear"]], ["1", "1", "1"]);
+    view.attr("sharing_unclear", "only"); assert.deepStrictEqual(titles(view), ["Sharing?"]); view.attr("sharing_unclear", "only");
+    view.attr("place_only", "only"); assert.deepStrictEqual(titles(view), ["Room"]); view.attr("place_only", "only");
+    view.attr("rent_unclear", "only"); assert.deepStrictEqual(titles(view), ["Rent?"]);
+    view.attr("rent_unclear", "hide"); assert.strictEqual(titles(view).length, 4);
+  }),
+  check("hiding a home: gone at once, counted, Undo brings it back, the bar goes after six seconds", async function () {
+    var view = dashboard([["data.json", oneSearch([
+      located("Alpha", 500, 52.0, 5.0), located("Beta", 600, 52.1, 5.1), located("Gamma", 700, 52.2, 5.2)
+    ])]]);
+    await settle();
+    assert.strictEqual(view.get("count").textContent, "3 listings");
+    assert.strictEqual(view.get("hidden-fieldset").hidden, true);
+    assert.strictEqual(view.get("toast").hidden, true);
+    hideButtons(view)[0].fire("click");
+    assert.deepStrictEqual(titles(view), ["Beta", "Gamma"]);
+    assert.strictEqual(view.get("count").textContent, "2 listings");     // hidden homes are not counted
+    assert.strictEqual(view.get("toast").hidden, false);
+    assert.strictEqual(view.get("hidden-fieldset").hidden, false);
+    assert.strictEqual(view.get("hidden-count").textContent, "1");
+    var saved = JSON.parse(view.stored[STORE_HIDDEN]);
+    assert.deepStrictEqual(Object.keys(saved), ["hk-Alpha"]);
+    assert.deepStrictEqual(saved["hk-Alpha"], { t: "Alpha", a: "", at: new Date(now).toISOString(), u: "u-Alpha" });
+    view.change("search", "gam", "input");
+    assert.strictEqual(view.get("count").textContent, "1 of 2 listings"); // "of" counts only homes that are not hidden
+    view.change("search", "", "input");
+    view.click("toast-undo");
+    assert.deepStrictEqual(titles(view), ["Alpha", "Beta", "Gamma"]);
+    assert.strictEqual(view.get("toast").hidden, true);
+    assert.deepStrictEqual(JSON.parse(view.stored[STORE_HIDDEN]), {});
+    assert.strictEqual(view.get("hidden-fieldset").hidden, true);
+    hideButtons(view)[1].fire("click");
+    assert.deepStrictEqual(titles(view), ["Alpha", "Gamma"]);
+    view.timeouts[view.timeouts.length - 1]();                            // six seconds later
+    assert.strictEqual(view.get("toast").hidden, true);
+    assert.strictEqual(hideButtons(view)[0].textContent, "Hide Listing");
+    assert.strictEqual(hideButtons(view)[0].attributes["aria-label"], "Hide Listing: Alpha");
+  }),
+  check("a hidden home stays hidden: after a data refresh (also with a new uid), and in a new session", async function () {
+    var first = oneSearch([located("Alpha", 500, 52.0, 5.0), located("Beta", 600, 52.1, 5.1)], {});
+    first.last_run = old;
+    var again = JSON.parse(JSON.stringify(first)); again.last_run = recent;
+    var moved = JSON.parse(JSON.stringify(first)); moved.last_run = fresh;
+    moved.listings[0].uid = "other-site:123";                              // found again on another site: same home_key
+    moved.listings[0].url = "https://example.com/other";
+    var view = dashboard([["data.json", first], ["data.json", again], ["data.json", moved]]);
+    await settle();
+    hideButtons(view)[0].fire("click");
+    assert.deepStrictEqual(titles(view), ["Beta"]);
+    await view.tick(refreshInterval);
+    assert.deepStrictEqual(titles(view), ["Beta"]);
+    assert.strictEqual(view.get("count").textContent, "1 listing");
+    await view.tick(refreshInterval);
+    assert.deepStrictEqual(titles(view), ["Beta"]);
+    assert.strictEqual(view.get("hidden-count").textContent, "1");
+    var next = dashboard([["data.json", first]], null, { [STORE_HIDDEN]: view.stored[STORE_HIDDEN] });
+    await settle();
+    assert.deepStrictEqual(titles(next), ["Beta"]);
+    assert.strictEqual(next.get("hidden-fieldset").hidden, false);
+    // The key changes while the listing stays the same one: first only the street was known ("u:" + its id), then
+    // its page gave the house number and with it a key of its own. The listing's id still finds the hidden home.
+    var street = oneSearch([priced("Street", 500, { uid: "dw:9", home_key: "u:dw:9" }), priced("Stay", 510, { uid: "dw:10", home_key: "u:dw:10" })]);
+    street.last_run = old;
+    var numbered = JSON.parse(JSON.stringify(street)); numbered.last_run = recent;
+    numbered.listings[0].home_key = "a:den-haag:escamplaan:12";
+    var rekeyed = dashboard([["data.json", street], ["data.json", numbered]]);
+    await settle();
+    hideButtons(rekeyed)[0].fire("click");
+    assert.deepStrictEqual(titles(rekeyed), ["Stay"]);
+    await rekeyed.tick(refreshInterval);
+    assert.deepStrictEqual(titles(rekeyed), ["Stay"]);                    // still hidden under its new key
+    assert.strictEqual(rekeyed.get("hidden-count").textContent, "1");
+    // a home with no home_key is hidden by its uid
+    var plain = priced("Plain", 500, { uid: "x1" });
+    var third = dashboard([["data.json", oneSearch([plain, priced("Other", 500, { uid: "x2" })])]]);
+    await settle();
+    hideButtons(third)[0].fire("click");
+    assert.deepStrictEqual(Object.keys(JSON.parse(third.stored[STORE_HIDDEN])), ["x1"]);
+  }),
+  check("Hidden Homes: the list of them, Show Again, Show All Again", async function () {
+    var a = located("Alpha", 500, 52.0, 5.0, { address: "Canal 1" });
+    var view = dashboard([["data.json", oneSearch([a, located("Beta", 600, 52.1, 5.1), located("Gamma", 700, 52.2, 5.2)])]]);
+    await settle();
+    hideButtons(view)[0].fire("click");
+    view.advance(1000);
+    hideButtons(view)[0].fire("click");
+    assert.deepStrictEqual(titles(view), ["Gamma"]);
+    view.click("open-hidden");
+    assert.strictEqual(view.get("hidden-sheet").attributes.open, "");
+    var rowsShown = view.get("hidden-list").children;
+    assert.deepStrictEqual(rowsShown.map(function (r) { return r.textContent; }), ["BetaShow Again", "AlphaCanal 1Show Again"]);   // newest first
+    descendants(rowsShown[1], function (n) { return n.tagName === "button"; })[0].fire("click");   // Alpha
+    assert.deepStrictEqual(titles(view), ["Alpha", "Gamma"]);
+    assert.strictEqual(view.get("hidden-count").textContent, "1");
+    assert.strictEqual(view.get("hidden-list").children.length, 1);
+    hideButtons(view)[0].fire("click");
+    view.click("hidden-all");
+    assert.deepStrictEqual(titles(view), ["Alpha", "Beta", "Gamma"]);
+    assert.strictEqual(view.get("hidden-fieldset").hidden, true);
+    assert.deepStrictEqual(JSON.parse(view.stored[STORE_HIDDEN]), {});
+    assert.strictEqual(view.get("hidden-sheet").attributes.open, undefined);   // nothing left to show: the sheet closes
+  }),
+  check("a broken or missing stored value hides nothing; old keys of gone homes are dropped after 60 days", async function () {
+    var listings = [located("Alpha", 500, 52.0, 5.0), located("Beta", 600, 52.1, 5.1)];
+    var broken = ["{nope", "[1,2]", "\"text\"", "{\"hk-Alpha\":5}", "null", ""];
+    for (var i = 0; i < broken.length; i++) {
+      var view = dashboard([["data.json", oneSearch(listings)]], null, { [STORE_HIDDEN]: broken[i] });
+      await settle();
+      assert.deepStrictEqual(titles(view), ["Alpha", "Beta"], broken[i]);
+      assert.strictEqual(view.get("hidden-fieldset").hidden, true);
+    }
+    var kept = dashboard([["data.json", oneSearch(listings)]], null, { [STORE_HIDDEN]: JSON.stringify({
+      "hk-Alpha": { t: "Alpha", a: "", at: "2025-01-01T00:00:00Z" },       // old, but still in the data: stays
+      "gone-old": { t: "Old", a: "", at: "2025-10-01T00:00:00Z" },          // 92 days: dropped
+      "gone-new": { t: "New", a: "Dam 1", at: "2025-12-20T00:00:00Z" },     // 12 days: kept
+      "gone-odd": { t: "Odd", a: "", at: "yesterday" }                      // no readable time: dropped
+    }) });
+    await settle();
+    assert.deepStrictEqual(Object.keys(JSON.parse(kept.stored[STORE_HIDDEN])).sort(), ["gone-new", "hk-Alpha"]);
+    assert.deepStrictEqual(titles(kept), ["Beta"]);
+    assert.strictEqual(kept.get("hidden-count").textContent, "2");
+  }),
+  check("the map: one marker per located listing, a label for each, markers on one point do not cover each other", async function () {
+    var seen = fakeLeaflet();
+    var view = dashboard([["data.json", oneSearch([
+      located("Alpha", 750, 52.0, 5.0, { bedrooms: 2, address: "Sneeuwbalstraat 48" }),
+      located("Same point", 780, 52.0, 5.0),
+      located("Third", 700, 52.0, 5.0, { geo: "postcode" }),
+      located("Beta", 600, 52.5, 5.5),
+      Object.assign(home("Gamma no price", [match(2, null)]), { lat: 52.3, lon: 5.3, uid: "g", home_key: "g" }),
+      home("Nowhere", [match(2, 500)])
+    ])]], null, null, { L: seen.L });
+    await settle();
+    assert.strictEqual(seen.maps.length, 0);                              // nothing is loaded for the list
+    assert.strictEqual(view.get("map-pane").hidden, true);
+    view.mode("map");
+    assert.strictEqual(view.get("map-pane").hidden, false);
+    assert.strictEqual(seen.maps.length, 1);
+    var map = seen.maps[0];
+    assert.strictEqual(seen.tiles[0].url, "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0/standaard/EPSG:3857/{z}/{x}/{y}.png");
+    assert.strictEqual(seen.tiles[0].options.maxZoom, 19);
+    assert.ok(seen.tiles[0].options.attribution.includes("Kaartgegevens © Kadaster") && seen.tiles[0].options.attribution.includes("https://www.pdok.nl"));
+    assert.strictEqual(seen.markers.length, 5);                            // not the home without a location
+    assert.deepStrictEqual(pins(seen).sort(), ["?", "€600", "€700", "€750", "€780"]);
+    assert.strictEqual(map.fits.length, 1);                                // it opens fitted to the markers
+    assert.strictEqual(view.get("search-area").hidden, true);              // fitting is not the user moving the map
+    assert.strictEqual(view.get("map-note").textContent, "1 listing has no known location and is not on the map");
+    assert.strictEqual(view.get("map-note").hidden, false);
+    var first = seen.markers.filter(function (m) { return m.options.title.indexOf("Sneeuwbalstraat 48") >= 0; })[0];
+    assert.strictEqual(first.options.title, "€750, 2 bedrooms, Sneeuwbalstraat 48");
+    assert.strictEqual(first.options.keyboard, true);
+    var anchors = seen.markers.filter(function (m) { return m.latlng[0] === 52.0; }).map(function (m) { return JSON.stringify(m.icon.iconAnchor); });
+    assert.strictEqual(anchors.length, 3);
+    assert.strictEqual(new Set(anchors).size, 3, anchors.join(" "));        // fanned out: all three can be reached
+    var approx = seen.markers.filter(function (m) { return m.options.title.indexOf("approximate location") >= 0; });
+    assert.strictEqual(approx.length, 1);
+    assert.ok(pillClass(approx[0]).indexOf("approx") >= 0);
+  }),
+  check("Search This Area: moving the map offers it, pressing it filters list and count, the chip removes it", async function () {
+    var seen = fakeLeaflet();
+    var view = dashboard([["data.json", oneSearch([
+      located("Inside A", 500, 52.0, 5.0), located("Inside B", 600, 52.05, 5.05), located("Edge", 650, 52.1, 5.1),
+      located("Outside", 700, 53.5, 6.5), home("No place", [match(2, 400)])
+    ])]], null, null, { L: seen.L });
+    await settle();
+    view.mode("map");
+    var map = seen.maps[0];
+    assert.strictEqual(view.get("search-area").hidden, true);
+    map.bounds = { s: 51.9, w: 4.9, n: 52.1, e: 5.1 };                     // the user moves the map; its edges count as inside
+    map.fire("moveend");
+    assert.strictEqual(view.get("search-area").hidden, false);
+    assert.strictEqual(titles(view).length, 5);                            // nothing changes until it is pressed
+    view.click("search-area");
+    assert.deepStrictEqual(titles(view).sort(), ["Edge", "Inside A", "Inside B"]);   // listings without a place are not inside
+    assert.strictEqual(view.get("count").textContent, "3 of 5 listings");
+    assert.deepStrictEqual(view.used(), ["Map Area"]);
+    assert.strictEqual(view.get("search-area").hidden, true);              // hidden until the map moves again
+    assert.strictEqual(seen.markers.length, 4);                            // the markers are the filtered listings, not only the area
+    assert.strictEqual(view.get("filter-count").hidden, true);             // it is not a setting of the Filters form
+    assert.strictEqual(JSON.parse(view.stored["househunter.filters.v1"]).area, undefined);   // and it is not remembered
+    // it is kept while switching between List and Map
+    view.mode("list");
+    assert.strictEqual(view.get("map-pane").hidden, true);
+    assert.deepStrictEqual(titles(view).sort(), ["Edge", "Inside A", "Inside B"]);
+    view.mode("map");
+    assert.deepStrictEqual(view.used(), ["Map Area"]);
+    assert.strictEqual(seen.maps.length, 1);                               // the same map comes back
+    assert.strictEqual(view.get("search-area").hidden, true);
+    // the next area replaces it
+    map.bounds = { s: 53, w: 6, n: 54, e: 7 };
+    map.fire("moveend");
+    view.click("search-area");
+    assert.deepStrictEqual(titles(view), ["Outside"]);
+    // removing the chip shows everything again
+    view.remove(0);
+    assert.strictEqual(titles(view).length, 5);
+    assert.strictEqual(view.get("count").textContent, "5 listings");
+    // the area is a filter like the others: Clear All takes it too
+    map.fire("moveend");
+    view.click("search-area");
+    view.attr("short_term", "hide");
+    assert.deepStrictEqual(view.used(), ["Map Area", "HideShort-Term Only"]);
+    var all = view.get("applied").children[2];
+    assert.strictEqual(all.textContent, "Clear All");
+    all.fire("click");
+    assert.deepStrictEqual(view.used(), []);
+    assert.strictEqual(titles(view).length, 5);
+    // it is not remembered across a page reload
+    map.fire("moveend");
+    view.click("search-area");
+    var reloaded = dashboard([["data.json", oneSearch([located("Inside A", 500, 52.0, 5.0)])]], JSON.parse(view.stored["househunter.filters.v1"]), null, { L: fakeLeaflet().L });
+    await settle();
+    assert.deepStrictEqual(reloaded.used(), []);
+  }),
+  check("the map shows what the list would: same filters, search and hidden homes", async function () {
+    var seen = fakeLeaflet();
+    var view = dashboard([["data.json", oneSearch([
+      located("Alpha", 500, 52.0, 5.0), located("Beta", 600, 52.1, 5.1, { flags: ["short_term"] }),
+      located("Gamma", 700, 52.2, 5.2), located("Delta", 790, 52.3, 5.3)
+    ])]], null, null, { L: seen.L });
+    await settle();
+    view.mode("map");
+    assert.strictEqual(seen.markers.length, 4);
+    view.attr("short_term", "hide");
+    assert.deepStrictEqual(pins(seen).sort(), ["€500", "€700", "€790"]);
+    view.change("maxpp", "750", "input"); view.get("maxpp").fire("change");
+    assert.deepStrictEqual(pins(seen).sort(), ["€500", "€700"]);
+    view.change("search", "gam", "input");
+    assert.deepStrictEqual(pins(seen), ["€700"]);
+    view.change("search", "", "input");
+    hideButtons(view)[0].fire("click");                                    // Alpha: gone from the list and from the map
+    assert.deepStrictEqual(titles(view), ["Gamma"]);
+    assert.deepStrictEqual(pins(seen), ["€700"]);
+    view.click("toast-undo");
+    assert.deepStrictEqual(pins(seen).sort(), ["€500", "€700"]);
+    assert.strictEqual(view.get("map-note").hidden, true);
+  }),
+  check("Show on Map in the list opens the map on that home", async function () {
+    var seen = fakeLeaflet();
+    var view = dashboard([["data.json", oneSearch([
+      located("Alpha", 500, 52.0, 5.0), located("Beta", 600, 52.1, 5.1)
+    ])]], null, null, { L: seen.L });
+    await settle();
+    assert.strictEqual(view.get("map-pane").hidden, true);                 // the list is showing
+    byClass(view, "showmap")[1].fire("click");
+    await settle();
+    assert.strictEqual(view.get("map-pane").hidden, false);
+    assert.strictEqual(view.get("view-map").checked, true);
+    var map = seen.maps[0], beta = seen.markers.filter(function (m) { return m.latlng[0] === 52.1; })[0];
+    assert.strictEqual(JSON.stringify(map.views[map.views.length - 1].slice(0, 2)), "[[52.1,5.1],15]");
+    assert.ok(pillClass(beta).indexOf("sel") >= 0);
+    assert.strictEqual(view.get("search-area").hidden, true);
+  }),
+  check("the budget slider and Cheapest First count the costs that come on top of the rent", async function () {
+    var view = dashboard([["data.json", oneSearch([
+      Object.assign(home("Costly", [Object.assign(match(2, 650), { extra_pp: 100 })]), { first_seen: "2026-11-03T10:00:00Z" }),
+      Object.assign(home("Plain", [match(2, 690)]), { first_seen: "2026-11-02T10:00:00Z" }),
+      Object.assign(home("Unknown", [match(2, null)]), { price_total: 1300, first_seen: "2026-11-01T10:00:00Z" })
+    ])]]);
+    await settle();
+    assert.deepStrictEqual(titles(view), ["Costly", "Plain", "Unknown"]);
+    view.change("maxpp", "700", "input");
+    view.get("maxpp").fire("change");
+    await settle();
+    assert.deepStrictEqual(titles(view), ["Plain", "Unknown"]);           // 650 + 100 is over 700; an unknown rent stays
+    view.change("maxpp", "800", "input");
+    view.get("maxpp").fire("change");
+    view.change("sort", "cheapest");
+    await settle();
+    assert.deepStrictEqual(titles(view), ["Plain", "Costly", "Unknown"]);  // 690 before 750
+  }),
+  check("selecting a marker shows its listing; Show on Map centres and selects", async function () {
+    var seen = fakeLeaflet();
+    var view = dashboard([["data.json", oneSearch([
+      located("Alpha", 500, 52.0, 5.0, { url: "https://example.com/alpha", bedrooms: 2, area_m2: 70 }),
+      located("Beta", 600, 52.1, 5.1), home("Nowhere", [match(2, 500)])
+    ])]], null, null, { L: seen.L });
+    await settle();
+    assert.strictEqual(byClass(view, "showmap").length, 2);                // only homes with a place get the control
+    view.mode("map");
+    var map = seen.maps[0], alpha = seen.markers.filter(function (m) { return m.latlng[0] === 52.0; })[0];
+    var card = view.get("map-card");
+    assert.strictEqual(card.hidden, true);
+    alpha.click();
+    assert.strictEqual(card.hidden, false);
+    assert.ok(pillClass(alpha).indexOf("sel") >= 0);
+    assert.strictEqual(alpha.z, 1000);
+    assert.ok(card.textContent.includes("Alpha") && card.textContent.includes("€500") && card.textContent.includes("2 bedrooms · 70 m²"), card.textContent);
+    var open = descendants(card, function (n) { return n.tagName === "a"; })[0];
+    assert.strictEqual(open.textContent, "Open Listing");
+    assert.strictEqual(open.attributes.href, "https://example.com/alpha");
+    var row = view.get("listings").children[0];
+    assert.strictEqual(row.attributes["data-picked"], "");                 // its card in the list is marked
+    assert.strictEqual(view.get("listings").children[1].attributes["data-picked"], undefined);
+    descendants(card, function (n) { return n.tagName === "button"; })[0].fire("click");   // the close button
+    assert.strictEqual(card.hidden, true);
+    assert.ok(pillClass(alpha).indexOf("sel") < 0);
+    assert.strictEqual(row.attributes["data-picked"], undefined);
+    // Show on Map on the second card
+    var beta = seen.markers.filter(function (m) { return m.latlng[0] === 52.1; })[0];
+    byClass(view, "showmap")[1].fire("click");
+    assert.strictEqual(JSON.stringify(map.views[map.views.length - 1].slice(0, 2)), "[[52.1,5.1],15]");
+    assert.ok(pillClass(beta).indexOf("sel") >= 0);
+    assert.strictEqual(view.get("search-area").hidden, true);              // centring is not the user moving the map
+    assert.strictEqual(card.hidden, false);
+    map.fire("click");                                                      // a tap on the empty map clears the selection
+    assert.strictEqual(card.hidden, true);
+    // hiding the selected home clears the selection
+    beta.click();
+    byClass(view, "hide")[1].fire("click");
+    assert.strictEqual(card.hidden, true);
+    assert.strictEqual(seen.markers.length, 1);
+  }),
+  check("the list works when the map cannot be loaded, or breaks", async function () {
+    var view = dashboard([["data.json", oneSearch([located("Alpha", 500, 52.0, 5.0)])]]);   // no Leaflet, and no way to load it
+    await settle();
+    view.mode("map");
+    assert.strictEqual(view.get("map-error").hidden, false);
+    assert.strictEqual(view.get("map").hidden, true);
+    assert.deepStrictEqual(titles(view), ["Alpha"]);
+    view.attr("short_term", "hide");                                       // the list keeps working
+    assert.deepStrictEqual(titles(view), ["Alpha"]);
+    view.mode("list");
+    assert.strictEqual(view.get("map-pane").hidden, true);
+    var broken = fakeLeaflet();
+    broken.L.map = function () { throw new Error("no webgl"); };
+    var second = dashboard([["data.json", oneSearch([located("Alpha", 500, 52.0, 5.0)])]], null, null, { L: broken.L });
+    await settle();
+    second.mode("map");
+    assert.strictEqual(second.get("map-error").hidden, false);
+    second.change("search", "alp", "input");
+    assert.deepStrictEqual(titles(second), ["Alpha"]);
+  })
+);
 
 async function run() {
   for (var i = 0; i < checks.length; i++) {

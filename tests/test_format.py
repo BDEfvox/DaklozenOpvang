@@ -14,7 +14,7 @@ def test_new_match_escapes_and_contains(cfg):
     msg = fmt.format_new_match(l, r, cfg, "Fake <Site>")
     assert "<script>" not in msg and "&lt;script&gt;" in msg
     assert "Fake &lt;Site&gt;" in msg
-    assert "€1.450" in msg and "€725 pp for 2" in msg and "excl. utilities" in msg
+    assert "💶 <b>€725 excl.</b> each a month · €1.450 for the home" in msg
     assert "<blockquote expandable>" in msg and "🟡" in msg
     assert "2026-12-01" in msg and len(msg) < 4000
 
@@ -22,7 +22,7 @@ def test_new_match_escapes_and_contains(cfg):
 def test_great_tier_and_flags(cfg):
     l = make_listing(price_total=1300, description="geen woningdelers, max 2 personen")
     msg = fmt.format_new_match(l, evaluate(l, cfg), cfg, "X")
-    assert "🟢" in msg and "No house sharers" in msg and "Max 2 persons" in msg
+    assert "🟢" in msg and "No house sharers" in msg and "Up to 2 people" in msg
 
 
 def test_long_fields_stay_under_limit(cfg):

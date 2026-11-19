@@ -1,6 +1,7 @@
 """One hunting run: fetch every source, find new matches, notify, update state and dashboard."""
 from __future__ import annotations
 
+import json
 import re
 import sys
 import traceback
@@ -8,6 +9,7 @@ from dataclasses import dataclass, field, fields as dataclass_fields
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
+from . import geo
 from .dashboard import write_dashboard
 from .filters import MatchResult, evaluate
 from .models import Listing
@@ -104,7 +106,8 @@ def fingerprint(l: Listing) -> Optional[str]:
 
 
 def _has_house_number(l: Listing) -> bool:
-    return bool(re.search(r"\d", l.address or ""))
+    # "2e De Riemerstraat" has a digit and no house number
+    return bool(geo.parse_address(l.address)["number"])
 
 
 def _same_home(a: Listing, b: Dict[str, Any]) -> bool:
@@ -192,12 +195,13 @@ def _public_dict(l: Listing) -> Dict[str, Any]:
 _DETAIL_FLAGS = ("no_sharers", "max_persons", "no_students", "scam_signals", "no_registration",
                  "income_requirement", "sharers_ok", "students_only", "students_ok", "working_only",
                  "min_age", "max_age", "housemates", "women_only", "men_only", "price_per_person",
-                 "mandatory_costs", "short_term", "rent_for_2", "rent_for_3", "rent_for_4")
+                 "mandatory_costs", "short_term", "rent_for_2", "rent_for_3", "rent_for_4",
+                 "capacity", "places_free", "sharing_unclear", "places_unclear", "apply_together", "age_unclear")
 CARD_TEXT_MAX = 4000      # description kept on a dashboard card (data/matches.json)
 SNAPSHOT_TEXT_MAX = 2500  # description kept in a detail snapshot (data/seen.json)
 # Raise this when the flags read from a detail page change: every card whose page was read by an older
 # version is read once more (a few per run), so the new flags reach listings that were found earlier.
-DETAIL_VERSION = 3
+DETAIL_VERSION = 4
 
 
 def _flag_name(flag: str) -> str:
@@ -277,17 +281,25 @@ def apply_detail_snapshot(l: Listing, d: Dict[str, Any]) -> None:
         l.price_total = d["price_total"]
     if d.get("extra"):
         l.extra.update(d["extra"])
+    # A snapshot of this version exists only after the listing's own page was read by today's rules: what the
+    # rent buys is no longer open. One of an older version did not look for it; the mark stays until the re-read.
+    if _snapshot_is_current(d):
+        l.extra.pop("rent_basis_unread", None)
+
+
+def _snapshot_is_current(d: Dict[str, Any]) -> bool:
+    try:
+        return int(d.get("v") or 1) >= DETAIL_VERSION
+    except (TypeError, ValueError):
+        return False
 
 
 def _remembered(details: Optional[Dict[str, Any]]) -> Optional[Tuple[List[str], Dict[str, str]]]:
     """What a detail snapshot remembers of the page's full text, in the form filters.evaluate takes."""
     if not details or not details.get("flags"):
         return None
-    try:
-        if int(details.get("v") or 1) < DETAIL_VERSION:
-            return None   # read by older rules, some of them wrong since; the page is read again (see below)
-    except (TypeError, ValueError):
-        return None
+    if not _snapshot_is_current(details):
+        return None   # read by older rules, some of them wrong since; the page is read again (see below)
     flags = [f for f in details["flags"] if isinstance(f, str) and _flag_name(f) in _DETAIL_FLAGS]
     evidence = details.get("evidence") if isinstance(details.get("evidence"), dict) else {}
     return (flags, evidence) if flags else None
@@ -296,7 +308,8 @@ def _remembered(details: Optional[Dict[str, Any]]) -> Optional[Tuple[List[str], 
 _LISTING_FIELDS = {f.name for f in dataclass_fields(Listing)}
 
 
-def rejudge_cards(state: State, cfg: Dict[str, Any], skip: Any = ()) -> int:
+def rejudge_cards(state: State, cfg: Dict[str, Any], skip: Any = (),
+                  sources: Optional[Dict[str, Source]] = None) -> int:
     """Judge the saved cards again with today's rules, from what was saved (no request, no alert).
 
     A card whose listing was not on a search page this run keeps what an earlier run decided. Without this, a
@@ -312,13 +325,27 @@ def rejudge_cards(state: State, cfg: Dict[str, Any], skip: Any = ()) -> int:
             l = Listing(**{k: v for k, v in raw.items() if k in _LISTING_FIELDS})
         except TypeError:
             continue
-        if _private_text(l):
-            continue  # its text came from the mailbox and was never saved: the earlier decision stands
         entry = state.seen.get(uid)
         if not isinstance(entry, dict):
             entry = None
+        remembered = _remembered((entry or {}).get("details"))
+        src = (sources or {}).get(l.source)
+        if src is not None and src.rent_basis_from_page:
+            # A card saved before its page was read by today's rules: the rent is not divided until it is.
+            l.extra = dict(l.extra) if isinstance(l.extra, dict) else {}    # the saved card itself is not marked
+            if _snapshot_is_current((entry or {}).get("details") or {}):
+                l.extra.pop("rent_basis_unread", None)
+            else:
+                l.extra["rent_basis_unread"] = True
+        if _private_text(l):
+            # Its text came from the mailbox and was never saved. What that text said lives on in the card's own
+            # flags: the card is judged again from those and from its fields, so that today's rules (who is
+            # looking, what the rent buys) reach it too.
+            kept = [f for f in card.get("flags", []) if isinstance(f, str) and _flag_name(f) in _DETAIL_FLAGS]
+            kept += [f for f in (remembered[0] if remembered else []) if f not in kept]
+            remembered = (kept, {}) if kept else None
         try:
-            res = evaluate(l, cfg, remembered=_remembered((entry or {}).get("details")))
+            res = evaluate(l, cfg, remembered=remembered)
         except Exception as exc:  # a card saved by an older version in a shape today's rules cannot read:
             print("[rejudge] %s: %s" % (uid, _describe(exc)), file=sys.stderr)   # it stays as it is
             continue
@@ -410,6 +437,29 @@ def reread_lost_cards(state: State, cfg: Dict[str, Any], sources: Dict[str, Sour
     return done
 
 
+def locate_homes(cfg: Dict[str, Any], state: State, http: Any, now: datetime, write: bool = True) -> None:
+    """Give every card its place on the map (card["geo"]), from the saved lookups (data/geo.json) or with a few
+    new ones a run: PDOK Locatieserver, the Dutch land registry's free address service. A card whose address
+    cannot be found gets no point; the map never guesses. Nothing here can fail the run."""
+    try:
+        budget = int(cfg.get("geo_lookups_per_run", 0))
+    except (TypeError, ValueError):
+        budget = 0
+    path = state.dir / "geo.json"
+    try:
+        cache = geo.load_cache(path)
+        before = json.dumps(cache, sort_keys=True)
+        made, problem = geo.locate_cards(state.matches, http, cache, budget, now)
+        if problem:
+            print("geo: the address service did not answer; %d lookups made, the rest next run" % made,
+                  file=sys.stderr)
+        if write and json.dumps(cache, sort_keys=True) != before:
+            state.dir.mkdir(parents=True, exist_ok=True)
+            geo.save_cache(path, cache)
+    except Exception as exc:  # the map is an extra: a home without a point is still a home
+        print("geo: skipped (%s)" % type(exc).__name__, file=sys.stderr)
+
+
 def _bedrooms_unsure(it: Item) -> bool:
     return any(f in ("bedrooms_unconfirmed", "bedrooms_unknown") for f in it.result.flags)
 
@@ -479,6 +529,13 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
     sender = Sender(notifier, cfg.get("dashboard_url"))
     dash = cfg.get("dashboard_url") or None
     first_ever = not state.meta.get("last_run")
+    # Two machines write this state (the scheduled run and the backup run at home). One that judges without the
+    # household the other one has brings back homes that were ruled out, and alerts them as new.
+    household_missing = state.meta.get("household_private") is True and not cfg.get("household_private")
+    if household_missing:
+        print("[household] earlier runs judged with a private household and this run has none (HOUSEHOLD or "
+              "household.json): homes that were ruled out come back on the page until the next run that has it; "
+              "this run sends no alert for a home that was known and did not match before", file=sys.stderr)
 
     disabled_cfg = set(cfg.get("disabled_sources", []))
     selected = {n: s for n, s in sources.items() if (not only or n in only)}
@@ -573,6 +630,8 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
             if prev is not None and prev.get("details"):
                 if src.has_detail_pages:
                     own = dict(l.extra) if isinstance(l.extra, dict) else {}
+                    # "Not read yet" is the search page's word about itself, not a fact to put back below.
+                    own.pop("rent_basis_unread", None)
                     apply_detail_snapshot(l, prev["details"])
                     had_snapshot = True
                     saved = prev["details"].get("extra")
@@ -635,11 +694,13 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
                     if (old_price is not None and l.price_total is not None and l.price_total < old_price
                             and (not was_matched
                                  or (old_price - l.price_total) / float(old_price) >= PRICE_DROP_MIN_PCT)):
-                        state.matches[l.uid]["price_drop_from"] = old_price
-                        it.was_matched = was_matched
-                        drop_items.append((it, old_price))
+                        if was_matched or not household_missing:   # see household_missing above
+                            state.matches[l.uid]["price_drop_from"] = old_price
+                            it.was_matched = was_matched
+                            drop_items.append((it, old_price))
                     elif not was_matched and not is_baseline:
-                        new_items.append(it)  # e.g. details or the budget in config.json changed
+                        if not household_missing:   # else: most likely a home the household's own run ruled out
+                            new_items.append(it)  # e.g. details or the budget in config.json changed
                     elif _needs_detail_check(prev, it):
                         backlog.append(it)
                 else:
@@ -910,10 +971,15 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
     answered = {n: s for n, s in active.items() if fetched[n].status not in ("blocked", "error")}
     reread_lost_cards(state, cfg, answered, http, detail_budget, skip=seen_uids)
     # 8b. cards whose listing was not on a search page this run: judged again from what was saved
-    rejudge_cards(state, cfg, skip=seen_uids)
+    rejudge_cards(state, cfg, skip=seen_uids, sources=sources)
+
+    # 8c. where the homes are, for the map on the dashboard
+    locate_homes(cfg, state, http, now, write)
 
     # 9. save
     state.meta["last_run"] = now_s
+    if cfg.get("household_private"):
+        state.meta["household_private"] = True      # says only that one is set, never what it holds
     if write:
         if state.save(now):
             write_dashboard(cfg, state, docs_dir, now)

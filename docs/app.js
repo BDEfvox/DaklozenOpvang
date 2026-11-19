@@ -1,12 +1,14 @@
 "use strict";
 // All data comes from third-party sites: only textContent / setAttribute are used, never innerHTML.
 (function () {
-  var STORE = "househunter.filters.v1", REPLY = "househunter.reply.v1";
+  var STORE = "househunter.filters.v1", REPLY = "househunter.reply.v1", HIDE = "househunter.hidden.v1";
   var SVG = "http://www.w3.org/2000/svg";
-  var WARN = ["no_sharers", "max_persons", "no_students", "no_registration", "suspicious_price", "scam_signals"];
+  // Used when the data does not say what kind of mark a flag is (data written before flag_kinds). A limit on
+  // people is not in it: "Up to 2 people" is a plain fact.
+  var WARN = ["no_sharers", "no_students", "no_registration", "suspicious_price", "scam_signals"];
   var GOOD = ["sharers_ok", "students_ok"];
   // Who may rent. Not a warning in itself: whether it matters depends on who you are, which the filters ask.
-  var REQ = ["students_only", "working_only", "women_only", "men_only", "min_age", "max_age", "housemates",
+  var REQ = ["students_only", "working_only", "women_only", "men_only", "min_age", "max_age", "housemates", "max_persons",
     "price_per_person", "mandatory_costs", "service_costs", "rent_for_2", "rent_for_3", "rent_for_4"];
   // In the order the choices stand in the control: the thumb's position is the index. "Any" comes last.
   var GROUPS = ["2", "3", "any"];
@@ -17,21 +19,28 @@
     ["Who May Rent", [
       ["students_only", "Students Only"], ["no_students", "No Students"], ["students_ok", "Students Welcome"],
       ["working_only", "Working People Only"], ["women_only", "Women Only"], ["men_only", "Men Only"],
-      ["age_limit", "Age Limit", ["min_age", "max_age"]]]],
+      ["age_limit", "Age Limit", ["min_age", "max_age"]], ["age_unclear", "Age Limit Unclear"]]],
     ["House Sharing", [
       ["no_sharers", "No House Sharers"], ["sharers_ok", "Sharers Welcome"], ["housemates", "Shared with Housemates"],
-      ["max_persons", "Limit on People"]]],
+      ["max_persons", "Limit on People", ["max_persons", "capacity"]], ["sharing_unclear", "Sharing Policy Unclear"],
+      ["places_unclear", "Free Places Unclear"]]],
     ["Rent and Costs", [
       ["utilities_included", "Utilities Included"], ["service_costs", "Service Costs on Top"],
       ["mandatory_costs", "Compulsory Extra Costs"], ["price_per_person", "Rent per Person"],
       ["price_varies", "Rent Depends on Month or Group", ["price_varies", "rent_for_2", "rent_for_3", "rent_for_4"]],
-      ["price_drop", "Price Dropped", function (l) { return typeof l.price_drop_from === "number"; }]]],
+      ["price_drop", "Price Dropped", function (l) { return typeof l.price_drop_from === "number"; }],
+      ["rent_unclear", "Rent Unclear", function (l) {
+        return !(l.matches || []).some(function (m) { return m && typeof m.price_pp === "number"; });
+      }]]],
     ["Home and Contract", [
       ["furnished", "Furnished", function (l) { return l.furnished === "furnished"; }],
+      ["place_only", "Room or Shared Place", function (l) { return l.rent_basis === "place"; }],
       ["short_term", "Short-Term Only"], ["no_registration", "No Registration"],
       ["income_requirement", "Income Requirement"]]],
     ["Warnings", [
-      ["any_warning", "Any Warning", WARN], ["suspicious_price", "Suspiciously Cheap"], ["scam_signals", "Possible Scam"],
+      ["any_warning", "Any Warning", function (l) {
+        return (l.flags || []).some(function (x) { return kindOf(flagKey(x)) === "warn"; });
+      }], ["suspicious_price", "Suspiciously Cheap"], ["scam_signals", "Possible Scam"],
       ["bedrooms_unsure", "Bedrooms Not Confirmed", ["bedrooms_unknown", "bedrooms_unconfirmed"]],
       ["price_unknown", "Price Unknown"]]]
   ];
@@ -42,6 +51,9 @@
   // Details of a listing that the reply text can hold: {title}, {address}, ...
   var FIELDS = [["title", "Title"], ["address", "Address"], ["city", "City"], ["price", "Rent"], ["bedrooms", "Bedrooms"],
     ["area", "Size"], ["source", "Site"], ["url", "Link"]];
+  // What a mark means: "warn", "good", "info" (grey note) or "check" (something to ask the landlord).
+  var KINDS = ["warn", "good", "info", "check"];
+  var DAYS60 = 60 * 24 * 3600 * 1000;
   // Source status: the word shown and the icon that goes with it (never colour alone).
   var STATUS = {
     ok: ["Working", "i-good"], partial: ["Partly working", "i-part"], blocked: ["Blocked", "i-fail"],
@@ -56,6 +68,11 @@
   var rows = typeof WeakMap === "function" ? new WeakMap() : null, moving = [];
   var photos = typeof Map === "function" ? new Map() : null;   // one photo element per listing, kept when its row is rebuilt
   var leaving = null;                                          // the sheet that is animating out, if any
+  var hid = {};                                                // homes hidden for good: key -> {t: title, a: address, at: ISO time}
+  var undoKey = null, undoTimer = 0, hiddenSheet = null, filtersSheet = null;
+  var view = "list", area = null;                              // List or Map; the map area used as a filter {s, w, n, e} (not saved)
+  var wanted = null;                                           // the home "Show on Map" asked for while the map was not open yet
+  var baseList = [], viewControl = null, mapUI = null, leafletState = "idle", leafletWait = [], seq = 0;
   // attrs: the "listing says" filters in use, by key: "only" or "hide". A key that is not there is not in use.
   var f = { cities: [], group: "any", maxpp: 800, age: null, attrs: {}, q: "", sort: "newest" };
   var $ = function (id) { return document.getElementById(id); };
@@ -193,8 +210,14 @@
     var what = ATTR[key].says;
     return typeof what === "function" ? !!what(l) : what.some(function (k) { return has(fl, k); });
   }
+  // What one person pays a month in all: the rent shown on the card plus the costs that come on top of it.
+  // The budget slider and "Cheapest First" go by this, so a low rent with high service costs does not slip through.
+  function monthly(m) {
+    if (!m || typeof m.price_pp !== "number") return null;
+    return m.price_pp + (typeof m.extra_pp === "number" ? m.extra_pp : 0);
+  }
   function minPP(l) {
-    var v = matchesFor(l).map(function (m) { return m.price_pp; }).filter(function (x) { return typeof x === "number"; });
+    var v = matchesFor(l).map(monthly).filter(function (x) { return x != null; });
     return v.length ? Math.min.apply(null, v) : Infinity;
   }
   function newestFirst(a, b) { return (ts(b.first_seen) || 0) - (ts(a.first_seen) || 0); }
@@ -228,6 +251,9 @@
     var first = data == null;
     data = d;
     isSample = sample;
+    pruneHidden();
+    hiddenUI();
+    $("group-fieldset").hidden = single();
     if (first || previousCities.length !== nextCities.length || nextCities.some(function (k) {
       return previousCities.indexOf(k) < 0;
     })) buildCities();
@@ -280,11 +306,11 @@
   }
   // How many of the filters in the Filters form differ from "show everything".
   function activeFilters() {
-    return (f.cities.length ? 1 : 0) + (f.group !== "any" ? 1 : 0) + (f.maxpp < 800 ? 1 : 0) + (f.age != null ? 1 : 0) +
+    return (f.cities.length ? 1 : 0) + (groupOn() ? 1 : 0) + (f.maxpp < 800 ? 1 : 0) + (f.age != null ? 1 : 0) +
       Object.keys(f.attrs).length;
   }
   function clearFilters() {
-    f.cities = []; f.group = "any"; f.maxpp = 800; f.age = null; f.attrs = {}; f.q = "";
+    f.cities = []; f.group = "any"; f.maxpp = 800; f.age = null; f.attrs = {}; f.q = ""; area = null;
     syncControls(); update();
   }
   // One "listing says" filter: `mode` is "only" or "hide"; choosing the mode it already has turns it off.
@@ -342,7 +368,7 @@
   // minutes, and a filter set now also holds for the ones that come later.
   function countAttrs() {
     var n = {};
-    (data && data.listings || []).forEach(function (l) {
+    (data && data.listings || []).filter(shown).forEach(function (l) {
       var fl = flagsOf(l);
       Object.keys(ATTR).forEach(function (k) { if (says(k, l, fl)) n[k] = (n[k] || 0) + 1; });
     });
@@ -391,23 +417,27 @@
   }
   function countCities() {
     var n = {};
-    (data.listings || []).forEach(function (l) { n[l.city] = (n[l.city] || 0) + 1; });
+    (data.listings || []).filter(shown).forEach(function (l) { n[l.city] = (n[l.city] || 0) + 1; });
     Object.keys(cityCounts).forEach(function (k) { cityCounts[k].textContent = String(n[k] || 0); });
   }
 
+  // One search (the usual case, one household): group size does not exist as a choice and no group is named.
+  function single() { return !!(data && Array.isArray(data.searches) && data.searches.length === 1); }
+  function groupOn() { return f.group !== "any" && !single(); }
   // The matches for the chosen group size, cheapest per person first (unknown prices last).
   function matchesFor(l) {
-    return (l.matches || []).filter(function (m) { return f.group === "any" || String(m.persons) === f.group; })
+    return (l.matches || []).filter(function (m) { return !groupOn() || String(m.persons) === f.group; })
       .sort(function (a, b) {
-        return (typeof a.price_pp === "number" ? a.price_pp : Infinity) - (typeof b.price_pp === "number" ? b.price_pp : Infinity);
+        var pa = monthly(a), pb = monthly(b);
+        return (pa == null ? Infinity : pa) - (pb == null ? Infinity : pb);
       });
   }
   function visible(l) {
     if (f.cities.length && f.cities.indexOf(l.city) < 0) return false;
     var ms = matchesFor(l);
     if (!ms.length) return false;
-    // The price slider also keeps listings with unknown prices.
-    if (!ms.some(function (m) { return m.price_pp == null || m.price_pp <= f.maxpp; })) return false;
+    // The price slider also keeps listings with unknown prices; at its top it is no limit at all.
+    if (f.maxpp < 800 && !ms.some(function (m) { var all = monthly(m); return all == null || all <= f.maxpp; })) return false;
     // Who may rent. Only what the listing states counts: a listing that says nothing stays.
     var fl = flagsOf(l);
     if (f.age != null) {
@@ -477,7 +507,169 @@
     else fallback();
   }
 
-  // One listing: a row in the list. The price per person leads, because that is what the group decides on.
+  // ---------- Hidden homes ----------
+  // A home is hidden by its home_key (the same home found on another site has the same key), else by its uid.
+  function hkey(l) {
+    if (l.home_key != null && l.home_key !== "") return String(l.home_key);
+    if (l.uid != null && l.uid !== "") return String(l.uid);
+    return String(l.title || "") + "|" + String(l.address || "");
+  }
+  // A home is hidden under its key and, next to it, under the id of the listing that was hidden. The key of a
+  // listing can change (its house number is read later, from the listing's own page): the id then still finds it.
+  var hidUid = {};
+  function indexHidden() {
+    hidUid = {};
+    Object.keys(hid).forEach(function (k) { if (hid[k].u) hidUid[hid[k].u] = k; });
+  }
+  function hiddenBy(l) {
+    var k = hkey(l), u = l.uid != null ? String(l.uid) : "";
+    if (has(hid, k)) return k;
+    return u && has(hidUid, u) ? hidUid[u] : null;
+  }
+  function shown(l) { return hiddenBy(l) == null; }
+  function str(x) { return typeof x === "string" ? x : ""; }
+  function loadHidden() {
+    hid = {};
+    try {
+      var s = JSON.parse(localStorage.getItem(HIDE) || "null");
+      if (record(s)) Object.keys(s).forEach(function (k) {
+        if (record(s[k])) hid[k] = { t: str(s[k].t), a: str(s[k].a), at: str(s[k].at), u: str(s[k].u) };
+      });
+    } catch (e) { hid = {}; }
+    indexHidden();
+  }
+  function saveHidden() {
+    try { localStorage.setItem(HIDE, JSON.stringify(hid)); } catch (e) {}
+  }
+  // A key whose home is no longer in the data is kept for 60 days after it was hidden, then dropped.
+  function pruneHidden() {
+    var keys = Object.keys(hid), present = {}, changed = false;
+    if (!keys.length) return;
+    (data && data.listings || []).forEach(function (l) { present[hkey(l)] = true; var k = hiddenBy(l); if (k) present[k] = true; });
+    keys.forEach(function (k) {
+      var at = ts(hid[k].at);
+      if (!present[k] && (at == null || Date.now() - at > DAYS60)) { delete hid[k]; changed = true; }
+    });
+    if (changed) { saveHidden(); indexHidden(); }
+  }
+  function hideListing(l) {
+    var k = hkey(l);
+    hid[k] = { t: l.title ? nameOf(l) : "", a: String(l.address || ""), at: new Date(Date.now()).toISOString(),
+      u: l.uid != null ? String(l.uid) : "" };
+    saveHidden(); indexHidden();
+    if (mapUI && mapUI.selected === idOf(l)) deselect();
+    tick();
+    undoKey = k;
+    toast(true);
+    countCities(); countAttrs(); update(); hiddenUI();
+  }
+  function showAgain(keys) {
+    keys.forEach(function (k) { delete hid[k]; });
+    saveHidden(); indexHidden();
+    if (keys.indexOf(undoKey) >= 0) toast(false);
+    countCities(); countAttrs(); update(); hiddenUI();
+  }
+  // The bar at the bottom after "Hide Listing": Undo for about six seconds.
+  function toast(on) {
+    clearTimeout(undoTimer);
+    undoTimer = 0;
+    $("toast").hidden = !on;
+    if (on) undoTimer = setTimeout(function () { undoTimer = 0; undoKey = null; $("toast").hidden = true; }, 6000);
+    else undoKey = null;
+  }
+  function hiddenKeys() {
+    return Object.keys(hid).sort(function (a, b) { return (ts(hid[b].at) || 0) - (ts(hid[a].at) || 0); });
+  }
+  // The "Hidden Homes" row (only when there are any) and, when its sheet is open, the list in it.
+  function hiddenUI() {
+    var keys = hiddenKeys();
+    $("hidden-fieldset").hidden = keys.length === 0;
+    $("hidden-count").textContent = String(keys.length);
+    var box = $("hidden-list");
+    box.textContent = "";
+    keys.forEach(function (k) {
+      var li = el("li", "source"), b = el("div", "body"), h = hid[k];
+      b.appendChild(el("p", "name", h.t || "(no title)"));
+      if (h.a) b.appendChild(el("p", "detail", h.a));
+      li.appendChild(b);
+      var btn = el("button", "btn gray small", "Show Again");
+      btn.type = "button";
+      btn.setAttribute("aria-label", "Show Again: " + (h.t || "this home"));
+      btn.addEventListener("click", function () { showAgain([k]); });
+      li.appendChild(btn);
+      box.appendChild(li);
+    });
+    if (!keys.length && hiddenSheet && hiddenSheet.shown()) hiddenSheet.hide();
+  }
+
+  // ---------- A listing ----------
+  // The name a card shows. A listing from an alert email is titled "Pararius: Maria Snelplantsoen": the site's
+  // name is not part of the home's name, so the card leaves it out (the link still opens the listing there).
+  function nameOf(l) {
+    var title = String(l.title || "").trim(), label = String(l.source_label || "").trim();
+    var cut = /^([^:]{2,30}):\s+(\S.*)$/.exec(title);
+    if (cut && (l.source === "email_alerts" || (label && cut[1].toLowerCase() === label.toLowerCase()))) title = cut[2];
+    return title || "(no title)";
+  }
+  // The price each person pays leads, as a compact label: "€850 incl.", "€850 excl." or "€850". When it cannot be
+  // told, the rent as listed; when nothing is known, "Price unknown". "persons" adds the group size (several searches).
+  // "incl" or "excl" only where the listing establishes it: "excl" when costs come on top of the rent (service costs,
+  // a compulsory extra, utilities), "incl" when utilities are in it. The pipeline decides (price_basis); data written
+  // before it did only says whether utilities are included.
+  function priceBasis(l) {
+    if (l.price_basis === "incl" || l.price_basis === "excl") return l.price_basis;
+    if (l.price_basis !== undefined) return "";
+    return l.price_includes_utilities === true ? "incl" : l.price_includes_utilities === false ? "excl" : "";
+  }
+  function priceLine(l, m, cls, persons) {
+    var p = el("p", cls || "pp"), tier = m && m.tier === "great" ? el("span", "tier", "Great price") : null;
+    var pp = m && typeof m.price_pp === "number" ? m.price_pp : null;
+    if (pp != null) {
+      p.appendChild(el("span", "amount", euro(pp)));
+      var u = priceBasis(l);
+      if (u) p.appendChild(el("span", "unit", " " + u + "."));
+    } else if (typeof l.price_total === "number") {
+      p.appendChild(el("span", "amount", euro(l.price_total)));
+      p.appendChild(el("span", "unit", " listed"));
+    } else p.appendChild(el("span", "amount unknown", "Price unknown"));
+    if (persons && m) {
+      var sub = el("span", "sub");
+      sub.appendChild(el("span", null, plural(m.persons, "person", "people")));
+      if (tier) sub.appendChild(tier);
+      p.appendChild(sub);
+    } else if (tier) p.appendChild(tier);
+    return p;
+  }
+  function today() {
+    var n = new Date(Date.now()), z = function (x) { return (x < 10 ? "0" : "") + x; };
+    return n.getFullYear() + "-" + z(n.getMonth() + 1) + "-" + z(n.getDate());
+  }
+  // "from 1 Dec", "now" once the date has passed, "20 Dec to 10 Jan", "until 10 Jan".
+  function term(l) {
+    var from = l.available_from, until = l.available_until;
+    var past = from && /^\d{4}-\d{2}-\d{2}$/.test(String(from)) && String(from) <= today();
+    if (from && until) return (past ? "now" : day(from)) + " to " + day(until);
+    if (from) return past ? "now" : "from " + day(from);
+    if (until) return "until " + day(until);
+    return "";
+  }
+  // One line of facts and nothing else; what is missing is left out.
+  function factsOf(l) {
+    var facts = [], t = term(l);
+    if (l.bedrooms != null) facts.push(plural(l.bedrooms, "bedroom", "bedrooms"));
+    if (l.area_m2 != null) facts.push(l.area_m2 + " m²");
+    if (t) facts.push(t);
+    if (l.furnished === "furnished") facts.push("Furnished");
+    return facts.join(" · ");
+  }
+  // What a flag is: the pipeline's flag_kinds first, else the lists above. "" means a quiet note.
+  function kindOf(k) {
+    var fk = data && record(data.flag_kinds) ? data.flag_kinds[k] : null;
+    if (typeof fk === "string" && KINDS.indexOf(fk) >= 0) return fk;
+    return WARN.indexOf(k) >= 0 ? "warn" : GOOD.indexOf(k) >= 0 ? "good" : REQ.indexOf(k) >= 0 ? "info" : "";
+  }
+  var MARKS = { warn: ["warn", "i-bad"], good: ["good", "i-good"], info: ["req", "i-note"], check: ["ask", "i-help"] };
+
   function keyOf(l) { return l.uid != null ? "uid:" + l.uid : l; }
   function item(l) {
     var li = el("li", "item");
@@ -501,19 +693,12 @@
     li.appendChild(thumb);
     var b = el("div", "body"); li.appendChild(b);
 
-    matchesFor(l).forEach(function (m, i) {
-      var p = el("p", i ? "pp more" : "pp");
-      if (m.price_pp == null) p.appendChild(el("span", "amount unknown", "Price unknown"));
-      else {
-        p.appendChild(el("span", "amount", euro(m.price_pp)));
-        p.appendChild(el("span", null, "per person"));
-      }
-      var sub = el("span", "sub");
-      sub.appendChild(el("span", null, plural(m.persons, "person", "people")));
-      if (m.tier === "great") sub.appendChild(el("span", "tier", "Great price"));
-      p.appendChild(sub);
-      b.appendChild(p);
-    });
+    var fs = ts(l.first_seen), isNew = fs != null && Date.now() - fs < 24 * 3600 * 1000;
+    if (isNew) b.appendChild(el("span", "sr", "New. "));
+    var ms = matchesFor(l);
+    if (single()) b.appendChild(priceLine(l, ms[0], "pp", false));
+    else if (ms.length) ms.forEach(function (m, i) { b.appendChild(priceLine(l, m, i ? "pp more" : "pp", true)); });
+    else b.appendChild(priceLine(l, null, "pp", false));
     if (l.price_drop_from) {
       var drop = el("p", "mark drop");
       drop.appendChild(icon("i-drop"));
@@ -521,14 +706,12 @@
       b.appendChild(drop);
     }
 
-    var fs = ts(l.first_seen), isNew = fs != null && Date.now() - fs < 24 * 3600 * 1000;
-    var title = l.title || "(no title)", h = el("h3", "title"), href = safeUrl(l.url);
+    var title = nameOf(l), h = el("h3", "title"), href = safeUrl(l.url);
     if (isNew) h.appendChild(el("span", "new-dot"));
     if (href) {
       var a = el("a", "link", title);
       a.setAttribute("href", href); a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener noreferrer");
       h.appendChild(a);
-      li.appendChild(icon("i-out", "out"));
     } else h.appendChild(el("span", null, title));
     b.appendChild(h);
 
@@ -537,50 +720,51 @@
     var where = [l.address, city].filter(function (x) { return x && inTitle.indexOf(String(x).toLowerCase()) < 0; });
     if (where.length) b.appendChild(el("p", "addr", where.join(", ")));
 
-    var facts = [];
-    if (l.price_total != null) {
-      // A listing that states its rent per person: say so, or the amount reads as the rent of the whole home.
-      facts.push(euro(l.price_total) + (has(flagsOf(l), "price_per_person") ? " per person" : "") + " per month" +
-        (l.price_includes_utilities === true ? " incl. utilities" :
-        l.price_includes_utilities === false ? " excl. utilities" : ""));
-    }
-    if (l.bedrooms != null) facts.push(plural(l.bedrooms, "bedroom", "bedrooms"));
-    if (l.rooms != null) facts.push(plural(l.rooms, "room", "rooms"));
-    if (l.area_m2 != null) facts.push(l.area_m2 + " m²");
-    if (l.furnished) facts.push(l.furnished);
-    if (l.available_from && l.available_until) facts.push(day(l.available_from) + " to " + day(l.available_until));
-    else if (l.available_from) facts.push("from " + day(l.available_from));
-    else if (l.available_until) facts.push("until " + day(l.available_until));
-    if (facts.length) b.appendChild(el("p", "facts", facts.join(" · ")));
+    var facts = factsOf(l);
+    if (facts) b.appendChild(el("p", "facts", facts));
 
-    // Warnings and good signs each get their own line with an icon. Everything else is one quiet line.
-    var marked = el("ul", "flags"), notes = [], quotes = [];
+    // What can rule the home out, what is still to be asked and what is welcome stay on the card, each on its own
+    // line with an icon. Plain facts (requirements, costs) and the listing's own sentences are one tap away under
+    // "Details", so the card itself stays short.
+    var marked = el("ul", "flags"), plain = el("ul", "flags"), notes = [], quotes = [];
     (l.flags || []).forEach(function (x) {
-      var k = flagKey(x), kind = WARN.indexOf(k) >= 0 ? "warn" : GOOD.indexOf(k) >= 0 ? "good" : REQ.indexOf(k) >= 0 ? "req" : "";
+      var k = flagKey(x), kind = kindOf(k);
       if (!kind) { notes.push(flagText(x)); return; }
-      var fl = el("li", "mark " + kind);
-      fl.appendChild(icon(kind === "warn" ? "i-bad" : kind === "good" ? "i-good" : "i-note"));
+      var fl = el("li", "mark " + MARKS[kind][0]);
+      fl.appendChild(icon(MARKS[kind][1]));
       fl.appendChild(el("span", null, flagText(x)));
-      marked.appendChild(fl);
+      (kind === "info" ? plain : marked).appendChild(fl);
       // The sentence of the listing that says so. One sentence often carries several marks: it is shown once.
       var q = record(l.evidence) ? l.evidence[k] : null;
       if (typeof q !== "string" || !q) return;
       for (var i = 0; i < quotes.length; i++) if (samePassage(quotes[i], q)) { if (q.length > quotes[i].length) quotes[i] = q; return; }
       if (quotes.length < 3) quotes.push(q);
     });
-    if (notes.length) b.appendChild(el("p", "notes", notes.join(" · ")));
     if (marked.children.length) b.appendChild(marked);
-    quotes.forEach(function (q) { b.appendChild(el("p", "quote", "“" + q + "”")); });
+    if (plain.children.length || notes.length || quotes.length) {
+      var more = el("details", "more");
+      more.appendChild(el("summary", null, "Details"));
+      if (plain.children.length) more.appendChild(plain);
+      if (notes.length) more.appendChild(el("p", "notes", notes.join(" · ")));
+      quotes.forEach(function (q) { more.appendChild(el("p", "quote", "“" + q + "”")); });
+      b.appendChild(more);
+    }
 
-    var foot = el("div", "foot"), meta = el("p", "meta");
-    if (isNew) meta.appendChild(el("span", "sr", "New. "));
-    meta.appendChild(el("span", null, (l.source_label || l.source || "") + " · " + rel(l.first_seen)));
-    meta.title = exact(l.first_seen);
-    foot.appendChild(meta);
+    var foot = el("div", "foot");
+    if (hasLoc(l)) {
+      var mb = el("button", "btn gray small showmap", "Show on Map"); mb.type = "button";
+      mb.setAttribute("aria-label", "Show on Map: " + title);
+      mb.addEventListener("click", function () { showOnMap(l); });
+      foot.appendChild(mb);
+    }
+    var hb = el("button", "btn gray small hide", "Hide Listing"); hb.type = "button";
+    hb.setAttribute("aria-label", "Hide Listing: " + title);
+    hb.addEventListener("click", function () { hideListing(l); });
+    foot.appendChild(hb);
     var cb = el("button", "btn gray small copy", "Copy Reply"); cb.type = "button";
     cb.addEventListener("click", function () { copyReply(l, cb); });
     foot.appendChild(cb);
-    b.appendChild(foot);
+    li.appendChild(foot);      // under the photo and the text, across the whole card: the buttons stay on one line
     return li;
   }
 
@@ -647,11 +831,12 @@
   function update(quiet) {
     saveF();
     $("maxpp-out").textContent = euro(f.maxpp);
-    var all = data.listings || [];
-    var list = all.filter(visible);
-    list.sort(f.sort === "cheapest" ? cheapestFirst : newestFirst);
+    var all = (data.listings || []).filter(shown);          // homes that are hidden are not counted
+    var base = all.filter(visible);                          // what the filters keep: these are the markers on the map
+    base.sort(f.sort === "cheapest" ? cheapestFirst : newestFirst);
+    var list = area ? base.filter(inArea) : base;            // the map area narrows the list, not the markers
     if (quiet !== "hold") {
-      shownList = list;
+      shownList = list; baseList = base;
       var box = $("listings"), before = quiet === true ? null : snapshot(box);
       if (!before) still();
       box.textContent = "";
@@ -660,6 +845,7 @@
       if (before) flip(box, before);
       $("empty").hidden = list.length > 0;
       $("load-error").hidden = true;
+      try { mapSync(false); } catch (e) { mapFailed(); }   // the list never depends on the map
     }
     setText($("count"), list.length === all.length ? plural(all.length, "listing", "listings")
       : list.length + " of " + plural(all.length, "listing", "listings"), !!quiet);
@@ -684,12 +870,13 @@
       b.addEventListener("click", function () { remove(); tick(); syncControls(); update(); });
       chips.push(b);
     }
-    if (f.group !== "any") chip("", f.group + " People", function () { f.group = "any"; });
+    if (groupOn()) chip("", f.group + " People", function () { f.group = "any"; });
     f.cities.slice().forEach(function (k) {
       chip("", (data && data.cities && data.cities[k]) || k, function () { f.cities.splice(f.cities.indexOf(k), 1); });
     });
     if (f.maxpp < 800) chip("", "Up to " + euro(f.maxpp) + " per Person", function () { f.maxpp = 800; });
     if (f.age != null) chip("", "Age " + f.age, function () { f.age = null; });
+    if (area) chip("", "Map Area", function () { area = null; });
     ATTR_GROUPS.forEach(function (g) {
       g[1].forEach(function (a) {
         if (f.attrs[a[0]]) chip(MODES[f.attrs[a[0]]], a[1], function () { delete f.attrs[a[0]]; });
@@ -704,6 +891,275 @@
       box.appendChild(all);
     }
     box.hidden = chips.length === 0;
+  }
+
+  // ---------- Map ----------
+  // Leaflet is vendored (docs/vendor/leaflet) and only loaded when the map is first opened. Every use of it goes
+  // through window.L, so the checks can drive this code with a small fake. The list never needs the map.
+  var TILES = "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0/standaard/EPSG:3857/{z}/{x}/{y}.png";
+  var CREDIT = "<a href=\"https://www.pdok.nl\" target=\"_blank\" rel=\"noopener noreferrer\">Kaartgegevens © Kadaster</a>";
+  var HOLLAND = [52.2, 5.3];
+  function num(x) { return typeof x === "number" && isFinite(x); }
+  function hasLoc(l) { return num(l.lat) && num(l.lon) && Math.abs(l.lat) <= 90 && Math.abs(l.lon) <= 180; }
+  // Inside the chosen map area? A home without a known location can not be inside it.
+  function inArea(l) { return hasLoc(l) && l.lat >= area.s && l.lat <= area.n && l.lon >= area.w && l.lon <= area.e; }
+  function idOf(l) {
+    if (l.uid != null) return "u:" + l.uid;
+    if (!l.__id) l.__id = "i:" + (++seq);
+    return l.__id;
+  }
+  function sideBySide() { return !!(window.matchMedia && window.matchMedia("(min-width:75em)").matches); }
+  function isWide() { return !!(window.matchMedia && window.matchMedia("(min-width:60em)").matches); }
+
+  function ensureLeaflet(ok, fail) {
+    if (window.L && typeof window.L.map === "function") { ok(); return; }
+    if (leafletState === "loading") { leafletWait.push([ok, fail]); return; }
+    var head = document.head;
+    if (!head) { fail(); return; }
+    leafletState = "loading"; leafletWait = [[ok, fail]];
+    var pending = 2, bad = false, nodes = [];
+    function done(good) {
+      if (!good) bad = true;
+      if (--pending) return;
+      var up = !bad && window.L && typeof window.L.map === "function", w = leafletWait;
+      leafletWait = []; leafletState = up ? "ready" : "idle";
+      if (!up) nodes.forEach(function (n) { try { head.removeChild(n); } catch (e) {} });   // a later try starts clean
+      w.forEach(function (p) { p[up ? 0 : 1](); });
+    }
+    var link = document.createElement("link"), script = document.createElement("script");
+    link.rel = "stylesheet"; link.href = "vendor/leaflet/leaflet.css";
+    link.onload = function () { done(true); }; link.onerror = function () { done(false); };
+    script.src = "vendor/leaflet/leaflet.js"; script.async = true;
+    script.onload = function () { done(true); }; script.onerror = function () { done(false); };
+    nodes = [link, script];
+    head.appendChild(link); head.appendChild(script);
+  }
+
+  function quietly(fn) {                 // moves the code makes itself must not look like the user moving the map
+    mapUI.quiet = true;
+    try { fn(); } finally { mapUI.quiet = false; }
+  }
+  function mapFailed() {
+    if (mapUI) { try { mapUI.map.remove(); } catch (e) {} }
+    mapUI = null; wanted = null;
+    if (view !== "map") return;
+    $("map").hidden = true; $("map-error").hidden = false;
+    $("search-area").hidden = true; $("map-card").hidden = true; $("map-note").hidden = true;
+  }
+  function openMap() {
+    $("map-error").hidden = true; $("map").hidden = false;
+    var show = function () { if (wanted && mapUI) showOnMap(wanted); };
+    if (mapUI) {
+      try { quietly(function () { mapUI.map.invalidateSize(); }); mapSync(); show(); } catch (e) { mapFailed(); }
+      return;
+    }
+    ensureLeaflet(function () {
+      if (view !== "map" || mapUI) return;
+      try { buildMap(); mapSync(); show(); } catch (e) { mapFailed(); }
+    }, mapFailed);
+  }
+  function buildMap() {
+    var L = window.L, still = calm();
+    var m = L.map($("map"), { zoomAnimation: !still, fadeAnimation: !still, markerZoomAnimation: !still, inertia: !still, maxZoom: 19 });
+    L.tileLayer(TILES, { maxZoom: 19, attribution: CREDIT }).addTo(m);
+    if (m.attributionControl && typeof m.attributionControl.setPrefix === "function") {
+      m.attributionControl.setPrefix("<a href=\"https://leafletjs.com\" target=\"_blank\" rel=\"noopener noreferrer\">Leaflet</a>");
+    }
+    mapUI = { map: m, entries: {}, selected: null, fitted: true, moved: false, quiet: false, row: null };
+    quietly(function () { m.setView(HOLLAND, 7, { animate: false }); });
+    m.on("moveend", function () {
+      if (!mapUI || mapUI.quiet) return;
+      mapUI.fitted = false; mapUI.moved = true;               // the user moved or zoomed the map
+      $("search-area").hidden = false;
+    });
+    m.on("click", deselect);
+  }
+  // Put the map where the markers are, or on the Netherlands when there are none.
+  function refit() {
+    var pts = baseList.filter(hasLoc).map(function (l) { return [l.lat, l.lon]; }), m = mapUI.map;
+    quietly(function () {
+      if (!pts.length) m.setView(HOLLAND, 7, { animate: false });
+      else if (pts.every(function (p) { return p[0] === pts[0][0] && p[1] === pts[0][1]; })) m.setView(pts[0], 15, { animate: false });
+      else m.fitBounds(pts, { padding: [40, 40], maxZoom: 16, animate: false });
+    });
+    mapUI.fitted = true; mapUI.moved = false;
+    $("search-area").hidden = true;
+  }
+  // The map follows the list: same filters, same hidden homes (and the same markers with or without a map area).
+  function mapSync() {
+    if (view !== "map" || !mapUI) return;
+    renderMarkers();
+    var lost = baseList.filter(function (l) { return !hasLoc(l); }).length, note = $("map-note");
+    note.textContent = lost ? plural(lost, "listing has", "listings have") + " no known location and " + (lost === 1 ? "is" : "are") + " not on the map" : "";
+    note.hidden = !lost;
+    if (mapUI.fitted && !area) refit();
+    markRow();
+  }
+
+  function pinText(l) {
+    var m = matchesFor(l)[0];
+    return m && typeof m.price_pp === "number" ? euro(m.price_pp) : "?";
+  }
+  // The words a screen reader says for a marker: "€850, 2 bedrooms, Sneeuwbalstraat 48".
+  function pinLabel(l) {
+    var m = matchesFor(l)[0], parts = [];
+    parts.push(m && typeof m.price_pp === "number" ? euro(m.price_pp) : typeof l.price_total === "number" ? euro(l.price_total) + " listed" : "Price unknown");
+    if (l.bedrooms != null) parts.push(plural(l.bedrooms, "bedroom", "bedrooms"));
+    parts.push(l.address || l.title || "Listing");
+    if (l.geo && l.geo !== "address") parts.push("approximate location");
+    return parts.join(", ");
+  }
+  // Markers on the same point are laid out as a small grid around it (in screen pixels, so it works at every zoom
+  // level): none covers another, and each can be seen, reached and pressed. The point itself is the middle of the grid.
+  function spread(i, n) {
+    if (n < 2) return [0, 0];
+    var cols = n <= 3 ? n : n <= 9 ? 3 : 4, rows = Math.ceil(n / cols), c = i % cols, r = Math.floor(i / cols);
+    var inRow = r === rows - 1 ? n - r * cols : cols;          // the last row is centred
+    return [Math.round((c - (inRow - 1) / 2) * 72), Math.round((r - (rows - 1) / 2) * 32)];
+  }
+  function icon2(e) {
+    return window.L.divIcon({ html: e.pill, className: "pin-wrap", iconSize: [0, 0], iconAnchor: [-e.off[0], -e.off[1]] });
+  }
+  // Leaflet makes a new element when the icon is replaced, so what a keyboard needs is put on again each time.
+  function decorate(e) {
+    var node = e.marker.getElement && e.marker.getElement();
+    if (!node) return;
+    node.setAttribute("aria-label", pinLabel(e.l));
+    if (node.__pinKeys !== true) {
+      node.__pinKeys = true;
+      node.addEventListener("keydown", function (ev) {       // Leaflet answers Enter itself; Space is added
+        if (ev && (ev.key === " " || ev.keyCode === 32)) { if (ev.preventDefault) ev.preventDefault(); pick(e.l, "marker"); }
+      });
+    }
+  }
+  function paintPin(e, on) {
+    e.pill.className = "pin" + (e.l.geo && e.l.geo !== "address" ? " approx" : "") + (on ? " sel" : "");
+    if (e.marker.setZIndexOffset) e.marker.setZIndexOffset(on ? 1000 : 0);
+  }
+  function renderMarkers() {
+    var L = window.L, groups = {}, seen = {}, m = mapUI.map;
+    baseList.forEach(function (l) {
+      if (!hasLoc(l)) return;
+      var k = l.lat.toFixed(5) + "," + l.lon.toFixed(5);
+      (groups[k] || (groups[k] = [])).push(l);
+    });
+    Object.keys(groups).forEach(function (k) {
+      groups[k].forEach(function (l, i) {
+        var id = idOf(l), e = mapUI.entries[id], off = spread(i, groups[k].length), text = pinText(l);
+        seen[id] = true;
+        if (!e) {
+          e = mapUI.entries[id] = { l: l, off: off, text: text, pill: el("div", "pin") };
+          e.pill.appendChild(el("span", "pin-text", text));
+          e.marker = L.marker([l.lat, l.lon], { icon: icon2(e), keyboard: true, title: pinLabel(l) });
+          e.marker.on("click", function () { pick(e.l, "marker"); });
+          e.marker.addTo(m);
+          decorate(e);
+        } else {
+          e.l = l;
+          if (e.text !== text) { e.text = text; e.pill.textContent = ""; e.pill.appendChild(el("span", "pin-text", text)); }
+          if (e.off[0] !== off[0] || e.off[1] !== off[1]) { e.off = off; e.marker.setIcon(icon2(e)); }
+          if (e.marker.setLatLng) e.marker.setLatLng([l.lat, l.lon]);
+          decorate(e);
+        }
+        paintPin(e, mapUI.selected === id);
+      });
+    });
+    Object.keys(mapUI.entries).forEach(function (id) {
+      if (seen[id]) return;
+      mapUI.entries[id].marker.remove();
+      delete mapUI.entries[id];
+      if (mapUI.selected === id) deselect();
+    });
+  }
+
+  // The card of the selected home in the list: marked so it can be found (not by colour alone: see the CSS).
+  function rowOf(l) { var c = rows && rows.get(l); return c ? c.node : null; }
+  function markRow() {
+    if (!mapUI) return;
+    var e = mapUI.selected && mapUI.entries[mapUI.selected], node = e ? rowOf(e.l) : null;
+    if (mapUI.row && mapUI.row !== node && mapUI.row.removeAttribute) mapUI.row.removeAttribute("data-picked");
+    mapUI.row = node;
+    if (node) node.setAttribute("data-picked", "");
+  }
+  function pick(l, how) {
+    var id = idOf(l);
+    mapUI.selected = id;
+    Object.keys(mapUI.entries).forEach(function (k) { paintPin(mapUI.entries[k], k === id); });
+    markRow();
+    var node = rowOf(l);
+    if (sideBySide()) {
+      // list and map side by side: the list scrolls to the card, which flashes once
+      if (how === "marker" && node && node.scrollIntoView) {
+        node.scrollIntoView({ block: "center", behavior: calm() ? "auto" : "smooth" });
+        node.removeAttribute("data-flash");
+        if (node.offsetWidth !== undefined) node.setAttribute("data-flash", "");
+        node.addEventListener("animationend", function () { node.removeAttribute("data-flash"); }, { once: true });
+      }
+    } else {
+      showCard(l);
+      var m = mapUI.map, c = $("map-card");   // keep the marker clear of the card that now covers the bottom of the map
+      if (how === "marker" && m.panInside) quietly(function () {
+        m.panInside([l.lat, l.lon], { paddingTopLeft: [60, 60], paddingBottomRight: [60, (c.offsetHeight || 170) + 50], animate: false });
+      });
+    }
+  }
+  function deselect() {
+    if (!mapUI) return;
+    mapUI.selected = null;
+    Object.keys(mapUI.entries).forEach(function (k) { paintPin(mapUI.entries[k], false); });
+    $("map-card").hidden = true;
+    markRow();
+  }
+  // Narrow screens: a compact card over the bottom of the map.
+  function showCard(l) {
+    var c = $("map-card"), x = el("button", "icon-btn", null), href = safeUrl(l.url), facts = factsOf(l);
+    c.textContent = "";
+    x.type = "button"; x.setAttribute("aria-label", "Close");
+    x.appendChild(icon("i-x"));
+    x.addEventListener("click", deselect);
+    c.appendChild(x);
+    c.appendChild(priceLine(l, matchesFor(l)[0], "pp", false));
+    c.appendChild(el("p", "card-title", nameOf(l)));
+    if (facts) c.appendChild(el("p", "facts", facts));
+    if (href) {
+      var a = el("a", "btn tinted small", "Open Listing");
+      a.setAttribute("href", href); a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener noreferrer");
+      c.appendChild(a);
+    }
+    c.hidden = false;
+  }
+  // "Show on Map" on a card: centre the map on the home and select it.
+  // From the list it opens the map first; the home is shown as soon as the map is there.
+  function showOnMap(l) {
+    if (!hasLoc(l)) return;
+    if (view !== "map" || !mapUI) {
+      wanted = l;
+      if (view !== "map") { $("view-map").checked = true; switchView("map"); if (viewControl) viewControl.settle(); }
+      return;
+    }
+    wanted = null;
+    var m = mapUI.map;
+    quietly(function () { m.setView([l.lat, l.lon], Math.max(m.getZoom ? m.getZoom() : 15, 15), { animate: false }); });
+    mapUI.fitted = false;
+    pick(l, "card");
+    var pane = $("map-pane");
+    if (pane.scrollIntoView) pane.scrollIntoView({ block: "nearest", behavior: calm() ? "auto" : "smooth" });
+  }
+  // "Search This Area": what the map shows now becomes a filter on the list.
+  function searchArea() {
+    if (!mapUI) return;
+    var b = mapUI.map.getBounds();
+    area = { s: b.getSouth(), w: b.getWest(), n: b.getNorth(), e: b.getEast() };
+    mapUI.fitted = false; mapUI.moved = false;
+    $("search-area").hidden = true;
+    tick(); update();
+  }
+  function switchView(v) {
+    if (v === view) return;
+    view = v;
+    $("app").className = "app" + (v === "map" ? " mapview" : "");
+    $("map-pane").hidden = v !== "map";
+    if (v === "map") openMap();
   }
 
   function sources() {
@@ -1039,7 +1495,7 @@
 
     // Filters apply as you change them. Done (or pulling the sheet down) keeps them; Cancel puts back what was set
     // when the sheet opened.
-    var filters = sheet($("filters-sheet"), $("filters-top"), $("open-filters"));
+    var filters = filtersSheet = sheet($("filters-sheet"), $("filters-top"), $("open-filters"));
     $("open-filters").addEventListener("click", function () { beforeSheet = JSON.stringify(f); filters.show(); });
     $("filters-done").addEventListener("click", function () { filters.hide(); });
     $("filters-cancel").addEventListener("click", function () {
@@ -1051,6 +1507,25 @@
     $("sources-close").addEventListener("click", function () { sources.hide(); });
     replyEditor();
 
+    // Hidden homes: a row at the end of the filters opens the list of them. On a narrow screen that row is inside the
+    // Filters sheet, which is closed first (two sheets can not be open at once).
+    hiddenSheet = sheet($("hidden-sheet"), $("hidden-top"), { focus: function () { var t = isWide() ? $("open-hidden") : $("open-filters"); if (t.focus) t.focus(); } });
+    $("open-hidden").addEventListener("click", function () {
+      hiddenUI();
+      if (filtersSheet.shown()) filtersSheet.hide();
+      hiddenSheet.show();
+    });
+    $("hidden-close").addEventListener("click", function () { hiddenSheet.hide(); });
+    $("hidden-all").addEventListener("click", function () { showAgain(hiddenKeys()); });
+    $("toast-undo").addEventListener("click", function () { if (undoKey) showAgain([undoKey]); });
+
+    // List | Map, and the map's own button.
+    [["list", $("view-list")], ["map", $("view-map")]].forEach(function (p) {
+      p[1].addEventListener("change", function () { if (p[1].checked) { tick(); switchView(p[0]); } });
+    });
+    viewControl = segmented($("view-control"), $("view-thumb"), [$("view-list"), $("view-map")]);
+    $("search-area").addEventListener("click", searchArea);
+
     var wide = window.matchMedia ? window.matchMedia("(min-width: 60em)") : null;
     placeFilters(wide, filters);
     if (wide && wide.addEventListener) wide.addEventListener("change", function () { placeFilters(wide, filters); });
@@ -1060,6 +1535,7 @@
 
   loadF();
   loadReply();
+  loadHidden();
   // The saved filters show from the first frame, before the data arrives; each thumb starts under the saved choice.
   syncControls();
   groupControl = segmented($("group-control"), $("group-thumb"), GROUPS.map(function (g) { return $("group-" + g); }));

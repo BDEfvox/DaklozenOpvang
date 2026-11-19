@@ -244,7 +244,7 @@ def _tenant_extra(listing: Listing, entity: Dict[str, Any]) -> None:
     # freePlaces 1 is shown as "Space for 1 person" (ut1698524, ut1749760, ut260681); 0 shows no such line.
     places = entity.get("freePlaces")
     if isinstance(places, int) and not isinstance(places, bool) and places >= 1:
-        extra["max_persons"] = places
+        extra["places_free"] = places            # the places that can be rented now, not the home's size
         facts.append("Space for 1 person" if places == 1 else "Space for %d people" % places)
     registration = facilities.get("registration_possible")
     if registration == "no":

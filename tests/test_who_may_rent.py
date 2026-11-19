@@ -185,7 +185,8 @@ def test_compulsory_parking_counts_towards_the_budget(cfg):
     r = evaluate(make_listing(price_total=1300, bedrooms=2,
                               description="Verplichte afname van een parkeerplaats voor € 150 per maand."), cfg)
     assert "mandatory_costs:150" in r.flags
-    assert [(m.persons, m.price_pp) for m in r.matches] == [(2, 725)]   # (1300 + 150) / 2
+    # each pays 650 rent and 75 for the parking place: 725 a month, which is what the budget is held against
+    assert [(m.persons, m.price_pp, m.extra_pp) for m in r.matches] == [(2, 650, 75)]
 
 
 # ----------------------------------------------------------------------------- rooms and bedrooms
@@ -241,7 +242,8 @@ def test_alert_shows_good_signs_requirements_and_two_quotes(cfg):
     assert msg.count("💬") == 2                                          # the first two sentences behind the flags
     assert "💬 <i>“Geen woningdelers”</i>" in msg and "💬 <i>“Studenten welkom”</i>" in msg
     r = evaluate(make_listing(price_total=750, bedrooms=2, description="Price is per person."), cfg)
-    assert "💶 <b>€750</b>/month per person" in fmt.format_new_match(make_listing(price_total=750), r, cfg, "Fake")
+    assert ("💶 <b>€750</b> each a month · rent per person or room"
+            in fmt.format_new_match(make_listing(price_total=750), r, cfg, "Fake"))
 
 
 def test_two_cuts_of_one_long_sentence_are_quoted_once(cfg):
@@ -558,7 +560,8 @@ def test_audit_service_costs_on_top_are_shown_and_counted(cfg):
                                                           "service_costs_note": "Servicekosten € 85 per maand"})
     r = evaluate(l, cfg)
     assert "service_costs:85" in r.flags and r.evidence["service_costs"] == "Servicekosten € 85 per maand"
-    assert [m.price_pp for m in r.matches if m.persons == 2] == [667]           # (1249 + 85) / 2
+    # (1249 + 85) / 2 = 667 each: 625 rent and 42 service costs
+    assert [(m.price_pp, m.extra_pp) for m in r.matches if m.persons == 2] == [(625, 42)]
     assert "Plus €85 service costs a month" in fmt.format_new_match(l, r, cfg)
     # the budget test uses the total: € 1.545 + € 65 is over € 1.600 for two
     over = evaluate(make_listing(price_total=1545, bedrooms=2, extra={"service_costs": 65, "service_costs_on_top": True}), cfg)
@@ -569,7 +572,7 @@ def test_audit_service_costs_on_top_are_shown_and_counted(cfg):
     # with a compulsory parking place both are added
     both = evaluate(make_listing(price_total=1300, bedrooms=2, extra={"service_costs": 60, "service_costs_on_top": True,
                                                                      "mandatory_costs": 100}), cfg)
-    assert [m.price_pp for m in both.matches if m.persons == 2] == [730]
+    assert [(m.price_pp, m.extra_pp) for m in both.matches if m.persons == 2] == [(650, 80)]
 
 
 def test_audit_utilities_text_against_the_sites_field(cfg):
@@ -716,11 +719,11 @@ def test_the_same_wordings_still_count_when_they_are_statements():
     assert _said("Wij zoeken huurders tussen 25 en 35 jaar.") == ["min_age:25", "max_age:35"]
     assert _said("De woning is alleen voor huurders vanaf 23 jaar.") == ["min_age:23"]
     assert _said("Dit is een 55+ woning.") == ["min_age:55"]
-    assert _said("Je deelt de woning met twee andere studenten.") == ["housemates"]
+    assert _said("Je deelt de woning met twee andere studenten.") == ["housemates", "capacity:3"]
     assert _said("Je deelt de keuken en badkamer met je medehuurder.") == ["housemates"]
     assert _said("Deze woning wordt verhuurd met een campuscontract.") == ["students_only"]
     assert _said("Alleen voor werkenden of expats.") == ["working_only"]
-    assert _said("Voorwaarden: max. 1 werkende persoon of stel.") == ["working_only", "max_persons:2"]
+    assert _said("Voorwaarden: max. 1 werkende persoon of stel.") == ["working_only", "max_persons:2", "sharing_unclear"]
     assert _said("Alleen voor vrouwen.") == ["women_only"]
     assert _said("De huurprijs is per persoon.") == ["price_per_person"]
     assert "price_per_person" not in _said("Geen kamerverhuur: niet de huurprijs is per persoon, maar voor de hele woning.")

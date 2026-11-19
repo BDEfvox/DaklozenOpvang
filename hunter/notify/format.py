@@ -4,7 +4,7 @@ from __future__ import annotations
 import html
 from typing import Any, Dict, List, Optional
 
-from ..filters import MatchResult
+from ..filters import MatchResult, price_basis, rent_basis
 from ..models import CITIES, Listing
 from ..tenancy import same_passage
 
@@ -12,7 +12,7 @@ MAX_LEN = 3900
 
 FLAG_LABELS: Dict[str, str] = {
     "no_sharers": "No house sharers",
-    "max_persons": "Max {n} persons",
+    "max_persons": "Up to {n} people",
     "no_students": "No students",
     "students_only": "Students only",
     "students_ok": "Students welcome",
@@ -34,7 +34,14 @@ FLAG_LABELS: Dict[str, str] = {
     "bedrooms_unknown": "Bedrooms unknown",
     "bedrooms_unconfirmed": "Bedrooms not confirmed",
     "price_unknown": "Price unknown",
-    "price_per_person": "Rent is per person",
+    "price_per_person": "Rent is per person or room",
+    "capacity": "Shared home for {n} people",
+    "places_free": "Places free: {n}",
+    "sharing_unclear": "Sharing policy unclear",
+    "age_unclear": "Age limit unclear",
+    "places_unclear": "Free places unclear",
+    "apply_together": "Two can apply together",
+    "rent_unclear": "Rent basis unclear",
     "price_varies": "Rent depends on the month, up to €{n}",
     "rent_for_2": "€{n} a month for 2 people",
     "rent_for_3": "€{n} a month for 3 people",
@@ -120,16 +127,30 @@ def _facts(listing: Listing) -> List[str]:
 
 
 def _price_line(listing: Listing, result: MatchResult) -> str:
-    line = "💶 <b>%s</b>/month" % e(euro(listing.price_total))
-    if "price_per_person" in result.flags:
-        line += " per person"
-    if listing.price_includes_utilities is True:
-        line += " (incl. utilities)"
-    elif listing.price_includes_utilities is False:
-        line += " (excl. utilities)"
-    pps = ["%s pp for %d" % (euro(m.price_pp), m.persons) for m in result.matches if m.price_pp is not None]
-    if pps:
-        line += " · " + e(" · ".join(pps))
+    """What each person pays a month, then what that figure is taken from. "incl." / "excl." only where the
+    listing establishes it; a share the listing does not settle is not worked out."""
+    basis = price_basis(result.flags, listing.price_includes_utilities)
+    label = {"incl": " incl.", "excl": " excl."}.get(basis or "", "")
+    known = [m for m in result.matches if m.price_pp is not None]
+    if not known:
+        line = "💶 <b>%s%s</b>/month listed" % (e(euro(listing.price_total)), label)
+        if "rent_unclear" in result.flags:
+            line += " · each one's share is not settled"
+        return line
+    many = len(result.matches) > 1
+    parts = []
+    for m in known:
+        part = "<b>%s%s</b> each" % (e(euro(m.price_pp)), label)
+        if many:
+            part += " for %d" % m.persons
+        if m.extra_pp:
+            part += " + %s costs" % e(euro(m.extra_pp))
+        parts.append(part)
+    line = "💶 " + " · ".join(parts) + " a month"
+    if rent_basis(result.flags) == "place":
+        line += " · rent per person or room"
+    else:
+        line += " · %s for the home" % e(euro(listing.price_total))
     return line
 
 

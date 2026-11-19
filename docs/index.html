@@ -17,7 +17,6 @@
   <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"/></symbol>
   <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
   <symbol id="i-updown" viewBox="0 0 24 24"><path d="M8 9.5l4-4 4 4M8 14.5l4 4 4-4"/></symbol>
-  <symbol id="i-out" viewBox="0 0 24 24"><path d="M8 16l8-8M9.5 8H16v6.5"/></symbol>
   <symbol id="i-house" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v8.5a.5.5 0 01-.5.5H15v-5H9v5H4.5a.5.5 0 01-.5-.5z"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
   <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></symbol>
@@ -36,9 +35,12 @@
   <symbol id="i-fail" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none"/><path d="M8.6 8.6l6.8 6.8M15.4 8.6l-6.8 6.8" stroke="#fff" stroke-width="2.2"/></symbol>
   <symbol id="i-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none"/><path d="M7.8 12h8.4" stroke="#fff" stroke-width="2.2"/></symbol>
   <symbol id="i-note" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none"/><path d="M12 11.2v5.6M12 7.4h.01" stroke="#fff" stroke-width="2.2"/></symbol>
+  <!-- "Ask the landlord": a question mark in a filled grey circle. -->
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none"/><path d="M9.4 9.6a2.7 2.7 0 015.2.9c0 1.7-2.6 2.1-2.6 3.9M12 17.1h.01" stroke="#fff" stroke-width="2.2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s6.5-5.6 6.5-11a6.5 6.5 0 10-13 0c0 5.4 6.5 11 6.5 11z"/><circle cx="12" cy="10" r="2.2"/></symbol>
 </defs></svg>
 
-<div class="app">
+<div id="app" class="app">
   <div class="side">
     <header class="intro">
       <h1>House Hunter</h1>
@@ -74,6 +76,11 @@
   <main>
     <div class="list-head">
       <p id="count" class="count-line" aria-live="polite"></p>
+      <div id="view-control" class="segmented two compact" role="radiogroup" aria-label="View">
+        <span id="view-thumb" class="thumb" aria-hidden="true"></span>
+        <label><input type="radio" name="view" id="view-list" value="list" checked><span>List</span></label>
+        <label><input type="radio" name="view" id="view-map" value="map"><span>Map</span></label>
+      </div>
       <label class="popup">
         <span class="sr">Sort</span>
         <select id="sort">
@@ -87,24 +94,40 @@
     <!-- The filters in use, each with its own remove button. -->
     <div id="applied" class="applied" role="group" aria-label="Filters in use" hidden></div>
 
-    <ul id="listings" class="list" aria-label="Listings"></ul>
+    <div class="results">
+      <!-- The map (loaded when it is first opened). The list is the full equivalent: nothing is only on the map. -->
+      <div id="map-pane" class="map-pane" hidden>
+        <a class="skip" href="#listings">Skip the map, go to the list</a>
+        <div class="map-box">
+          <div id="map" class="map" role="region" aria-label="Map of the listings. The list shows the same homes."></div>
+          <p id="map-error" class="map-error" role="status" hidden>The map could not be loaded</p>
+          <button id="search-area" class="btn search-area" type="button" hidden>Search This Area</button>
+          <div id="map-card" class="map-card" hidden></div>
+        </div>
+        <p id="map-note" class="map-note" hidden></p>
+      </div>
+      <div class="results-list">
+      <ul id="listings" class="list" aria-label="Listings" tabindex="-1"></ul>
 
-    <section id="empty" class="empty" hidden>
-      <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-search"/></svg>
-      <h2>No Matching Listings</h2>
-      <p>Try a higher budget, more cities or fewer filters.</p>
-      <button id="clear-empty" class="btn tinted" type="button">Clear Filters</button>
-    </section>
+      <section id="empty" class="empty" hidden>
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-search"/></svg>
+        <h2>No Matching Listings</h2>
+        <p>Try a higher budget, more cities or fewer filters.</p>
+        <button id="clear-empty" class="btn tinted" type="button">Clear Filters</button>
+      </section>
 
-    <section id="load-error" class="empty" hidden>
-      <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-alert"/></svg>
-      <h2>Can’t Load Listings</h2>
-      <p>Check your connection, then try again.</p>
-      <button id="retry" class="btn tinted" type="button">Try Again</button>
-    </section>
+      <section id="load-error" class="empty" hidden>
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-alert"/></svg>
+        <h2>Can’t Load Listings</h2>
+        <p>Check your connection, then try again.</p>
+        <button id="retry" class="btn tinted" type="button">Try Again</button>
+      </section>
+
+      </div>
+    </div>
 
     <footer>
-      <p><strong>Great price</strong> means comfortably under the budget per person. Everything else shown is within the maximum of €800 per person, but closer to the limit.</p>
+      <p>Prices are per person per month. “Incl.” and “excl.” say whether utilities are in the price. “Listed” is the rent the listing states for the home or room, shown when what each person pays could not be worked out. <strong>Great price</strong> means comfortably under the budget per person. Everything else shown is within the maximum of €800 per person, but closer to the limit.</p>
       <p>New matches are sent to the group in Telegram. This page lists everything found in the last 30 days. Always check the listing itself: prices and warnings come from third-party sites and can be wrong. A line in quotes is the listing’s own sentence behind a warning.</p>
     </footer>
   </main>
@@ -121,7 +144,7 @@
     <button id="filters-done" class="btn plain strong" type="button">Done</button>
   </div>
   <form id="filters" class="filters" aria-label="Filters">
-    <fieldset>
+    <fieldset id="group-fieldset">
       <legend>Group Size</legend>
       <div id="group-control" class="segmented">
         <span id="group-thumb" class="thumb" aria-hidden="true"></span>
@@ -167,6 +190,17 @@
     <div id="attr-sections" class="attr-sections"></div>
 
     <button id="clear-filters" class="btn plain clear" type="button" hidden>Clear Filters</button>
+
+    <!-- Homes hidden with "Hide Listing": shown only when there are any. -->
+    <fieldset id="hidden-fieldset" hidden>
+      <div class="list">
+        <button id="open-hidden" class="row" type="button" aria-haspopup="dialog">
+          <span class="label">Hidden Homes</span>
+          <span id="hidden-count" class="value"></span>
+          <svg class="icon chev" aria-hidden="true" focusable="false"><use href="#i-chev"/></svg>
+        </button>
+      </div>
+    </fieldset>
   </form>
 </dialog>
 
@@ -180,6 +214,20 @@
   </div>
   <ul id="sources" class="list"></ul>
   <p class="note">Each source is a rental site that is checked every few minutes. A source that is blocked or not working can miss listings.</p>
+</dialog>
+
+<!-- Homes hidden with "Hide Listing", each with a way back. -->
+<dialog id="hidden-sheet" class="sheet" aria-labelledby="hidden-h">
+  <div id="hidden-top" class="sheet-head">
+    <span class="spacer" aria-hidden="true"></span>
+    <h2 id="hidden-h">Hidden Homes</h2>
+    <button id="hidden-close" class="icon-btn" type="button" aria-label="Close">
+      <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-x"/></svg>
+    </button>
+  </div>
+  <ul id="hidden-list" class="list"></ul>
+  <button id="hidden-all" class="btn plain clear" type="button">Show All Again</button>
+  <p class="note">Hidden homes stay hidden on this device, also when the page is refreshed or the home is found again on another site.</p>
 </dialog>
 
 <!-- The reply text that "Copy Reply" fills in for each listing. Kept on this device only. -->
@@ -204,6 +252,12 @@
     <button id="reply-reset" class="btn plain clear" type="button">Use the Standard Text</button>
   </form>
 </dialog>
+
+<!-- After "Hide Listing": a few seconds to take it back. -->
+<div id="toast" class="toast" role="status" hidden>
+  <span id="toast-text">Listing hidden</span>
+  <button id="toast-undo" class="toast-btn" type="button">Undo</button>
+</div>
 
 <script src="app.js"></script>
 </body>

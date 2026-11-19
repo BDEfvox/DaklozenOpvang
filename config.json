@@ -15,14 +15,6 @@
       "max_total": 1600,
       "great_total": 1400,
       "min_area_if_unknown": 45
-    },
-    {
-      "name": "3 people",
-      "persons": 3,
-      "min_bedrooms": 3,
-      "max_total": 2400,
-      "great_total": 2100,
-      "min_area_if_unknown": 60
     }
   ],
   "exclude_types": [
@@ -45,6 +37,8 @@
     "timezone": "Europe/Amsterdam"
   },
   "detail_fetch_max_per_run": 10,
+  "_geo_lookups_per_run": "Address lookups for the map per run (PDOK Locatieserver, free, no key). Each found address is saved in data/geo.json and never asked again. 0 switches the lookups off.",
+  "geo_lookups_per_run": 30,
   "health_alert_after_failures": 6,
   "keep_listings_days": 30,
   "prune_seen_days": 45,
@@ -187,11 +181,18 @@
     "\\bmax(?:imaal|imum|\\.)?\\s?(\\d)\\s+(?:werkende\\s+)?(?:woningdelers|delers|bewoners|huurders|studenten|volwassenen|sharers|tenants|occupants|adults|students)\\b",
     "\\b(?:up to|maximum of|max\\. of)\\s+(\\d)\\s+(?:people|persons|tenants|occupants|adults|sharers)\\b"
   ],
+  "_couple_only_patterns": "Wording that lets only a couple rent the home: two people who are no couple are house sharers there (flag no_sharers).",
+  "couple_only_patterns": [
+    "alleen voor (?:een )?stel(?:len)?\\b(?!\\s+(?:maanden|weken|dagen|jaren|jaar))",
+    "uitsluitend voor (?:een )?stel(?:len)?\\b(?!\\s+(?:maanden|weken|dagen|jaren|jaar))",
+    "\\bcouples? only(?=\\s*(?:[.,;:!)(/-]|$|\\n|please\\b|no\\b|geen\\b))",
+    "\\bonly for (?:a )?couples?\\b(?!\\s+of\\b)"
+  ],
   "couple_patterns": [
-    "alleen voor (?:een )?stel",
-    "uitsluitend voor (?:een )?stel",
-    "couple only",
-    "only for (?:a )?couple",
+    "alleen voor (?:een )?stel(?:len)?\\b(?!\\s+(?:maanden|weken|dagen|jaren|jaar))",
+    "uitsluitend voor (?:een )?stel(?:len)?\\b(?!\\s+(?:maanden|weken|dagen|jaren|jaar))",
+    "\\bcouples? only(?=\\s*(?:[.,;:!)(/-]|$|\\n|please\\b|no\\b|geen\\b))",
+    "\\bonly for (?:a )?couples?\\b(?!\\s+of\\b)",
     "\\bsingle\\s+person\\s+or\\s+(?:a\\s+)?couple\\b",
     "\\balleenstaande\\s+of\\s+(?:een\\s+)?stel\\b",
     "\\b1\\s+of\\s+2\\s+personen\\b"
@@ -211,10 +212,12 @@
   ],
   "_tenant_rules": "Extra regexes (on the lowercased title + description) for the 'who may rent' flags, added to the built-in ones in hunter/tenancy.py: students_only, no_students, students_ok, working_only, no_sharers, sharers_ok, housemates. 'age' takes [pattern, kind] pairs, kind = min | max | range.",
   "tenant_rules": {},
-  "_household": "Who is looking. Leave both null to be alerted about every home. With an age (a number: for a group, the youngest) and/or an occupation ('students' or 'working'), homes whose own text or fields exclude you (minimum or maximum age, students only, no students, working people only) are no longer matched or alerted. A home that says nothing about this always stays.",
+  "_household": "Who is looking. The checker drops homes whose own text says this household may not rent them (no students, working people only, a minimum age above the youngest, a maximum age below the oldest, no house sharers); a listing that says nothing, or says it unclearly, always stays. persons: how many move in together. occupation: 'students' or 'working' or null. ages: everyone's age, as numbers. sharers: true when you rent together without being a couple or a family (woningdelers); false for a couple, so that 'geen woningdelers' homes stay. This repository is public, so the real values need not be written here: the HOUSEHOLD repository secret (the same JSON object; a secret, because a variable shows in the public run logs), or a git-ignored household.json next to this file, replaces this block.",
   "household": {
-    "age": null,
-    "occupation": null
+    "persons": 2,
+    "occupation": null,
+    "ages": [],
+    "sharers": false
   },
   "first_run_detail_max": 30,
   "local_backup": {

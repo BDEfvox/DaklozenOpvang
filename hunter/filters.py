@@ -7,6 +7,7 @@ from datetime import date
 from typing import Any, Dict, List, Optional, Tuple
 
 from . import tenancy
+from . import occupancy
 from .models import Listing
 from .utils import bedrooms_from_text, rooms_from_dutch_text
 
@@ -15,12 +16,13 @@ from .utils import bedrooms_from_text, rooms_from_dutch_text
 class SearchMatch:
     search: str
     persons: int
-    price_pp: Optional[int]
+    price_pp: Optional[int]   # the quoted rent each person pays a month; None when the listing does not settle it
     tier: str  # "great" | "ok"
+    extra_pp: int = 0         # monthly costs each person must pay on top of that rent (service costs, a compulsory extra)
 
     def to_dict(self) -> Dict[str, Any]:
         return {"search": self.search, "persons": self.persons,
-                "price_pp": self.price_pp, "tier": self.tier}
+                "price_pp": self.price_pp, "extra_pp": self.extra_pp, "tier": self.tier}
 
 
 @dataclass
@@ -92,6 +94,12 @@ _ROOM_BEFORE = re.compile(r"\b(?:slaap)?kamers?\b(?:\s+[\w-]+){0,3}\s+$|\b(?:bed
 _OR_MORE = re.compile(r"\s*\(?\s*(?:,|/|&|\bof\b|\bor\b|\ben\b|\band\b)\s*"
                       r"(?:(?!(?:geen|niet|no|not|zonder|without)\b)[\w-]+\s+){0,3}?"    # "max. 2 personen, geen gezin" stays a limit
                       r"(?:gezin(?:nen)?|famil(?:y|ies|ie)|woningdelers|delers|sharers|vrienden|friends|woongroep)\b")
+# The home is offered with a couple in mind. "een stel maanden" and "a couple of weeks" are no couple.
+_SUITS_COUPLE = re.compile(
+    r"\b(?:geschikt|ideaal|perfect|bedoeld|uitermate\s+geschikt|zeer\s+geschikt)\s+voor\s+(?:een\s+)?"
+    r"(?:(?:jong|werkend|net|rustig)\s+)?(?:stel(?:len|letje)?|koppels?|tweeverdieners)\b(?!\s+(?:maanden|weken|dagen|jaren|jaar))"
+    r"|\b(?:suitable|ideal|perfect|great|meant)\s+for\s+(?:a\s+|an\s+)?(?:(?:young|working|professional|quiet)\s+)?"
+    r"couples?\b(?!\s+of\b)")
 _OR_NUMBER = re.compile(r"\s*\(?\s*(?:/|\bof\b|\bor\b)\s*(?:max(?:imaal|imum|\.)?\s*)?(\d)\s+(?:werkende\s+|working\s+)?"
                         r"(?:personen|persons|people|woningdelers|delers|sharers|bewoners|huurders|studenten|students|"
                         r"volwassenen|adults|tenants|occupants)\b")
@@ -354,6 +362,13 @@ def detect(listing: Listing, cfg: Dict[str, Any]) -> Tuple[List[str], Dict[str, 
     out: List[str] = [k for k in _PHRASE_FLAGS if k in names]
     out += [k for k in _TENANCY_ORDER if k in names]
     out += ["%s:%s" % (k, names[k]) for k in ("min_age", "max_age") if names.get(k)]
+    if not names.get("min_age") and not names.get("max_age"):
+        # "Vanaf 25 jaar", "25+", "tot 30 jaar" with nothing that makes it a statement about the tenant: nobody
+        # is excluded on it, and the card says what to ask.
+        hint = tenancy.age_hint(raw)
+        if hint:
+            out.append("age_unclear")
+            ev["age_unclear"] = tenancy.evidence(raw, *hint)
 
     if "no_registration" not in out and (
             extra.get("registration_allowed") is False or extra.get("registration_possible") is False):
@@ -394,6 +409,13 @@ def detect(listing: Listing, cfg: Dict[str, Any]) -> Tuple[List[str], Dict[str, 
                     and not _OR_MORE.match(text, m.end())]
     if couple_spans:
         nums.append((2, couple_spans[0]))
+    # "alleen voor een stel", "couple only": two people who are no couple may not rent it
+    only_couples = [m.span() for pat in cfg.get("couple_only_patterns", []) for m in re.finditer(pat, text)
+                    if "\n" not in m.group(0) and not tenancy.denied_before(raw, text, m.start())
+                    and not _OR_MORE.match(text, m.end())]
+    # "alleenstaande of stel": up to two people, said in words that leave open whether two friends count
+    couple_worded: List[Tuple[int, int]] = [sp for sp in couple_spans if sp not in only_couples
+                                            and _COUPLE_WORD.search(text, sp[0], sp[1])]
     many_bedrooms = type(listing.bedrooms) is int and listing.bedrooms >= 2
     for pat in cfg.get("single_patterns", []):
         for m in re.finditer(pat, text):
@@ -414,13 +436,32 @@ def detect(listing: Listing, cfg: Dict[str, Any]) -> Tuple[List[str], Dict[str, 
             if listed == "family":
                 continue
             nums.append((2 if offered_with_couple or listed == "couple" else 1, m.span()))
+            if offered_with_couple or listed == "couple":
+                couple_worded.append(m.span())
     mp = extra.get("max_persons")
     if isinstance(mp, int) and not isinstance(mp, bool) and mp > 0:
         nums.append((mp, None))  # structured value from the site (e.g. Kamernet "suitable for N persons")
+    if only_couples and "no_sharers" not in out and "sharers_ok" not in out:
+        out.insert(0, "no_sharers")
+        ev["no_sharers"] = tenancy.evidence(raw, *only_couples[0])
     if nums:
         n, span = min(nums, key=lambda x: (x[0], x[1] is None))   # of equal numbers, the one with a sentence
         out.append("max_persons:%d" % n)
         ev["max_persons"] = tenancy.evidence(raw, *span) if span else site_facts
+        # The limit of two is worded for a couple and the listing says nothing about sharers: whether two
+        # people who are no couple may rent it is the thing to ask.
+        if n == 2 and couple_worded and not any(k in out for k in ("no_sharers", "sharers_ok", "housemates")):
+            out.append("sharing_unclear")
+            ev["sharing_unclear"] = tenancy.evidence(raw, *couple_worded[0])
+    # "Ideaal voor een stel", "suitable for a couple": the landlord has a couple in mind and the listing says
+    # nothing about sharers. No limit and no verdict: the thing to ask before two sharers count on it.
+    if not any(k in out for k in ("no_sharers", "sharers_ok", "housemates", "sharing_unclear")):
+        for m in _SUITS_COUPLE.finditer(text):
+            if ("\n" in m.group(0) or tenancy.denied_before(raw, text, m.start()) or _OR_MORE.match(text, m.end())):
+                continue
+            out.append("sharing_unclear")
+            ev["sharing_unclear"] = tenancy.evidence(raw, *m.span())
+            break
     # short term
     a, b = _parse_date(listing.available_from), _parse_date(listing.available_until)
     max_stay_months = extra.get("max_stay_months")
@@ -474,13 +515,60 @@ def detect(listing: Listing, cfg: Dict[str, Any]) -> Tuple[List[str], Dict[str, 
     if type(top) is int and type(listing.price_total) is int and top > listing.price_total:
         out.append("price_varies:%d" % top)
     pp = _per_person_span(text, listing.price_total, raw)
-    if pp or extra.get("price_per_person") is True:
+    occ = occupancy.read(raw)
+    one_place = occ.get("one_place")            # "je huurt één slaapkamer": the rent buys one room of the home
+    if pp or extra.get("price_per_person") is True or one_place:
         out.append("price_per_person")
-        ev["price_per_person"] = tenancy.evidence(raw, *pp) if pp else site_facts
+        if pp:
+            ev["price_per_person"] = tenancy.evidence(raw, *pp)
+        elif extra.get("price_per_person") is True:
+            ev["price_per_person"] = site_facts
+        else:
+            ev["price_per_person"] = tenancy.evidence(raw, *one_place[1])
+        if "sharing_unclear" in out:            # a place in a shared home is for sharers
+            out.remove("sharing_unclear")
+            ev.pop("sharing_unclear", None)
     else:
         for n, (amount, span) in sorted(_group_rents(text, raw, listing.price_total).items()):
             out.append("rent_for_%d:%d" % (n, amount))
             ev["rent_for_%d" % n] = tenancy.evidence(raw, *span)
+    # How many people the home houses, and how many of those places can be rented now: two different numbers.
+    # The site's own field wins over the free text.
+    for name in ("capacity", "places_free"):
+        site_n = extra.get(name)
+        if type(site_n) is int and (0 if name == "places_free" else 1) <= site_n <= 12:
+            out.append("%s:%d" % (name, site_n))
+            ev[name] = site_facts
+        elif name == "capacity" and name in occ:
+            out.append("capacity:%d" % occ[name][0])
+            ev[name] = tenancy.evidence(raw, *occ[name][1])
+        elif name in occ:
+            # A count from the text is taken as a count only where the listing shows that the home is let by
+            # the place: a rent per person or room, a shared home's stated capacity, a place that is taken.
+            # "Nog 1 plek vrij" in an ordinary listing can be about a viewing: then it is a thing to ask.
+            # With only a rent per person to go on, a count of "plekken" may be about an appointment
+            # ("nog 1 plek vrij voor de rondleiding"): rooms, taken places and wanted housemates are counted.
+            if "shared" in occ or ("price_per_person" in out and "places_firm" in occ):
+                out.append("places_free:%d" % occ[name][0])
+                ev[name] = tenancy.evidence(raw, *occ[name][1])
+            else:
+                out.append("places_unclear")
+                ev["places_unclear"] = tenancy.evidence(raw, *occ[name][1])
+        elif name == "places_free" and "places_guess" in occ:
+            out.append("places_unclear")        # "de huidige bewoner" in a home for two: suggested, not stated
+            ev["places_unclear"] = tenancy.evidence(raw, *occ["places_guess"][1])
+    # The text says that other people share the home ("gedeelde woning voor 3 bewoners", "met 2 huisgenoten").
+    # Without a rent stated per person, the listed rent may be one place's or the home's: evaluate() leaves each
+    # one's share open for a listing with housemates.
+    if "housemates" in occ and "housemates" not in out:
+        out.append("housemates")
+        ev["housemates"] = tenancy.evidence(raw, *occ["housemates"][1])
+    if "housemates" in out and "sharing_unclear" in out:   # a home that is shared is for sharers
+        out.remove("sharing_unclear")
+        ev.pop("sharing_unclear", None)
+    if "together" in occ:                       # "je kunt je samen met een medebewoner aanmelden"
+        out.append("apply_together")
+        ev["apply_together"] = tenancy.evidence(raw, *occ["together"][1])
     if extra.get("private_text"):
         # The text came from the user's mailbox (an alert email), which can hold their name and address.
         # It may decide flags, but no sentence of it is quoted anywhere: not in Telegram, not on the dashboard.
@@ -573,10 +661,24 @@ def _effective_bedrooms(listing: Listing) -> Tuple[Optional[int], bool]:
     return None, False
 
 
+def _household(cfg: Dict[str, Any]) -> Dict[str, Any]:
+    h = cfg.get("household")
+    return h if isinstance(h, dict) else {}
+
+
+def _ages(household: Dict[str, Any]) -> List[int]:
+    ages = household.get("ages")
+    out = [a for a in ages if type(a) is int] if isinstance(ages, list) else []
+    if type(household.get("age")) is int:
+        out.append(household["age"])
+    return out
+
+
 def _excluded(flags: List[str], household: Any) -> bool:
     """Does the listing itself say this household may not rent it? `household` is config.json's
-    {"age": 24, "occupation": "students" | "working"}; without it (the default) nothing is excluded.
-    Only what the listing states counts: a listing that says nothing is never excluded."""
+    {"persons": 2, "occupation": "students" | "working", "ages": [19, 24], "sharers": true}; without it
+    (the default) nothing is excluded. Only what the listing states counts: a listing that says nothing, or
+    says it unclearly, is never excluded."""
     if not isinstance(household, dict):
         return False
     names = {}
@@ -588,13 +690,63 @@ def _excluded(flags: List[str], household: Any) -> bool:
         return True
     if occupation == "working" and "students_only" in names:
         return True
-    age = household.get("age")
-    if type(age) is int:
-        if names.get("min_age", "").isdigit() and int(names["min_age"]) > age:
+    ages = _ages(household)
+    if ages:
+        # everyone has to be old enough and young enough
+        if names.get("min_age", "").isdigit() and int(names["min_age"]) > min(ages):
             return True
-        if names.get("max_age", "").isdigit() and int(names["max_age"]) < age:
+        if names.get("max_age", "").isdigit() and int(names["max_age"]) < max(ages):
             return True
+    # "sharers": people who rent together without being a couple or a family (woningdelers)
+    if household.get("sharers") is True and "no_sharers" in names:
+        return True
     return False
+
+
+def _share(amount: int, persons: int) -> int:
+    """One person's equal share in whole euros, halves rounded up."""
+    return int(amount / persons + 0.5)
+
+
+def rent_basis(flags: List[str]) -> Optional[str]:
+    """What the listed rent buys: "home" (the whole home), "place" (one room, or one tenant's share), or
+    None when the listing leaves it open."""
+    names = {f.partition(":")[0] for f in flags}
+    if "price_per_person" in names:
+        return "place"
+    if "rent_unclear" in names:
+        return None
+    return "home"
+
+
+def price_basis(flags: List[str], includes_utilities: Optional[bool]) -> Optional[str]:
+    """ "excl" when the listing establishes that costs come on top of the quoted rent (service costs, a
+    compulsory extra, or utilities), "incl" when it establishes that utilities are in it, else None."""
+    names = {f.partition(":")[0] for f in flags}
+    if "service_costs" in names or "mandatory_costs" in names or includes_utilities is False:
+        return "excl"
+    if includes_utilities is True:
+        return "incl"
+    return None
+
+
+def _flag_number(flags: List[str], name: str) -> Optional[int]:
+    for f in flags:
+        k, _, v = f.partition(":")
+        if k == name and v.isdigit():
+            return int(v)
+    return None
+
+
+def capacity(flags: List[str]) -> Optional[int]:
+    """How many people the home houses, when the listing says so."""
+    n = _flag_number(flags, "capacity")
+    return n if n is not None else _flag_number(flags, "max_persons")
+
+
+def places_available(flags: List[str]) -> Optional[int]:
+    """How many places can be rented now, when the listing says so."""
+    return _flag_number(flags, "places_free")
 
 
 def _with_remembered(flags: List[str], evidence: Dict[str, str], old_flags: Any,
@@ -659,9 +811,9 @@ def evaluate(listing: Listing, cfg: Dict[str, Any],
         extra_flags.append("price_unknown")
 
     eff_bed, bed_guessed = _effective_bedrooms(listing)
-    # The listing states its rent per person: the group pays that amount once for each of them.
+    # The listing states its rent per person or per room: everyone who moves in pays that amount.
     per_person = "price_per_person" in flags
-    must_pay = 0  # what must be paid every month on top of the rent (a compulsory parking place)
+    must_pay = 0  # what must be paid every month on top of the rent (service costs, a compulsory parking place)
     for f in flags:
         if f.startswith("mandatory_costs:") or f.startswith("service_costs:"):
             must_pay += int(f.split(":", 1)[1])
@@ -686,16 +838,55 @@ def evaluate(listing: Listing, cfg: Dict[str, Any],
             if name[9:].isdigit() and value.isdigit():
                 group_rent[int(name[9:])] = int(value)
     no_sharers = "no_sharers" in flags
+    home_capacity = _flag_number(flags, "capacity")
+    places = _flag_number(flags, "places_free")
+    # What the listed rent buys. Per person or per room: one place. Other people share the home, or the rent is
+    # far too low for the home: it may be the rent of one room, so the listing does not settle it.
+    housemates = "housemates" in flags
+    extra = listing.extra if isinstance(listing.extra, dict) else {}
+    if per_person:
+        basis: Optional[str] = "place"
+    elif housemates or "suspicious_price" in flags or extra.get("rent_basis_unread") is True:
+        # also: a site whose search page shows one amount for whole homes and for single places alike, until the
+        # listing's own page has been read (Van der Linden: "€ 966 per maand" for one place in a home for two)
+        basis = None
+    else:
+        basis = "home"
+    # Costs on top of the rent. What the site lists next to the rent belongs to the contract the rent belongs to;
+    # a compulsory extra named in the text (a parking place) is one per home.
+    service = sum(int(f.split(":", 1)[1]) for f in flags if f.startswith("service_costs:"))
+    compulsory = must_pay - service
 
     used_unknown = False
     used_guess = False
     for s in searches:
         persons = int(s["persons"])
-        total = price * persons if (price is not None and per_person) else price
-        if total is not None and persons in group_rent:
-            total = group_rent[persons]
-        if total is not None:
-            total += must_pay
+        # Can this many people move in? Fewer free places than people: no, whatever the rent.
+        if places is not None and places < persons:
+            continue
+        if home_capacity is not None and home_capacity < persons:
+            continue
+        if max_persons is not None and max_persons < persons:
+            continue
+        if persons >= 3 and no_sharers:
+            continue
+        pp: Optional[int] = None       # the quoted rent each person pays
+        extra_pp = 0                   # what each must pay on top of it
+        if price is None:
+            total = None
+        elif basis == "place":
+            # each has a contract of their own: the rent and the site's service costs once a person; the
+            # compulsory extra once for the home, shared
+            total = (price + service) * persons + compulsory
+            pp, extra_pp = price, _share(total, persons) - price
+        elif basis == "home":
+            # the rent is for the whole home and all of them move in: each pays an equal share
+            rent = group_rent.get(persons, price)
+            total = rent + must_pay
+            pp = _share(rent, persons)
+            extra_pp = _share(total, persons) - pp
+        else:
+            total = price + must_pay                  # the least it can be; each one's share is not settled
         if total is not None and total > s["max_total"]:
             continue
         if eff_bed is not None:
@@ -709,16 +900,16 @@ def evaluate(listing: Listing, cfg: Dict[str, Any],
             used_unknown = True
         else:
             continue
-        if persons >= 3 and no_sharers:
-            continue
-        if max_persons is not None and max_persons < persons:
-            continue
         used_guess = used_guess or (bed_guessed and eff_bed is not None)
-        pp = int(round(total / persons)) if total is not None else None
-        tier = "great" if (total is not None and total <= s["great_total"]) else "ok"
-        res.matches.append(SearchMatch(s["name"], persons, pp, tier))
+        tier = "great" if (total is not None and basis is not None and total <= s["great_total"]) else "ok"
+        res.matches.append(SearchMatch(s["name"], persons, pp, tier, extra_pp))
 
     if res.matches:
+        if price is not None and basis is None:
+            extra_flags.append("rent_unclear")
+        # Rent per place in a home other people share, and the listing does not say how many places are free.
+        if basis == "place" and housemates and places is None:
+            extra_flags.append("places_unclear")
         if used_unknown:
             extra_flags.append("bedrooms_unknown")
         if used_guess:

@@ -24,7 +24,59 @@
   off until `./telegram-relay/deploy.sh` is run). The link can be replaced and all subscribers removed.
 - **Optional household profile** in `config.json`: homes that state they are not for you are not alerted.
 
+- **For two people who rent together.** The tool now answers three questions for each home: can both move in,
+  what does each pay a month, and what is still to be checked.
+  - *Whole home or one place.* A rent for the whole home is split in two. A rent per person or per room is what
+    each pays; it is never halved. When a listing does not settle which it is (housemates and no rent per person,
+    or a rent far too low for the home), the card shows the listed rent and "Rent basis unclear" instead of a share.
+    That includes a home the text calls shared ("gedeelde woning voor 3 bewoners", "shared house for 3 students",
+    "met 2 huisgenoten", "kamer te huur in studentenhuis", "room in shared flat", "eigen huurcontract per persoon")
+    that gives one amount without "per persoon".
+  - *Capacity and free places* are read as two numbers ("gedeelde huisvesting voor twee bewoners" against "één
+    van de twee plekken is al bezet", "1 kamer vrij", "wij zoeken een nieuwe huisgenoot"). A home with fewer free
+    places than people is dropped, whatever its rent, where the listing shows that it is let by the place. In an
+    ordinary listing such a sentence can be about a viewing or a study: there the home stays, marked "Free places
+    unclear". So does a shared home for two whose text only mentions "de huidige bewoner": that suggests a taken
+    place and does not state one. A place on a waiting list or at an open day is no place in the home, and with
+    only a rent per person a count of "plekken" is a question too ("nog 1 plek vrij voor de rondleiding").
+  - *"incl." and "excl."* stand next to the price only where the listing establishes it: `€850 excl.` when
+    service costs, a compulsory extra or utilities come on top, `€850 incl.` when utilities are in it. The costs
+    on top still count towards the budget.
+  - *Who may rent.* Homes whose own text rules the household out are dropped: "alleen voor werkenden",
+    "professionals only", "geen studenten", a minimum age above the youngest, a maximum age below the oldest,
+    "geen woningdelers", "alleen voor een stel". A home that says nothing, or says it unclearly, stays. Two
+    marks say what to ask: "Age limit unclear" for a bare "Vanaf 25 jaar", "25+" or "tot 30 jaar", and "Sharing
+    policy unclear" where the home is offered with a couple in mind ("ideaal voor een stel"). "Een complex met 40+
+    appartementen" counts homes: it was read as a minimum age of 40.
+  - A run on a machine without the household (the backup run at home, when `household.json` is missing there)
+    says so in its log and sends no alert for a home that was known and did not match before.
+  - The household can be kept out of this public repository: the `HOUSEHOLD` repository secret or a git-ignored
+    `household.json` replaces the block in `config.json`.
+- **"Sharing policy unclear".** A limit of two people used to show as a red "Max 2 persons" warning on every card
+  whose site or text gave a number, most often Kamernet's own field "Aantal huurders: 2 personen". For two people
+  that limit changes nothing: it is now the plain fact "Up to 2 people". When the limit is worded for a couple
+  ("alleenstaande of stel") and the listing says nothing about sharers, the card says "Sharing policy unclear":
+  that is the thing to ask. Other open points have their own words: "Rent basis unclear", "Free places unclear".
+- **Simpler cards.** The price each person pays leads (`€850 excl.`). Under it: bedrooms, m², the term or move-in
+  date, and "Furnished" when the listing confirms it; what is missing is left out. The site's name and the arrow
+  are gone; the whole card still opens the listing. Warnings and open questions stay on the card, plain facts and
+  the listing's own sentences are under "Details".
+- **Hide Listing.** A home you have ruled out leaves the list and the map and stays away after a reload, a
+  refresh of the data, and when the same address comes back from another site. "Hidden Homes" in the filters
+  brings homes back. The choice is saved in the browser, so each phone or computer keeps its own.
+- **Map.** List | Map. Move or zoom the map and choose "Search This Area" to keep only the homes in view; select
+  a marker to find its listing. Filters and hidden homes apply to both views. Positions come from PDOK, the Dutch
+  land registry's free address service (a few lookups per run, saved in `data/geo.json`); a home whose address
+  cannot be found is in the list but not on the map, and a dashed marker means the point is the street, not the
+  house.
+
 ### Changed
+- The search for three people is gone from `config.json`: the household is two. Homes that only fitted three
+  people leave the dashboard. (More searches can still be added; the group-size control then comes back.)
+- The price on a card and in an alert is the rent each person pays, without the costs on top; those are named
+  next to it ("+ €43 costs"). Before, they were folded into one figure.
+- Saved cards from alert emails are judged again on each run from their own marks (their text is never saved),
+  so a change of rules or of household reaches them too.
 - Group size reads "2 People, 3 People, Any" (Any moved to the right).
 - The "Great Prices Only" switch is gone: the budget slider does the same.
 - "Students welcome" no longer counts as "sharers welcome". It is its own mark.
@@ -32,6 +84,11 @@
 ### Bug fixes:
 
 Prices
+- Cruquiusweg 85 (Van der Linden 2Peer) was once shown at about €483 per person: the rent of one place in a
+  home for two, divided by two. A rent for one place is now shown as it is (€966 excl., service costs €195 on
+  top), and with one of the two places taken the home is no match for two people. A Van der Linden rent is no
+  longer divided before the listing's own page has been read: the search page shows the same "€ 966 per maand"
+  for one place as for a whole home.
 - A rent stated per person was shown as the total. Five listings on the dashboard were shown at half their
   real price (for example €1,325 per person as "€662 per person, great price"). The total is now rent × people.
 - A compulsory parking place (Vesteda, MVGM) was left out of the total. It is now added before the budget test.
@@ -168,7 +225,7 @@ is approximate when several chats subscribe within the same minute.
 ### Other changes
 - Every existing card is read once more by the new readers (about 10 per run), so the dashboard corrects itself
   over the next hours without sending alerts.
-- 443 new tests (805 in total), 33 dashboard checks and 26 relay checks. The who-may-rent rules are tested
+- 761 new tests (1,123 in total), 53 dashboard checks and 26 relay checks. The who-may-rent rules are tested
   against 77 real and made-up phrases.
 
 ## v1.1.0 (2026-11-19)

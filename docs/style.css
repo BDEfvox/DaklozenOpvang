@@ -129,7 +129,11 @@ h1{font-size:2.125rem;line-height:2.5625rem;font-weight:700}
 }
 
 /* ---------- Listings ---------- */
-.list-head{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;padding:0 4px}
+.list-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 12px;min-height:44px;padding:0 4px}
+/* Narrow: the count and the sort on one line, the List | Map switch full width under them. */
+.list-head .count-line{order:0}
+.list-head .popup{order:1}
+.list-head .segmented.compact{order:2;flex-basis:100%;width:auto;margin:2px 0 6px}
 .count-line{color:var(--secondary-label);font-size:.9375rem;line-height:1.25rem;font-variant-numeric:tabular-nums}
 .roll{display:inline-block;animation:roll var(--snappy-time) var(--spring-snappy)}
 .popup{position:relative;display:inline-flex;align-items:center;min-height:44px;color:var(--label);font-size:.9375rem;cursor:pointer;
@@ -154,8 +158,9 @@ h1{font-size:2.125rem;line-height:2.5625rem;font-weight:700}
 .thumb-box img.loaded{opacity:1}
 .thumb-box .icon{width:1.75rem;height:1.75rem;stroke-width:1.5}
 .body{min-width:0}
-.pp{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.35em;padding-inline-end:26px;color:var(--secondary-label);
-  font-size:.9375rem;line-height:1.25rem}
+.pp{display:flex;flex-wrap:wrap;align-items:baseline;color:var(--secondary-label);font-size:.9375rem;line-height:1.25rem}
+.unit{white-space:pre}   /* " incl." keeps the space that sets it off from the amount */
+.pp>.tier{margin-inline-start:10px;align-self:center}
 .amount{color:var(--label);font-size:1.375rem;line-height:1.75rem;font-weight:700;font-variant-numeric:tabular-nums}
 .amount.unknown,.pp.more .amount{font-size:1.0625rem;line-height:1.375rem;font-weight:600}
 .sub{display:flex;flex-wrap:wrap;align-items:center;column-gap:.5em;flex-basis:100%}   /* narrow: "3 people" on its own line */
@@ -165,7 +170,7 @@ h1{font-size:2.125rem;line-height:2.5625rem;font-weight:700}
 .mark .icon{width:1.125rem;height:1.125rem;margin-top:1px}
 .mark.good .icon,.mark.drop .icon{color:var(--green)}
 .mark.warn .icon{color:var(--red)}
-.mark.req .icon{color:var(--grey-mark)}
+.mark.req .icon,.mark.ask .icon{color:var(--grey-mark)}
 /* The listing's own sentence behind a mark, so it can be checked at a glance. */
 .quote{clear:both;margin-top:5px;padding-inline-start:9px;border-inline-start:2px solid var(--separator);color:var(--secondary-label);
   font-size:.8125rem;line-height:1.125rem;overflow-wrap:anywhere}
@@ -181,9 +186,23 @@ h1{font-size:2.125rem;line-height:2.5625rem;font-weight:700}
 .facts,.notes,.flags,.foot{clear:both}
 .addr+.facts,.title+.facts{padding-top:4px}
 .flags{display:grid;gap:3px;margin-top:5px}
-.foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 8px;margin-top:8px}
-.meta{flex:1;min-width:7rem;color:var(--secondary-label);font-size:.8125rem;line-height:1.125rem}
-.out{position:absolute;top:16px;inset-inline-end:12px;width:1.125rem;height:1.125rem;stroke-width:2;color:var(--tertiary-label);pointer-events:none}
+/* "Details": plain facts and the listing's own sentences, closed until asked for */
+.more{clear:both;position:relative;z-index:1;margin-top:4px}
+.more>summary{position:relative;display:inline-flex;align-items:center;gap:4px;min-height:30px;color:var(--tint-text);font-size:.9375rem;cursor:pointer;list-style:none;-webkit-user-select:none;user-select:none}
+.more>summary::-webkit-details-marker{display:none}
+.more>summary::before{content:"";width:.45em;height:.45em;border-inline-end:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);margin-inline-end:3px}
+.more[open]>summary::before{transform:rotate(45deg)}
+.more>summary::after{content:"";position:absolute;inset:-7px -8px}   /* 44 px tall to hit */
+.more>.flags{margin-top:2px}
+.foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:6px;margin-top:8px}
+.foot .btn{z-index:1}   /* above the link that covers the card */
+.foot .btn.small{padding:0 10px}   /* three buttons on one line of a phone */
+/* The whole card is the link: it says so with a pointer, a pressed state and a focus ring. */
+.item:has(.link){cursor:pointer}
+.link{cursor:pointer}
+/* The card of the marker that is selected on the map: an outline and a bar, so it is not colour alone. */
+.item[data-picked]{background:var(--tertiary-fill);box-shadow:inset 0 0 0 2px var(--tint),inset 5px 0 0 var(--tint)}
+.item[data-flash]{animation:flash 1.6s ease-out}
 
 /* ---------- Buttons: answer at touch-down, spring back on release ---------- */
 .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:44px;padding:0 18px;border:0;
@@ -198,7 +217,6 @@ h1{font-size:2.125rem;line-height:2.5625rem;font-weight:700}
 .btn.plain:active{transform:none;filter:none}
 .btn.small{min-height:34px;padding:0 14px;font-size:.9375rem;font-weight:500}
 .btn.small::after{content:"";position:absolute;inset:-5px 0}   /* 34 px tall to look at, 44 px tall to hit */
-.copy{z-index:1;margin-inline-start:auto}
 .copy .icon{width:1rem;height:1rem;stroke-width:2.75;color:var(--green);stroke-dasharray:22;animation:draw .4s .05s ease-out both}
 .icon-btn{position:relative;display:grid;place-items:center;width:44px;height:44px;border:0;background:none;
   color:var(--secondary-label);cursor:pointer}
@@ -266,6 +284,9 @@ legend{display:block;padding:0 4px 8px;color:var(--secondary-label);font-size:.9
 .segmented.held .thumb{scale:1.06 1.12;background:var(--thumb-glass);
   -webkit-backdrop-filter:blur(8px) saturate(160%);backdrop-filter:blur(8px) saturate(160%);
   box-shadow:0 6px 18px rgba(0,0,0,.18),inset 0 0 0 .5px var(--glass-rim),inset 0 1px 0 var(--glass-rim)}
+.segmented.two .thumb{width:calc((100% - 4px) / 2)}
+.segmented.compact span:not(.thumb){min-height:34px}
+.segmented.compact label::after{inset:-5px 0}
 .segmented label{position:relative;flex:1;min-width:0;cursor:pointer}
 .segmented label::after{content:"";position:absolute;inset:-2px 0}   /* 40 px tall to look at, 44 px tall to hit */
 .segmented input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
@@ -332,17 +353,21 @@ dialog::backdrop{background:transparent}
 @keyframes rise{from{opacity:0;transform:translateY(8px)}}
 @keyframes draw{from{stroke-dashoffset:22}to{stroke-dashoffset:0}}
 @keyframes fade{from{opacity:0}}
+@keyframes flash{from{background-color:var(--fill)}}
 
 /* ---------- Wider screens ---------- */
 @media (min-width:36em){
   :root{--thumb-w:148px;--thumb-h:111px}
-  .item{display:flex;align-items:flex-start;gap:16px;padding:16px;--rule-start:calc(var(--thumb-w) + 32px)}
+  .list-head .segmented.compact{order:0;flex-basis:auto;width:9.5rem;margin:0 0 0 auto}
+  .list-head .popup{order:1}
+  .item{display:flex;flex-wrap:wrap;align-items:flex-start;gap:16px;padding:16px;--rule-start:calc(var(--thumb-w) + 32px)}
+  .item>.body{flex:1 1 0;min-width:0}
+  .item>.foot{flex:0 0 100%;margin-top:-4px}
   .thumb-box{float:none;flex:none;margin:0;border-radius:10px}
   .body{flex:1}
   .sub{flex-basis:auto}
   .sub::before{content:"·";margin-inline-end:-.15em}
   .addr+.facts,.title+.facts{padding-top:0}
-  .out{top:20px;inset-inline-end:16px}
   /* The sheet becomes a centred panel: no grabber, no dragging. */
   .sheet{inset:0;width:min(34rem,calc(100% - 48px));height:fit-content;max-height:85vh;max-height:min(85dvh,48rem);margin:auto;
     padding:0 20px 24px;border-radius:26px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
@@ -363,13 +388,66 @@ dialog::backdrop{background:transparent}
   .filters-pane{display:block;margin-top:4px}
   main{padding-top:28px}
 }
+/* Room for both: the list and the map side by side, the map staying in view while the list scrolls. */
+@media (min-width:75em){
+  .app.mapview{grid-template-columns:20rem minmax(0,76rem)}
+  .mapview .results{display:grid;grid-template-columns:minmax(22rem,1fr) minmax(20rem,28rem);gap:16px;align-items:start}
+  .mapview .results-list{grid-column:1;grid-row:1;min-width:0}
+  .mapview .map-pane{grid-column:2;grid-row:1;position:sticky;top:16px;margin:0}
+  .mapview .map{height:calc(100vh - 80px);height:calc(100dvh - 80px)}
+  .map-card{display:none}
+}
 /* Very narrow, or very large text: the photo moves above the text instead of squeezing it. */
 @media (max-width:21em){
   .thumb-box{float:none;width:100%;height:10rem;margin:0 0 8px}
-  .pp{padding-inline-end:0}
-  .out{display:none}
   .bar-btn span:not(.count){position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 }
+
+/* ---------- Hidden homes, the bar after "Hide Listing" ---------- */
+.row .chev{width:.875rem;height:.875rem;stroke-width:2.5;color:var(--tertiary-label)}
+button.row{width:100%;border:0;background:none;text-align:start}
+button.row:active{background:var(--fill)}
+#hidden-list .source{align-items:center;--rule-start:16px}
+#hidden-list .source .btn{flex:none}
+#hidden-list .name{overflow-wrap:anywhere}
+.toast{position:fixed;z-index:25;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));translate:-50% 0;display:flex;align-items:center;
+  gap:6px;width:max-content;max-width:calc(100% - 32px);padding:4px 4px 4px 18px;border-radius:999px;background:#2C2C2E;color:#FFF;
+  box-shadow:0 8px 28px rgba(0,0,0,.35);font-size:1rem;animation:rise var(--spring-time) var(--spring)}
+.toast-btn{min-height:44px;padding:0 16px;border:0;border-radius:999px;background:none;color:#6CB6FF;font-weight:600;cursor:pointer}
+.toast-btn:active{opacity:.5}
+
+/* ---------- Map ---------- */
+.map-pane{position:relative;margin-bottom:12px;scroll-margin-top:72px}
+.map-box{position:relative;border-radius:20px;overflow:hidden;background:var(--surface)}
+.map{position:relative;z-index:0;height:60vh;height:60svh;min-height:18rem;background:var(--tertiary-fill);font-family:var(--font)}
+.map-error{display:grid;place-items:center;height:12rem;padding:0 20px;color:var(--secondary-label);text-align:center}
+.search-area{position:absolute;z-index:1;top:12px;left:50%;translate:-50% 0;min-height:40px;padding:0 18px;background:var(--surface);
+  color:var(--tint-text);box-shadow:var(--glass-shadow);font-size:.9375rem;animation:rise var(--spring-time) var(--spring)}
+.map-note{padding:8px 4px 0;color:var(--secondary-label);font-size:.8125rem;line-height:1.125rem}
+/* The compact card of the selected marker sits above the map credit at the bottom, so that stays readable. */
+.map-card{position:absolute;z-index:1;left:8px;right:8px;bottom:26px;display:grid;justify-items:start;gap:2px;padding:12px 52px 12px 14px;
+  border-radius:16px;background:var(--surface);box-shadow:var(--glass-shadow);animation:rise var(--spring-time) var(--spring)}
+.map-card .icon-btn{position:absolute;top:2px;inset-inline-end:2px}
+.map-card .pp{padding:0}
+.card-title{font-size:1.0625rem;line-height:1.375rem;font-weight:600;overflow-wrap:anywhere}
+.map-card .facts{color:var(--secondary-label);font-size:.9375rem;line-height:1.25rem}
+.map-card .btn{margin-top:6px;color:var(--tint-text);text-decoration:none}
+.skip{position:absolute;z-index:2;top:8px;left:8px;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip:focus{width:auto;height:auto;clip:auto;padding:8px 14px;border-radius:999px;background:var(--surface);color:var(--tint-text);font-size:.9375rem}
+.leaflet-container a{color:#0058B0}
+.leaflet-control-attribution{font-size:.6875rem}
+/* A price on the map. The selected one is bigger and has a tail and a ring, as well as being blue. A dashed edge
+   means the place is only approximate (the street or the postcode). The map is light in every colour scheme. */
+.pin-wrap{background:none;border:0}
+.leaflet-marker-icon:focus{outline:none}
+.pin{position:absolute;left:0;top:0;translate:-50% -50%;display:block;padding:2px 9px;border:1.5px solid rgba(0,0,0,.6);border-radius:999px;
+  background:#FFF;color:#1C1C1E;font:600 .8125rem/1.1rem var(--font);white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.3);cursor:pointer;
+  transition:scale .25s var(--spring-bouncy)}
+.pin::before{content:"";position:absolute;inset:-9px -4px}   /* 44 px tall to hit */
+.pin.approx{border-style:dashed}
+.pin.sel{scale:1.2;border-color:#FFF;background:#0058B0;color:#FFF;box-shadow:0 0 0 3px #0058B0,0 3px 10px rgba(0,0,0,.45)}
+.pin.sel::after{content:"";position:absolute;left:50%;top:100%;translate:-50% 0;margin-top:3px;border:6px solid transparent;border-top-color:#0058B0;border-bottom:0}
+.leaflet-marker-icon:focus-visible .pin{outline:3px solid #1C1C1E;outline-offset:3px}
 
 /* ---------- Input and preference adaptations ---------- */
 /* A pressed row lights up at once and fades back after release. */
@@ -396,7 +474,7 @@ dialog::backdrop{background:transparent}
 }
 @media (prefers-contrast:more){
   .glass{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;border:1px solid var(--separator)}
-  .list,.banner,.editor,.preview,.chip.used{border:1px solid var(--separator)}
+  .list,.banner,.editor,.preview,.chip.used,.map-box,.search-area,.map-card{border:1px solid var(--separator)}
   .segmented.held .thumb{background:var(--thumb);-webkit-backdrop-filter:none;backdrop-filter:none}
 }
 /* Reduce Motion: nothing slides, scales or bounces; changes fade instead. app.js does the same for its springs. */
@@ -405,11 +483,15 @@ dialog::backdrop{background:transparent}
   .btn:active,.bar-btn:active,.icon-btn:active,.chip:active,.opt:active{transform:none}
   .segmented.held .thumb{scale:none}
   .check,.pick:checked~.check{transition:opacity .2s;stroke-dashoffset:0}
-  .roll,.count,.count>span,.banner,.empty,.chip.used{animation:fade .2s}
+  .roll,.count,.count>span,.banner,.empty,.chip.used,.toast,.search-area,.map-card{animation:fade .2s}
+  .item[data-flash]{animation:none}
+  .pin{transition:none}
   .copy .icon{animation:none}
 }
 @media (forced-colors:active){
-  .glass,.list,.banner,.btn,.opt,.segmented,.thumb-box,.tier,.chip,.editor,.preview,.field{border:1px solid CanvasText}
+  .glass,.list,.banner,.btn,.opt,.segmented,.thumb-box,.tier,.chip,.editor,.preview,.field,.map-box,.map-card,.toast{border:1px solid CanvasText}
+  .pin,.item[data-picked]{forced-color-adjust:none}
+  .item[data-picked]{outline:3px solid Highlight;outline-offset:-3px}
   .thumb{outline:2px solid Highlight;outline-offset:-2px}
   .opt[aria-pressed="true"]{background:Highlight;color:HighlightText;forced-color-adjust:none}
   .dot,.new-dot{forced-color-adjust:none}

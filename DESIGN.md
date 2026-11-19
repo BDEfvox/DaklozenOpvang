@@ -32,11 +32,14 @@ hunter/
                      listing's text, with the sentence that says so
   state.py           seen listings, source health, daily digest bookkeeping
   notify/telegram.py Telegram Bot API (sendMessage), quiet hours, rate limit
+  occupancy.py       what the text says about capacity, free places and a rent for one room
+  geo.py             where a home is: PDOK Locatieserver lookups through http.py, cached in data/geo.json
   dashboard.py       writes docs/data.json (the page in docs/ reads it)
   __main__.py        CLI: run | check | telegram-setup | dashboard
 config.json          searches, cities, flags phrases, schedule options
-data/                state (committed by the workflow): seen.json, health.json, meta.json
-docs/                dashboard (GitHub Pages from main:/docs): index.html, app.js, style.css, data.json
+data/                state (committed by the workflow): seen.json, matches.json, health.json, meta.json, geo.json
+docs/                dashboard (GitHub Pages from main:/docs): index.html, app.js, style.css, data.json,
+                     vendor/leaflet (Leaflet 1.9.4, unmodified)
 .github/workflows/hunt.yml
 go-live.sh           one-time setup the USER runs (gh login, Telegram token, repo, secrets, Pages)
 telegram-relay/     Cloudflare Worker for subscribers (invite link): worker.mjs, deploy.sh (the USER runs it), tests
@@ -83,17 +86,64 @@ stable across runs.
   Never parse "largest <main>/<article>" text: on listing sites that holds other listings.
 
 ## Matching (`filters.py`)
-`config.json` holds `searches`, default:
+`config.json` holds `searches`. There is one: the household is two people.
 - `2 people`: persons 2, min bedrooms 2, max total €1,600, "great" ≤ €1,400 (≤ €700 pp)
-- `3 people`: persons 3, min bedrooms 3, max total €2,400, "great" ≤ €2,100
+
+More searches can be added (a group of three with its own budget); the code and the tests handle several.
 
 A listing matches a search when: city is one of the configured cities; property type is not
 room/studio/parking/other; price known and ≤ max; bedrooms ≥ min. If the site gives no bedroom count, the
 count stated in the title/description is used (`utils.bedrooms_from_text`: "Aantal slaapkamers: 2", "drie
 ruime slaapkamers", "2-bedroom"). If only `rooms` is known, `rooms - 1` is assumed and the match is flagged
 "bedrooms not confirmed" (a 4-room home often has 2 bedrooms). If both are unknown and the area is known,
-area ≥ 45 m² (2p) / 60 m² (3p) counts as "bedrooms unknown" match (flagged); otherwise no match. Result:
+area ≥ 45 m² (`min_area_if_unknown`) counts as "bedrooms unknown" match (flagged); otherwise no match. Result:
 matched searches, € per person per search, tier (`great`/`ok`), flags.
+
+**What the rent buys, and who can move in** (`filters.evaluate`, text rules in `occupancy.py`). Three things a
+listing can state separately:
+- *Rent basis.* `place`: the rent is per person or per room (`price_per_person`: "€ 700 p.p.", "per kamer", "je
+  huurt één slaapkamer", or the site's field). `home`: the rent covers the whole home. Not settled (`None`): the
+  home is shared with housemates and no per-person rent is stated, or the rent is suspiciously low for the home;
+  it may be the rent of one room. "Shared with housemates" is `tenancy.py`'s flag `housemates`, which
+  `occupancy.py` also sets when the text says that other people share the home, whether or not they live there
+  yet: "gedeelde woning voor 3 bewoners", "shared house for 3 students", "met 2 huisgenoten", a place that is
+  taken, and the wordings of a room in a home others live in ("kamer te huur", "room in shared flat", "wij zoeken
+  een derde huisgenoot", "ieder huurt een eigen kamer", "eigen huurcontract per persoon"). So "Gedeelde
+  huisvesting voor twee bewoners, € 966 per maand" without "per persoon" is shown as € 966 listed with "Rent basis
+  unclear", never as € 483 each. A whole home that only mentions sharing ("ook voor een woongroep", "tegenover
+  een studentenhuis", "de tweede huurder") is not such evidence.
+- *Capacity* (`capacity:N`): how many people the home houses ("gedeelde huisvesting voor twee bewoners", "je deelt
+  de woning met 2 huisgenoten" = 3). `max_persons:N` stays the listing's limit on who may move in.
+- *Places free* (`places_free:N`): how many of those places can be rented now ("één van de twee plekken is al
+  bezet", "1 kamer vrij", "wij zoeken een nieuwe huisgenoot", HousingAnywhere's `freePlaces`). A count from the
+  text is taken as a count only where the listing shows that the home is let by the place: a rent per person or
+  room, a shared home's stated capacity, a place that is taken, or the site's own field. Elsewhere ("nog 1 plek
+  vrij" in an ordinary listing can be about a viewing) it becomes the flag `places_unclear`: a thing to ask, never
+  a reason to drop a home. "Je kunt je samen met een toekomstig medebewoner aanmelden" is the flag
+  `apply_together`; it does not say that both places are free, so it sets no count. "In totaal 2 bewoners" is a
+  capacity and nothing more: a whole home for two is offered in the same words. A count the text only suggests
+  ("de huidige bewoner" in a shared home for two) is `places_unclear` too, never a count; and a place "op de
+  wachtlijst", "op de inschrijflijst" or at an open day is no place in the home. With only a rent per person to
+  go on, a count of "plekken" or "spots" ("nog 1 plek vrij voor de rondleiding") is `places_unclear`; a count of
+  rooms, a taken place and a wanted housemate are counts.
+
+The rules that follow:
+- Fewer free places, or a smaller capacity or limit, than the group: no match, whatever the rent.
+- Rent for the whole home and all can move in: each pays an equal share (halves rounded up).
+- Rent per place: each pays that amount; it is never divided, and never multiplied into a made-up total on the card.
+- Not settled: the match stays for review with `price_pp` null and the flag `rent_unclear`; it is dropped only
+  when the listed rent alone is over the budget. Tier is never "great". A source whose search page shows one
+  amount for whole homes and single places alike (Van der Linden) sets `extra["rent_basis_unread"]` until the
+  listing's own page has been read, so an alert sent before that read never shows a halved rent. On later runs
+  the saved read of the page (the detail snapshot) answers the question, but only one made by the current
+  `DETAIL_VERSION`: an older read did not look for it, and the mark stays until the page is read again.
+- Rent per place: the site's service costs are paid by each person, a compulsory extra named in the text (a
+  parking place) once for the home.
+- Rent per place, shared with housemates, no count of free places: flag `places_unclear`.
+- `price_pp` is the quoted rent each person pays. Costs that must be paid on top (service costs the site lists
+  next to the rent, a compulsory extra) are `extra_pp`; the budget is held against the sum.
+- `price_basis`: `excl` when such costs come on top or the listing says utilities are excluded, `incl` when it
+  says utilities are included, else nothing. The card shows `€850 excl.`, `€850 incl.` or `€850`.
 
 Every match gets its detail page read once: new matches first, then (with what is left of
 `detail_fetch_max_per_run`) older dashboard cards that were never checked, bedroom guesses first. That
@@ -105,8 +155,23 @@ Flags (case-insensitive phrase lists in config.json, Dutch + English), detected 
 stay" / "maximaal 6 maanden"), `utilities_included`,
 `suspicious_price` (total < €700 for 2+ bedrooms, or less than `suspicious_rent_per_m2_below` = €6 per m² for 30 m² or
 more: "€750, 200 m², 6 kamers" is almost certainly one room or a price per person), `scam_signals` (payment before viewing, landlord abroad,
-keys by mail, western union, airbnb payment, whatsapp-only…). Flags never hide a listing; a
-`no_sharers` or `max_persons:2` flag removes it from the 3-person search only.
+keys by mail, western union, airbnb payment, whatsapp-only…). Flags never hide a listing by themselves; a
+limit below the group size does, and so does what rules out the household (below).
+
+`max_persons:N` is a plain fact ("Up to 2 people"), not a warning: for two people a limit of two changes nothing.
+It used to show as a red "Max 2 persons" on every card whose site field or text gave a number, most often
+Kamernet's own field "Aantal huurders: 2 personen". When the limit of two is worded for a couple ("alleenstaande
+of stel", "single person or a couple") and the listing says nothing about sharers, the flag `sharing_unclear`
+("Sharing policy unclear") says what to ask. The same flag, without a limit, is set when the home is offered
+with a couple in mind ("ideaal voor een stel", "suitable for a couple") and nothing is said about sharers; "een
+stel of twee vrienden" and "woningdelers welkom" leave nothing to ask. "Alleen voor een stel" / "couple only"
+(`couple_only_patterns`) is `no_sharers`.
+
+`age_unclear` ("Age limit unclear") marks wording that looks like an age condition and is no statement the age
+rules accept: a bare "Vanaf 25 jaar", "25+", "tot 30 jaar", "under 30 years". It excludes nobody. It is set only
+when no `min_age` or `max_age` was read, and not where the clause is about a contract, experience, the building,
+a distance or children (`tenancy.age_hint`). "55+ woning" states an age; "een complex met 40+ appartementen"
+counts homes and is only this question.
 
 ### Who may rent (`tenancy.py`)
 Flags: `students_only`, `no_students`, `students_ok`, `working_only`, `women_only`, `men_only`, `min_age:N`,
@@ -172,9 +237,21 @@ before the budget test.
 (Dutch only; never "slaapkamer"). When the site's bedroom count is not below that room count, the site's
 number is the room count: bedrooms become rooms − 1 and the match is marked "bedrooms not confirmed".
 
-**The household** (`household` in config.json, default empty): `{"age": 24, "occupation": "students"}` or
-`"working"`. When set, a home whose own flags exclude the household (students only for workers, a minimum age
-above the age, …) is not matched and not alerted. A home that says nothing is never excluded.
+**The household**: `{"persons": 2, "occupation": "students" | "working" | null, "ages": [..], "sharers": true}`.
+A home whose own flags exclude the household is not matched and not alerted: `no_students` or `working_only` for
+students, `students_only` for working people, a minimum age above the youngest, a maximum age below the oldest,
+`no_sharers` when `sharers` is true (people who rent together without being a couple or a family). A home that
+says nothing, or says it unclearly, is never excluded. The repository is public, so the real values need not be
+in `config.json`: `config.load_config` takes the household from the `HOUSEHOLD` environment variable (a JSON
+object; the workflow passes the repository secret of that name to the Hunt step only, because a variable would
+show in the public run logs) or from a git-ignored `household.json`, and
+only then from `config.json`. A value that cannot be read excludes nobody. `docs/data.json` carries only
+`household.persons`. Two machines write the same state (the scheduled run and the backup run at home): a run
+that has no private household while the one before it had one would bring ruled-out homes back and alert them
+as new. `data/meta.json` therefore keeps `household_private` (true once a run had one, never the values). A
+run without one then prints a `[household]` line to its log and sends no alert for a home that was known and did
+not match before; a home it sees for the first time is alerted as always. To stop using a private household for
+good, remove that key from `data/meta.json`.
 
 **Remembering what a detail page said.** The saved text is cut (card 4,000 characters, snapshot 2,500; the
 reading limit is 20,000), so the flags and sentences found in the full text are stored in the snapshot. On
@@ -183,13 +260,16 @@ well as for display: a "geen woningdelers" from the end of a long text keeps the
 a snapshot of the current `DETAIL_VERSION` is believed; what an older version remembered is ignored until the
 page has been read again.
 `runner.DETAIL_VERSION` is raised when the readers learn something new: every card whose page was read by an
-older version is read once more (within the normal allowance per run), without alerts. It is 3 since the page audit of
-19 Nov 2026 (see CHANGELOG, "Checked against the pages").
+older version is read once more (within the normal allowance per run), without alerts. It was 3 after the page audit of
+19 Nov 2026 (see CHANGELOG, "Checked against the pages") and is 4 since the readers look for what the rent buys
+and how many places are free.
 
 **Saved cards follow today's rules.** At the end of every run `runner.rejudge_cards` judges each card whose
 listing was not on a search page in that run again, from what was saved (no request, no alert). A correction
-to the matcher therefore reaches every card in the next run; a card that no longer fits is removed. Cards made
-from mailbox text are left alone, because their text was never saved.
+to the matcher therefore reaches every card in the next run; a card that no longer fits is removed. A card
+made from mailbox text, whose text was never saved, is judged again from its own saved flags. A card of a source
+with `rent_basis_from_page` (Van der Linden) whose page was not read by the current `DETAIL_VERSION` is judged
+with the rent basis open: its rent stands as listed until the page is read.
 What was saved can itself be an old misreading (an id stored as "max 8 persons"). So before that step,
 `runner.reread_lost_cards` reads the detail page once more for cards that have left the search pages and whose
 page was last read by an older `DETAIL_VERSION`: with what is left of the run's detail allowance, only for
@@ -275,10 +355,34 @@ Env: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`. Missing → print messages to std
 
 ## Dashboard (`docs/`)
 Static page (no build step) reading `data.json`. Plain HTML/CSS/JS, system fonts, light and dark.
-- **Listings:** one list of the matches from the last 30 days, newest first. Each row leads with the price
-  per person (cheapest match for the chosen group size first), then title, total rent and facts, warnings
-  (icon + text), source and age. The row opens the listing; "Copy Reply" copies the reply text. A blue dot
-  marks listings found in the last 24 h.
+- **Listings:** one list of the matches from the last 30 days, newest first. A card leads with the price each
+  person pays as a short label (`€850 incl.`, `€850 excl.`, `€850`; `€1.700 listed` when `price_pp` is null;
+  "Price unknown"), then the title and address, one facts line (bedrooms, m², "from 1 Dec" / "now" /
+  "20 Dec to 10 Jan", "Furnished"), the marks to review (`warn`, `check`,
+  `good`: icon + text), a "Details" disclosure with the plain facts (`info` marks) and the listing's own
+  sentences, and across the foot of the card "Show on Map" (for a home with a known place; from the list it
+  opens the map on that home), "Hide Listing" and "Copy Reply". A
+  title from an alert email ("Pararius: Maria Snelplantsoen") is shown without the site's name. No source name, no arrow: the whole card is the link. With one search
+  (`searches` has one entry) the Group Size control is gone and no group is named. A blue dot marks listings
+  found in the last 24 h. Marks follow `flag_kinds` (`warn`, `good`, `info`, `check`; `check` is a grey
+  question mark: "ask the landlord"), else the lists in `app.js`.
+- **Hide Listing:** hides a home by `home_key` (else `uid`) in `localStorage["househunter.hidden.v1"]`
+  (`{key: {t, a, at, u}}`; `u` is the hidden listing's id, which still finds the home when its key changes
+  because a house number was read later); survives reloads, refreshes and the same home on another site. A bar offers Undo for 6 s.
+  "Hidden Homes" (end of the Filters form, only when any) opens a sheet with "Show Again" / "Show All Again".
+  Keys of homes no longer in the data are dropped 60 days after `at`. Hidden homes are not counted.
+- **Map:** List | Map switch in the list head. Leaflet 1.9.4 is vendored in `docs/vendor/leaflet/` and loaded only
+  when the map is first opened (all use goes through `window.L`, which the checks replace with a fake); if it
+  fails the map area says so and the list works on. Tiles: PDOK BRT (`Kaartgegevens © Kadaster`). Markers are
+  price pills (`?` when unknown); the selected one is bigger, blue, with a tail; a dashed edge means the point is
+  only a street or postcode. Markers on one point are laid out as a small grid (pixel offsets). Markers = the
+  listings that pass the filters and are not hidden, with a location. Selecting one: side by side (75em+) the list
+  scrolls to its card and flashes it; otherwise a compact card with "Open Listing" shows over the map and the
+  card is outlined (`data-picked`). "Search This Area" (appears after the user moves the map, not after code
+  moves it) turns the map bounds into a filter on the list and count (chip "Map Area"; not saved, kept between
+  List and Map; homes without a location are not inside it). The line under the map counts homes passing the
+  filters that have no location. Layout: map 60% of the height under the search bar; on 75em+ side by side with a
+  sticky map. Keyboard: markers are focusable with a label, "Skip the map" link, the list is the full equivalent.
 - **Filters:** group size (2 People, 3 People, Any), cities, max € per person and your age; search and sort sit
   above the list. Then **What the Listing Says**: one row for each thing the checker reads from a listing
   (`ATTR_GROUPS` in `app.js`: who may rent, house sharing, rent and costs, home and contract, warnings), with the
@@ -411,7 +515,9 @@ bounded list (50 chats). Anyone in a subscribed group can `/stop` it. While the 
 
 ## Sources
 Bot walls seen on 9 Nov 2026 (from a home connection): Pararius, Huurwoningen.nl, Huurstunt (Cloudflare),
-Funda (own bot check), Holland2Stay (403). → covered via email alerts, not scraped.
+Funda (own bot check), Holland2Stay (403). → not scraped. Pararius, Funda and Huurwoningen.nl are covered via
+email alerts (`sources/email_alerts.py` reads their alert emails); Huurstunt and Holland2Stay are not covered: the
+email reader has no parser for their emails.
 Open (HTTP 200 with data): Kamernet (`__NEXT_DATA__`), HousingAnywhere (`window.__PRELOADED_STATE__`),
 Marktplaats (`/lrp/api/search`, category 2143 "Huizen te huur"), 123Wonen, DirectWonen, Interhouse,
 Van der Linden, Vesteda (SPA). To check: ikwilhuren.nu (MVGM), wonenbijbouwinvest.nl, Heimstaden,
@@ -424,23 +530,27 @@ page 2 is disallowed by its robots.txt and is not read.
 ## Dashboard data schema (`docs/data.json`, written by `hunter/dashboard.py`, read by `docs/app.js`)
 ```json
 {
-  "schema": 1,
+  "schema": 2,
   "generated_at": "2026-11-09T16:20:00Z",
   "last_run": "2026-11-09T16:20:00Z",
   "dashboard_url": "https://<user>.github.io/house-hunter/",
   "cities": {"den-haag": "Den Haag", "amsterdam": "Amsterdam", "leiden": "Leiden", "delft": "Delft", "rotterdam": "Rotterdam"},
   "searches": [
-    {"name": "2 people", "persons": 2, "max_total": 1600, "great_total": 1400},
-    {"name": "3 people", "persons": 3, "max_total": 2400, "great_total": 2100}
+    {"name": "2 people", "persons": 2, "max_total": 1600, "great_total": 1400}
   ],
-  "flag_labels": {"no_sharers": "No house sharers", "max_persons": "Max {n} persons", "no_students": "No students",
+  "household": {"persons": 2},
+  "flag_kinds": {"no_sharers": "warn", "sharing_unclear": "check", "sharers_ok": "good", "max_persons": "info"},
+  "flag_labels": {"no_sharers": "No house sharers", "max_persons": "Up to {n} people", "no_students": "No students",
                   "sharers_ok": "Sharers welcome", "no_registration": "No registration possible",
                   "income_requirement": "Income requirement", "short_term": "Short-term only",
                   "utilities_included": "Utilities included", "suspicious_price": "Suspiciously cheap",
                   "scam_signals": "Possible scam", "bedrooms_unknown": "Bedrooms unknown",
                   "students_only": "Students only", "working_only": "Working people only",
                   "min_age": "Minimum age {n}", "housemates": "Shared with housemates",
-                  "price_per_person": "Rent is per person", "mandatory_costs": "Compulsory extra €{n} a month",
+                  "price_per_person": "Rent is per person or room", "capacity": "Shared home for {n} people",
+                  "places_free": "Places free: {n}", "sharing_unclear": "Sharing policy unclear",
+                  "places_unclear": "Free places unclear", "rent_unclear": "Rent basis unclear",
+                  "mandatory_costs": "Compulsory extra €{n} a month",
                   "service_costs": "Plus €{n} service costs a month",
                   "rent_for_3": "€{n} a month for 3 people"},
   "reply_template": "Beste verhuurder, ... {title} ... {address} ... {url}",
@@ -456,9 +566,11 @@ page 2 is disallowed by its robots.txt and is not read.
      "property_type": "apartment", "furnished": "unfurnished", "available_from": "2026-12-01",
      "available_until": null, "image_url": "https://...", "first_seen": "2026-11-09T16:20:00Z",
      "last_seen": "2026-11-09T16:20:00Z", "price_drop_from": null, "best_tier": "ok",
-     "matches": [{"search": "2 people", "persons": 2, "price_pp": 725, "tier": "ok"}],
+     "matches": [{"search": "2 people", "persons": 2, "price_pp": 725, "extra_pp": 0, "tier": "ok"}],
      "flags": ["max_persons:2", "income_requirement"],
-     "evidence": {"max_persons": "Geschikt voor maximaal 2 personen"}}
+     "evidence": {"max_persons": "Geschikt voor maximaal 2 personen"},
+     "home_key": "a:den-haag:daltonstraat:12", "rent_basis": "home", "price_basis": "excl",
+     "capacity": 2, "places_available": null, "lat": 52.07123, "lon": 4.30123, "geo": "address"}
   ]
 }
 ```
@@ -466,5 +578,13 @@ page 2 is disallowed by its robots.txt and is not read.
 (`max_persons:2`); `flag_labels` is keyed by the part before the colon and may contain `{n}`.
 `evidence` maps a flag's name to the listing's own sentence (or the site's fields) behind it; a flag
 without one has no entry.
+`matches[].price_pp` is the quoted rent each person pays (null when the listing does not settle it) and
+`extra_pp` what each must pay on top. `rent_basis` is `home`, `place` or null; `price_basis` is `incl`, `excl` or
+null. `capacity` and `places_available` are numbers only when the listing states them. `home_key` names the home
+for "Hide Listing": city, street and house number (`a:<city>:<street>:<number>`; "10-1" is not "101", a digit
+in a street's name is no house number), else the listing's own id (`u:<uid>`). `lat` /
+`lon` / `geo` (`address`, `street` or `postcode`: how exact the point is) come from `geo.py` and are null when
+the address was not found; the map never guesses. `flag_kinds` says what a mark is: `warn`, `check` (the
+listing leaves something open), `good` or `info`.
 All strings in `listings` come from third-party sites: the page must render them with `textContent`,
 never `innerHTML`.

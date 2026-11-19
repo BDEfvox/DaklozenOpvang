@@ -78,6 +78,7 @@ RULES: Dict[str, List[str]] = {
         rf"\b{_ONLY_NL}\s+{_AVAIL_NL}(?:voor|aan)\s+{_COUNT}{_WORK_NL}",
         rf"\b{_ONLY_EN}\s+{_AVAIL_EN}(?:for|to)\s+{_COUNT}{_WORK_EN}",
         rf"\b{_WORK_EN}\s+only\b",
+        rf"\b{_ONLY_NL}\s+{_COUNT}{_WORK_NL}",          # "uitsluitend werkende huurders", "alleen werkenden"
         r"\bmax(?:imaal|imum|\.)?\s*\d\s+werkende?\s+(?:persoon|personen)\b",
         r"\bmax(?:imum|\.)?\s*\d\s+working\s+(?:person|persons|people)\b",
         r"\bwerkende?\s+(?:huisgeno\w+|huurders?|persoon|personen|stel|koppel)\s+gezocht\b",
@@ -113,9 +114,10 @@ RULES: Dict[str, List[str]] = {
         r"\b(?:(?:house|home|flat)[- ]?)?(?:sharing|sharers)\s+(?:is\s+|are\s+)?not\s+(?:allowed|possible|permitted|welcome|accepted)\b",
         # only a couple or a family may rent: friends who share are refused
         r"\b(?:alleen|enkel|uitsluitend)\s+(?:geschikt\s+|bedoeld\s+|beschikbaar\s+)?voor\s+(?:een\s+)?"
-        r"(?:stel(?:len)?|koppels?|gezin(?:nen)?)\b",
-        r"\b(?:couples?|famil(?:y|ies))\s+only\b",
-        r"\bonly\s+(?:suitable\s+|available\s+)?for\s+(?:a\s+)?(?:couples?|famil(?:y|ies))\b",
+        r"(?:stel(?:len)?|koppels?|gezin(?:nen)?)\b(?!\s+(?:maanden|weken|dagen|jaren|jaar)\b)",    # "een stel maanden": a few
+        # "couples only." closes a statement; "a couple only pays € 1400" does not
+        r"\b(?:couples?|famil(?:y|ies))\s+only\b(?=\s*(?:[.,;:!)(/-]|$|please\b|no\b|not\b|and\b|or\b))",
+        r"\bonly\s+(?:suitable\s+|available\s+)?for\s+(?:a\s+)?(?:couples?|famil(?:y|ies))\b(?!\s+of\b)",   # "a couple of months"
     ],
     "sharers_ok": [
         r"\b(?:geschikt|ideaal|ideale\s+woning|perfect|bedoeld|beschikbaar|ontwikkeld|ontworpen|gebouwd)\s+(?:is\s+|zijn\s+)?voor\s+"
@@ -170,12 +172,22 @@ AGE_RULES: List[Tuple[str, str]] = [
     (r"\b(\d{2})\s+jaar\s+(?:of|en)\s+ouder\b", "min"),
     # "55+ woning", "55-plus appartement": a home for that age. "30-plussers in de wijk" and "ook voor 65+ers
     # geschikt" describe people and limit nothing; "alleen voor 55-plussers" does.
-    (r"\b(\d{2})\s?\+\s?(?:woning(?:en)?|appartement(?:en)?|(?:woon)?complex|seniorenwoning(?:en)?|housing|only)\b", "min"),
+    # "een complex met 40+ appartementen" and "wij verhuren 50+ woningen" count homes: only the singular states an
+    # age (the plural is a question, see _AGE_HINTS)
+    (r"\b(\d{2})\s?\+\s?(?:woning|appartement|(?:woon)?complex|seniorenwoning(?:en)?|housing|only)\b", "min"),
     (r"\b(\d{2})[- ]?plus[- ]?(?:woning(?:en)?|appartement(?:en)?|(?:woon)?complex|flat)\b", "min"),
     (r"\b(?:alleen|enkel|uitsluitend|only|exclusively)\s+(?:\w+\s+)?(?:voor|for)\s+(\d{2})\s?(?:\+|[- ]?plus)(?:s?ers)?(?![\w])", "min"),
     # "seniorenwoning voor 65-plussers"; "ook voor 65+ers geschikt" only says they are welcome too
     (r"(?<!\book\s)(?<!\balso\s)\b(?:voor|for)\s+(\d{2})\s?(?:\+|[- ]?plus)s?ers\b", "min"),
-    (r"\bminimum\s+age\s*(?:of|is|:|=)?\s*(\d{2})\b", "min"),
+    (r"\bmin(?:imum|\.)?\s+age\s*(?:of|is|:|=)?\s*(\d{2})\b", "min"),
+    # "huurders moeten minimaal 23 jaar zijn", "min. 23 jaar oud"; a contract of "minimaal 2 jaar" is no age (19+ only)
+    (r"\bmin(?:imaal|imum|\.)?\s+(\d{2})\s+jaar\b(?!\s+(?:geleden|ervaring|contract|huur|garantie))", "min"),
+    (r"\bmust\s+be\s+(?:at\s+least\s+|minimum\s+)?(\d{2})\b(?!\s*(?:m2|m²|%|cm|min))", "min"),
+    # "geen huurders onder de 25", "no tenants under 25", "niet jonger dan 25": the denial is the statement
+    (r"\b(?:geen|no)\s+(?:huurders?|bewoners?|kandidaten|personen|studenten|tenants?|people|persons|students|applicants)\s+"
+     r"(?:onder(?:\s+de)?|jonger\s+dan|under|below|younger\s+than)\s+(\d{2})\b", "min neg"),
+    (r"\bniet\s+jonger\s+dan\s+(\d{2})(?:\s+jaar)?\b", "min neg"),
+    (r"\bnot\s+(?:younger\s+than|under)\s+(\d{2})\b", "min neg"),
     (r"\b(?:aged?|ages)\s+(\d{2})\s*(?:\+|and\s+(?:over|older|above|up)|or\s+(?:over|older|above))", "min"),
     (r"\b(\d{2})\s+years?\s+(?:old\s+)?(?:or|and)\s+(?:older|over|above)\b", "min"),
     (r"\bat\s+least\s+(\d{2})\s+years?\s+old\b", "min"),
@@ -184,7 +196,8 @@ AGE_RULES: List[Tuple[str, str]] = [
     (r"\bover\s+the\s+age\s+of\s+(\d{2})\b", "min+1"),
     (r"\bvanaf\s+(\d{2})\s+jaar\b(?!\s+(?:geleden|ervaring|oud\b))", "min ctx"),
     (r"\bmaxim(?:ale|um)\s*leeftijd\s*(?:van|is|:|=)?\s*(\d{2})\b", "max"),
-    (r"\bmaximum\s+age\s*(?:of|is|:|=)?\s*(\d{2})\b", "max"),
+    (r"\bmax(?:imum|\.)?\s+age\s*(?:of|is|:|=)?\s*(\d{2})\b", "max"),
+    (r"\bmax(?:imaal|imum|\.)?\s+(\d{2})\s+jaar\b(?!\s+(?:geleden|ervaring|contract|huur|garantie))", "max ctx"),
     (r"\b(?:aged?|ages)\s+(\d{2})\s+(?:or|and)\s+(?:under|younger|below)\b", "max"),
     (r"\bup\s+to\s+(\d{2})\s+years?\s+old\b", "max"),
     (r"\bjonger\s+dan\s+(\d{2})(?:\s+jaar)?\b", "max-1 ctx"),
@@ -195,6 +208,7 @@ AGE_RULES: List[Tuple[str, str]] = [
     (r"\b(?:leeftijd|age[sd]?)\s*:?\s*(\d{2})\s*"
      r"(?:-|–|tot(?:\s+en\s+met)?|t/m|to)\s*(\d{2})\b(?!\s*(?:m2|m²|uur|euro|%|min))", "range"),
     (r"\bbetween\s+the\s+ages\s+of\s+(\d{2})\s*(?:-|–|to|and)\s*(\d{2})\b", "range"),
+    (r"\b(\d{2})\s*(?:-|–|to|tot)\s*(\d{2})\s+(?:years?\s+old|jaar\s+oud)\b", "range"),     # "students 22-27 years old"
     # "tussen 20 en 30 minuten fietsen" is no age: the years must be named
     (r"\b(?:tussen(?:\s+de)?|between)\s+(\d{2})\s*(?:-|–|and|en)\s*(\d{2})\s+(?:jaar|years?)\b"
      r"(?!\s+(?:geleden|ervaring|ago|(?:of\s+)?experience)\b)", "range"),
@@ -408,7 +422,7 @@ def _ages(raw: str, low: str, extra: Iterable[Any]) -> Tuple[Optional[Tuple[int,
             continue
         for m in rx.finditer(low):
             span = (m.start(), m.end())
-            if "\n" in m.group(0) or _denied(raw, low, *span):
+            if "\n" in m.group(0) or ("neg" not in kind and _denied(raw, low, *span)):
                 continue
             left, right = clause(raw, *span)
             if _RESIDENTS.search(low[left:m.start()]) and not _WANTED.search(low[left:m.start()]):
@@ -447,6 +461,54 @@ def _ages(raw: str, low: str, extra: Iterable[Any]) -> Tuple[Optional[Tuple[int,
     if lo and hi and lo[0] > hi[0]:
         return None, None                                     # contradicting numbers: say nothing
     return lo, hi
+
+
+# Wording that looks like an age condition and is not one the rules above accept as a statement: "Vanaf 25 jaar"
+# with nothing around it, "25+", "tot 30 jaar". It may be the tenant's age, the contract's length or the
+# building's: it excludes nobody and is shown as a thing to ask.
+_AGE_N = r"(1[89]|[2-7]\d)"
+_AGE_HINTS = [re.compile(p) for p in (
+    r"\bvanaf\s+" + _AGE_N + r"\s+jaar\b",
+    r"\b(?:tot|t/m|tot\s+en\s+met|maximaal|max\.?)\s+" + _AGE_N + r"\s+jaar\b",
+    r"\b(?:ouder|jonger)\s+dan\s+" + _AGE_N + r"\b(?!\s*(?:m2|m²|%|min|km|euro))",
+    r"(?<![\w€.,+-])" + _AGE_N + r"\s?\+(?=\s*(?:$|[.,;:!)\n]|jaar\b|years?\b|only\b|ers?\b|woningen\b|appartementen\b))",
+    r"\b(?:from|over|above|under|below|up\s+to|until)\s+(?:the\s+age\s+of\s+)?" + _AGE_N + r"\s+years?\b",
+    r"\b(?:older|younger)\s+than\s+" + _AGE_N + r"\b(?!\s*(?:m2|m²|%|min|km|euro))",
+    r"\b(?:aged|ages?|leeftijd)\s*:?\s*" + _AGE_N + r"\b",
+)]
+# The number is about something else in that clause: a contract, experience, the building, a period of time.
+_NOT_AN_AGE = re.compile(r"contract|huurperiode|huurtermijn|huurovereenkomst|looptijd|ervaring|garantie|geleden|bouwjaar|"
+                         r"gebouwd|gerenoveerd|verbouwd|verhuurd|bestaa[tn]|jubileum|dateert|stamt|eigendom|"
+                         r"experience|warranty|lease|agreement|\bbuilt\b|renovated|\bago\b|\bterm\b|period|"
+                         r"m2|m²|minuten|minutes|km\b|kilometer|meter|verdieping|floor|kinderen|children|kids|kind\b")
+
+
+def age_hint(raw: str) -> Optional[Tuple[int, int]]:
+    """The span of wording that may be an age condition (see _AGE_HINTS), or None. For listings where no age
+    limit was read: a limit that was read is the statement, and needs no question."""
+    raw = raw or ""
+    low = raw.lower()
+    if len(low) != len(raw):
+        raw = low
+    best: Optional[Tuple[int, int]] = None
+    for rx in _AGE_HINTS:
+        for m in rx.finditer(low):
+            span = (m.start(), m.end())
+            if "\n" in m.group(0) or _denied(raw, low, *span):
+                continue
+            left, right = clause(raw, *span)
+            if _NOT_AN_AGE.search(low, left, right) or _THING_AGE.search(low, left, right):
+                continue
+            if re.search(r"\b(?:ook|also)\b", low[left:right]):
+                continue                                      # "wij verhuren ook 55+ woningen": said of other homes
+            if _RESIDENTS.search(low[left:m.start()]) and not _WANTED.search(low[left:m.start()]):
+                continue                                      # the ages of the people who live there now
+            if re.search(r"(?:€|\beur(?:o)?)\s*$", low[max(0, m.start(1) - 6):m.start(1)]):
+                continue
+            if best is None or span[0] < best[0]:
+                best = span
+            break
+    return best
 
 
 def settle(names: Dict[str, Any]) -> None:
