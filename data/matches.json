@@ -5,7 +5,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 80,
@@ -55,7 +55,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Godetiaweg",
    "area_m2": 82,
@@ -99,7 +99,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "D.S. Lohmanlaan",
    "area_m2": 66,
@@ -143,7 +143,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Escamplaan",
    "area_m2": 86,
@@ -193,7 +193,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "B. Baumannlaan",
    "area_m2": 63,
@@ -237,7 +237,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -447,7 +447,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Volmolengracht",
    "area_m2": 100,
@@ -530,7 +530,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-18T12:39:04Z",
   "flags": [],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Middelharnisstraat",
    "area_m2": 56,
@@ -573,7 +573,7 @@
   "flags": [
    "max_persons:3"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Ramlehweg",
    "area_m2": 122,
@@ -614,7 +614,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-18T12:39:04Z",
   "flags": [],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "J.W. Frisostraat",
    "area_m2": 120,
@@ -663,7 +663,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "N.W. Buitensingel",
    "area_m2": 128,
@@ -704,18 +704,16 @@
  "directwonen:524093": {
   "best_tier": "ok",
   "first_seen": "2026-11-18T12:39:04Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "flags": [],
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "'s-Gravenweg",
    "area_m2": 65,
    "available_from": null,
    "available_until": null,
-   "bedrooms": null,
+   "bedrooms": 2,
    "city": "rotterdam",
-   "description": null,
+   "description": "Per direct Appartement 3 Kamers 65 m2 Kaal Appartement Leuk driekamerappartement in een luxe appartementencomplex! Het appartement heeft 2 slaapkamers en is gelegen op de begane grond. De keuken is uitgerust met een kookplaat met ingebouwde afzuigkap, vaatwasser, koelkast, combi oven en koelkast. De badkamer is uitgerust met een inloopdouche, wastafe.... Leuk driekamerappartement in een luxe appartementencomplex! Het appartement heeft 2 slaapkamers en is gelegen op de begane grond. De keuken is uitgerust met een kookplaat met ingebouwde afzuigkap, vaatwasser, koelkast, combi oven en koelkast. De badkamer is uitgerust met een inloopdouche, wastafel met meubel, spiegel en handdoekradiator. Tevens is er een inpandige berging waar de aansluiting wasmachine zich bevindt. Buiten bevindt zich de eigen (betaalde) parkeerplaats en gemeenschappelijke fietsenstalling. Prinsendock beschikt over een gemeenschappelijke voortuin, gemeenschappelijke lounge, work-space en een fitnessruimte (alleen toegankelijk voor bewoners). *foto's ter indicatie, hieraan kunnen geen rechten worden ontleend. De woning wordt casco opgeleverd Te huur per direct. Huurprijs; € 1.565,00 excl. elektra en water Servicekosten; € 145,00 incl. gebruik fitnessruimte en work-space Parkeerplaatskosten; € 130,00 per maand Borgsom: € 3.130,00 Minimaal 12 maanden te huur!",
    "extra": {
     "age": "4 dagen geleden",
     "smart_only": false
@@ -750,7 +748,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Mariniersweg",
    "area_m2": 120,
@@ -794,7 +792,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "D.L. Reyweg",
    "area_m2": 95,
@@ -838,7 +836,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Tamboerstraat",
    "area_m2": 107,
@@ -882,7 +880,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Mariniersweg",
    "area_m2": 98,
@@ -926,7 +924,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 61,
@@ -970,7 +968,7 @@
   "flags": [
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Tafelbergstraat",
    "area_m2": 204,
@@ -2670,7 +2668,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Grote Beer 127",
    "area_m2": 81,
@@ -2715,7 +2713,7 @@
    "income_requirement",
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Beemsterstraat 542 E2",
    "area_m2": 85,
@@ -2759,7 +2757,7 @@
   "flags": [
    "utilities_included"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Aelbrechtskade",
    "area_m2": 100,
@@ -2801,7 +2799,7 @@
   "best_tier": "great",
   "first_seen": "2026-11-18T12:39:04Z",
   "flags": [],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Brielselaan",
    "area_m2": 91,
@@ -2809,7 +2807,7 @@
    "available_until": null,
    "bedrooms": 3,
    "city": "rotterdam",
-   "description": null,
+   "description": "Spacious 3-bedroom apartment on the 6th and top floor of the modern “De Harmonie” apartment complex in Rotterdam. The apartment offers a bright living room, three bedrooms, a spacious kitchen, balcony and private storage room. Thanks to its central location and excellent public transport connections, it is an ideal home for tenants looking for space and convenience in Rotterdam. Location Maashaven metro station is just a short walk away, providing a fast connection to Rotterdam city centre. Zuidplein shopping centre is only one metro stop away, while Zuiderpark can easily be reached by bike. The area is also well connected by car, with quick access to Rotterdam’s ring road and the A13, A20, A16, A29 and A15 motorways. A supermarket is located just around the corner. For a different way to travel into the city, the water taxi stop near the Maassilo is within walking distance, offering a quick connection to destinations such as Hotel New York and Kop van Zuid. Layout Ground floor: Secure communal entrance with lift. The building can be accessed from both the front and rear. A spacious private storage room is also located on the ground floor. 6th floor: Entrance into a spacious hallway with separate toilet and meter cupboard. The bright living room (approx. 7.40 x 3.74 m) features laminate flooring and provides direct access to the balcony, where you can enjoy the open views from the top floor. The spacious kitchen (approx. 3.60 x 2.64 m) is equipped with a fridge/freezer, freestanding dishwasher, sink, 4-burner gas hob and plenty of storage space. The main bedroom (approx. 4.38 x 3.13 m) has laminate flooring, double-glazed windows with uPVC frames and a large wardrobe offering plenty of storage space. The bathroom (approx. 3.13 x 1.91 m) features a walk-in shower, washbasin and washing machine connection. Bedroom II (approx. 3.25 x 2.03 m) is located at the front of the apartment. Bedroom III (approx. 3.65 x 3.56 m) is also generously sized. In short, a spacious and practical 3-bedroom apartment on the top floor, with excellent public transport connections and all daily amenities nearby.",
    "extra": {
     "landlord_type": "private-landlord",
     "max_stay_months": 0,
@@ -2847,7 +2845,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Eosstraat 143",
    "area_m2": 98,
@@ -2942,7 +2940,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Paul Desmondsingel 66",
    "area_m2": 129,
@@ -2986,7 +2984,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Van Oldenbarneveltplaats 14 C",
    "area_m2": 120,
@@ -2994,10 +2992,11 @@
    "available_until": null,
    "bedrooms": 3,
    "city": "rotterdam",
-   "description": null,
+   "description": "Ruim wonen in het hart van Rotterdam Aan de Van Oldenbarneveltplaats 14C, in het markante complex Het Forum, bevindt zich dit royale 4-kamer apartement van ca. 120 m². De woning beschikt over maar liefst drie slaapkamers, een ruime woonkamer en een moderne keuken, en wordt aangeboden voor een kale huur van € 2.190 per maand. Het appartement is beschikbaar vanaf 1 juni. Het appartement Deze ruime woning is ideaal voor een gezin of voor wie graag extra kamers wil gebruiken als werk- of hobbyruimte. De woonkamer biedt veel lichtinval dankzij de grote raampartijen en voelt zeer ruimtelijk aan. De keuken is praktisch ingericht en voorzien van moderne inbouwapparatuur. Daarnaast beschikt het appartement over een nette badkamer en meerdere bergruimtes. Met zijn 120 m² woonoppervlak biedt dit appartement volop mogelijkheden voor comfortabel wonen in de binnenstad. De omgeving Het Forum is gelegen midden in het bruisende centrum van Rotterdam. Direct buiten de deur vind je een groot aanbod aan winkels, supermarkten, cafés en restaurants. Iconische plekken zoals de Koopgoot, de Lijnbaan en de Markthal liggen allemaal op loopafstand. Ook culturele voorzieningen zoals theaters en musea zijn eenvoudig bereikbaar. Voor dagelijkse ontspanning kun je terecht in de nabijgelegen Witte de Withstraat of de groene wandelroutes langs de Maas. Qua bereikbaarheid is de ligging uitstekend: Rotterdam Centraal ligt op korte afstand en is zowel lopend, met de fiets als met het OV snel te bereiken. Ook de uitvalswegen richting Den Haag en Utrecht zijn goed toegankelijk. Kortom: een zeer ruim appartement op een toplocatie in Rotterdam, waar stadse levendigheid en comfortabel wonen samenkomen. Disclaimer Deze foto’s en informatie zijn uitsluitend bedoeld ter indicatie. Er kunnen geen rechten aan worden ontleend.",
    "extra": {
     "availability": "Direct beschikbaar",
-    "income_requirement": true
+    "income_requirement": true,
+    "service_costs": 90
    },
    "furnished": null,
    "image_url": "https://c.static.nbo.nl/media/50/50f60004392eabfb65d61382db3fb6a2/768x510/thumb.jpg",
@@ -3006,7 +3005,7 @@
    "price_includes_utilities": null,
    "price_total": 2150,
    "property_type": "apartment",
-   "rooms": null,
+   "rooms": 4,
    "source": "ikwilhuren",
    "source_id": "70aa51a4d6bc837f556425813c248358",
    "title": "Appartement Van Oldenbarneveltplaats 14 C, Rotterdam",
@@ -3030,7 +3029,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Sumatrakade 1153",
    "area_m2": 96,
@@ -3075,7 +3074,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Haringbuisdijk 909",
    "area_m2": 90,
@@ -3119,7 +3118,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Maanplein 94 E",
    "area_m2": 88,
@@ -3164,7 +3163,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Turfhaven 449",
    "area_m2": 59,
@@ -3209,7 +3208,7 @@
    "max_persons:2",
    "short_term"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -3254,7 +3253,7 @@
    "max_persons:4",
    "short_term"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Vlietpark 42",
    "area_m2": 60,
@@ -3292,91 +3291,6 @@
   ],
   "price_drop_from": null
  },
- "kamernet:2414487": {
-  "best_tier": "ok",
-  "first_seen": "2026-11-18T12:39:04Z",
-  "flags": [
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-19T01:02:38Z",
-  "listing": {
-   "address": "Noordeinde",
-   "area_m2": 75,
-   "available_from": "2026-10-27",
-   "available_until": null,
-   "bedrooms": null,
-   "city": "delft",
-   "description": null,
-   "extra": {
-    "student_house": false
-   },
-   "furnished": "furnished",
-   "image_url": "https://resources.kamernet.nl/image/99798b68-8f4c-4871-9071-9b2e560196ec/resize/422-225",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": false,
-   "price_total": 2300,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "kamernet",
-   "source_id": "2414487",
-   "title": "Appartement te huur: Noordeinde",
-   "uid": "kamernet:2414487",
-   "url": "https://kamernet.nl/huren/appartement-delft/noordeinde/appartement-2414487"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 767,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "kamernet:2414489": {
-  "best_tier": "ok",
-  "first_seen": "2026-11-18T12:39:04Z",
-  "flags": [
-   "utilities_included",
-   "bedrooms_unknown"
-  ],
-  "last_seen": "2026-11-19T01:02:38Z",
-  "listing": {
-   "address": "Noordeinde",
-   "area_m2": 97,
-   "available_from": "2026-10-27",
-   "available_until": null,
-   "bedrooms": null,
-   "city": "delft",
-   "description": null,
-   "extra": {
-    "student_house": false
-   },
-   "furnished": "furnished",
-   "image_url": "https://resources.kamernet.nl/image/48842633-cc96-4c41-b50f-fa2fa6157368/resize/422-225",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": true,
-   "price_total": 2350,
-   "property_type": "apartment",
-   "rooms": null,
-   "source": "kamernet",
-   "source_id": "2414489",
-   "title": "Appartement te huur: Noordeinde",
-   "uid": "kamernet:2414489",
-   "url": "https://kamernet.nl/huren/appartement-delft/noordeinde/appartement-2414489"
-  },
-  "matches": [
-   {
-    "persons": 3,
-    "price_pp": 783,
-    "search": "3 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
  "kamernet:2417636": {
   "best_tier": "ok",
   "first_seen": "2026-11-10T14:36:54Z",
@@ -3385,7 +3299,7 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Wesselsstraat 482",
    "area_m2": 85,
@@ -3567,7 +3481,7 @@
    "short_term",
    "utilities_included"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Maaswijkstraat 10",
    "area_m2": 85,
@@ -3657,7 +3571,7 @@
   "flags": [
    "max_persons:4"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Sidelingeplein 124",
    "area_m2": 78,
@@ -3789,7 +3703,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Lorriestraat 49",
    "area_m2": 94,
@@ -3832,7 +3746,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -3918,7 +3832,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Zeeburgerkade 1258",
    "area_m2": 91,
@@ -3962,7 +3876,7 @@
    "income_requirement",
    "bedrooms_unconfirmed"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -4005,7 +3919,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Borgloonstraat 101",
    "area_m2": 141,
@@ -4049,7 +3963,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Cruquiusweg 87-H",
    "area_m2": 91,
@@ -4093,7 +4007,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Cruquiusweg 85-R",
    "area_m2": 86,
@@ -4137,7 +4051,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Cruquiusweg 87-C",
    "area_m2": 115,
@@ -4181,7 +4095,7 @@
    "sharers_ok",
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Cruquiusweg 87-B",
    "area_m2": 115,
@@ -4267,7 +4181,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Van Boecopkade 18",
    "area_m2": 74,
@@ -4399,7 +4313,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Betaplein 276",
    "area_m2": 79,
@@ -4444,7 +4358,7 @@
    "income_requirement",
    "bedrooms_unknown"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Van Der Hoevenplein 153",
    "area_m2": 103,
@@ -4488,7 +4402,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Albertina Sisulupad 248",
    "area_m2": 105,
@@ -4576,7 +4490,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Buitenbassinweg 320",
    "area_m2": 81,
@@ -4620,7 +4534,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Admiraal De Ruyterweg 135",
    "area_m2": 63,
@@ -4664,7 +4578,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Watertorenweg 411",
    "area_m2": 103,
@@ -4708,7 +4622,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Westerdok 248",
    "area_m2": 103,
@@ -4752,7 +4666,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Nieuwehaven 128",
    "area_m2": 104,
@@ -4840,7 +4754,7 @@
   "flags": [
    "income_requirement"
   ],
-  "last_seen": "2026-11-19T01:02:38Z",
+  "last_seen": "2026-11-19T01:12:36Z",
   "listing": {
    "address": "Betaplein 66",
    "area_m2": 84,
