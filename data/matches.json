@@ -12,7 +12,7 @@
    "precision": "street",
    "q": "[\"lorentzplein\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 80,
@@ -64,7 +64,7 @@
    "precision": "street",
    "q": "[\"godetiaweg\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Godetiaweg",
    "area_m2": 82,
@@ -116,7 +116,7 @@
    "precision": "street",
    "q": "[\"dslohmanlaan\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "D.S. Lohmanlaan",
    "area_m2": 66,
@@ -168,7 +168,7 @@
    "precision": "street",
    "q": "[\"escamplaan\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Escamplaan",
    "area_m2": 86,
@@ -220,7 +220,7 @@
    "precision": "street",
    "q": "[\"bbaumannlaan\",\"\",\"\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "B. Baumannlaan",
    "area_m2": 63,
@@ -272,7 +272,7 @@
    "precision": "street",
    "q": "[\"bachstraat\",\"\",\"\",\"leiden\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -678,7 +678,7 @@
    "precision": "street",
    "q": "[\"dbuserf\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 61,
@@ -730,7 +730,7 @@
    "precision": "street",
    "q": "[\"tafelbergstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Tafelbergstraat",
    "area_m2": 204,
@@ -941,7 +941,7 @@
    "precision": "address",
    "q": "[\"robijnhof\",\"28\",\"\",\"leiden\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Robijnhof 28",
    "area_m2": 75,
@@ -994,7 +994,7 @@
    "precision": "address",
    "q": "[\"loevesteinlaan\",\"483b\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Loevesteinlaan 483 B",
    "area_m2": 110,
@@ -1047,7 +1047,7 @@
    "precision": "address",
    "q": "[\"laanvanwateringseveld\",\"528\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Laan Van Wateringse Veld 528",
    "area_m2": 108,
@@ -1206,7 +1206,7 @@
    "precision": "address",
    "q": "[\"leusdenhof\",\"326\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Leusdenhof 326",
    "area_m2": 88,
@@ -1312,7 +1312,7 @@
    "precision": "street",
    "q": "[\"lorentzplein\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 78,
@@ -1420,7 +1420,7 @@
    "precision": "street",
    "q": "[\"mariasnelplantsoen\",\"\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Maria Snelplantsoen",
    "area_m2": 200,
@@ -1473,7 +1473,7 @@
    "precision": "street",
    "q": "[\"dirkbuserf\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Dirk Buserf",
    "area_m2": 61,
@@ -1526,7 +1526,7 @@
    "precision": "street",
    "q": "[\"beemsterstraat\",\"\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Beemsterstraat",
    "area_m2": 85,
@@ -1585,7 +1585,7 @@
    "precision": "address",
    "q": "[\"grotebeer\",\"127\",\"3067tr\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Grote Beer 127",
    "area_m2": 81,
@@ -1642,7 +1642,7 @@
    "precision": "address",
    "q": "[\"randveen\",\"808\",\"2544rm\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Randveen 808",
    "area_m2": 70,
@@ -1757,7 +1757,7 @@
    "precision": "address",
    "q": "[\"baanweg\",\"13e\",\"3042ab\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Baanweg 13 E",
    "area_m2": 111,
@@ -1814,7 +1814,7 @@
    "precision": "address",
    "q": "[\"hogefilterweg\",\"658\",\"3063km\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Hoge Filterweg 658",
    "area_m2": 84,
@@ -1930,7 +1930,7 @@
    "precision": "address",
    "q": "[\"loosduinseweg\",\"1103\",\"2571bd\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -1990,7 +1990,7 @@
    "precision": "address",
    "q": "[\"wesselsstraat\",\"482\",\"2572wc\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Wesselsstraat 482",
    "area_m2": 85,
@@ -2104,7 +2104,7 @@
    "precision": "address",
    "q": "[\"sneeuwbalstraat\",\"48\",\"2565wc\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Sneeuwbalstraat 48",
    "area_m2": 98,
@@ -2147,10 +2147,14 @@
  },
  "livresidential:kleiweg-249-a1-3051xl-rotterdam": {
   "best_tier": "ok",
-  "evidence": {},
+  "evidence": {
+   "service_costs": "Servicekosten € 25 per maand",
+   "students_only": "Let op: dit appartement is uitsluitend beschikbaar voor studenten (met garantsteller) die niet in Rotterdam ingeschreven staan, en voor een maximale…"
+  },
   "first_seen": "2026-11-20T00:21:57Z",
   "flags": [
-   "bedrooms_unconfirmed"
+   "students_only",
+   "service_costs:25"
   ],
   "geo": {
    "lat": 51.94494396,
@@ -2158,19 +2162,22 @@
    "precision": "postcode",
    "q": "[\"kleiweg249a1\",\"\",\"3051xl\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Kleiweg 249 A1",
    "area_m2": 48,
-   "available_from": null,
+   "available_from": "2026-11-13",
    "available_until": null,
-   "bedrooms": null,
+   "bedrooms": 2,
    "city": "rotterdam",
-   "description": null,
+   "description": "Let op: dit appartement is uitsluitend beschikbaar voor studenten (met garantsteller) die niet in Rotterdam ingeschreven staan, en voor een maximale huurperiode van één jaar.\nApartment overview\nAppartement aan Kleiweg 249-A-01 in Rotterdam . Dit appartement biedt 3 kamers met een gebruiksoppervlakte van circa 49 m². 🏠\nHet gebouw is gerealiseerd rond 1930 . De indeling is praktisch en sluit goed aan bij het dagelijkse wooncomfort. Dankzij de gunstige ligging zijn voorzieningen zoals winkels, horeca en groen binnen korte afstand bereikbaar.\nLocation\nDe woning bevindt zich in Rotterdam , op een goed bereikbare locatie met zowel stedelijke voorzieningen als rustige woonstraten in de directe omgeving. Hier woon je centraal, met voldoende dagelijkse voorzieningen binnen loop- of fietsafstand.\nDe bereikbaarheid met het openbaar vervoer is uitstekend: Station Rotterdam Centraal en Busstation Rotterdam Centraal liggen op korte afstand, waardoor reizen naar andere steden eenvoudig is. Daarnaast zijn er diverse lokale bushaltes en goede aansluitingen op het regionale wegennet. 🚆🚌\nEnergy performance\nDe woning beschikt over energielabel D , wat bijdraagt aan een comfortabel binnenklimaat en een lager energieverbruik. Een goed energielabel betekent doorgaans lagere maandelijkse lasten en een duurzamere manier van wonen.\nAfhankelijk van jouw woonwensen kun je met relatief beperkte ingrepen vaak al extra comfort en energiebesparing realiseren, bijvoorbeeld door het verbeteren van isolatie of het toepassen van slimme installaties.\nFoto's kunnen van een vergelijkbare woning zijn",
    "extra": {
     "labels": [
      "direct beschikbaar"
-    ]
+    ],
+    "service_costs": 25,
+    "service_costs_note": "Servicekosten € 25 per maand",
+    "service_costs_on_top": true
    },
    "furnished": null,
    "image_url": "https://cdn.livresidential.nl/production/properties/52977/responsive-images/e2aede3d52c5e633483beb2570a574b3ce9ff5dcd5df5fca13c8fd734e5eb59e___media_library_original_430_343.jpg",
@@ -2178,7 +2185,7 @@
    "posted_at": null,
    "price_includes_utilities": null,
    "price_total": 1541,
-   "property_type": null,
+   "property_type": "apartment",
    "rooms": 3,
    "source": "livresidential",
    "source_id": "kleiweg-249-a1-3051xl-rotterdam",
@@ -2188,7 +2195,7 @@
   },
   "matches": [
    {
-    "extra_pp": 0,
+    "extra_pp": 12,
     "persons": 2,
     "price_pp": 771,
     "search": "2 people",
@@ -2214,7 +2221,7 @@
    "precision": "postcode",
    "q": "[\"spoorsingel70b1\",\"\",\"3033gp\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Spoorsingel 70 B1",
    "area_m2": 83,
@@ -2255,9 +2262,16 @@
  },
  "nederwoon:38947": {
   "best_tier": "ok",
-  "evidence": {},
+  "evidence": {
+   "max_persons": "Studenten toegestaan: Ja · Alleen studenten: Nee · Max aantal personen: 2 · Woningdelers: Ja",
+   "sharers_ok": "Studenten toegestaan: Ja · Alleen studenten: Nee · Max aantal personen: 2 · Woningdelers: Ja",
+   "students_ok": "Studenten toegestaan: Ja · Alleen studenten: Nee · Max aantal personen: 2 · Woningdelers: Ja"
+  },
   "first_seen": "2026-11-20T00:21:57Z",
   "flags": [
+   "sharers_ok",
+   "students_ok",
+   "max_persons:2",
    "bedrooms_unconfirmed"
   ],
   "geo": {
@@ -2266,7 +2280,7 @@
    "precision": "street",
    "q": "[\"artemisstraat\",\"\",\"2321la\",\"leiden\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Artemisstraat",
    "area_m2": 67,
@@ -2274,9 +2288,14 @@
    "available_until": null,
    "bedrooms": null,
    "city": "leiden",
-   "description": null,
+   "description": "Duurzaam wonen op een toplocatie in Leiden!\nBen jij op zoek naar een modern en duurzaam appartement op een bruisende locatie? Dan is HOF36 in Leiden iets voor jou! In de levendige stadswijk Lammenschansdriehoek vind je diverse comfortabele huurappartementen met een uitstekende bereikbaarheid en een groene, sociale woonomgeving.\nGroen, sociaal en ruimtelijk\nHOF36 is een plek waar groen, gezelligheid en ruimte hand in hand gaan. Het biedt jou als bewoner een duurzaam appartement in een groene omgeving met zelfs een gezamenlijke daktuin. En het mooie is: alles is op fietsafstand van de hotspots van het centrum van Leiden.\nBuitenleven in stijl\nDit appartement beschikt over een eigen buitenruimte.\nIdeale locatie:\nOf je nu kiest voor het openbaar vervoer, de fiets of de auto, de locatie is uitstekend bereikbaar. Met het bruisende centrum van Leiden op slechts 10 minuten fietsen, het nabijgelegen NS Station Lammenschans op loopafstand en de gunstige ligging nabij snelweg A4, ben je altijd in no-time onderweg naar jouw bestemming. Bovendien bevind je je op korte afstand van grote steden zoals Den Haag en Amsterdam, en ben je dicht bij de kust, Keukenhof en het Groene Hart. Zelfs luchthaven Schiphol is binnen twintig minuten te bereiken.\n• 8 min. lopen - NS Station Lammenschans\n• 10 min. fietsen - NS Station Leiden Centraal\n• 20. min met de auto – Strand Noordwijk\n• 10 min. Met de trein – Den Haag\nIndeling\nJe komt binnen in de hal met toegang tot de technische ruimte wat tevens ook als inpandige berging dient. De woonkamer is voorzien van een moderne keuken die beschikt over inbouwapparatuur, waaronder een inductie kookplaat, combi oven/magnetron, afzuigkap, vries/koelcombinatie en vaatwasmachine.\nDe badkamer is voorzien van een wastafel met spiegel, een handige douchewand en een handdoekradiator. Verder zit er een apart, zwevend toilet nabij de hal.\nDuurzaam wonen\nHet complex is gasvrij, voorzien van zonnepanelen en dit appartement beschikt over hebben energielabel A+++. Voor verwarming en warm water wordt gebruikgemaakt van een duurzame warmte-en-koudeopslag (WKO). De appartementen bieden daardoor niet alleen comfort, maar zijn ook nog eens duurzaam en milieuvriendelijk.\nBij NederWoon Verhuurmakelaars doen we ons best om betrouwbare en actuele informatie te geven. We streven naar foutloze en complete gegevens, maar we kunnen helaas niet garanderen dat alles altijd perfect is. Daarom kun je geen rechten ontlenen aan de informatie op onze website. Neem gerust contact met ons op voor de laatste updates.",
    "extra": {
-    "price_label": "Kale huur/per maand"
+    "max_persons": 2,
+    "price_label": "Kale huur/per maand",
+    "service_costs": 65,
+    "site_facts": "Studenten toegestaan: Ja · Alleen studenten: Nee · Max aantal personen: 2 · Woningdelers: Ja",
+    "site_sharers_ok": true,
+    "site_students_ok": true
    },
    "furnished": "unfurnished",
    "image_url": "https://www.nederwoon.nl/media/vhe/155450.jpg",
@@ -2318,7 +2337,7 @@
    "precision": "address",
    "q": "[\"berthaanstrakade\",\"552\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -2428,7 +2447,7 @@
    "precision": "address",
    "q": "[\"berthaanstrakade\",\"880\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -2487,7 +2506,7 @@
    "precision": "address",
    "q": "[\"rietdijk\",\"23\",\"\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Rietdijk 23",
    "area_m2": 103,
@@ -2502,7 +2521,7 @@
    "furnished": null,
    "image_url": "https://d1zsattj8yq64o.cloudfront.net/media/22335298/424x318_crop.jpg",
    "postcode": null,
-   "posted_at": "2026-10-06",
+   "posted_at": null,
    "price_includes_utilities": true,
    "price_total": 846,
    "property_type": null,
@@ -2518,54 +2537,6 @@
     "extra_pp": 0,
     "persons": 2,
     "price_pp": null,
-    "search": "2 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "vastgoednederland:670182": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-20T00:21:57Z",
-  "flags": [],
-  "geo": {
-   "lat": 52.00938364,
-   "lon": 4.32596845,
-   "precision": "address",
-   "q": "[\"dijkshoornseweg\",\"146g\",\"\",\"delft\"]"
-  },
-  "last_seen": "2026-11-20T00:21:57Z",
-  "listing": {
-   "address": "Dijkshoornseweg 146G",
-   "area_m2": 80,
-   "available_from": null,
-   "available_until": null,
-   "bedrooms": 2,
-   "city": "delft",
-   "description": null,
-   "extra": {
-    "broker": "Van Leerdam Makelaardij"
-   },
-   "furnished": null,
-   "image_url": "https://d1zsattj8yq64o.cloudfront.net/media/22425391/424x318_crop.jpg",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 1550,
-   "property_type": null,
-   "rooms": null,
-   "source": "vastgoednederland",
-   "source_id": "670182",
-   "title": "Dijkshoornseweg 146G, Delft",
-   "uid": "vastgoednederland:670182",
-   "url": "https://www.vastgoednederland.nl/huurwoningen/delft/woning-670182-dijkshoornseweg-146g"
-  },
-  "matches": [
-   {
-    "extra_pp": 0,
-    "persons": 2,
-    "price_pp": 775,
     "search": "2 people",
     "tier": "ok"
    }
@@ -2768,7 +2739,7 @@
    "precision": "address",
    "q": "[\"theodoraeigemanpad\",\"36\",\"2625dz\",\"delft\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Theodora Eigemanpad 36",
    "area_m2": 65,
@@ -2776,7 +2747,7 @@
    "available_until": null,
    "bedrooms": null,
    "city": "delft",
-   "description": "Modern 3-kamerappartement nabij het centrum van Delft\nDit comfortabele 3-kamerappartement van circa 65 m² biedt alles wat je nodig hebt voor prettig en modern wonen. De woning beschikt over een hoogwaardige afwerking, een complete keuken en een stijlvolle badkamer. Dankzij de centrale ligging woon je hier tussen het groen en de stad, met het historische centrum van Delft op slechts tien minuten fietsen.\nWoonkamer\nDe lichte woonkamer vormt het hart van het appartement en biedt voldoende ruimte voor een comfortabele zithoek en een gezellige eethoek. De vloerverwarming zorgt daarbij voor extra wooncomfort gedurende het hele jaar.\nKeuken\nDe moderne open keuken is volledig ingericht en voorzien van vijf inbouwapparaten. Hierdoor beschik je over alle gemakken om uitgebreid te koken en te genieten van je dagelijkse maaltijden.\nSlaapkamer\nHet appartement beschikt over twee goed ingedeelde slaapkamers die zich uitstekend lenen als hoofdslaapkamer, logeerkamer, werkruimte of hobbykamer.\nBadkamer\nDe volledig betegelde badkamer is modern uitgevoerd en voorzien van een douche, wastafel met spiegel en comfortabele vloerverwarming.\nOmgeving\nIn Bethelpark woon je op een ideale locatie tussen het groen en de stad. De historische binnenstad van Delft bereik je in ongeveer tien minuten fietsen, terwijl diverse winkels, restaurants, voorzieningen en openbaar vervoer zich in de directe omgeving bevinden.\nLet op!\nDe getoonde afbeeldingen zijn ter illustratie en kunnen dus afwijken van de werkelijkheid.\nInteresse?\nGa in de woningpresentatie op onze website naar [REAGEER] en geef hiermee aan dat je geïnteresseerd bent.\nInkomensnormen en inschrijfdocumentatie\nHiervoor verwijzen we je door naar onze website.\nBorg\nVerhuurder kan om haar moverende redenen borg vragen. Dit kan o.a. afhankelijk zijn van de werksituatie van de kandidaten.\nHuurprijswijziging\nVoor huurwoningen met een geliberaliseerde huurprijs geldt een jaarlijkse huurverhoging van maximaal CPI +3%, tenzij er in enig jaar door de Rijksoverheid een andere maximale huurprijsverhoging voor geliberaliseerde zelfstandige huurwoningen is vastgesteld. In het geval van een gereguleerde huurprijs bepaalt de Rijksoverheid jaarlijks het percentage van de huurverhoging.\n**Vb&t streeft ernaar om je zo goed mogelijk aan een passende huurwoning te helpen. Om dit te realiseren verzoeken wij je om jezelf in te schrijven via onze website. Inschrijven is altijd kosteloos en geheel vrijblijvend. Je kunt je inschrijven voor woningen die direct beschikbaar zijn, maar ook voor woningen die mogelijk toekomstig beschikbaar komen. Op basis van de door jou verstrekte informatie word je door ons automatisch per e-mail geïnformeerd wanneer er woningen beschikbaar zijn die voldoen aan je woonwensen. Je kunt gratis en eenvoudig inschrijven op onze website.**\n**Deze informatie is met de grootst mogelijke zorg samengesteld. Toch kunnen wij niet altijd voorkomen dat de informatie enigszins afwijkt van hetgeen je in of rond de woning ziet of hebt gezien. Dit kan met name gelden voor de brochure tekst, de plattegronden en maatvoeringen. Hieraan kunnen dan ook geen rechten worden ontleend.**\nBij deze woning is het huren van een parkeerplaats een mogelijkheid (€94)",
+   "description": "Modern 3-kamerappartement nabij het centrum van Delft\nDit comfortabele 3-kamerappartement van circa 65 m² biedt alles wat je nodig hebt voor prettig en modern wonen. De woning beschikt over een hoogwaardige afwerking, een complete keuken en een stijlvolle badkamer. Dankzij de centrale ligging woon je hier tussen het groen en de stad, met het historische centrum van Delft op slechts tien minuten fietsen.\nWoonkamer\nDe lichte woonkamer vormt het hart van het appartement en biedt voldoende ruimte voor een comfortabele zithoek en een gezellige eethoek. De vloerverwarming zorgt daarbij voor extra wooncomfort gedurende het hele jaar.\nKeuken\nDe moderne open keuken is volledig ingericht en voorzien van vijf inbouwapparaten. Hierdoor beschik je over alle gemakken om uitgebreid te koken en te genieten van je dagelijkse maaltijden.\nSlaapkamer\nHet appartement beschikt over twee goed ingedeelde slaapkamers die zich uitstekend lenen als hoofdslaapkamer, logeerkamer, werkruimte of hobbykamer.\nBadkamer\nDe volledig betegelde badkamer is modern uitgevoerd en voorzien van een douche, wastafel met spiegel en comfortabele vloerverwarming.\nOmgeving\nIn Bethelpark woon je op een ideale locatie tussen het groen en de stad. De historische binnenstad van Delft bereik je in ongeveer tien minuten fietsen, terwijl diverse winkels, restaurants, voorzieningen en openbaar vervoer zich in de directe omgeving bevinden.\nLet op!\nDe getoonde afbeeldingen zijn ter illustratie en kunnen dus afwijken van de werkelijkheid.\nInteresse?\nGa in de woningpresentatie op onze website naar [REAGEER] en geef hiermee aan dat je geïnteresseerd bent.\nInkomensnormen en inschrijfdocumentatie\nHiervoor verwijzen we je door naar onze website.\nBorg\nVerhuurder kan om haar moverende redenen borg vragen. Dit kan o.a. afhankelijk zijn van de werksituatie van de kandidaten.\nHuurprijswijziging\nVoor huurwoningen met een geliberaliseerde huurprijs geldt een jaarlijkse huurverhoging van maximaal CPI +3%, tenzij er in enig jaar door de Rijksoverheid een andere maximale huurprijsverhoging voor geliberaliseerde zelfstandige huurwoningen is vastgesteld. In het geval van een gereguleerde huurprijs bepaalt de Rijksoverheid jaarlijks het percentage van de huurverhoging.\n**Vb&t streeft ernaar om je zo goed mogelijk aan een passende huurwoning te helpen. Om dit te realiseren verzoeken wij je om jezelf in te schrijven via onze website. Inschrijven is altijd kosteloos en geheel vrijblijvend. Je kunt je inschrijven voor woningen die dire",
    "extra": {
     "min_stay_months": 12,
     "reactions": 91,
@@ -3045,162 +3016,6 @@
   ],
   "price_drop_from": null
  },
- "vbtverhuur:s-gravenhage-buitenom-207": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-20T00:21:57Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "geo": {
-   "lat": 52.07160643,
-   "lon": 4.30094018,
-   "precision": "address",
-   "q": "[\"buitenom\",\"207\",\"\",\"denhaag\"]"
-  },
-  "last_seen": "2026-11-20T00:21:57Z",
-  "listing": {
-   "address": "Buitenom 207",
-   "area_m2": 96,
-   "available_from": "2026-12-16",
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": "Bij deze woning is het huren van een parkeerplaats à €100 p/m servicekosten een vereiste.",
-   "extra": {
-    "reactions": 63,
-    "service_costs": 45,
-    "status": "beschikbaar"
-   },
-   "furnished": null,
-   "image_url": "https://vbtverhuurmakelaars.nl/images/9dbc63-w300-s-fwj/buitenom-207",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 1570,
-   "property_type": "apartment",
-   "rooms": 3,
-   "source": "vbtverhuur",
-   "source_id": "s-gravenhage-buitenom-207",
-   "title": "Appartement Buitenom 207, 's-Gravenhage",
-   "uid": "vbtverhuur:s-gravenhage-buitenom-207",
-   "url": "https://vbtverhuurmakelaars.nl/woning/s-gravenhage-buitenom-207"
-  },
-  "matches": [
-   {
-    "extra_pp": 0,
-    "persons": 2,
-    "price_pp": 785,
-    "search": "2 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "vbtverhuur:s-gravenhage-buitenom-216": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-20T00:21:57Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "geo": {
-   "lat": 52.07149112,
-   "lon": 4.30104114,
-   "precision": "address",
-   "q": "[\"buitenom\",\"216\",\"\",\"denhaag\"]"
-  },
-  "last_seen": "2026-11-20T00:21:57Z",
-  "listing": {
-   "address": "Buitenom 216",
-   "area_m2": 96,
-   "available_from": "2026-12-08",
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": "Bij deze woning is het huren van een parkeerplaats à € 100,- p/m een vereiste.",
-   "extra": {
-    "reactions": 101,
-    "service_costs": 45,
-    "status": "beschikbaar"
-   },
-   "furnished": null,
-   "image_url": "https://vbtverhuurmakelaars.nl/images/b544f8-w300-s-fwj/buitenom-216",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 1570,
-   "property_type": "apartment",
-   "rooms": 3,
-   "source": "vbtverhuur",
-   "source_id": "s-gravenhage-buitenom-216",
-   "title": "Appartement Buitenom 216, 's-Gravenhage",
-   "uid": "vbtverhuur:s-gravenhage-buitenom-216",
-   "url": "https://vbtverhuurmakelaars.nl/woning/s-gravenhage-buitenom-216"
-  },
-  "matches": [
-   {
-    "extra_pp": 0,
-    "persons": 2,
-    "price_pp": 785,
-    "search": "2 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
- "vbtverhuur:s-gravenhage-hanenburglaan-360": {
-  "best_tier": "ok",
-  "evidence": {},
-  "first_seen": "2026-11-20T00:21:57Z",
-  "flags": [
-   "bedrooms_unconfirmed"
-  ],
-  "geo": {
-   "lat": 52.07854901,
-   "lon": 4.26308162,
-   "precision": "address",
-   "q": "[\"hanenburglaan\",\"360\",\"\",\"denhaag\"]"
-  },
-  "last_seen": "2026-11-20T00:21:57Z",
-  "listing": {
-   "address": "Hanenburglaan 360",
-   "area_m2": 84,
-   "available_from": "2026-12-16",
-   "available_until": null,
-   "bedrooms": null,
-   "city": "den-haag",
-   "description": "Bij deze woning hoort een parkeerplaats",
-   "extra": {
-    "reactions": 37,
-    "service_costs": 35,
-    "status": "beschikbaar"
-   },
-   "furnished": null,
-   "image_url": "https://vbtverhuurmakelaars.nl/images/f204ae-w300-s-fwj/hanenburglaan-360",
-   "postcode": null,
-   "posted_at": null,
-   "price_includes_utilities": null,
-   "price_total": 1596,
-   "property_type": "apartment",
-   "rooms": 3,
-   "source": "vbtverhuur",
-   "source_id": "s-gravenhage-hanenburglaan-360",
-   "title": "Appartement Hanenburglaan 360, 's-Gravenhage",
-   "uid": "vbtverhuur:s-gravenhage-hanenburglaan-360",
-   "url": "https://vbtverhuurmakelaars.nl/woning/s-gravenhage-hanenburglaan-360"
-  },
-  "matches": [
-   {
-    "extra_pp": 0,
-    "persons": 2,
-    "price_pp": 798,
-    "search": "2 people",
-    "tier": "ok"
-   }
-  ],
-  "price_drop_from": null
- },
  "vesteda:10369": {
   "best_tier": "ok",
   "evidence": {
@@ -3335,7 +3150,7 @@
    "precision": "address",
    "q": "[\"buitenbassinweg\",\"320\",\"3063tc\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Buitenbassinweg 320",
    "area_m2": 81,
@@ -3394,7 +3209,7 @@
    "precision": "address",
    "q": "[\"admiraalderuyterweg\",\"135\",\"3031aa\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Admiraal De Ruyterweg 135",
    "area_m2": 63,
@@ -3511,7 +3326,7 @@
    "precision": "address",
    "q": "[\"watertorenweg\",\"411\",\"3063hd\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Watertorenweg 411",
    "area_m2": 103,
@@ -3572,7 +3387,7 @@
    "precision": "address",
    "q": "[\"betaplein\",\"66\",\"2321ks\",\"leiden\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T00:34:08Z",
   "listing": {
    "address": "Betaplein 66",
    "area_m2": 84,
