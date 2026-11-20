@@ -12,7 +12,7 @@
    "precision": "street",
    "q": "[\"lorentzplein\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 80,
@@ -64,7 +64,7 @@
    "precision": "street",
    "q": "[\"godetiaweg\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Godetiaweg",
    "area_m2": 82,
@@ -116,7 +116,7 @@
    "precision": "street",
    "q": "[\"dslohmanlaan\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "D.S. Lohmanlaan",
    "area_m2": 66,
@@ -168,7 +168,7 @@
    "precision": "street",
    "q": "[\"escamplaan\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Escamplaan",
    "area_m2": 86,
@@ -220,7 +220,7 @@
    "precision": "street",
    "q": "[\"bbaumannlaan\",\"\",\"\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "B. Baumannlaan",
    "area_m2": 63,
@@ -272,7 +272,7 @@
    "precision": "street",
    "q": "[\"bachstraat\",\"\",\"\",\"leiden\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -678,7 +678,7 @@
    "precision": "street",
    "q": "[\"dbuserf\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 61,
@@ -730,7 +730,7 @@
    "precision": "street",
    "q": "[\"tafelbergstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Tafelbergstraat",
    "area_m2": 204,
@@ -941,7 +941,7 @@
    "precision": "address",
    "q": "[\"robijnhof\",\"28\",\"\",\"leiden\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Robijnhof 28",
    "area_m2": 75,
@@ -994,7 +994,7 @@
    "precision": "address",
    "q": "[\"loevesteinlaan\",\"483b\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Loevesteinlaan 483 B",
    "area_m2": 110,
@@ -1047,7 +1047,7 @@
    "precision": "address",
    "q": "[\"laanvanwateringseveld\",\"528\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Laan Van Wateringse Veld 528",
    "area_m2": 108,
@@ -1206,7 +1206,7 @@
    "precision": "address",
    "q": "[\"leusdenhof\",\"326\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Leusdenhof 326",
    "area_m2": 88,
@@ -1312,7 +1312,7 @@
    "precision": "street",
    "q": "[\"lorentzplein\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 78,
@@ -1420,7 +1420,7 @@
    "precision": "street",
    "q": "[\"mariasnelplantsoen\",\"\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Maria Snelplantsoen",
    "area_m2": 200,
@@ -1473,7 +1473,7 @@
    "precision": "street",
    "q": "[\"dirkbuserf\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Dirk Buserf",
    "area_m2": 61,
@@ -1526,7 +1526,7 @@
    "precision": "street",
    "q": "[\"beemsterstraat\",\"\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Beemsterstraat",
    "area_m2": 85,
@@ -1585,7 +1585,7 @@
    "precision": "address",
    "q": "[\"grotebeer\",\"127\",\"3067tr\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Grote Beer 127",
    "area_m2": 81,
@@ -1642,7 +1642,7 @@
    "precision": "address",
    "q": "[\"randveen\",\"808\",\"2544rm\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Randveen 808",
    "area_m2": 70,
@@ -1757,7 +1757,7 @@
    "precision": "address",
    "q": "[\"baanweg\",\"13e\",\"3042ab\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Baanweg 13 E",
    "area_m2": 111,
@@ -1814,7 +1814,7 @@
    "precision": "address",
    "q": "[\"hogefilterweg\",\"658\",\"3063km\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Hoge Filterweg 658",
    "area_m2": 84,
@@ -1930,7 +1930,7 @@
    "precision": "address",
    "q": "[\"loosduinseweg\",\"1103\",\"2571bd\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -1990,7 +1990,7 @@
    "precision": "address",
    "q": "[\"wesselsstraat\",\"482\",\"2572wc\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Wesselsstraat 482",
    "area_m2": 85,
@@ -2104,7 +2104,7 @@
    "precision": "address",
    "q": "[\"sneeuwbalstraat\",\"48\",\"2565wc\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Sneeuwbalstraat 48",
    "area_m2": 98,
@@ -2162,7 +2162,7 @@
    "precision": "postcode",
    "q": "[\"kleiweg249a1\",\"\",\"3051xl\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Kleiweg 249 A1",
    "area_m2": 48,
@@ -2221,7 +2221,7 @@
    "precision": "postcode",
    "q": "[\"spoorsingel70b1\",\"\",\"3033gp\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Spoorsingel 70 B1",
    "area_m2": 83,
@@ -2280,7 +2280,7 @@
    "precision": "street",
    "q": "[\"artemisstraat\",\"\",\"2321la\",\"leiden\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Artemisstraat",
    "area_m2": 67,
@@ -2337,7 +2337,7 @@
    "precision": "address",
    "q": "[\"berthaanstrakade\",\"552\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -2447,7 +2447,7 @@
    "precision": "address",
    "q": "[\"berthaanstrakade\",\"880\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -2506,7 +2506,7 @@
    "precision": "address",
    "q": "[\"rietdijk\",\"23\",\"\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Rietdijk 23",
    "area_m2": 103,
@@ -2560,7 +2560,7 @@
    "precision": "postcode",
    "q": "[\"hiraistraat6a100\",\"\",\"1101da\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Hiraistraat 6 A100",
    "area_m2": 74,
@@ -2618,7 +2618,7 @@
    "precision": "postcode",
    "q": "[\"otthoheldringstraat3e76\",\"\",\"1066az\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Ottho Heldringstraat 3 E76",
    "area_m2": 70,
@@ -2677,7 +2677,7 @@
    "precision": "address",
    "q": "[\"mariavincentiastraat\",\"213\",\"2625zk\",\"delft\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Maria Vincentiastraat 213",
    "area_m2": 65,
@@ -2685,7 +2685,7 @@
    "available_until": null,
    "bedrooms": 2,
    "city": "delft",
-   "description": "3-kamer appartement met een woonoppervlakte van 65 m2, volledig ingerichte moderne keuken met vijf apparaten en volledig betegelde badkamer met douche, wastafel met spiegel, vloerverwarming. In Bethelpark woon je heerlijk centraal, tussen groen en stad en 10 minuten fietsen van het historische centrum van Delft.\nVerder beschikt het appartement nog over 2 slaapkamers en een balkon van ca. 6 m2. Ook kun je je spullen gemakkelijk opbergen in de inpandige berging.\nIn Bethelpark woon je heerlijk centraal, tussen groen en stad en 10 minuten fietsen van het historische centrum van Delft.\nProject Bethelpark is duurzaam gebouwd. Energiezuinig en goed geïsoleerd.\nBethelpark ligt op fietsafstand van de gezellige historische Delftse binnenstad. In de buurt vind je winkelcentrum 'De Hoven Passage', het ziekenhuis Reinier de Graaf, diverse scholen en de groene ecologische zone.\n*Aan de inhoud van deze informatie is de grootst mogelijke zorg besteed. Alle informatie is nadrukkelijk onder voorbehoud. Hieraan kunnen geen rechten worden ontleend.\nLet op: foto's zijn ter impressie en zijn van een vergelijkbaar appartement\nInteresse?\nGa in de woningpresentatie op onze website naar [REAGEER] en geef hiermee aan dat je geïnteresseerd bent.\nInkomensnormen en inschrijfdocumentatie\nHiervoor verwijzen we je door naar onze website.\nBorg\nVerhuurder kan om haar moverende redenen borg vragen. Dit kan o.a. afhankelijk zijn van de werksituatie van de kandidaten.\nHuurprijswijziging\nVoor huurwoningen met een geliberaliseerde huurprijs geldt een jaarlijkse huurverhoging van maximaal CPI +3%, tenzij er in enig jaar door de Rijksoverheid een andere maximale huurprijsverhoging voor geliberaliseerde zelfstandige huurwoningen is vastgesteld. In het geval van een gereguleerde huurprijs bepaalt de Rijksoverheid jaarlijks het percentage van de huurverhoging.\n**Vb&t streeft ernaar om je zo goed mogelijk aan een passende huurwoning te helpen. Om dit te realiseren verzoeken wij je om jezelf in te schrijven via onze website. Inschrijven is altijd kosteloos en geheel vrijblijvend. Je kunt je inschrijven voor woningen die direct beschikbaar zijn, maar ook voor woningen die mogelijk toekomstig beschikbaar komen. Op basis van de door jou verstrekte informatie word je door ons automatisch per e-mail geïnformeerd wanneer er woningen beschikbaar zijn die voldoen aan je woonwensen. Je kunt gratis en eenvoudig inschrijven op onze website.**\n**Deze informatie is met de grootst mogelijke zorg samengesteld. Toch kunnen wij niet altijd voorkomen dat de informatie enigszins afwijkt van hetgeen je in of rond de woning ziet of hebt gezien. Dit kan met name gelden voor de brochure tekst, de plattegronden en maatvoeringen. Hieraan kunnen dan ook geen rechten worden ontleend.**\nBij deze woning is het huren van een parkeerplaats à €80 p/m servicekosten een vereiste.",
+   "description": "3-kamer appartement met een woonoppervlakte van 65 m2, volledig ingerichte moderne keuken met vijf apparaten en volledig betegelde badkamer met douche, wastafel met spiegel, vloerverwarming. In Bethelpark woon je heerlijk centraal, tussen groen en stad en 10 minuten fietsen van het historische centrum van Delft.\nVerder beschikt het appartement nog over 2 slaapkamers en een balkon van ca. 6 m2. Ook kun je je spullen gemakkelijk opbergen in de inpandige berging.\nIn Bethelpark woon je heerlijk centraal, tussen groen en stad en 10 minuten fietsen van het historische centrum van Delft.\nProject Bethelpark is duurzaam gebouwd. Energiezuinig en goed geïsoleerd.\nBethelpark ligt op fietsafstand van de gezellige historische Delftse binnenstad. In de buurt vind je winkelcentrum 'De Hoven Passage', het ziekenhuis Reinier de Graaf, diverse scholen en de groene ecologische zone.\n*Aan de inhoud van deze informatie is de grootst mogelijke zorg besteed. Alle informatie is nadrukkelijk onder voorbehoud. Hieraan kunnen geen rechten worden ontleend.\nLet op: foto's zijn ter impressie en zijn van een vergelijkbaar appartement\nInteresse?\nGa in de woningpresentatie op onze website naar [REAGEER] en geef hiermee aan dat je geïnteresseerd bent.\nInkomensnormen en inschrijfdocumentatie\nHiervoor verwijzen we je door naar onze website.\nBorg\nVerhuurder kan om haar moverende redenen borg vragen. Dit kan o.a. afhankelijk zijn van de werksituatie van de kandidaten.\nHuurprijswijziging\nVoor huurwoningen met een geliberaliseerde huurprijs geldt een jaarlijkse huurverhoging van maximaal CPI +3%, tenzij er in enig jaar door de Rijksoverheid een andere maximale huurprijsverhoging voor geliberaliseerde zelfstandige huurwoningen is vastgesteld. In het geval van een gereguleerde huurprijs bepaalt de Rijksoverheid jaarlijks het percentage van de huurverhoging.\n**Vb&t streeft ernaar om je zo goed mogelijk aan een passende huurwoning te helpen. Om dit te realiseren verzoeken wij je om jezelf in te schrijven via onze website. Inschrijven is altijd kosteloos en geheel vrijblijvend. Je kunt je inschrijven voor woningen die direct beschikbaar zijn, maar ook voor woningen die mogelijk toekomstig beschikbaar komen. Op basis van de door jou verstrekte informatie word je door ons automatisch per e-mail geïnformeerd wanneer er woningen beschikbaar zijn die voldoen aan je woonwensen. Je kunt gratis en eenvoudig inschrijven op onze website.**\n**Deze informatie is met de grootst mogelijke zorg samengesteld. Toch k",
    "extra": {
     "mandatory_costs": 80,
     "mandatory_costs_note": "Bij deze woning is het huren van een parkeerplaats à €80 p/m servicekosten een vereiste.",
@@ -2739,7 +2739,7 @@
    "precision": "address",
    "q": "[\"theodoraeigemanpad\",\"36\",\"2625dz\",\"delft\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Theodora Eigemanpad 36",
    "area_m2": 65,
@@ -2798,7 +2798,7 @@
    "precision": "address",
    "q": "[\"bredehilledijk\",\"312\",\"3072nk\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Brede Hilledijk 312",
    "area_m2": 70,
@@ -2847,8 +2847,8 @@
   },
   "first_seen": "2026-11-20T00:21:57Z",
   "flags": [
-   "income_requirement",
-   "service_costs:110"
+   "service_costs:110",
+   "income_requirement"
   ],
   "geo": {
    "lat": 51.9017878,
@@ -2856,7 +2856,7 @@
    "precision": "address",
    "q": "[\"bredehilledijk\",\"322\",\"3072nk\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Brede Hilledijk 322",
    "area_m2": 70,
@@ -2864,7 +2864,7 @@
    "available_until": null,
    "bedrooms": 2,
    "city": "rotterdam",
-   "description": "Wonen op hoogte in het populaire De Groene Kaap?\nDit moderne driekamerappartement combineert comfort, een slimme indeling en een prachtig uitzicht over Rotterdam.\nGelegen op de 13e verdieping biedt dit appartement een woonoppervlakte van circa 70,4 m² en een royaal balkon van maar liefst 12,3 m² op het zuiden. Hier geniet je van veel lichtinval, een comfortabele leefruimte en een unieke woonomgeving in het levendige Katendrecht.\nBij binnenkomst kom je in de hal, die toegang biedt tot de verschillende vertrekken van de woning. De ruime woonkamer met open keuken vormt het hart van het appartement. Dankzij de grote raampartijen profiteer je van veel natuurlijk licht en een aangename woonsfeer. De leefruimte biedt volop mogelijkheden voor een comfortabele zit- en eethoek en staat in directe verbinding met het balkon.\nDe moderne open keuken is volledig uitgerust met diverse inbouwapparatuur, waaronder een vaatwasser, combioven, kookplaat, afzuigkap, koelkast en vriezer. Hierdoor beschik je over alle gemakken voor dagelijks wooncomfort.\nHet appartement beschikt over twee slaapkamers van circa 12,6 m² en 9,3 m². De tweede slaapkamer is uitstekend geschikt als logeerkamer, thuiswerkplek of hobbyruimte. Dankzij de praktische indeling biedt de woning volop mogelijkheden voor verschillende woonwensen.\nDe moderne badkamer is voorzien van een ruime inloopdouche en een dubbele wastafel met spiegel. Daarnaast beschikt het appartement over een separaat toilet, wat extra comfort biedt voor bewoners en bezoekers.\nOok aan praktische voorzieningen is gedacht. De inpandige berging biedt ruimte voor de wasapparatuur, technische installaties en extra opslagmogelijkheden.\nVanuit de woonkamer heb je direct toegang tot het royale balkon van circa 12,3 m². Door de ligging op het zuiden is dit een heerlijke plek om van de zon te genieten en uit te kijken over de omgeving.\nHet appartement maakt deel uit van De Groene Kaap, een bijzonder woonconcept in Rotterdam met woontorens, gestapelde stadswoningen, groene binnentuinen en daktuinen. Bewoners kunnen gebruikmaken van de wandelroute door het complex en over de daken, terwijl het sfeervolle hofje een groene ontmoetingsplek vormt midden in de stad.\nDe woning bevindt zich in het populaire Katendrecht, één van de meest geliefde wijken van Rotterdam. In de directe omgeving vind je het Deliplein, Theater Walhalla, de Fenix Food Factory, het SS Rotterdam en de Wilhelminapier met onder andere Hotel New York, het Nieuwe Luxor Theater en diverse restaurants. Voor de dagelijkse boodschappen ligt een supermarkt op korte afstand.\nMet twee slaapkamers, een zonnig balkon, een moderne afwerking en een uitstekende ligging biedt dit appartement alles voor comfortabel en eigentijds wonen in Rotterdam.\nDe getoonde afbeeldingen en plattegronden zijn ter illustratie en kunnen afwijken van de daadwerkelijke situatie. Aan deze afbeeldingen kunnen geen rechten worden ontleend.\nInteresse?\nGa in de woningpresentatie op onze website naar [REAGEER] en geef hiermee aan dat je geïnteresseerd bent.\nInkomensnormen en inschrijfdocumentatie\nHiervoor verwijzen we je door naar onze website.\nBorg\nVerhuurder kan om haar moverende redenen borg vragen. Dit kan o.a. afhankelijk zijn van de werksituatie van de kandidaten.\nHuurprijswijziging\nVoor huurwoningen met een geliberaliseerde huurprijs geldt een jaarlijkse huurverhoging van maximaal +3% CPI, tenzij er in enig jaar door de Rijksoverheid een andere maximale huurprijsverhoging voor geliberaliseerde zelfstandige huurwoningen is vastgesteld. In het geval van een gereguleerde huurprijs bepaalt de Rijksoverheid jaarlijks het percentage van de huurverhoging.\n**Vb&t streeft ernaar om je zo goed mogelijk aan een passende huurwoning te helpen. Om dit te realiseren verzoeken wij je om jezelf in te schrijven via onze website. Inschrijven is altijd kosteloos en geheel vrijblijvend. Je kunt je inschrijven voor woningen die direct beschikbaar zijn, maar ook voor woningen die mogelijk toekomstig beschikbaar",
+   "description": "Wonen op hoogte in het populaire De Groene Kaap?\nDit moderne driekamerappartement combineert comfort, een slimme indeling en een prachtig uitzicht over Rotterdam.\nGelegen op de 13e verdieping biedt dit appartement een woonoppervlakte van circa 70,4 m² en een royaal balkon van maar liefst 12,3 m² op het zuiden. Hier geniet je van veel lichtinval, een comfortabele leefruimte en een unieke woonomgeving in het levendige Katendrecht.\nBij binnenkomst kom je in de hal, die toegang biedt tot de verschillende vertrekken van de woning. De ruime woonkamer met open keuken vormt het hart van het appartement. Dankzij de grote raampartijen profiteer je van veel natuurlijk licht en een aangename woonsfeer. De leefruimte biedt volop mogelijkheden voor een comfortabele zit- en eethoek en staat in directe verbinding met het balkon.\nDe moderne open keuken is volledig uitgerust met diverse inbouwapparatuur, waaronder een vaatwasser, combioven, kookplaat, afzuigkap, koelkast en vriezer. Hierdoor beschik je over alle gemakken voor dagelijks wooncomfort.\nHet appartement beschikt over twee slaapkamers van circa 12,6 m² en 9,3 m². De tweede slaapkamer is uitstekend geschikt als logeerkamer, thuiswerkplek of hobbyruimte. Dankzij de praktische indeling biedt de woning volop mogelijkheden voor verschillende woonwensen.\nDe moderne badkamer is voorzien van een ruime inloopdouche en een dubbele wastafel met spiegel. Daarnaast beschikt het appartement over een separaat toilet, wat extra comfort biedt voor bewoners en bezoekers.\nOok aan praktische voorzieningen is gedacht. De inpandige berging biedt ruimte voor de wasapparatuur, technische installaties en extra opslagmogelijkheden.\nVanuit de woonkamer heb je direct toegang tot het royale balkon van circa 12,3 m². Door de ligging op het zuiden is dit een heerlijke plek om van de zon te genieten en uit te kijken over de omgeving.\nHet appartement maakt deel uit van De Groene Kaap, een bijzonder woonconcept in Rotterdam met woontorens, gestapelde stadswoningen, groene binnentuinen en daktuinen. Bewoners kunnen gebruikmaken van de wandelroute door het complex en over de daken, terwijl het sfeervolle hofje een groene ontmoetingsplek vormt midden in de stad.\nDe woning bevindt zich in het populaire Katendrecht, één van de meest geliefde wijken van Rotterdam. In de directe omgeving vind je het Deliplein, Theater Walhalla, de Fenix Food Factory, het SS Rotterdam en de Wilhelminapier met onder andere Hotel New York, het Nieuwe Luxor Theater en divers",
    "extra": {
     "min_stay_months": 12,
     "reactions": 130,
@@ -2916,7 +2916,7 @@
    "precision": "address",
    "q": "[\"bredehilledijk\",\"422a\",\"3072nk\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Brede Hilledijk 422 A",
    "area_m2": 72,
@@ -2975,7 +2975,7 @@
    "precision": "address",
    "q": "[\"hanoistraat\",\"177\",\"3072kc\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:21:57Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Hanoistraat 177",
    "area_m2": 76,
@@ -3150,7 +3150,7 @@
    "precision": "address",
    "q": "[\"buitenbassinweg\",\"320\",\"3063tc\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Buitenbassinweg 320",
    "area_m2": 81,
@@ -3209,7 +3209,7 @@
    "precision": "address",
    "q": "[\"admiraalderuyterweg\",\"135\",\"3031aa\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Admiraal De Ruyterweg 135",
    "area_m2": 63,
@@ -3326,7 +3326,7 @@
    "precision": "address",
    "q": "[\"watertorenweg\",\"411\",\"3063hd\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Watertorenweg 411",
    "area_m2": 103,
@@ -3387,7 +3387,7 @@
    "precision": "address",
    "q": "[\"betaplein\",\"66\",\"2321ks\",\"leiden\"]"
   },
-  "last_seen": "2026-11-20T00:34:08Z",
+  "last_seen": "2026-11-20T01:04:42Z",
   "listing": {
    "address": "Betaplein 66",
    "area_m2": 84,
