@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.2.0 (not released yet)
+## v1.2.0 (2026-11-20)
 
 ### New
 - **Who may rent.** The checker reads whether a home is only for students, only for working people, for women
