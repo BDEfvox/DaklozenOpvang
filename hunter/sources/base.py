@@ -1,6 +1,7 @@
 """Interface every site module implements."""
 from __future__ import annotations
 
+from datetime import datetime, timezone
 from typing import TYPE_CHECKING, Any, Dict, List, Optional, Sequence
 
 from .. import pagereader
@@ -28,6 +29,11 @@ class SourcePartial(SourceError):
         self.blocked = isinstance(error, SourceBlocked)
 
 
+def hourly_deep_read(now: Optional[datetime] = None) -> bool:
+    """True in the first ten minutes of each hour: the one run in six that reads a long list to its end."""
+    return (now or datetime.now(timezone.utc)).minute < 10
+
+
 class Source:
     name: str = ""                 # slug; also the prefix of every Listing.uid from this source
     label: str = ""                # human name shown in alerts and on the dashboard
@@ -41,6 +47,8 @@ class Source:
     # True: this landlord/agency applies an income test to every home it lets (stated in its own
     # conditions or FAQ), whether or not the individual listing repeats it. Every listing gets the flag.
     income_requirement: bool = False
+    # Set by the runner before fetch: this source has never returned a listing yet (see page_limit).
+    baseline: bool = False
     # True: the search page shows one amount for whole homes and for single places alike, so only the listing's
     # own page says what the rent buys. Until that page has been read (by today's rules) the rent is not divided.
     rent_basis_from_page: bool = False
@@ -53,6 +61,13 @@ class Source:
         """False for a source that only has its feed (the base fetch_details does nothing). The runner
         then spends no detail budget on it and never treats "nothing new" as a confirmation."""
         return type(self).fetch_details is not Source.fetch_details
+
+    def page_limit(self, usual: int, deep: int) -> int:
+        """How many pages of a long list to read this run. A list that is sorted newest first needs its first
+        pages only. Two runs read on, to `deep` pages: the source's first run (its silent baseline, so that the
+        older homes are known before anything is alerted) and one run an hour (a home the first pages missed,
+        or a list that is not sorted the way it seemed, is then found within the hour)."""
+        return deep if (self.baseline or hourly_deep_read()) else usual
 
     def max_rent(self, default: int) -> int:
         """The highest rent any configured search accepts, for sites that filter on price themselves."""

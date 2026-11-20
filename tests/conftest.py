@@ -113,3 +113,10 @@ class FakeNotifier(Notifier):
         self.messages.append(text)
         self.urls.append(url)
         return True
+
+
+@pytest.fixture(autouse=True)
+def _no_hourly_deep_read(monkeypatch):
+    """Sources read a long list to its end once an hour (Source.page_limit). Tests must not depend on the clock."""
+    import hunter.sources.base as base
+    monkeypatch.setattr(base, "hourly_deep_read", lambda now=None: False)

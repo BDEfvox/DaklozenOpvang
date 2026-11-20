@@ -93,12 +93,24 @@ The checker tries these sources each run. The dashboard shows which sites respon
 | Vesteda | all five | free account |
 | Heimstaden | all five | free |
 | Van der Linden | matching cities in its feed | free, via the agency (includes "2PEER" homes built for sharers) |
+| vb&t Verhuurmakelaars | all five | free registration on the agency's site |
+| Vastgoed Nederland (homes of VBO estate agents) | all five | via the estate agent on the listing |
+| NederWoon | all five | via the agency |
+| LIV Residential | Amsterdam, Den Haag, Rotterdam | free, via the landlord |
+| VVA Amsterdam (association of rental agents) | Amsterdam | via the member agency on the listing |
+| Rotterdam Rental Service | Rotterdam | free, via the agency |
+| Riva Rentals | Rotterdam, Delft | free, via the agency |
+| ViaDaan (its ten newest homes only) | all five | free, via the agency |
 | Pararius, Funda, Huurwoningen (via their email alerts) | all five | free; optional, see above |
 
 Not checked, on purpose:
-- **Pararius, Funda, Huurwoningen, Huurstunt, Holland2Stay, REBO** block automated checks. The tool doesn't get around
-  that; use the email alerts for the first three.
-- **Marktplaats and Interhouse** forbid automated access to their search results in their robots.txt.
+- **Pararius, Funda, Huurwoningen, Huurstunt, Holland2Stay, REBO** block automated checks (REBO answers every
+  automated request with "rate limited"). The tool doesn't get around that; use the email alerts for the first three.
+- **Marktplaats and Interhouse** forbid automated access to their search results in their robots.txt (Interhouse
+  loads its results through an address under the disallowed `/wp-admin/`).
+- **Schep Vastgoedmanagers, Roofz and Woonzeker** share one platform that loads its homes from a data service
+  that asks for a login.
+- **Plaza (newnewnew.space)** does not answer the checker's client (the secure connection fails).
 - **Rentola** is a paywalled aggregator with lots of complaints.
 - **Facebook groups** need a login.
 

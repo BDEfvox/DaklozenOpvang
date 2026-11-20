@@ -17,7 +17,7 @@ from .notify import format as fmt
 from .notify.telegram import Notifier
 from .redact import redact
 from .sources.base import Source, SourceBlocked, SourceError, SourcePartial
-from .state import State, iso
+from .state import State, iso, parse_iso
 
 try:
     from zoneinfo import ZoneInfo
@@ -147,6 +147,7 @@ class Item:
     baseline: bool = False              # found in a source's very first scan
     was_matched: bool = True            # price drops: did it already fit a search before this run?
     dup_pending: bool = False           # street-only address: "same home?" is decided after the detail page
+    taken_recheck: bool = False         # its page called it taken earlier; this run looks again
     # extra keys that came from the saved detail snapshot (not from this run's search page)
     snapshot_extra: Dict[str, Any] = field(default_factory=dict)
 
@@ -370,6 +371,22 @@ def rejudge_cards(state: State, cfg: Dict[str, Any], skip: Any = (),
 
 
 DETAIL_MAX_TRIES = 3
+# A home its own page called taken (extra["taken"]) is looked at again while its card is still shown: after 6
+# hours, then 12, then once a day, ten times at most. An option can lapse, and "not found" is a weak signal.
+TAKEN_RECHECK_HOURS = (6, 12, 24)
+TAKEN_MAX_TRIES = 10
+
+
+def _taken_recheck_due(entry: Dict[str, Any], now: datetime) -> bool:
+    tries = int(entry.get("taken_tries") or 0)
+    if tries >= TAKEN_MAX_TRIES:
+        return False
+    last = parse_iso(entry.get("taken_checked"))
+    if last is None:
+        return True
+    return now - last >= timedelta(hours=TAKEN_RECHECK_HOURS[min(tries, len(TAKEN_RECHECK_HOURS) - 1)])
+
+
 _REREAD_DROPS = ("max_persons", "description_from_summary")
 
 
@@ -572,6 +589,7 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
             if not isinstance(cache, dict):
                 cache = state.meta["email_links"] = {}
             src.attach_link_cache(cache, now.strftime("%Y-%m-%d"))
+        src.baseline = not state.source_has_seen(name)   # a first run reads long lists to their end
         try:
             fetched[name] = fetch_source(src, cfg, http)
         except Exception as exc:  # fetch_source should never raise, but be safe
@@ -607,6 +625,7 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
     new_items: List[Item] = []
     drop_items: List[Tuple[Item, int]] = []
     backlog: List[Item] = []  # matches already on the dashboard whose detail page was never read
+    taken_again: List[Item] = []  # homes their own page called taken, due for another look (see TAKEN_RECHECK_HOURS)
     run_fps: Dict[str, Item] = {}  # fingerprint -> the first new listing with it this run
     seen_uids = set()
 
@@ -651,6 +670,17 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
             fp = fingerprint(l)
             it = Item(src, l, res, had_snapshot=had_snapshot, fp=fp, baseline=is_baseline,
                       snapshot_extra=snapshot_extra)
+            if (had_snapshot and snapshot_extra.get("taken") is True and not prev.get("dup_of")
+                    and not household_missing and _taken_recheck_due(prev, now)):
+                # Judged once more as if its page had not said "taken": only a home that would fit is worth
+                # the request. The copy is read in step 6a; this run's verdict above stays "taken".
+                again = Listing.from_dict(l.to_dict())
+                again.extra.pop("taken", None)
+                res_again = evaluate(again, cfg, remembered=_remembered(prev["details"]))
+                if res_again.matched:
+                    # dup_pending: another site may have shown (and announced) the same home in the meantime
+                    taken_again.append(Item(src, again, res_again, had_snapshot=True, fp=fp, taken_recheck=True,
+                                            dup_pending=True, snapshot_extra=snapshot_extra))
 
             if prev is not None and prev.get("dup_of"):
                 ref = live_duplicate(prev)
@@ -764,6 +794,11 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
             if it.detailed and entry is not None:
                 entry["details"] = detail_snapshot(it.listing, it.search_price, it.result.flags,
                                                    it.result.evidence)
+                if it.listing.extra.get("taken") is True:
+                    entry.setdefault("taken_checked", now_s)   # when its page first said so
+                else:
+                    entry.pop("taken_checked", None)
+                    entry.pop("taken_tries", None)
                 entry["last_price"] = it.listing.price_total
                 entry["matched"] = [m.search for m in it.result.matches]
                 new_fp = fingerprint(it.listing)  # the detail page may give the full address
@@ -816,6 +851,8 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
         for it in baseline_pool:
             if len(top) >= want:
                 break
+            if first_budget[0] <= 0 and it.source.has_detail_pages:
+                continue    # its page cannot be read this run: on the dashboard, but not announced unchecked
             top.extend(enrich_and_prune([it], first_budget))
         top.sort(key=lambda i: i.sort_key)
         total = sum(1 for it in baseline_pool if it.listing.uid in state.matches)
@@ -861,6 +898,22 @@ def run_once(cfg: Dict[str, Any], state: State, sources: Dict[str, Source], noti
                 if id(it) in kept_drops and not it.was_matched:
                     new_items.append(it)  # fits now, but the rent did not really fall: a new match
         drop_items = verified_drops
+    # 6a. Homes their own page called taken, due for another look, with what is left of the budget. A page
+    # that now shows the home on offer makes it a new match; one that cannot be read changes nothing.
+    for it in taken_again[:max(detail_budget[0], 0)]:
+        entry = state.seen.get(it.listing.uid)
+        if entry is None or it.listing.uid in state.matches:
+            continue
+        entry["taken_checked"] = now_s
+        entry["taken_tries"] = int(entry.get("taken_tries") or 0) + 1     # every look counts, also one that fails
+        kept_again = enrich_and_prune([it])       # a page that no longer says "taken" clears both
+        if not it.detailed:
+            entry["matched"] = []
+            continue
+        if it.listing.extra.get("taken") is not True:
+            print("[detail] %s: on offer again (its page called it taken before)" % it.listing.uid, file=sys.stderr)
+        if kept_again:
+            new_items.append(it)
     # Only now: the drop checks above can add new matches, and those take part too.
     new_items.sort(key=lambda i: i.sort_key)
     new_items = settle_twins(new_items)

@@ -56,6 +56,14 @@ class Http:
         else:
             raise SourceError(f"network error for {host}: {last_exc}")
 
+        # A server that names no charset: requests then reads text/html as Latin-1, which turns "€" into "â‚¬"
+        # and "é" into "Ã©". Such pages are UTF-8 almost always; read them so when the bytes are valid UTF-8.
+        if (resp.encoding or "").lower() == "iso-8859-1" and "charset" not in resp.headers.get("content-type", "").lower():
+            try:
+                resp.content.decode("utf-8")
+                resp.encoding = "utf-8"
+            except UnicodeDecodeError:
+                pass
         # Status codes and challenge-page text from pagereader (shared with mac-mini-hunter).
         wall = pagereader.wall_reason(resp.status_code, resp.text[:pagereader.HEAD_CHARS] if resp.content else "")
         if wall:

@@ -792,6 +792,10 @@ def evaluate(listing: Listing, cfg: Dict[str, Any],
         return res
     if "rooms_only" in flags:  # "alleen nog losse kamers": you can't rent the whole home together
         return res
+    # The listing's own page says the home is taken ("Deze woning is onder optie") while the search page still
+    # shows it as available: a source sets extra["taken"] in fetch_details.
+    if isinstance(listing.extra, dict) and listing.extra.get("taken") is True:
+        return res
 
     if _excluded(flags, cfg.get("household")):  # the home is not for this household: no match, no alert
         return res

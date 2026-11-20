@@ -76,6 +76,17 @@ stable across runs.
     `service_costs_note`) when the page lists it next to the rent, so that it is paid on top (see "Service costs").
   - `site_facts`: up to 200 characters in the page's own labels ("Bezigheid: Student · Leeftijd: 23 - 30 jaar").
     It is shown to the user as the proof for every flag that came from these keys.
+- **A home that is taken.** When the listing's own page says so while the search page still shows the home
+  ("Deze woning is onder optie"), `fetch_details` sets `extra["taken"] = True` and the matcher drops it. The
+  Vastgoed Nederland also sets it when the search page's own link to the home answers 404 or 410.
+  The snapshot keeps the key, so the home stays out without a request on every run. It is not for ever: while
+  the card is still shown and the home would fit the search otherwise, the runner reads the page again after 6
+  hours, then 12, then once a day, ten times at most (`TAKEN_RECHECK_HOURS`, `TAKEN_MAX_TRIES`), with what is
+  left of the run's page reads after new matches and price drops. A page that shows the home on offer again
+  makes it a new match, with an alert; a read that fails changes nothing and counts as a look.
+- **"0" is often "not filled in".** Riva, VVA and Vastgoed Nederland write 0 bedrooms for a home whose bedrooms
+  were not entered. On a home with an area that is read as "not known" (the page is then read), never as a
+  home without bedrooms, which the search would drop unread.
 - Raise `SourceBlocked` for bot walls, `SourceError` for anything else. Never return a half-parsed
   page silently: if the page structure is not recognised, raise `SourceError("layout changed: …")`.
   Returning `[]` means "the site really shows no listings".
@@ -346,7 +357,8 @@ Env: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`. Missing → print messages to std
   from config.json.
 - Price drop into budget for a seen listing → "price drop" message.
 - First run of a source (no seen entries for it yet): send at most 10 best matches + one summary line
-  with the dashboard link, mark the rest seen.
+  with the dashboard link, mark the rest seen. Only a home whose own page was read is sent; when the run's
+  page reads (`first_run_detail_max`) are used up, the rest wait on the dashboard for the backlog check.
 - Max 15 messages per run, ≥3 s apart (Telegram group limit is 20/min); overflow → one summary message.
 - Quiet hours 23:00–07:00 Europe/Amsterdam: `disable_notification=true`.
 - Source health: alert once when a source has failed 6 runs in a row; once when it recovers.
@@ -523,6 +535,23 @@ Marktplaats (`/lrp/api/search`, category 2143 "Huizen te huur"), 123Wonen, Direc
 Van der Linden, Vesteda (SPA). To check: ikwilhuren.nu (MVGM), wonenbijbouwinvest.nl, Heimstaden,
 Rotsvast, vbtverhuurmakelaars.nl, rebowonenhuur.nl, Domica, HouseHunting, Duinzigt Wonen.
 Avoid: Rentola (paywalled aggregator, many complaints).
+Added on 20 Nov 2026, from the largest gaps in a list of 1,381 rental sites: vb&t Verhuurmakelaars (`vbtverhuur`,
+one list for the whole country, 12 a page), Vastgoed Nederland (`vastgoednederland`, its own search form per
+city with a price cap; homes in a new-build project have a `/nieuwbouw/` address), VVA Amsterdam (`vva`),
+NederWoon (`nederwoon`, `/search?search_type=1&city=`; the site searches in a radius, so only cards of the town
+itself are kept), LIV Residential (`livresidential`, a page per city), Rotterdam Rental Service
+(`rotterdamrentalservice`, the listings the page embeds and the page's own address for the next ones), Riva
+Rentals (`rivarentals`) and ViaDaan (`viadaan`: a plain request gives the ten newest homes only; the rest needs
+Livewire calls, which are not made). Looked at and not added: REBO (HTTP 429 on every request), Interhouse (results
+come from `admin-ajax.php` under the disallowed `/wp-admin/`; the open REST list has no rents), Schep, Roofz and
+Woonzeker (one Nuxt platform whose homes come from a data service that answers 401 "login required"), Plaza /
+newnewnew.space (TLS failure), vb&t Makelaars (sale and new-build projects; its rentals are on vb&t
+Verhuurmakelaars).
+Long lists: `Source.page_limit(usual, deep)`. vb&t and Riva read their first 3 pages on an ordinary run, and the
+whole list on the source's first run (`Source.baseline`, set by the runner: the silent baseline then knows the
+older homes) and in the first ten minutes of each hour (a home the first pages missed is found within the hour).
+A page sent without a charset is read as UTF-8 when its bytes are valid UTF-8 (`Http.request`): `requests` reads
+such a page as Latin-1, which turned "€" into "â‚¬" on two of these sites.
 Pages: 123Wonen sorts homes that are for rent first, so its page 2 and 3 are read only while every card on the
 page before is still for rent and the page links to the next (`wonen123.more_may_follow`). HousingAnywhere's
 page 2 is disallowed by its robots.txt and is not read.

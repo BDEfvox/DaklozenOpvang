@@ -69,6 +69,26 @@
   land registry's free address service (a few lookups per run, saved in `data/geo.json`); a home whose address
   cannot be found is in the list but not on the map, and a dashed marker means the point is the street, not the
   house.
+- **Eight more sites.** A list of 1,381 rental sites was compared with what the checker reads, and the largest
+  gaps that can be read politely were added: vb&t Verhuurmakelaars, Vastgoed Nederland (homes of VBO estate
+  agents), NederWoon, LIV Residential, VVA Amsterdam, Rotterdam Rental Service, Riva Rentals and ViaDaan (its ten
+  newest homes only). The sites with a scraper now stand for 553 of the list's 1,702 listings in Zuid- and
+  Noord-Holland (32%, was 16%); with the email alerts of Pararius, Funda, Huurwoningen and Kamernet 797 (47%, was
+  31%). Those counts overlap between sites and say nothing about price or size.
+  - Looked at and not added, because the checker never works around a site that says no: REBO (answers every
+    automated request with "rate limited"), Interhouse (its results load through an address its robots.txt
+    disallows), Schep Vastgoedmanagers, Roofz and Woonzeker (one platform whose homes come from a data service
+    that asks for a login), Plaza (the secure connection fails), Facebook groups (login). vb&t Makelaars sells
+    homes; its rentals are on vb&t Verhuurmakelaars.
+  - A long list is read to its end on a site's first run and once an hour, and only its first pages otherwise
+    (`Source.page_limit`).
+  - A home whose own page says it is under option while the search page still shows it is dropped
+    (`extra["taken"]`). So is a home on Vastgoed Nederland whose own link answers "not found": three such homes
+    in Delft would have been alerted with a dead link. While its card stays up, such a home is looked at again
+    after 6 hours, 12 hours and then daily (ten times at most), and alerted if it is on offer again.
+  - A site's first run only announces homes whose own page it has read. Once that run's page reads are used
+    up, the rest go to the dashboard without an alert and are checked over the next runs.
+  - A page sent without a charset is read as UTF-8: "€" arrived as "â‚¬" from two of the new sites.
 
 ### Changed
 - The search for three people is gone from `config.json`: the household is two. Homes that only fitted three
@@ -225,7 +245,7 @@ is approximate when several chats subscribe within the same minute.
 ### Other changes
 - Every existing card is read once more by the new readers (about 10 per run), so the dashboard corrects itself
   over the next hours without sending alerts.
-- 761 new tests (1,123 in total), 53 dashboard checks and 26 relay checks. The who-may-rent rules are tested
+- 936 new tests (1,298 in total), 53 dashboard checks and 26 relay checks. The who-may-rent rules are tested
   against 77 real and made-up phrases.
 
 ## v1.1.0 (2026-11-19)
