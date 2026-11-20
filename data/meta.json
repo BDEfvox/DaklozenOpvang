@@ -128,8 +128,8 @@
  },
  "household_private": true,
  "last_digest_date": "2026-11-20",
- "last_run": "2026-11-20T08:08:24Z",
- "last_write": "2026-11-20T08:08:24Z",
+ "last_run": "2026-11-20T08:18:44Z",
+ "last_write": "2026-11-20T08:18:44Z",
  "new_matches": {
   "2026-11-10": {
    "amsterdam": 1,
@@ -181,6 +181,7 @@
    "rotterdam": 3
   },
   "2026-11-20": {
+   "den-haag": 1,
    "rotterdam": 1
   }
  }
