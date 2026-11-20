@@ -12,7 +12,7 @@
    "precision": "street",
    "q": "[\"lorentzplein\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 80,
@@ -64,7 +64,7 @@
    "precision": "street",
    "q": "[\"godetiaweg\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Godetiaweg",
    "area_m2": 82,
@@ -116,7 +116,7 @@
    "precision": "street",
    "q": "[\"dslohmanlaan\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "D.S. Lohmanlaan",
    "area_m2": 66,
@@ -168,7 +168,7 @@
    "precision": "street",
    "q": "[\"escamplaan\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Escamplaan",
    "area_m2": 86,
@@ -220,7 +220,7 @@
    "precision": "street",
    "q": "[\"bbaumannlaan\",\"\",\"\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "B. Baumannlaan",
    "area_m2": 63,
@@ -272,7 +272,7 @@
    "precision": "street",
    "q": "[\"bachstraat\",\"\",\"\",\"leiden\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -678,7 +678,7 @@
    "precision": "street",
    "q": "[\"dbuserf\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 61,
@@ -730,7 +730,7 @@
    "precision": "street",
    "q": "[\"tafelbergstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Tafelbergstraat",
    "area_m2": 204,
@@ -782,7 +782,7 @@
    "precision": "street",
    "q": "[\"fahrenheitstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Fahrenheitstraat",
    "area_m2": 89,
@@ -993,7 +993,7 @@
    "precision": "address",
    "q": "[\"robijnhof\",\"28\",\"\",\"leiden\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Robijnhof 28",
    "area_m2": 75,
@@ -1046,7 +1046,7 @@
    "precision": "address",
    "q": "[\"loevesteinlaan\",\"483b\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Loevesteinlaan 483 B",
    "area_m2": 110,
@@ -1099,7 +1099,7 @@
    "precision": "address",
    "q": "[\"laanvanwateringseveld\",\"528\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Laan Van Wateringse Veld 528",
    "area_m2": 108,
@@ -1258,7 +1258,7 @@
    "precision": "address",
    "q": "[\"leusdenhof\",\"326\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Leusdenhof 326",
    "area_m2": 88,
@@ -1364,7 +1364,7 @@
    "precision": "street",
    "q": "[\"lorentzplein\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 78,
@@ -1417,7 +1417,7 @@
    "precision": "street",
    "q": "[\"fahrenheitstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Fahrenheitstraat",
    "area_m2": 63,
@@ -1525,7 +1525,7 @@
    "precision": "street",
    "q": "[\"mariasnelplantsoen\",\"\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Maria Snelplantsoen",
    "area_m2": 200,
@@ -1578,7 +1578,7 @@
    "precision": "street",
    "q": "[\"dirkbuserf\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Dirk Buserf",
    "area_m2": 61,
@@ -1631,7 +1631,7 @@
    "precision": "street",
    "q": "[\"beemsterstraat\",\"\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Beemsterstraat",
    "area_m2": 85,
@@ -1690,7 +1690,7 @@
    "precision": "address",
    "q": "[\"grotebeer\",\"127\",\"3067tr\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Grote Beer 127",
    "area_m2": 81,
@@ -1747,7 +1747,7 @@
    "precision": "address",
    "q": "[\"randveen\",\"808\",\"2544rm\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Randveen 808",
    "area_m2": 70,
@@ -1804,7 +1804,7 @@
    "precision": "address",
    "q": "[\"robertstolzplantsoen\",\"29\",\"2555sg\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Robert Stolzplantsoen 29",
    "area_m2": 89,
@@ -1919,7 +1919,7 @@
    "precision": "address",
    "q": "[\"baanweg\",\"13e\",\"3042ab\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Baanweg 13 E",
    "area_m2": 111,
@@ -1976,7 +1976,7 @@
    "precision": "address",
    "q": "[\"hogefilterweg\",\"658\",\"3063km\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Hoge Filterweg 658",
    "area_m2": 84,
@@ -2075,6 +2075,63 @@
   ],
   "price_drop_from": null
  },
+ "ikwilhuren:f32d94d897ed629de13d60717021ae43": {
+  "best_tier": "great",
+  "evidence": {
+   "service_costs": "Servicekosten € € 65,- /mnd per maand (MVGM lists them next to the rent)"
+  },
+  "first_seen": "2026-11-20T13:17:45Z",
+  "flags": [
+   "income_requirement",
+   "service_costs:65"
+  ],
+  "geo": {
+   "lat": 51.94908229,
+   "lon": 4.4530968,
+   "precision": "address",
+   "q": "[\"vanderduijnvanmaasdamweg\",\"192\",\"3045pe\",\"rotterdam\"]"
+  },
+  "last_seen": "2026-11-20T13:17:45Z",
+  "listing": {
+   "address": "Van der Duijn van Maasdamweg 192",
+   "area_m2": 82,
+   "available_from": "2026-12-01",
+   "available_until": null,
+   "bedrooms": 2,
+   "city": "rotterdam",
+   "description": "Huren in Rotterdam\nIn Park 16hoven zijn nu ook appartementen te huur. Uw appartement wordt opgeleverd met complete keuken en badkamer. U heeft uw eigen balkon, eigen buitenruimte, en wat dacht u van de heerlijke binnentuin?\nLocatie\nDe Parkmeester ligt in Park 16hoven, in de groene zoom van Rotterdam. Het is een fijne plek om te wonen. Rustig, en toch dicht bij alle gemakken van de stad. Met de auto en het openbaar vervoer bent u er snel. En ook de snelwegen A20 en A13 liggen om de hoek.\nAan de rand van Rotterdam krijgt een nieuw stukje stad vorm: Park 16hoven. Het is zo’’n gebiedeen plek waar iedereen graag wil wonen. De naaste ‘buren’ zijn Overschie en Hilligersberg, Rotterdamse wijken die nog de sfeer van vroeger hebben en in tien minuten fietsen bent u in de stad. Daarnaast heeft u het groen van Park Zestienhoven letterlijk in uw achtertuin. De natuur is overal\ndichtbij.\nPark 16hoven wordt een compact plan in een kleinschalige woonwijk met veel afwisseling van verschillende typen eengezinswoningen en appartementen. De nieuwbouw kent veel afwisseling: er komen eengezinswoningen en appartementen.\nSlim Wonen!\nRotterdams en rustig tegelijk Plezierig van Park 16hoven is de ligging. Wilt u een keer naar de stad? Via de ontsluitingsweg N471 rijdt u over het Kleinpolderplein de gezelligheid tegemoet met de auto of fiets bent u er zo. Of ga op een zaterdag shoppen in het intieme Hilligersberg met z’n vele speciaalzaakjes. Snelwegen heeft u praktisch om de hoek. Binnen vijf10 autominuten bent u zowel op de A13 als de A20. Trouwens, op vijf autominuten afstand ligt ook Rotterdam-The Hague Airport!\nRecreëren in het groen\nBent u graag buiten? Recreatiemogelijkheden te over. Vanaf uw appartement fietst u snel richting de Rotte. Of ontdek ’ns het achterland van Rotterdam, met de weilanden rond de Ackerdijkse Plassen of ontdek de Bergse plassen met een sloepje. In de groene gordel rond Rotterdam vindt u ook veel sportverenigingen. En als u even niet ver van huis wilt, dan geniet u toch van het privilege van een eigen binnentuin?\nKom wonen in het Park!\nToe aan het gemak en de luxe van gelijkvloers wonen? Rustig, maar toch met alle faciliteiten van een stad als Rotterdam binnen bereik? De Parkmeester nodigt u uit.\nDe getoonde afbeeldingen zijn slechts ter illustratie en kunnen afwijken van de realiteit, hieraan kunnen geen rechten worden ontleend. De woning komt met een parkeerplaats.",
+   "extra": {
+    "availability": "1 december 2026",
+    "income_requirement": true,
+    "service_costs": 65,
+    "service_costs_note": "Servicekosten € € 65,- /mnd per maand (MVGM lists them next to the rent)",
+    "service_costs_on_top": true
+   },
+   "furnished": null,
+   "image_url": "https://b.static.nbo.nl/media/89/8901c07b8ed177aa6ceb8290a9febec7/768x510/thumb.jpg",
+   "postcode": "3045PE",
+   "posted_at": null,
+   "price_includes_utilities": null,
+   "price_total": 1290,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "ikwilhuren",
+   "source_id": "f32d94d897ed629de13d60717021ae43",
+   "title": "Appartement Van der Duijn van Maasdamweg 192, Rotterdam",
+   "uid": "ikwilhuren:f32d94d897ed629de13d60717021ae43",
+   "url": "https://ikwilhuren.nu/object/rotterdam-3045pe-192-van-der-duijn-van-maasdamweg-f32d94d897ed629de13d60717021ae43/"
+  },
+  "matches": [
+   {
+    "extra_pp": 33,
+    "persons": 2,
+    "price_pp": 645,
+    "search": "2 people",
+    "tier": "great"
+   }
+  ],
+  "price_drop_from": null
+ },
  "kamernet:1959057": {
   "best_tier": "great",
   "evidence": {
@@ -2092,7 +2149,7 @@
    "precision": "address",
    "q": "[\"loosduinseweg\",\"1103\",\"2571bd\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -2152,7 +2209,7 @@
    "precision": "address",
    "q": "[\"wesselsstraat\",\"482\",\"2572wc\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Wesselsstraat 482",
    "area_m2": 85,
@@ -2266,7 +2323,7 @@
    "precision": "address",
    "q": "[\"sneeuwbalstraat\",\"48\",\"2565wc\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Sneeuwbalstraat 48",
    "area_m2": 98,
@@ -2325,7 +2382,7 @@
    "precision": "postcode",
    "q": "[\"vierambachtsstraat54c01\",\"\",\"3023ap\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Vierambachtsstraat 54C-01",
    "area_m2": 90,
@@ -2383,7 +2440,7 @@
    "precision": "postcode",
    "q": "[\"kleiweg249a1\",\"\",\"3051xl\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Kleiweg 249 A1",
    "area_m2": 48,
@@ -2442,7 +2499,7 @@
    "precision": "postcode",
    "q": "[\"spoorsingel70b1\",\"\",\"3033gp\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Spoorsingel 70 B1",
    "area_m2": 83,
@@ -2501,7 +2558,7 @@
    "precision": "street",
    "q": "[\"artemisstraat\",\"\",\"2321la\",\"leiden\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Artemisstraat",
    "area_m2": 67,
@@ -2558,7 +2615,7 @@
    "precision": "address",
    "q": "[\"berthaanstrakade\",\"552\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -2668,7 +2725,7 @@
    "precision": "address",
    "q": "[\"berthaanstrakade\",\"880\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -2727,7 +2784,7 @@
    "precision": "address",
    "q": "[\"rietdijk\",\"23\",\"\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Rietdijk 23",
    "area_m2": 103,
@@ -2960,7 +3017,7 @@
    "precision": "address",
    "q": "[\"theodoraeigemanpad\",\"36\",\"2625dz\",\"delft\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Theodora Eigemanpad 36",
    "area_m2": 65,
@@ -3371,7 +3428,7 @@
    "precision": "address",
    "q": "[\"buitenbassinweg\",\"320\",\"3063tc\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Buitenbassinweg 320",
    "area_m2": 81,
@@ -3430,7 +3487,7 @@
    "precision": "address",
    "q": "[\"admiraalderuyterweg\",\"135\",\"3031aa\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Admiraal De Ruyterweg 135",
    "area_m2": 63,
@@ -3547,7 +3604,7 @@
    "precision": "address",
    "q": "[\"watertorenweg\",\"411\",\"3063hd\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Watertorenweg 411",
    "area_m2": 103,
@@ -3608,7 +3665,7 @@
    "precision": "address",
    "q": "[\"betaplein\",\"66\",\"2321ks\",\"leiden\"]"
   },
-  "last_seen": "2026-11-20T13:06:44Z",
+  "last_seen": "2026-11-20T13:17:45Z",
   "listing": {
    "address": "Betaplein 66",
    "area_m2": 84,
