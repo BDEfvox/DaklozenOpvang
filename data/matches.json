@@ -12,7 +12,7 @@
    "precision": "street",
    "q": "[\"lorentzplein\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 80,
@@ -220,7 +220,7 @@
    "precision": "street",
    "q": "[\"bbaumannlaan\",\"\",\"\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "B. Baumannlaan",
    "area_m2": 63,
@@ -272,7 +272,7 @@
    "precision": "street",
    "q": "[\"bachstraat\",\"\",\"\",\"leiden\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -678,7 +678,7 @@
    "precision": "street",
    "q": "[\"dbuserf\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 61,
@@ -730,7 +730,7 @@
    "precision": "street",
    "q": "[\"tafelbergstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Tafelbergstraat",
    "area_m2": 204,
@@ -782,7 +782,7 @@
    "precision": "street",
    "q": "[\"fahrenheitstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Fahrenheitstraat",
    "area_m2": 89,
@@ -834,7 +834,7 @@
    "precision": "street",
    "q": "[\"bbaumannlaan\",\"\",\"\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "B. Baumannlaan",
    "area_m2": 63,
@@ -882,7 +882,7 @@
   ],
   "geo": null,
   "geo_q": "[\"1middellandstraat\",\"\",\"\",\"rotterdam\"]",
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "1. Middellandstraat",
    "area_m2": 80,
@@ -1199,7 +1199,7 @@
    "precision": "address",
    "q": "[\"laanvanwateringseveld\",\"528\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Laan Van Wateringse Veld 528",
    "area_m2": 108,
@@ -1354,7 +1354,7 @@
   ],
   "geo": null,
   "geo_q": "[\"hondsrugweg15a51\",\"\",\"\",\"amsterdam\"]",
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Hondsrugweg 15 A51",
    "area_m2": 66,
@@ -1513,7 +1513,7 @@
    "precision": "street",
    "q": "[\"lorentzplein\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 78,
@@ -1566,7 +1566,7 @@
    "precision": "street",
    "q": "[\"fahrenheitstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Fahrenheitstraat",
    "area_m2": 63,
@@ -1674,7 +1674,7 @@
    "precision": "street",
    "q": "[\"mariasnelplantsoen\",\"\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Maria Snelplantsoen",
    "area_m2": 200,
@@ -1839,7 +1839,7 @@
    "precision": "address",
    "q": "[\"grotebeer\",\"127\",\"3067tr\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Grote Beer 127",
    "area_m2": 81,
@@ -1953,7 +1953,7 @@
    "precision": "address",
    "q": "[\"robertstolzplantsoen\",\"29\",\"2555sg\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Robert Stolzplantsoen 29",
    "area_m2": 89,
@@ -2299,7 +2299,7 @@
    "precision": "address",
    "q": "[\"vanderduijnvanmaasdamweg\",\"192\",\"3045pe\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Van der Duijn van Maasdamweg 192",
    "area_m2": 82,
@@ -2357,7 +2357,7 @@
    "precision": "address",
    "q": "[\"loosduinseweg\",\"1103\",\"2571bd\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -2531,7 +2531,7 @@
    "precision": "address",
    "q": "[\"sneeuwbalstraat\",\"48\",\"2565wc\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Sneeuwbalstraat 48",
    "area_m2": 98,
@@ -2590,7 +2590,7 @@
    "precision": "postcode",
    "q": "[\"vierambachtsstraat54c01\",\"\",\"3023ap\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Vierambachtsstraat 54C-01",
    "area_m2": 90,
@@ -2652,7 +2652,7 @@
    "precision": "address",
    "q": "[\"mathenesserdijk\",\"261\",\"3027bn\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Mathenesserdijk 261",
    "area_m2": 45,
@@ -2693,6 +2693,62 @@
   ],
   "price_drop_from": null
  },
+ "livresidential:karel-de-stouteplein-15-a-3082rm-rotterdam": {
+  "best_tier": "great",
+  "evidence": {
+   "service_costs": "Servicekosten € 25 per maand",
+   "students_only": "Let op: dit appartement is uitsluitend beschikbaar voor studenten (met garantsteller) die niet in Rotterdam ingeschreven staan, en voor een maximale…"
+  },
+  "first_seen": "2026-11-23T14:50:00Z",
+  "flags": [
+   "students_only",
+   "service_costs:25"
+  ],
+  "geo": {
+   "lat": 51.89353702,
+   "lon": 4.47034284,
+   "precision": "address",
+   "q": "[\"kareldestouteplein\",\"15a\",\"3082rm\",\"rotterdam\"]"
+  },
+  "last_seen": "2026-11-23T14:50:00Z",
+  "listing": {
+   "address": "Karel De Stouteplein 15 A",
+   "area_m2": 99,
+   "available_from": "2026-11-30",
+   "available_until": null,
+   "bedrooms": 3,
+   "city": "rotterdam",
+   "description": "Let op: dit appartement is uitsluitend beschikbaar voor studenten (met garantsteller) die niet in Rotterdam ingeschreven staan, en voor een maximale huurperiode van één jaar.\nApartment overview\nAppartement aan Karel de Stouteplein 15-A in Rotterdam . Dit appartement biedt 4 kamers met een gebruiksoppervlakte van circa 99 m². 🏠\nHet gebouw is gerealiseerd rond 1905 . De indeling is praktisch en sluit goed aan bij het dagelijkse wooncomfort. Dankzij de gunstige ligging zijn voorzieningen zoals winkels, horeca en groen binnen korte afstand bereikbaar.\nLocation\nDe woning bevindt zich in Rotterdam , op een goed bereikbare locatie met zowel stedelijke voorzieningen als rustige woonstraten in de directe omgeving. Hier woon je centraal, met voldoende dagelijkse voorzieningen binnen loop- of fietsafstand.\nDe bereikbaarheid met het openbaar vervoer is uitstekend: Station Rotterdam Centraal en Busstation Rotterdam Centraal liggen op korte afstand, waardoor reizen naar andere steden eenvoudig is. Daarnaast zijn er diverse lokale bushaltes en goede aansluitingen op het regionale wegennet. 🚆🚌\nEnergy performance\nDe woning beschikt over energielabel C , wat bijdraagt aan een comfortabel binnenklimaat en een lager energieverbruik. Een goed energielabel betekent doorgaans lagere maandelijkse lasten en een duurzamere manier van wonen.\nAfhankelijk van jouw woonwensen kun je met relatief beperkte ingrepen vaak al extra comfort en energiebesparing realiseren, bijvoorbeeld door het verbeteren van isolatie of het toepassen van slimme installaties.\nFoto's kunnen van een vergelijkbare woning zijn",
+   "extra": {
+    "service_costs": 25,
+    "service_costs_note": "Servicekosten € 25 per maand",
+    "service_costs_on_top": true
+   },
+   "furnished": null,
+   "image_url": "https://cdn.livresidential.nl/production/properties/51689/responsive-images/bfc5da252fd80b6317bfdc2916841d9dddfd0ab7e584d538f729f5adf2ed19fa___media_library_original_404_725.jpg",
+   "postcode": "3082RM",
+   "posted_at": null,
+   "price_includes_utilities": null,
+   "price_total": 1050,
+   "property_type": "apartment",
+   "rooms": 4,
+   "source": "livresidential",
+   "source_id": "karel-de-stouteplein-15-a-3082rm-rotterdam",
+   "title": "Karel De Stouteplein 15 A 3082RM Rotterdam",
+   "uid": "livresidential:karel-de-stouteplein-15-a-3082rm-rotterdam",
+   "url": "https://livresidential.nl/huurwoningen/rotterdam/rotterdam/karel-de-stouteplein-15-a-3082rm-rotterdam"
+  },
+  "matches": [
+   {
+    "extra_pp": 13,
+    "persons": 2,
+    "price_pp": 525,
+    "search": "2 people",
+    "tier": "great"
+   }
+  ],
+  "price_drop_from": null
+ },
  "livresidential:kleiweg-249-a1-3051xl-rotterdam": {
   "best_tier": "ok",
   "evidence": {
@@ -2710,7 +2766,7 @@
    "precision": "postcode",
    "q": "[\"kleiweg249a1\",\"\",\"3051xl\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Kleiweg 249 A1",
    "area_m2": 48,
@@ -2769,7 +2825,7 @@
    "precision": "postcode",
    "q": "[\"spoorsingel70b1\",\"\",\"3033gp\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Spoorsingel 70 B1",
    "area_m2": 83,
@@ -2828,7 +2884,7 @@
    "precision": "street",
    "q": "[\"artemisstraat\",\"\",\"2321la\",\"leiden\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Artemisstraat",
    "area_m2": 67,
@@ -2885,7 +2941,7 @@
    "precision": "address",
    "q": "[\"berthaanstrakade\",\"552\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -2995,7 +3051,7 @@
    "precision": "address",
    "q": "[\"berthaanstrakade\",\"880\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -3054,7 +3110,7 @@
    "precision": "address",
    "q": "[\"rietdijk\",\"23\",\"\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Rietdijk 23",
    "area_m2": 103,
@@ -3287,7 +3343,7 @@
    "precision": "address",
    "q": "[\"theodoraeigemanpad\",\"36\",\"2625dz\",\"delft\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Theodora Eigemanpad 36",
    "area_m2": 65,
@@ -3581,7 +3637,7 @@
    "precision": "address",
    "q": "[\"laanvanwateringseveld\",\"644\",\"2548cm\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Laan van Wateringse Veld 644",
    "area_m2": 109,
@@ -3757,7 +3813,7 @@
    "precision": "address",
    "q": "[\"buitenbassinweg\",\"320\",\"3063tc\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Buitenbassinweg 320",
    "area_m2": 81,
@@ -3933,7 +3989,7 @@
    "precision": "address",
    "q": "[\"watertorenweg\",\"411\",\"3063hd\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Watertorenweg 411",
    "area_m2": 103,
@@ -3992,7 +4048,7 @@
    "precision": "address",
    "q": "[\"watertorenweg\",\"589\",\"3063hd\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Watertorenweg 589",
    "area_m2": 82,
@@ -4053,7 +4109,7 @@
    "precision": "address",
    "q": "[\"betaplein\",\"66\",\"2321ks\",\"leiden\"]"
   },
-  "last_seen": "2026-11-23T14:39:43Z",
+  "last_seen": "2026-11-23T14:50:00Z",
   "listing": {
    "address": "Betaplein 66",
    "area_m2": 84,
