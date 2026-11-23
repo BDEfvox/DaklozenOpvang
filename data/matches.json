@@ -12,7 +12,7 @@
    "precision": "street",
    "q": "[\"lorentzplein\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 80,
@@ -64,7 +64,7 @@
    "precision": "street",
    "q": "[\"godetiaweg\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Godetiaweg",
    "area_m2": 82,
@@ -168,7 +168,7 @@
    "precision": "street",
    "q": "[\"escamplaan\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Escamplaan",
    "area_m2": 86,
@@ -220,7 +220,7 @@
    "precision": "street",
    "q": "[\"bbaumannlaan\",\"\",\"\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "B. Baumannlaan",
    "area_m2": 63,
@@ -272,7 +272,7 @@
    "precision": "street",
    "q": "[\"bachstraat\",\"\",\"\",\"leiden\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -678,7 +678,7 @@
    "precision": "street",
    "q": "[\"dbuserf\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 61,
@@ -730,7 +730,7 @@
    "precision": "street",
    "q": "[\"tafelbergstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Tafelbergstraat",
    "area_m2": 204,
@@ -782,7 +782,7 @@
    "precision": "street",
    "q": "[\"fahrenheitstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Fahrenheitstraat",
    "area_m2": 89,
@@ -834,7 +834,7 @@
    "precision": "street",
    "q": "[\"bbaumannlaan\",\"\",\"\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "B. Baumannlaan",
    "area_m2": 63,
@@ -1151,7 +1151,7 @@
    "precision": "address",
    "q": "[\"laanvanwateringseveld\",\"528\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Laan Van Wateringse Veld 528",
    "area_m2": 108,
@@ -1306,7 +1306,7 @@
   ],
   "geo": null,
   "geo_q": "[\"hondsrugweg15a51\",\"\",\"\",\"amsterdam\"]",
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Hondsrugweg 15 A51",
    "area_m2": 66,
@@ -1465,7 +1465,7 @@
    "precision": "street",
    "q": "[\"lorentzplein\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 78,
@@ -1518,7 +1518,7 @@
    "precision": "street",
    "q": "[\"fahrenheitstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Fahrenheitstraat",
    "area_m2": 63,
@@ -1626,7 +1626,7 @@
    "precision": "street",
    "q": "[\"mariasnelplantsoen\",\"\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Maria Snelplantsoen",
    "area_m2": 200,
@@ -1791,7 +1791,7 @@
    "precision": "address",
    "q": "[\"grotebeer\",\"127\",\"3067tr\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Grote Beer 127",
    "area_m2": 81,
@@ -1905,7 +1905,7 @@
    "precision": "address",
    "q": "[\"robertstolzplantsoen\",\"29\",\"2555sg\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Robert Stolzplantsoen 29",
    "area_m2": 89,
@@ -2079,7 +2079,7 @@
    "precision": "address",
    "q": "[\"annefrankstraat\",\"29\",\"2548la\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Anne Frankstraat 29",
    "area_m2": 59,
@@ -2251,7 +2251,7 @@
    "precision": "address",
    "q": "[\"vanderduijnvanmaasdamweg\",\"192\",\"3045pe\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Van der Duijn van Maasdamweg 192",
    "area_m2": 82,
@@ -2309,7 +2309,7 @@
    "precision": "address",
    "q": "[\"loosduinseweg\",\"1103\",\"2571bd\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -2483,7 +2483,7 @@
    "precision": "address",
    "q": "[\"sneeuwbalstraat\",\"48\",\"2565wc\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Sneeuwbalstraat 48",
    "area_m2": 98,
@@ -2542,7 +2542,7 @@
    "precision": "postcode",
    "q": "[\"vierambachtsstraat54c01\",\"\",\"3023ap\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Vierambachtsstraat 54C-01",
    "area_m2": 90,
@@ -2604,7 +2604,7 @@
    "precision": "address",
    "q": "[\"mathenesserdijk\",\"261\",\"3027bn\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Mathenesserdijk 261",
    "area_m2": 45,
@@ -2662,7 +2662,7 @@
    "precision": "postcode",
    "q": "[\"kleiweg249a1\",\"\",\"3051xl\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Kleiweg 249 A1",
    "area_m2": 48,
@@ -2721,7 +2721,7 @@
    "precision": "postcode",
    "q": "[\"spoorsingel70b1\",\"\",\"3033gp\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Spoorsingel 70 B1",
    "area_m2": 83,
@@ -2780,7 +2780,7 @@
    "precision": "street",
    "q": "[\"artemisstraat\",\"\",\"2321la\",\"leiden\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Artemisstraat",
    "area_m2": 67,
@@ -2837,7 +2837,7 @@
    "precision": "address",
    "q": "[\"berthaanstrakade\",\"552\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -2947,7 +2947,7 @@
    "precision": "address",
    "q": "[\"berthaanstrakade\",\"880\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -3006,7 +3006,7 @@
    "precision": "address",
    "q": "[\"rietdijk\",\"23\",\"\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Rietdijk 23",
    "area_m2": 103,
@@ -3239,7 +3239,7 @@
    "precision": "address",
    "q": "[\"theodoraeigemanpad\",\"36\",\"2625dz\",\"delft\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Theodora Eigemanpad 36",
    "area_m2": 65,
@@ -3533,7 +3533,7 @@
    "precision": "address",
    "q": "[\"laanvanwateringseveld\",\"644\",\"2548cm\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Laan van Wateringse Veld 644",
    "area_m2": 109,
@@ -3709,7 +3709,7 @@
    "precision": "address",
    "q": "[\"buitenbassinweg\",\"320\",\"3063tc\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Buitenbassinweg 320",
    "area_m2": 81,
@@ -3768,7 +3768,7 @@
    "precision": "address",
    "q": "[\"admiraalderuyterweg\",\"135\",\"3031aa\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Admiraal De Ruyterweg 135",
    "area_m2": 63,
@@ -3885,7 +3885,7 @@
    "precision": "address",
    "q": "[\"watertorenweg\",\"411\",\"3063hd\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Watertorenweg 411",
    "area_m2": 103,
@@ -3928,6 +3928,65 @@
   ],
   "price_drop_from": null
  },
+ "vesteda:3969": {
+  "best_tier": "great",
+  "evidence": {
+   "service_costs": "Servicekosten p.m.: € 45,- (Vesteda lists them next to the rent)"
+  },
+  "first_seen": "2026-11-23T07:47:36Z",
+  "flags": [
+   "income_requirement",
+   "service_costs:45"
+  ],
+  "geo": {
+   "lat": 51.90993236,
+   "lon": 4.51947485,
+   "precision": "address",
+   "q": "[\"watertorenweg\",\"589\",\"3063hd\",\"rotterdam\"]"
+  },
+  "last_seen": "2026-11-23T07:47:36Z",
+  "listing": {
+   "address": "Watertorenweg 589",
+   "area_m2": 82,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": 2,
+   "city": "rotterdam",
+   "description": "Bent u op zoek naar een fijn appartement in Rotterdam? Dan wordt dit misschien wel uw nieuwe thuis!\nBij binnenkomst komt u uit in de hal die toegang biedt tot de verschillende vertrekken. De woonkamer vormt samen met de halfopen keuken een gezellige leefruimte. Door de halfopen keuken blijft u tijdens het koken gezellig in contact met uw gasten. Vanuit de woonkamer heeft u toegang tot de loggia, een fijne plek waar u het hele jaar door kunt genieten. Het appartement beschikt daarnaast over twee slaapkamers die naar wens kunnen worden ingericht als slaap-, werk- of hobbykamer. Ook is er een praktische berging aanwezig, ideaal voor het opbergen van spullen die u niet dagelijks gebruikt.\nDe woning ligt in Rotterdam-IJsselmonde, een wijk waar rust en voorzieningen goed samenkomen. Voor uw dagelijkse boodschappen zijn diverse winkels en supermarkten in de omgeving aanwezig. In de buurt vindt u ook verschillende scholen, sportverenigingen en horecagelegenheden. Liefhebbers van groen kunnen terecht in het nabijgelegen Park De Twee Heuvels, een fijne plek om te wandelen, sporten of ontspannen. Ook de Oude Maas en het recreatiegebied rondom de Brienenoord bieden mogelijkheden voor een wandeling of fietstocht. Met het openbaar vervoer en de uitvalswegen in de directe omgeving bent u bovendien snel op weg naar het centrum van Rotterdam of andere bestemmingen in de regio.\nZiet u zichzelf al wonen in dit appartement op een goed bereikbare locatie in Rotterdam? Verzamel dan snel de benodigde documenten en reageer op deze woning!\nComplex Watertorenweg",
+   "extra": {
+    "api_notes": "Complex Watertorenweg",
+    "complex": "Watertorenweg",
+    "income_requirement": true,
+    "service_costs": 45,
+    "service_costs_note": "Servicekosten p.m.: € 45,- (Vesteda lists them next to the rent)",
+    "service_costs_on_top": true,
+    "status": 1
+   },
+   "furnished": null,
+   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/c6/c69ed0ab45bcd9f374cbb0b1823097de/o/complex-foto.jpg?rmode=crop&width=570&height=276&hmac=2f527f2a6fbcf9fdd8ec62e884dd6bea3acd53ccc8cd37530fe0f974363538c6",
+   "postcode": "3063HD",
+   "posted_at": null,
+   "price_includes_utilities": null,
+   "price_total": 1187,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "vesteda",
+   "source_id": "3969",
+   "title": "Appartement Watertorenweg 589, Rotterdam",
+   "uid": "vesteda:3969",
+   "url": "https://www.vesteda.com/nl/huurwoningen-rotterdam/watertorenweg/watertorenweg-589-rotterdam-3969"
+  },
+  "matches": [
+   {
+    "extra_pp": 22,
+    "persons": 2,
+    "price_pp": 594,
+    "search": "2 people",
+    "tier": "great"
+   }
+  ],
+  "price_drop_from": null
+ },
  "vesteda:8702": {
   "best_tier": "ok",
   "evidence": {
@@ -3946,7 +4005,7 @@
    "precision": "address",
    "q": "[\"betaplein\",\"66\",\"2321ks\",\"leiden\"]"
   },
-  "last_seen": "2026-11-23T07:37:30Z",
+  "last_seen": "2026-11-23T07:47:36Z",
   "listing": {
    "address": "Betaplein 66",
    "area_m2": 84,
