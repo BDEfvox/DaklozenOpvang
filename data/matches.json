@@ -12,7 +12,7 @@
    "precision": "street",
    "q": "[\"lorentzplein\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 80,
@@ -272,7 +272,7 @@
    "precision": "street",
    "q": "[\"bachstraat\",\"\",\"\",\"leiden\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -678,7 +678,7 @@
    "precision": "street",
    "q": "[\"dbuserf\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 61,
@@ -730,7 +730,7 @@
    "precision": "street",
    "q": "[\"tafelbergstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Tafelbergstraat",
    "area_m2": 204,
@@ -782,7 +782,7 @@
    "precision": "street",
    "q": "[\"fahrenheitstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Fahrenheitstraat",
    "area_m2": 89,
@@ -834,7 +834,7 @@
    "precision": "street",
    "q": "[\"bbaumannlaan\",\"\",\"\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "B. Baumannlaan",
    "area_m2": 63,
@@ -882,7 +882,7 @@
   ],
   "geo": null,
   "geo_q": "[\"1middellandstraat\",\"\",\"\",\"rotterdam\"]",
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "1. Middellandstraat",
    "area_m2": 80,
@@ -1252,7 +1252,7 @@
    "precision": "address",
    "q": "[\"robijnhof\",\"10\",\"\",\"leiden\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Robijnhof 10",
    "area_m2": 84,
@@ -1407,7 +1407,7 @@
   ],
   "geo": null,
   "geo_q": "[\"hondsrugweg15a51\",\"\",\"\",\"amsterdam\"]",
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Hondsrugweg 15 A51",
    "area_m2": 66,
@@ -1460,7 +1460,7 @@
    "precision": "address",
    "q": "[\"haarlemmerweg\",\"1162l\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Haarlemmerweg 1162 L",
    "area_m2": 50,
@@ -1672,7 +1672,7 @@
    "precision": "street",
    "q": "[\"fahrenheitstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Fahrenheitstraat",
    "area_m2": 63,
@@ -1833,7 +1833,7 @@
    "precision": "street",
    "q": "[\"haarlemmerweg\",\"\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Haarlemmerweg",
    "area_m2": 50,
@@ -1998,7 +1998,7 @@
    "precision": "address",
    "q": "[\"grotebeer\",\"127\",\"3067tr\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Grote Beer 127",
    "area_m2": 81,
@@ -2516,7 +2516,7 @@
    "precision": "address",
    "q": "[\"loosduinseweg\",\"1103\",\"2571bd\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -2690,7 +2690,7 @@
    "precision": "address",
    "q": "[\"sneeuwbalstraat\",\"48\",\"2565wc\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Sneeuwbalstraat 48",
    "area_m2": 98,
@@ -2749,7 +2749,7 @@
    "precision": "postcode",
    "q": "[\"vierambachtsstraat54c01\",\"\",\"3023ap\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Vierambachtsstraat 54C-01",
    "area_m2": 90,
@@ -2811,7 +2811,7 @@
    "precision": "address",
    "q": "[\"mathenesserdijk\",\"261\",\"3027bn\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Mathenesserdijk 261",
    "area_m2": 45,
@@ -2869,7 +2869,7 @@
    "precision": "address",
    "q": "[\"kareldestouteplein\",\"15a\",\"3082rm\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Karel De Stouteplein 15 A",
    "area_m2": 99,
@@ -2925,7 +2925,7 @@
    "precision": "postcode",
    "q": "[\"kleiweg249a1\",\"\",\"3051xl\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Kleiweg 249 A1",
    "area_m2": 48,
@@ -2984,7 +2984,7 @@
    "precision": "postcode",
    "q": "[\"spoorsingel70b1\",\"\",\"3033gp\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Spoorsingel 70 B1",
    "area_m2": 83,
@@ -3100,7 +3100,7 @@
    "precision": "address",
    "q": "[\"berthaanstrakade\",\"552\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -3210,7 +3210,7 @@
    "precision": "address",
    "q": "[\"berthaanstrakade\",\"880\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -3263,7 +3263,7 @@
    "precision": "address",
    "q": "[\"krijntaconiskade\",\"86\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Krijn Taconiskade 86",
    "area_m2": 78,
@@ -3322,7 +3322,7 @@
    "precision": "address",
    "q": "[\"rietdijk\",\"23\",\"\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Rietdijk 23",
    "area_m2": 103,
@@ -3555,7 +3555,7 @@
    "precision": "address",
    "q": "[\"theodoraeigemanpad\",\"36\",\"2625dz\",\"delft\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Theodora Eigemanpad 36",
    "area_m2": 65,
@@ -3566,7 +3566,7 @@
    "description": "Modern 3-kamerappartement nabij het centrum van Delft\nDit comfortabele 3-kamerappartement van circa 65 m² biedt alles wat je nodig hebt voor prettig en modern wonen. De woning beschikt over een hoogwaardige afwerking, een complete keuken en een stijlvolle badkamer. Dankzij de centrale ligging woon je hier tussen het groen en de stad, met het historische centrum van Delft op slechts tien minuten fietsen.\nWoonkamer\nDe lichte woonkamer vormt het hart van het appartement en biedt voldoende ruimte voor een comfortabele zithoek en een gezellige eethoek. De vloerverwarming zorgt daarbij voor extra wooncomfort gedurende het hele jaar.\nKeuken\nDe moderne open keuken is volledig ingericht en voorzien van vijf inbouwapparaten. Hierdoor beschik je over alle gemakken om uitgebreid te koken en te genieten van je dagelijkse maaltijden.\nSlaapkamer\nHet appartement beschikt over twee goed ingedeelde slaapkamers die zich uitstekend lenen als hoofdslaapkamer, logeerkamer, werkruimte of hobbykamer.\nBadkamer\nDe volledig betegelde badkamer is modern uitgevoerd en voorzien van een douche, wastafel met spiegel en comfortabele vloerverwarming.\nOmgeving\nIn Bethelpark woon je op een ideale locatie tussen het groen en de stad. De historische binnenstad van Delft bereik je in ongeveer tien minuten fietsen, terwijl diverse winkels, restaurants, voorzieningen en openbaar vervoer zich in de directe omgeving bevinden.\nLet op!\nDe getoonde afbeeldingen zijn ter illustratie en kunnen dus afwijken van de werkelijkheid.\nInteresse?\nGa in de woningpresentatie op onze website naar [REAGEER] en geef hiermee aan dat je geïnteresseerd bent.\nInkomensnormen en inschrijfdocumentatie\nHiervoor verwijzen we je door naar onze website.\nBorg\nVerhuurder kan om haar moverende redenen borg vragen. Dit kan o.a. afhankelijk zijn van de werksituatie van de kandidaten.\nHuurprijswijziging\nVoor huurwoningen met een geliberaliseerde huurprijs geldt een jaarlijkse huurverhoging van maximaal CPI +3%, tenzij er in enig jaar door de Rijksoverheid een andere maximale huurprijsverhoging voor geliberaliseerde zelfstandige huurwoningen is vastgesteld. In het geval van een gereguleerde huurprijs bepaalt de Rijksoverheid jaarlijks het percentage van de huurverhoging.\n**Vb&t streeft ernaar om je zo goed mogelijk aan een passende huurwoning te helpen. Om dit te realiseren verzoeken wij je om jezelf in te schrijven via onze website. Inschrijven is altijd kosteloos en geheel vrijblijvend. Je kunt je inschrijven voor woningen die dire",
    "extra": {
     "min_stay_months": 12,
-    "reactions": 121,
+    "reactions": 125,
     "service_costs": 60,
     "service_costs_note": "Servicekosten: € 60,- (listed next to the rent)",
     "service_costs_on_top": true,
@@ -3577,7 +3577,7 @@
    "postcode": "2625DZ",
    "posted_at": null,
    "price_includes_utilities": null,
-   "price_total": 1320,
+   "price_total": 1335,
    "property_type": "apartment",
    "rooms": 3,
    "source": "vbtverhuur",
@@ -3590,7 +3590,7 @@
    {
     "extra_pp": 30,
     "persons": 2,
-    "price_pp": 660,
+    "price_pp": 668,
     "search": "2 people",
     "tier": "great"
    }
@@ -3849,7 +3849,7 @@
    "precision": "address",
    "q": "[\"laanvanwateringseveld\",\"644\",\"2548cm\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Laan van Wateringse Veld 644",
    "area_m2": 109,
@@ -3860,7 +3860,7 @@
    "description": "Prachtig wonen aan de Laan van Wateringse Veld\nLaan van Wateringse Veld 644 – Den Haag\nDeze woning beschikt over een praktische en ruime indeling met twee ruime slaapkamers, een serre en een eigen terras. Dankzij de verschillende vertrekken biedt de woning volop mogelijkheden om de ruimtes naar eigen wens in te richten.\nVia de entree aan de voorzijde kom je binnen in de woning. Vanuit de centrale verkeersruimte zijn de verschillende vertrekken bereikbaar.\nAan de achterzijde bevindt zich de eerste slaapkamer, een ruime kamer met een prettige lichtinval. Daarnaast beschikt de woning over een tweede slaapkamer, die direct aansluit op de entree.\nDe badkamer is voorzien van een ligbad en wastafel. Daarnaast is er een separaat toilet aanwezig. Ook beschikt de woning over meerdere bergruimtes, waardoor er voldoende mogelijkheden zijn om spullen praktisch op te bergen.\nEen bijzonder pluspunt is het eigen terras aan de voorzijde van de woning, waar je heerlijk buiten kunt zitten.\nKortom, een woning met een veelzijdige indeling, meerdere afzonderlijke vertrekken, een serre en een eigen buitenruimte.\n*De getoonde foto's zijn van een vergelijkbaar appartement!\nInteresse?\nGa in de woningpresentatie op onze website naar [REAGEER] en geef hiermee aan dat je geïnteresseerd bent.\nInkomensnormen en inschrijfdocumentatie\nHiervoor verwijzen we je door naar onze website.\nBorg\nVerhuurder kan om haar moverende redenen borg vragen. Dit kan o.a. afhankelijk zijn van de werksituatie van de kandidaten.\nHuurprijswijziging\nVoor huurwoningen met een geliberaliseerde huurprijs geldt een jaarlijkse huurverhoging van maximaal CPI +3%, tenzij er in enig jaar door de Rijksoverheid een andere maximale huurprijsverhoging voor geliberaliseerde zelfstandige huurwoningen is vastgesteld. In het geval van een gereguleerde huurprijs bepaalt de Rijksoverheid jaarlijks het percentage van de huurverhoging.\n**Vb&t streeft ernaar om je zo goed mogelijk aan een passende huurwoning te helpen. Om dit te realiseren verzoeken wij je om jezelf in te schrijven via onze website. Inschrijven is altijd kosteloos en geheel vrijblijvend. Je kunt je inschrijven voor woningen die direct beschikbaar zijn, maar ook voor woningen die mogelijk toekomstig beschikbaar komen. Op basis van de door jou verstrekte informatie word je door ons automatisch per e-mail geïnformeerd wanneer er woningen beschikbaar zijn die voldoen aan je woonwensen. Je kunt gratis en eenvoudig inschrijven op onze website.**\n**Deze informatie is met ",
    "extra": {
     "min_stay_months": 12,
-    "reactions": 96,
+    "reactions": 100,
     "service_costs": 40,
     "service_costs_note": "Servicekosten: € 40,- (listed next to the rent)",
     "service_costs_on_top": true,
@@ -4084,7 +4084,7 @@
    "precision": "address",
    "q": "[\"linkerrottekade\",\"551\",\"3031we\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Linker Rottekade 551",
    "area_m2": 63,
@@ -4143,7 +4143,7 @@
    "precision": "address",
    "q": "[\"linkerrottekade\",\"460\",\"3031we\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Linker Rottekade 460",
    "area_m2": 68,
@@ -4265,7 +4265,7 @@
    "precision": "address",
    "q": "[\"admiraalderuyterweg\",\"217\",\"3031aa\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Admiraal De Ruyterweg 217",
    "area_m2": 53,
@@ -4382,7 +4382,7 @@
    "precision": "address",
    "q": "[\"watertorenweg\",\"411\",\"3063hd\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-24T20:59:30Z",
+  "last_seen": "2026-11-24T21:10:08Z",
   "listing": {
    "address": "Watertorenweg 411",
    "area_m2": 103,
