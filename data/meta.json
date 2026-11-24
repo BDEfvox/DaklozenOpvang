@@ -2,8 +2,8 @@
  "email_links": {},
  "household_private": true,
  "last_digest_date": "2026-11-24",
- "last_run": "2026-11-24T08:56:32Z",
- "last_write": "2026-11-24T08:56:32Z",
+ "last_run": "2026-11-24T09:07:32Z",
+ "last_write": "2026-11-24T09:07:32Z",
  "new_matches": {
   "2026-11-10": {
    "amsterdam": 1,
@@ -67,7 +67,7 @@
    "rotterdam": 3
   },
   "2026-11-24": {
-   "amsterdam": 1,
+   "amsterdam": 2,
    "leiden": 1
   }
  }
