@@ -12,7 +12,7 @@
    "precision": "street",
    "q": "[\"lorentzplein\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 80,
@@ -272,7 +272,7 @@
    "precision": "street",
    "q": "[\"bachstraat\",\"\",\"\",\"leiden\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -678,7 +678,7 @@
    "precision": "street",
    "q": "[\"dbuserf\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 61,
@@ -730,7 +730,7 @@
    "precision": "street",
    "q": "[\"tafelbergstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Tafelbergstraat",
    "area_m2": 204,
@@ -782,7 +782,7 @@
    "precision": "street",
    "q": "[\"fahrenheitstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Fahrenheitstraat",
    "area_m2": 89,
@@ -1252,7 +1252,7 @@
    "precision": "address",
    "q": "[\"robijnhof\",\"10\",\"\",\"leiden\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Robijnhof 10",
    "area_m2": 84,
@@ -1407,7 +1407,7 @@
   ],
   "geo": null,
   "geo_q": "[\"beemsterstraat542e2\",\"\",\"\",\"amsterdam\"]",
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Beemsterstraat 542 E2",
    "area_m2": 85,
@@ -1509,7 +1509,7 @@
    "precision": "address",
    "q": "[\"haarlemmerweg\",\"1162l\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Haarlemmerweg 1162 L",
    "area_m2": 50,
@@ -1882,7 +1882,7 @@
    "precision": "street",
    "q": "[\"haarlemmerweg\",\"\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Haarlemmerweg",
    "area_m2": 50,
@@ -2102,7 +2102,7 @@
   ],
   "geo": null,
   "geo_q": "[\"plein\",\"1953\",\"\",\"rotterdam\"]",
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Plein 1953",
    "area_m2": 65,
@@ -2448,7 +2448,7 @@
    "precision": "address",
    "q": "[\"louispregerkade\",\"390\",\"3071az\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Louis Pregerkade 390",
    "area_m2": 82,
@@ -2678,7 +2678,7 @@
    "precision": "address",
    "q": "[\"loosduinseweg\",\"1103\",\"2571bd\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Loosduinseweg 1103",
    "area_m2": 80,
@@ -2852,7 +2852,7 @@
    "precision": "address",
    "q": "[\"sneeuwbalstraat\",\"48\",\"2565wc\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Sneeuwbalstraat 48",
    "area_m2": 98,
@@ -2911,7 +2911,7 @@
    "precision": "postcode",
    "q": "[\"vierambachtsstraat54c01\",\"\",\"3023ap\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Vierambachtsstraat 54C-01",
    "area_m2": 90,
@@ -2973,7 +2973,7 @@
    "precision": "address",
    "q": "[\"mathenesserdijk\",\"261\",\"3027bn\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Mathenesserdijk 261",
    "area_m2": 45,
@@ -3031,7 +3031,7 @@
    "precision": "address",
    "q": "[\"dekempenaerstraat\",\"4\",\"3038vr\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "De Kempenaerstraat 4",
    "area_m2": 54,
@@ -3090,7 +3090,7 @@
    "precision": "street",
    "q": "[\"bloysvantreslongstraat\",\"30iii\",\"1056xb\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Bloys van Treslongstraat 30III",
    "area_m2": 90,
@@ -3147,7 +3147,7 @@
    "precision": "address",
    "q": "[\"kareldestouteplein\",\"15a\",\"3082rm\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Karel De Stouteplein 15 A",
    "area_m2": 99,
@@ -3203,7 +3203,7 @@
    "precision": "postcode",
    "q": "[\"kleiweg249a1\",\"\",\"3051xl\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Kleiweg 249 A1",
    "area_m2": 48,
@@ -3262,7 +3262,7 @@
    "precision": "postcode",
    "q": "[\"spoorsingel70b1\",\"\",\"3033gp\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Spoorsingel 70 B1",
    "area_m2": 83,
@@ -3378,7 +3378,7 @@
    "precision": "address",
    "q": "[\"berthaanstrakade\",\"552\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -3488,7 +3488,7 @@
    "precision": "address",
    "q": "[\"berthaanstrakade\",\"880\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -3541,7 +3541,7 @@
    "precision": "address",
    "q": "[\"krijntaconiskade\",\"86\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Krijn Taconiskade 86",
    "area_m2": 78,
@@ -3600,7 +3600,7 @@
    "precision": "address",
    "q": "[\"rietdijk\",\"23\",\"\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Rietdijk 23",
    "area_m2": 103,
@@ -3833,7 +3833,7 @@
    "precision": "address",
    "q": "[\"theodoraeigemanpad\",\"36\",\"2625dz\",\"delft\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Theodora Eigemanpad 36",
    "area_m2": 65,
@@ -4127,7 +4127,7 @@
    "precision": "address",
    "q": "[\"laanvanwateringseveld\",\"644\",\"2548cm\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Laan van Wateringse Veld 644",
    "area_m2": 109,
@@ -4362,7 +4362,7 @@
    "precision": "address",
    "q": "[\"linkerrottekade\",\"551\",\"3031we\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Linker Rottekade 551",
    "area_m2": 63,
@@ -4421,7 +4421,7 @@
    "precision": "address",
    "q": "[\"linkerrottekade\",\"460\",\"3031we\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Linker Rottekade 460",
    "area_m2": 68,
@@ -4543,7 +4543,7 @@
    "precision": "address",
    "q": "[\"admiraalderuyterweg\",\"217\",\"3031aa\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Admiraal De Ruyterweg 217",
    "area_m2": 53,
@@ -4660,7 +4660,7 @@
    "precision": "address",
    "q": "[\"watertorenweg\",\"411\",\"3063hd\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Watertorenweg 411",
    "area_m2": 103,
@@ -4780,7 +4780,7 @@
    "precision": "address",
    "q": "[\"betaplein\",\"66\",\"2321ks\",\"leiden\"]"
   },
-  "last_seen": "2026-11-26T14:22:33Z",
+  "last_seen": "2026-11-26T14:42:59Z",
   "listing": {
    "address": "Betaplein 66",
    "area_m2": 84,
@@ -4817,6 +4817,65 @@
     "extra_pp": 28,
     "persons": 2,
     "price_pp": 750,
+    "search": "2 people",
+    "tier": "ok"
+   }
+  ],
+  "price_drop_from": null
+ },
+ "vesteda:8703": {
+  "best_tier": "ok",
+  "evidence": {
+   "service_costs": "Servicekosten p.m.: € 55,- (Vesteda lists them next to the rent)"
+  },
+  "first_seen": "2026-11-26T14:42:59Z",
+  "flags": [
+   "income_requirement",
+   "service_costs:55"
+  ],
+  "geo": {
+   "lat": 52.14542348,
+   "lon": 4.49460504,
+   "precision": "address",
+   "q": "[\"betaplein\",\"68\",\"2321ks\",\"leiden\"]"
+  },
+  "last_seen": "2026-11-26T14:42:59Z",
+  "listing": {
+   "address": "Betaplein 68",
+   "area_m2": 86,
+   "available_from": "2027-02-06",
+   "available_until": null,
+   "bedrooms": 2,
+   "city": "leiden",
+   "description": "Een fijne en goed onderhouden woning in complex Alpha in Leiden. De woning beschikt over twee comfortabele slaapkamers en biedt daarmee een ideale woonplek voor stellen, starters of iedereen die behoefte heeft aan een extra kamer als thuiskantoor, hobbyruimte of logeerkamer. De lichte woonkamer vormt een aangename leefruimte waar je heerlijk kunt ontspannen. Dankzij de grote raampartijen valt er volop natuurlijk daglicht binnen, wat zorgt voor een open, ruimtelijke en uitnodigende sfeer. De moderne keuken is praktisch ingericht en voorzien van de benodigde apparatuur, waardoor dagelijks koken eenvoudig en comfortabel is.\nDe ligging van de woning is bijzonder aantrekkelijk. Alpha bevindt zich in een rustige en groene woonomgeving met alle dagelijkse voorzieningen binnen handbereik. Supermarkten, winkels, scholen en sportfaciliteiten zijn eenvoudig bereikbaar. Daarnaast ligt het historische centrum van Leiden op korte afstand. Hier kun je genieten van sfeervolle grachten, gezellige terrassen, uitstekende restaurants, musea en een breed aanbod aan winkels. Voor ontspanning en recreatie zijn er diverse parken, wandelroutes en groene gebieden in de omgeving waar je heerlijk kunt wandelen, fietsen of genieten van de buitenlucht.\nOok de bereikbaarheid is uitstekend. Met de auto ben je binnen enkele minuten op de A4 en A44, waardoor steden als Den Haag, Amsterdam en Schiphol gemakkelijk bereikbaar zijn. Het openbaar vervoer is eveneens goed geregeld. Diverse bushaltes bevinden zich op loopafstand en bieden directe verbindingen naar Leiden Centraal Station en omliggende plaatsen. Hierdoor is de woning uitstekend geschikt voor forenzen en iedereen die comfortabel en flexibel wil reizen.\nKortom: een comfortabele en lichte woning met twee slaapkamers op een aantrekkelijke locatie in Leiden. Met alle voorzieningen dichtbij, veel groen in de omgeving en uitstekende verbindingen is dit de ideale woning voor wie zorgeloos en comfortabel wil wonen.\nVoorrang voor cruciale beroepen. Complex Alpha",
+   "extra": {
+    "api_notes": "Voorrang voor cruciale beroepen. Complex Alpha",
+    "complex": "Alpha",
+    "income_requirement": true,
+    "service_costs": 55,
+    "service_costs_note": "Servicekosten p.m.: € 55,- (Vesteda lists them next to the rent)",
+    "service_costs_on_top": true,
+    "status": 1
+   },
+   "furnished": null,
+   "image_url": "https://vst-web-prod-cdn-remote-media-endpoint-a4eufkf7anbjhkab.z03.azurefd.net/verhuuroffice.nl/media/80/8017084f53a41b164a2f3dd770e9015e/o/01.jpg?rmode=crop&width=570&height=276&hmac=3087b2037fb978271d89521e9a86b86279aad8876e502a92037c521318e1dd54",
+   "postcode": "2321KS",
+   "posted_at": null,
+   "price_includes_utilities": null,
+   "price_total": 1475,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "vesteda",
+   "source_id": "8703",
+   "title": "Appartement Betaplein 68, Leiden",
+   "uid": "vesteda:8703",
+   "url": "https://www.vesteda.com/nl/huurwoningen-leiden/alpha/betaplein-68-leiden-8703"
+  },
+  "matches": [
+   {
+    "extra_pp": 27,
+    "persons": 2,
+    "price_pp": 738,
     "search": "2 people",
     "tier": "ok"
    }
