@@ -5,7 +5,7 @@
   "homepage": "https://www.123wonen.nl",
   "label": "123Wonen",
   "last_error": "2026-11-26T09:06:45Z",
-  "last_ok": "2026-11-26T20:30:51Z",
+  "last_ok": "2026-11-26T20:50:59Z",
   "listings_last_run": 10,
   "note": "Reply via the agency (free)",
   "status": "ok"
@@ -16,7 +16,7 @@
   "homepage": "https://directwonen.nl",
   "label": "DirectWonen",
   "last_error": "2026-11-22T17:35:04Z",
-  "last_ok": "2026-11-26T20:30:51Z",
+  "last_ok": "2026-11-26T20:50:59Z",
   "listings_last_run": 132,
   "note": "Paid account needed to reply",
   "status": "ok"
@@ -28,7 +28,7 @@
   "homepage": "https://www.pararius.nl",
   "label": "Pararius/Funda email alerts",
   "last_error": "2026-11-20T19:10:38Z",
-  "last_ok": "2026-11-26T20:30:51Z",
+  "last_ok": "2026-11-26T20:50:59Z",
   "listings_last_run": 61,
   "note": "Reads the alert emails these sites send you",
   "status": "ok"
@@ -39,7 +39,7 @@
   "homepage": "https://heimstaden.com/nl/huurwoningen/",
   "label": "Heimstaden",
   "last_error": "2026-11-26T12:18:12Z",
-  "last_ok": "2026-11-26T20:30:51Z",
+  "last_ok": "2026-11-26T20:50:59Z",
   "listings_last_run": 1,
   "note": "Reply via Heimstaden (free)",
   "status": "ok"
@@ -50,7 +50,7 @@
   "homepage": "https://housinganywhere.com",
   "label": "HousingAnywhere",
   "last_error": "2026-11-14T06:49:46Z",
-  "last_ok": "2026-11-26T20:30:51Z",
+  "last_ok": "2026-11-26T20:50:59Z",
   "listings_last_run": 68,
   "note": "Mostly furnished, mid-term; platform fee applies",
   "status": "ok"
@@ -61,7 +61,7 @@
   "homepage": "https://ikwilhuren.nu/aanbod/",
   "label": "MVGM (ikwilhuren.nu)",
   "last_error": "2026-11-24T12:14:24Z",
-  "last_ok": "2026-11-26T20:30:51Z",
+  "last_ok": "2026-11-26T20:50:59Z",
   "listings_last_run": 7,
   "note": "Free account on ikwilhuren.nu needed to reply",
   "status": "ok"
@@ -72,7 +72,7 @@
   "homepage": "https://kamernet.nl",
   "label": "Kamernet",
   "last_error": "2026-11-12T15:19:44Z",
-  "last_ok": "2026-11-26T20:30:51Z",
+  "last_ok": "2026-11-26T20:50:59Z",
   "listings_last_run": 63,
   "note": "Paid Kamernet account needed to reply",
   "status": "ok"
@@ -83,7 +83,7 @@
   "homepage": "https://livresidential.nl/huurwoningen",
   "label": "LIV Residential",
   "last_error": "2026-11-24T08:56:32Z",
-  "last_ok": "2026-11-26T20:30:51Z",
+  "last_ok": "2026-11-26T20:50:59Z",
   "listings_last_run": 29,
   "note": "Reply via the landlord (free)",
   "status": "ok"
@@ -93,7 +93,7 @@
   "error": null,
   "homepage": "https://www.nederwoon.nl/search",
   "label": "NederWoon",
-  "last_ok": "2026-11-26T20:30:51Z",
+  "last_ok": "2026-11-26T20:50:59Z",
   "listings_last_run": 8,
   "note": "Reply via the agency (free)",
   "status": "ok"
@@ -104,22 +104,22 @@
   "homepage": "https://rivarentals.nl/aanbod/",
   "label": "Riva Rentals",
   "last_error": "2026-11-26T19:28:54Z",
-  "last_ok": "2026-11-26T20:30:51Z",
+  "last_ok": "2026-11-26T20:50:59Z",
   "listings_last_run": 32,
   "note": "Reply via the agency (free)",
   "status": "ok"
  },
  "rotsvast": {
   "alerted": false,
-  "consecutive_failures": 0,
-  "error": "den-haag: www.rotsvast.nl answered HTTP 503 for https://www.rotsvast.nl/huren/?search=Den+Haag; amsterdam: page 2: www.rotsvast.nl answered HTTP 503 for https://www.rotsvast.nl/huren/page/2/?search=Amsterdam; leiden: www.rotsvast.nl answered HTTP 503 for https://www.rotsvast.nl/huren/?search=Leiden;",
+  "consecutive_failures": 1,
+  "error": "www.rotsvast.nl answered HTTP 503 for https://www.rotsvast.nl/huren/?search=Den+Haag",
   "homepage": "https://www.rotsvast.nl/huren/",
   "label": "Rotsvast",
-  "last_error": "2026-11-26T10:32:28Z",
+  "last_error": "2026-11-26T20:50:59Z",
   "last_ok": "2026-11-26T20:30:51Z",
-  "listings_last_run": 16,
+  "listings_last_run": 0,
   "note": "Reply via the agency (free)",
-  "status": "partial"
+  "status": "error"
  },
  "rotterdamrentalservice": {
   "consecutive_failures": 0,
@@ -127,7 +127,7 @@
   "homepage": "https://rotterdamrentalservice.com/aanbod",
   "label": "Rotterdam Rental Service",
   "last_error": "2026-11-26T20:20:50Z",
-  "last_ok": "2026-11-26T20:30:51Z",
+  "last_ok": "2026-11-26T20:50:59Z",
   "listings_last_run": 11,
   "note": "Reply via the agency (free)",
   "status": "ok"
@@ -139,7 +139,7 @@
   "homepage": "https://www.vanderlinden.nl/woning-huren/",
   "label": "Van der Linden",
   "last_error": "2026-11-26T16:04:31Z",
-  "last_ok": "2026-11-26T20:30:51Z",
+  "last_ok": "2026-11-26T20:50:59Z",
   "listings_last_run": 52,
   "note": "Reply via the agency (free)",
   "status": "ok"
@@ -150,7 +150,7 @@
   "homepage": "https://www.vastgoednederland.nl/huurwoningen",
   "label": "Vastgoed Nederland",
   "last_error": "2026-11-23T10:13:34Z",
-  "last_ok": "2026-11-26T20:30:51Z",
+  "last_ok": "2026-11-26T20:50:59Z",
   "listings_last_run": 42,
   "note": "Reply via the estate agent named on the listing",
   "status": "ok"
@@ -161,7 +161,7 @@
   "homepage": "https://vbtverhuurmakelaars.nl/woningen",
   "label": "vb&t Verhuurmakelaars",
   "last_error": "2026-11-20T10:01:07Z",
-  "last_ok": "2026-11-26T20:30:51Z",
+  "last_ok": "2026-11-26T20:50:59Z",
   "listings_last_run": 16,
   "note": "Reply on the agency's site (free registration)",
   "status": "ok"
@@ -171,7 +171,7 @@
   "error": null,
   "homepage": "https://www.vesteda.com/nl",
   "label": "Vesteda",
-  "last_ok": "2026-11-26T20:30:51Z",
+  "last_ok": "2026-11-26T20:50:59Z",
   "listings_last_run": 8,
   "note": "Free account on hurenbij.vesteda.com needed to reply",
   "status": "ok"
@@ -181,7 +181,7 @@
   "error": null,
   "homepage": "https://viadaan.nl/aanbod",
   "label": "ViaDaan",
-  "last_ok": "2026-11-26T20:30:51Z",
+  "last_ok": "2026-11-26T20:50:59Z",
   "listings_last_run": 4,
   "note": "Newest 10 homes of the site only; reply via the agency (free)",
   "status": "ok"
@@ -192,7 +192,7 @@
   "homepage": "https://www.vva.amsterdam/woningaanbod/huur/amsterdam",
   "label": "VVA Amsterdam",
   "last_error": "2026-11-26T01:58:20Z",
-  "last_ok": "2026-11-26T20:30:51Z",
+  "last_ok": "2026-11-26T20:50:59Z",
   "listings_last_run": 0,
   "note": "Reply via the member agency named on the listing",
   "status": "ok"
