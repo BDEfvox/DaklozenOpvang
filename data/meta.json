@@ -2,14 +2,9 @@
  "email_links": {},
  "household_private": true,
  "last_digest_date": "2026-11-26",
- "last_run": "2026-11-27T03:15:28Z",
- "last_write": "2026-11-27T03:15:28Z",
+ "last_run": "2026-11-27T03:25:32Z",
+ "last_write": "2026-11-27T03:25:32Z",
  "new_matches": {
-  "2026-11-12": {
-   "amsterdam": 2,
-   "den-haag": 6,
-   "leiden": 1
-  },
   "2026-11-13": {
    "amsterdam": 3,
    "den-haag": 2,
@@ -72,6 +67,9 @@
    "amsterdam": 1,
    "leiden": 1,
    "rotterdam": 1
+  },
+  "2026-11-27": {
+   "den-haag": 1
   }
  }
 }
