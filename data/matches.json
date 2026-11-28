@@ -12,7 +12,7 @@
    "precision": "street",
    "q": "[\"lorentzplein\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Lorentzplein",
    "area_m2": 80,
@@ -272,7 +272,7 @@
    "precision": "street",
    "q": "[\"bachstraat\",\"\",\"\",\"leiden\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Bachstraat",
    "area_m2": 68,
@@ -678,7 +678,7 @@
    "precision": "street",
    "q": "[\"dbuserf\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "D. Buserf",
    "area_m2": 61,
@@ -730,7 +730,7 @@
    "precision": "street",
    "q": "[\"tafelbergstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Tafelbergstraat",
    "area_m2": 204,
@@ -782,7 +782,7 @@
    "precision": "street",
    "q": "[\"fahrenheitstraat\",\"\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Fahrenheitstraat",
    "area_m2": 89,
@@ -1239,6 +1239,59 @@
   ],
   "price_drop_from": null
  },
+ "email_alerts:funda-44690496": {
+  "best_tier": "great",
+  "evidence": {},
+  "first_seen": "2026-11-28T04:07:55Z",
+  "flags": [
+   "bedrooms_unknown"
+  ],
+  "geo": {
+   "lat": 52.33161641,
+   "lon": 4.86645273,
+   "precision": "address",
+   "q": "[\"arentjanszoonernststraat\",\"1089\",\"\",\"amsterdam\"]"
+  },
+  "last_seen": "2026-11-28T04:07:55Z",
+  "listing": {
+   "address": "Arent Janszoon Ernststraat 1089",
+   "area_m2": null,
+   "available_from": null,
+   "available_until": null,
+   "bedrooms": null,
+   "city": "amsterdam",
+   "description": null,
+   "extra": {
+    "private_text": true,
+    "site": "funda",
+    "site_prefiltered": true,
+    "via": "Funda"
+   },
+   "furnished": null,
+   "image_url": null,
+   "postcode": null,
+   "posted_at": "2026-11-28T03:59:33Z",
+   "price_includes_utilities": null,
+   "price_total": 1400,
+   "property_type": "apartment",
+   "rooms": null,
+   "source": "email_alerts",
+   "source_id": "funda-44690496",
+   "title": "Funda: Arent Janszoon Ernststraat 1089",
+   "uid": "email_alerts:funda-44690496",
+   "url": "https://www.funda.nl/detail/huur/amsterdam/appartement-arent-janszoon-ernststraat-1089/44690496"
+  },
+  "matches": [
+   {
+    "extra_pp": 0,
+    "persons": 2,
+    "price_pp": 700,
+    "search": "2 people",
+    "tier": "great"
+   }
+  ],
+  "price_drop_from": null
+ },
  "email_alerts:funda-44695427": {
   "best_tier": "ok",
   "evidence": {},
@@ -1252,7 +1305,7 @@
    "precision": "address",
    "q": "[\"robijnhof\",\"10\",\"\",\"leiden\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Robijnhof 10",
    "area_m2": 84,
@@ -1305,7 +1358,7 @@
    "precision": "address",
    "q": "[\"deperponcherstraat\",\"100b\",\"\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "De Perponcherstraat 100 B",
    "area_m2": null,
@@ -1460,7 +1513,7 @@
   ],
   "geo": null,
   "geo_q": "[\"beemsterstraat542e2\",\"\",\"\",\"amsterdam\"]",
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Beemsterstraat 542 E2",
    "area_m2": 85,
@@ -1562,7 +1615,7 @@
    "precision": "address",
    "q": "[\"haarlemmerweg\",\"1162l\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Haarlemmerweg 1162 L",
    "area_m2": 50,
@@ -1935,7 +1988,7 @@
    "precision": "street",
    "q": "[\"haarlemmerweg\",\"\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Haarlemmerweg",
    "area_m2": 50,
@@ -2155,7 +2208,7 @@
   ],
   "geo": null,
   "geo_q": "[\"plein\",\"1953\",\"\",\"rotterdam\"]",
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Plein 1953",
    "area_m2": 65,
@@ -2967,7 +3020,7 @@
    "precision": "address",
    "q": "[\"sneeuwbalstraat\",\"48\",\"2565wc\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Sneeuwbalstraat 48",
    "area_m2": 98,
@@ -3026,7 +3079,7 @@
    "precision": "postcode",
    "q": "[\"vierambachtsstraat54c01\",\"\",\"3023ap\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Vierambachtsstraat 54C-01",
    "area_m2": 90,
@@ -3088,7 +3141,7 @@
    "precision": "address",
    "q": "[\"mathenesserdijk\",\"261\",\"3027bn\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Mathenesserdijk 261",
    "area_m2": 45,
@@ -3146,7 +3199,7 @@
    "precision": "address",
    "q": "[\"dekempenaerstraat\",\"4\",\"3038vr\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "De Kempenaerstraat 4",
    "area_m2": 54,
@@ -3262,7 +3315,7 @@
    "precision": "address",
    "q": "[\"kareldestouteplein\",\"15a\",\"3082rm\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Karel De Stouteplein 15 A",
    "area_m2": 99,
@@ -3318,7 +3371,7 @@
    "precision": "postcode",
    "q": "[\"kleiweg249a1\",\"\",\"3051xl\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Kleiweg 249 A1",
    "area_m2": 48,
@@ -3377,7 +3430,7 @@
    "precision": "postcode",
    "q": "[\"spoorsingel70b1\",\"\",\"3033gp\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Spoorsingel 70 B1",
    "area_m2": 83,
@@ -3493,7 +3546,7 @@
    "precision": "address",
    "q": "[\"berthaanstrakade\",\"552\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Bert Haanstrakade 552",
    "area_m2": 77,
@@ -3603,7 +3656,7 @@
    "precision": "address",
    "q": "[\"berthaanstrakade\",\"880\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Bert Haanstrakade 880",
    "area_m2": 73,
@@ -3656,7 +3709,7 @@
    "precision": "address",
    "q": "[\"krijntaconiskade\",\"86\",\"\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Krijn Taconiskade 86",
    "area_m2": 78,
@@ -3715,7 +3768,7 @@
    "precision": "address",
    "q": "[\"rietdijk\",\"23\",\"\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Rietdijk 23",
    "area_m2": 103,
@@ -3827,7 +3880,7 @@
    "precision": "postcode",
    "q": "[\"otthoheldringstraat3e76\",\"\",\"1066az\",\"amsterdam\"]"
   },
-  "last_seen": "2026-11-28T03:07:32Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Ottho Heldringstraat 3 E76",
    "area_m2": 70,
@@ -4065,7 +4118,7 @@
    "precision": "address",
    "q": "[\"bredehilledijk\",\"322\",\"3072nk\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-28T03:07:32Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Brede Hilledijk 322",
    "area_m2": 70,
@@ -4242,7 +4295,7 @@
    "precision": "address",
    "q": "[\"laanvanwateringseveld\",\"644\",\"2548cm\",\"denhaag\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Laan van Wateringse Veld 644",
    "area_m2": 109,
@@ -4658,7 +4711,7 @@
    "precision": "address",
    "q": "[\"admiraalderuyterweg\",\"217\",\"3031aa\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Admiraal De Ruyterweg 217",
    "area_m2": 53,
@@ -4775,7 +4828,7 @@
    "precision": "address",
    "q": "[\"admiraalderuyterweg\",\"61\",\"3031aa\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Admiraal De Ruyterweg 61",
    "area_m2": 68,
@@ -4838,7 +4891,7 @@
    "precision": "address",
    "q": "[\"admiraalderuyterweg\",\"305\",\"3031aa\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Admiraal De Ruyterweg 305",
    "area_m2": 53,
@@ -4897,7 +4950,7 @@
    "precision": "address",
    "q": "[\"watertorenweg\",\"411\",\"3063hd\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Watertorenweg 411",
    "area_m2": 103,
@@ -4956,7 +5009,7 @@
    "precision": "address",
    "q": "[\"watertorenweg\",\"533\",\"3063hd\",\"rotterdam\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Watertorenweg 533",
    "area_m2": 95,
@@ -5135,7 +5188,7 @@
    "precision": "address",
    "q": "[\"betaplein\",\"68\",\"2321ks\",\"leiden\"]"
   },
-  "last_seen": "2026-11-28T03:57:54Z",
+  "last_seen": "2026-11-28T04:07:55Z",
   "listing": {
    "address": "Betaplein 68",
    "area_m2": 86,
